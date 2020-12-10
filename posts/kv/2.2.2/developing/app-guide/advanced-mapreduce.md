@@ -449,9 +449,9 @@ about using this in a production environment.
 #### Inputs
 
 The `mapred/3` input objects are given as a list of tuples in the
-format `{Bucket, Key}` or `{{Bucket, Key}, KeyData}`. `Bucket` and
+format `{Bucket, Key}` or `\{\{Bucket, Key}, KeyData}`. `Bucket` and
 `Key` should be binaries, and `KeyData` can be any Erlang term.  The
-former form is equivalent to `{{Bucket,Key},undefined}`.
+former form is equivalent to `\{\{Bucket,Key},undefined}`.
 
 #### Query
 
