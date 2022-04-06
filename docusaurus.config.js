@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'images/branding/favicon.ico',
   organizationName: 'riak', // Usually your GitHub org/user name.
   projectName: 'riak.github.io', // Usually your repo name.
 
@@ -46,20 +46,21 @@ const config = {
         title: 'Riak',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'images/branding/riak-logo.png',
         },
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'index',
             position: 'left',
             label: 'Tutorial',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/basho/',
-            label: 'GitHub',
             position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub',
           },
         ],
       },
@@ -70,8 +71,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Riak KV Documenation',
+                to: '/docs/',
               },
             ],
           },
