@@ -1,0 +1,52 @@
+---
+title: "Bitcask Capacity Calculator"
+id: planning_cluster_bitcask_capacity
+---
+
+import BitcaskCalculator from '@site/src/components/BitcaskCalculator';
+
+[plan backend bitcask]: /riak/kv/2.2.3/setup/planning/backend/bitcask
+
+These calculators will assist you in sizing your cluster if you plan to
+use the default [Bitcask][plan backend bitcask] storage back end.
+
+This page is designed to give you a rough estimate when sizing your
+cluster.  The calculations are a _best guess_, and they tend to be a bit
+on the conservative side. It's important to include a bit of head room
+as well as room for unexpected growth so that if demand exceeds
+expectations you'll be able to add more nodes to the cluster and stay
+ahead of your requirements.
+
+<BitcaskCalculator />
+
+## Details on Bitcask RAM Calculation
+
+With the above information in mind, the following variables will factor
+into your RAM calculation:
+
+Variable | Description
+:--------|:-----------
+Static Bitcask per-key overhead | 44.5 bytes per key
+Estimated average bucket-plus-key length | The combined number of characters your bucket + keynames will require (on average). We'll assume 1 byte per character.
+Estimated total objects | The total number of key/value pairs your cluster will have when started
+Replication Value (`n_val`) | The number of times each key will be replicated when written to Riak (the default is 3)
+
+## The actual equation
+
+Approximate RAM Needed for Bitcask = (static bitcask per key overhead +
+estimated average bucket+key length in bytes) * estimate total number of
+keys * `n_val`
+
+Example:
+
+* 50,000,000 keys in your cluster to start
+* approximately 30 bytes for each bucket+key name
+* default `n_val` of 3
+
+The amount of RAM you would need for Bitcask is about **9.78 GBs across
+your entire cluster.**
+
+Additionally, Bitcask relies on your operating system's filesystem cache
+to deliver high performance reads. So when sizing your cluster, take
+this into account and plan on having several more gigabytes of RAM
+available for your filesystem cache.
