@@ -172,13 +172,13 @@ act as a front-end proxy to a 5-node Riak cluster.
 This example forwards all GET requests to Riak nodes while rejecting all
 other HTTP operations.
 
-{{% note title="Nginx version notes" %}}
+:::note Nginx version notes
 This example configuration was verified on **Nginx version 1.2.3**. Please be
 aware that earlier versions of Nginx did not support any HTTP 1.1 semantics
 for upstream communication to backends. You should carefully examine this
 configuration and make changes appropriate to your specific environment before
 attempting to use it
-{{% /note %}}
+:::note
 
 Here is an example `nginx.conf` file:
 
@@ -236,12 +236,12 @@ server {
 }
 ```
 
-{{% note title="Note on access controls" %}}
+:::note Note on access controls
 Even when filtering and limiting requests to GETs only as done in the example,
 you should strongly consider additional access controls beyond what Nginx can
 provide directly, such as specific firewall rules to limit inbound connections
 to trusted sources.
-{{% /note %}}
+:::note
 
 ### Querying Secondary Indexes Over HTTP
 

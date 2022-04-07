@@ -1,6 +1,7 @@
 ---
 title: "Riak KV Glossary"
 id: learn_glossary
+slug: glossary
 ---
 
 
@@ -22,7 +23,7 @@ id: learn_glossary
 [dev data model]: /riak/kv/2.2.3/developing/data-modeling
 [dev data types]: /riak/kv/2.2.3/developing/data-types
 [glossary read rep]: /riak/kv/2.2.3/learn/glossary/#read-repair
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
+[glossary vnode]: /learn/glossary#vnode
 [Lager]: https://github.com/basho/lager
 [learn dynamo]: /riak/kv/2.2.3/learn/dynamo
 [plan cluster capacity]: /riak/kv/2.2.3/setup/planning/cluster-capacity

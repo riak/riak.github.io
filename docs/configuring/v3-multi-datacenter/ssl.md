@@ -40,11 +40,11 @@ the `riak-core` section of [`advanced.confg`][config reference#advanced.config]:
 The `cacertsdir` is a directory containing all the CA certificates
 needed to verify the CA chain back to the root.
 
-{{% note title="Note on configuration" %}}
+:::note Note on configuration
 In Version 3 replication, the SSL settings need to be placed in the
 `riak-core` section of `advanced.config` as opposed to the `riak-repl` section
 used by Version 2 replication.
-{{% /note %}}
+:::note
 
 ## Verifying Peer Certificates
 

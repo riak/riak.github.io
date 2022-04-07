@@ -1,6 +1,7 @@
 ---
 title: "Clusters"
 id: learn_concepts_clusters
+slug: clusters
 ---
 
 

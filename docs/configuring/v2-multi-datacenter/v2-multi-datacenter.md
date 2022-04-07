@@ -119,23 +119,23 @@ Setting | Options | Default | Description
 `min_put_workers` | `min` (integer) | `5` | The minimum number of put workers spawned for fullsync. Every time a replication difference is found, a `GET` will be performed to get the actual object to send. See [3](#f3).
 
 
-1. <a name="f1"></a>SSL depth is the maximum number of non-self-issued
+1. SSL depth is the maximum number of non-self-issued
  intermediate certificates that may follow the peer certificate in a valid
  certificate chain. If depth is `0`, the PEER must be signed by the trusted
  ROOT-CA directly; if `1` the path can be PEER, CA, ROOT-CA; if depth is `2`
  then PEER, CA, CA, ROOT-CA and so on.
 
-2. <a name="f2"></a>Each get worker spawns 2 processes, one for the work and
+2. Each get worker spawns 2 processes, one for the work and
  one for the get FSM (an Erlang finite state machine implementation for `GET`
  requests). Be sure that you don't run over the maximum number of allowed
  processes in an Erlang VM (check `vm.args` for a `+P` property).
 
-3. <a name="f3"></a>Each put worker spawns 2 processes, one for the work, and
+3. Each put worker spawns 2 processes, one for the work, and
   one for the put FSM (an Erlang finite state machine implementation for `PUT`
   requests). Be sure that you don't run over the maximum number of allowed
   processes in an Erlang VM (check `vm.args` for a `+P` property).
 
-4. <a name="f4"></a>If the ACL is specified and not the special value `*`,
+4. If the ACL is specified and not the special value `*`,
  peers presenting certificates not matching any of the patterns will not be
  allowed to connect.
  If no ACLs are configured, no checks on the common name are done, except

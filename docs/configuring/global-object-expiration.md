@@ -17,9 +17,9 @@ To enable global object expiry, add the `leveldb.expiration` setting to your ria
 leveldb.expiration = on
 ```
 
-{{% note %}}
+:::note
 Turning on global object expiration will not retroactively expire previous data. Only data created while expiration is on will be scheduled for expiration.
-{{% /note %}}
+:::note 
 
 ## Setting Retention Time
 

@@ -114,13 +114,13 @@ attempt to re-connect more often that it needs to. On the other hand,
 lengthening the timeout will make Riak less sensitive to cases in which
 the connection really has been compromised.
 
-1. <a name="f1"></a>SSL depth is the maximum number of non-self-issued
+1. SSL depth is the maximum number of non-self-issued
  intermediate certificates that may follow the peer certificate in a valid
  certificate chain. If depth is `0`, the PEER must be signed by the trusted
  ROOT-CA directly; if `1` the path can be PEER, CA, ROOT-CA; if depth is `2`
  then PEER, CA, CA, ROOT-CA and so on.
 
-2. <a name="f2"></a>If the ACL is specified and not the special value `*`,
+2. If the ACL is specified and not the special value `*`,
   peers presenting certificates not matching any of the patterns will not be
   allowed to connect.
   If no ACLs are configured, no checks on the common name are done, except
