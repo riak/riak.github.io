@@ -99,7 +99,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Riak. MIT. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Riak. Apache 2.0. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
