@@ -1,11 +1,13 @@
 ---
 title: "Fullsync via Active Anti-Entropy"
 id: managing_ref_v3_aae
+slug: aae 
+sidebar_position: 1
 ---
 
-[glossary aae]: /riak/kv/2.2.3/learn/glossary/#active-anti-entropy-aae
-[config reference#advanced]: /riak/kv/2.2.3/configuring/reference/#advanced-configuration
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
+[glossary aae]: /docs/learn/glossary/#active-anti-entropy-aae
+[config reference#advanced]: /docs/configuring/reference/#advanced-configuration
+[concept clusters]: /docs/learn/concepts/clusters
 
 > **Note: Technical preview**
 >

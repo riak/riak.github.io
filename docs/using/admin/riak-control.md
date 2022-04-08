@@ -1,9 +1,11 @@
 ---
 title: "Riak Control"
 id: cluster_admin_riak_control
+slug: riak-control
+sidebar_position: 3
 ---
 
-[config reference]: /riak/kv/2.2.3/configuring/reference
+[config reference]: /docs/configuring/reference
 
 Riak Control is a web-based administrative console for inspecting and
 manipulating Riak clusters.
@@ -45,11 +47,11 @@ listener.https.<name> = 127.0.0.1:8096
 %%     the `riak_api` tuple's value list.
 ```
 
-{{% note title="Note on SSL" %}}
+:::note Note on SSL
 We strongly recommend that you enable SSL for Riak Control. It is disabled by
 default, and if you wish to enable it you must do so explicitly. More
 information can be found in the document below.
-{{% /note %}}
+:::note
 
 ## Enabling and Disabling Riak Control
 
@@ -97,7 +99,7 @@ and configured SSL and HTTPS.
 ## Enabling SSL and HTTPS
 
 In order to use SSL in conjunction with Riak Control, SSL must be
-enabled on each Riak node. For more information, see our [security documentation](/riak/kv/2.2.3/using/security/basics#enabling-ssl). Once SSL is enabled, you can proceed to setting up [authentication](#authentication) for Riak Control.
+enabled on each Riak node. For more information, see our [security documentation](/docs/using/security/basics#enabling-ssl). Once SSL is enabled, you can proceed to setting up [authentication](#authentication) for Riak Control.
 
 Please note that Riak Control will not work if you have enabled
 authentication but SSL is not set up properly.
@@ -155,7 +157,7 @@ be because you are using self-signed certificates. If you have
 authentication enabled in your configuration, you will next be asked to
 authenticate. Enter an appropriate username and password now.
 
-{{% note title="Note on browser TLS" %}}
+:::note Note on browser TLS
 Your browser needs to be support TLS v1.2 to use Riak Control over HTTPS. A
 list of browsers that support TLS v1.2 can be found
 [here](https://en.wikipedia.org/wiki/Transport_Layer_Security#Web_browsers).
@@ -163,7 +165,7 @@ TLS v1.2 may be disabled by default on your browser, for example if you are
 using Firefox versions earlier than 27, Safari versions earlier than 7, Chrome
 versions earlier than 30, or Internet Explorer versions earlier than 11.  To
 enable it, follow browser-specific instructions.
-{{% /note %}}
+:::note
 
 ### Snapshot View
 
@@ -212,7 +214,7 @@ nodes in the cluster.
 ### Ring View
 
 One level deeper than the cluster view is the ring view. This is where you can
-see the health of each [vnode](/riak/kv/2.2.3/learn/glossary/#vnode).
+see the health of each [vnode](/docs/learn/glossary/#vnode).
 
 [ ![Ring View](/images/control_current_ring.png) ] (/images/control_current_ring.png)
 

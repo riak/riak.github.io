@@ -1,17 +1,19 @@
 ---
 title: "Riak Search Settings"
 id: configuring_search
+slug: search 
+sidebar_position: 5
 ---
 
-[usage search]: /riak/kv/2.2.3/developing/usage/search
-[usage search schema]: /riak/kv/2.2.3/developing/usage/search-schemas
-[usage search data types]: /riak/kv/2.2.3/developing/usage/searching-data-types
-[usage custom extractors]: /riak/kv/2.2.3/developing/usage/custom-extractors
-[cluster-ops aae throttle]: /riak/kv/2.2.3/using/cluster-operations/active-anti-entropy/#throttling
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[config reference#search]: /riak/kv/2.2.3/configuring/reference/#search
-[glossary aae]: /riak/kv/2.2.3/learn/glossary/#active-anti-entropy-aae
-[security index]: /riak/kv/2.2.3/using/security/
+[usage search]: /docs/developing/usage/search
+[usage search schema]: /docs/developing/usage/search-schemas
+[usage search data types]: /docs/developing/usage/searching-data-types
+[usage custom extractors]: /docs/developing/usage/custom-extractors
+[cluster-ops aae throttle]: /docs/using/cluster-operations/active-anti-entropy/#throttling
+[config reference]: /docs/configuring/reference
+[config reference#search]: /docs/configuring/reference/#search
+[glossary aae]: /docs/learn/glossary/#active-anti-entropy-aae
+[security index]: /docs/using/security/
 
 [java se downloads]: http://www.oracle.com/technetwork/java/javase/downloads
 [java se docs]: http://www.oracle.com/technetwork/java/javase/documentation

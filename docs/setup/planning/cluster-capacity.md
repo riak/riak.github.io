@@ -1,15 +1,17 @@
 ---
 title: "Cluster Capacity Planning"
 id: planning_cluster_capacity
+slug: cluster-capacity
+sidebar_position: 3
 ---
 
-[plan backend leveldb]: /riak/kv/2.2.3/setup/planning/backend/leveldb
-[plan bitcask capacity]: /riak/kv/2.2.3/setup/planning/bitcask-capacity-calc
-[plan index]: /riak/kv/2.2.3/setup/planning
-[concept replication]: /riak/kv/2.2.3/learn/concepts/replication
-[use admin riak-admin#cluster]: /riak/kv/2.2.3/using/admin/riak-admin/#cluster
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[perf benchmark]: /riak/kv/2.2.3/using/performance/benchmarking
+[plan backend leveldb]: /docs/setup/planning/backend/leveldb
+[plan bitcask capacity]: /docs/setup/planning/bitcask-capacity-calc
+[plan index]: /docs/setup/planning
+[concept replication]: /docs/learn/concepts/replication
+[use admin riak-admin#cluster]: /docs/using/admin/riak-admin/#cluster
+[config reference]: /docs/configuring/reference
+[perf benchmark]: /docs/using/performance/benchmarking
 [LVM]: http://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)
 
 
@@ -170,13 +172,13 @@ So if you're running a 3-node development cluster, a ring size of 64 or 128 shou
 
 The table below provides some suggested combinations:
 
-Number of nodes | Number of data partitions
-:---------------|:-------------------------
-3, 4, 5 | 64, 128
-5 | 64, 128
-6 | 64, 128, 256
-7, 8, 9, 10 | 128, 256
-11, 12 | 128, 256, 512
+| Number of nodes | Number of data partitions |
+|:----------------|:--------------------------|
+| 3, 4, 5         | 64, 128                   |
+| 5               | 64, 128                   |
+| 6               | 64, 128, 256              |
+| 7, 8, 9, 10     | 128, 256                  |
+| 11, 12          | 128, 256, 512             |
 
 By extension, a ring size of 1024 is advisable only in clusters with
 more than 20 nodes, 2048 in clusters with more than 40 nodes, etc.

@@ -1,10 +1,12 @@
 ---
 title: "Quickstart"
 id: configuring_v2_quickstart
+slug: quickstart
+sidebar_position: 0
 ---
 
 :::note "Deprecation Warning"
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/riak/kv/2.2.3/configuring/v3-multi-datacenter/quick-start/) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/configuring/v3-multi-datacenter/quick-start/) instead.
 :::note
 
 The Riak Multi-Datacenter Replication Quick Start will walk you through
@@ -29,19 +31,19 @@ Configure Riak MDC to perform replication, given the following
 
 #### Cluster 1
 
-Name  | IP          | Node name
-:-----|:------------|:----------------
-`node1` | `172.16.1.11` | `riak@172.16.1.11`
-`node2` | `172.16.1.12` | `riak@172.16.1.12`
-`node3` | `172.16.1.13` | `riak@172.16.1.13`
+| Name    | IP            | Node name          |
+|:--------|:--------------|:-------------------|
+| `node1` | `172.16.1.11` | `riak@172.16.1.11` |
+| `node2` | `172.16.1.12` | `riak@172.16.1.12` |
+| `node3` | `172.16.1.13` | `riak@172.16.1.13` |
 
 #### Cluster 2
 
-Name  | IP          | Node name
-:-----|-------------|-----------------
-`node4` | `192.168.1.21` | `riak@192.168.1.21`
-`node5` | `192.168.1.22` | `riak@192.168.1.22`
-`node6` | `192.168.1.23` | `riak@192.168.1.23`
+| Name    | IP             | Node name           |
+|:--------|----------------|---------------------|
+| `node4` | `192.168.1.21` | `riak@192.168.1.21` |
+| `node5` | `192.168.1.22` | `riak@192.168.1.22` |
+| `node6` | `192.168.1.23` | `riak@192.168.1.23` |
 
 **Note**: The addresses used in these example clusters are contrived,
 non-routable addresses. In real-world applications, however, these

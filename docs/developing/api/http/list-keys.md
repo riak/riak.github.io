@@ -1,14 +1,16 @@
 ---
-title: "HTTP List Keys"
+title: "List Keys"
 id: http_list_keys
+slug: list-keys
+sidebar_position: 4
 ---
 
 Lists keys in a bucket.
 
-{{% note title="Not for production use" %}}
+:::note Not for production use
 This operation requires traversing all keys stored in the cluster and should
 not be used in production.
-{{% /note %}}
+:::note
 
 ## Request
 

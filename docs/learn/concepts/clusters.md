@@ -2,18 +2,19 @@
 title: "Clusters"
 id: learn_concepts_clusters
 slug: clusters
+sidebar_position: 4
 ---
 
 
-[concept buckets]: /riak/kv/2.2.3/learn/concepts/buckets
-[concept keys objects]: /riak/kv/2.2.3/learn/concepts/keys-and-objects
-[concept replication]: /riak/kv/2.2.3/learn/concepts/replication
-[glossary node]: /riak/kv/2.2.3/learn/glossary/#node
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[learn dynamo]: /riak/kv/2.2.3/learn/dynamo
-[usage bucket types]: /riak/kv/2.2.3/developing/usage/bucket-types
-[usage conflict resolution]: /riak/kv/2.2.3/developing/usage/conflict-resolution
-[usage replication]: /riak/kv/2.2.3/developing/usage/replication
+[concept buckets]: /docs/learn/concepts/buckets
+[concept keys objects]: /docs/learn/concepts/keys-and-objects
+[concept replication]: /docs/learn/concepts/replication
+[glossary node]: /docs/learn/glossary/#node
+[glossary vnode]: /docs/learn/glossary/#vnode
+[learn dynamo]: /docs/learn/dynamo
+[usage bucket types]: /docs/developing/usage/bucket-types
+[usage conflict resolution]: /docs/developing/usage/conflict-resolution
+[usage replication]: /docs/developing/usage/replication
 
 
 Riak's default mode of operation is to work as a cluster consisting of

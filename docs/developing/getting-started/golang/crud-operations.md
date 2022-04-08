@@ -1,6 +1,8 @@
 ---
-title: "Getting Started: CRUD Operations with Go"
+title: "CRUD Operations"
 id: getting_started_go_crud
+slug: crud-operations
+sidebar_position: 0
 ---
 
 ## Creating Objects

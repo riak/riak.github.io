@@ -1,26 +1,28 @@
 ---
 title: "Production Checklist"
 id: upgrading_checklist
+slug: checklist
+sidebar_position: 0
 ---
 
-[perf open files]: /riak/kv/2.2.3/using/performance/open-files-limit
-[perf index]: /riak/kv/2.2.3/using/performance
+[perf open files]: /docs/using/performance/open-files-limit
+[perf index]: /docs/using/performance
 [ntp]: http://www.ntp.org/
-[security basics]: /riak/kv/2.2.3/using/security/basics
-[cluster ops load balance]: /riak/kv/2.2.3/configuring/load-balancing-proxy
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[config backend]: /riak/kv/2.2.3/configuring/backend
-[usage search]: /riak/kv/2.2.3/developing/usage/search
-[usage conflict resolution]: /riak/kv/2.2.3/developing/usage/conflict-resolution
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
-[apps replication properties]: /riak/kv/2.2.3/developing/app-guide/replication-properties
-[concept strong consistency]: /riak/kv/2.2.3/using/reference/strong-consistency
-[cluster ops bucket types]: /riak/kv/2.2.3/using/cluster-operations/bucket-types
-[use admin commands]: /riak/kv/2.2.3/using/admin/commands
-[use admin riak control]: /riak/kv/2.2.3/using/admin/riak-control
-[cluster ops inspect node]: /riak/kv/2.2.3/using/cluster-operations/inspecting-node
-[troubleshoot http]: /riak/kv/2.2.3/using/troubleshooting/http-204
-[use admin riak-admin]: /riak/kv/2.2.3/using/admin/riak-admin
+[security basics]: /docs/using/security/basics
+[cluster ops load balance]: /docs/configuring/load-balancing-proxy
+[config reference]: /docs/configuring/reference
+[config backend]: /docs/configuring/backend
+[usage search]: /docs/developing/usage/search
+[usage conflict resolution]: /docs/developing/usage/conflict-resolution
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
+[apps replication properties]: /docs/developing/app-guide/replication-properties
+[concept strong consistency]: /docs/using/reference/strong-consistency
+[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
+[use admin commands]: /docs/using/admin/commands
+[use admin riak control]: /docs/using/admin/riak-control
+[cluster ops inspect node]: /docs/using/cluster-operations/inspecting-node
+[troubleshoot http]: /docs/using/troubleshooting/http-204
+[use admin riak-admin]: /docs/using/admin/riak-admin
 [SANs]: http://en.wikipedia.org/wiki/Storage_area_network
 
 Deploying Riak KV to a realtime production environment from a development or testing environment can be a complex process. While the specifics of that process will always depend on your environment and practices, there are some basics for you to consider and a few questions that you will want to ask while making this transition.

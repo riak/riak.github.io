@@ -1,12 +1,14 @@
 ---
 title: "Debian and Ubuntu"
 id: installing_debian_ubuntu
+slug: debian-ubuntu 
+sidebar_position: 1
 ---
 
-[install source index]: /riak/kv/2.2.3/setup/installing/source/
-[security index]: /riak/kv/2.2.3/using/security/
-[install source erlang]: /riak/kv/2.2.3/setup/installing/source/erlang
-[install verify]: /riak/kv/2.2.3/setup/installing/verify
+[install source index]: /docs/setup/installing/source/
+[security index]: /docs/using/security/
+[install source erlang]: /docs/setup/installing/source/erlang
+[install verify]: /docs/setup/installing/verify
 
 Riak KV can be installed on Debian or Ubuntu-based systems using a binary
 package or by compiling from source code.

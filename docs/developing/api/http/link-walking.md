@@ -1,16 +1,18 @@
 ---
-title: "HTTP Link Walking"
+title: "Link Walking"
 id: http_link_walking
+slug: link-walking 
+sidebar_position: 21
 ---
 
-{{% note title="Deprecation Warning" %}}
+:::note Deprecation Warning
 This feature is deprecated and will be removed in a future version.
-{{% /note %}}
+:::note
 
 Link walking (traversal) finds and returns objects by following links attached
 to them, starting from the object specified by the bucket and key portion.  It
-is a special case of [MapReduce](/riak/kv/2.2.3/developing/usage/mapreduce), and can be expressed more verbosely as such.
-[Read more about Links](/riak/kv/2.2.3/learn/glossary/#links).
+is a special case of [MapReduce](/docs/developing/usage/mapreduce), and can be expressed more verbosely as such.
+[Read more about Links](/docs/learn/glossary/#links).
 
 ## Request
 
@@ -18,7 +20,7 @@ is a special case of [MapReduce](/riak/kv/2.2.3/developing/usage/mapreduce), and
 GET /buckets/bucket/keys/key/[bucket],[tag],[keep]
 ```
 
-{{% note title="Link filters" %}}
+:::note Link filters
 A link filter within the request URL is made of three parts, separated by
 commas:
 
@@ -30,7 +32,7 @@ Any of the three parts may be replaced with `_` (underscore), signifying that
 any value is valid. Multiple phases of links can be followed by adding
 additional path segments to the URL, separating the link filters by slashes.
 The final phase in the link-walking query implicitly returns its results.
-{{% /note %}}
+:::note
 
 ## Response
 
@@ -56,7 +58,7 @@ single object that was found. If no objects were found or "keep" was not set on
 the phase, no chunks will be present in that phase.  Objects inside phase
 results will include `Location` headers that can be used to determine
 bucket and key. In fact, you can treat each object-chunk similarly to a complete
-response from [fetching the object](/riak/kv/2.2.3/developing/api/http/fetch-object), without the status
+response from [fetching the object](/docs/developing/api/http/fetch-object), without the status
 code.
 
 ## Example

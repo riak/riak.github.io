@@ -1,6 +1,8 @@
 ---
-title: "PBC Data Type Union"
+title: "Data Type Union"
 id: pbc_dt_union
+slug: dt-union
+sidebar_position: 16
 ---
 
 A "union" type for update operations.
@@ -16,4 +18,4 @@ message DtOp {
 ```
 
 The included operation depends on the Data Type that is being updated.
-`DtOp` messages are sent only as part of a [`DtUpdateReq`](/riak/kv/2.2.3/developing/api/protocol-buffers/dt-store) message.
+`DtOp` messages are sent only as part of a [`DtUpdateReq`](/docs/developing/api/protocol-buffers/dt-store) message.

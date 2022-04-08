@@ -1,18 +1,20 @@
 ---
-title: "PBC Get Client ID"
+title: "Get Client ID"
 id: pbc_get_client_id
+slug: get-client-id
+sidebar_position: 28
 ---
 
-{{% note title="Deprecation notice" %}}
+:::note Deprecation notice
 The use of client IDs in conflict resolution is now deprecated in Riak. If you
 are building or maintaining a Riak client that is intended to be compatible
 with Riak 1.4 or later, you can safely ignore client IDs.
-{{% /note %}}
+:::note
 
 Get the client id used for this connection. Client ids are used for
 conflict resolution and each unique actor in the system should be
 assigned one.  A client id is assigned randomly when the socket is
-connected and can be changed using [Set Client ID](/riak/kv/2.2.3/developing/api/protocol-buffers/set-client-id).
+connected and can be changed using [Set Client ID](/docs/developing/api/protocol-buffers/set-client-id).
 
 ## Request
 

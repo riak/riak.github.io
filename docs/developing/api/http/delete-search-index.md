@@ -1,6 +1,8 @@
 ---
-title: "HTTP Delete Search Index"
+title: "Delete Search Index"
 id: http_delete_search_index
+slug: delete-search-index
+sidebar_position: 17
 ---
 
 Deletes a Riak Search index.

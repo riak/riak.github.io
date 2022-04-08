@@ -1,6 +1,8 @@
 ---
 title: "Amazon Web Services Performance Tuning"
 id: performance_aws
+slug: amazon-web-services
+sidebar_position: 5
 ---
 
 This guide introduces best practices for tuning Riak cluster performance
@@ -42,13 +44,13 @@ indexes are not needed for the application.
 In any case, proper benchmarking and tuning are needed to achieve the
 desired performance.
 
-{{% note title="Tip" %}}
+:::note Tip
 Most successful AWS cluster deployments use more EC2 instances than they would
 the same number of physical nodes to compensate for the performance
 variability caused by shared, virtualized resources. Plan to have more EC2
 instance based nodes than physical server nodes when estimating cluster size
 with respect to node count.
-{{% /note %}}
+:::note
 
 ## Operating System
 

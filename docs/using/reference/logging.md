@@ -1,15 +1,17 @@
 ---
 title: "Logging Reference"
 id: managing_ref_logging
+slug: logging
+sidebar_position: 0
 ---
 
-[cluster ops log]: /riak/kv/2.2.3/using/cluster-operations/logging
+[cluster ops log]: /docs/using/cluster-operations/logging
 
 Logging in Riak KV is handled by a Basho-produced logging framework for
 [Erlang](http://www.erlang.org) called
 [lager](https://github.com/basho/lager).
 
-lager provides a number of configuration options that you can use to fine-tune your Riak cluster's logging output. A compact listing of parameters can be found in our [configuration files](/riak/kv/2.2.3/configuring/reference/#logging) documentation. A more thorough explanation of these options can be found in this document.
+lager provides a number of configuration options that you can use to fine-tune your Riak cluster's logging output. A compact listing of parameters can be found in our [configuration files](/docs/configuring/reference/#logging) documentation. A more thorough explanation of these options can be found in this document.
 
 ## Log Directory
 
@@ -53,7 +55,7 @@ and the message `prefix` will often identify the Riak subsystem
 involved, e.g. `riak_ensemble_peer` or `alarm_handler` (amongst many
 other possibilities).
 
-{{% note title="Warning: Log messages may contain newline characters" %}}
+:::note Warning: Log messages may contain newline characters
 As of Riak KV 2.2.3 a few of the log messages may contain newline
 characters, preventing reliable identification of the end of each log
 when attempting log files ingestion by external tools.
@@ -66,7 +68,7 @@ e.g. exploiting the
 option (e.g. see [this StackExchange topic
 answer](https://unix.stackexchange.com/questions/317422/is-there-a-way-to-rewrite-parts-of-a-message-globally-instead-of-inserting-rewri/317474#317474))
 - or equivalent - of syslog implementations.
-{{% /note %}}
+:::note
 
 The exception to this syntax is in crash logs (stored in `crash.log`
 files). For crash logs, the syntax tends to be along the following
@@ -262,11 +264,11 @@ or to neither. This is determined by the value that you give to the
 * `file` --- Console logs will be emitted to a file. This is Riak's
     default behavior. The location of that file is determined by the
     `log.console.file` parameter. The default location is
-    `./log/console.log` on an installation from [source](/riak/kv/2.2.3/setup/installing/source), but will differ on platform-specific installation,
+    `./log/console.log` on an installation from [source](/docs/setup/installing/source), but will differ on platform-specific installation,
     e.g.  `/var/log/riak` on Ubuntu, Debian, CentOS, and RHEL or
     `/opt/riak/log` on Solaris-based platforms.
 * `console` --- Console logs will be emitted to standard output, which
-    can be viewed by running the [`riak attach-direct`](/riak/kv/2.2.3/using/admin/riak-cli/#attach-direct) command
+    can be viewed by running the [`riak attach-direct`](/docs/using/admin/riak-cli/#attach-direct) command
 * `both` --- Console logs will be emitted both to a file and to standard
     output
 * `off` --- Console log messages will be disabled

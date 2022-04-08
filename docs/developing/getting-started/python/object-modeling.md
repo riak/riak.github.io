@@ -1,6 +1,8 @@
 ---
-title: "Object Modeling with Python"
+title: "Object Modeling"
 id: getting_started_python_object
+slug: object-modeling 
+sidebar_position: 2
 ---
 
 To get started, let's create the data structures that we'll be using.
@@ -47,11 +49,11 @@ and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
 
-Bucket | Key Pattern | Example Key
-:------|:------------|:-----------
-`Users` | `<user_name>` | `joeuser`
-`Msgs` | `<username>_<datetime>` | `joeuser_2014-03-06T02:05:13.223556Z`
-`Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06`<br /> `marketing_group_Inbox_2014-03-06` |
+| Bucket      | Key Pattern                | Example Key                                                        |
+|:------------|:---------------------------|:-------------------------------------------------------------------|
+| `Users`     | `<user_name>`              | `joeuser`                                                          |
+| `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13.223556Z`                              |
+| `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06`<br /> `marketing_group_Inbox_2014-03-06` |
 
 For the `Users` bucket, we can be certain that we will want each
 username to be unique, so let's use the `username` as the key.  For the
@@ -70,11 +72,11 @@ users, and `<groupname>_<type>_<date>` for groups, which will look like
 `joeuser_Sent_2014-03-06` or `marketing_group_Inbox_2014-03-06`,
 respectively.
 
-{{% note title="Note" %}}
+:::note Note
 Riak performs best with objects under 1-2MB. Objects larger than that can hurt
 performance, especially if many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-{{% /note %}}
+:::note
 
 #### Keeping our story straight with repositories
 

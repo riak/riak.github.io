@@ -1,21 +1,23 @@
 ---
 title: "Frequently Asked Questions"
 id: developing_faq
+slug: faq
+sidebar_position: 7
 ---
 
-[[Basho Bench]: /riak/kv/2.2.3/using/performance/benchmarking
-[Bitcask]: /riak/kv/2.2.3/setup/planning/backend/bitcask
-[Bucket Properties]: /riak/kv/2.2.3/developing/usage
+[[Basho Bench]: /docs/using/performance/benchmarking
+[Bitcask]: /docs/setup/planning/backend/bitcask
+[Bucket Properties]: /docs/developing/usage
 [built-in functions list]: https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js
-[commit hooks]: /riak/kv/2.2.3/developing/usage/commit-hooks
-[Configuration Files]: /riak/kv/2.2.3/configuring/reference
+[commit hooks]: /docs/developing/usage/commit-hooks
+[Configuration Files]: /docs/configuring/reference
 [contrib.basho.com]: https://github.com/basho/riak_function_contrib
-[Erlang Riak Client]: /riak/kv/2.2.3/developing/client-libraries
-[MapReduce]: /riak/kv/2.2.3/developing/usage/mapreduce
-[Memory]: /riak/kv/2.2.3/setup/planning/backend/memory
+[Erlang Riak Client]: /docs/developing/client-libraries
+[MapReduce]: /docs/developing/usage/mapreduce
+[Memory]: /docs/setup/planning/backend/memory
 [Riak CS]: /riak/cs/2.1.1
-[System Planning]: /riak/kv/2.2.3/setup/planning/start/#network-configuration-load-balancing
-[vector clocks]: /riak/kv/2.2.3/learn/concepts/causal-context#vector-clocks
+[System Planning]: /docs/setup/planning/start/#network-configuration-load-balancing
+[vector clocks]: /docs/learn/concepts/causal-context#vector-clocks
 
 
 ## General
@@ -92,31 +94,31 @@ E: 4-9-14
   When a value is stored in Riak, the `{bucket, key}` is hashed to determine its first primary partition, and the value is stored in that partition and the next `n_val` - 1 partitions in the ring.
   A preflist consists of the vnode which owns the key, and the next `n_val` vnodes in the ring, in order. In this scenario there are 16 preflists:
 
-  <table border="1">
-  <tr><td>0-1-2</td><td>1-2-3</td><td>2-3-4</td><td>3-4-5</td></tr>
-  <tr><td>4-5-6</td><td>5-6-7</td><td>6-7-8</td><td>7-8-9</td></tr>
-  <tr><td>8-9-10</td><td>9-10-11</td><td>10-11-12</td><td>11-12-13</td></tr>
-  <tr><td>12-13-14</td><td>13-14-15</td><td>14-15-0</td><td>15-0-1</td></tr>
-  </table>
+|||||
+|--- |--- |--- |--- |
+|0-1-2|1-2-3|2-3-4|3-4-5|
+|4-5-6|5-6-7|6-7-8|7-8-9|
+|8-9-10|9-10-11|10-11-12|11-12-13|
+|12-13-14|13-14-15|14-15-0|15-0-1|
 
   Index information for each partition is co-located with the value data.  In order to get a full result set for a secondary index query, Riak will need to consult a "covering set" of vnodes that includes at least one member of each preflist. This will require a minimum of 1/`n_val` of the vnodes, rounded up, in this case 6. There are 56 possible covering sets consisting of 6 vnodes:
 
-  <table border="1">
-  <tr><td>0-1-4-7-10-13</td><td>0-2-4-7-10-13</td><td>0-2-5-7-10-13</td><td>0-2-5-8-10-13</td></tr>
-  <tr><td>0-2-5-8-11-13</td><td>0-2-5-8-11-14</td><td>0-3-4-7-10-13</td><td>0-3-5-7-10-13</td></tr>
-  <tr><td>0-3-5-8-10-13</td><td>0-3-5-8-11-13</td><td>0-3-5-8-11-14</td><td>0-3-6-7-10-13</td></tr>
-  <tr><td>0-3-6-8-10-13</td><td>0-3-6-8-11-13</td><td>0-3-6-8-11-14</td><td>0-3-6-9-10-13</td></tr>
-  <tr><td>0-3-6-9-11-13</td><td>0-3-6-9-11-14</td><td>0-3-6-9-12-13</td><td>0-3-6-9-12-14</td></tr>
-  <tr><td>0-3-6-9-12-15</td><td>1-2-5-8-11-14</td><td>1-3-5-8-11-14</td><td>1-3-6-8-11-14</td></tr>
-  <tr><td>1-3-6-9-11-14</td><td>1-3-6-9-12-14</td><td>1-3-6-9-12-15</td><td>1-4-5-8-11-14</td></tr>
-  <tr><td>1-4-6-8-11-14</td><td>1-4-6-9-11-14</td><td>1-4-6-9-12-14</td><td>1-4-6-9-12-15</td></tr>
-  <tr><td>1-4-7-8-11-14</td><td>1-4-7-9-11-14</td><td>1-4-7-9-12-14</td><td>1-4-7-9-12-15</td></tr>
-  <tr><td>1-4-7-10-11-14</td><td>1-4-7-10-12-14</td><td>1-4-7-10-12-15</td><td>1-4-7-10-13-14</td></tr>
-  <tr><td>1-4-7-10-13-15</td><td>2-3-6-9-12-15</td><td>2-4-6-9-12-15</td><td>2-4-7-9-12-15</td></tr>
-  <tr><td>2-4-7-10-12-15</td><td>2-4-7-10-13-15</td><td>2-5-6-9-12-15</td><td>2-5-7-9-12-15</td></tr>
-  <tr><td>2-5-7-10-12-15</td><td>2-5-7-10-13-15</td><td>2-5-8-9-12-15</td><td>2-5-8-10-12-15</td></tr>
-  <tr><td>2-5-8-10-13-15</td><td>2-5-8-11-12-15</td><td>2-5-8-11-13-15</td><td>2-5-8-11-14-15</td></tr>
-  </table>
+|||||
+|--- |--- |--- |--- |
+|0-1-4-7-10-13|0-2-4-7-10-13|0-2-5-7-10-13|0-2-5-8-10-13|
+|0-2-5-8-11-13|0-2-5-8-11-14|0-3-4-7-10-13|0-3-5-7-10-13|
+|0-3-5-8-10-13|0-3-5-8-11-13|0-3-5-8-11-14|0-3-6-7-10-13|
+|0-3-6-8-10-13|0-3-6-8-11-13|0-3-6-8-11-14|0-3-6-9-10-13|
+|0-3-6-9-11-13|0-3-6-9-11-14|0-3-6-9-12-13|0-3-6-9-12-14|
+|0-3-6-9-12-15|1-2-5-8-11-14|1-3-5-8-11-14|1-3-6-8-11-14|
+|1-3-6-9-11-14|1-3-6-9-12-14|1-3-6-9-12-15|1-4-5-8-11-14|
+|1-4-6-8-11-14|1-4-6-9-11-14|1-4-6-9-12-14|1-4-6-9-12-15|
+|1-4-7-8-11-14|1-4-7-9-11-14|1-4-7-9-12-14|1-4-7-9-12-15|
+|1-4-7-10-11-14|1-4-7-10-12-14|1-4-7-10-12-15|1-4-7-10-13-14|
+|1-4-7-10-13-15|2-3-6-9-12-15|2-4-6-9-12-15|2-4-7-9-12-15|
+|2-4-7-10-12-15|2-4-7-10-13-15|2-5-6-9-12-15|2-5-7-9-12-15|
+|2-5-7-10-12-15|2-5-7-10-13-15|2-5-8-9-12-15|2-5-8-10-12-15|
+|2-5-8-10-13-15|2-5-8-11-12-15|2-5-8-11-13-15|2-5-8-11-14-15|
 
   When a node fails or is marked down, its vnodes will not be considered for coverage queries. Fallback vnodes will be created on other nodes so that PUT and GET operations can be handled, but only primary vnodes are considered for secondary index coverage queries. If a covering set cannot be found, `{error, insufficient_vnodes}` will be returned. Thus, the reply will either be complete or an error.
   
@@ -161,40 +163,41 @@ E: 4-9-14-12*
   The results from secondary index queries that should return all 3 keys will vary depending on the nodes chosen for the coverage set. Of the 56 possible covering sets ...
 
   * 20 sets (35.7% of sets) will return all 3 keys `{a,b,c}`:
-    <table border="1">
-    <tr><td>0-2-5-8-10-13</td><td>0-2-5-8-11-13</td><td>0-2-5-8-11-14</td><td>0-3-5-8-10-13</td></tr>
-    <tr><td>0-3-5-8-11-13</td><td>0-3-5-8-11-14</td><td>0-3-6-8-10-13</td><td>0-3-6-8-11-13</td></tr>
-    <tr><td>0-3-6-8-11-14</td><td>0-3-6-9-10-13</td><td>0-3-6-9-11-13</td><td>0-3-6-9-11-14</td></tr>
-    <tr><td>1-2-5-8-11-14</td><td>1-3-5-8-11-14</td><td>1-3-6-8-11-14</td><td>1-3-6-9-11-14</td></tr>
-    <tr><td>1-4-5-8-11-14</td><td>1-4-6-8-11-14</td><td>1-4-6-9-11-14</td><td>1-4-7-8-11-14</td></tr>
-    </table>
+  
+    | | | |
+    |--- |--- |--- |--- |
+    |0-2-5-8-10-13|0-2-5-8-11-13|0-2-5-8-11-14|0-3-5-8-10-13|
+    |0-3-5-8-11-13|0-3-5-8-11-14|0-3-6-8-10-13|0-3-6-8-11-13|
+    |0-3-6-8-11-14|0-3-6-9-10-13|0-3-6-9-11-13|0-3-6-9-11-14|
+    |1-2-5-8-11-14|1-3-5-8-11-14|1-3-6-8-11-14|1-3-6-9-11-14|
+    |1-4-5-8-11-14|1-4-6-8-11-14|1-4-6-9-11-14|1-4-7-8-11-14|
 
   * 24 sets (42.9%) will return 2 of the 3 keys:
-    <table border="1">
-    <tr><td colspan='4'>`{a,b}` (7 sets)</td></tr>
+    <table>
+    <tr><td colspan='4'>&#123;a,b&#125; (7 sets)</td></tr>
     <tr><td>0-3-6-9-12-13</td><td>0-3-6-9-12-14</td><td>0-3-6-9-12-15</td><td>1-3-6-9-12-14</td></tr>
     <tr><td>1-3-6-9-12-15</td><td>1-4-6-9-12-14</td><td>1-4-6-9-12-15</td><td>&nbsp;</td></tr>
-    <tr><td colspan='4'>`{a,c}` (12 sets)</td></tr>
+    <tr><td colspan='4'>&#123;a,c&#125; (12 sets)</td></tr>
     <tr><td>0-1-4-7-10-13</td><td>0-2-4-7-10-13</td><td>0-2-5-7-10-13</td><td>0-3-4-7-10-13</td></tr>
     <tr><td>0-3-5-7-10-13</td><td>0-3-6-7-10-13</td><td>1-4-7-10-11-14</td><td>1-4-7-10-12-14</td></tr>
     <tr><td>1-4-7-10-12-15</td><td>1-4-7-10-13-14</td><td>1-4-7-10-13-15</td><td>1-4-7-9-11-14</td></tr>
-    <tr><td colspan='4'>`{b,c}` (5 sets)</td></tr>
+    <tr><td colspan='4'>&#123;b,c&#125; (5 sets)</td></tr>
     <tr><td>2-5-8-10-12-15</td><td>2-5-8-10-13-15</td><td>2-5-8-11-12-15</td><td>2-5-8-11-14-15</td></tr>
     <tr><td>2-5-8-11-13-15</td><td colspan="3">&nbsp;</td></tr>
     </table>
 
   * 10 sets (17.8%) will return only one of the 3 keys:
-    <table border="1">
-    <tr><td colspan='4'>`{a}` (2 sets)</td></tr>
+    <table>
+    <tr><td colspan='4'>&#123;a&#125; (2 sets)</td></tr>
     <tr><td>1-4-7-9-12-14</td><td>1-4-7-9-12-15</td><td colspan="2">&nbsp;</td></tr>
-    <tr><td colspan='4'>`{b}` (4 sets)</td></tr>
+    <tr><td colspan='4'>&#123;b&#125; (4 sets)</td></tr>
     <tr><td>2-3-6-9-12-15</td><td>2-4-6-9-12-15</td><td>2-5-6-9-12-15</td><td>2-5-8-9-12-15</td></tr>
-    <tr><td colspan='4'>`{c}` (4 sets)</td></tr>
+    <tr><td colspan='4'>&#123;c&#125; (4 sets)</td></tr>
     <tr><td>2-4-7-10-12-15</td><td>2-4-7-10-13-15</td><td>2-5-7-10-12-15</td><td>2-5-7-10-13-15</td></tr>
     </table>
 
   * 2 sets (3.6%) will not return any of the 3 keys
-    <table border="1">
+    <table>
     <tr><td>2-4-7-9-12-15</td><td>2-5-7-9-12-15</td></tr>
     </table>
 
@@ -412,7 +415,6 @@ E: 4-9-14-12*
 
 ---
 
-<a name="restart-merges"></a>
 **Q: Why does it seem that Bitcask merging is only triggered when a Riak node is restarted?**
   There have been situations where the data directory for a Riak node (e.g. `data/bitcask`) grows continually and does not seem to merge. After restarting the node a series of merges are kicked off and the total size of the data directory shrinks. Why does this happen?
 

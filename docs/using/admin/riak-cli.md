@@ -1,12 +1,14 @@
 ---
 title: "riak Command Line Interface"
 id: cluster_admin_riak_cli
+slug: riak-cli
+sidebar_position: 2
 ---
 
-[configuration file]: /riak/kv/2.2.3/configuring/reference/
+[configuration file]: /docs/configuring/reference/
 [escript]: http://www.erlang.org/doc/man/escript.html
-[`riak-admin`]: /riak/kv/2.2.3/using/admin/riak-admin/#top
-[configuration]: /riak/kv/2.2.3/configuring/reference/
+[`riak-admin`]: /docs/using/admin/riak-admin/#top
+[configuration]: /docs/configuring/reference/
 
 ## riak
 

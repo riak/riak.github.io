@@ -1,6 +1,8 @@
 ---
 title: "Content Types"
 id: usage_content_types
+slug: content-types 
+sidebar_position: 4
 ---
 
 Riak KV is a fundamentally content-agnostic database. You can use it to

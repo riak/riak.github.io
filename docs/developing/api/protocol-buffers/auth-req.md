@@ -1,6 +1,8 @@
 ---
-title: "PBC Auth Request"
+title: "Auth Request"
 id: pbc_auth_request
+slug: auth-req 
+sidebar_position: 26
 ---
 
 Sends a username (`user`) and password (`password`) to Riak as part of
@@ -15,4 +17,4 @@ message RpbAuthReq {
 }
 ```
 
-For more on authentication, see our documentation on [Authentication and Authorization](/riak/kv/2.2.3/using/security/basics).
+For more on authentication, see our documentation on [Authentication and Authorization](/docs/using/security/basics).

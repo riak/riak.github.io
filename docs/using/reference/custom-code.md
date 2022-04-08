@@ -1,13 +1,15 @@
 ---
 title: "Installing Custom Code"
 id: managing_ref_custom_code
+slug: custom-code
+sidebar_position: 11
 ---
 
 Riak supports the use of Erlang named functions in compiled modules for
-[pre/post-commit hooks](/riak/kv/2.2.3/developing/usage/commit-hooks), and MapReduce operations. This
+[pre/post-commit hooks](/docs/developing/usage/commit-hooks), and MapReduce operations. This
 doc contains installation steps with simple examples for each use case.
 
-Your developers can compile [custom erlang code](/riak/kv/2.2.3/developing/usage/commit-hooks), which
+Your developers can compile [custom erlang code](/docs/developing/usage/commit-hooks), which
 they can send to you as a *beam* file. You should note that in Erlang, a file
 name must have the same name the module. So if you are given a file named
 `validate_json.beam`, do not rename it.
@@ -19,48 +21,21 @@ name must have the same name the module. So if you are given a file named
 If you have been given Erlang code and are expected to compile it for
 your developers, keep the following notes in mind.
 
-{{% note title="Note on the Erlang Compiler" %}}
+:::note Note on the Erlang Compiler
 You must use the Erlang compiler (`erlc`) associated with the Riak
 installation or the version of Erlang used when compiling Riak from source.
 For packaged Riak installations, you can consult Table 1 below for the default
 location of Riak's `erlc` for each supported platform. If you compiled from
 source, use the `erlc` from the Erlang version you used to compile Riak.
-{{% /note %}}
+:::note
 
-<table style="width: 100%; border-spacing: 0px;">
-<tbody>
-<tr align="left" valign="top">
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;"><strong>CentOS &amp; RHEL Linux</strong></td>
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;">
-<p><tt>/usr/lib64/riak/erts-5.9.1/bin/erlc</tt></p>
-</td>
-</tr>
-<tr align="left" valign="top">
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;"><strong>Debian &amp; Ubuntu Linux</strong></td>
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;">
-<p><tt>/usr/lib/riak/erts-5.9.1/bin/erlc</tt></p>
-</td>
-</tr>
-<tr align="left" valign="top">
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;"><strong>FreeBSD</strong></td>
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;">
-<p><tt>/usr/local/lib/riak/erts-5.9.1/bin/erlc</tt></p>
-</td>
-</tr>
-<tr align="left" valign="top">
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;"><strong>SmartOS</strong></td>
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;">
-<p><tt>/opt/local/lib/riak/erts-5.9.1/bin/erlc</tt></p>
-</td>
-</tr>
-<tr align="left" valign="top">
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;"><strong>Solaris 10</strong></td>
-<td style="padding: 15px; margin: 15px; border-width: 1px 0 1px 0; border-style: solid;">
-<p><tt>/opt/riak/lib/erts-5.9.1/bin/erlc</tt></p>
-</td>
-</tr>
-</tbody>
-</table>
+| OS                    | Path                                    |
+|-----------------------|-----------------------------------------|
+| CentOS & RHEL Linux   | /usr/lib64/riak/erts-5.9.1/bin/erlc     |
+| Debian & Ubuntu Linux | /usr/lib/riak/erts-5.9.1/bin/erlc       |
+| FreeBSD               | /usr/local/lib/riak/erts-5.9.1/bin/erlc |
+| SmartOS               | /opt/local/lib/riak/erts-5.9.1/bin/erlc |
+| Solaris 10            | /opt/riak/lib/erts-5.9.1/bin/erlc       |
 
 Table 1: Erlang compiler executable location for packaged Riak installations
          on supported platforms
@@ -76,9 +51,9 @@ and loaded. For our example, we'll use a temporary directory `/tmp/beams`,
 but you should choose a directory for production functions based on your
 own requirements such that they will be available where and when needed.
 
-{{% note %}}
+:::note
 Ensure that the directory chosen above can be read by the `riak` user.
-{{% /note %}}
+:::note
 
 Successful compilation will result in a new `.beam` file,
 `validate_json.beam`.
@@ -111,9 +86,9 @@ that you do so in a rolling fashion, taking time to ensure that the Riak key
 value store has fully initialized and become available for use.
 
 This is done with the `riak-admin wait-for-service` command as detailed
-in the [Commands documentation](/riak/kv/2.2.3/using/admin/riak-admin/#wait-for-service).
+in the [Commands documentation](/docs/using/admin/riak-admin/#wait-for-service).
 
-{{% note %}}
+:::note
 It is important that you ensure riak_kv is active before restarting the next
 node.
-{{% /note %}}
+:::note

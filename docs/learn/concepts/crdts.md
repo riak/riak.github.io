@@ -1,23 +1,25 @@
 ---
 title: "Data Types"
 id: learn_concepts_data_types
+slug: crdts
+sidebar_position: 5
 ---
 
 [crdts pdf]: http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf
-[data types converg]: /riak/kv/2.2.3/learn/concepts/crdts/#convergence
+[data types converg]: /docs/learn/concepts/crdts/#convergence
 [crdts reading list]: http://christophermeiklejohn.com/crdt/2014/07/22/readings-in-crdts.html
-[data types impl]: /riak/kv/2.2.3/learn/concepts/crdts/#implementation
-[concept causal context dvv]: /riak/kv/2.2.3/learn/concepts/causal-context/#dotted-version-vectors
-[concept causal context sib]: /riak/kv/2.2.3/learn/concepts/causal-context/#siblings
-[concept causal context vc]: /riak/kv/2.2.3/learn/concepts/causal-context/#vector-clocks
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
-[concept strong consistency]: /riak/kv/2.2.3/learn/concepts/strong-consistency
-[dev data types]: /riak/kv/2.2.3/developing/data-types
+[data types impl]: /docs/learn/concepts/crdts/#implementation
+[concept causal context dvv]: /docs/learn/concepts/causal-context/#dotted-version-vectors
+[concept causal context sib]: /docs/learn/concepts/causal-context/#siblings
+[concept causal context vc]: /docs/learn/concepts/causal-context/#vector-clocks
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
+[concept strong consistency]: /docs/learn/concepts/strong-consistency
+[dev data types]: /docs/developing/data-types
 [riak_dt]: https://github.com/basho/riak_dt
 [dev data types context]: /riak/kv/2.1.4/developing/data-types/#data-types-and-context
-[glossary node]: /riak/kv/2.2.3/learn/glossary/#node
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[usage conflict resolution]: /riak/kv/2.2.3/developing/usage/conflict-resolution
+[glossary node]: /docs/learn/glossary/#node
+[glossary vnode]: /docs/learn/glossary/#vnode
+[usage conflict resolution]: /docs/developing/usage/conflict-resolution
 
 Riak Data Types are convergent replicated data types (CRDTs), inspired by the work of [Marc Shapiro, Nuno Preguiça, Carlos Baquero, and Marek Zawirski][crdts pdf]. Riak KV supports the following eventually-convergent data types, described in later sections:
 
@@ -220,13 +222,13 @@ In general, convergence involves the following stages:
 
 Convergence means that data type conflicts are weighted in a certain direction. Riak's Data Types have their own internal weights that dictate what happens in case of conflict:
 
-Data Type | Convergence rule
-:--------|:------------
-Flags | `enable` wins over `disable`
-Registers | The most chronologically recent value wins, based on timestamps
-Counters | Implemented as a PN-Counter ([paper][crdts pdf]), so all increments and decrements by all actors are eventually applied.  Every actor wins.
-Sets | If an element is concurrently added and removed, the add will win
-Maps | If a field is concurrently added or updated and removed, the add/update will win
+| Data Type | Convergence rule                                                                                                                            |
+|:----------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| Flags     | `enable` wins over `disable`                                                                                                                |
+| Registers | The most chronologically recent value wins, based on timestamps                                                                             |
+| Counters  | Implemented as a PN-Counter ([paper][crdts pdf]), so all increments and decrements by all actors are eventually applied.  Every actor wins. |
+| Sets      | If an element is concurrently added and removed, the add will win                                                                           |
+| Maps      | If a field is concurrently added or updated and removed, the add/update will win                                                            |
 
 In a production Riak KV cluster being hit by lots and lots of concurrent
 writes, value conflicts are inevitable. Riak Data Types are not perfect, particularly because they do not guarantee [strong consistency][concept strong consistency] and you cannot specify the rules yourself. But the

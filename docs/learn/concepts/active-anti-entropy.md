@@ -1,17 +1,19 @@
 ---
 title: "Active Anti-Entropy"
 id: learn_concepts_aae
+slug: active-anti-entropy
+sidebar_position: 0
 ---
 
-[cluster ops v3 mdc]: /riak/kv/2.2.3/using/cluster-operations/v3-multi-datacenter
-[cluster ops aae]: /riak/kv/2.2.3/using/cluster-operations/active-anti-entropy
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
-[config aae]: /riak/kv/2.2.3/configuring/reference/#active-anti-entropy
-[glossary read rep]: /riak/kv/2.2.3/learn/glossary/#read-repair
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
+[cluster ops v3 mdc]: /docs/using/cluster-operations/v3-multi-datacenter
+[cluster ops aae]: /docs/using/cluster-operations/active-anti-entropy
+[concept clusters]: /docs/learn/concepts/clusters
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
+[config aae]: /docs/configuring/reference/#active-anti-entropy
+[glossary read rep]: /docs/learn/glossary/#read-repair
+[glossary vnode]: /docs/learn/glossary/#vnode
 [Merkle tree]: http://en.wikipedia.org/wiki/Merkle_tree
-[usage search]: /riak/kv/2.2.3/developing/usage/search
+[usage search]: /docs/developing/usage/search
 
 
 In a [clustered][concept clusters], [eventually consistent][concept eventual consistency] system like Riak, conflicts between object replicas stored

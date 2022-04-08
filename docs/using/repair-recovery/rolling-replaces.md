@@ -3,9 +3,9 @@ title: "Rolling Replaces"
 id: repair_recover_replace
 ---
 
-[upgrade]: /riak/kv/2.2.3/setup/upgrading/cluster/
-[rolling restarts]: /riak/kv/2.2.3/using/repair-recovery/rolling-restart/
-[add node]: /riak/kv/2.2.3/using/cluster-operations/adding-removing-nodes
+[upgrade]: /docs/setup/upgrading/cluster/
+[rolling restarts]: /docs/using/repair-recovery/rolling-restart/
+[add node]: /docs/using/cluster-operations/adding-removing-nodes
 
 Riak KV functions as a multi-node system, so cluster-level [version upgrades][upgrade] and [restarts][rolling restarts] can be performed on a node-by-node or *rolling* basis.
 

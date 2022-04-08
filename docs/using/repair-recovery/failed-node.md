@@ -15,7 +15,7 @@ When a node fails and is then brought back into the cluster, make sure that it h
 During the recovery process, hinted handoff will kick in and update the data on
 the recovered node with updates accepted from other nodes in the cluster. Your
 cluster may temporarily return `not found` for objects that are currently
-being handed off (see our page on [Eventual Consistency](../../../learn/concepts/eventual-consistency) for more details on
+being handed off (see our page on [Eventual Consistency](../../learn/concepts/eventual-consistency) for more details on
 these scenarios, in particular how the system behaves while the failed node is
 not part of the cluster).
 

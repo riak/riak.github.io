@@ -1,6 +1,8 @@
 ---
-title: "HTTP Set Bucket Properties"
+title: "Set Bucket Properties"
 id: http_set_bucket_props
+slug: set-bucket-props
+sidebar_position: 1
 ---
 
 Sets bucket properties like "n_val" and "allow_mult".
@@ -25,8 +27,8 @@ Available properties:
 (concurrent updates)
 * `last_write_wins` (true or false) - whether to ignore object history (vector
 clock) when writing
-* `precommit` - [precommit hooks](/riak/kv/2.2.3/developing/usage/commit-hooks)
-* `postcommit` - [postcommit hooks](/riak/kv/2.2.3/developing/usage/commit-hooks)
+* `precommit` - [precommit hooks](/docs/developing/usage/commit-hooks)
+* `postcommit` - [postcommit hooks](/docs/developing/usage/commit-hooks)
 * `r, w, dw, rw` - default quorum values for operations on keys in the bucket.
 Valid values are:
   * `"all"` - all nodes must respond
@@ -38,12 +40,12 @@ the bucket
 
 Other properties do exist but are not commonly modified.
 
-{{% note title="Property types" %}}
+:::note Property types
 Make sure you use the proper types for attributes like **n_val** and
 **allow_mult**. If you use strings instead of integers and booleans
 respectively, you may see some odd errors in your logs, saying something like
 `"{badarith,[{riak_kv_util,normalize_rw_value,2},]}"`.
-{{% /note %}}
+:::note
 
 ## Response
 

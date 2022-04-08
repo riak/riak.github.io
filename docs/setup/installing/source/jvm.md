@@ -1,9 +1,11 @@
 ---
 title: "Installing the JVM"
 id: installing_source_jvm
+slug: jvm 
+sidebar_position: 1
 ---
 
-[usage search]: /riak/kv/2.2.3/developing/usage/search
+[usage search]: /docs/developing/usage/search
 
 If you are using [Riak Search 2.0][usage search], codename Yokozuna,
 you will need to install **Java 1.6 or later** to run [Apache

@@ -3,7 +3,7 @@ title: "Rolling Restarts"
 id: repair_recover_restart
 ---
 
-Because Riak functions as a multi-node system, cluster-level [Riak version upgrades](/riak/kv/2.2.3/setup/upgrading/cluster) and restarts can be performed on a node-by-node, "rolling" basis.
+Because Riak functions as a multi-node system, cluster-level [Riak version upgrades](/docs/setup/upgrading/cluster) and restarts can be performed on a node-by-node, "rolling" basis.
 
 The following steps should be undertaken on each Riak node that you wish to restart:
 

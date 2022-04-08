@@ -1,9 +1,11 @@
 ---
 title: "Go"
 id: usage_conflict_resolution_golang
+slug: golang 
+sidebar_position: 6
 ---
 
-For reasons explained in the [Introduction to conflict resolution](/riak/kv/2.2.3/developing/usage/conflict-resolution), we strongly recommend adopting a conflict resolution strategy that
+For reasons explained in the [Introduction to conflict resolution](/docs/developing/usage/conflict-resolution), we strongly recommend adopting a conflict resolution strategy that
 requires applications to resolve siblings according to usecase-specific
 criteria. Here, we'll provide a brief guide to conflict resolution using the
 official [Riak Go client](https://github.com/basho/riak-go-client).

@@ -1,17 +1,19 @@
 ---
 title: "Using MapReduce"
 id: usage_mapreduce
+slug: mapreduce 
+sidebar_position: 6
 ---
 
-[usage 2i]: /riak/kv/2.2.3/developing/usage/secondary-indexes
-[usage search]: /riak/kv/2.2.3/developing/usage/search
-[usage types]: /riak/kv/2.2.3/developing/usage/bucket-types
-[api http]: /riak/kv/2.2.3/developing/api/http
-[api pb]: /riak/kv/2.2.3/developing/api/protocol-buffers
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[guide mapreduce]: /riak/kv/2.2.3/developing/app-guide/advanced-mapreduce
+[usage 2i]: /docs/developing/usage/secondary-indexes
+[usage search]: /docs/developing/usage/search
+[usage types]: /docs/developing/usage/bucket-types
+[api http]: /docs/developing/api/http
+[api pb]: /docs/developing/api/protocol-buffers
+[glossary vnode]: /docs/learn/glossary/#vnode
+[guide mapreduce]: /docs/developing/app-guide/advanced-mapreduce
 
-{{% note title="Use MapReduce sparingly" %}}
+:::note Use MapReduce sparingly
 In Riak KV, MapReduce is the primary method for non-primary-key-based
 querying. Although useful for tasks such as batch
 processing jobs, MapReduce operations can be very computationally
@@ -19,7 +21,7 @@ expensive to the extent that they can degrade performance in
 production clusters operating under load. Thus, we recommend running
 MapReduce operations in a controlled, rate-limited fashion and never for
 realtime querying purposes.
-{{% /note %}}
+:::note
 
 MapReduce (M/R) is a technique for dividing data processing work across
 a distributed system. It takes advantage of the parallel processing
@@ -165,11 +167,11 @@ end end.
 Next, to call `ReFun` on all keys in the `training` bucket, we can do
 the following in the Erlang shell. 
 
-{{% note title="Warning" %}}
+:::note Warning
 Do not use this in a production
 environment; listing all keys to identify those in the `training` bucket 
 is a very expensive process.
-{{% /note %}}
+:::note
 
 ```erlang
 {ok, Re} = re:compile("caremad").

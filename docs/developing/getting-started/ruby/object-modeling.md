@@ -1,6 +1,8 @@
 ---
-title: "Object Modeling with Ruby"
+title: "Object Modeling"
 id: getting_started_ruby_object
+slug: object-modeling 
+sidebar_position: 2
 ---
 
 To get started, let's create the models that we'll be using. Since the
@@ -58,11 +60,11 @@ Natural keys are a great fit for key/value systems because both humans
 and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
-Bucket | Key Pattern | Example Key
-:------|:------------|:-----------
-`Users` | `<user_name>` | `joeuser`
-`Msgs` | `<username>_<datetime>` | `joeuser_2014-03-06T02:05:13.223556Z`
-`Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
+| Bucket      | Key Pattern                | Example Key                                                          |
+|:------------|:---------------------------|:---------------------------------------------------------------------|
+| `Users`     | `<user_name>`              | `joeuser`                                                            |
+| `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13.223556Z`                                |
+| `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
 
 For the `Users` bucket, we can be certain that we will want each
 username to be unique, so let's use the `username` as the key.  For the
@@ -81,11 +83,11 @@ users, and `<groupname>_Inbox_<date>` for groups, which will look like
 `joeuser_Sent_2014-03-06Z` or `marketing_group_Inbox_2014-03-05Z`,
 respectively.
 
-{{% note title="Note" %}}
+:::note Note
 Riak performs best with objects under 1-2MB. Objects larger than that can hurt
 performance, especially many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-{{% /note %}}
+:::note
 
 #### Keeping our story straight with repositories
 

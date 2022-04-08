@@ -1,23 +1,24 @@
 ---
 title: "Use Cases For Riak KV"
 id: learn_use_cases
+slug: use-cases
+sidebar_position: 1
 ---
 
-
-[dev data model articles etc]: /riak/kv/2.2.3/developing/data-modeling/#articles-blog-posts-and-other-content
-[dev data model log data]: /riak/kv/2.2.3/developing/data-modeling/#log-data
-[dev data model sensor data]: /riak/kv/2.2.3/developing/data-modeling/#sensor-data
-[dev data model serve advertisements]: /riak/kv/2.2.3/developing/data-modeling/#serving-advertisements
-[dev data model sess storage]: /riak/kv/2.2.3/developing/data-modeling/#session-storage
-[dev data model user acct]: /riak/kv/2.2.3/developing/data-modeling/#user-accounts
-[dev data model user events]: /riak/kv/2.2.3/developing/data-modeling/#user-events-and-timelines
-[dev data model user settings]: /riak/kv/2.2.3/developing/data-modeling/#user-settings-and-preferences
-[dev data types]: /riak/kv/2.2.3/developing/data-types
-[plan backend bitcask]: /riak/kv/2.2.3/setup/planning/backend/bitcask
-[replication properties]: /riak/kv/2.2.3/developing/app-guide/replication-properties
-[usage mapreduce]: /riak/kv/2.2.3/developing/usage/mapreduce
-[usage search]: /riak/kv/2.2.3/developing/usage/search
-[usage secondary-indexes]: /riak/kv/2.2.3/developing/usage/secondary-indexes
+[dev data model articles etc]: /docs/developing/data-modeling/#articles-blog-posts-and-other-content
+[dev data model log data]: /docs/developing/data-modeling/#log-data
+[dev data model sensor data]: /docs/developing/data-modeling/#sensor-data
+[dev data model serve advertisements]: /docs/developing/data-modeling/#serving-advertisements
+[dev data model sess storage]: /docs/developing/data-modeling/#session-storage
+[dev data model user acct]: /docs/developing/data-modeling/#user-accounts
+[dev data model user events]: /docs/developing/data-modeling/#user-events-and-timelines
+[dev data model user settings]: /docs/developing/data-modeling/#user-settings-and-preferences
+[dev data types]: /docs/developing/data-types
+[plan backend bitcask]: /docs/setup/planning/backend/bitcask
+[replication properties]: /docs/developing/app-guide/replication-properties
+[usage mapreduce]: /docs/developing/usage/mapreduce
+[usage search]: /docs/developing/usage/search
+[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
 
 Riak is a flexible data storage technology capable of addressing a wide variety
 of problems in a scalable way. In this guide, we'll list a number of use cases

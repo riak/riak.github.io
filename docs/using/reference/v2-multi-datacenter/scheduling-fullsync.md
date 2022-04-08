@@ -1,11 +1,13 @@
 ---
-title: "V2 Multi-Datacenter Replication Reference: Scheduling Fullsync"
+title: "Scheduling Fullsync"
 id: managing_ref_v2_fullsync
+slug: scheduling-fullsync 
+sidebar_position: 1
 ---
 
-{{% note title="Deprecation Warning" %}}
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/riak/kv/2.2.3/using/reference/v3-multi-datacenter/scheduling-fullsync/) instead.
-{{% /note %}}
+:::note Deprecation Warning
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/using/reference/v3-multi-datacenter/scheduling-fullsync/) instead.
+:::note
 
 
 ## Scheduling Fullsync Operation

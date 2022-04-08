@@ -1,6 +1,8 @@
 ---
 title: "Amazon Web Services"
 id: installing_amazon_web_services
+slug: amazon-web-services
+sidebar_position: 0
 ---
 
 ## Launching Riak VMs via the AWS Marketplace
@@ -39,7 +41,7 @@ Once the virtual machine is created, you should verify that your selected EC2 se
 
     ![EC2 Security Group Settings](/images/aws-marketplace-security-group.png)
 
-We also recommend that you read more about Riak's [Security and Firewalls](/riak/kv/2.2.3/using/security/).
+We also recommend that you read more about Riak's [Security and Firewalls](/docs/using/security/).
 
 ## Clustering Riak on AWS
 
@@ -47,10 +49,10 @@ You will need need to launch at least 3 instances to form a Riak cluster.  When 
 
 You can find more information on connecting to an instance on the official [Amazon EC2 instance guide](http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/AccessingInstances.html).
 
-{{% note title="Note" %}}
+:::note Note
 The following clustering setup will _not_ be resilient to instance restarts
 unless deployed in Amazon VPC.
-{{% /note %}}
+:::note
 
 1. On the first node, obtain the internal IP address:
 

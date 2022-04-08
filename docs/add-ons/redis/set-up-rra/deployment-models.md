@@ -1,15 +1,14 @@
 ---
-title: "Riak Redis Add-on Deployment Models"
+title: "Deployment Models"
 id: add-ons_redis_deployment
+slug: deployment-models
 ---
 
 [Local-deployment]: /images/redis/rra_deployment_local.png
 [Colocated-deployment]: /images/redis/rra_deployment_colocated.png
 [Distributed-deployment]: /images/redis/rra_deployment_distributed.png
 
-## Deployment Models
-
-### Local Cache Deployment
+## Local Cache Deployment
 
 In a local cache deployment, the RRA and Redis are deployed to the application
 server.
@@ -37,7 +36,7 @@ Disadvantages:
   routing to the application server exists within the solution.
 * Redis competing for RAM with the application service may be problematic
 
-### Colocated Cache Deployment
+## Colocated Cache Deployment
 
 In a colocated cache deployment, the RRA may be deployed either to the
 application server (suggested) or to the Riak servers and Redis is deployed to
@@ -88,7 +87,7 @@ Disadvantages:
   of faults.
 
 
-### Distributed Cache Deployment
+## Distributed Cache Deployment
 
 In a distributed cache deployment, the RRA is deployed to the application server
 and Redis is deployed to standalone servers, separate from Riak cluster nodes.
@@ -119,7 +118,7 @@ Disadvantages:
 * Typically increased distance between the application service and Redis and
   Riak services, so increased latency compared to local.
 
-### Recommendation
+## Recommendation
 
 The relative advantages and disadvantages of the Distributed Cache Deployment,
 most notably the increased cache hit rate and reduced connection overhead,

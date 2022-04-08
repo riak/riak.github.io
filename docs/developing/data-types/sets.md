@@ -1,6 +1,8 @@
 ---
-title: "Data Types: Sets"
+title: "Sets"
 id: data_types_sets
+slug: sets 
+sidebar_position: 2
 ---
 
 Sets are a bucket-level Riak data type that can be used by themselves, associated with a bucket/key pair, or used [within a map](../maps#sets-within-maps).

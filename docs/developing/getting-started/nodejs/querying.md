@@ -1,6 +1,8 @@
 ---
-title: "Querying with NodeJS"
+title: "Querying"
 id: getting_started_nodejs_query
+slug: querying 
+sidebar_position: 1
 ---
 
 ## Node.js Version Setup
@@ -73,11 +75,11 @@ intrinsic relationships.
 
 ## Secondary Indexes
 
-{{% note %}}
-Secondary indexes in Riak KV require a sorted backend: [Memory](/riak/kv/2.2.3/setup/planning/backend/memory) or [LevelDB](/riak/kv/2.2.3/setup/planning/backend/leveldb). [Bitcask](/riak/kv/2.2.3/setup/planning/backend/bitcask) does not support secondary indexes.
+:::note
+Secondary indexes in Riak KV require a sorted backend: [Memory](/docs/setup/planning/backend/memory) or [LevelDB](/docs/setup/planning/backend/leveldb). [Bitcask](/docs/setup/planning/backend/bitcask) does not support secondary indexes.
 
-See [Using Secondary Indexes (2i)](/riak/kv/2.2.3/developing/usage/secondary-indexes) for more information on developing with secondary indexes.
-{{% /note %}}
+See [Using Secondary Indexes (2i)](/docs/developing/usage/secondary-indexes) for more information on developing with secondary indexes.
+:::note
 
 If you're coming from an SQL world, Secondary Indexes (2i) are a lot
 like SQL indexes. They are a way to quickly look up objects based on a

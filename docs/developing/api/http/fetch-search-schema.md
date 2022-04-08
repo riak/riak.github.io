@@ -1,9 +1,11 @@
 ---
-title: "HTTP Fetch Search Schema"
+title: "Fetch Search Schema"
 id: http_fetch_search_schema
+slug: fetch-search-schema
+sidebar_position: 18
 ---
 
-Retrieves a Riak KV [search schema](/riak/kv/2.2.3/developing/usage/search-schemas).
+Retrieves a Riak KV [search schema](/docs/developing/usage/search-schemas).
 
 ## Request
 

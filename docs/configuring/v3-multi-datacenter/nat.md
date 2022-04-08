@@ -1,9 +1,11 @@
 ---
 title: "With NAT"
 id: configuring_v3_replication_nat
+slug: nat 
+sidebar_position: 1
 ---
 
-[config v3 ssl]: /riak/kv/2.2.3/configuring/v3-multi-datacenter/ssl
+[config v3 ssl]: /docs/configuring/v3-multi-datacenter/ssl
 
 Riak Enterprise Version 3 Replication supports replication of data on
 networks that use static NAT.
@@ -59,25 +61,25 @@ NAT rules can be configured at runtime, from the command line.
 Cluster_A is set up with nodes using the following **internal** IP
 addresses:
 
-Internal IP    | Public IP
----------------|-------------------
-`192.168.1.20` | -
-`192.168.1.21` | -
-`192.168.1.22` | -
-`192.168.1.23` | -
-`192.168.1.24` | -
+| Internal IP    | Public IP |
+|----------------|-----------|
+| `192.168.1.20` | -         |
+| `192.168.1.21` | -         |
+| `192.168.1.22` | -         |
+| `192.168.1.23` | -         |
+| `192.168.1.24` | -         |
 
 ### Cluster_B Setup
 
 A node from Cluster_B will be configured as follows:
 
-Internal IP    | Public IP
----------------|-------------------
-`192.168.2.40` | `50.16.238.120:5555`
-`192.168.2.41` | `50.16.238.121:5555`
-`192.168.2.42` | `50.16.238.122:5555`
-`192.168.2.43` | `50.16.238.123:5555`
-`192.168.2.44` | `50.16.238.124:5555`
+| Internal IP    | Public IP            |
+|----------------|----------------------|
+| `192.168.2.40` | `50.16.238.120:5555` |
+| `192.168.2.41` | `50.16.238.121:5555` |
+| `192.168.2.42` | `50.16.238.122:5555` |
+| `192.168.2.43` | `50.16.238.123:5555` |
+| `192.168.2.44` | `50.16.238.124:5555` |
 
 In this example, the `cluster_mgr` port number is the default of `9080`,
 while the configured NAT port listens on `5555`.
@@ -87,13 +89,13 @@ while the configured NAT port listens on `5555`.
 A node from Cluster_C is set up with **static NAT**, configured with the
 following IP addresses:
 
-Internal IP    | Public IP
----------------|-------------------
-`192.168.3.60` | `50.16.238.200:5550`
-`192.168.3.61` | `50.16.238.200:5551`
-`192.168.3.62` | `50.16.238.200:5552`
-`192.168.3.63` | `50.16.238.200:5553`
-`192.168.3.64` | `50.16.238.200:5554`
+| Internal IP    | Public IP            |
+|----------------|----------------------|
+| `192.168.3.60` | `50.16.238.200:5550` |
+| `192.168.3.61` | `50.16.238.200:5551` |
+| `192.168.3.62` | `50.16.238.200:5552` |
+| `192.168.3.63` | `50.16.238.200:5553` |
+| `192.168.3.64` | `50.16.238.200:5554` |
 
 In this example, the `cluster_mgr` port number is the default of `9080`,
 while the configured NAT port listens on `5566`.

@@ -1,17 +1,19 @@
 ---
-title: "Object Modeling with Erlang"
+title: "Object Modeling"
 id: getting_started_erlang_object
+slug: object-modeling 
+sidebar_position: 2
 ---
 
 To get started, let's create the records that we'll be using.
 
-{{% note title="Code Download" %}}
+:::note Code Download
 You can also download the code for this chapter at
 [Github](https://github.com/basho/taste-of-riak/tree/am-dem-erlang-modules/erlang/Ch03-Msgy-Schema).
 
 The Github version includes Erlang type specifications which have been omitted
 here for brevity.
-{{% /note %}}
+:::note
 
 
 ```erlang
@@ -30,7 +32,7 @@ here for brevity.
 -record(timeline, {owner, msg_type, msgs}).
 ```
 
-We'll be using the bucket `Users` to store our data. We won't be [using bucket types](/riak/kv/2.2.3/developing/usage/bucket-types) here, so we don't need to specify one.
+We'll be using the bucket `Users` to store our data. We won't be [using bucket types](/docs/developing/usage/bucket-types) here, so we don't need to specify one.
 
 To use these records to store data, we will first have to create a user
 record. Then, when a user creates a message, we will append that message
@@ -54,11 +56,11 @@ and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
 
-Bucket | Key Pattern | Example Key
-:------|:------------|:-----------
-`Users` | `<user_name>` | `joeuser`
-`Msgs` | `<username>_<datetime>` | `joeuser_2014-03-06T02:05:13.223556Z`
-`Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
+| Bucket      | Key Pattern                | Example Key                                                          |
+|:------------|:---------------------------|:---------------------------------------------------------------------|
+| `Users`     | `<user_name>`              | `joeuser`                                                            |
+| `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13.223556Z`                                |
+| `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
 
 For the `Users` bucket, we can be certain that we will want each
 username to be unique, so let's use the `username` as the key.  For the
@@ -77,11 +79,11 @@ users, and `<groupname>_Inbox_<date>` for groups, which will look like
 `joeuser_Sent_2014-03-06Z` or `marketing_group_Inbox_2014-03-05Z`,
 respectively.
 
-{{% note title="Note" %}}
+:::note Note
 Riak performs best with objects under 1-2 MB. Objects larger than that can
 hurt performance, especially if many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-{{% /note %}}
+:::note
 
 #### Keeping our story straight with repositories
 

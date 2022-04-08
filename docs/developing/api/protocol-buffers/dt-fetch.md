@@ -1,9 +1,11 @@
 ---
-title: "PBC Data Type Fetch"
+title: "Data Type Fetch"
 id: pbc_dt_fetch
+slug: dt-fetch 
+sidebar_position: 15
 ---
 
-The equivalent of [`RpbGetReq`](/riak/kv/2.2.3/developing/api/protocol-buffers/fetch-object) for [Riak Data Types](/riak/kv/2.2.3/developing/data-types). This request results in a `DtFetchResp`
+The equivalent of [`RpbGetReq`](/docs/developing/api/protocol-buffers/fetch-object) for [Riak Data Types](/docs/developing/data-types). This request results in a `DtFetchResp`
 message (explained in the **Response** section below).
 
 ## Request
@@ -26,18 +28,18 @@ message DtFetchReq {
 
 #### Required Parameters
 
-Parameter | Description
-:---------|:-----------
-`bucket` | The name of the bucket in which the Data Type is stored
-`key` | The key where the Data Type is stored
-`type` | The [Using Bucket Types](/riak/kv/2.2.3/using/cluster-operations/bucket-types) of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map)
+| Parameter | Description                                                                                                                                                                   |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                       |
+| `key`     | The key where the Data Type is stored                                                                                                                                         |
+| `type`    | The [Using Bucket Types](/docs/using/cluster-operations/bucket-types) of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map) |
 
 #### Optional Parameters
 
 > **Note on defaults and special values**
 >
 > All of the optional parameters below have default values determined on a
-per-bucket basis. Please refer to the documentation on [setting bucket properties](/riak/kv/2.2.3/developing/api/protocol-buffers/set-bucket-props) for more information.
+per-bucket basis. Please refer to the documentation on [setting bucket properties](/docs/developing/api/protocol-buffers/set-bucket-props) for more information.
 
 Furthermore, you can assign an integer value to the `r` and
 `pr`, provided that that integer value is less than or equal
@@ -47,20 +49,20 @@ to N, _or_ a special value denoting `one`
 (`4294967295-3`), or `default`
 (`4294967295-4`).
 
-Parameter | Description
-:---------|:-----------
-`r` | Read quorum, i.e. how many replicas need to agree when retrieving the object
-`pr` | Primary read quorum, i.e. how many primary replicas need to be available when retrieving the object
-`basic_quorum` | Whether to return early in some failure cases, e.g. when `r=1` and you get 2 errors and a success basic_quorum=true would return an error
-`notfound_ok` | Whether to treat `not found` responses as successful reads for the purposes of R
-`timeout` | The timeout duration, in milliseconds, after which Riak will return an error message
-`sloppy_quorum` | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable
-`n_val` | The number of nodes to which the delete request will be sent
-`include_context` | If this parameter is set to `true`, the Data Type's opaque "context" will be returned to the client
+| Parameter         | Description                                                                                                                               |
+|:------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| `r`               | Read quorum, i.e. how many replicas need to agree when retrieving the object                                                              |
+| `pr`              | Primary read quorum, i.e. how many primary replicas need to be available when retrieving the object                                       |
+| `basic_quorum`    | Whether to return early in some failure cases, e.g. when `r=1` and you get 2 errors and a success basic_quorum=true would return an error |
+| `notfound_ok`     | Whether to treat `not found` responses as successful reads for the purposes of R                                                          |
+| `timeout`         | The timeout duration, in milliseconds, after which Riak will return an error message                                                      |
+| `sloppy_quorum`   | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable           |
+| `n_val`           | The number of nodes to which the delete request will be sent                                                                              |
+| `include_context` | If this parameter is set to `true`, the Data Type's opaque "context" will be returned to the client                                       |
 
 ## Response
 
-The response to a fetch request ([`DtFetchReq`](/riak/kv/2.2.3/developing/api/protocol-buffers/dt-fetch)) is a `DtFetchResp` message.
+The response to a fetch request ([`DtFetchReq`](/docs/developing/api/protocol-buffers/dt-fetch)) is a `DtFetchResp` message.
 
 ```protobuf
 message DtFetchResp {
@@ -79,7 +81,7 @@ message DtFetchResp {
 If the `include_context` option is specified, an opaque "context" value
 will be returned along with the user-readable data. When sending an
 update request, the client should send this context as well, just as one
-would send a [vclock](/riak/kv/2.2.3/learn/glossary/#vector-clock) for standard KV updates.
+would send a [vclock](/docs/learn/glossary/#vector-clock) for standard KV updates.
 
 The type of the Data Type is specified in the `type` field, and must be
 one of the three possible values of the `DataType` enum (`COUNTER`,

@@ -1,17 +1,19 @@
 ---
 title: "Eventual Consistency"
 id: learn_concepts_eventual_cons
+slug: eventual-consistency 
+sidebar_position: 6
 ---
 
 
-[concept buckets]: /riak/kv/2.2.3/learn/concepts/buckets
-[concept causal context vc]: /riak/kv/2.2.3/learn/concepts/causal-context/#vector-clocks
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
-[concept replication]: /riak/kv/2.2.3/learn/concepts/replication
-[glossary node]: /riak/kv/2.2.3/learn/glossary/#node
-[glossary read rep]: /riak/kv/2.2.3/learn/glossary/#read-repair
-[usage bucket types]: /riak/kv/2.2.3/developing/usage/bucket-types
-[usage conflict resolution]: /riak/kv/2.2.3/developing/usage/conflict-resolution
+[concept buckets]: /docs/learn/concepts/buckets
+[concept causal context vc]: /docs/learn/concepts/causal-context/#vector-clocks
+[concept clusters]: /docs/learn/concepts/clusters
+[concept replication]: /docs/learn/concepts/replication
+[glossary node]: /docs/learn/glossary/#node
+[glossary read rep]: /docs/learn/glossary/#read-repair
+[usage bucket types]: /docs/developing/usage/bucket-types
+[usage conflict resolution]: /docs/developing/usage/conflict-resolution
 
 
 In a distributed and fault-tolerant system like Riak, server and network
@@ -40,14 +42,14 @@ defaults if you want to employ a different strategy.
 
 Among those strategies, you can enable Riak to resolve object conflicts
 automatically, whether via internal [vector clocks][concept causal context vc], timestamps, or
-special eventually consistent [Data Types](/riak/kv/2.2.3/developing/data-types/), or you can resolve those
+special eventually consistent [Data Types](/docs/developing/data-types/), or you can resolve those
 conflicts on the application side by employing a use case-specific logic
 of your choosing. More information on this can be found in our guide to
 [conflict resolution][usage conflict resolution].
 
 This variety of options enables you to manage Riak's eventually
 consistent behavior in accordance with your application's [data model
-or models](/riak/kv/2.2.3/developing/data-modeling/).
+or models](/docs/developing/data-modeling/).
 
 ## Replication Properties and Request Tuning
 

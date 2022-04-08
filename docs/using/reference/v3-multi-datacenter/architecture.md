@@ -1,10 +1,12 @@
 ---
 title: "Architecture"
 id: managing_ref_v3_architecture
+slug: architecture
+sidebar_position: 0
 ---
 
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
+[glossary vnode]: /docs/learn/glossary/#vnode
+[concept clusters]: /docs/learn/concepts/clusters
 
 ## How Version 3 Replication Works
 
@@ -96,61 +98,35 @@ the following commands must be issued:
     This instructs the Riak connection manager to contact the sink
     cluster.
 
-    <br />
     ![MDC fullsync](/images/MDC-v3-realtime1.png)
-    <br />
 
     At this point realtime replication commences.
+3. Nodes with queued updates establish connections to the sink cluster and replication begins.
 
-<ol start="3">
-<li>Nodes with queued updates establish connections to the sink cluster
-and replication begins.</li>
-</ol>
-
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime2.png)
-<br />
 
 ### Realtime queueing and synchronization
 
 Once initialized, realtime replication continues to use the queues to
 store data updates for synchronization.
 
-<ol start="4">
-<li>The client sends an object to store on the source cluster.</li>
-<li>Riak writes N replicas on the source cluster.</li>
-</ol>
+4. The client sends an object to store on the source cluster.
+5. Riak writes N replicas on the source cluster.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime3.png)
-<br />
 
-<ol start="6">
-<li>The new object is stored in the realtime queue.</li>
-<li>The object is copied to the sink cluster.</li>
-</ol>
+6. The new object is stored in the realtime queue.
+7. Riak writes N replicas on the source cluster.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime4.png)
-<br />
 
-<ol start="8">
-<li>The destination node on the sink cluster writes the object to N
-nodes.</li>
-</ol>
+8. The destination node on the sink cluster writes the object to N nodes.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime5.png)
-<br />
 
-<ol start="9">
-<li>The successful write of the object to the sink cluster is
-acknowledged and the object removed from the realtime queue.</li>
-</ol>
+9. The successful write of the object to the sink cluster is acknowledged and the object removed from the realtime queue.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime6.png)
-<br />
 
 ## Restrictions
 
@@ -160,9 +136,3 @@ either fullsync or realtime replication, both clusters must have the
 same [ring size][concept clusters]; if you are using fullsync
 replication, every bucket's `n_val` must be the same in both the
 source and sink cluster.
-
-
-<script type="text/javascript">
-document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script>Munchkin.init('721-DGT-611');</script>

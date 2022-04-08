@@ -1,9 +1,11 @@
 ---
 title: "SSL"
 id: configuring_v3_replication_ssl
+slug: ssl 
+sidebar_position: 2
 ---
 
-[config reference#advanced.config]: /riak/kv/2.2.3/configuring/reference/#the-advanced-config-file
+[config reference#advanced.config]: /docs/configuring/reference/#the-advanced-config-file
 
 ## Features
 
@@ -65,7 +67,7 @@ would be allowed to connect, but `corp.com` still would not.
 If no ACL (or only the special value `"*"`) is specified, no CN filtering
 is performed, except as described below.
 
-{{% note title="Identical Local and Peer Common Names" %}}
+:::note Identical Local and Peer Common Names
 As a special case supporting the view that a host's CN is a fully-qualified
 domain name that uniquely identifies a single network device, if the CNs of
 the local and peer certificates are the same, the nodes will *NOT* be allowed
@@ -73,7 +75,7 @@ to connect.
 
 This evaluation supercedes ACL checks, so it cannot be overridden with any
 setting of the `peer_common_name_acl` property.
-{{% /note %}}
+:::note
 
 ### Examples
 

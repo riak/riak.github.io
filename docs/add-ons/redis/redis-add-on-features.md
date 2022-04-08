@@ -1,6 +1,8 @@
 ---
 title: "Riak Redis Add-on Features"
 id: add-ons_redis_features
+slug: redis-add-on-features
+sidebar_position: 3
 ---
 
 [ee]: http://basho.com/contact/

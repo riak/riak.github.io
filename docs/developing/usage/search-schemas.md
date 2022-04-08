@@ -1,9 +1,11 @@
 ---
 title: "Creating Search Schemas"
 id: usage_search_schemas
+slug: search-schemas 
+sidebar_position: 10 
 ---
 
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
+[concept clusters]: /docs/learn/concepts/clusters
 
 > **Note on Search 2.0 vs. Legacy Search**
 >
@@ -13,7 +15,7 @@ Yokozuna). For information about the deprecated Riak Search, visit [the old Usin
 
 Riak Search is built for ease of use, allowing you to write values into
 Riak and query for values using Solr. Riak Search does a lot of work
-under the hood to convert your values---plain text, JSON, XML, [Riak Data Types](/riak/kv/2.2.3/developing/data-types/), and [more](/riak/kv/2.2.3/developing/usage/custom-extractors)---into something that can be indexed and searched later.
+under the hood to convert your values---plain text, JSON, XML, [Riak Data Types](/docs/developing/data-types/), and [more](/docs/developing/usage/custom-extractors)---into something that can be indexed and searched later.
 Nonetheless, you must still instruct Riak/Solr how to index a value. Are
 you providing and array of strings? An integer? A date? Is your text in
 English or Russian? You can provide such instructions to Riak Search by
@@ -208,17 +210,17 @@ can be helpful if you suspect that your extractors are failing.
 Malformed JSON or XML will cause Riak Search to index a key and set
 `_yz_err` to 1, allowing you to reindex with proper values later.
 
-Field   | Name | Description
-:-------|:-----|:-----------
-`_yz_id`  | ID | Unique identifier of this Solr document
-`_yz_ed`  | Entropy Data | Data related to [active anti-entropy](/riak/kv/2.2.3/learn/concepts/active-anti-entropy)
-`_yz_pn`  | Partition Number | Used as a filter query parameter to remove duplicate replicas across nodes
-`_yz_fpn` | First Partition Number | The first partition in this doc's preflist, used for further filtering on overlapping partitions
-`_yz_vtag`| VTag | If there is a sibling, use vtag to differentiate them
-`_yz_rk`  | Riak Key | The key of the Riak object this doc corresponds to
-`_yz_rt`  | Riak Bucket Type | The bucket type of the Riak object this doc corresponds to
-`_yz_rb`  | Riak Bucket | The bucket of the Riak object this doc corresponds to
-`_yz_err` | Error Flag | indicating if this doc is the product of a failed object extraction
+| Field      | Name                   | Description                                                                                      |
+|:-----------|:-----------------------|:-------------------------------------------------------------------------------------------------|
+| `_yz_id`   | ID                     | Unique identifier of this Solr document                                                          |
+| `_yz_ed`   | Entropy Data           | Data related to [active anti-entropy](/docs/learn/concepts/active-anti-entropy)                  |
+| `_yz_pn`   | Partition Number       | Used as a filter query parameter to remove duplicate replicas across nodes                       |
+| `_yz_fpn`  | First Partition Number | The first partition in this doc's preflist, used for further filtering on overlapping partitions |
+| `_yz_vtag` | VTag                   | If there is a sibling, use vtag to differentiate them                                            |
+| `_yz_rk`   | Riak Key               | The key of the Riak object this doc corresponds to                                               |
+| `_yz_rt`   | Riak Bucket Type       | The bucket type of the Riak object this doc corresponds to                                       |
+| `_yz_rb`   | Riak Bucket            | The bucket of the Riak object this doc corresponds to                                            |
+| `_yz_err`  | Error Flag             | indicating if this doc is the product of a failed object extraction                              |
 
 ### Defining Fields
 

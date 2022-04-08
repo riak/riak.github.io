@@ -3,13 +3,13 @@ title: "Repairs"
 id: repair_recover_repairs
 ---
 
-[cluster ops aae]: /riak/kv/2.2.3/using/cluster-operations/active-anti-entropy/
-[config ref]: /riak/kv/2.2.3/configuring/reference/
+[cluster ops aae]: /docs/using/cluster-operations/active-anti-entropy/
+[config ref]: /docs/configuring/reference/
 [Erlang shell]: http://learnyousomeerlang.com/starting-out
-[glossary AAE]: /riak/kv/2.2.3/learn/glossary/#active-anti-entropy-aae
-[glossary readrep]: /riak/kv/2.2.3/learn/glossary/#read-repair
-[search config]: /riak/kv/2.2.3/configuring/search/#search-config-settings
-[tiered storage]: /riak/kv/2.2.3/setup/planning/backend/leveldb/#tiered-storage
+[glossary AAE]: /docs/learn/glossary/#active-anti-entropy-aae
+[glossary readrep]: /docs/learn/glossary/#read-repair
+[search config]: /docs/configuring/search/#search-config-settings
+[tiered storage]: /docs/setup/planning/backend/leveldb/#tiered-storage
 
 
 
@@ -84,9 +84,9 @@ If there are compaction errors in any of your vnodes, those will be listed in th
 ```
 
 
-{{% note %}}
+:::note
 While corruption on one vnode is not uncommon, corruption in several vnodes very likely means that there is a deeper problem that needs to be address, perhaps on the OS or hardware level.
-{{% /note %}}
+:::note
 
 
 ## Healing Corrupted LevelDBs
@@ -115,9 +115,9 @@ riak stop
 `riak ertspath`/erl
 ```
 
-{{% note title="Erlang version" %}}
+:::note Erlang version
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
-{{% /note %}}
+:::note
 
 3\. Once in the shell, run the following command:
 
@@ -174,9 +174,9 @@ riak stop
 `riak ertspath`/erl
 ```
 
-{{% note title="Erlang version" %}}
+:::note Erlang version
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
-{{% /note %}}
+:::note
 
 4\. Once in the shell, run the following command:
 
@@ -219,23 +219,23 @@ riak start
 
 If you have experienced a loss of object replicas in your cluster, you
 may need to perform a repair operation on one or more of your data
-[partitions](/riak/kv/2.2.3/learn/concepts/clusters/#the-ring). Repairs of Riak KV data are typically
+[partitions](/docs/learn/concepts/clusters/#the-ring). Repairs of Riak KV data are typically
 run in situations where partitions or whole nodes are lost due to
 corruption or hardware failure. In these cases, nodes or partitions are
 brought back online without any data, which means that the need to
-repair data will depend mainly on your use case and on whether [active anti-entropy](/riak/kv/2.2.3/learn/concepts/active-anti-entropy/) is enabled.
+repair data will depend mainly on your use case and on whether [active anti-entropy](/docs/learn/concepts/active-anti-entropy/) is enabled.
 
 You will need to run a repair if the following are both true:
 
-* Active anti-entropy is [disabled](/riak/kv/2.2.3/learn/concepts/active-anti-entropy/#disabling-active-anti-entropy)
+* Active anti-entropy is [disabled](/docs/learn/concepts/active-anti-entropy/#disabling-active-anti-entropy)
 * You have both non-expiring data and keys that are not accessed
   frequently (which means that they are not likely to be subject to
-  [read repair](/riak/kv/2.2.3/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy))
+  [read repair](/docs/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy))
 
 You will most likely not need to run a repair operation if _any_ of the
 following is true:
 
-* Active anti-entropy is [enabled](/riak/kv/2.2.3/learn/concepts/active-anti-entropy/#enabling-active-anti-entropy)
+* Active anti-entropy is [enabled](/docs/learn/concepts/active-anti-entropy/#enabling-active-anti-entropy)
 * Your entire key set is accessed frequently, allowing passive read
   repair to repair the partitions
 * Your data expires frequently

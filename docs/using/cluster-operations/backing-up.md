@@ -1,15 +1,17 @@
 ---
 title: "Backing Up"
 id: cluster_operations_backing_up
+slug: backing-up
+sidebar_position: 6
 ---
 
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[plan backend leveldb]: /riak/kv/2.2.3/setup/planning/backend/leveldb
-[plan backend bitcask]: /riak/kv/2.2.3/setup/planning/backend/bitcask
-[use ref strong consistency]: /riak/kv/2.2.3/using/reference/strong-consistency
-[concept aae]: /riak/kv/2.2.3/learn/concepts/active-anti-entropy/
-[aae read repair]: /riak/kv/2.2.3/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy
+[concept clusters]: /docs/learn/concepts/clusters
+[config reference]: /docs/configuring/reference
+[plan backend leveldb]: /docs/setup/planning/backend/leveldb
+[plan backend bitcask]: /docs/setup/planning/backend/bitcask
+[use ref strong consistency]: /docs/using/reference/strong-consistency
+[concept aae]: /docs/learn/concepts/active-anti-entropy/
+[aae read repair]: /docs/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy
 
 Riak KV is a [clustered][concept clusters] system built to survive a wide range of failure scenarios, including the loss of nodes due to network or hardware failure. Although this is one of Riak KV's core strengths, it cannot withstand all failure scenarios.
 
@@ -31,11 +33,11 @@ The basic process for getting a backup of Riak KV from a node is as follows:
 
 Downtime of a node can be significantly reduced by using an OS feature or filesystem that supports snapshotting.
 
-{{% note title="Backups and eventual consistency" %}}
+:::note Backups and eventual consistency
 Due to Riak KV's eventually consistent nature, backups can become slightly inconsistent from node to node.
 
-Data could exist on some nodes and not others at the exact time a backup is made. Any inconsistency will be corrected once a backup is restored, either by Riak's [active anti-entropy](/riak/kv/2.2.3/learn/concepts/active-anti-entropy/) processes or when the object is read, via [read repair](/riak/kv/2.2.3/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy).
-{{% /note %}}
+Data could exist on some nodes and not others at the exact time a backup is made. Any inconsistency will be corrected once a backup is restored, either by Riak's [active anti-entropy](/docs/learn/concepts/active-anti-entropy/) processes or when the object is read, via [read repair](/docs/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy).
+:::note
 
 ## OS-Specific Directory Locations
 
@@ -43,85 +45,85 @@ The default Riak KV data, ring, and configuration directories for each of the su
 
 #### Debian and Ubuntu
 
-Data | Directory
-:----|:---------
-Bitcask | `/var/lib/riak/bitcask`
-LevelDB | `/var/lib/riak/leveldb`
-Ring | `/var/lib/riak/ring`
-Configuration | `/etc/riak`
-Cluster Metadata | `/var/lib/riak/cluster_meta`
-Search | `/var/lib/riak/yz`
-Strong consistency | `/var/lib/riak/ensembles`
+| Data               | Directory                    |
+|:-------------------|:-----------------------------|
+| Bitcask            | `/var/lib/riak/bitcask`      |
+| LevelDB            | `/var/lib/riak/leveldb`      |
+| Ring               | `/var/lib/riak/ring`         |
+| Configuration      | `/etc/riak`                  |
+| Cluster Metadata   | `/var/lib/riak/cluster_meta` |
+| Search             | `/var/lib/riak/yz`           |
+| Strong consistency | `/var/lib/riak/ensembles`    |
 
 #### Fedora and RHEL
 
-Data | Directory
-:----|:---------
-Bitcask | `/var/lib/riak/bitcask`
-LevelDB | `/var/lib/riak/leveldb`
-Ring | `/var/lib/riak/ring`
-Configuration | `/etc/riak`
-Cluster Metadata | `/var/lib/riak/cluster_meta`
-Search | `/var/lib/riak/yz`
-Strong consistency | `/var/lib/riak/ensembles`
+| Data               | Directory                    |
+|:-------------------|:-----------------------------|
+| Bitcask            | `/var/lib/riak/bitcask`      |
+| LevelDB            | `/var/lib/riak/leveldb`      |
+| Ring               | `/var/lib/riak/ring`         |
+| Configuration      | `/etc/riak`                  |
+| Cluster Metadata   | `/var/lib/riak/cluster_meta` |
+| Search             | `/var/lib/riak/yz`           |
+| Strong consistency | `/var/lib/riak/ensembles`    |
 
 #### FreeBSD
 
-Data | Directory
-:----|:---------
-Bitcask | `/var/db/riak/bitcask`
-LevelDB | `/var/db/riak/leveldb`
-Ring | `/var/db/riak/ring`
-Configuration | `/usr/local/etc/riak`
-Cluster Metadata | `/var/db/riak/cluster_meta`
-Search | `/var/db/riak/yz`
-Strong consistency | `/var/db/riak/ensembles`
+| Data               | Directory                   |
+|:-------------------|:----------------------------|
+| Bitcask            | `/var/db/riak/bitcask`      |
+| LevelDB            | `/var/db/riak/leveldb`      |
+| Ring               | `/var/db/riak/ring`         |
+| Configuration      | `/usr/local/etc/riak`       |
+| Cluster Metadata   | `/var/db/riak/cluster_meta` |
+| Search             | `/var/db/riak/yz`           |
+| Strong consistency | `/var/db/riak/ensembles`    |
 
 #### OS X
 
-Data | Directory
-:----|:---------
-Bitcask | `./data/bitcask`
-LevelDB | `./data/leveldb`
-Ring | `./data/riak/ring`
-Configuration | `./etc`
-Cluster Metadata | `./data/riak/cluster_meta`
-Search | `./data/riak/yz`
-Strong consistency | `./data/ensembles`
+| Data               | Directory                  |
+|:-------------------|:---------------------------|
+| Bitcask            | `./data/bitcask`           |
+| LevelDB            | `./data/leveldb`           |
+| Ring               | `./data/riak/ring`         |
+| Configuration      | `./etc`                    |
+| Cluster Metadata   | `./data/riak/cluster_meta` |
+| Search             | `./data/riak/yz`           |
+| Strong consistency | `./data/ensembles`         |
 
 **Note**: OS X paths are relative to the directory in which the package
 was extracted.
 
 #### SmartOS
 
-Data | Directory
-:----|:---------
-Bitcask | `/var/db/riak/bitcask`
-LevelDB | `/var/db/riak/leveldb`
-Ring | `/var/db/riak/ring`
-Configuration | `/opt/local/etc/riak`
-Cluster Metadata | `/var/db/riak/cluster_meta`
-Search | `/var/db/riak/yz`
-Strong consistency | `/var/db/riak/ensembles`
+| Data               | Directory                   |
+|:-------------------|:----------------------------|
+| Bitcask            | `/var/db/riak/bitcask`      |
+| LevelDB            | `/var/db/riak/leveldb`      |
+| Ring               | `/var/db/riak/ring`         |
+| Configuration      | `/opt/local/etc/riak`       |
+| Cluster Metadata   | `/var/db/riak/cluster_meta` |
+| Search             | `/var/db/riak/yz`           |
+| Strong consistency | `/var/db/riak/ensembles`    |
 
 #### Solaris
 
-Data | Directory
-:----|:---------
-Bitcask | `/opt/riak/data/bitcask`
-LevelDB | `/opt/riak/data/leveldb`
-Ring | `/opt/riak/ring`
-Configuration | `/opt/riak/etc`
-Cluster Metadata | `/opt/riak/cluster_meta`
-Search | `/opt/riak/yz`
-Strong consistency | `/opt/riak/data/ensembles`
+| Data               | Directory                  |
+|:-------------------|:---------------------------|
+| Bitcask            | `/opt/riak/data/bitcask`   |
+| LevelDB            | `/opt/riak/data/leveldb`   |
+| Ring               | `/opt/riak/ring`           |
+| Configuration      | `/opt/riak/etc`            |
+| Cluster Metadata   | `/opt/riak/cluster_meta`   |
+| Search             | `/opt/riak/yz`             |
+| Strong consistency | `/opt/riak/data/ensembles` |
 
 ## Performing Backups
 
-{{% note title="Deprecation notice" %}}
-In previous versions of Riak KV, there was a [`riak-admin backup`](/riak/kv/2.2.3/using/admin/riak-admin/#backup) command commonly used for
+:::note Deprecation notice
+In previous versions of Riak KV, there was a [`riak-admin backup`](/docs/using/admin/riak-admin/#backup) command commonly used for
 backups. This functionality is now deprecated. We strongly recommend using the backup procedure documented below instead.
-{{% /note %}}
+:::note
 
 Backups can be accomplished through a variety of common methods. Standard utilities such `cp`, `rsync`, and `tar` can be used, as well as any backup system already in place in your environment.
 
@@ -130,9 +132,9 @@ installation.
 
 The following examples use `tar`:
 
-{{% note %}}
+:::note
 Backups must be performed on while Riak KV is stopped to prevent data loss.
-{{% /note %}}
+:::note
 
 ### Bitcask
 
@@ -190,17 +192,17 @@ node that the restored backup was taken from, you will need to
 additionally:
 
 1. Mark the original instance down in the cluster using
-   [`riak-admin down <node>`](/riak/kv/2.2.3/using/admin/riak-admin/#down)
+   [`riak-admin down <node>`](/docs/using/admin/riak-admin/#down)
 2. Join the restored node to the cluster using
-   [`riak-admin cluster join <node>`](/riak/kv/2.2.3/using/admin/riak-admin/#cluster-join)
+   [`riak-admin cluster join <node>`](/docs/using/admin/riak-admin/#cluster-join)
 3. Replace the original instance with the renamed instance with
-   [`riak-admin cluster force-replace <node1> <node2>`](/riak/kv/2.2.3/using/admin/riak-admin/#cluster-force-replace)
+   [`riak-admin cluster force-replace <node1> <node2>`](/docs/using/admin/riak-admin/#cluster-force-replace)
 4. Plan the changes to the cluster with `riak-admin cluster plan`
 5. Finally, commit the cluster changes with `riak-admin cluster commit`
 
-{{% note %}}
-For more information on the `riak-admin cluster` commands, refer to our documentation on [cluster administration](/riak/kv/2.2.3/using/admin/).
-{{% /note %}}
+:::note
+For more information on the `riak-admin cluster` commands, refer to our documentation on [cluster administration](/docs/using/admin/).
+:::note
 
 For example, if there are five nodes in the cluster with the original node names `riak1.example.com` through `riak5.example.com` and you wish to restore `riak1.example.com` as `riak6.example.com`, you would execute the following commands on `riak6.example.com`.
 
@@ -252,4 +254,4 @@ and for any other nodes whose names have changed:
 
 ## Restoring a Cluster
 
-Restoring a cluster from backups is documented [on its own page](/riak/kv/2.2.3/using/repair-recovery/failure-recovery/#cluster-recovery-from-backups).
+Restoring a cluster from backups is documented [on its own page](/docs/using/repair-recovery/failure-recovery/#cluster-recovery-from-backups).

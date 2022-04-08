@@ -1,13 +1,15 @@
 ---
 title: "PHP"
 id: usage_security_php
+slug: php 
+sidebar_position: 4
 ---
 
 This tutorial shows you how to set up a Riak PHP client to authenticate
 itself when connecting to Riak.
 
-If you are using [trust-](/riak/kv/2.2.3/using/security/managing-sources/#trust-based-authentication) or [PAM](/riak/kv/2.2.3/using/security/managing-sources/#pam-based-authentication)-based authentication, you can use the
-security setup described [below](#php-client-basics). [Certificate](/riak/kv/2.2.3/using/security/managing-sources/#certificate-based-authentication)-based authentication is not
+If you are using [trust-](/docs/using/security/managing-sources/#trust-based-authentication) or [PAM](/docs/using/security/managing-sources/#pam-based-authentication)-based authentication, you can use the
+security setup described [below](#php-client-basics). [Certificate](/docs/using/security/managing-sources/#certificate-based-authentication)-based authentication is not
 yet supported in the PHP client due to limitations of the HTTP interface of Riak.
 
 ## PHP Client Basics
@@ -20,7 +22,7 @@ only one node.
 
 If you are using Riak security, _all_ connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
-regardless of which [security source](/riak/kv/2.2.3/using/security/managing-sources/) you choose. All clients should also provide a username, regardless of
+regardless of which [security source](/docs/using/security/managing-sources/) you choose. All clients should also provide a username, regardless of
 security source. The example below sets up a single node object (we'll
 simply call it `node`) that connects to Riak on `localhost` and on port
 8087 and specifies `riakuser` as a username. That object will be used to

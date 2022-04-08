@@ -1,21 +1,23 @@
 ---
 title: "Strong Consistency"
 id: learn_concepts_strong_consistency
+slug: strong-consistency
+sidebar_position: 9
 ---
 
-[usage bucket types]: /riak/kv/2.2.3/developing/usage/bucket-types
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
+[usage bucket types]: /docs/developing/usage/bucket-types
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
 
-{{% note title="Please Note:" %}}
+:::note Please Note:
 Riak KV's strong consistency is an experimental feature and may be removed
 from the product in the future. Strong consistency is not commercially
 supported or production-ready. Strong consistency is incompatible with
 Multi-Datacenter Replication, Riak Search, Bitcask Expiration, LevelDB
 Secondary Indexes, Riak Data Types and Commit Hooks. We do not recommend its
 usage in any production environment.
-{{% /note %}}
+:::note
 
-Riak was originally designed as an [eventually consistent](/riak/kv/2.2.3/learn/concepts/eventual-consistency) system, fundamentally geared toward providing partition
+Riak was originally designed as an [eventually consistent](/docs/learn/concepts/eventual-consistency) system, fundamentally geared toward providing partition
 (i.e. fault) tolerance and high read and write availability.
 
 While this focus on high availability is a great fit for many data
@@ -26,7 +28,7 @@ In Riak, strong consistency is applied [using bucket types][usage bucket types],
 enables developers to apply strong consistency guarantees on a per-key
 basis.
 
-Elsewhere in the documentation there are instructions for [enabling and using](/riak/kv/2.2.3/developing/app-guide/strong-consistency/) strong consistency, as well as a [guide for operators](/riak/kv/2.2.3/configuring/strong-consistency) looking to manage,
+Elsewhere in the documentation there are instructions for [enabling and using](/docs/developing/app-guide/strong-consistency/) strong consistency, as well as a [guide for operators](/docs/configuring/strong-consistency) looking to manage,
 configure, and monitor strong consistency.
 
 ## Strong vs. Eventual Consistency

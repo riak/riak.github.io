@@ -1,12 +1,14 @@
 ---
 title: "Memory"
 id: planning_backend_memory
+slug: memory 
+sidebar_position: 2
 ---
 
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[plan backend multi]: /riak/kv/2.2.3/setup/planning/backend/multi
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[plan backend leveldb]: /riak/kv/2.2.3/setup/planning/backend/leveldb
+[config reference]: /docs/configuring/reference
+[plan backend multi]: /docs/setup/planning/backend/multi
+[glossary vnode]: /docs/learn/glossary/#vnode
+[plan backend leveldb]: /docs/setup/planning/backend/leveldb
 
 The Memory storage backend uses in-memory tables to store all data.
 This data is never persisted to disk or to any other storage mechanism.

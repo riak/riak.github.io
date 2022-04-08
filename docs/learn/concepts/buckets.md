@@ -1,27 +1,29 @@
 ---
 title: "Buckets"
 id: learn_concepts_buckets
+slug: buckets 
+sidebar_position: 1
 ---
 
-[apps cluster metadata]: /riak/kv/2.2.3/developing/app-guide/cluster-metadata
-[cluster ops bucket types]: /riak/kv/2.2.3/using/cluster-operations/bucket-types
-[cluster ops strong consistency]: /riak/kv/2.2.3/using/cluster-operations/strong-consistency
-[concept causal context]: /riak/kv/2.2.3/learn/concepts/causal-context
-[concept causal context sib]: /riak/kv/2.2.3/learn/concepts/causal-context/#siblings
-[concept replication]: /riak/kv/2.2.3/learn/concepts/replication
-[concept strong consistency]: /riak/kv/2.2.3/using/reference/strong-consistency
-[config basic]: /riak/kv/2.2.3/configuring/basic
-[dev api http]: /riak/kv/2.2.3/developing/api/http
-[dev data types]: /riak/kv/2.2.3/developing/data-types
-[glossary ring]: /riak/kv/2.2.3/learn/glossary/#ring
-[plan backend leveldb]: /riak/kv/2.2.3/setup/planning/backend/leveldb
-[plan backend bitcask]: /riak/kv/2.2.3/setup/planning/backend/bitcask
-[plan backend memory]: /riak/kv/2.2.3/setup/planning/backend/memory
-[plan backend multi]: /riak/kv/2.2.3/setup/planning/backend/multi
-[usage bucket types]: /riak/kv/2.2.3/developing/usage/bucket-types
-[usage commit hooks]: /riak/kv/2.2.3/developing/usage/commit-hooks
-[usage conflict resolution]: /riak/kv/2.2.3/developing/usage/conflict-resolution
-[usage replication]: /riak/kv/2.2.3/developing/usage/replication
+[apps cluster metadata]: /docs/developing/app-guide/cluster-metadata
+[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
+[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
+[concept causal context]: /docs/learn/concepts/causal-context
+[concept causal context sib]: /docs/learn/concepts/causal-context/#siblings
+[concept replication]: /docs/learn/concepts/replication
+[concept strong consistency]: /docs/using/reference/strong-consistency
+[config basic]: /docs/configuring/basic
+[dev api http]: /docs/developing/api/http
+[dev data types]: /docs/developing/data-types
+[glossary ring]: /docs/learn/glossary/#ring
+[plan backend leveldb]: /docs/setup/planning/backend/leveldb
+[plan backend bitcask]: /docs/setup/planning/backend/bitcask
+[plan backend memory]: /docs/setup/planning/backend/memory
+[plan backend multi]: /docs/setup/planning/backend/multi
+[usage bucket types]: /docs/developing/usage/bucket-types
+[usage commit hooks]: /docs/developing/usage/commit-hooks
+[usage conflict resolution]: /docs/developing/usage/conflict-resolution
+[usage replication]: /docs/developing/usage/replication
 
 
 Buckets are used to define a virtual keyspace for storing Riak objects.

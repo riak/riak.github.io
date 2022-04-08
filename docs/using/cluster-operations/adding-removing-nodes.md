@@ -1,9 +1,11 @@
 ---
 title: "Adding / Removing Nodes"
 id: cluster_operations_add_remove_nodes
+slug: adding-removing-nodes 
+sidebar_position: 0
 ---
 
-[use running cluster]: /riak/kv/2.2.3/using/running-a-cluster
+[use running cluster]: /docs/using/running-a-cluster
 
 This page describes the process of adding and removing nodes to and from
 a Riak KV cluster. For information on creating a cluster check out [Running a Cluster][use running cluster].
@@ -14,7 +16,7 @@ Just like the initial configuration steps, this step has to be repeated
 for every node in your cluster. Before a node can join an existing
 cluster it needs to be started. Depending on your mode of installation,
 use either the init scripts installed by the Riak binary packages or
-simply the script [`riak`](/riak/kv/2.2.3/using/admin/riak-cli/):
+simply the script [`riak`](/docs/using/admin/riak-cli/):
 
 ```bash
 /etc/init.d/riak start
@@ -124,14 +126,14 @@ Transfers resulting from cluster changes: 51
 If the plan is to your liking, submit the changes by running `riak-admin
 cluster commit`.
 
-{{% note title="Note on ring changes" %}}
+:::note Note on ring changes
 The algorithm that distributes partitions across the cluster during membership
 changes is non-deterministic. As a result, there is no optimal ring. In the
 event that a plan results in a slightly uneven distribution of partitions, the
 plan can be cleared. Clearing a cluster plan with `riak-admin cluster clear`
 and running `riak-admin cluster plan` again will produce a slightly different
 ring.
-{{% /note %}}
+:::note
 
 ## Removing a Node From a Cluster
 
@@ -171,9 +173,9 @@ actually take place.
 
 ## Pausing a `join` or `leave`
 
-{{% note title="Warning" %}}
+:::note Warning
 Pausing may impact cluster health and is not recommended for more than a short period of time.
-{{% /note %}}
+:::note
 
 To pause during `riak-admin cluster join` or `riak-admin cluster leave`, set the node's transfer-limit to 0:
 

@@ -1,13 +1,15 @@
 ---
 title: "Reading Objects"
 id: usage_reading_objects
+slug: reading-objects
+sidebar_position: 1
 ---
 
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
+[glossary vnode]: /docs/learn/glossary/#vnode
 
 You can think of reads in Riak as analogous to HTTP `GET` requests. You
 specify a bucket type, bucket, and key, and Riak either returns the
-object that's stored there---including its [siblings](/riak/kv/2.2.3/developing/usage/conflict-resolution/#siblings) \(more on that later)---or it returns `not found` (the
+object that's stored there---including its [siblings](/docs/developing/usage/conflict-resolution/#siblings) \(more on that later)---or it returns `not found` (the
 equivalent of an HTTP `404 Object Not Found`).
 
 Here is the basic command form for retrieving a specific key from a
@@ -18,7 +20,7 @@ GET /types/<type>/buckets/<bucket>/keys/<key>
 ```
 
 Here is an example of a read performed on the key `rufus` in the bucket
-`dogs`, which bears the bucket type `animals`. Please note that for this example to work, you must have first created the bucket-type `animals` as per the instructions on the [bucket type](/riak/kv/2.2.3/using/cluster-operations/bucket-types) page.
+`dogs`, which bears the bucket type `animals`. Please note that for this example to work, you must have first created the bucket-type `animals` as per the instructions on the [bucket type](/docs/using/cluster-operations/bucket-types) page.
 
 ```java
 // In the Java client, it is best to specify a bucket type/bucket/key
@@ -80,11 +82,11 @@ curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
 
 ## Read Parameters
 
-Parameter | Default | Description
-:---------|:--------|:-----------
-`r` | `quorum` | How many replicas need to agree when retrieving an existing object before the write
-`pr` | `0` | How many [vnodes][glossary vnode] must respond for a read to be deemed successful
-`notfound_ok` | `true` | If set to `true`, if the first vnode to respond doesn't have a copy of the object, Riak will deem the failure authoritative and immediately return a `notfound` error to the client
+| Parameter     | Default  | Description                                                                                                                                                                         |
+|:--------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `r`           | `quorum` | How many replicas need to agree when retrieving an existing object before the write                                                                                                 |
+| `pr`          | `0`      | How many [vnodes][glossary vnode] must respond for a read to be deemed successful                                                                                                   |
+| `notfound_ok` | `true`   | If set to `true`, if the first vnode to respond doesn't have a copy of the object, Riak will deem the failure authoritative and immediately return a `notfound` error to the client |
 
 Riak also accepts many query parameters, including `r` for setting the
 R-value for GET requests (R values describe how many replicas need to
@@ -188,10 +190,10 @@ The most common error code:
 
 * `404 Not Found`
 
-{{% note title="Note" %}}
+:::note Note
 If you're using a Riak client instead of HTTP, these responses will vary a
 great deal, so make sure to check the documentation for your specific client.
-{{% /note %}}
+:::note
 
 ## Not Found
 

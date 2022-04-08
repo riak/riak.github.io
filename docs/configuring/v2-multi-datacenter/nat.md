@@ -1,13 +1,15 @@
 ---
 title: "With NAT"
 id: configuring_v2_replication_nat
+slug: nat 
+sidebar_position: 1
 ---
 
-[config v2 ssl]: /riak/kv/2.2.3/configuring/v2-multi-datacenter/ssl
+[config v2 ssl]: /docs/configuring/v2-multi-datacenter/ssl
 
-{{% note title="Deprecation Warning" %}}
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/riak/kv/2.2.3/configuring/v3-multi-datacenter/nat/) instead.
-{{% /note %}}
+:::note Deprecation Warning
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/configuring/v3-multi-datacenter/nat/) instead.
+:::note
 
 Riak Enterprise supports replication of data on networks that use static
 NAT. This capability can be used for replicating data over the internet

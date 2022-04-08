@@ -1,6 +1,8 @@
 ---
-title: "PBC Fetch Object"
+title: "Fetch Object"
 id: pbc_fetch_object
+slug: fetch-object 
+sidebar_position: 5
 ---
 
 Fetch an object from the specified bucket type/bucket/key location
@@ -35,7 +37,7 @@ message RpbGetReq {
 > **Note on defaults and special values**
 >
 > All of the optional parameters below have default values determined on a
-per-bucket basis. Please refer to the documentation on [setting bucket properties](/riak/kv/2.2.3/developing/api/protocol-buffers/set-bucket-props) for more information.
+per-bucket basis. Please refer to the documentation on [setting bucket properties](/docs/developing/api/protocol-buffers/set-bucket-props) for more information.
 >
 > Furthermore, you can assign an integer value to the `r` and
 `pr` parameters, provided that that integer value is less than or
@@ -44,15 +46,15 @@ equal to N, <em>or</em> a special value denoting `one`
 `all` (`4294967295-3`), or `default`
 (`4294967295-4`).
 
-Parameter | Description |
-:---------|:------------|
-`basic_quorum` | Whether to return early in some failure cases, e.g. when `r=1` and you get 2 errors and a success basic_quorum=true would return an error
-`notfound_ok` | Whether to treat `not found` responses as successful reads for the purposes of R
-`if_modified` | When a vclock is supplied as this option, the response will only return the object if the vclocks don't match
-`head` | If set to `true`, Riak will return the object with the value(s) set as empty, which allows you to get the metadata without a potentially large value accompanying it
-`deletedvclock` | If set to `true`, Riak will return the tombstone's vclock, if applicable
-`timeout` | The timeout duration, in milliseconds, after which Riak will return an error message
-`sloppy_quorum` | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable
+| Parameter       | Description                                                                                                                                                          |
+|:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `basic_quorum`  | Whether to return early in some failure cases, e.g. when `r=1` and you get 2 errors and a success basic_quorum=true would return an error                            |
+| `notfound_ok`   | Whether to treat `not found` responses as successful reads for the purposes of R                                                                                     |
+| `if_modified`   | When a vclock is supplied as this option, the response will only return the object if the vclocks don't match                                                        |
+| `head`          | If set to `true`, Riak will return the object with the value(s) set as empty, which allows you to get the metadata without a potentially large value accompanying it |
+| `deletedvclock` | If set to `true`, Riak will return the tombstone's vclock, if applicable                                                                                             |
+| `timeout`       | The timeout duration, in milliseconds, after which Riak will return an error message                                                                                 |
+| `sloppy_quorum` | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable                                      |
 
 ## Response
 
@@ -66,16 +68,16 @@ message RpbGetResp {
 
 #### Values
 
-Value | Description
-:-----|:-----------
-`content` | The value plus metadata entries for the object. If there are siblings, there will be more than one entry. If the key is not found, the content will be empty.
-`vclock` | The opaque vector clock that must be included in the `RpbPutReq` to resolve the siblings
-`unchanged` | If `if_modified` was specified in the GET request but the object has not been modified, this will be set to `true`
+| Value       | Description                                                                                                                                                   |
+|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `content`   | The value plus metadata entries for the object. If there are siblings, there will be more than one entry. If the key is not found, the content will be empty. |
+| `vclock`    | The opaque vector clock that must be included in the `RpbPutReq` to resolve the siblings                                                                      |
+| `unchanged` | If `if_modified` was specified in the GET request but the object has not been modified, this will be set to `true`                                            |
 
 The <code>content</code> entries hold the object value and any metadata.
 Below is the structure of a <code>RpbContent</code> message, which is
 included in GET/PUT responses (`RpbGetResp` (above) and
-[`RpbPutResp`](/riak/kv/2.2.3/developing/api/protocol-buffers/store-object), respectively):
+[`RpbPutResp`](/docs/developing/api/protocol-buffers/store-object), respectively):
 
 ```protobuf
 message RpbContent {
@@ -102,7 +104,7 @@ of the following optional parameters:
 * `charset` --- The character encoding of the object, e.g. `utf-8`
 * `content_encoding` --- The content encoding of the object, e.g.
   `video/mp4`
-* `vtag` --- The object's [vtag](/riak/kv/2.2.3/learn/glossary/#vector-clock)
+* `vtag` --- The object's [vtag](/docs/learn/glossary/#vector-clock)
 * `links` --- This parameter is associated with the now-deprecated link
   walking feature and should not be used by Riak clients
 * `last_mod` --- A timestamp for when the object was last modified, in
@@ -120,17 +122,17 @@ of the following optional parameters:
     }
     ```
     Notice that both a key and value can be stored or just a key.
-    `RpbPair` messages are also used to attach [secondary indexes](/riak/kv/2.2.3/developing/usage/secondary-indexes) to objects (in the optional
+    `RpbPair` messages are also used to attach [secondary indexes](/docs/developing/usage/secondary-indexes) to objects (in the optional
     `indexes` field).
 * `deleted` --- Whether the object has been deleted (i.e. whether a
   tombstone for the object has been found under the specified key)
 
-{{% note title="Note on missing keys" %}}
+:::note Note on missing keys
 Remember: if a key is not stored in Riak, an `RpbGetResp` response without the
 `content` and `vclock` fields will be returned. This should be mapped to
 whatever convention the client language uses to return not found. The Erlang
 client, for example, returns the atom `{error, notfound}`.
-{{% /note %}}
+:::note
 
 ## Example
 

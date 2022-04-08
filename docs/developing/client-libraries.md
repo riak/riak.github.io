@@ -1,6 +1,8 @@
 ---
 title: "Client Libraries"
 id: developing_client_libraries
+slug: client_libraries
+sidebar_position: 5
 ---
 
 ## Basho-Supported Libraries
@@ -8,16 +10,16 @@ id: developing_client_libraries
 Basho officially supports a number of open-source client libraries for a
 variety of programming languages and environments.
 
-Language | Source | Documentation | Download
-:--------|:-------|:--------------|:--------
-Java | [riak-java-client](https://github.com/basho/riak-java-client) | [javadoc](http://basho.github.com/riak-java-client), [wiki](https://github.com/basho/riak-java-client/wiki) | [Maven Central](http://search.maven.org/?#search%7Cgav%7C1%7Cg%3A%22com.basho.riak%22%20AND%20a%3A%22riak-client%22) |
-Ruby | [riak-ruby-client](https://github.com/basho/riak-ruby-client) | [GitHub Pages](http://basho.github.io/riak-ruby-client/) | [RubyGems](https://rubygems.org/gems/riak-client)
-Python | [riak-python-client](https://github.com/basho/riak-python-client) | [sphinx](http://basho.github.com/riak-python-client) | [PyPI](http://pypi.python.org/pypi?:action=display&name=riak#downloads)
-C# | [riak-dotnet-client](https://github.com/basho/riak-dotnet-client) | [api docs](http://basho.github.io/riak-dotnet-client-api/), [wiki](https://github.com/basho/riak-dotnet-client/wiki) | [NuGet package](http://www.nuget.org/List/Packages/RiakClient), [GitHub Releases](https://github.com/basho/riak-dotnet-client/releases)
-Node.js | [riak-nodejs-client](https://github.com/basho/riak-nodejs-client) | [api docs](http://basho.github.com/riak-nodejs-client/), [wiki](https://github.com/basho/riak-nodejs-client/wiki) | [NPM](https://www.npmjs.com/package/basho-riak-client), [GitHub Releases](https://github.com/basho/riak-nodejs-client/releases)
-PHP | [riak-php-client](https://github.com/basho/riak-php-client) | [apigen](http://basho.github.io/riak-php-client)
-Erlang | [riak-erlang-client (riakc)](https://github.com/basho/riak-erlang-client) | [edoc](http://basho.github.com/riak-erlang-client/) | [GitHub](https://github.com/basho/riak-erlang-client)
-Go | [riak-go-client](https://github.com/basho/riak-go-client) | [GoDoc](https://godoc.org/github.com/basho/riak-go-client) | [GitHub](https://github.com/basho/riak-go-client)
+| Language | Source                                                                    | Documentation                                                                                                        | Download                                                                                                                                |
+|:---------|:--------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|
+| Java     | [riak-java-client](https://github.com/basho/riak-java-client)             | [javadoc](http://basho.github.com/riak-java-client), [wiki](https://github.com/basho/riak-java-client/wiki)          | [Maven Central](http://search.maven.org/?#search%7Cgav%7C1%7Cg%3A%22com.basho.riak%22%20AND%20a%3A%22riak-client%22)                    |
+| Ruby     | [riak-ruby-client](https://github.com/basho/riak-ruby-client)             | [GitHub Pages](http://basho.github.io/riak-ruby-client/)                                                             | [RubyGems](https://rubygems.org/gems/riak-client)                                                                                       |
+| Python   | [riak-python-client](https://github.com/basho/riak-python-client)         | [sphinx](http://basho.github.com/riak-python-client)                                                                 | [PyPI](http://pypi.python.org/pypi?:action=display&name=riak#downloads)                                                                 |
+| C#       | [riak-dotnet-client](https://github.com/basho/riak-dotnet-client)         | [api docs](http://basho.github.io/riak-dotnet-client-api/), [wiki](https://github.com/basho/riak-dotnet-client/wiki) | [NuGet package](http://www.nuget.org/List/Packages/RiakClient), [GitHub Releases](https://github.com/basho/riak-dotnet-client/releases) |
+| Node.js  | [riak-nodejs-client](https://github.com/basho/riak-nodejs-client)         | [api docs](http://basho.github.com/riak-nodejs-client/), [wiki](https://github.com/basho/riak-nodejs-client/wiki)    | [NPM](https://www.npmjs.com/package/basho-riak-client), [GitHub Releases](https://github.com/basho/riak-nodejs-client/releases)         |
+| PHP      | [riak-php-client](https://github.com/basho/riak-php-client)               | [apigen](http://basho.github.io/riak-php-client)                                                                     |                                                                                                                                         |
+| Erlang   | [riak-erlang-client (riakc)](https://github.com/basho/riak-erlang-client) | [edoc](http://basho.github.com/riak-erlang-client/)                                                                  | [GitHub](https://github.com/basho/riak-erlang-client)                                                                                   |
+| Go       | [riak-go-client](https://github.com/basho/riak-go-client)                 | [GoDoc](https://godoc.org/github.com/basho/riak-go-client)                                                           | [GitHub](https://github.com/basho/riak-go-client)                                                                                       |
 
 **Note**: All official clients use the integrated issue tracker on
 GitHub for bug reporting.
@@ -37,11 +39,11 @@ developing something that you wish to see added to this list, please
 fork the [Riak Docs repo on GitHub](https://github.com/basho/basho_docs)
 and send us a pull request.
 
-{{% note title="Note on community-produced libraries" %}}
+:::note Note on community-produced libraries
 All of these projects and libraries are at various stages of completeness and
 may not suit your application's needs based on their level of maturity and
 activity.
-{{% /note %}}
+:::note
 
 ### Client Libraries and Frameworks
 

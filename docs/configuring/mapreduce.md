@@ -1,11 +1,13 @@
 ---
 title: "MapReduce Settings"
 id: configuring_mapreduce
+slug: mapreduce 
+sidebar_position: 6
 ---
 
-[usage mapreduce]: /riak/kv/2.2.3/developing/usage/mapreduce
-[config reference#appconfig]: /riak/kv/2.2.3/configuring/reference/#app-config
-[usage secondary-indexes]: /riak/kv/2.2.3/developing/usage/secondary-indexes
+[usage mapreduce]: /docs/developing/usage/mapreduce
+[config reference#appconfig]: /docs/configuring/reference/#app-config
+[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
 
 ## Configuring MapReduce
 

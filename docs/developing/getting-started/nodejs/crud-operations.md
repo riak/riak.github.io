@@ -1,6 +1,8 @@
 ---
-title: "CRUD Operations with NodeJS"
+title: "CRUD Operations"
 id: getting_started_nodejs_crud
+slug: crud-operations
+sidebar_position: 0
 ---
 
 [nodejs_wiki]: https://github.com/basho/riak-nodejs-client/wiki

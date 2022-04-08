@@ -1,12 +1,14 @@
 ---
 title: "Downgrading"
 id: downgrading
+slug: downgrading
+sidebar_position: 4
 ---
 
-[rolling upgrade]: /riak/kv/2.2.3/setup/upgrading/cluster
-[config ref]: /riak/kv/2.2.3/configuring/reference
-[concept aae]: /riak/kv/2.2.3/learn/concepts/active-anti-entropy/
-[aae status]: /riak/kv/2.2.3/using/admin/riak-admin/#aae-status
+[rolling upgrade]: /docs/setup/upgrading/cluster
+[config ref]: /docs/configuring/reference
+[concept aae]: /docs/learn/concepts/active-anti-entropy/
+[aae status]: /docs/using/admin/riak-admin/#aae-status
 
 Downgrades of Riak KV are tested and supported for two feature release versions, with the general procedure being similar to that of a [rolling upgrade][rolling upgrade].
 
@@ -33,11 +35,10 @@ For every node in the cluster:
 
 ### Components That Complicate Downgrades
 
-| Feature | automatic | required | Notes |
-|:---|:---:|:---:|:---|
-|Migration to Solr 4.10.4 |✔ | ✔| Applies to all clusters using Riak Search.
-| Active Anti-Entropy file format changes | ✔ |  | Can be opted out using a [capability](#aae_tree_capability)
-
+| Feature                                 | automatic | required | Notes                                                       |
+|:----------------------------------------|:---------:|:--------:|:------------------------------------------------------------|
+| Migration to Solr 4.10.4                |     ✔     |    ✔     | Applies to all clusters using Riak Search.                  |
+| Active Anti-Entropy file format changes |     ✔     |          | Can be opted out using a [capability](#aae_tree_capability) |
 
 ### When Downgrading is No Longer an Option
 
@@ -46,11 +47,11 @@ If you enabled LZ4 compression in LevelDB and/or enabled global expiration in Le
 
 ## General Process
 
-{{% note %}}
+:::note
 While the cluster contains mixed version members, if you have not set the cluster to use the legacy AAE tree format, you will see the `bad_version` error emitted to the log any time nodes with differing versions attempt to exchange AAE data (including AAE fullsync).
 
 This is benign and similar to the `not_built` and `already_locked` errors which can be seen during normal AAE operation. These events will stop once the downgrade is complete.
-{{% /note %}}
+:::note
 
 ### Stop Riak KV and remove Riak search index & temporary data
 
@@ -104,9 +105,9 @@ anti_entropy.tree.build_limit.per_timespan = 5m
 ### Start the node and disable Yokozuna
 
 6\. Start Riak KV:
-{{% note %}}
+:::note
 Search results will be inconsistent until **Step 8.1** is complete.
-{{% /note %}}
+:::note
 
 ```bash
 riak start

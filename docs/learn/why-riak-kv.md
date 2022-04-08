@@ -1,17 +1,19 @@
 ---
 title: "Why Riak KV?"
 id: learn_why_riak_kv
+slug: why-riak-kv
+sidebar_position: 0
 ---
 
 
-[apps replication properties]: /riak/kv/2.2.3/developing/app-guide/replication-properties
-[Basho Bench]: /riak/kv/2.2.3/using/performance/benchmarking
-[cluster ops strong consistency]: /riak/kv/2.2.3/using/cluster-operations/strong-consistency
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
+[apps replication properties]: /docs/developing/app-guide/replication-properties
+[Basho Bench]: /docs/using/performance/benchmarking
+[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
 [convergent replicated data types]: http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf
 [Datomic]: http://www.datomic.com/overview.html
-[dev data types]: /riak/kv/2.2.3/developing/data-types
-[glossary read rep]: /riak/kv/2.2.3/learn/glossary/#read-repair
+[dev data types]: /docs/developing/data-types
+[glossary read rep]: /docs/learn/glossary/#read-repair
 
 
 ## What is Riak?

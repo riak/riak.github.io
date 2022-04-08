@@ -1,6 +1,8 @@
 ---
-title: "PBC Ping"
+title: "Ping"
 id: pbc_ping
+slug: ping 
+sidebar_position: 11
 ---
 
 Check if the server is alive

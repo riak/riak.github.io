@@ -1,10 +1,12 @@
 ---
 title: "Runtime Interaction Reference"
 id: managing_ref_runtime_interaction
+slug: runtime-interaction
+sidebar_position: 5
 ---
 
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
+[config reference]: /docs/configuring/reference
+[concept clusters]: /docs/learn/concepts/clusters
 
 Riak's [configuration files][config reference] provide a variety of parameters that
 enable you to fine-tune how Riak interacts with two important elements

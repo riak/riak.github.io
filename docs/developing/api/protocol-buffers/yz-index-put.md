@@ -1,6 +1,8 @@
 ---
-title: "PBC Yokozuna Index Put"
+title: "Yokozuna Index Put"
 id: pbc_yz_index_put
+slug: yz-index-put
+sidebar_position: 22
 ---
 
 Create a new index or modify an existing index.
@@ -25,9 +27,9 @@ message RpbYokozunaIndex {
 ```
 
 Each message specifying an index must include the index's name as a
-binary (as `name`). Optionally, you can specify a [`schema`](/riak/kv/2.2.3/developing/usage/search-schemas) name and/or an `n_val`, i.e. the number of nodes on which the index is stored (for GET requests) or on which you wish the index to be stored (for PUT requests). An index's `n_val` must match the associated bucket's `n_val`.
+binary (as `name`). Optionally, you can specify a [`schema`](/docs/developing/usage/search-schemas) name and/or an `n_val`, i.e. the number of nodes on which the index is stored (for GET requests) or on which you wish the index to be stored (for PUT requests). An index's `n_val` must match the associated bucket's `n_val`.
 
 ## Response
 
-Returns a [RpbPutResp](/riak/kv/2.2.3/developing/api/protocol-buffers/#message-codes) code with no data on success.
+Returns a [RpbPutResp](/docs/developing/api/protocol-buffers/#message-codes) code with no data on success.
 

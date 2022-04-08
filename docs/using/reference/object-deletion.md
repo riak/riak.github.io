@@ -1,6 +1,8 @@
 ---
 title: "Object Deletion Reference"
 id: managing_ref_object_deletion
+slug: object-deletion
+sidebar_position: 4
 ---
 
 [concept eventual consistency]: ../../../learn/concepts/eventual-consistency

@@ -1,6 +1,8 @@
 ---
-title: "HTTP Delete Object"
+title: "Delete Object"
 id: http_delete_object
+slug: delete-object
+sidebar_position: 7
 ---
 
 Deletes an object from the specified bucket / key.

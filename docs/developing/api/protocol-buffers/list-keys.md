@@ -1,15 +1,17 @@
 ---
-title: "PBC List Keys"
+title: "List Keys"
 id: pbc_list_keys
+slug: list-keys
+sidebar_position: 1
 ---
 
 List all of the keys in a bucket. This is a streaming call, with
 multiple response messages sent for each request.
 
-{{% note title="Not for production use" %}}
+:::note Not for production use
 This operation requires traversing all keys stored in the cluster and should
 not be used in production.
-{{% /note %}}
+:::note
 
 ## Request
 

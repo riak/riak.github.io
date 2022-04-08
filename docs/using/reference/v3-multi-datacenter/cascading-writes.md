@@ -1,6 +1,8 @@
 ---
 title: "Cascading Realtime Writes"
 id: managing_ref_v3_cascading_writes
+slug: cascading-writes 
+sidebar_position: 2
 ---
 
 ## Introduction
@@ -14,11 +16,11 @@ Riak Enterprise. It will need to be manually enabled on new clusters.
 Cascading realtime requires the `{riak_repl, rtq_meta}` capability to
 function.
 
-{{% note title="Note on cascading tracking" %}}
+:::note Note on cascading tracking
 Cascading tracking is a simple list of where an object has been written. This
 works well for most common configurations. Larger installations, however, may
 have writes cascade to clusters to which other clusters have already written.
-{{% /note %}}
+:::note
 
 
 ```
@@ -69,7 +71,7 @@ cascade.
 ## Usage
 
 Riak Enterprise Cascading Writes can be enabled and disabled using the
-`riak-repl` command. Please see the [Version 3 Operations guide](/riak/kv/2.2.3/using/cluster-operations/v3-multi-datacenter) for more information.
+`riak-repl` command. Please see the [Version 3 Operations guide](/docs/using/cluster-operations/v3-multi-datacenter) for more information.
 
 To show current the settings:
 

@@ -1,17 +1,19 @@
 ---
 title: "Statistics & Monitoring Reference"
 id: managing_ref_monitoring
+slug: statistics-monitoring
+sidebar_position: 6
 ---
 
 Riak provides data related to current operating status, which includes
 statistics in the form of counters and histograms. These statistics
-are made available through the HTTP API via the [`/stats`](/riak/kv/2.2.3/developing/api/http/status) endpoint, or through the [`riak-admin`](/riak/kv/2.2.3/using/admin/riak-admin/) interface, in particular the `stat` and `status` commands.
+are made available through the HTTP API via the [`/stats`](/docs/developing/api/http/status) endpoint, or through the [`riak-admin`](/docs/using/admin/riak-admin/) interface, in particular the `stat` and `status` commands.
 
 This page presents the most commonly monitored and gathered
 statistics, as well as numerous solutions for monitoring and gathering
 statistics that our customers and community report using successfully
 in Riak cluster environments. You can learn more about the specific
-Riak statistics provided in the [Inspecting a Node](/riak/kv/2.2.3/using/cluster-operations/inspecting-node) and [HTTP Status](/riak/kv/2.2.3/developing/api/http/status) documentation.
+Riak statistics provided in the [Inspecting a Node](/docs/using/cluster-operations/inspecting-node) and [HTTP Status](/docs/developing/api/http/status) documentation.
 
 ## System Metrics To Graph
 
@@ -35,7 +37,7 @@ We also recommend tracking your system's virtual and
 writebacks. Things like massive flushes of dirty pages or steadily
 climbing writeback volumes can indicate poor virtual memory tuning.
 More information can be found [here][sysctl_vm_txt] and in our
-documentation on [system tuning](/riak/kv/2.2.3/using/performance/#storage-and-file-system-tuning).
+documentation on [system tuning](/docs/using/performance/#storage-and-file-system-tuning).
 
 ## Riak Metrics to Graph
 Riak metrics fall into several general categories:
@@ -45,7 +47,7 @@ Riak metrics fall into several general categories:
 3. Erlang resource usage metrics
 4. General Riak load/health metrics
 
-If graphing all of the [available Riak metrics](/riak/kv/2.2.3/using/cluster-operations/inspecting-node) is
+If graphing all of the [available Riak metrics](/docs/using/cluster-operations/inspecting-node) is
 not practical, you should pick a minimum relevant subset from these
 categories. Some of the most helpful metrics are discussed below.
 
@@ -80,13 +82,13 @@ As with the throughput metrics, keeping an eye on average (and max)
 latency times will help detect usage patterns, and provide advanced
 warnings for potential problems.
 
-{{% note title="Note on FSM Time Stats" %}}
+:::note Note on FSM Time Stats
 FSM Time Stats represent the amount of time in microseconds required to
 traverse the GET or PUT Finite State Machine code, offering a picture of
 general node health. From your application's perspective, FSM Time effectively
 represents experienced latency. Mean, Median, and 95th-, 99th-, and
 100th-percentile (Max) counters are displayed. These are one-minute stats.
-{{% /note %}}
+:::note
 
 Metric | Also | Relevance | Latency (in microseconds)
 :------|:-----|:----------|:-------------------------
@@ -144,7 +146,7 @@ Metric | Description
 
 ## Command-line Interface
 
-The [`riak-admin`](/riak/kv/2.2.3/using/admin/riak-admin/) tool provides two
+The [`riak-admin`](/docs/using/admin/riak-admin/) tool provides two
 interfaces for retrieving statistics and other information: `status`
 and `stat`.
 
@@ -169,14 +171,14 @@ consistent_get_objsize_195 : 0
 ```
 
 A comprehensive list of available stats can be found in the
-[Inspecting a Node](/riak/kv/2.2.3/using/cluster-operations/inspecting-node/#riak-admin-status) document.
+[Inspecting a Node](/docs/using/cluster-operations/inspecting-node/#riak-admin-status) document.
 
 ### stat
 
 The `riak-admin stat` command is related to the `riak-admin status`
 command but provides a more fine-grained interface for interacting with
 stats and information. Full documentation of this command can be found
-in the [Inspecting a Node](/riak/kv/2.2.3/using/cluster-operations/inspecting-node/#riak-admin-stat) document.
+in the [Inspecting a Node](/docs/using/cluster-operations/inspecting-node/#riak-admin-stat) document.
 
 ## Statistics and Monitoring Tools
 
@@ -190,7 +192,7 @@ reported success with when used for monitoring the operational status of
 their Riak clusters. Community and open source projects are presented
 along with commercial and hosted services.
 
-{{% note title="Note on Riak 2.x Statistics Support" %}}
+:::note Note on Riak 2.x Statistics Support
 Many of the below tools were either created by third-parties or Basho
 engineers for general usage, and have been passed to the community for further
 updates. As such, many of the below only aggregate the statistics and messages
@@ -204,7 +206,7 @@ maintainer.
 
 Look for banners calling out the tools we've verified that support the latest
 Riak 2.x statistics!
-{{% /note %}}
+:::note
 
 ### Self-Hosted Monitoring Tools
 
@@ -223,7 +225,7 @@ troubleshooting issues on Riak nodes.
 
 #### Riak Control
 
-[Riak Control](/riak/kv/2.2.3/using/admin/riak-control/) is Basho's REST-driven user-interface for managing Riak
+[Riak Control](/docs/using/admin/riak-control/) is Basho's REST-driven user-interface for managing Riak
 clusters. It is designed to give you quick insight into the health of
 your cluster and allow for easy management of nodes.
 
@@ -247,13 +249,13 @@ clusters and grids. Customers and community members using Riak have
 reported success in using Ganglia to monitor Riak clusters.
 
 A [Riak Ganglia module][riak_ganglia] for collecting statistics from
-the Riak HTTP [`/stats`](/riak/kv/2.2.3/developing/api/http/status) endpoint is also available.
+the Riak HTTP [`/stats`](/docs/developing/api/http/status) endpoint is also available.
 
 #### Nagios
 
-{{% note %}}
+:::note
 **Tested and Verified Support for Riak 2.x.**
-{{% /note %}}
+:::note
 
 [Nagios](http://www.nagios.org) is a monitoring and alerting solution
 that can provide information on the status of Riak cluster nodes, in
@@ -287,9 +289,9 @@ module specifically designed to read Riak statistics.
 
 #### Zabbix
 
-{{% note %}}
+:::note
 **Tested and Verified Support for Riak 2.x Stats.**
-{{% /note %}}
+:::note
 
 [Zabbix](http://www.zabbix.com) is an open-source performance monitoring,
 alerting, and graphing solution that can provide information on the state of
@@ -313,22 +315,22 @@ capacity planning in a Riak cluster environment.
 
 #### New Relic
 
-{{% note %}}
+:::note
 **Tested and Verified Support for Riak 2.x Stats.**
-{{% /note %}}
+:::note
 
 [New Relic](http://newrelic.com) is a data analytics and visualization platform
 that can provide information on the current and past states of Riak nodes and
 visualizations of machine generated data such as log files.
 
-A [Riak New Relic Agent][riak_new_relic] for collecting statistics from the Riak HTTP [`/stats`](/riak/kv/2.2.3/developing/api/http/status) endpoint is also available.
+A [Riak New Relic Agent][riak_new_relic] for collecting statistics from the Riak HTTP [`/stats`](/docs/developing/api/http/status) endpoint is also available.
 
 #### Splunk
 
 [Splunk](http://www.splunk.com) is available as downloadable software or
 as a service, and provides tools for visualization of machine generated
 data such as log files. It can be connected to Riak's HTTP statistics
-[`/stats`](/riak/kv/2.2.3/developing/api/http/status) endpoint.
+[`/stats`](/docs/developing/api/http/status) endpoint.
 
 Splunk can be used to aggregate all Riak cluster node operational log
 files, including operating system and Riak-specific logs and Riak
@@ -350,9 +352,9 @@ Docs](https://github.com/basho/basho_docs).
 
 ## References
 
-* [Inspecting a Node](/riak/kv/2.2.3/using/cluster-operations/inspecting-node)
+* [Inspecting a Node](/docs/using/cluster-operations/inspecting-node)
 * [Riaknostic](http://riaknostic.basho.com)
-* [Riak Control](/riak/kv/2.2.3/using/admin/riak-control/)
+* [Riak Control](/docs/using/admin/riak-control/)
 * [collectd](http://collectd.org)
 * [Ganglia](http://ganglia.info)
 * [Nagios](http://www.nagios.org)

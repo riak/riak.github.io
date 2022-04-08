@@ -1,9 +1,11 @@
 ---
-title: "HTTP Fetch Search Index"
+title: "Fetch Search Index"
 id: http_fetch_search_index
+slug: fetch-search-index
+sidebar_position: 15
 ---
 
-Retrieves information about a Riak Search [index](/riak/kv/2.2.3/developing/usage/search/#simple-setup).
+Retrieves information about a Riak Search [index](/docs/developing/usage/search/#simple-setup).
 
 ## Request
 
@@ -24,7 +26,7 @@ GET /search/index/<index_name>
 ## Response
 
 If the index is found, Riak will output a JSON object describing the
-index, including its name, the [`n_val`](/riak/kv/2.2.3/developing/app-guide/replication-properties/#a-primer-on-n-r-and-w) associated with it, and the [search schema](/riak/kv/2.2.3/developing/usage/search-schemas) used by the index. Here is an example:
+index, including its name, the [`n_val`](/docs/developing/app-guide/replication-properties/#a-primer-on-n-r-and-w) associated with it, and the [search schema](/docs/developing/usage/search-schemas) used by the index. Here is an example:
 
 ```json
 {

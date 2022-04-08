@@ -1,11 +1,13 @@
 ---
 title: "Using Riak Redis Add-on"
 id: add-ons_redis_getstarted
+slug: using-rra
+sidebar_position: 1
 ---
 
-[addon redis develop]: ../developing-rra/
-[addon redis setup]: ../set-up-rra/
-[dev api http]: /riak/kv/2.2.3/developing/api/http/
+[addon redis develop]: ../redis/developing-rra
+[addon redis setup]: ../redis/set-up-rra/
+[dev api http]: /docs/developing/api/http/
 [ee]: http://basho.com/contact/
 
 

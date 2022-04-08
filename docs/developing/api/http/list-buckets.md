@@ -1,14 +1,16 @@
 ---
-title: "HTTP List Buckets"
+title: "List Buckets"
 id: http_list_buckets
+slug: list-bucket
+sidebar_position: 3
 ---
 
 Lists all known buckets (ones that have keys stored in them).
 
-{{% note title="Not for production use" %}}
+:::note Not for production use
 Similar to the list keys operation, this requires traversing all keys stored
 in the cluster and should not be used in production.
-{{% /note %}}
+:::note
 
 ## Request
 

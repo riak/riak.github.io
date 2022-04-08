@@ -1,6 +1,8 @@
 ---
-title: "Data Types: Maps"
+title: "Maps"
 id: data_types_maps
+slug: maps 
+sidebar_position: 3
 ---
 
 Maps are the most versatile of the Riak data types because all other data types can be embedded within them, _including maps themselves_. This enables the creation of complex, custom data types from a few basic building blocks.

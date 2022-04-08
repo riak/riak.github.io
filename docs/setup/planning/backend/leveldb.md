@@ -1,13 +1,15 @@
 ---
 title: "LevelDB"
 id: planning_backend_leveldb
+slug: leveldb 
+sidebar_position: 1
 ---
 
 [upgrade 2.0#upgrading-leveldB]: /
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[perf index]: /riak/kv/2.2.3/using/performance
-[config reference#aae]: /riak/kv/2.2.3/configuring/reference/#active-anti-entropy
+[glossary vnode]: /docs/learn/glossary/#vnode
+[config reference]: /docs/configuring/reference
+[perf index]: /docs/using/performance
+[config reference#aae]: /docs/configuring/reference/#active-anti-entropy
 
 > **Note on upgrading to 2.0**
 >
@@ -106,10 +108,10 @@ parameters in the `eleveldb` section of the [`riak.conf`][config reference]. The
 The configuration values that can be set in your
 [`riak.conf`][config reference] for eLevelDB are as follows:
 
-Config | Description | Default
-:------|:------------|:-------
-`leveldb.data_root` | LevelDB data root | `./data/leveldb`
-`leveldb.maximum_memory.percent` | Defines the percentage (between 1 and 100) of total server memory to assign to LevelDB. LevelDB will dynamically adjust its internal cache sizes as Riak activates/inactivates [vnodes][glossary vnode] on this server to stay within this size. | `70`
+| Config                           | Description                                                                                                                                                                                                                                      | Default          |
+|:---------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------|
+| `leveldb.data_root`              | LevelDB data root                                                                                                                                                                                                                                | `./data/leveldb` |
+| `leveldb.maximum_memory.percent` | Defines the percentage (between 1 and 100) of total server memory to assign to LevelDB. LevelDB will dynamically adjust its internal cache sizes as Riak activates/inactivates [vnodes][glossary vnode] on this server to stay within this size. | `70`             |
 
 If you are using the older, `app.config`-based system, the equivalent to
 the `leveldb.data_root` is the `data_root` setting, as in the following
@@ -407,11 +409,11 @@ the case when using a single storage array.
 If you are using the newer, `riak.conf`-based configuration system, the
 following parameters can be used to configure LevelDB tiered storage:
 
-Parameter | Description
-:---------|:-----------
-`leveldb.tiered` | The level number at which data should switch to the slower array. The default is `0`, which disables the feature.
-`leveldb.tiered.path.fast` | The path prefix for `.sst` files below the level set by `leveldb.tiered`
-`leveldb.tiered.path.slow` | The path prefix for `.sst` files at and above the level set by `leveldb.tiered`
+| Parameter                  | Description                                                                                                       |
+|:---------------------------|:------------------------------------------------------------------------------------------------------------------|
+| `leveldb.tiered`           | The level number at which data should switch to the slower array. The default is `0`, which disables the feature. |
+| `leveldb.tiered.path.fast` | The path prefix for `.sst` files below the level set by `leveldb.tiered`                                          |
+| `leveldb.tiered.path.slow` | The path prefix for `.sst` files at and above the level set by `leveldb.tiered`                                   |
 
 If you are using the older, `app.config`-based system, the example below
 will show you the equivalents of the settings listed in the table above.
@@ -453,15 +455,15 @@ stored in the level, the cumulative size of all levels up to the
 specified level, and the cumulative size including active anti-entropy
 data.
 
-Level | Level Size | Cumulative Size | Cumulative with AAE
-:-----|:-----------|:----------------|:-------------------
-0 | 360 | 360 | 720
-1 | 2,160 | 2,520 | 5,040
-2 | 2,940 | 5,460 | 10,920
-3 | 6,144 | 11,604 | 23,208
-4 | 122,880 | 134,484 | 268,968
-5 | 2,362,232 | 2,496,716 | 4,993,432
-6 | not limited | not limited | not limited
+| Level | Level Size  | Cumulative Size | Cumulative with AAE |
+|:------|:------------|:----------------|:--------------------|
+| 0     | 360         | 360             | 720                 |
+| 1     | 2,160       | 2,520           | 5,040               |
+| 2     | 2,940       | 5,460           | 10,920              |
+| 3     | 6,144       | 11,604          | 23,208              |
+| 4     | 122,880     | 134,484         | 268,968             |
+| 5     | 2,362,232   | 2,496,716       | 4,993,432           |
+| 6     | not limited | not limited     | not limited         |
 
 To select the appropriate value for `leveldb.tiered`, use the following
 steps:

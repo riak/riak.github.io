@@ -1,29 +1,31 @@
 ---
 title: "riak-admin Command Line Interface"
 id: cluster_admin_cli
+slug: riak-admin
+sidebar_position: 1
 ---
 
-[config reference]: /riak/kv/2.2.3/configuring/reference
-[use admin commands]: /riak/kv/2.2.3/using/admin/commands
-[use admin commands#join]: /riak/kv/2.2.3/using/admin/commands/#join
-[use admin commands#leave]: /riak/kv/2.2.3/using/admin/commands/#leave
-[cluster ops backup]: /riak/kv/2.2.3/using/cluster-operations/backing-up
-[config reference#node-metadata]: /riak/kv/2.2.3/configuring/reference/#node-metadata
-[cluster ops change info]: /riak/kv/2.2.3/using/cluster-operations/changing-cluster-info
-[usage mapreduce]: /riak/kv/2.2.3/developing/usage/mapreduce
-[usage commit hooks]: /riak/kv/2.2.3/developing/usage/commit-hooks
-[config reference#ring]: /riak/kv/2.2.3/configuring/reference/#ring
-[cluster ops inspect node]: /riak/kv/2.2.3/using/cluster-operations/inspecting-node
-[use ref monitoring]: /riak/kv/2.2.3/using/reference/statistics-monitoring
-[downgrade]: /riak/kv/2.2.3/setup/downgrade
-[security index]: /riak/kv/2.2.3/using/security/
-[security managing]: /riak/kv/2.2.3/using/security/managing-sources
-[cluster ops bucket types]: /riak/kv/2.2.3/using/cluster-operations/bucket-types
-[cluster ops 2i]: /riak/kv/2.2.3/using/reference/secondary-indexes
-[repair recover index]: /riak/kv/2.2.3/using/repair-recovery
-[cluster ops strong consistency]: /riak/kv/2.2.3/using/cluster-operations/strong-consistency
-[cluster ops handoff]: /riak/kv/2.2.3/using/cluster-operations/handoff
-[use admin riak-admin#stats]: /riak/kv/2.2.3/using/admin/riak-admin/#stats
+[config reference]: /docs/configuring/reference
+[use admin commands]: /docs/using/admin/commands
+[use admin commands#join]: /docs/using/admin/commands/#join
+[use admin commands#leave]: /docs/using/admin/commands/#leave
+[cluster ops backup]: /docs/using/cluster-operations/backing-up
+[config reference#node-metadata]: /docs/configuring/reference/#node-metadata
+[cluster ops change info]: /docs/using/cluster-operations/changing-cluster-info
+[usage mapreduce]: /docs/developing/usage/mapreduce
+[usage commit hooks]: /docs/developing/usage/commit-hooks
+[config reference#ring]: /docs/configuring/reference/#ring
+[cluster ops inspect node]: /docs/using/cluster-operations/inspecting-node
+[use ref monitoring]: /docs/using/reference/statistics-monitoring
+[downgrade]: /docs/setup/downgrade
+[security index]: /docs/using/security/
+[security managing]: /docs/using/security/managing-sources
+[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
+[cluster ops 2i]: /docs/using/reference/secondary-indexes
+[repair recover index]: /docs/using/repair-recovery
+[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
+[cluster ops handoff]: /docs/using/cluster-operations/handoff
+[use admin riak-admin#stats]: /docs/using/admin/riak-admin/#stats
 
 ## `riak-admin`
 
@@ -172,10 +174,10 @@ rename the nodes of a cluster. For more information, visit the
 riak-admin reip <old nodename> <new nodename>
 ```
 
-{{% note title="Note about reip prior to Riak 2.0" %}}
+:::note Note about reip prior to Riak 2.0
 Several bugs have been fixed related to reip in Riak 2.0. We recommend against
 using reip prior to 2.0, if possible.
-{{% /note %}}
+:::note
 
 
 ## js-reload
@@ -371,10 +373,10 @@ entropy tree building, and key repairs which were triggered by AAE.
  * The *Max* column shows the maximum number of keys repaired during all
    key exchanges since the last node restart.
 
-{{% note title="Note in AAE status information" %}}
+:::note Note in AAE status information
 All AAE status information is in-memory and is reset across a node restart.
 Only tree build times are persistent (since trees themselves are persistent)
-{{% /note %}}
+:::note
 
 More details on the `aae-status` command are available in the [Riak
 version 1.3 release notes](https://github.com/basho/riak/blob/1.3/RELEASE-NOTES.md#active-anti-entropy).
@@ -608,10 +610,10 @@ repaired for a given exchange round since the node has started.
 
 ### switch-to-new-search
 
-{{% note title="Only For Legacy Migration" %}}
+:::note Only For Legacy Migration
 This is only needed when migrating from legacy riak search to the new Search
 (Yokozuna).
-{{% /note %}}
+:::note
 
 ```bash
 riak-admin search switch-to-new-search

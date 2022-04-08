@@ -1,6 +1,8 @@
 ---
-title: "CRUD Operations with Python"
+title: "Crud Operations"
 id: getting_started_python_crud
+slug: crud-operations
+sidebar_position: 0
 ---
 
 ## Creating Objects In Riak

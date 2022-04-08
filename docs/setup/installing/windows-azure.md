@@ -1,6 +1,8 @@
 ---
 title: "Windows Azure"
 id: installing_windows_azure
+slug: windwows-azue 
+sidebar_position: 8
 ---
 
 ## Creating CentOS VMs

@@ -1,12 +1,14 @@
 ---
 title: "Write Once"
 id: app_guide_write_once
+slug: write-once 
+sidebar_position: 2
 ---
 
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[bucket type]: /riak/kv/2.2.3/developing/usage/bucket-types
-[Riak data types]: /riak/kv/2.2.3/developing/data-types
-[strong consistency]: /riak/kv/2.2.3/developing/app-guide/strong-consistency
+[glossary vnode]: /docs/learn/glossary/#vnode
+[bucket type]: /docs/developing/usage/bucket-types
+[Riak data types]: /docs/developing/data-types
+[strong consistency]: /docs/developing/app-guide/strong-consistency
 
 Write-once buckets are buckets whose entries are intended to be written exactly once and never updated or overwritten. Buckets of this type circumvent the normal "coordinated PUT" path, which would otherwise result in a read on the coordinating vnode before the write. Avoiding coordinated PUTs results in higher throughput and lower PUT latency, though at the cost of different semantics in the degenerate case of sibling resolution.
 
@@ -135,7 +137,7 @@ LevelDB. Riak will automatically fall back to synchronous writes with all other
 backends.
 
 :::note "Note on the `multi` backend"
-The [Multi](/riak/kv/2.2.3/setup/planning/backend/multi) backend does not
+The [Multi](/docs/setup/planning/backend/multi) backend does not
 support asynchronous writes. Therefore, if LevelDB is used with the Multi
 backend, it will be used in synchronous mode.
 :::note

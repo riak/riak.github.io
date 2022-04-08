@@ -1,6 +1,8 @@
 ---
-title: "PBC Yokozuna Index Delete"
+title: "Yokozuna Index Delete"
 id: pbc_yz_index_delete
+slug: yz-index-delete
+sidebar_position: 23
 ---
 
 Delete a search index.
@@ -17,5 +19,5 @@ message RpbYokozunaIndexDeleteReq {
 
 ## Response
 
-Returns a [RpbDelResp](/riak/kv/2.2.3/developing/api/protocol-buffers/#message-codes) code with no data on success.
+Returns a [RpbDelResp](/docs/developing/api/protocol-buffers/#message-codes) code with no data on success.
 

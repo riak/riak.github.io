@@ -1,6 +1,8 @@
 ---
-title: "PBC Server Info"
+title: "Server Info"
 id: pbc_server_info
+slug: server-info 
+sidebar_position: 12
 ---
 
 A message from Riak that contains two pieces of information about the

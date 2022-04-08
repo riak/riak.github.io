@@ -1,6 +1,8 @@
 ---
-title: "HTTP Reset Bucket Properties"
+title: "Reset Bucket Properties"
 id: http_reset_bucket_props
+slug: reset-bucket-props
+sidebar_position: 2
 ---
 
 Resets bucket properties like `n_val` and `allow_mult` back to the

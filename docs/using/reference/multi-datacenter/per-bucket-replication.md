@@ -1,6 +1,8 @@
 ---
-title: "Multi-Datacenter Replication Reference: Per Bucket"
+title: "Per Bucket"
 id: managing_ref_mdc_per_bucket
+slug: per-bucket-replication
+sidebar_position: 1
 ---
 
 To enable or disable replication per bucket, you can use the `repl`

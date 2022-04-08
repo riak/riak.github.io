@@ -1,9 +1,11 @@
 ---
 title: "System Tuning"
 id: performance_multi_datacenter_tuning
+slug: multi-datacenter-tuning
+sidebar_position: 6
 ---
 
-[perf index]: /riak/kv/2.2.3/using/performance
+[perf index]: /docs/using/performance
 
 Depending on the size of your objects and your replication latency
 needs, you may need to configure your kernel settings to optimize

@@ -1,6 +1,8 @@
 ---
-title: "Hooks API"
+title: "Riak Multi-Datacenter Replication: Hooks API"
 id: apis_repl_hooks
+slug: repl-hooks
+sidebar_position: 0
 ---
 [object]: https://github.com/basho/riak_kv/blob/master/src/riak_object.erl 
 
@@ -124,7 +126,7 @@ Save the above code as `riak_replication_hook_sample.erl`.
 
 To install the sample hook, compile `riak_replication_hook_sample.erl`.
 
-{{% note title="Note on the Erlang compiler" %}}
+:::note Note on the Erlang compiler
 
 [erlc]: http://erlang.org/doc/man/erlc.html
 You must use the Erlang compiler [`erlc`][erlc]
@@ -134,7 +136,7 @@ consult **Table 1** (below) for the default location of
 Riak’s `erlc` for each supported platform. If you compiled
 from source, use the `erlc` from the Erlang version you used
 to compile Riak.
-{{% /note %}}
+:::note
 
 Distribution | Path
 :------------|:----

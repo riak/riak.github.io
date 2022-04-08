@@ -1,6 +1,8 @@
 ---
 title: "Latency Reduction Checklist"
 id: performance_latency_reduction
+slug: latency-reduction
+sidebar_position: 3
 ---
 
 Although latency is unavoidable in distributed systems like Riak, there
@@ -31,13 +33,13 @@ to Riak's `/stats` endpoint, you will see the results for the following
 metrics related to object size, all of which are calculated only for
 `GET` operations (i.e. reads):
 
-Metric                        | Explanation
-:-----------------------------|:-----------
-`fsm_node_get_objsize_mean`   | The mean object size encountered by this node in the last minute
-`fsm_node_get_objsize_median` | The median object size encountered by this node in the last minute
-`fsm_node_get_objsize_95`     | The 95th-percentile object size encountered by this node in the last minute
-`fsm_node_get_objsize_99`     | The 99th-percentile object size encountered by this node in the last minute
-`fsm_node_get_objsize_100`    | The 100th-percentile object size encountered by this node in the last minute
+| Metric                        | Explanation                                                                  |
+|:------------------------------|:-----------------------------------------------------------------------------|
+| `fsm_node_get_objsize_mean`   | The mean object size encountered by this node in the last minute             |
+| `fsm_node_get_objsize_median` | The median object size encountered by this node in the last minute           |
+| `fsm_node_get_objsize_95`     | The 95th-percentile object size encountered by this node in the last minute  |
+| `fsm_node_get_objsize_99`     | The 99th-percentile object size encountered by this node in the last minute  |
+| `fsm_node_get_objsize_100`    | The 100th-percentile object size encountered by this node in the last minute |
 
 The `mean` and `median` measurements may not be good indicators,
 especially if you're storing billions of keys. Instead, you should be on
@@ -79,13 +81,13 @@ object size (or via an HTTP `GET` request to `/stats`). In the output of
 `riak-admin status` in each node, you'll see the following
 sibling-related statistics:
 
-Metric                         | Explanation
-:------------------------------|:-----------
-`node_get_fsm_siblings_mean`   | The mean number of siblings encountered during all GET operations by this node within the last minute
-`node_get_fsm_siblings_median` | The median number of siblings encountered during all GET operations by this node within the last minute
-`node_get_fsm_siblings_95`     | The 95th percentile of the number of siblings encountered during all GET operations by this node within the last minute
-`node_get_fsm_siblings_99`     | The 99th percentile of the number of siblings encountered during all GET operations by this node within the last minute
-`node_get_fsm_siblings_100`    | The 100th percentile of the number of siblings encountered during all GET operations by this node within the last minute
+| Metric                         | Explanation                                                                                                              |
+|:-------------------------------|:-------------------------------------------------------------------------------------------------------------------------|
+| `node_get_fsm_siblings_mean`   | The mean number of siblings encountered during all GET operations by this node within the last minute                    |
+| `node_get_fsm_siblings_median` | The median number of siblings encountered during all GET operations by this node within the last minute                  |
+| `node_get_fsm_siblings_95`     | The 95th percentile of the number of siblings encountered during all GET operations by this node within the last minute  |
+| `node_get_fsm_siblings_99`     | The 99th percentile of the number of siblings encountered during all GET operations by this node within the last minute  |
+| `node_get_fsm_siblings_100`    | The 100th percentile of the number of siblings encountered during all GET operations by this node within the last minute |
 
 Is there an upward trend in these statistics over time? Are there any
 large outliers? Do these trends correspond to your observed latency

@@ -1,9 +1,11 @@
 ---
-title: "PBC Yokozuna Schema Get"
+title: "Yokozuna Schema Get"
 id: pbc_yz_schema_get
+slug: yz-schema-get
+sidebar_position: 24
 ---
 
-Fetch a [search schema](/riak/kv/2.2.3/developing/usage/search-schemas) from Riak Search.
+Fetch a [search schema](/docs/developing/usage/search-schemas) from Riak Search.
 
 ## Request
 

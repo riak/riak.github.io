@@ -1,12 +1,14 @@
 ---
-title: "Verifying a Riak KV Installation"
+title: "Verifying an Installation"
 id: installing_verify
+slug: verify
+sidebar_position: 10
 ---
 
-[client libraries]: /riak/kv/2.2.3/developing/client-libraries
-[perf open files]: /riak/kv/2.2.3/using/performance/open-files-limit
-[cluster ops bucket types]: /riak/kv/2.2.3/using/cluster-operations/bucket-types
-[cluster ops inspect node]: /riak/kv/2.2.3/using/cluster-operations/inspecting-node
+[client libraries]: /docs/developing/client-libraries
+[perf open files]: /docs/using/performance/open-files-limit
+[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
+[cluster ops inspect node]: /docs/using/cluster-operations/inspecting-node
 
 After you've installed Riak KV, we recommend checking the liveness of
 each node to ensure that requests are being properly served.

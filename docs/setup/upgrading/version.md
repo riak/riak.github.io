@@ -1,29 +1,31 @@
 ---
 title: "Upgrading to Riak KV 2.2.3"
 id: upgrading_version
+slug: version 
+sidebar_position: 1
 ---
 
 
-[production checklist]: /riak/kv/2.2.3/setup/upgrading/checklist
-[use admin riak control]: /riak/kv/2.2.3/using/admin/riak-control
-[use admin commands]: /riak/kv/2.2.3/using/admin/commands
-[use admin riak-admin]: /riak/kv/2.2.3/using/admin/riak-admin
-[usage secondary-indexes]: /riak/kv/2.2.3/developing/usage/secondary-indexes
-[release notes]: /riak/kv/2.2.3/release-notes
+[production checklist]: /docs/setup/upgrading/checklist
+[use admin riak control]: /docs/using/admin/riak-control
+[use admin commands]: /docs/using/admin/commands
+[use admin riak-admin]: /docs/using/admin/riak-admin
+[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
+[release notes]: /docs/release-notes
 [riak enterprise]: http://basho.com/products/riak-kv/
-[cluster ops mdc]: /riak/kv/2.2.3/using/cluster-operations/v3-multi-datacenter
-[config v3 mdc]: /riak/kv/2.2.3/configuring/v3-multi-datacenter
-[jmx monitor]: /riak/kv/2.2.3/using/reference/jmx
-[snmp]: /riak/kv/2.2.3/using/reference/snmp
-[Release Notes]: /riak/kv/2.2.3/release-notes
+[cluster ops mdc]: /docs/using/cluster-operations/v3-multi-datacenter
+[config v3 mdc]: /docs/configuring/v3-multi-datacenter
+[jmx monitor]: /docs/using/reference/jmx
+[snmp]: /docs/using/reference/snmp
+[Release Notes]: /docs/release-notes
 
 
 ## Overview
 
 You can upgrade one node or your whole cluster to Riak KV 2.2.3 by following the instructions below.
 
-{{% note title="Tip" %}} KV nodes negotiate with each other to determine supported operating modes. This allows clusters containing mixed-versions of Riak KV to interoperate without special configuration, and simplifies rolling upgrades.
-{{% /note %}}
+:::tip KV nodes negotiate with each other to determine supported operating modes. This allows clusters containing mixed-versions of Riak KV to interoperate without special configuration, and simplifies rolling upgrades.
+:::note
 
 
 ### General Process
@@ -53,9 +55,9 @@ Before starting the rolling upgrade process on your cluster, check out the [Upgr
 * Changes to active anti-entropy related to inconsistent hashing.
 * Upgrading to Solr 4.10.4 for Riak search.
 
-{{% note %}}
+:::note
 You must have [Java version 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html) in order to upgrade to Riak KV 2.2.3.
-{{% /note %}}
+:::note
 
 
 ### Components That Complicate Downgrades
@@ -66,13 +68,13 @@ We do our best to make all features that change data formats on disk opt-in; how
 * **Required** features must be accepted as a part of the upgrade.  Internal Solr version upgrades that change the data format on disk are an example of a required feature upgrade.
 * **One Way** features, when enabled, will make a clean downgrade of a cluster impossible.
 
-| Feature | Automatic | Required | One Way | Notes |
-|:---|:---:|:---:|:---:|:--- |
-|Migration to Solr 4.10.4 |✔ | ✔| | Applies to all clusters using Riak search.
-| Active anti-entropy file format changes | ✔ |  | | Can opt-out using a capability.
-| LZ4 compression in LevelDB | | | ✔ |
-| Global expiration in LevelDB | | | ✔ |
-| HyperLogLog data type | | |✔| On downgrade data written in HLL format is unreadable.|
+| Feature                                 | Automatic | Required | One Way | Notes                                                  |
+|:----------------------------------------|:---------:|:--------:|:-------:|:-------------------------------------------------------|
+| Migration to Solr 4.10.4                |     ✔     |    ✔     |         | Applies to all clusters using Riak search.             |
+| Active anti-entropy file format changes |     ✔     |          |         | Can opt-out using a capability.                        |
+| LZ4 compression in LevelDB              |           |          |    ✔    |                                                        |
+| Global expiration in LevelDB            |           |          |    ✔    |                                                        |
+| HyperLogLog data type                   |           |          |    ✔    | On downgrade data written in HLL format is unreadable. |
  
 
 ### When Downgrading is No Longer an Option
@@ -115,9 +117,9 @@ sudo rm -rf /usr/lib/riak/lib/basho-patches*
 
 4\. Upgrade Riak KV:
 
-{{% note title="Upgrading to KV Enterprise Edition" %}}
+:::note Upgrading to KV Enterprise Edition
 If you are upgrading from Riak KV OSS to Riak KV EE, you must uninstall your Riak KV package right now, before you can install the EE version.
-{{% /note %}}
+:::note
 
 
 
@@ -162,9 +164,9 @@ Once all of the clusters have been upgraded to version 2.2.0 or greater, this ov
 
 6\. Restart Riak KV:
 
-{{% note %}}
+:::note
 You must have [Java version 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html) in order to upgrade to Riak KV 2.2.3. If you do not have it installed, please install it now.
-{{% /note %}}
+:::note
 
 
 

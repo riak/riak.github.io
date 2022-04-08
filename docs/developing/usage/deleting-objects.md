@@ -1,6 +1,8 @@
 ---
 title: "Deleting Objects"
 id: usage_deleting_objects
+slug: deleting-objects
+sidebar_position: 3
 ---
 
 The delete command follows a predictable pattern and looks like this:
@@ -94,9 +96,9 @@ curl -XDELETE http://localhost:8098/types/quotes/buckets/oscar_wilde/keys/genius
 
 If you are updating an object that has been deleted---or if an update 
 might target a deleted object---we recommend that
-you first fetch the [causal context](/riak/kv/2.2.3/learn/concepts/causal-context) of the object prior to updating.
+you first fetch the [causal context](/docs/learn/concepts/causal-context) of the object prior to updating.
 This can be done by setting the `deletedvclock` parameter to `true` as
-part of the [fetch operation](/riak/kv/2.2.3/developing/api/protocol-buffers/fetch-object). This can also be done
+part of the [fetch operation](/docs/developing/api/protocol-buffers/fetch-object). This can also be done
 with the official Riak clients for Ruby, Java, and Erlang, as in the
 example below:
 

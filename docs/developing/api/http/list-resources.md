@@ -1,6 +1,8 @@
 ---
-title: "HTTP List Resources"
+title: "List Resources"
 id: http_list_resources
+slug: list-resources 
+sidebar_position: 12
 ---
 
 List available HTTP resources for the Riak node. This can be used by clients to
@@ -8,14 +10,14 @@ automatically recognize the location of the resources for specific operations.
 
 The standard resources are:
 
-* `riak_kv_wm_buckets` - [Bucket Operations](/riak/kv/2.2.3/developing/api/http/#bucket-operations)
-* `riak_kv_wm_index` - [HTTP Secondary Indexes](/riak/kv/2.2.3/developing/api/http/secondary-indexes)
-* `riak_kv_wm_link_walker` - [HTTP Link Walking](/riak/kv/2.2.3/developing/api/http/link-walking)
-* `riak_kv_wm_mapred` - [HTTP MapReduce](/riak/kv/2.2.3/developing/api/http/mapreduce)
-* `riak_kv_wm_object`- [Object/Key Operations](/riak/kv/2.2.3/developing/api/http/#object-key-operations)
-* `riak_kv_wm_ping` - [HTTP Ping](/riak/kv/2.2.3/developing/api/http/ping)
-* `riak_kv_wm_props` - [HTTP Set Bucket Properties](/riak/kv/2.2.3/developing/api/http/set-bucket-props)
-* `riak_kv_wm_stats` - [HTTP Status](/riak/kv/2.2.3/developing/api/http/status)
+* `riak_kv_wm_buckets` - [Bucket Operations](/docs/developing/api/http/#bucket-operations)
+* `riak_kv_wm_index` - [HTTP Secondary Indexes](/docs/developing/api/http/secondary-indexes)
+* `riak_kv_wm_link_walker` - [HTTP Link Walking](/docs/developing/api/http/link-walking)
+* `riak_kv_wm_mapred` - [HTTP MapReduce](/docs/developing/api/http/mapreduce)
+* `riak_kv_wm_object`- [Object/Key Operations](/docs/developing/api/http/#object-key-operations)
+* `riak_kv_wm_ping` - [HTTP Ping](/docs/developing/api/http/ping)
+* `riak_kv_wm_props` - [HTTP Set Bucket Properties](/docs/developing/api/http/set-bucket-props)
+* `riak_kv_wm_stats` - [HTTP Status](/docs/developing/api/http/status)
 
 ## Request
 

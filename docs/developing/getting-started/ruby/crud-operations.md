@@ -1,6 +1,8 @@
 ---
-title: "CRUD Operations with Ruby"
+title: "CRUD Operations"
 id: getting_started_ruby_crud
+slug: crud-operations
+sidebar_position: 0
 ---
 
 ## Creating Objects In Riak

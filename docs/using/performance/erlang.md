@@ -1,6 +1,8 @@
 ---
 title: "Erlang VM Tuning"
 id: performance_erlang
+slug: erlang
+sidebar_position: 4
 ---
 
 Riak was written almost exclusively in [Erlang](http://www.erlang.org)
@@ -11,28 +13,28 @@ itself provides a wide variety of [configurable parameters](http://erlang.org/do
 The table below lists some of the parameters that are available, showing
 both their names as used in Erlang and their names as Riak parameters.
 
-Erlang parameter | Riak parameter
-:----------------|:--------------
-[`+A`](http://erlang.org/doc/man/erl.html#async_thread_pool_size) | `erlang.async_threads`
-[`+K`](http://erlang.org/doc/man/erl.html#emu_flags) | `erlang.K`
-[`+P`](http://erlang.org/doc/man/erl.html#+P) | `erlang.process_limit`
-[`+Q`](http://erlang.org/doc/man/erl.html#+Q) | `erlang.max_ports`
-[`+S`](http://erlang.org/doc/man/erl.html#+S) | `erlang.schedulers.total`, `erlang.schedulers.online`
-[`+W`](http://erlang.org/doc/man/erl.html#emu_flags) | `erlang.W`
-[`+a`](http://erlang.org/doc/man/erl.html#async_thread_stack_size) | `erlang.async_threads.stack_size`
-[`+e`](http://www.erlang.org/doc/man/ets.html#+e) | `erlang.max_ets_tables`
-[`+scl`](http://www.erlang.org/doc/main/erl.html#+scl) | `erlang.schedulers.compaction_of_load`
-[`+sfwi`](http://www.erlang.org/doc/man/erl.html#+sfwi) | `erlang.schedulers.force_wakeup_interval`
-[`-smp`](http://erlang.org/doc/man/erl.html#smp) | `erlang.smp`
-[`+sub`](http://www.erlang.org/doc/man/erl.html#+sub) | `erlang.schedulers.utilization_balancing`
-[`+zdbbl`](http://erlang.org/doc/man/erl.html#+zdbbl) | `erlang.distribution_buffer_size`
-[`-kernel net_ticktime`](http://www.erlang.org/doc/man/kernel_app.html#net_ticktime) | `erlang.distribution.net_ticktime`
-[`-env FULLSWEEP_AFTER`](http://www.erlang.org/doc/man/erlang.html#system_flag-2) | `erlang.fullsweep_after`
-[`-env ERL_CRASH_DUMP`](http://www.erlang.org/doc/apps/erts/crash_dump.html) | `erlang.crash_dump`
-[`-env ERL_MAX_ETS_TABLES`](http://learnyousomeerlang.com/ets) | `erlang.max_ets_tables`
-`-name` | `nodename`
+| Erlang parameter                                                                     | Riak parameter                                        |
+|:-------------------------------------------------------------------------------------|:------------------------------------------------------|
+| [`+A`](http://erlang.org/doc/man/erl.html#async_thread_pool_size)                    | `erlang.async_threads`                                |
+| [`+K`](http://erlang.org/doc/man/erl.html#emu_flags)                                 | `erlang.K`                                            |
+| [`+P`](http://erlang.org/doc/man/erl.html#+P)                                        | `erlang.process_limit`                                |
+| [`+Q`](http://erlang.org/doc/man/erl.html#+Q)                                        | `erlang.max_ports`                                    |
+| [`+S`](http://erlang.org/doc/man/erl.html#+S)                                        | `erlang.schedulers.total`, `erlang.schedulers.online` |
+| [`+W`](http://erlang.org/doc/man/erl.html#emu_flags)                                 | `erlang.W`                                            |
+| [`+a`](http://erlang.org/doc/man/erl.html#async_thread_stack_size)                   | `erlang.async_threads.stack_size`                     |
+| [`+e`](http://www.erlang.org/doc/man/ets.html#+e)                                    | `erlang.max_ets_tables`                               |
+| [`+scl`](http://www.erlang.org/doc/main/erl.html#+scl)                               | `erlang.schedulers.compaction_of_load`                |
+| [`+sfwi`](http://www.erlang.org/doc/man/erl.html#+sfwi)                              | `erlang.schedulers.force_wakeup_interval`             |
+| [`-smp`](http://erlang.org/doc/man/erl.html#smp)                                     | `erlang.smp`                                          |
+| [`+sub`](http://www.erlang.org/doc/man/erl.html#+sub)                                | `erlang.schedulers.utilization_balancing`             |
+| [`+zdbbl`](http://erlang.org/doc/man/erl.html#+zdbbl)                                | `erlang.distribution_buffer_size`                     |
+| [`-kernel net_ticktime`](http://www.erlang.org/doc/man/kernel_app.html#net_ticktime) | `erlang.distribution.net_ticktime`                    |
+| [`-env FULLSWEEP_AFTER`](http://www.erlang.org/doc/man/erlang.html#system_flag-2)    | `erlang.fullsweep_after`                              |
+| [`-env ERL_CRASH_DUMP`](http://www.erlang.org/doc/apps/erts/crash_dump.html)         | `erlang.crash_dump`                                   |
+| [`-env ERL_MAX_ETS_TABLES`](http://learnyousomeerlang.com/ets)                       | `erlang.max_ets_tables`                               |
+| `-name`                                                                              | `nodename`                                            |
 
-{{% note title="Note on upgrading to 2.0" %}}
+:::note Note on upgrading to 2.0
 In versions of Riak prior to 2.0, Erlang VM-related parameters were specified
 in a `vm.args` configuration file; in versions 2.0 and later, all
 Erlang-VM-specific parameters are set in the `riak.conf` file. If you're
@@ -40,7 +42,7 @@ upgrading to 2.0 from an earlier version, you can still use your old `vm.args`
 if you wish.  Please note, however, that if you set one or more parameters in
 both `vm.args` and in `riak.conf`, the settings in `vm.args` will override
 those in `riak.conf`.
-{{% /note %}}
+:::note
 
 ## SMP
 

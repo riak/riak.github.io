@@ -1,6 +1,8 @@
 ---
-title: "Data Types: HyperLogLogs"
+title: "HyperLogLogs"
 id: data_types_hyperloglogs
+slug: hyperloglogs 
+sidebar_position: 1
 ---
 
 The examples in this section will show you how to use hyperloglogs on their own.

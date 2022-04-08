@@ -1,21 +1,23 @@
 ---
 title: "Erlang"
 id: usage_security_erlang
+slug: erlang 
+sidebar_position: 3
 ---
 
 This tutorial shows you how to set up a Riak Erlang client to
 authenticate itself when connecting to Riak.
 
-If you are using [trust](/riak/kv/2.2.3/using/security/managing-sources/), [PAM-](/riak/kv/2.2.3/using/security/managing-sources/#pam-based-authentication), you can use the security setup described [below](#erlang-client-basics). [Password](/riak/kv/2.2.3/using/security/managing-sources/#password-based-authentication)-based authentication is covered
+If you are using [trust](/docs/using/security/managing-sources/), [PAM-](/docs/using/security/managing-sources/#pam-based-authentication), you can use the security setup described [below](#erlang-client-basics). [Password](/docs/using/security/managing-sources/#password-based-authentication)-based authentication is covered
 in a [later section](#password-based-authentication). If you are using
-[certificate](/riak/kv/2.2.3/using/security/managing-sources/#certificate-based-authentication)-based authentication, follow
+[certificate](/docs/using/security/managing-sources/#certificate-based-authentication)-based authentication, follow
 the instructions in the [section below](#certificate-based-authentication).
 
-{{% note title="Note on certificate generation" %}}
+:::note Note on certificate generation
 This tutorial does not cover certificate generation. It assumes that all
 necessary certificates have already been created and are stored in a directory
 called `/ssl_dir`. This directory name is used only for example purposes.
-{{% /note %}}
+:::note
 
 ## Erlang Client Basics
 
@@ -30,7 +32,7 @@ connection to `localhost` on port 8087:
 
 If you are using Riak security, _all_ connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
-regardless of which [security source](/riak/kv/2.2.3/using/security/managing-sources/) you
+regardless of which [security source](/docs/using/security/managing-sources/) you
 choose. In addition, all clients should provide a username. The example
 above created a connection to Riak without specifying a username or CA.
 That information is specified as a list of options passed to the
@@ -55,7 +57,7 @@ This client is not currently set up to use any of the available security
 sources, with the exception of trust-based authentication, provided that
 the [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
 from which the client is connecting has been specified as trusted. More
-on specifying trusted CIDRs can be found in [Trust-based Authentication](/riak/kv/2.2.3/using/security/managing-sources/#trust-based-authentication).
+on specifying trusted CIDRs can be found in [Trust-based Authentication](/docs/using/security/managing-sources/#trust-based-authentication).
 
 ## Password-based Authentication
 
@@ -77,10 +79,10 @@ SecurityOptions = [
 ## PAM-based Authentication
 
 If you have specified that a specific client be authenticated using
-[PAM](/riak/kv/2.2.3/using/security/managing-sources/#pam-based-authentication), you will
+[PAM](/docs/using/security/managing-sources/#pam-based-authentication), you will
 need to provide a CA as well as the username and password that you
 specified when creating the user in Riak. For more, see our
-documentation on [User Management](/riak/kv/2.2.3/using/security/basics/#user-management).
+documentation on [User Management](/docs/using/security/basics/#user-management).
 
 ## Certificate-based Authentication
 

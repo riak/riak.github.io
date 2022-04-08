@@ -1,11 +1,13 @@
 ---
 title: "Managing Your Configuration"
 id: configuring_managing
+slug: managing 
+sidebar_position: 2
 ---
 
-[use admin riak cli]: /riak/kv/2.2.3/using/admin/riak-cli
-[use admin riak cli#chkconfig]: /riak/kv/2.2.3/using/admin/riak-cli/#chkconfig
-[config reference#search]: /riak/kv/2.2.3/configuring/reference/#search
+[use admin riak cli]: /docs/using/admin/riak-cli
+[use admin riak cli#chkconfig]: /docs/using/admin/riak-cli/#chkconfig
+[config reference#search]: /docs/configuring/reference/#search
 
 ## Retrieving a Configuration Listing
 

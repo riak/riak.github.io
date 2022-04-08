@@ -2,42 +2,43 @@
 title: "Riak KV Glossary"
 id: learn_glossary
 slug: glossary
+sidebar_position: 2
 ---
 
 
-[apps replication properties]: /riak/kv/2.2.3/developing/app-guide/replication-properties
+[apps replication properties]: /docs/developing/app-guide/replication-properties
 [basho bench GH]: http://github.com/basho/basho_bench/
-[cluster ops add remove node]: /riak/kv/2.2.3/using/cluster-operations/adding-removing-nodes
-[cluster ops strong consistency]: /riak/kv/2.2.3/using/cluster-operations/strong-consistency
-[concept buckets]: /riak/kv/2.2.3/learn/concepts/buckets
-[concept causal context vc]: /riak/kv/2.2.3/learn/concepts/causal-context/#vector-clocks
-[concept clusters]: /riak/kv/2.2.3/learn/concepts/clusters
-[concept crdts]: /riak/kv/2.2.3/learn/concepts/crdts
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
-[concept keys objects]: /riak/kv/2.2.3/learn/concepts/keys-and-objects
-[concept replication]: /riak/kv/2.2.3/learn/concepts/replication
-[concept strong consistency]: /riak/kv/2.2.3/learn/concepts/strong-consistency
-[dev kv model]: /riak/kv/2.2.3/developing/key-value-modeling
-[concept replication aae]: /riak/kv/2.2.3/learn/concepts/replication/#active-anti-entropy
-[dev api http]: /riak/kv/2.2.3/developing/api/http
-[dev data model]: /riak/kv/2.2.3/developing/data-modeling
-[dev data types]: /riak/kv/2.2.3/developing/data-types
-[glossary read rep]: /riak/kv/2.2.3/learn/glossary/#read-repair
+[cluster ops add remove node]: /docs/using/cluster-operations/adding-removing-nodes
+[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
+[concept buckets]: /docs/learn/concepts/buckets
+[concept causal context vc]: /docs/learn/concepts/causal-context/#vector-clocks
+[concept clusters]: /docs/learn/concepts/clusters
+[concept crdts]: /docs/learn/concepts/crdts
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
+[concept keys objects]: /docs/learn/concepts/keys-and-objects
+[concept replication]: /docs/learn/concepts/replication
+[concept strong consistency]: /docs/learn/concepts/strong-consistency
+[dev kv model]: /docs/developing/key-value-modeling
+[concept replication aae]: /docs/learn/concepts/replication/#active-anti-entropy
+[dev api http]: /docs/developing/api/http
+[dev data model]: /docs/developing/data-modeling
+[dev data types]: /docs/developing/data-types
+[glossary read rep]: /docs/learn/glossary/#read-repair
 [glossary vnode]: /learn/glossary#vnode
 [Lager]: https://github.com/basho/lager
-[learn dynamo]: /riak/kv/2.2.3/learn/dynamo
-[plan cluster capacity]: /riak/kv/2.2.3/setup/planning/cluster-capacity
-[repair recover failure recovery]: /riak/kv/2.2.3/using/repair-recovery/failure-recovery
-[repair recover repairs]: /riak/kv/2.2.3/using/repair-recovery/repairs
+[learn dynamo]: /docs/learn/dynamo
+[plan cluster capacity]: /docs/setup/planning/cluster-capacity
+[repair recover failure recovery]: /docs/using/repair-recovery/failure-recovery
+[repair recover repairs]: /docs/using/repair-recovery/repairs
 [Riak Core]: https://github.com/basho/riak_core
 [Riak KV]: https://github.com/basho/riak_kv
 [Riak Pipe]: https://github.com/basho/riak_pipe
 [Riak Pipe - the New MapReduce Power]: http://basho.com/riak-pipe-the-new-mapreduce-power/
 [Riak Pipe - Riak's Distributed Processing Framework]: http://vimeo.com/53910999
 [Understanding Riak's Configurable Behaviors]: http://basho.com/riaks-config-behaviors-part-2/
-[usage mapreduce]: /riak/kv/2.2.3/developing/usage/mapreduce
-[usage search]: /riak/kv/2.2.3/developing/usage/search
-[usage secondary-indexes]: /riak/kv/2.2.3/developing/usage/secondary-indexes
+[usage mapreduce]: /docs/developing/usage/mapreduce
+[usage search]: /docs/developing/usage/search
+[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
 [Where To Start With Riak Core]: http://basho.com/where-to-start-with-riak-core/
 [Wikipedia:Consistent Hashing]: http://en.wikipedia.org/wiki/Consistent_hashing
 
@@ -65,7 +66,7 @@ Basho Bench is a benchmarking tool created to conduct accurate and
 repeatable performance tests and stress tests and to produce performance
 graphs.
 
-* [Basho Bench](/riak/kv/2.2.3/using/performance/benchmarking)
+* [Basho Bench](/docs/using/performance/benchmarking)
 * [GitHub repository][basho bench GH]
 
 ## Bucket
@@ -84,7 +85,7 @@ Bucket types enable you to create and manage sets of bucket properties
 that, when applied to buckets, dictate those buckets' behavior. They
 also act as a third namespace in Riak in addition to buckets and keys.
 
-* [Bucket Types](/riak/kv/2.2.3/developing/usage/bucket-types)
+* [Bucket Types](/docs/developing/usage/bucket-types)
 
 ## Cluster
 

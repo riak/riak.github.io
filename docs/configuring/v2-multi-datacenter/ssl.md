@@ -1,11 +1,13 @@
 ---
 title: "SSL"
 id: configuring_v2_replication_ssl
+slug: ssl 
+sidebar_position: 2
 ---
 
-{{% note title="Deprecation Warning" %}}
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/riak/kv/2.2.3/configuring/v3-multi-datacenter/ssl/) instead.
-{{% /note %}}
+:::note Deprecation Warning
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/configuring/v3-multi-datacenter/ssl/) instead.
+:::note
 
 ## Features
 
@@ -54,7 +56,7 @@ would be allowed to connect, but `corp.com` still would not.
 If no ACL (or only the special value `"*"`) is specified, no CN filtering
 is performed, except as described below.
 
-{{% note title="Identical Local and Peer Common Names" %}}
+:::note Identical Local and Peer Common Names
 As a special case supporting the view that a host's CN is a fully-qualified
 domain name that uniquely identifies a single network device, if the CNs of
 the local and peer certificates are the same, the nodes will *NOT* be allowed
@@ -62,7 +64,7 @@ to connect.
 
 This evaluation supercedes ACL checks, so it cannot be overridden with any
 setting of the `peer_common_name_acl` property.
-{{% /note %}}
+:::note
 
 ### Examples
 

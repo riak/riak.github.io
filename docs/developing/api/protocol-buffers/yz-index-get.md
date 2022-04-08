@@ -1,6 +1,8 @@
 ---
-title: "PBC Yokozuna Index Get"
+title: "Yokozuna Index Get"
 id: pbc_yz_index_get
+slug: yz-index-get
+sidebar_position: 21
 ---
 
 Retrieve a search index from Riak Search.
@@ -41,7 +43,7 @@ message RpbYokozunaIndex {
 ```
 
 Each message specifying an index must include the index's name as a
-binary (as `name`). Optionally, you can specify a [`schema`](/riak/kv/2.2.3/developing/usage/search-schemas) name and/or an `n_val`, i.e. the number of nodes on which the
+binary (as `name`). Optionally, you can specify a [`schema`](/docs/developing/usage/search-schemas) name and/or an `n_val`, i.e. the number of nodes on which the
 index is stored (for GET requests) or on which you wish the index to be
 stored (for PUT requests). An index's `n_val` must match the associated
 bucket's `n_val`.

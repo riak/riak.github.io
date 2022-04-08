@@ -1,6 +1,8 @@
 ---
-title: "CRUD Operations with C Sharp"
+title: "CRUD Operations"
 id: getting_started_csharp_crud
+slug: crud-operations
+sidebar_position: 0
 ---
 
 ### Creating Objects In Riak

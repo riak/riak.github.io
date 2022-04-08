@@ -1,18 +1,20 @@
 ---
 title: "Open Files Limit"
 id: performance_open_files_limit
+slug: open-files-limit
+sidebar_position: 1
 ---
 
-[plan backend]: /riak/kv/2.2.3/setup/planning/backend/
+[plan backend]: /docs/setup/planning/backend/
 [blog oracle]: http://blogs.oracle.com/elving/entry/too_many_open_files
 
 Riak KV can accumulate a large number of open file handles during operation. The creation of numerous data files is normal, and the [backend][plan backend] performs periodic merges of data file collections to avoid accumulating file handles.
 
 To accomodate this you should increase the open files limit on your system. We recommend setting a soft limit of 65536 and a hard limit of 200000.
 
-{{% note %}}
+:::note
 Superuser or root access may be required to perform these steps.
-{{% /note %}}
+:::note
 
 ## Changing Limit For Current Session
 
@@ -87,10 +89,10 @@ UseLogin yes
 ulimit -a
 ```
 
-{{% note %}}
+:::note
 In the above examples, the open files limit is raised for all users of the system. The limit can be specified for the `riak` user only by substituting the
 two asterisks (`*`) in the examples with `riak`.
-{{% /note %}}
+:::note
 
 
 ## CentOS & Red Hat
@@ -147,10 +149,10 @@ the new limits are set with the following command:
 ulimit -a
 ```
 
-{{% note %}}
+:::note
 In the above examples, the open files limit is raised for all users of the system. The limit can be specified for the `riak` user only by substituting the
 two asterisks (`*`) in the examples with `riak`.
-{{% /note %}}
+:::note
 
 
 ## Solaris

@@ -1,32 +1,34 @@
 ---
 title: "Implementing Strong Consistency"
 id: configuring_strong_consistency
+slug: strong-consistency 
+sidebar_position: 8
 ---
 
-[apps strong consistency]: /riak/kv/2.2.3/developing/app-guide/strong-consistency
-[concept strong consistency]: /riak/kv/2.2.3/using/reference/strong-consistency
-[cluster ops add remove node]: /riak/kv/2.2.3/using/cluster-operations/adding-removing-nodes
+[apps strong consistency]: /docs/developing/app-guide/strong-consistency
+[concept strong consistency]: /docs/using/reference/strong-consistency
+[cluster ops add remove node]: /docs/using/cluster-operations/adding-removing-nodes
 [config reference#strong-cons]: /docs/configuring/reference#strong-consistency
-[use admin riak cli]: /riak/kv/2.2.3/using/admin/riak-cli
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
-[plan backend bitcask]: /riak/kv/2.2.3/setup/planning/backend/bitcask
+[use admin riak cli]: /docs/using/admin/riak-cli
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
+[plan backend bitcask]: /docs/setup/planning/backend/bitcask
 [glossary vnode]: /docs/learn/glossary#vnode
 [ring]: /docs/learn/concepts/clusters#the-ring
-[concept buckets]: /riak/kv/2.2.3/learn/concepts/buckets
-[cluster ops bucket types]: /riak/kv/2.2.3/using/cluster-operations/bucket-types
-[use admin riak-admin#ensemble]: /riak/kv/2.2.3/using/admin/riak-admin/#riak-admin-ensemble-status
-[use admin riak-admin]: /riak/kv/2.2.3/using/admin/riak-admin
-[config reference#advanced]: /riak/kv/2.2.3/configuring/reference/#advanced-configuration
-[plan cluster capacity]: /riak/kv/2.2.3/setup/planning/cluster-capacity
-[cluster ops strong consistency]: /riak/kv/2.2.3/using/cluster-operations/strong-consistency
-[apps replication properties]: /riak/kv/2.2.3/developing/app-guide/replication-properties
-[concept causal context]: /riak/kv/2.2.3/learn/concepts/causal-context
-[dev data types]: /riak/kv/2.2.3/developing/data-types
-[glossary aae]: /riak/kv/2.2.3/learn/glossary/#active-anti-entropy-aae
-[cluster ops 2i]: /riak/kv/2.2.3/using/reference/secondary-indexes
-[usage commit hooks]: /riak/kv/2.2.3/developing/usage/commit-hooks
-[cluster ops obj del]: /riak/kv/2.2.3/using/reference/object-deletion
-[dev client libraries]: /riak/kv/2.2.3/developing/client-libraries
+[concept buckets]: /docs/learn/concepts/buckets
+[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
+[use admin riak-admin#ensemble]: /docs/using/admin/riak-admin/#riak-admin-ensemble-status
+[use admin riak-admin]: /docs/using/admin/riak-admin
+[config reference#advanced]: /docs/configuring/reference/#advanced-configuration
+[plan cluster capacity]: /docs/setup/planning/cluster-capacity
+[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
+[apps replication properties]: /docs/developing/app-guide/replication-properties
+[concept causal context]: /docs/learn/concepts/causal-context
+[dev data types]: /docs/developing/data-types
+[glossary aae]: /docs/learn/glossary/#active-anti-entropy-aae
+[cluster ops 2i]: /docs/using/reference/secondary-indexes
+[usage commit hooks]: /docs/developing/usage/commit-hooks
+[cluster ops obj del]: /docs/using/reference/object-deletion
+[dev client libraries]: /docs/developing/client-libraries
 
 > **Please Note:**
 >

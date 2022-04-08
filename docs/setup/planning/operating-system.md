@@ -1,9 +1,11 @@
 ---
 title: "Operating System Support"
 id: planning_os
+slug: operating-system 
+sidebar_position: 1
 ---
 
-[downloads]: /riak/kv/2.2.3/downloads/
+[downloads]: /docs/downloads/
 
 We recommend deploying Riak KV on a mainstream Unix-like operating system.
 Mainstream distributions have larger support communities, making

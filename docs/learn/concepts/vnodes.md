@@ -1,18 +1,20 @@
 ---
 title: "Vnodes"
 id: learn_concepts_vnodes
+slug: vnodes 
+sidebar_position: 10 
 ---
 
 
-[concept causal context]: /riak/kv/2.2.3/learn/concepts/causal-context
-[concept clusters ring]: /riak/kv/2.2.3/learn/concepts/clusters/#the-ring
-[concept replication]: /riak/kv/2.2.3/learn/concepts/replication
-[concept strong consistency]: /riak/kv/2.2.3/learn/concepts/strong-consistency
-[glossary node]: /riak/kv/2.2.3/learn/glossary/#node
-[glossary ring]: /riak/kv/2.2.3/learn/glossary/#ring
-[plan backend]: /riak/kv/2.2.3/setup/planning/backend
-[plan cluster capacity]: /riak/kv/2.2.3/setup/planning/cluster-capacity
-[use admin riak cli]: /riak/kv/2.2.3/using/admin/riak-cli
+[concept causal context]: /docs/learn/concepts/causal-context
+[concept clusters ring]: /docs/learn/concepts/clusters/#the-ring
+[concept replication]: /docs/learn/concepts/replication
+[concept strong consistency]: /docs/learn/concepts/strong-consistency
+[glossary node]: /docs/learn/glossary/#node
+[glossary ring]: /docs/learn/glossary/#ring
+[plan backend]: /docs/setup/planning/backend
+[plan cluster capacity]: /docs/setup/planning/cluster-capacity
+[use admin riak cli]: /docs/using/admin/riak-cli
 
 
 Virtual nodes, more commonly referred to as **vnodes**, are processes
@@ -90,7 +92,7 @@ asynchronous tasks on behalf of the vnode.
 
 If you're navigating through the file system of a Riak node, you'll
 notice that each node's `/data` directory holds a variety of
-subdirectories. If you're using, say, [Bitcask](/riak/kv/2.2.3/setup/planning/backend/bitcask) as a backend, navigate
+subdirectories. If you're using, say, [Bitcask](/docs/setup/planning/backend/bitcask) as a backend, navigate
 into the `/bitcask` directory (you'll also see a `/ring` directory and
 several others). If you open up the `/bitcask` directory, you'll see a
 wide assortment of directories with numbers as names, e.g. `0` or

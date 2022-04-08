@@ -1,6 +1,8 @@
 ---
-title: "CRUD Operations with Java"
+title: "CRUD Operations"
 id: getting_started_java_crud
+slug: crud-operations 
+sidebar_position: 0
 ---
 
 ## Creating Objects in Riak
@@ -57,8 +59,8 @@ StoreValue.Response updateOpResp = client.execute(updateOp);
 ```
 
 For more in depth information on updating objects and sibling resolution in
-Riak, see [Updating Objects](/riak/kv/2.2.3/developing/usage/updating-objects/)
-and [Conflict Resolution](/riak/kv/2.2.3/developing/usage/conflict-resolution/)
+Riak, see [Updating Objects](/docs/developing/usage/updating-objects/)
+and [Conflict Resolution](/docs/developing/usage/conflict-resolution/)
 documentation.
 
 ## Updating Objects
@@ -75,8 +77,8 @@ StoreValue.Response updateOpResp = client.execute(updateOp);
 ```
 
 For more in depth information on updating objects and sibling resolution in
-Riak, see [Updating Objects](/riak/kv/2.2.3/developing/usage/updating-objects/)
-and [Conflict Resolution](/riak/kv/2.2.3/developing/usage/conflict-resolution/)
+Riak, see [Updating Objects](../../usage/updating-objects.md)
+and [Conflict Resolution](../../usage/conflict-resolution)
 documentation.
 
 ## Deleting Objects
@@ -186,6 +188,6 @@ UpdateValue.Response response = client.execute(updateValue);
 ```
 
 For more in depth information on updating objects and sibling resolution in
-Riak, see [Updating Objects](/riak/kv/2.2.3/developing/usage/updating-objects/)
-and [Conflict Resolution](/riak/kv/2.2.3/developing/usage/conflict-resolution/)
-documention.
+Riak, see [Updating Objects](../../usage/updating-objects)
+and [Conflict Resolution](../../usage/conflict-resolution)
+documentation.

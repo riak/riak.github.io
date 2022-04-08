@@ -1,10 +1,12 @@
 ---
-title: "PBC Data Type Set Store"
+title: "Data Type Set Store"
 id: pbc_dt_set_store
+slug: dt-set-store
+sidebar_position: 19
 ---
 
 An operation to update a set, either on its own (at the bucket/key
-level) or [inside of a map](/riak/kv/2.2.3/developing/api/protocol-buffers/dt-map-store).
+level) or [inside of a map](/docs/developing/api/protocol-buffers/dt-map-store).
 
 ## Request
 

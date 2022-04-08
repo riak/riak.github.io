@@ -1,6 +1,8 @@
 ---
-title: "PBC Search"
+title: "Search"
 id: pbc_search
+slug: search 
+sidebar_position: 10 
 ---
 
 Send a Search request to retrieve a list of documents, along with a few

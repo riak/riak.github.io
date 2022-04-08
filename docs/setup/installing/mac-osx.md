@@ -1,13 +1,13 @@
 ---
 title: "Mac OS X"
 id: installing_macosx
+slug: mac-osx 
+sidebar_position: 3
 ---
 
-
-
-[perf open files]: /riak/kv/2.2.3/using/performance/open-files-limit
-[install source erlang]: /riak/kv/2.2.3/setup/installing/source/erlang
-[install verify]: /riak/kv/2.2.3/setup/installing/verify
+[perf open files]: /docs/using/performance/open-files-limit
+[install source erlang]: /docs/setup/installing/source/erlang
+[install verify]: /docs/setup/installing/verify
 
 The following steps are known to work with Mac OS X 10.8, 10.9
 (Mavericks), and Yosemite. You can install from source or download a
@@ -37,12 +37,12 @@ directory and execute `bin/riak start` to start the Riak node.
 
 ## Homebrew
 
-{{% note title="Warning: Homebrew not always up to date" %}}
+:::note Warning: Homebrew not always up to date
 Homebrew's Riak recipe is community supported, and thus is not always up to
 date with the latest Riak package. Please ensure that the current recipe is
 using the latest supported code (and don't be afraid to update it if it's
 not).
-{{% /note %}}
+:::note
 
 Installing Riak 2.0 with [Homebrew](http://brew.sh/) is easy:
 
@@ -76,10 +76,10 @@ the Riak installation directory via environment variables.
 You must have Xcode tools installed from [Apple's Developer
 website](http://developer.apple.com/).
 
-{{% note title="Note on Clang" %}}
+:::note Note on Clang
 Riak will not compile with Clang. Please make sure that your default C/C++
 compiler is [GCC](https://gcc.gnu.org/).
-{{% /note %}}
+:::note
 
 Riak requires [Erlang](http://www.erlang.org/) R16B02+.
 

@@ -1,27 +1,29 @@
 ---
 title: "Strong Consistency"
 id: app_guide_strong_consistency
+slug: strong-consistency 
+sidebar_position: 1
 ---
 
-[use ref strong consistency]: /riak/kv/2.2.3/using/reference/strong-consistency
-[concept eventual consistency]: /riak/kv/2.2.3/learn/concepts/eventual-consistency
-[use ref strong consistency#trade-offs]: /riak/kv/2.2.3/using/reference/strong-consistency/#trade-offs
-[glossary vnode]: /riak/kv/2.2.3/learn/glossary/#vnode
-[config strong consistency#enable]: /riak/kv/2.2.3/configuring/strong-consistency/#enabling-strong-consistency
-[usage bucket types]: /riak/kv/2.2.3/developing/usage/bucket-types
-[cluster ops bucket types]: /riak/kv/2.2.3/using/cluster-operations/bucket-types
-[apps replication properties]: /riak/kv/2.2.3/developing/app-guide/replication-properties
-[config strong consistency]: /riak/kv/2.2.3/configuring/strong-consistency
-[config strong consistency#fault]: /riak/kv/2.2.3/configuring/strong-consistency/#fault-tolerance
-[concept causal context]: /riak/kv/2.2.3/learn/concepts/causal-context
-[concept causal context#vector]: /riak/kv/2.2.3/learn/concepts/causal-context/#vector-clocks
-[concept version vector]: /riak/kv/2.2.3/learn/concepts/causal-context/#dotted-version-vectors
-[usage conflict resolution]: /riak/kv/2.2.3/developing/usage/conflict-resolution
-[usage update objects]: /riak/kv/2.2.3/developing/usage/updating-objects
-[use ref strong consistency#vs]: /riak/kv/2.2.3/using/reference/strong-consistency/#strong-vs.-eventual-consistency
-[dev client libraries]: /riak/kv/2.2.3/developing/client-libraries
-[getting started]: /riak/kv/2.2.3/developing/getting-started
-[config strong consistency#details]: /riak/kv/2.2.3/configuring/strong-consistency/#implementation-details
+[use ref strong consistency]: /docs/using/reference/strong-consistency
+[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
+[use ref strong consistency#trade-offs]: /docs/using/reference/strong-consistency/#trade-offs
+[glossary vnode]: /docs/learn/glossary/#vnode
+[config strong consistency#enable]: /docs/configuring/strong-consistency/#enabling-strong-consistency
+[usage bucket types]: /docs/developing/usage/bucket-types
+[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
+[apps replication properties]: /docs/developing/app-guide/replication-properties
+[config strong consistency]: /docs/configuring/strong-consistency
+[config strong consistency#fault]: /docs/configuring/strong-consistency/#fault-tolerance
+[concept causal context]: /docs/learn/concepts/causal-context
+[concept causal context#vector]: /docs/learn/concepts/causal-context/#vector-clocks
+[concept version vector]: /docs/learn/concepts/causal-context/#dotted-version-vectors
+[usage conflict resolution]: /docs/developing/usage/conflict-resolution
+[usage update objects]: /docs/developing/usage/updating-objects
+[use ref strong consistency#vs]: /docs/using/reference/strong-consistency/#strong-vs.-eventual-consistency
+[dev client libraries]: /docs/developing/client-libraries
+[getting started]: /docs/developing/getting-started
+[config strong consistency#details]: /docs/configuring/strong-consistency/#implementation-details
 
 > **Please Note:**
 >

@@ -1,9 +1,11 @@
 ---
 title: "Scheduling Fullsync"
 id: managing_ref_v3_fullsync
+slug: scheduling-fullsync 
+sidebar_position: 3
 ---
 
-[config reference#advanced]: /riak/kv/2.2.3/configuring/reference/#advanced-configuration
+[config reference#advanced]: /docs/configuring/reference/#advanced-configuration
 
 The `fullsync_interval` parameter can be configured in the `riak-repl`
 section of [`advanced.config`][config reference#advanced] with either:

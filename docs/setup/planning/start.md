@@ -1,12 +1,14 @@
 ---
 title: "Start Planning"
 id: planning_start
+slug: start
+sidebar_position: 0
 ---
 
-[plan backend]: /riak/kv/2.2.3/setup/planning/backend
-[plan cluster capacity]: /riak/kv/2.2.3/setup/planning/cluster-capacity
-[plan backend bitcask]: /riak/kv/2.2.3/setup/planning/backend/bitcask
-[plan bitcask capacity]: /riak/kv/2.2.3/setup/planning/bitcask-capacity-calc
+[plan backend]: /docs/setup/planning/backend
+[plan cluster capacity]: /docs/setup/planning/cluster-capacity
+[plan backend bitcask]: /docs/setup/planning/backend/bitcask
+[plan bitcask capacity]: /docs/setup/planning/bitcask-capacity-calc
 
 Here are some steps and recommendations designing and configuring your
 Riak cluster.

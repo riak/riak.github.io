@@ -1,9 +1,11 @@
 ---
 title: "Changing Cluster Information"
 id: cluster_operations_change_info
+slug: changing-cluster-info
+sidebar_position: 1
 ---
 
-[config reference]: /riak/kv/2.2.3/configuring/reference
+[config reference]: /docs/configuring/reference
 
 ## Change the Node Name
 
@@ -105,7 +107,7 @@ To rename a single-node development cluster:
 
 For multi-node clusters, a rename is a slightly more complex procedure; however, it is very similar to the process for renaming a single node.
 
-Previous to Riak version 1.2, a cluster node's name could only be changed with the [`riak-admin reip`](/riak/kv/2.2.3/using/admin/riak-admin/#reip) command, which involves downtime for the entire cluster. As of Riak version 1.2, that method has been superseded by [`riak-admin cluster force-replace`](/riak/kv/2.2.3/using/admin/riak-admin/#cluster-force-replace), which is safer and does not require cluster wide downtime.
+Previous to Riak version 1.2, a cluster node's name could only be changed with the [`riak-admin reip`](/docs/using/admin/riak-admin/#reip) command, which involves downtime for the entire cluster. As of Riak version 1.2, that method has been superseded by [`riak-admin cluster force-replace`](/docs/using/admin/riak-admin/#cluster-force-replace), which is safer and does not require cluster wide downtime.
 
 There still exist scenarios that require nodes to be renamed while stopped, such as seeding a cluster with backups from another cluster that does not share the same node names. Please see the [Clusters from Backups](#clusters-from-backups) section for more details on renaming in this scenario.
 
@@ -290,12 +292,12 @@ Reconfigure `node1.localdomain` to listen on the new private IP address *192.168
 
 11. Clean up by deleting the renamed `ring` directory once all previous steps have been successfully completed.
 
-{{% note title="Note" %}}
+:::note Note
 When using the `riak-admin force-replace` command, you will always get a
 warning message like: `WARNING: All of 'riak@10.1.42.11' replicas will be
 lost`. Since we didn't delete any data files and we are replacing the node
 with itself under a new name, we will not lose any replicas.
-{{% /note %}}
+:::note
 
 <a id="repeat"></a>
 #### Repeat previous steps on each node

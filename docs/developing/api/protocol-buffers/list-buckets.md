@@ -1,14 +1,16 @@
 ---
-title: "PBC List Buckets"
+title: "List Buckets"
 id: pbc_list_buckets
+slug: list-buckets
+sidebar_position: 0
 ---
 
 List all of the bucket names available.
 
-{{% note title="Caution" %}}
+:::note Caution
 This call can be expensive for the server. Do not use in performance-sensitive
 code.
-{{% /note %}}
+:::note
 
 
 ## Request

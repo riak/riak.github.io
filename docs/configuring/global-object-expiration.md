@@ -1,6 +1,8 @@
 ---
-title: "Configure Global Object Expiration"
+title: "Global Object Expiration"
 id: config_expiry
+slug: global-object-expiration 
+sidebar_position: 7
 ---
 
 [ttl]: https://en.wikipedia.org/wiki/Time_to_live

@@ -1,9 +1,11 @@
 ---
 title: "Backend API"
 id: apis_backend
+slug: backend
+sidebar_position: 1
 ---
 
-[plan backend]: /riak/kv/2.2.3/setup/planning/backend
+[plan backend]: /docs/setup/planning/backend
 
 Riak's storage API uniformly applies to all of the
 [supported backends][plan backend]. This page presents the details of

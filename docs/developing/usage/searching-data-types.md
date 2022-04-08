@@ -1,12 +1,14 @@
 ---
 title: "Searching with Data Types"
 id: usage_search_data_types
+slug: searching-data-types 
+sidebar_position: 11
 ---
 
-Although [Riak Data Types](/riak/kv/2.2.3/developing/data-types) function differently from other
+Although [Riak Data Types](/docs/developing/data-types) function differently from other
 Riak objects in some respects, when you're using Search you can think of
 them as normal Riak objects with special metadata attached (metadata
-that you don't need to worry about as a user). Riak's [counters](/riak/kv/2.2.3/developing/data-types/#counters), [sets](/riak/kv/2.2.3/developing/data-types/#sets), and [maps](/riak/kv/2.2.3/developing/data-types/#maps)
+that you don't need to worry about as a user). Riak's [counters](/docs/developing/data-types/#counters), [sets](/docs/developing/data-types/#sets), and [maps](/docs/developing/data-types/#maps)
 can be indexed and have their contents searched just like other Riak
 objects.
 
@@ -18,11 +20,11 @@ store, say, a counter in Riak, it will automatically be assigned the
 type `application/riak_counter`. The table below provides the full list
 of content types:
 
-Data Type | Content Type
-:---------|:------------
-Counters | `application/riak_counter`
-Sets | `application/riak_set`
-Maps | `application/riak_map`
+| Data Type | Content Type               |
+|:----------|:---------------------------|
+| Counters  | `application/riak_counter` |
+| Sets      | `application/riak_set`     |
+| Maps      | `application/riak_map`     |
 
 When using Search, you won't need to worry about this, as Riak Data
 Types are automatically indexed on the basis of these content types.
@@ -57,7 +59,7 @@ to search Data Types, they are provided only for reference.
 
 ### Top-level Schemas
 
-The default schema for [counters](/riak/kv/2.2.3/developing/data-types/#counters) indexes each
+The default schema for [counters](/docs/developing/data-types/#counters) indexes each
 counter as an integer.
 
 ```xml
@@ -67,14 +69,14 @@ counter as an integer.
 Constructing queries for counters involves prefacing the query with
 `counter`. Below are some examples:
 
-Query | Syntax
-:-----|:------
-Counters with a value over 10 | `counter:[10 TO *]`
-Counters with a value below 10 and above 50 | `counter:[* TO 10] AND counter:[50 TO *]`
-Counters with a value of 15 | `counter:15`
-All counters within the index | `counter:*`
+| Query                                       | Syntax                                    |
+|:--------------------------------------------|:------------------------------------------|
+| Counters with a value over 10               | `counter:[10 TO *]`                       |
+| Counters with a value below 10 and above 50 | `counter:[* TO 10] AND counter:[50 TO *]` |
+| Counters with a value of 15                 | `counter:15`                              |
+| All counters within the index               | `counter:*`                               |
 
-The schema for [sets](/riak/kv/2.2.3/developing/data-types/#sets) indexes each element of a set as
+The schema for [sets](/docs/developing/data-types/#sets) indexes each element of a set as
 a string and indexes the set itself as multi-valued.
 
 ```xml
@@ -84,16 +86,16 @@ a string and indexes the set itself as multi-valued.
 To query sets, preface the query with `set`. The table below shows some
 examples:
 
-Query | Syntax
-:-----|:------
-Sets that contain the value `apple` | `set:apple`
-Sets that contain an item beginning with `level` | `set:level*`
-Sets that contain both `apple` and `orange` | `set:apple AND set:orange`
-All sets within the index | `set:*`
+| Query                                            | Syntax                     |
+|:-------------------------------------------------|:---------------------------|
+| Sets that contain the value `apple`              | `set:apple`                |
+| Sets that contain an item beginning with `level` | `set:level*`               |
+| Sets that contain both `apple` and `orange`      | `set:apple AND set:orange` |
+| All sets within the index                        | `set:*`                    |
 
 ### Embedded Schemas
 
-For searching within [maps](/riak/kv/2.2.3/developing/data-types/#maps), there are four schemas
+For searching within [maps](/docs/developing/data-types/#maps), there are four schemas
 for embedded, aka dynamic, fields. Flags are indexed as booleans:
 
 ```xml
@@ -122,12 +124,12 @@ Finally, sets at the embedded level are indexed as multi-valued strings.
 To query embedded fields, you must provide the name of the field. The
 table below provides some examples:
 
-Query | Syntax
-:-----|:------
-Maps containing a set called `hobbies` | `hobbies_set:*`
-Maps containing a `score` counter over 50 | `score_counter:[50 TO *]`
-Maps containing disabled `advanced` flags | `advanced_flag:false`
-Maps containing enabled `advanced` flags and `score` counters under 10 | `advanced_flag:true AND score_counter:[* TO 10]`
+| Query                                                                  | Syntax                                           |
+|:-----------------------------------------------------------------------|:-------------------------------------------------|
+| Maps containing a set called `hobbies`                                 | `hobbies_set:*`                                  |
+| Maps containing a `score` counter over 50                              | `score_counter:[50 TO *]`                        |
+| Maps containing disabled `advanced` flags                              | `advanced_flag:false`                            |
+| Maps containing enabled `advanced` flags and `score` counters under 10 | `advanced_flag:true AND score_counter:[* TO 10]` |
 
 You can also query maps within maps, which is covered in the **Querying
 maps within maps** section below.
@@ -143,7 +145,7 @@ slightly more complex map example.
 Let's say that we're storing scores in a multiplayer online game in
 Riak. The game is called Boulderdash and it involves smashing digital
 boulders armed with nothing but witty retorts and arcane trivia
-knowledge. We'll create and activate a [bucket type](/riak/kv/2.2.3/developing/usage/bucket-types) for [storing counters](/riak/kv/2.2.3/developing/data-types/#counters) simply called
+knowledge. We'll create and activate a [bucket type](/docs/developing/usage/bucket-types) for [storing counters](/docs/developing/data-types/#counters) simply called
 `counters`, like so:
 
 ```bash
@@ -603,7 +605,7 @@ curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:17" | jsonpp
 ## Sets Example
 
 Let's say that we're storing information about the hobbies of a group of
-people in sets. We'll create and activate a [bucket type](/riak/kv/2.2.3/developing/usage/bucket-types) for [storing sets](/riak/kv/2.2.3/developing/data-types/#sets) simply called `sets`,
+people in sets. We'll create and activate a [bucket type](/docs/developing/usage/bucket-types) for [storing sets](/docs/developing/data-types/#sets) simply called `sets`,
 like so:
 
 ```bash
@@ -975,9 +977,9 @@ Just as expected, both sets we stored contain the element `winning`.
 
 ## Maps Example
 
-This example will build on the example in the [Using Data Types](/riak/kv/2.2.3/developing/data-types)
+This example will build on the example in the [Using Data Types](/docs/developing/data-types)
 tutorial. That tutorial walks you through storing CMS-style user data in
-Riak [maps](/riak/kv/2.2.3/developing/data-types/#maps), and we'd suggest that you
+Riak [maps](/docs/developing/data-types/#maps), and we'd suggest that you
 familiarize yourself with that tutorial first. More specifically, user
 data is stored in the following fields in each user's map:
 

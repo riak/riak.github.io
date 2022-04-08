@@ -1,6 +1,8 @@
 ---
-title: "HTTP Ping"
+title: "Ping"
 id: http_ping
+slug: ping 
+sidebar_position: 10 
 ---
 
 Checks if the server is alive. This is useful for monitoring tools, load-balancers and automated scripts.

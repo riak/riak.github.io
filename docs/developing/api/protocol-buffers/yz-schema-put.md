@@ -1,9 +1,11 @@
 ---
-title: "PBC Yokozuna Schema Put"
+title: "Yokozuna Schema Put"
 id: pbc_yz_schema_put
+slug: yz-schema-put
+sidebar_position: 25
 ---
 
-Create a new Solr [search schema](/riak/kv/2.2.3/developing/usage/search-schemas).
+Create a new Solr [search schema](/docs/developing/usage/search-schemas).
 
 ## Request
 
@@ -22,8 +24,8 @@ message RpbYokozunaSchema {
 }
 ```
 
-This message *must* include both the schema `name` and its Solr [search schema](/riak/kv/2.2.3/developing/usage/search-schemas) `content` as XML.
+This message *must* include both the schema `name` and its Solr [search schema](/docs/developing/usage/search-schemas) `content` as XML.
 
 ## Response
 
-Returns a [RpbPutResp](/riak/kv/2.2.3/developing/api/protocol-buffers/#message-codes) code with no data on success.
+Returns a [RpbPutResp](/docs/developing/api/protocol-buffers/#message-codes) code with no data on success.

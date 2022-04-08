@@ -1,9 +1,11 @@
 ---
-title: "HTTP Search Index Info"
+title: "Search Index Info"
 id: http_search_index_info
+slug: search-index-info 
+sidebar_position: 14
 ---
 
-Retrieves information about all currently available [Search indexes](/riak/kv/2.2.3/developing/usage/search) in JSON format.
+Retrieves information about all currently available [Search indexes](/docs/developing/usage/search) in JSON format.
 
 ## Request
 

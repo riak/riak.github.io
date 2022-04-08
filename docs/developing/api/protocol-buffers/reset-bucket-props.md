@@ -1,6 +1,8 @@
 ---
-title: "PBC Reset Bucket Properties"
+title: "Reset Bucket Properties"
 id: pbc_reset_bucket_props
+slug: reset-bucket-props
+sidebar_position: 4
 ---
 
 Request to reset the properties of a given bucket or bucket type.
@@ -15,7 +17,7 @@ message RpbResetBucketReq {
 ```
 
 You must specify the name of the bucket (`bucket`) and optionally a
-[bucket type](/riak/kv/2.2.3/developing/usage/bucket-types) using the `type` value. If you do not
+[bucket type](/docs/developing/usage/bucket-types) using the `type` value. If you do not
 specify a bucket type, the `default` bucket type will be used by Riak.
 
 ## Response

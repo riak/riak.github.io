@@ -1,11 +1,13 @@
 ---
 title: "Quickstart"
 id: configuring_v3_quickstart
+slug: quick-start
+sidebar_position: 0
 ---
 
-[perf index]: /riak/kv/2.2.3/using/performance
-[config v3 mdc]: /riak/kv/2.2.3/configuring/v3-multi-datacenter
-[cluster ops v3 mdc]: /riak/kv/2.2.3/using/cluster-operations/v3-multi-datacenter
+[perf index]: /docs/using/performance
+[config v3 mdc]: /docs/configuring/v3-multi-datacenter
+[cluster ops v3 mdc]: /docs/using/cluster-operations/v3-multi-datacenter
 
 This guide will walk you through the process of configuring Riak's v3
 Replication to perform replication between two sample Riak clusters on
@@ -43,20 +45,19 @@ Riak Enterprise Clusters, each of which consists of three nodes:
 
 ### Cluster 1
 
-Name  | IP          | Node name
-:-----|:-------------|-----------------
-`node1` | `10.60.67.149` | `riak@10.60.67.149`
-`node2` | `10.60.83.39`  | `riak@10.60.83.39`
-`node3` | `10.60.90.252` | `riak@10.60.90.252`
+| Name    | IP             | Node name           |
+|:--------|:---------------|---------------------|
+| `node1` | `10.60.67.149` | `riak@10.60.67.149` |
+| `node2` | `10.60.83.39`  | `riak@10.60.83.39`  |
+| `node3` | `10.60.90.252` | `riak@10.60.90.252` |
 
 ### Cluster 2
 
-Name  | IP          | Node name
-:-----|:------------|:----------------
-`node4` | `10.60.77.10` | `riak@10.60.77.10`
-`node5` | `10.60.84.41` | `riak@10.60.84.41`
-`node6` | `10.60.92.44` | `riak@10.60.92.44`
-
+| Name    | IP            | Node name          |
+|:--------|:--------------|:-------------------|
+| `node4` | `10.60.77.10` | `riak@10.60.77.10` |
+| `node5` | `10.60.84.41` | `riak@10.60.84.41` |
+| `node6` | `10.60.92.44` | `riak@10.60.92.44` |
 
 ### Set up Cluster1 &rarr; Cluster2 Connection
 

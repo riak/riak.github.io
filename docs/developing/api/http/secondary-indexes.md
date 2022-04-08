@@ -1,9 +1,11 @@
 ---
-title: "HTTP Secondary Indexes"
+title: "Secondary Indexes"
 id: http_2i
+slug: secondary-indexes 
+sidebar_position: 9
 ---
 
-[Secondary Indexes](/riak/kv/2.2.3/developing/usage/secondary-indexes) allows an application to tag a Riak object with one or more field/value pairs. The object is indexed under these field/value pairs, and the application can later query the index to retrieve a list of matching keys.
+[Secondary Indexes](/docs/developing/usage/secondary-indexes) allows an application to tag a Riak object with one or more field/value pairs. The object is indexed under these field/value pairs, and the application can later query the index to retrieve a list of matching keys.
 
 ## Request
 
