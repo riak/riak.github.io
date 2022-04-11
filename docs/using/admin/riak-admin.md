@@ -5,27 +5,27 @@ slug: riak-admin
 sidebar_position: 1
 ---
 
-[config reference]: /docs/configuring/reference
-[use admin commands]: /docs/using/admin/commands
-[use admin commands#join]: /docs/using/admin/commands/#join
-[use admin commands#leave]: /docs/using/admin/commands/#leave
-[cluster ops backup]: /docs/using/cluster-operations/backing-up
-[config reference#node-metadata]: /docs/configuring/reference/#node-metadata
-[cluster ops change info]: /docs/using/cluster-operations/changing-cluster-info
-[usage mapreduce]: /docs/developing/usage/mapreduce
-[usage commit hooks]: /docs/developing/usage/commit-hooks
-[config reference#ring]: /docs/configuring/reference/#ring
-[cluster ops inspect node]: /docs/using/cluster-operations/inspecting-node
-[use ref monitoring]: /docs/using/reference/statistics-monitoring
-[downgrade]: /docs/setup/downgrade
-[security index]: /docs/using/security/
-[security managing]: /docs/using/security/managing-sources
-[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
-[cluster ops 2i]: /docs/using/reference/secondary-indexes
-[repair recover index]: /docs/using/repair-recovery
-[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
-[cluster ops handoff]: /docs/using/cluster-operations/handoff
-[use admin riak-admin#stats]: /docs/using/admin/riak-admin/#stats
+[config reference]: ../../configuring/reference.md
+[use admin commands]: ../../using/admin/commands.md
+[use admin commands#join]: ../../using/admin/commands.md#join
+[use admin commands#leave]: ../../using/admin/commands.md#leave
+[cluster ops backup]: ../../using/cluster-operations/backing-up.md
+[config reference#node-metadata]: ../../configuring/reference.md#node-metadata
+[cluster ops change info]: ../../using/cluster-operations/changing-cluster-info.md
+[usage mapreduce]: ../../developing/usage/mapreduce.md
+[usage commit hooks]: ../../developing/usage/commit-hooks.md
+[config reference#ring]: ../../configuring/reference.md#ring
+[cluster ops inspect node]: ../../using/cluster-operations/inspecting-node.md
+[use ref monitoring]: ../../using/reference/statistics-monitoring.md
+[downgrade]: ../../setup/downgrade.md
+[security index]: ../../using/security/index.md
+[security managing]: ../../using/security/managing-sources.md
+[cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+[cluster ops 2i]: ../../using/reference/secondary-indexes.md
+[repair recover index]: ../../using/repair-recovery/index.md
+[cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
+[cluster ops handoff]: ../../using/cluster-operations/handoff.md
+[use admin riak-admin#stats]: ../../using/admin/riak-admin.md#stats
 
 ## `riak-admin`
 

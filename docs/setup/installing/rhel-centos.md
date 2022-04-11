@@ -5,9 +5,9 @@ slug: rhel-centos
 sidebar_position: 4
 ---
 
-[install source index]: /docs/setup/installing/source
-[install source erlang]: /docs/setup/installing/source/erlang
-[install verify]: /docs/setup/installing/verify
+[install source index]: ../../setup/installing/source/index.md
+[install source erlang]: ../../setup/installing/source/erlang.md
+[install verify]: ../../setup/installing/verify.md
 
 Riak KV can be installed on CentOS- or Red-Hat-based systems using a binary
 package or by [compiling Riak from source code][install source index]. The following steps have been tested to work with Riak on

@@ -1,7 +1,6 @@
 ---
 title: "NodeJS"
 id: getting_started_nodejs
-slug: nodejs
 sidebar_position: 4
 
 ---
@@ -12,7 +11,7 @@ sidebar_position: 4
 [nodejs_wiki]: https://github.com/basho/riak-nodejs-client/wiki
 
 
-If you haven't set up a Riak Node and started it, please visit [Running A Cluster](/docs/using/running-a-cluster) first.
+If you haven't set up a Riak Node and started it, please visit [Running A Cluster](../../../using/running-a-cluster.md) first.
 
 To try this flavor of Riak, a working installation of Node.js 0.12 or later is
 required.
@@ -88,4 +87,4 @@ We are now ready to start interacting with Riak.
 
 ## Next Steps
 
-[CRUD Operations](/docs/developing/getting-started/nodejs/crud-operations)
+[CRUD Operations](../../../developing/getting-started/nodejs/crud-operations.md)

@@ -16,7 +16,7 @@ message RpbGetBucketReq {
 }
 ```
 
-The bucket's name (`bucket`) must be specified. The [bucket type](/docs/using/cluster-operations/bucket-types) parameter (`type`) is optional. If it is not specified,
+The bucket's name (`bucket`) must be specified. The [bucket type](../../../using/cluster-operations/bucket-types.md) parameter (`type`) is optional. If it is not specified,
 the `default` bucket type will be used.
 
 ## Response
@@ -75,7 +75,7 @@ message RpbBucketProps {
 Each `RpbBucketProps` message returns all of the properties associated
 with a particular bucket. Default values for bucket properties, as well
 as descriptions of all of the above properties, can be found in the
-[configuration file](/docs/configuring/reference/#default-bucket-properties) documentation.
+[configuration file](../../../configuring/reference.md#default-bucket-properties) documentation.
 
 It should be noted that the value of an `RpbBucketProps` message may
 include other message types, such as `RpbModFun` (specifying

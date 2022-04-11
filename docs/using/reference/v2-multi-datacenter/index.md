@@ -4,11 +4,11 @@ id: managing_ref_v2
 sidebar_position: 15
 ---
 
-[v2 mdc arch]: ./architecture
-[v2 mdc fullsync]: ./scheduling-fullsync
+[v2 mdc arch]: ./architecture.md
+[v2 mdc fullsync]: ./scheduling-fullsync.md
 
 :::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/using/reference/v3-multi-datacenter/) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../../using/reference/v3-multi-datacenter/index.md) instead.
 :::note
 
 ## [V2 Multi-Datacenter Replication Reference: Architecture][v2 mdc arch]

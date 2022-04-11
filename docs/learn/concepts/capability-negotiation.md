@@ -1,14 +1,13 @@
 ---
 title: "Capability Negotiation"
-id: learn_concepts_cap_negot
+id: learn_concepts_cap_negotiation
 slug: capability-negotiation 
 sidebar_position: 2
 ---
 
-
-[glossary vnode]: /docs/learn/glossary/#vnode
-[upgrade cluster]: /docs/setup/upgrading/cluster
-[usage mapreduce]: /docs/developing/usage/mapreduce
+[glossary vnode]: ../../learn/glossary.md#vnode
+[upgrade cluster]: ../../setup/upgrading/index.md#cluster
+[usage mapreduce]: ../../developing/usage/mapreduce.md
 
 
 In early versions of Riak KV, [rolling upgrades][upgrade cluster] from an older version to a newer involved (a) disabling all new features associated with the newer version, and then (b) re-enabling those features once all nodes in the cluster were upgraded.

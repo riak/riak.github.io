@@ -5,7 +5,7 @@ slug: backend
 sidebar_position: 1
 ---
 
-[plan backend]: /docs/setup/planning/backend
+[plan backend]: ../../setup/planning/backend/index.md
 
 Riak's storage API uniformly applies to all of the
 [supported backends][plan backend]. This page presents the details of

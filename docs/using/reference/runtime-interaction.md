@@ -5,8 +5,8 @@ slug: runtime-interaction
 sidebar_position: 5
 ---
 
-[config reference]: /docs/configuring/reference
-[concept clusters]: /docs/learn/concepts/clusters
+[config reference]: ../../configuring/reference.md
+[concept clusters]: ../../learn/concepts/clusters.md
 
 Riak's [configuration files][config reference] provide a variety of parameters that
 enable you to fine-tune how Riak interacts with two important elements

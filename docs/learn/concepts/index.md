@@ -4,20 +4,20 @@ id: learn_concepts
 sidebar_position: 3
 ---
 
-[concept aae]: /docs/learn/concepts/active-anti-entropy
-[concept buckets]: /docs/learn/concepts/buckets
-[concept cap neg]: /docs/learn/concepts/capability-negotiation
-[concept causal context]: /docs/learn/concepts/causal-context
-[concept clusters]: /docs/learn/concepts/clusters
-[concept crdts]: /docs/learn/concepts/crdts
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[concept keys objects]: /docs/learn/concepts/keys-and-objects
-[concept replication]: /docs/learn/concepts/replication
-[concept strong consistency]: /docs/using/reference/strong-consistency
-[concept vnodes]: /docs/learn/concepts/vnodes
-[config index]: /docs/configuring
-[plan index]: /docs/setup/planning
-[use index]: /docs/using/
+[concept aae]: ../../learn/concepts/active-anti-entropy.md
+[concept buckets]: ../../learn/concepts/buckets.md
+[concept cap neg]: ../../learn/concepts/capability-negotiation.md
+[concept causal context]: ../../learn/concepts/causal-context.md
+[concept clusters]: ../../learn/concepts/clusters.md
+[concept crdts]: ../../learn/concepts/crdts.md
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+[concept keys objects]: ../../learn/concepts/keys-and-objects.md
+[concept replication]: ../../learn/concepts/replication.md
+[concept strong consistency]: ../../using/reference/strong-consistency.md
+[concept vnodes]: ../../learn/concepts/vnodes.md
+[config index]: ../../configuring/index.md
+[plan index]: ../../setup/planning/index.md
+[use index]: ../../using/index.md
 
 
 Riak KV has many great features, functions, and guiding principles that inform how the product works. This section provides definitions for, insight into, and high level information about the various parts of Riak KV you will encounter as you [plan][plan index], [configure][config index], and [use][use index] Riak.  

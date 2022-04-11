@@ -8,7 +8,7 @@ sidebar_position: 4
 Riak was written almost exclusively in [Erlang](http://www.erlang.org)
 and runs on an Erlang virtual machine (VM), which makes proper Erlang VM
 tuning an important part of optimizing Riak performance. The Erlang VM
-itself provides a wide variety of [configurable parameters](http://erlang.org/doc/man/erl.html) that you can use to tune its performance; Riak enables you to tune a subset of those parameters in each node's [configuration files](../../../configuring/reference/#erlang-vm).
+itself provides a wide variety of [configurable parameters](http://erlang.org/doc/man/erl.html) that you can use to tune its performance; Riak enables you to tune a subset of those parameters in each node's [configuration files](../../configuring/reference.md#erlang-vm).
 
 The table below lists some of the parameters that are available, showing
 both their names as used in Erlang and their names as Riak parameters.
@@ -169,7 +169,7 @@ using the older configuration system).
 
 Riak uses [epmd](http://www.erlang.org/doc/man/epmd.html), the Erlang
 Port Mapper Daemon, for most inter-node communication. In this system,
-other nodes in the [cluster](../../../learn/concepts/clusters) use the Erlang identifiers specified by the `nodename` parameter (or `-name` in `vm.args`), for example `riak@10.9.8.7`. On each node, the daemon resolves these node
+other nodes in the [cluster](../../learn/concepts/clusters.md) use the Erlang identifiers specified by the `nodename` parameter (or `-name` in `vm.args`), for example `riak@10.9.8.7`. On each node, the daemon resolves these node
 identifiers to a TCP port. You can specify a port or range of ports for
 Riak nodes to listen on as well as the maximum number of concurrent
 ports/sockets.
@@ -179,7 +179,7 @@ ports/sockets.
 By default, epmd binds to TCP port 4369 and listens on the wildcard
 interface. epmd uses an unpredictable port for inter-node communication
 by default, binding to port 0, which means that it uses the first
-available port. This can make it difficult to configure [firewalls](../../security).
+available port. This can make it difficult to configure [firewalls](../security/index.md).
 
 To make configuring firewalls easier, you can instruct the Erlang VM to
 use either a limited range of TCP ports or a single TCP port. The

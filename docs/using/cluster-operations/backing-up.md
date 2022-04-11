@@ -5,13 +5,13 @@ slug: backing-up
 sidebar_position: 6
 ---
 
-[concept clusters]: /docs/learn/concepts/clusters
-[config reference]: /docs/configuring/reference
-[plan backend leveldb]: /docs/setup/planning/backend/leveldb
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[use ref strong consistency]: /docs/using/reference/strong-consistency
-[concept aae]: /docs/learn/concepts/active-anti-entropy/
-[aae read repair]: /docs/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy
+[concept clusters]: ../../learn/concepts/clusters.md
+[config reference]: ../../configuring/reference.md
+[plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+[plan backend bitcask]: ../../setup/planning/backend/bitcask.md
+[use ref strong consistency]: ../../using/reference/strong-consistency.md
+[concept aae]: ../../learn/concepts/active-anti-entropy.md
+[aae read repair]: ../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy
 
 Riak KV is a [clustered][concept clusters] system built to survive a wide range of failure scenarios, including the loss of nodes due to network or hardware failure. Although this is one of Riak KV's core strengths, it cannot withstand all failure scenarios.
 
@@ -36,7 +36,7 @@ Downtime of a node can be significantly reduced by using an OS feature or filesy
 :::note Backups and eventual consistency
 Due to Riak KV's eventually consistent nature, backups can become slightly inconsistent from node to node.
 
-Data could exist on some nodes and not others at the exact time a backup is made. Any inconsistency will be corrected once a backup is restored, either by Riak's [active anti-entropy](/docs/learn/concepts/active-anti-entropy/) processes or when the object is read, via [read repair](/docs/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy).
+Data could exist on some nodes and not others at the exact time a backup is made. Any inconsistency will be corrected once a backup is restored, either by Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) processes or when the object is read, via [read repair](../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy).
 :::note
 
 ## OS-Specific Directory Locations
@@ -121,7 +121,7 @@ was extracted.
 ## Performing Backups
 
 :::note Deprecation notice
-In previous versions of Riak KV, there was a [`riak-admin backup`](/docs/using/admin/riak-admin/#backup) command commonly used for
+In previous versions of Riak KV, there was a [`riak-admin backup`](../../using/admin/riak-admin.md#backup) command commonly used for
 backups. This functionality is now deprecated. We strongly recommend using the backup procedure documented below instead.
 :::note
 
@@ -192,16 +192,16 @@ node that the restored backup was taken from, you will need to
 additionally:
 
 1. Mark the original instance down in the cluster using
-   [`riak-admin down <node>`](/docs/using/admin/riak-admin/#down)
+   [`riak-admin down <node>`](../../using/admin/riak-admin.md#down)
 2. Join the restored node to the cluster using
-   [`riak-admin cluster join <node>`](/docs/using/admin/riak-admin/#cluster-join)
+   [`riak-admin cluster join <node>`](../../using/admin/riak-admin.md#cluster-join)
 3. Replace the original instance with the renamed instance with
-   [`riak-admin cluster force-replace <node1> <node2>`](/docs/using/admin/riak-admin/#cluster-force-replace)
+   [`riak-admin cluster force-replace <node1> <node2>`](../../using/admin/riak-admin.md#cluster-force-replace)
 4. Plan the changes to the cluster with `riak-admin cluster plan`
 5. Finally, commit the cluster changes with `riak-admin cluster commit`
 
 :::note
-For more information on the `riak-admin cluster` commands, refer to our documentation on [cluster administration](/docs/using/admin/).
+For more information on the `riak-admin cluster` commands, refer to our documentation on [cluster administration](../../using/admin/index.md).
 :::note
 
 For example, if there are five nodes in the cluster with the original node names `riak1.example.com` through `riak5.example.com` and you wish to restore `riak1.example.com` as `riak6.example.com`, you would execute the following commands on `riak6.example.com`.
@@ -254,4 +254,4 @@ and for any other nodes whose names have changed:
 
 ## Restoring a Cluster
 
-Restoring a cluster from backups is documented [on its own page](/docs/using/repair-recovery/failure-recovery/#cluster-recovery-from-backups).
+Restoring a cluster from backups is documented [on its own page](../../using/repair-recovery/failure-recovery.md#cluster-recovery-from-backups).

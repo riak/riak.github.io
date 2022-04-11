@@ -5,25 +5,25 @@ slug: strong-consistency
 sidebar_position: 1
 ---
 
-[use ref strong consistency]: /docs/using/reference/strong-consistency
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[use ref strong consistency#trade-offs]: /docs/using/reference/strong-consistency/#trade-offs
-[glossary vnode]: /docs/learn/glossary/#vnode
-[config strong consistency#enable]: /docs/configuring/strong-consistency/#enabling-strong-consistency
-[usage bucket types]: /docs/developing/usage/bucket-types
-[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[config strong consistency]: /docs/configuring/strong-consistency
-[config strong consistency#fault]: /docs/configuring/strong-consistency/#fault-tolerance
-[concept causal context]: /docs/learn/concepts/causal-context
-[concept causal context#vector]: /docs/learn/concepts/causal-context/#vector-clocks
-[concept version vector]: /docs/learn/concepts/causal-context/#dotted-version-vectors
-[usage conflict resolution]: /docs/developing/usage/conflict-resolution
-[usage update objects]: /docs/developing/usage/updating-objects
-[use ref strong consistency#vs]: /docs/using/reference/strong-consistency/#strong-vs.-eventual-consistency
-[dev client libraries]: /docs/developing/client-libraries
-[getting started]: /docs/developing/getting-started
-[config strong consistency#details]: /docs/configuring/strong-consistency/#implementation-details
+[use ref strong consistency]: ../../using/reference/strong-consistency.md
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+[use ref strong consistency#trade-offs]: ../../using/reference/strong-consistency.md#trade-offs
+[glossary vnode]: ../../learn/glossary.md#vnode
+[config strong consistency#enable]: ../../configuring/strong-consistency.md#enabling-strong-consistency
+[usage bucket types]: ../../developing/usage/bucket-types.md
+[cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+[apps replication properties]: ../../developing/app-guide/replication-properties.md
+[config strong consistency]: ../../configuring/strong-consistency.md
+[config strong consistency#fault]: ../../configuring/strong-consistency.md#fault-tolerance
+[concept causal context]: ../../learn/concepts/causal-context.md
+[concept causal context#vector]: ../../learn/concepts/causal-context.md#vector-clocks
+[concept version vector]: ../../learn/concepts/causal-context.md#dotted-version-vectors
+[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+[usage update objects]: ../../developing/usage/updating-objects.md
+[use ref strong consistency#vs]: ../../using/reference/strong-consistency.md#strong-vs.-eventual-consistency
+[dev client libraries]: ../../developing/client-libraries.md
+[getting started]: ../../developing/getting-started/index.md
+[config strong consistency#details]: ../../configuring/strong-consistency.md#implementation-details
 
 > **Please Note:**
 >

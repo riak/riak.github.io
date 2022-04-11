@@ -5,23 +5,23 @@ sidebar_position: 2
 ---
 
 [wiki crdt]: https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type#Others
-[concept crdt]: ../../learn/concepts/crdts
-[ops bucket type]: ../../using/cluster-operations/bucket-types
+[concept crdt]: ../../learn/concepts/crdts.md
+[ops bucket type]: ../../using/cluster-operations/bucket-types.md
 
 Riak KV has Riak-specific data types based on [convergent replicated data types (CRDTs)][wiki crdt]. While Riak KV was built as a data-agnostic key/value store, Riak data types enable you to use Riak KV as a data-aware system and perform transactions on 5 CRDT-inspired data types:
 
-- [Flags](./maps#flags)
-- [Registers](./maps#registers)
-- [Counters](./counters)
-- [Sets](./sets)
-- [Maps](./maps)
+- [Flags](./maps.md#flags)
+- [Registers](./maps.md#registers)
+- [Counters](./counters.md)
+- [Sets](./sets.md)
+- [Maps](./maps.md)
 
 Riak KV also has 1 context-free data type, that has similar usage but does not require contexts.
 
-- [HyperLogLogs](./hyperloglogs) (abbreviated `hll` in many places)
+- [HyperLogLogs](./hyperloglogs.md) (abbreviated `hll` in many places)
 
 
-Counters, sets, maps, and hyperloglogs can be used as bucket-level data types or types that you interact with directly. Flags and registers must be [embedded in maps](./maps).
+Counters, sets, maps, and hyperloglogs can be used as bucket-level data types or types that you interact with directly. Flags and registers must be [embedded in maps](./maps.md).
 
 For more information on how CRDTs work in Riak KV see [Concepts: Data Types][concept crdt].
 
@@ -97,7 +97,7 @@ These settings are set by default and should not be changed.
 
 ## Data Types and Context
 
-Data type context is similar to [causal context](../../learn/concepts/causal-context): it tells Riak KV which version of the data type a client is attempting to modify. Context is required by Riak KV when making decisions about convergence.
+Data type context is similar to [causal context](../../learn/concepts/causal-context.md): it tells Riak KV which version of the data type a client is attempting to modify. Context is required by Riak KV when making decisions about convergence.
 
 If no context is given when attempting a remove or remove-like operation, the operation may fail (removing a field that is not present) or succeed and remove more than intended (removing updates unseen by the client).
 
@@ -105,7 +105,7 @@ If no context is given when attempting a remove or remove-like operation, the op
 >
 > The counter data type does not use context; Riak KV will return an empty value when the context is requested from a counter.
 
-In the example below we'll fetch the context [from a user data map created for Ahmed](./maps#create-a-map):
+In the example below we'll fetch the context [from a user data map created for Ahmed](./maps.md#create-a-map):
 
 ```java
 // Using the "ahmedMap" Location from above:
@@ -237,14 +237,14 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
 
 ## Usage Examples
 
-- [Flags](./maps#flags)
-- [Registers](./maps#registers)
-- [Counters](./counters)
-- [Sets](./sets)
-- [Maps](./maps)
-- [Hyperloglogs](./hyperloglogs)
+- [Flags](./maps.md#flags)
+- [Registers](./maps.md#registers)
+- [Counters](./counters.md)
+- [Sets](./sets.md)
+- [Maps](./maps.md)
+- [Hyperloglogs](./hyperloglogs.md)
 
-The pages listed above detail using Riak data types at the application level using Basho's [officially supported Riak KV clients](../client-libraries). For more on getting started with client libraries check out the [Developing with Riak KV: Getting Started](../getting-started) section.
+The pages listed above detail using Riak data types at the application level using Basho's [officially supported Riak KV clients](../client-libraries.md). For more on getting started with client libraries check out the [Developing with Riak KV: Getting Started](../getting-started/index.md) section.
 
 All the examples use the bucket type names from above (`counters`, `sets`, and `maps`). You're free to substitute your own bucket type names if you wish.
 
@@ -254,5 +254,5 @@ Riak data types can be searched like any other object, but with the
 added benefit that your data type is indexed as a different type by Solr,
 the search platform behind Riak Search.
 
-In our Search documentation we offer a [full tutorial](../usage/searching-data-types) as well as a variety of [examples](../usage/search/#data-types-and-search-examples), including code
+In our Search documentation we offer a [full tutorial](../usage/searching-data-types.md) as well as a variety of [examples](../usage/search.md#data-types-and-search-examples), including code
 samples from each of our official client libraries.

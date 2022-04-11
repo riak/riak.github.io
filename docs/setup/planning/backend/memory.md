@@ -5,10 +5,10 @@ slug: memory
 sidebar_position: 2
 ---
 
-[config reference]: /docs/configuring/reference
-[plan backend multi]: /docs/setup/planning/backend/multi
-[glossary vnode]: /docs/learn/glossary/#vnode
-[plan backend leveldb]: /docs/setup/planning/backend/leveldb
+[config reference]: ../../../configuring/reference.md
+[plan backend multi]: ../../../setup/planning/backend/multi.md
+[glossary vnode]: ../../../learn/glossary.md#vnode
+[plan backend leveldb]: ../../../setup/planning/backend/leveldb.md
 
 The Memory storage backend uses in-memory tables to store all data.
 This data is never persisted to disk or to any other storage mechanism.

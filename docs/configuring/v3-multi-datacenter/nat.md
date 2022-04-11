@@ -5,7 +5,7 @@ slug: nat
 sidebar_position: 1
 ---
 
-[config v3 ssl]: /docs/configuring/v3-multi-datacenter/ssl
+[config v3 ssl]: ../../configuring/v3-multi-datacenter/ssl.md
 
 Riak Enterprise Version 3 Replication supports replication of data on
 networks that use static NAT.

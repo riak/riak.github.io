@@ -4,13 +4,10 @@ id: add-ons_redis
 sidebar_position: 0
 ---
 
-
-[addon redis develop]: ./developing-rra/
-[addon redis features]: ./redis-add-on-features/
-[addon redis setup]: ./set-up-rra/
-[addon redis use]: ./get-started-with-rra/
+[addon redis develop]: ./developing-rra.md
+[addon redis features]: ./redis-add-on-features.md
+[addon redis setup]: ./set-up-rra/index.md
 [ee]: http://basho.com/contact/
-
 
 Riak Redis Add-on (RRA) is a distributed cache service that joins the power of Redis caching with the eventual consistency guarantees of Riak KV. 
 
@@ -41,7 +38,6 @@ RRA is compatible with the following services:
 ## Get Started
 
 * [Set up RRA.][addon redis setup]
-* [Use RRA with various clients.][addon redis use]
 * [Develop with RRA.][addon redis develop]
 * [Learn about RRA's features.][addon redis features]
 

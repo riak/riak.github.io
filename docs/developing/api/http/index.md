@@ -16,23 +16,23 @@ slashes. Use a URL-escaping library or replace slashes with `%2F`.
 
 ## Bucket-related Operations
 
-| Method   | URL                                             | Doc                                                                          |
-|:---------|:------------------------------------------------|:-----------------------------------------------------------------------------|
-| `GET`    | `/types/<type>/buckets/<bucket>/props`          | [HTTP Get Bucket Properties](/docs/developing/api/http/get-bucket-props)     |
-| `PUT`    | `/types/<type>/buckets/<bucket>/props`          | [HTTP Set Bucket Properties](/docs/developing/api/http/set-bucket-props)     |
-| `DELETE` | `/types/<type>/buckets/<bucket>/props`          | [HTTP Reset Bucket Properties](/docs/developing/api/http/reset-bucket-props) |
-| `GET`    | `/types/<type>/buckets?buckets=true`            | [HTTP List Buckets](/docs/developing/api/http/list-buckets)                  |
-| `GET`    | `/types/<type>/buckets/<bucket>/keys?keys=true` | [HTTP List Keys](/docs/developing/api/http/list-keys)                        |
+| Method   | URL                                             | Doc                                                                                |
+|:---------|:------------------------------------------------|:-----------------------------------------------------------------------------------|
+| `GET`    | `/types/<type>/buckets/<bucket>/props`          | [HTTP Get Bucket Properties](../../../developing/api/http/get-bucket-props.md)     |
+| `PUT`    | `/types/<type>/buckets/<bucket>/props`          | [HTTP Set Bucket Properties](../../../developing/api/http/set-bucket-props.md)     |
+| `DELETE` | `/types/<type>/buckets/<bucket>/props`          | [HTTP Reset Bucket Properties](../../../developing/api/http/reset-bucket-props.md) |
+| `GET`    | `/types/<type>/buckets?buckets=true`            | [HTTP List Buckets](../../../developing/api/http/list-buckets.md)                  |
+| `GET`    | `/types/<type>/buckets/<bucket>/keys?keys=true` | [HTTP List Keys](../../../developing/api/http/list-keys.md)                        |
 
 ## Object-related Operations
 
-| Method   | URL                                         | Doc                                                           |
-|:---------|:--------------------------------------------|:--------------------------------------------------------------|
-| `GET`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Fetch Object](/docs/developing/api/http/fetch-object)   |
-| `POST`   | `/types/<type>/buckets/<bucket>/keys`       | [HTTP Store Object](/docs/developing/api/http/store-object)   |
-| `PUT`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Store Object](/docs/developing/api/http/store-object)   |
-| `POST`   | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Store Object](/docs/developing/api/http/store-object)   |
-| `DELETE` | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Delete Object](/docs/developing/api/http/delete-object) |
+| Method   | URL                                         | Doc                                                                 |
+|:---------|:--------------------------------------------|:--------------------------------------------------------------------|
+| `GET`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Fetch Object](../../../developing/api/http/fetch-object.md)   |
+| `POST`   | `/types/<type>/buckets/<bucket>/keys`       | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
+| `PUT`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
+| `POST`   | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
+| `DELETE` | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Delete Object](../../../developing/api/http/delete-object.md) |
 
 ## Riak-Data-Type-related Operations
 
@@ -42,37 +42,37 @@ slashes. Use a URL-escaping library or replace slashes with `%2F`.
 | `POST` | `/types/<type>/buckets/<bucket>/datatypes`       |
 | `POST` | `/types/<type>/buckets/<bucket>/datatypes/<key>` |
 
-For documentation on the HTTP API for [Riak Data Types](/docs/learn/concepts/crdts),
-see the `curl` examples in [Using Data Types](/docs/developing/data-types/#usage-examples)
-and subpages e.g. [sets](/docs/developing/data-types/sets).
+For documentation on the HTTP API for [Riak Data Types](../../../learn/concepts/crdts.md),
+see the `curl` examples in [Using Data Types](../../../developing/data-types/index.md#usage-examples)
+and subpages e.g. [sets](../../../developing/data-types/sets.md).
 
 Advanced users may consult the technical documentation inside the Riak
 KV internal module `riak_kv_wm_crdt`.
 
 ## Query-related Operations
 
-| Method | URL                                                          | Doc                                                                   |
-|:-------|:-------------------------------------------------------------|:----------------------------------------------------------------------|
-| `POST` | `/mapred`                                                    | [HTTP MapReduce](/docs/developing/api/http/mapreduce)                 |
-| `GET`  | `/types/<type>/buckets/<bucket>/index/<index>/<value>`       | [HTTP Secondary Indexes](/docs/developing/api/http/secondary-indexes) |
-| `GET`  | `/types/<type>/buckets/<bucket>/index/<index>/<start>/<end>` | [HTTP Secondary Indexes](/docs/developing/api/http/secondary-indexes) |
+| Method | URL                                                          | Doc                                                                         |
+|:-------|:-------------------------------------------------------------|:----------------------------------------------------------------------------|
+| `POST` | `/mapred`                                                    | [HTTP MapReduce](../../../developing/api/http/mapreduce.md)                 |
+| `GET`  | `/types/<type>/buckets/<bucket>/index/<index>/<value>`       | [HTTP Secondary Indexes](../../../developing/api/http/secondary-indexes.md) |
+| `GET`  | `/types/<type>/buckets/<bucket>/index/<index>/<start>/<end>` | [HTTP Secondary Indexes](../../../developing/api/http/secondary-indexes.md) |
 
 ## Server-related Operations
 
-| Method | URL      | Doc                                                             |
-|:-------|:---------|:----------------------------------------------------------------|
-| `GET`  | `/ping`  | [HTTP Ping](/docs/developing/api/http/ping)                     |
-| `GET`  | `/stats` | [HTTP Status](/docs/developing/api/http/status)                 |
-| `GET`  | `/`      | [HTTP List Resources](/docs/developing/api/http/list-resources) |
+| Method | URL      | Doc                                                                   |
+|:-------|:---------|:----------------------------------------------------------------------|
+| `GET`  | `/ping`  | [HTTP Ping](../../../developing/api/http/ping.md)                     |
+| `GET`  | `/stats` | [HTTP Status](../../../developing/api/http/status.md)                 |
+| `GET`  | `/`      | [HTTP List Resources](../../../developing/api/http/list-resources.md) |
 
 ## Search-related Operations
 
-| Method   | URL                            | Doc                                                                       |
-|:---------|:-------------------------------|:--------------------------------------------------------------------------|
-| `GET`    | `/search/query/<index_name>`   | [HTTP Search Query](/docs/developing/api/http/search-query)               |
-| `GET`    | `/search/index`                | [HTTP Search Index Info](/docs/developing/api/http/search-index-info)     |
-| `GET`    | `/search/index/<index_name>`   | [HTTP Fetch Search Index](/docs/developing/api/http/fetch-search-index)   |
-| `PUT`    | `/search/index/<index_name>`   | [HTTP Store Search Index](/docs/developing/api/http/store-search-index)   |
-| `DELETE` | `/search/index/<index_name>`   | [HTTP Delete Search Index](/docs/developing/api/http/delete-search-index) |
-| `GET`    | `/search/schema/<schema_name>` | [HTTP Fetch Search Schema](/docs/developing/api/http/fetch-search-schema) |
-| `PUT`    | `/search/schema/<schema_name>` | [HTTP Store Search Schema](/docs/developing/api/http/store-search-schema) |
+| Method   | URL                            | Doc                                                                             |
+|:---------|:-------------------------------|:--------------------------------------------------------------------------------|
+| `GET`    | `/search/query/<index_name>`   | [HTTP Search Query](../../../developing/api/http/search-query.md)               |
+| `GET`    | `/search/index`                | [HTTP Search Index Info](../../../developing/api/http/search-index-info.md)     |
+| `GET`    | `/search/index/<index_name>`   | [HTTP Fetch Search Index](../../../developing/api/http/fetch-search-index.md)   |
+| `PUT`    | `/search/index/<index_name>`   | [HTTP Store Search Index](../../../developing/api/http/store-search-index.md)   |
+| `DELETE` | `/search/index/<index_name>`   | [HTTP Delete Search Index](../../../developing/api/http/delete-search-index.md) |
+| `GET`    | `/search/schema/<schema_name>` | [HTTP Fetch Search Schema](../../../developing/api/http/fetch-search-schema.md) |
+| `PUT`    | `/search/schema/<schema_name>` | [HTTP Store Search Schema](../../../developing/api/http/store-search-schema.md) |

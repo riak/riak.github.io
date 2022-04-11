@@ -6,15 +6,15 @@ sidebar_position: 10
 ---
 
 
-[concept causal context]: /docs/learn/concepts/causal-context
-[concept clusters ring]: /docs/learn/concepts/clusters/#the-ring
-[concept replication]: /docs/learn/concepts/replication
-[concept strong consistency]: /docs/learn/concepts/strong-consistency
-[glossary node]: /docs/learn/glossary/#node
-[glossary ring]: /docs/learn/glossary/#ring
-[plan backend]: /docs/setup/planning/backend
-[plan cluster capacity]: /docs/setup/planning/cluster-capacity
-[use admin riak cli]: /docs/using/admin/riak-cli
+[concept causal context]: ../../learn/concepts/causal-context.md
+[concept clusters ring]: ../../learn/concepts/clusters.md#the-ring
+[concept replication]: ../../learn/concepts/replication.md
+[concept strong consistency]: ../../learn/concepts/strong-consistency.md
+[glossary node]: ../../learn/glossary.md#node
+[glossary ring]: ../../learn/glossary.md#ring
+[plan backend]: ../../setup/planning/backend
+[plan cluster capacity]: ../../setup/planning/cluster-capacity.md
+[use admin riak cli]: ../../using/admin/riak-cli.md
 
 
 Virtual nodes, more commonly referred to as **vnodes**, are processes
@@ -92,7 +92,7 @@ asynchronous tasks on behalf of the vnode.
 
 If you're navigating through the file system of a Riak node, you'll
 notice that each node's `/data` directory holds a variety of
-subdirectories. If you're using, say, [Bitcask](/docs/setup/planning/backend/bitcask) as a backend, navigate
+subdirectories. If you're using, say, [Bitcask](../../setup/planning/backend/bitcask.md) as a backend, navigate
 into the `/bitcask` directory (you'll also see a `/ring` directory and
 several others). If you open up the `/bitcask` directory, you'll see a
 wide assortment of directories with numbers as names, e.g. `0` or
@@ -139,8 +139,8 @@ Status:
 
 The meaning of each field is given in the table below.
 
-Field | Description
-:-----|:-----------
-`VNode` | The ID of the vnode in question
-`Backend` | The storage [backend][plan backend] utilized by the vnode
-`Status` | The number of keys managed by the vnode and the file where the vnode stores its data. The other information can be ignored.
+| Field     | Description                                                                                                                 |
+|:----------|:----------------------------------------------------------------------------------------------------------------------------|
+| `VNode`   | The ID of the vnode in question                                                                                             |
+| `Backend` | The storage [backend][plan backend] utilized by the vnode                                                                   |
+| `Status`  | The number of keys managed by the vnode and the file where the vnode stores its data. The other information can be ignored. |

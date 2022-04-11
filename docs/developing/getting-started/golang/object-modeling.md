@@ -124,7 +124,7 @@ func (t *Timeline) GetId() string {
 }
 ```
 
-We'll be using the bucket `Users` to store our data. We won't be [using bucket types](/docs/developing/usage/bucket-types) here, so we don't need to specify one.
+We'll be using the bucket `Users` to store our data. We won't be [using bucket types](../../../developing/usage/bucket-types.md) here, so we don't need to specify one.
 
 To use these records to store data, we will first have to create a user
 record. Then, when a user creates a message, we will append that message

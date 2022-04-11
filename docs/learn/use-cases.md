@@ -5,20 +5,12 @@ slug: use-cases
 sidebar_position: 1
 ---
 
-[dev data model articles etc]: /docs/developing/data-modeling/#articles-blog-posts-and-other-content
-[dev data model log data]: /docs/developing/data-modeling/#log-data
-[dev data model sensor data]: /docs/developing/data-modeling/#sensor-data
-[dev data model serve advertisements]: /docs/developing/data-modeling/#serving-advertisements
-[dev data model sess storage]: /docs/developing/data-modeling/#session-storage
-[dev data model user acct]: /docs/developing/data-modeling/#user-accounts
-[dev data model user events]: /docs/developing/data-modeling/#user-events-and-timelines
-[dev data model user settings]: /docs/developing/data-modeling/#user-settings-and-preferences
-[dev data types]: /docs/developing/data-types
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[replication properties]: /docs/developing/app-guide/replication-properties
-[usage mapreduce]: /docs/developing/usage/mapreduce
-[usage search]: /docs/developing/usage/search
-[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
+[dev data types]: ../developing/data-types/index.md
+[plan backend bitcask]: ../setup/planning/backend/bitcask.md
+[replication properties]: ../developing/app-guide/replication-properties.md
+[usage mapreduce]: ../developing/usage/mapreduce.md
+[usage search]: ../developing/usage/search.md
+[usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 
 Riak is a flexible data storage technology capable of addressing a wide variety
 of problems in a scalable way. In this guide, we'll list a number of use cases
@@ -36,23 +28,20 @@ more. This guide is intended to be illustrative only.
 
 ## High Read/Write, Simple Applications
 
-The following are examples of Riak use cases that require high read/write
-performance without necessarily utilizing complex data structures:
-
-* [Session Storage][dev data model sess storage]
-* [Serving Advertisements][dev data model serve advertisements]
-* [Log Data][dev data model log data]
-* [Sensor Data][dev data model sensor data]
+* Session Storage
+* Serving Advertisements
+* Log Data
+* Sensor Data
 
 ## Content Management, Social Applications
 
 The following application types require more subtle relationships between
 objects, e.g. one-to-many and many-to-many relationships.
 
-* [User Accounts][dev data model user acct]
-* [User Settings and Preferences][dev data model user settings]
-* [User Events and Timelines][dev data model user events]
-* [Articles, Blog Posts, and Other Content][dev data model articles etc]
+* User Accounts
+* User Settings and Preferences
+* User Events and Timelines
+* Articles, Blog Posts, and Other Content
 
 ## Session Storage
 
@@ -237,24 +226,12 @@ ahead and either set up additional secondary indexes or consider using
 
 ### User Accounts Community Examples
 
-<table class="use-cases__image-links">
-  <tr>
-    <td>
-      <a href="https://player.vimeo.com/video/47535803" target="_blank" title="Riak at Braintree">
-        <img class="vid_img"src="http://b.vimeocdn.com/ts/329/711/329711886_640.jpg"/>
-      </a>
-    </td>
-    <td>
-      <a href="https://player.vimeo.com/video/47535803" target="_blank" title="Riak at Braintree">Riak at Braintree</a>
-      <br />
-      Ben Mills, a developer at Braintree, discusses how their backend team came
-      to find and begin to integrate Riak into their production environment.
-      They also cover their model and repository framework for Ruby, Curator.
-      Check out more details and slides on the
-      <a href="http://basho.com/posts/business/riak-at-braintree/" target="_blank">Riak blog.</a>
-    </td>
-  </tr>
-</table>
+[Riak at Braintree](https://player.vimeo.com/video/47535803)
+
+Ben Mills, a developer at Braintree, discusses how their backend team came
+to find and begin to integrate Riak into their production environment.
+They also cover their model and repository framework for Ruby, Curator.
+Check out more details and slides on the [Riak blog](http://basho.com/posts/business/riak-at-braintree/)
 
 ## User Settings and Preferences
 
@@ -287,43 +264,22 @@ and writing back the new value.
 
 ### User Events and Timelines Community Examples
 
-<table class="use-cases__image-links">
-  <tr>
-    <td>
-      <a href="http://player.vimeo.com/video/21598799" target="_blank" title="Riak at Yammer">
-      <img src="http://b.vimeocdn.com/ts/139/033/139033664_640.jpg"/>
-      </a>
-    </td>
-    <td>
-      <a href="http://player.vimeo.com/video/21598799" target="_blank" title="Riak at Yammer">Riak at Yammer</a>
-      <br />
-      This video was recorded at the March 2012 San Francisco Riak Meetup and is
-      worth every minute of your time. Coda Hale and Ryan Kennedy of Yammer give
-      an excellent and in depth look into how they built “Streamie”, user
-      notifications, why Riak was the right choice, and the lessons learned in
-      the process. Read more and get the slides in the Riak blog
-      <a href="http://basho.com/posts/business/Riak-And-Scala-At-Yammer/" target="_blank">here.</a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="http://player.vimeo.com/video/44498491" target="_blank" title="Riak at Voxer">
-        <img src="http://b.vimeocdn.com/ts/309/154/309154350_960.jpg"/>
-      </a>
-    </td>
-    <td>
-      <a href="http://player.vimeo.com/video/44498491" target="_blank" title="Riak at Voxer">Riak at Voxer</a>
-      <br />
-      The team at Voxer has long relied on Riak as their primary data store for
-      various production services. They have put Riak through its paces and have
-      served as one of our more exciting customers and use cases: Riak was in
-      place when they shot to the top of the App Store at the end of 2011. We
-      also love them because they open-sourced their Node.js client. Read more
-      and get the slides in the Riak blog
-      <a href="http://basho.com/posts/business/Riak-in-Production-at-Voxer/" target="_blank">here.</a>
-    </td>
-  </tr>
-</table>
+[Riak at Yammer](http://player.vimeo.com/video/21598799)
+
+This video was recorded at the March 2012 San Francisco Riak Meetup and is
+worth every minute of your time. Coda Hale and Ryan Kennedy of Yammer give
+an excellent and in depth look into how they built “Streamie”, user
+notifications, why Riak was the right choice, and the lessons learned in
+the process. Read more and get the slides in the Riak blog [here](http://basho.com/posts/business/Riak-And-Scala-At-Yammer/)
+
+[Riak at Voxer](http://player.vimeo.com/video/44498491)
+
+The team at Voxer has long relied on Riak as their primary data store for
+various production services. They have put Riak through its paces and have
+served as one of our more exciting customers and use cases: Riak was in
+place when they shot to the top of the App Store at the end of 2011. We
+also love them because they open-sourced their Node.js client. Read more
+and get the slides in the Riak blog [here](http://basho.com/posts/business/Riak-in-Production-at-Voxer/)
 
 ## Articles, Blog Posts, and Other Content
 
@@ -365,26 +321,5 @@ or other pieces of information useful for later retrieval.
 
 ### Articles et al Community Examples
 
-<table class="use-cases__image-links">
-  <tr>
-    <td>
-      <a href="http://media.basho.com/pdf/Linkfluence-Case-Study-v2-1.pdf" class="vid_img" link target="_blank">
-        <img src="/images/linkfluence-case-study.png" title="Milking Performance" />
-      </a>
-    </td>
-    <td>
-      Linkfluence case study on using Riak to <a href="http://media.basho.com/pdf/Linkfluence-Case-Study-v2-1.pdf" target="_blank">store social web content</a>.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="http://basho.com/assets/Basho-Case-Study-ideeli.pdf" class="vid_img" link target="_blank">
-        <img src="/images/ideeli-case-study.png" title="Milking Performance" />
-      </a>
-    </td>
-    <td>
-      ideeli case study on <a href="http://basho.com/assets/Basho-Case-Study-ideeli.pdf" target="_blank">serving web pages with Riak</a>.
-    </td>
-  </tr>
-</table>
-
+* Linkfluence case study on using Riak to (store social web content)[http://media.basho.com/pdf/Linkfluence-Case-Study-v2-1.pdf]
+* ideeli case study on [serving web pages with Riak](http://basho.com/assets/Basho-Case-Study-ideeli.pdf)

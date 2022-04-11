@@ -5,9 +5,9 @@ slug: using-rra
 sidebar_position: 1
 ---
 
-[addon redis develop]: ../redis/developing-rra
-[addon redis setup]: ../redis/set-up-rra/
-[dev api http]: /docs/developing/api/http/
+[addon redis develop]: ../redis/developing-rra.md
+[addon redis setup]: ../redis/set-up-rra/index.md
+[dev api http]: ../../developing/api/http/index.md 
 [ee]: http://basho.com/contact/
 
 

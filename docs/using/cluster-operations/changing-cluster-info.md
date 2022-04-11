@@ -5,7 +5,7 @@ slug: changing-cluster-info
 sidebar_position: 1
 ---
 
-[config reference]: /docs/configuring/reference
+[config reference]: ../../configuring/reference.md
 
 ## Change the Node Name
 
@@ -107,7 +107,7 @@ To rename a single-node development cluster:
 
 For multi-node clusters, a rename is a slightly more complex procedure; however, it is very similar to the process for renaming a single node.
 
-Previous to Riak version 1.2, a cluster node's name could only be changed with the [`riak-admin reip`](/docs/using/admin/riak-admin/#reip) command, which involves downtime for the entire cluster. As of Riak version 1.2, that method has been superseded by [`riak-admin cluster force-replace`](/docs/using/admin/riak-admin/#cluster-force-replace), which is safer and does not require cluster wide downtime.
+Previous to Riak version 1.2, a cluster node's name could only be changed with the [`riak-admin reip`](../../using/admin/riak-admin.md#reip) command, which involves downtime for the entire cluster. As of Riak version 1.2, that method has been superseded by [`riak-admin cluster force-replace`](../../using/admin/riak-admin.md#cluster-force-replace), which is safer and does not require cluster wide downtime.
 
 There still exist scenarios that require nodes to be renamed while stopped, such as seeding a cluster with backups from another cluster that does not share the same node names. Please see the [Clusters from Backups](#clusters-from-backups) section for more details on renaming in this scenario.
 

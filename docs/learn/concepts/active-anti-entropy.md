@@ -5,15 +5,15 @@ slug: active-anti-entropy
 sidebar_position: 0
 ---
 
-[cluster ops v3 mdc]: /docs/using/cluster-operations/v3-multi-datacenter
-[cluster ops aae]: /docs/using/cluster-operations/active-anti-entropy
-[concept clusters]: /docs/learn/concepts/clusters
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[config aae]: /docs/configuring/reference/#active-anti-entropy
-[glossary read rep]: /docs/learn/glossary/#read-repair
-[glossary vnode]: /docs/learn/glossary/#vnode
+[cluster ops v3 mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
+[cluster ops aae]: ../../using/cluster-operations/active-anti-entropy.md
+[concept clusters]: ../../learn/concepts/clusters.md
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+[config aae]: ../../configuring/reference.md#active-anti-entropy
+[glossary read rep]: ../../learn/glossary.md#read-repair
+[glossary vnode]: ../../learn/glossary.md#vnode
 [Merkle tree]: http://en.wikipedia.org/wiki/Merkle_tree
-[usage search]: /docs/developing/usage/search
+[usage search]: ../../developing/usage/search.md
 
 
 In a [clustered][concept clusters], [eventually consistent][concept eventual consistency] system like Riak, conflicts between object replicas stored

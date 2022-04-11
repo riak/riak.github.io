@@ -5,28 +5,28 @@ slug: reference
 sidebar_position: 3
 ---
 
-[concept clusters]: ../../learn/concepts/clusters
-[plan backend bitcask]: ../../setup/planning/backend/bitcask
-[config backend bitcask]: ../../setup/planning/backend/bitcask/#configuring-bitcask
-[plan backend leveldb]: ../../setup/planning/backend/leveldb
-[config backend leveldb]: ../../setup/planning/backend/leveldb/#configuring-eleveldb
-[plan backend memory]: ../../setup/planning/backend/memory
-[config backend memory]: ../../setup/planning/backend/memory/#configuring-the-memory-backend
-[plan backend multi]: ../../setup/planning/backend/multi
-[config backend multi]: ../../setup/planning/backend/multi/#configuring-multiple-backends-1
-[use admin riak cli]: ../../using/admin/riak-cli
-[use admin riak-admin]: ../../using/admin/riak-admin
-[glossary aae]: ../../learn/glossary/#active-anti-entropy-aae
-[use ref search 2i]: ../../using/reference/secondary-indexes
-[cluster ops bucket types]: ../../using/cluster-operations/bucket-types
-[usage conflict resolution]: ../../developing/usage/conflict-resolution
-[concept causal context]: ../../learn/concepts/causal-context
-[usage mapreduce]: ../../developing/usage/mapreduce
-[security index]: ../../using/security/
-[cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency
-[glossary vnode]: ../../learn/glossary/#vnode
-[cluster ops handoff]: ../../using/cluster-operations/handoff
-[Search Settings]: ../search#search-config-settings
+[concept clusters]: ../learn/concepts/clusters.md
+[plan backend bitcask]: ../setup/planning/backend/bitcask.md
+[config backend bitcask]: ../setup/planning/backend/bitcask.md#configuring-bitcask
+[plan backend leveldb]: ../setup/planning/backend/leveldb.md
+[config backend leveldb]: ../setup/planning/backend/leveldb.md#configuring-eleveldb
+[plan backend memory]: ../setup/planning/backend/memory.md
+[config backend memory]: ../setup/planning/backend/memory.md#configuring-the-memory-backend
+[plan backend multi]: ../setup/planning/backend/multi.md
+[config backend multi]: ../setup/planning/backend/multi.md#configuring-multiple-backends-1
+[use admin riak cli]: ../using/admin/riak-cli.md
+[use admin riak-admin]: ../using/admin/riak-admin.md
+[glossary aae]: ../learn/glossary.md#active-anti-entropy-aae
+[use ref search 2i]: ../using/reference/secondary-indexes.md
+[cluster ops bucket types]: ../using/cluster-operations/bucket-types.md
+[usage conflict resolution]: ../developing/usage/conflict-resolution/index.md
+[concept causal context]: ../learn/concepts/causal-context.md
+[usage mapreduce]: ../developing/usage/mapreduce.md
+[security index]: ../using/security/index.md
+[cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
+[glossary vnode]: ../learn/glossary.md#vnode
+[cluster ops handoff]: ../using/cluster-operations/handoff.md
+[Search Settings]: ./search.md#search-config-settings
 
 Riak has a `riak.conf` configuration file located in `/etc` if you are
 using a source install or in `/etc/riak` or `/usr/local/etc` if you used

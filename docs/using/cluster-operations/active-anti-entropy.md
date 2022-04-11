@@ -4,15 +4,15 @@ id: cluster_operations_aae
 sidebar_position: 9
 ---
 
-[config search#throttledelay]: /docs/configuring/search/#search-anti-entropy-throttle-$tier-delay
-[config search#throttle]: riak/kv/2.2.3/configuring/search/#search-anti-entropy-throttle
+[config search#throttledelay]: ../../configuring/search.md#search-anti-entropy-throttle-$tier-delay
+[config search#throttle]: ../../configuring/search.md#search-anti-entropy-throttle
 
-Riak's [active anti-entropy](../../../learn/concepts/active-anti-entropy/) \(AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
+Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) \(AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
 
 ## Enabling Active Anti-Entropy
 
 Whether AAE is currently enabled in a node is determined by the value of
-the `anti_entropy` parameter in the node's [configuration files](../../../configuring/reference/).
+the `anti_entropy` parameter in the node's [configuration files](../../configuring/reference.md).
 
 In Riak versions 2.0 and later, AAE is turned on by default.
 
@@ -46,12 +46,12 @@ anti_entropy = active-debug
 ]}
 ```
 
-Remember that you will need to [restart the node](../../admin/riak-admin/#restart) for any configuration-related changes to take effect.
+Remember that you will need to [restart the node](../admin/riak-admin.md#restart) for any configuration-related changes to take effect.
 
 ## Disabling Active Anti-Entropy
 
 Alternatively, AAE can be switched off if you would like to repair
-object inconsistencies using [read repair](../../../learn/concepts/active-anti-entropy/#read-repair) alone:
+object inconsistencies using [read repair](../../learn/concepts/active-anti-entropy.md#read-repair) alone:
 
 ```riakconf
 anti_entropy = passive
@@ -79,7 +79,7 @@ The default directory for AAE data is `./data/anti_entropy`, as in the
 example above, but this can be changed. See the section below titled
 **Data Directory**.
 
-Remember that you will need to [restart the node](../../admin/riak-admin/#restart) for any configuration-related changes to take effect.
+Remember that you will need to [restart the node](../admin/riak-admin.md#restart) for any configuration-related changes to take effect.
 
 The directory deletion method above can also be used to force a
 rebuilding of hash trees.
@@ -128,16 +128,16 @@ Index                                                Last      Mean      Max
 ```
 
 Each of these three tables contains information for each
-[vnode](../../../learn/concepts/vnodes) in your cluster in these three categories:
+[vnode](../../learn/concepts/vnodes.md) in your cluster in these three categories:
 
-Category | Measures | Description
-:--------|:---------|:-----------
-**Exchanges** | `Last` | When the most recent exchange between a data partition and one of its replicas was performed
-  | `All` | How long it has been since a partition exchanged with all of its replicas
-**Entropy Trees** | `Built` | When the hash trees for a given partition were created
-**Keys Repaired** | `Last` | The number of keys repaired during all key exchanges since the last node restart
-  | `Mean` | The mean number of keys repaired during all key exchanges since the last node restart
-  | `Max` | The maximum number of keys repaired during all key exchanges since the last node restart
+| Category          | Measures                                                                                 | Description                                                                                  |
+|:------------------|:-----------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|
+| **Exchanges**     | `Last`                                                                                   | When the most recent exchange between a data partition and one of its replicas was performed |
+| `All`             | How long it has been since a partition exchanged with all of its replicas                |                                                                                              |
+| **Entropy Trees** | `Built`                                                                                  | When the hash trees for a given partition were created                                       |
+| **Keys Repaired** | `Last`                                                                                   | The number of keys repaired during all key exchanges since the last node restart             |
+| `Mean`            | The mean number of keys repaired during all key exchanges since the last node restart    |                                                                                              |
+| `Max`             | The maximum number of keys repaired during all key exchanges since the last node restart |                                                                                              |
 
 All AAE status information obtainable using the `riak-admin aae-status`
 command is stored in-memory and is reset when a node is restarted with
@@ -146,7 +146,7 @@ the exception of hash tree build information, which is persisted on disk
 
 ## Configuring AAE
 
-Riak's [configuration files](../../../configuring/reference/) enable you not just to turn AAE on and
+Riak's [configuration files](../../configuring/reference.md) enable you not just to turn AAE on and
 off but also to fine-tune your cluster's use of AAE, e.g. how
 much memory AAE processes should consume, how frequently specific
 processes should be run, etc.
@@ -160,7 +160,7 @@ by setting the `anti_entropy.data_dir` parameter to a different value.
 ### Throttling
 
 AAE has a built-in throttling mechanism that can insert delays between
-AAE repair operations when [vnode](../../../learn/concepts/vnodes) mailboxes reach the length
+AAE repair operations when [vnode](../../learn/concepts/vnodes.md) mailboxes reach the length
 specified by the [`search.anti_entropy.throttle.$tier.delay`][config search#throttledelay] parameter (more on
 that in the section below). Throttling can be switched on and off using
 the [`search.anti_entropy.throttle`][config search#throttle] parameter. The default is `on`.
@@ -238,7 +238,7 @@ default is 1.
 ### Write Buffer Size
 
 While you are free to choose the backend for data storage in Riak,
-background AAE processes use [LevelDB](../../../setup/planning/backend/leveldb). You can adjust the size of the
+background AAE processes use [LevelDB](../../setup/planning/backend/leveldb.md). You can adjust the size of the
 write buffer used by LevelDB for hash tree generation using the
 `anti_entropy.write_buffer_size` parameter. The default is `4MB`.
 
@@ -249,15 +249,15 @@ cross-node information exchanges or hash tree builds can happen
 concurrently. The default is `2`.
 
 The `anti_entropy.max_open_files` parameter sets an open-files limit for
-AAE-related background tasks, analogous to [open files limit](../../performance/open-files-limit) settings used in operating systems. The default is `20`.
+AAE-related background tasks, analogous to [open files limit](../performance/open-files-limit.md) settings used in operating systems. The default is `20`.
 
 ## AAE and Riak Search
 
 Riak's AAE subsystem works to repair object inconsistencies both with
-for normal key/value objects as well as data related to [Riak Search](../../../developing/usage/search). In particular, AAE acts on indexes stored in
+for normal key/value objects as well as data related to [Riak Search](../../developing/usage/search.md). In particular, AAE acts on indexes stored in
 [Solr](http://lucene.apache.org/solr/), the search platform that drives
 Riak Search. Implementation details for AAE and Search can be found in
-the [Search Details](../../reference/search/#active-anti-entropy-aae)
+the [Search Details](../reference/search.md#active-anti-entropy-aae)
 documentation.
 
 You can check on the status of Search-related AAE using the following

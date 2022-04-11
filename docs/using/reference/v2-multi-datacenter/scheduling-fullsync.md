@@ -6,7 +6,7 @@ sidebar_position: 1
 ---
 
 :::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/using/reference/v3-multi-datacenter/scheduling-fullsync/) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../../using/reference/v3-multi-datacenter/scheduling-fullsync.md) instead.
 :::note
 
 

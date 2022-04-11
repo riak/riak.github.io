@@ -5,7 +5,7 @@ slug: dt-fetch
 sidebar_position: 15
 ---
 
-The equivalent of [`RpbGetReq`](/docs/developing/api/protocol-buffers/fetch-object) for [Riak Data Types](/docs/developing/data-types). This request results in a `DtFetchResp`
+The equivalent of [`RpbGetReq`](../../../developing/api/protocol-buffers/fetch-object.md) for [Riak Data Types](../../../developing/data-types/index.md). This request results in a `DtFetchResp`
 message (explained in the **Response** section below).
 
 ## Request
@@ -28,18 +28,18 @@ message DtFetchReq {
 
 #### Required Parameters
 
-| Parameter | Description                                                                                                                                                                   |
-|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                       |
-| `key`     | The key where the Data Type is stored                                                                                                                                         |
-| `type`    | The [Using Bucket Types](/docs/using/cluster-operations/bucket-types) of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map) |
+| Parameter | Description                                                                                                                                                                         |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                             |
+| `key`     | The key where the Data Type is stored                                                                                                                                               |
+| `type`    | The [Using Bucket Types](../../../using/cluster-operations/bucket-types.md) of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map) |
 
 #### Optional Parameters
 
 > **Note on defaults and special values**
 >
 > All of the optional parameters below have default values determined on a
-per-bucket basis. Please refer to the documentation on [setting bucket properties](/docs/developing/api/protocol-buffers/set-bucket-props) for more information.
+per-bucket basis. Please refer to the documentation on [setting bucket properties](../../../developing/api/protocol-buffers/set-bucket-props.md) for more information.
 
 Furthermore, you can assign an integer value to the `r` and
 `pr`, provided that that integer value is less than or equal
@@ -62,7 +62,7 @@ to N, _or_ a special value denoting `one`
 
 ## Response
 
-The response to a fetch request ([`DtFetchReq`](/docs/developing/api/protocol-buffers/dt-fetch)) is a `DtFetchResp` message.
+The response to a fetch request ([`DtFetchReq`](../../../developing/api/protocol-buffers/dt-fetch.md)) is a `DtFetchResp` message.
 
 ```protobuf
 message DtFetchResp {
@@ -81,7 +81,7 @@ message DtFetchResp {
 If the `include_context` option is specified, an opaque "context" value
 will be returned along with the user-readable data. When sending an
 update request, the client should send this context as well, just as one
-would send a [vclock](/docs/learn/glossary/#vector-clock) for standard KV updates.
+would send a [vclock](../../../learn/glossary.md#vector-clock) for standard KV updates.
 
 The type of the Data Type is specified in the `type` field, and must be
 one of the three possible values of the `DataType` enum (`COUNTER`,

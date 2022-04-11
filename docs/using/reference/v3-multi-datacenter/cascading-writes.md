@@ -71,7 +71,7 @@ cascade.
 ## Usage
 
 Riak Enterprise Cascading Writes can be enabled and disabled using the
-`riak-repl` command. Please see the [Version 3 Operations guide](/docs/using/cluster-operations/v3-multi-datacenter) for more information.
+`riak-repl` command. Please see the [Version 3 Operations guide](../../../using/cluster-operations/v3-multi-datacenter.md) for more information.
 
 To show current the settings:
 

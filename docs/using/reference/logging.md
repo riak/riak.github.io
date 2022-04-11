@@ -5,13 +5,13 @@ slug: logging
 sidebar_position: 0
 ---
 
-[cluster ops log]: /docs/using/cluster-operations/logging
+[cluster ops log]: ../../using/cluster-operations/logging.md
 
 Logging in Riak KV is handled by a Basho-produced logging framework for
 [Erlang](http://www.erlang.org) called
 [lager](https://github.com/basho/lager).
 
-lager provides a number of configuration options that you can use to fine-tune your Riak cluster's logging output. A compact listing of parameters can be found in our [configuration files](/docs/configuring/reference/#logging) documentation. A more thorough explanation of these options can be found in this document.
+lager provides a number of configuration options that you can use to fine-tune your Riak cluster's logging output. A compact listing of parameters can be found in our [configuration files](../../configuring/reference.md#logging) documentation. A more thorough explanation of these options can be found in this document.
 
 ## Log Directory
 
@@ -31,13 +31,13 @@ Source install and Mac OS X | `./log` (where the `.` represents the root install
 Below is a list of files that can be found in each node's `/log`
 directory:
 
-File | Significance
-:----|:------------
-`console.log` | Console log output
-`crash.log` | Crash logs
-`erlang.log` | Logs emitted by the [Erlang VM](../../performance/erlang) on which Riak runs.
-`error.log` | [Common errors](../../repair-recovery/errors) emitted by Riak.
-`run_erl.log` | The log file for an Erlang process called `run_erl`. This file can typically be ignored.
+| File          | Significance                                                                             |
+|:--------------|:-----------------------------------------------------------------------------------------|
+| `console.log` | Console log output                                                                       |
+| `crash.log`   | Crash logs                                                                               |
+| `erlang.log`  | Logs emitted by the [Erlang VM](../performance/erlang.md) on which Riak runs.            |
+| `error.log`   | [Common errors](../repair-recovery/errors.md) emitted by Riak.                           |
+| `run_erl.log` | The log file for an Erlang process called `run_erl`. This file can typically be ignored. |
 
 ## Log Syntax
 
@@ -91,12 +91,12 @@ Error in process <0.4330.323> on node 'dev1@127.0.0.1' with exit value: ...
 In each node's `/log` directory, you will see at least one of each of
 the following:
 
-File | Contents
-:----|:--------
-`console.log` | General messages from all Riak subsystems
-`crash.log` | Catastrophic events, such as node failures, running out of disk space, etc.
-`erlang.log` | Events from the Erlang VM on which Riak runs
-`run_erl.log` | The command-line arguments used when starting Riak
+| File          | Contents                                                                    |
+|:--------------|:----------------------------------------------------------------------------|
+| `console.log` | General messages from all Riak subsystems                                   |
+| `crash.log`   | Catastrophic events, such as node failures, running out of disk space, etc. |
+| `erlang.log`  | Events from the Erlang VM on which Riak runs                                |
+| `run_erl.log` | The command-line arguments used when starting Riak                          |
 
 ### Log File Rotation
 
@@ -264,11 +264,11 @@ or to neither. This is determined by the value that you give to the
 * `file` --- Console logs will be emitted to a file. This is Riak's
     default behavior. The location of that file is determined by the
     `log.console.file` parameter. The default location is
-    `./log/console.log` on an installation from [source](/docs/setup/installing/source), but will differ on platform-specific installation,
+    `./log/console.log` on an installation from [source](../../setup/installing/source/index.md), but will differ on platform-specific installation,
     e.g.  `/var/log/riak` on Ubuntu, Debian, CentOS, and RHEL or
     `/opt/riak/log` on Solaris-based platforms.
 * `console` --- Console logs will be emitted to standard output, which
-    can be viewed by running the [`riak attach-direct`](/docs/using/admin/riak-cli/#attach-direct) command
+    can be viewed by running the [`riak attach-direct`](../../using/admin/riak-cli.md#attach-direct) command
 * `both` --- Console logs will be emitted both to a file and to standard
     output
 * `off` --- Console log messages will be disabled

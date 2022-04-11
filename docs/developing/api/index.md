@@ -4,9 +4,9 @@ id: developing_apis
 sidebar_position: 6
 ---
 
-[dev api http]: ./http
-[dev api backend]: ./backend
-[dev api pbc]: ./protocol-buffers/
+[dev api http]: ./http/index.md
+[dev api backend]: ./backend.md
+[dev api pbc]: ./protocol-buffers/index.md
 
 ## [HTTP APIs][dev api http]
 

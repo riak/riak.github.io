@@ -5,8 +5,8 @@ slug: search
 sidebar_position: 5
 ---
 
-[usage search schema]: ../search-schemas/
-[bucket types]: ../bucket-types/
+[usage search schema]: ./search-schemas.md
+[bucket types]: ./bucket-types.md
 
 ## Setup
 
@@ -27,7 +27,7 @@ Riak search, you should not disable AAE without understanding the risks
 of divergence between the data in the Riak backends and the Solr indexes 
 and how that can impact your application. More information about how 
 Riak search uses AAE is in the 
-[Riak search reference](../../../using/reference/search/#active-anti-entropy-aae).
+[Riak search reference](../../using/reference/search.md#active-anti-entropy-aae).
 :::note
 
 Riak Search must first be configured with a Solr schema so that Solr
@@ -58,7 +58,7 @@ support.
 All `curl` examples in this document assume that you have set an
 environment variable named `RIAK_HOST`, which points to a Riak base URL,
 such as `http://localhost:8098`. The appropriate value for `RIAK_HOST`
-will depend on your [configuration](/docs/configuring/reference#client-interfaces).
+will depend on your [configuration](../../configuring/reference.md#client-interfaces).
 
 ## Creating an Index
 
@@ -134,7 +134,7 @@ curl -XPUT $RIAK_HOST/search/index/famous
 
 > **Getting started with Riak clients**
 >
-> If you are connecting to Riak using one of Basho's official [client libraries](/docs/developing/client-libraries), you can find more information about getting started with your client in the [Developing with Riak KV: Getting Started](/docs/developing/getting-started) section.
+> If you are connecting to Riak using one of Basho's official [client libraries](../../developing/client-libraries.md), you can find more information about getting started with your client in the [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
 
 
 Note that the above command is exactly the same as the following, which
@@ -335,7 +335,7 @@ ingest according to your schema.
 
 ## Riak Search Security Setup
 
-[Security](/docs/using/security/) is a new feature as of
+[Security](../../using/security/index.md) is a new feature as of
 Riak 2.0 that lets an administrator limit access to certain resources.
 In the case of search, your options are to limit administration of
 schemas or indexes (the `search.admin` permission) to certain users, and
@@ -631,7 +631,7 @@ store opaque values in Riak? For that, we employ extractors.
 Extractors are modules in Riak that accept a Riak value with a certain
 content type and convert it into a list of fields that can be indexed by
 Solr. This is done transparently and automatically as part of the
-indexing process. You can even create your own [custom extractors](/docs/developing/usage/custom-extractors).
+indexing process. You can even create your own [custom extractors](../../developing/usage/custom-extractors.md).
 
 Our current example uses the JSON extractor, but Riak Search also
 extracts indexable fields from the following content types:
@@ -639,13 +639,13 @@ extracts indexable fields from the following content types:
 * JSON (`application/json`)
 * XML (`application/xml`, `text/xml`)
 * Plain text (`text/plain`)
-* [Riak Data Types](/docs/developing/data-types/)
+* [Riak Data Types](../../developing/data-types/index.md)
   * counter (`application/riak_counter`)
   * map (`application/riak_map`)
   * set (`application/riak_set`)
 * noop (unknown content type)
 
-More on Riak Data Types can be found in [Riak Data Types and Search](/docs/developing/usage/searching-data-types).
+More on Riak Data Types can be found in [Riak Data Types and Search](../../developing/usage/searching-data-types.md).
 
 In the examples we've seen, the JSON field `name_s` is translated to a
 Solr index document field insert. Solr will index any field that it
@@ -679,7 +679,7 @@ The above JSON will insert a list of three values into Solr to be
 indexed: `people_ss=Ryan`, `people_ss=Eric`, `people_ss=Brett`.
 
 You can also create your own custom extractors if your data doesn't fit
-one of the default types. A full tutorial can be found in [Custom Search Extractors](/docs/developing/usage/custom-extractors).
+one of the default types. A full tutorial can be found in [Custom Search Extractors](../../developing/usage/custom-extractors.md).
 
 ### Automatic Fields
 
@@ -1396,7 +1396,7 @@ fix this shortcoming in a future version of Riak.
 ### MapReduce
 
 Riak Search allows for piping search results as inputs for
-[MapReduce](/docs/developing/usage/mapreduce/) jobs. This is a useful cross-section for
+[MapReduce](../../developing/usage/mapreduce.md) jobs. This is a useful cross-section for
 performing post-calculations of results or aggregations of ad-hoc
 queries. The Riak Search MapReduce integration works similarly to
 regular MapReduce, with the notable exception that your input is not a

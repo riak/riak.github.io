@@ -6,10 +6,10 @@ sidebar_position: 1
 ---
 
 [upgrade 2.0#upgrading-leveldB]: /
-[glossary vnode]: /docs/learn/glossary/#vnode
-[config reference]: /docs/configuring/reference
-[perf index]: /docs/using/performance
-[config reference#aae]: /docs/configuring/reference/#active-anti-entropy
+[glossary vnode]: ../../../learn/glossary.md#vnode
+[config reference]: ../../../configuring/reference.md
+[perf index]: ../../../using/performance/index.md
+[config reference#aae]: ../../../configuring/reference.md#active-anti-entropy
 
 > **Note on upgrading to 2.0**
 >

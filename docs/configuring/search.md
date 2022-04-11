@@ -5,15 +5,15 @@ slug: search
 sidebar_position: 5
 ---
 
-[usage search]: /docs/developing/usage/search
-[usage search schema]: /docs/developing/usage/search-schemas
-[usage search data types]: /docs/developing/usage/searching-data-types
-[usage custom extractors]: /docs/developing/usage/custom-extractors
-[cluster-ops aae throttle]: /docs/using/cluster-operations/active-anti-entropy/#throttling
-[config reference]: /docs/configuring/reference
-[config reference#search]: /docs/configuring/reference/#search
-[glossary aae]: /docs/learn/glossary/#active-anti-entropy-aae
-[security index]: /docs/using/security/
+[usage search]: ../developing/usage/search.md
+[usage search schema]: ../developing/usage/search-schemas.md
+[usage search data types]: ../developing/usage/searching-data-types.md
+[usage custom extractors]: ../developing/usage/custom-extractors.md
+[cluster-ops aae throttle]: ../using/cluster-operations/active-anti-entropy.md#throttling
+[config reference]: ../configuring/reference.md
+[config reference#search]: ../configuring/reference.md#search
+[glossary aae]: ../learn/glossary.md#active-anti-entropy-aae
+[security index]: ../using/security/index.md
 
 [java se downloads]: http://www.oracle.com/technetwork/java/javase/downloads
 [java se docs]: http://www.oracle.com/technetwork/java/javase/documentation
@@ -148,7 +148,7 @@ Valid values: Integer
 
 The window of time during which `search.queue.error_threshold.failure_count` failures will cause Riak KV to skip updates to a search index; defaults to `5000`. 
 
-If [`search.queue.error_threshold.failure_count`](#search-queue-error-threshold-failure-count) errors have occurred within this interval on a given search index, then Riak will skip updates to that index until the [`search.queue.error_threshold.reset_interval`](search-queue-error-threshold-reset-interval) has passed.
+If [`search.queue.error_threshold.failure_count`](#search-queue-error-threshold-failure-count) errors have occurred within this interval on a given search index, then Riak will skip updates to that index until the [`search.queue.error_threshold.reset_interval`](#search-queue-error-threshold-reset-interval) has passed.
 
 Valid values: Milliseconds
 
@@ -252,11 +252,8 @@ For further information on Solr monitoring, tuning, and performance, we
 recommend the following documents for getting started:
 
 * [Solr Monitoring](https://wiki.apache.org/solr/SolrMonitoring)
-* [Solr Performance
-    Factors](https://wiki.apache.org/solr/SolrPerformanceFactors)
-* [Solr Performance
-    Problems](https://wiki.apache.org/solr/SolrPerformanceProblems)
+* [Solr Performance Factors](https://wiki.apache.org/solr/SolrPerformanceFactors)
+* [Solr Performance Problems](https://wiki.apache.org/solr/SolrPerformanceProblems)
 * [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html)
 
-A wide variety of other documentation is available from the Solr OSS
-community.
+A wide variety of other documentation is available from the Solr OSS community.

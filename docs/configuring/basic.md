@@ -5,26 +5,26 @@ slug: basic
 sidebar_position: 0
 ---
 
-[config reference]: /docs/configuring/reference
-[use running cluster]: /docs/using/running-a-cluster
-[use admin riak-admin#member-status]: /docs/using/admin/riak-admin/#member-status
-[perf erlang]: /docs/using/performance/erlang
-[plan start]: /docs/setup/planning/start
-[plan best practices]: /docs/setup/planning/best-practices
-[cluster ops backup]: /docs/using/cluster-operations/backing-up
-[cluster ops add remove node]: /docs/using/cluster-operations/adding-removing-nodes
-[plan backend]: /docs/setup/planning/backend
-[plan backend multi]: /docs/setup/planning/backend/multi
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[usage bucket types]: /docs/developing/usage/bucket-types
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[concept buckets]: /docs/learn/concepts/buckets
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[perf benchmark]: /docs/using/performance/benchmarking
-[perf open files]: /docs/using/performance/open-files-limit
-[perf index]: /docs/using/performance
-[perf aws]: /docs/using/performance/amazon-web-services
-[Cluster Capacity Planning]: /docs/setup/planning/cluster-capacity/#ring-size-number-of-partitions
+[config reference]: ../configuring/reference.md
+[use running cluster]: ../using/running-a-cluster.md
+[use admin riak-admin#member-status]: ../using/admin/riak-admin.md#member-status
+[perf erlang]: ../using/performance/erlang.md
+[plan start]: ../setup/planning/start.md
+[plan best practices]: ../setup/planning/best-practices.md
+[cluster ops backup]: ../using/cluster-operations/backing-up.md
+[cluster ops add remove node]: ../using/cluster-operations/adding-removing-nodes.md
+[plan backend]: ../setup/planning/backend/index.md
+[plan backend multi]: ../setup/planning/backend/multi.md
+[plan backend bitcask]: ../setup/planning/backend/bitcask.md
+[usage bucket types]: ../developing/usage/bucket-types.md
+[apps replication properties]: ../developing/app-guide/replication-properties.md
+[concept buckets]: ../learn/concepts/buckets.md
+[concept eventual consistency]: ../learn/concepts/eventual-consistency.md
+[perf benchmark]: ../using/performance/benchmarking.md
+[perf open files]: ../using/performance/open-files-limit.md
+[perf index]: ../using/performance/index.md
+[perf aws]: ../using/performance/amazon-web-services.md
+[Cluster Capacity Planning]: ../setup/planning/cluster-capacity.md#ring-size-number-of-partitions
 
 This document covers the parameters that are commonly adjusted when
 setting up a new cluster. We recommend that you also review the detailed
@@ -206,7 +206,7 @@ For more on bucket properties, we recommend reviewing our docs on
 
 If the default bucket properties are modified in your configuration
 files and the node is restarted, any existing buckets will **not** be
-directly impacted, although the mechanism described in [HTTP Reset Bucket Properties](/docs/developing/api/http/reset-bucket-props) can be used to force them to pick up the new
+directly impacted, although the mechanism described in [HTTP Reset Bucket Properties](../developing/api/http/reset-bucket-props.md) can be used to force them to pick up the new
 defaults.
 
 ## System tuning

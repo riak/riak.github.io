@@ -4,13 +4,12 @@ id: installing_source
 sidebar_position: 9
 ---
 
-[install source erlang]: /docs/setup/installing/source/erlang
-[downloads]: /docs/downloads/
-[install debian & ubuntu#source]: /docs/setup/installing/debian-ubuntu/#installing-from-source
-[install freebsd#source]: /docs/setup/installing/freebsd/#installing-from-source
-[install mac osx#source]: /docs/setup/installing/mac-osx/#installing-from-source
-[install rhel & centos#source]: /docs/setup/installing/rhel-centos/#installing-from-source
-[install verify]: /docs/setup/installing/verify
+[install source erlang]: ./erlang.md
+[install debian & ubuntu#source]: ../debian-ubuntu.md#installing-from-source
+[install freebsd#source]: ../freebsd.md#installing-from-source
+[install mac osx#source]: ../mac-osx.md#installing-from-source
+[install rhel & centos#source]: ../rhel-centos.md#installing-from-source
+[install verify]: ../verify.md
 
 Riak should be installed from source if you are building on a platform
 for which a package does not exist or if you are interested in
@@ -38,18 +37,6 @@ compiler is [GCC](https://gcc.gnu.org/).
 The following instructions generate a complete, self-contained build of
 Riak in `$RIAK/rel/riak` where `$RIAK` is the location of the unpacked
 or cloned source.
-
-### Installing from source package
-
-Download the Riak source package from the [Download Center][downloads] and build:
-
-```bash
-curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.0/2.2.3/riak-2.2.3.tar.gz
-tar zxvf riak-2.2.3.tar.gz
-cd riak-2.2.3
-make locked-deps
-make rel
-```
 
 ### Installing from GitHub
 

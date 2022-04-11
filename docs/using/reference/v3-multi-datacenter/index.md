@@ -4,10 +4,10 @@ id: managing_ref_v3
 sidebar_position: 14
 ---
 
-[v3 mdc arch]: ./architecture
-[v3 mdc aae]: ./aae
-[v3 mdc cascade]: ./cascading-writes
-[v3 mdc fullsync]: ./scheduling-fullsync
+[v3 mdc arch]: ./architecture.md
+[v3 mdc aae]: ./aae.md
+[v3 mdc cascade]: ./cascading-writes.md
+[v3 mdc fullsync]: ./scheduling-fullsync.md
 
 ## [Architecture][v3 mdc arch]
 

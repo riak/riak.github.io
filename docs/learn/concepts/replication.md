@@ -6,14 +6,14 @@ sidebar_position: 8
 ---
 
 
-[cluster ops v3 mdc]: /docs/using/cluster-operations/v3-multi-datacenter
-[concept aae]: /docs/learn/concepts/active-anti-entropy
-[concept causal context vc]: /docs/learn/concepts/causal-context/#vector-clocks
-[concept clusters]: /docs/learn/concepts/clusters
-[concept vnodes]: /docs/learn/concepts/vnodes
-[glossary node]: /docs/learn/glossary/#node
-[glossary ring]: /docs/learn/glossary/#ring
-[usage replication]: /docs/developing/usage/replication
+[cluster ops v3 mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
+[concept aae]: ../../learn/concepts/active-anti-entropy.md
+[concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
+[concept clusters]: ../../learn/concepts/clusters.md
+[concept vnodes]: ../../learn/concepts/vnodes.md
+[glossary node]: ../../learn/glossary.md#node
+[glossary ring]: ../../learn/glossary.md#ring
+[usage replication]: ../../developing/usage/replication.md
 
 
 Data replication is a core feature of Riak's basic architecture. Riak
@@ -25,13 +25,13 @@ Replication is fundamental and automatic in Riak, providing security
 that your data will still be there if a node in your Riak cluster goes
 down. All data stored in Riak will be replicated to a number of nodes in
 the cluster according to the N value (`n_val`) property set in a
-bucket's [bucket type](/docs/developing/usage/bucket-types).
+bucket's [bucket type](../../developing/usage/bucket-types.md).
 
 >**Note: Replication across clusters**
 >
 >If you're interested in replication not just within a cluster but across
 multiple clusters, we recommend checking out our documentation on Riak's
-[Multi-Datacenter Replications](/docs/setup/planning/backend/multi) capabilities.
+[Multi-Datacenter Replications](../../setup/planning/backend/multi.md) capabilities.
 
 ## Selecting an N value (`n_val`)
 
@@ -58,7 +58,7 @@ nodes with the data will cause the read to fail.
 ## Setting the N value (`n_val`)
 
 To change the N value for a bucket, you need to create a [bucket
-type](/docs/developing/usage/bucket-types) with `n_val` set to your desired value and
+type](../../developing/usage/bucket-types.md) with `n_val` set to your desired value and
 then make sure that the bucket bears that type.
 
 In this example, we'll set N to 2. First, we'll create the bucket type
@@ -89,8 +89,8 @@ objects' preflists, i.e. lists of [vnodes][concept vnodes] responsible for the o
 can end up 
 
 Unreachable data is a problem because it can negatively impact coverage
-queries, e.g. [secondary index](/docs/developing/usage/secondary-indexes/) and
-[MapReduce](/docs/developing/usage/mapreduce/) queries. Lowering an object or bucket's
+queries, e.g. [secondary index](../../developing/usage/secondary-indexes.md) and
+[MapReduce](../../developing/usage/mapreduce.md) queries. Lowering an object or bucket's
 `n_val` will likely mean that objects that you would expect to
 be returned from those queries will no longer be returned.
 

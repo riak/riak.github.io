@@ -6,11 +6,11 @@ sidebar_position: 6
 ---
 
 Stores an object under the specified location, as determined by the
-intended [key](/docs/learn/concepts/keys-and-objects), [bucket](/docs/learn/concepts/buckets), and [bucket type](/docs/developing/usage/bucket-types). A bucket must always be specified (via
+intended [key](../../../learn/concepts/keys-and-objects.md), [bucket](../../../learn/concepts/buckets.md), and [bucket type](../../../developing/usage/bucket-types.md). A bucket must always be specified (via
 `bucket`), whereas key (`key`) and bucket type (`type`) are optional. If
 no key is specified, Riak will assign a random key to the object. If no
-[bucket type](/docs/developing/usage/bucket-types) is assigned, Riak will assign
-`default`, which means that the [default bucket configuration](/docs/configuring/reference/#default-bucket-properties) will be used.
+[bucket type](../../../developing/usage/bucket-types.md) is assigned, Riak will assign
+`default`, which means that the [default bucket configuration](../../../configuring/reference.md#default-bucket-properties) will be used.
 
 #### Request
 
@@ -37,16 +37,16 @@ message RpbPutReq {
 
 #### Required Parameters
 
-| Parameter | Description                                                                                                                                                                                                      |
-|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `bucket`  | The name of the bucket, in bytes, in which the key/value is to reside                                                                                                                                            |
-| `content` | The new or updated contented of the object. Uses the same `RpbContent` message returned as part of an `RpbGetResp` message, documented in [PBC Fetch Object](/docs/developing/api/protocol-buffers/fetch-object) |
+| Parameter | Description                                                                                                                                                                                                            |
+|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `bucket`  | The name of the bucket, in bytes, in which the key/value is to reside                                                                                                                                                  |
+| `content` | The new or updated contented of the object. Uses the same `RpbContent` message returned as part of an `RpbGetResp` message, documented in [PBC Fetch Object](../../../developing/api/protocol-buffers/fetch-object.md) |
 
 #### Optional Parameters
 
 :::note Note on defaults and special values
 All of the optional parameters below have default values determined on a
-per-bucket basis. Please refer to the documentation on [setting bucket properties](../set-bucket-props) for more information.
+per-bucket basis. Please refer to the documentation on [setting bucket properties](./set-bucket-props.md) for more information.
 
 Furthermore, you can assign an integer value to the `w`, `dw`, `pr`, and
 `pw`, provided that that integer value is less than or equal to N, _or_
@@ -54,18 +54,18 @@ a special value denoting `one` (`4294967295-1`), `quorum`
 (`4294967295-2`), `all` (`4294967295-3`), or `default` (`4294967295-4`).
 :::note
 
-| Parameter       | Description                                                                                                                                                                                                    |
-|:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `key`           | The key to create/update. If not specified, Riak will generate a random key and return that key as part of the response to that request.                                                                       |
-| `vclock`        | Opaque vector clock provided by an earlier <code><a href="../../../../learn/concepts/causal-context">RpbGetResp</a></code> message. Omit if this is a new key or if you deliberately want to create a sibling. |
-| `w`             | Write quorum, i.e. how many replicas to write to before returning a successful response                                                                                                                        |
-| `dw`            | Durable write quorum, i.e. how many replicas to commit to durable storage before returning a successful response                                                                                               |
-| `return_body`   | Whether to return the contents of the now-stored object. Defaults to `false`.                                                                                                                                  |
-| `pw`            | Primary write quorum, i.e. how many primary nodes must be up when the write is attempted                                                                                                                       |
-| `return_head`   | Return the metadata for the now-stored object without returning the value of the object                                                                                                                        |
-| `timeout`       | The timeout duration, in milliseconds, after which Riak will return an error message                                                                                                                           |
-| `sloppy_quorum` | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable                                                                                |
-| `n_val`         | The number of nodes on which the value is to be stored                                                                                                                                                         |
+| Parameter       | Description                                                                                                                                                                                         |
+|:----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `key`           | The key to create/update. If not specified, Riak will generate a random key and return that key as part of the response to that request.                                                            |
+| `vclock`        | Opaque vector clock provided by an earlier <code>[RpbGetResp](../../../learn/concepts/causal-context.md)</code> message. Omit if this is a new key or if you deliberately want to create a sibling. |
+| `w`             | Write quorum, i.e. how many replicas to write to before returning a successful response                                                                                                             |
+| `dw`            | Durable write quorum, i.e. how many replicas to commit to durable storage before returning a successful response                                                                                    |
+| `return_body`   | Whether to return the contents of the now-stored object. Defaults to `false`.                                                                                                                       |
+| `pw`            | Primary write quorum, i.e. how many primary nodes must be up when the write is attempted                                                                                                            |
+| `return_head`   | Return the metadata for the now-stored object without returning the value of the object                                                                                                             |
+| `timeout`       | The timeout duration, in milliseconds, after which Riak will return an error message                                                                                                                |
+| `sloppy_quorum` | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable                                                                     |
+| `n_val`         | The number of nodes on which the value is to be stored                                                                                                                                              |
 
 The `if_not_modified`, `if_none_match`, and `asis` parameters are set
 only for messages sent between nodes in a Riak cluster and should not be
@@ -83,7 +83,7 @@ message RpbPutResp {
 
 If `return_body` is set to `true` on the PUT request, the `RpbPutResp`
 will contain the current object after the PUT completes, in `contents`,
-as well as the object's [causal context](/docs/learn/concepts/causal-context), in the `vclock`
+as well as the object's [causal context](../../../learn/concepts/causal-context.md), in the `vclock`
 field. The `key` will be sent only if the server generated a random key
 for the object.
 

@@ -6,18 +6,17 @@ sidebar_position: 1
 ---
 
 
-[production checklist]: /docs/setup/upgrading/checklist
-[use admin riak control]: /docs/using/admin/riak-control
-[use admin commands]: /docs/using/admin/commands
-[use admin riak-admin]: /docs/using/admin/riak-admin
-[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
-[release notes]: /docs/release-notes
+[production checklist]: ../../setup/upgrading/checklist.md
+[use admin riak control]: ../../using/admin/riak-control.md
+[use admin commands]: ../../using/admin/commands.md
+[use admin riak-admin]: ../../using/admin/riak-admin.md
+[usage secondary-indexes]: ../../developing/usage/secondary-indexes.md
 [riak enterprise]: http://basho.com/products/riak-kv/
-[cluster ops mdc]: /docs/using/cluster-operations/v3-multi-datacenter
-[config v3 mdc]: /docs/configuring/v3-multi-datacenter
-[jmx monitor]: /docs/using/reference/jmx
-[snmp]: /docs/using/reference/snmp
-[Release Notes]: /docs/release-notes
+[cluster ops mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
+[config v3 mdc]: ../../configuring/v3-multi-datacenter/index.md
+[jmx monitor]: ../../using/reference/jmx.md
+[snmp]: ../../using/reference/snmp.md
+[Release Notes]: https://github.com/basho/riak/blob/develop/RELEASE-NOTES.md
 
 
 ## Overview

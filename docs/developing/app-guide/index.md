@@ -4,47 +4,47 @@ id: developing_app_guide
 sidebar_position: 4
 ---
 
-[usage conflict resolution]: /docs/developing/usage/conflict-resolution
-[dev data model#log]: /docs/developing/data-modeling/#log-data
-[dev data model#sensor]: /docs/developing/data-modeling/#sensor-data
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[dev data model#user]: /docs/developing/data-modeling/#user-data
-[dev kv model]: /docs/developing/key-value-modeling
-[dev data types]: /docs/developing/data-types
-[dev data types#counters]: /docs/developing/data-types/#counters
-[dev data types#sets]: /docs/developing/data-types/#sets
-[dev data types#maps]: /docs/developing/data-types/#maps
-[usage create objects]: /docs/developing/usage/creating-objects
-[usage search]: /docs/developing/usage/search
-[use ref search]: /docs/using/reference/search
-[usage 2i]: /docs/developing/usage/secondary-indexes
-[dev client libraries]: /docs/developing/client-libraries
-[concept crdts]: /docs/learn/concepts/crdts
-[dev data model]: /docs/developing/data-modeling
-[usage mapreduce]: /docs/developing/usage/mapreduce
-[apps mapreduce]: /docs/developing/app-guide/advanced-mapreduce
-[use ref 2i]: /docs/using/reference/secondary-indexes
-[plan backend leveldb]: /docs/setup/planning/backend/leveldb
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[plan backend memory]: /docs/setup/planning/backend/memory
-[obj model java]: /docs/developing/getting-started/java/object-modeling
-[obj model ruby]: /docs/developing/getting-started/ruby/object-modeling
-[obj model python]: /docs/developing/getting-started/python/object-modeling
-[obj model csharp]: /docs/developing/getting-started/csharp/object-modeling
-[obj model nodejs]: /docs/developing/getting-started/nodejs/object-modeling
-[obj model erlang]: /docs/developing/getting-started/erlang/object-modeling
-[obj model golang]: /docs/developing/getting-started/golang/object-modeling
-[concept strong consistency]: /docs/using/reference/strong-consistency
-[use ref strong consistency]: /docs/using/reference/strong-consistency
-[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
-[config strong consistency]: /docs/configuring/strong-consistency
-[apps strong consistency]: /docs/developing/app-guide/strong-consistency
-[usage update objects]: /docs/developing/usage/updating-objects
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[install index]: /docs/setup/installing
-[getting started]: /docs/developing/getting-started
-[usage index]: /docs/developing/usage
-[glossary]: /docs/learn/glossary
+[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+[dev data model#log]: ../../learn/use-cases.md#log-data
+[dev data model#sensor]: ../../learn/use-cases.md#sensor-data
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+[dev data model#user]: ../../learn/use-cases.md#user-data
+[dev kv model]: ../../developing/key-value-modeling.md
+[dev data types]: ../../developing/data-types/index.md
+[dev data types#counters]: ../../developing/data-types/index.md#counters
+[dev data types#sets]: ../../developing/data-types/index.md#sets
+[dev data types#maps]: ../../developing/data-types/index.md#maps
+[usage create objects]: ../../developing/usage/creating-objects.md
+[usage search]: ../../developing/usage/search.md
+[use ref search]: ../../using/reference/search.md
+[usage 2i]: ../../developing/usage/secondary-indexes.md
+[dev client libraries]: ../../developing/client-libraries.md
+[concept crdts]: ../../learn/concepts/crdts.md
+[dev data model]: ../../learn/use-cases.md
+[usage mapreduce]: ../../developing/usage/mapreduce.md
+[apps mapreduce]: ../../developing/app-guide/advanced-mapreduce.md
+[use ref 2i]: ../../using/reference/secondary-indexes.md
+[plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+[plan backend bitcask]: ../../setup/planning/backend/bitcask.md
+[plan backend memory]: ../../setup/planning/backend/memory.md
+[obj model java]: ../../developing/getting-started/java/object-modeling.md
+[obj model ruby]: ../../developing/getting-started/ruby/object-modeling.md
+[obj model python]: ../../developing/getting-started/python/object-modeling.md
+[obj model csharp]: ../../developing/getting-started/csharp/object-modeling.md
+[obj model nodejs]: ../../developing/getting-started/nodejs/object-modeling.md
+[obj model erlang]: ../../developing/getting-started/erlang/object-modeling.md
+[obj model golang]: ../../developing/getting-started/golang/object-modeling.md
+[concept strong consistency]: ../../using/reference/strong-consistency.md
+[use ref strong consistency]: ../../using/reference/strong-consistency.md
+[cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
+[config strong consistency]: ../../configuring/strong-consistency.md
+[apps strong consistency]: ../../developing/app-guide/strong-consistency.md
+[usage update objects]: ../../developing/usage/updating-objects.md
+[apps replication properties]: ../../developing/app-guide/replication-properties.md
+[install index]: ../../setup/installing/index.md
+[getting started]: ../../developing/getting-started/index.md
+[usage index]: ../../developing/usage/index.md
+[glossary]: ../../learn/glossary.md
 
 So you've decided to build an application using Riak as a data store. We
 think that this is a wise choice for a broad variety of use cases. But

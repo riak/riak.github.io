@@ -6,15 +6,15 @@ sidebar_position: 4
 ---
 
 
-[concept buckets]: /docs/learn/concepts/buckets
-[concept keys objects]: /docs/learn/concepts/keys-and-objects
-[concept replication]: /docs/learn/concepts/replication
-[glossary node]: /docs/learn/glossary/#node
-[glossary vnode]: /docs/learn/glossary/#vnode
-[learn dynamo]: /docs/learn/dynamo
-[usage bucket types]: /docs/developing/usage/bucket-types
-[usage conflict resolution]: /docs/developing/usage/conflict-resolution
-[usage replication]: /docs/developing/usage/replication
+[concept buckets]: ../../learn/concepts/buckets.md
+[concept keys objects]: ../../learn/concepts/keys-and-objects.md
+[concept replication]: ../../learn/concepts/replication.md
+[glossary node]: ../../learn/glossary.md#node
+[glossary vnode]: ../../learn/glossary.md#vnode
+[learn dynamo]: ../../learn/dynamo.md
+[usage bucket types]: ../../developing/usage/bucket-types.md
+[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+[usage replication]: ../../developing/usage/replication.md
 
 
 Riak's default mode of operation is to work as a cluster consisting of

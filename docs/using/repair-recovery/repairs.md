@@ -3,13 +3,13 @@ title: "Repairs"
 id: repair_recover_repairs
 ---
 
-[cluster ops aae]: /docs/using/cluster-operations/active-anti-entropy/
-[config ref]: /docs/configuring/reference/
+[cluster ops aae]: ../../using/cluster-operations/active-anti-entropy.md
+[config ref]: ../../configuring/reference.md
 [Erlang shell]: http://learnyousomeerlang.com/starting-out
-[glossary AAE]: /docs/learn/glossary/#active-anti-entropy-aae
-[glossary readrep]: /docs/learn/glossary/#read-repair
-[search config]: /docs/configuring/search/#search-config-settings
-[tiered storage]: /docs/setup/planning/backend/leveldb/#tiered-storage
+[glossary AAE]: ../../learn/glossary.md#active-anti-entropy-aae
+[glossary readrep]: ../../learn/glossary.md#read-repair
+[search config]: ../../configuring/search.md#search-config-settings
+[tiered storage]: ../../setup/planning/backend/leveldb.md#tiered-storage
 
 
 
@@ -219,23 +219,23 @@ riak start
 
 If you have experienced a loss of object replicas in your cluster, you
 may need to perform a repair operation on one or more of your data
-[partitions](/docs/learn/concepts/clusters/#the-ring). Repairs of Riak KV data are typically
+[partitions](../../learn/concepts/clusters.md#the-ring). Repairs of Riak KV data are typically
 run in situations where partitions or whole nodes are lost due to
 corruption or hardware failure. In these cases, nodes or partitions are
 brought back online without any data, which means that the need to
-repair data will depend mainly on your use case and on whether [active anti-entropy](/docs/learn/concepts/active-anti-entropy/) is enabled.
+repair data will depend mainly on your use case and on whether [active anti-entropy](../../learn/concepts/active-anti-entropy.md) is enabled.
 
 You will need to run a repair if the following are both true:
 
-* Active anti-entropy is [disabled](/docs/learn/concepts/active-anti-entropy/#disabling-active-anti-entropy)
+* Active anti-entropy is [disabled](../../learn/concepts/active-anti-entropy.md#disabling-active-anti-entropy)
 * You have both non-expiring data and keys that are not accessed
   frequently (which means that they are not likely to be subject to
-  [read repair](/docs/learn/concepts/active-anti-entropy/#read-repair-vs-active-anti-entropy))
+  [read repair](../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy))
 
 You will most likely not need to run a repair operation if _any_ of the
 following is true:
 
-* Active anti-entropy is [enabled](/docs/learn/concepts/active-anti-entropy/#enabling-active-anti-entropy)
+* Active anti-entropy is [enabled](../../learn/concepts/active-anti-entropy.md#enabling-active-anti-entropy)
 * Your entire key set is accessed frequently, allowing passive read
   repair to repair the partitions
 * Your data expires frequently

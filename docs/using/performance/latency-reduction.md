@@ -22,13 +22,12 @@ and can put strain on memory resources. In some cases, just a few large
 objects can impact latency in a cluster, even for requests that are
 unrelated to those objects.
 
-If your use case requires large objects, we recommend checking out
-[Riak CS](/riak/cs/latest/), which is intended as a storage system for large objects.
+If your use case requires large objects, we recommend checking out Riak CS, which is intended as a storage system for large objects.
 
 ### Mitigation
 
 The best way to find out if large objects are impacting latency is to
-monitor each node's object size stats. If you run [`riak-admin status`](../../admin/riak-admin/#status) or make an HTTP `GET` request
+monitor each node's object size stats. If you run [`riak-admin status`](../admin/riak-admin.md#status) or make an HTTP `GET` request
 to Riak's `/stats` endpoint, you will see the results for the following
 metrics related to object size, all of which are calculated only for
 `GET` operations (i.e. reads):
@@ -50,7 +49,7 @@ the lookout for trends in the `95`, `99`, and `100` measures:
 * Do these trends coincide with increased latency?
 
 If you suspect that large object size is impacting latency, try making
-the following changes to each node's [configuration](../../../configuring/reference):
+the following changes to each node's [configuration](../../configuring/reference.md):
 
 * If you are using the newer, `riak.conf`-based configuration system,
 the commented-out value for `erlang.distribution_buffer_size` is `32MB`.
@@ -63,7 +62,7 @@ node when configuration changes have been made.
 
 Large objects can also impact latency even if they're only present on
 some nodes. If increased latency occurs only on N nodes, where N is your
-[replication factor](../../../developing/app-guide/replication-properties/#n-value-and-replication), also known as `n_val`, this could indicate that a single large object and its replicas are slowing down _all_ requests on those nodes.
+[replication factor](../../developing/app-guide/replication-properties.md#n-value-and-replication), also known as `n_val`, this could indicate that a single large object and its replicas are slowing down _all_ requests on those nodes.
 
 If large objects are suspected, you should also audit the behavior of
 siblings in your cluster, as explained in the [next section](#siblings).
@@ -72,11 +71,11 @@ siblings in your cluster, as explained in the [next section](#siblings).
 
 In Riak, object conflicts are handled by keeping multiple versions of
 the object in the cluster either until a client takes action to resolve
-the conflict or until [active anti-entropy](../../../learn/glossary/#active-anti-entropy) resolves the conflict without client intervention. While sibling production is normal, [sibling explosion](../../../learn/concepts/causal-context/#sibling-explosion) is a problem that can come about if many siblings of an object are produced. The negative effects are the same as those associated with [large objects](#large-objects).
+the conflict or until [active anti-entropy](../../learn/glossary.md#active-anti-entropy) resolves the conflict without client intervention. While sibling production is normal, [sibling explosion](../../learn/concepts/causal-context.md#sibling-explosion) is a problem that can come about if many siblings of an object are produced. The negative effects are the same as those associated with [large objects](#large-objects).
 
 ### Mitigation
 
-The best way to monitor siblings is through the same [`riak-admin status`](../../admin/riak-admin/#status) interface used to monitor
+The best way to monitor siblings is through the same [`riak-admin status`](../admin/riak-admin.md#status) interface used to monitor
 object size (or via an HTTP `GET` request to `/stats`). In the output of
 `riak-admin status` in each node, you'll see the following
 sibling-related statistics:
@@ -98,16 +97,16 @@ latency issues in your cluster, you can start by checking the following:
 
 * If `allow_mult` is set to `true` for some or all of your buckets, be
   sure that your application is correctly resolving siblings. Be sure to
-  read our documentation on [conflict resolution](../../../developing/usage/conflict-resolution) for a fuller picture of how this can be done. **Note**: In Riak versions 2.0 and later, `allow_mult` is set to `true` by default for all bucket types that you create and activate.
+  read our documentation on [conflict resolution](../../developing/usage/conflict-resolution/index.md) for a fuller picture of how this can be done. **Note**: In Riak versions 2.0 and later, `allow_mult` is set to `true` by default for all bucket types that you create and activate.
   If you wish to set `allow_mult` to `false` on a bucket type, you will have to do so explicitly.
 * Application errors are a common source of problems with
   siblings. Updating the same key over and over without passing a
-  [causal context](../../../learn/concepts/causal-context) to Riak can cause sibling explosion. If this seems to be the issue, modify your application's [conflict resolution](../../../developing/usage/conflict-resolution)
-  strategy. Another possibility worth exploring is using [dotted version vectors](../../../learn/concepts/causal-context/#dotted-version-vectors) \(DVVs) in place of traditional vector clocks. DVVs can be enabled [using bucket types](../../../developing/usage/bucket-types) by setting the `dvv_enabled` parameter to `true` for buckets that seem to be experiencing sibling explosion.
+  [causal context](../../learn/concepts/causal-context.md) to Riak can cause sibling explosion. If this seems to be the issue, modify your application's [conflict resolution](../../developing/usage/conflict-resolution/index.md)
+  strategy. Another possibility worth exploring is using [dotted version vectors](../../learn/concepts/causal-context.md#dotted-version-vectors) \(DVVs) in place of traditional vector clocks. DVVs can be enabled [using bucket types](../../developing/usage/bucket-types.md) by setting the `dvv_enabled` parameter to `true` for buckets that seem to be experiencing sibling explosion.
 
 ## Compaction and Merging
 
-The [Bitcask](../../../setup/planning/backend/bitcask) and [LevelDB](../../../setup/planning/backend/leveldb) storage backends occasionally go through
+The [Bitcask](../../setup/planning/backend/bitcask.md) and [LevelDB](../../setup/planning/backend/leveldb.md) storage backends occasionally go through
 heavily I/O-intensive compaction phases during which they remove deleted
 data and reorganize data files on disk. During these phases, affected
 nodes may be slower to respond to requests than other nodes. If your
@@ -121,7 +120,7 @@ latency, keep an eye on on your `console.log` files (and LevelDB `LOG`
 files if you're using LevelDB). Do Bitcask merging and/or LevelDB
 compaction events overlap with increased latencies?
 
-If so, our first recommendation is to examine your [replication properties](../../../developing/app-guide/replication-properties/) to make sure that neither R nor W are set to N, i.e. that you're not requiring that reads or writes go to all nodes in the cluster. The problem with setting `R=N` or `W=N` is that any request will only respond as quickly as the slowest node amongst the N nodes involved in the request.
+If so, our first recommendation is to examine your [replication properties](../../developing/app-guide/replication-properties.md) to make sure that neither R nor W are set to N, i.e. that you're not requiring that reads or writes go to all nodes in the cluster. The problem with setting `R=N` or `W=N` is that any request will only respond as quickly as the slowest node amongst the N nodes involved in the request.
 
 Beyond checking for `R=N` or `W=N` for requests, the recommended
 mitigation strategy depends on the backend:
@@ -136,22 +135,22 @@ cycles on node traffic
 undergoing a merge phase at any given time
 
 Instructions on how to accomplish both can be found in our guide to
-[tuning Bitcask](../../../setup/planning/backend/bitcask/#tuning-bitcask).
+[tuning Bitcask](../../setup/planning/backend/bitcask.md#tuning-bitcask).
 
 It's also important that you adjust your maximum file size and merge
 threshold settings appropriately. This setting is labeled
-`bitcask.max_file_size` in the newer, `riak.conf`-based [configuration files](../../../configuring/reference) and `max_file_size` in the older, `app.config`-based system.
+`bitcask.max_file_size` in the newer, `riak.conf`-based [configuration files](../../configuring/reference.md) and `max_file_size` in the older, `app.config`-based system.
 
 Setting the maximum file size lower will cause Bitcask to merge more
 often (with less I/O churn), while setting it higher will induce less
 frequent merges with more I/O churn. To find settings that are ideal for
-your use case, we recommend checking out our guide to [configuring Bitcask](../../../setup/planning/backend/bitcask/#configuring-bitcask).
+your use case, we recommend checking out our guide to [configuring Bitcask](../../setup/planning/backend/bitcask.md#configuring-bitcask).
 
 #### LevelDB
 
 The more files you keep in memory, the faster LevelDB will perform in
 general. To make sure that you are using your system resources
-appropriately with LevelDB, check out our guide to [LevelDB parameter planning](../../../setup/planning/backend/leveldb/#parameter-planning).
+appropriately with LevelDB, check out our guide to [LevelDB parameter planning](../../setup/planning/backend/leveldb.md#parameter-planning).
 
 ## OS Tuning
 
@@ -165,9 +164,9 @@ If you suspect that OS-level issues might be impacting latency, it might
 be worthwhile to revisit your OS-specific configurations. The following
 guides may be of help:
 
-* [Open files limit](../open-files-limit)
-* General [System performance tuning](../)
-* [AWS performance tuning](../amazon-web-services) if you're running Riak on [Amazon Web Services](http://aws.amazon.com/)
+* [Open files limit](./open-files-limit.md)
+* General [System performance tuning](./index.md)
+* [AWS performance tuning](./amazon-web-services.md) if you're running Riak on [Amazon Web Services](http://aws.amazon.com/)
 
 ## I/O and Network Bottlenecks
 
@@ -205,14 +204,14 @@ node is frequently running up against these maximums.
 
 In versions 2.0 and later, Riak enables you to configure a variety of
 settings regarding Riak objects, including allowable object sizes, how
-many [siblings](../../../learn/concepts/causal-context/#siblings) to allow, and so on. If you suspect that undue latency in your cluster stems from object size or related factors, you may consider adjusting these settings.
+many [siblings](../../learn/concepts/causal-context.md#siblings) to allow, and so on. If you suspect that undue latency in your cluster stems from object size or related factors, you may consider adjusting these settings.
 
-A concise listing of object-related settings can be found in the [Riak configuration](../../../configuring/reference/#object-settings) documentation. The sections below explain these settings in detail.
+A concise listing of object-related settings can be found in the [Riak configuration](../../configuring/reference.md#object-settings) documentation. The sections below explain these settings in detail.
 
 > **Note on configuration files in 2.0**
 >
 > The object settings listed below are only available using the new system
-for [configuration files](../../../configuring/reference/) in Riak 2.0. If you are using the older, `app.config`-based system, you will not have access to
+for [configuration files](../../configuring/reference.md) in Riak 2.0. If you are using the older, `app.config`-based system, you will not have access to
 these settings.
 
 ### Object Size
@@ -231,7 +230,7 @@ succeed but will register a warning in the logs, you can adjust the
 
 ### Sibling Explosion Management
 
-In order to prevent or cut down on [sibling explosion](../../../learn/concepts/causal-context/#sibling explosion), you can either prevent Riak from storing
+In order to prevent or cut down on [sibling explosion](../../learn/concepts/causal-context.md#sibling explosion), you can either prevent Riak from storing
 additional siblings when a specified sibling count is reached or set a
 warning threshold past which Riak logs an error (or both). This can be
 done using the `object.siblings.maximum` and

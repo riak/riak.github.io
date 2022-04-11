@@ -4,7 +4,7 @@ id: getting_started_php
 sidebar_position: 7
 ---
 
-If you haven't set up a Riak Node and started it, please visit [Running A Cluster](/docs/using/running-a-cluster) first.
+If you haven't set up a Riak Node and started it, please visit [Running A Cluster](../../../using/running-a-cluster.md) first.
 
 To try this flavor of Riak, a working installation of PHP is required, and [Composer](https://getcomposer.org/) is required to be installed to fetch the client library package. 
 
@@ -62,4 +62,4 @@ We are now ready to start interacting with Riak.
 
 ## Next Steps
 
-[CRUD Operations](/docs/developing/getting-started/php/crud-operations)
+[CRUD Operations](../../../developing/getting-started/php/crud-operations.md)

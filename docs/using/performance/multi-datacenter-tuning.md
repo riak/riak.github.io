@@ -5,7 +5,7 @@ slug: multi-datacenter-tuning
 sidebar_position: 6
 ---
 
-[perf index]: /docs/using/performance
+[perf index]: ../../using/performance/index.md
 
 Depending on the size of your objects and your replication latency
 needs, you may need to configure your kernel settings to optimize

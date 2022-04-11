@@ -5,7 +5,7 @@ slug: delete-object
 sidebar_position: 7
 ---
 
-Delete an object in the specified [bucket type](/docs/using/cluster-operations/bucket-types)/bucket/key location.
+Delete an object in the specified [bucket type](../../../using/cluster-operations/bucket-types.md)/bucket/key location.
 
 ## Request
 
@@ -38,7 +38,7 @@ message RpbDelReq {
 
 :::note Note on defaults and special values
 All of the optional parameters below have default values determined on a
-per-bucket basis. Please refer to the documentation on [setting bucket properties](../set-bucket-props) for more information.
+per-bucket basis. Please refer to the documentation on [setting bucket properties](./set-bucket-props.md) for more information.
 
 Furthermore, you can assign an integer value to the `w`, `dw`, `pr`, and
 `pw`, provided that that integer value is less than or equal to N, _or_

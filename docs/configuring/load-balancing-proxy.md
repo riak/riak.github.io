@@ -5,7 +5,7 @@ slug: load-balancing-proxy
 sidebar_position: 4
 ---
 
-[perf open files]: /docs/using/performance/open-files-limit
+[perf open files]: ../using/performance/open-files-limit.md
 
 The recommended best practice for operating Riak in production is to
 place Riak behind a load-balancing or proxy solution, either hardware-

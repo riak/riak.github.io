@@ -17,10 +17,10 @@ usage in any production environment.
 ## Monitoring Strong Consistency
 
 Riak provides a wide variety of data related to the current operating
-status of a node. This data is available by running the [`riak-admin status`](/docs/using/admin/riak-admin/#riak-admin-status) command. That data now
+status of a node. This data is available by running the [`riak-admin status`](../../using/admin/riak-admin.md#riak-admin-status) command. That data now
 includes statistics specific to strongly consistent operations.
 
-A full listing of these stats is available in [Inspecting a Node](/docs/using/cluster-operations/inspecting-node).
+A full listing of these stats is available in [Inspecting a Node](../../using/cluster-operations/inspecting-node.md).
 All strong consistency-related stats are prefixed with `consistent_`,
 e.g. `consistent_gets`, `consistent_puts`, etc. Many of these stats are
 so-called "one-minute stats," meaning that they reflect node activity in
@@ -31,34 +31,34 @@ PUT-related stats.
 
 ### GET-related stats
 
-Stat | Description
-:----|:-----------
-`consistent_gets` | Number of strongly consistent GETs coordinated by this node in the last minute
-`consistent_gets_total` | Total number of strongly consistent GETs coordinated by this node
-`consistent_get_objsize_mean` | Mean object size for strongly consistent GETs on this node in the last minute
-`consistent_get_objsize_median` | Median object size for strongly consistent GETs on this node in the last minute
-`consistent_get_objsize_95` | 95th-percentile object size for strongly consistent GETs on this node in the last minute
-`consistent_get_objsize_99` | 99th-percentile object size for strongly consistent GETs on this node in the last minute
-`consistent_get_objsize_100` | 100th-percentile object size for strongly consistent GETs on this node in the last minute
-`consistent_get_time_mean` | Mean time between reception of client GETs to strongly consistent keys and subsequent response
-`consistent_get_time_median` | Median time between reception of client GETs to strongly consistent keys and subsequent response
-`consistent_get_time_95` | 95th-percentile time between reception of client GETs to strongly consistent keys and subsequent response
-`consistent_get_time_99` | 99th-percentile time between reception of client GETs to strongly consistent keys and subsequent response
-`consistent_get_time_100` | 100th-percentile time between reception of client GETs to strongly consistent keys and subsequent response
+| Stat                            | Description                                                                                                |
+|:--------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| `consistent_gets`               | Number of strongly consistent GETs coordinated by this node in the last minute                             |
+| `consistent_gets_total`         | Total number of strongly consistent GETs coordinated by this node                                          |
+| `consistent_get_objsize_mean`   | Mean object size for strongly consistent GETs on this node in the last minute                              |
+| `consistent_get_objsize_median` | Median object size for strongly consistent GETs on this node in the last minute                            |
+| `consistent_get_objsize_95`     | 95th-percentile object size for strongly consistent GETs on this node in the last minute                   |
+| `consistent_get_objsize_99`     | 99th-percentile object size for strongly consistent GETs on this node in the last minute                   |
+| `consistent_get_objsize_100`    | 100th-percentile object size for strongly consistent GETs on this node in the last minute                  |
+| `consistent_get_time_mean`      | Mean time between reception of client GETs to strongly consistent keys and subsequent response             |
+| `consistent_get_time_median`    | Median time between reception of client GETs to strongly consistent keys and subsequent response           |
+| `consistent_get_time_95`        | 95th-percentile time between reception of client GETs to strongly consistent keys and subsequent response  |
+| `consistent_get_time_99`        | 99th-percentile time between reception of client GETs to strongly consistent keys and subsequent response  |
+| `consistent_get_time_100`       | 100th-percentile time between reception of client GETs to strongly consistent keys and subsequent response |
 
 ### PUT-related stats
 
-Stat | Description
-:----|:-----------
-`consistent_puts` | Number of strongly consistent PUTs coordinated by this node in the last minute
-`consistent_puts_total` | Total number of strongly consistent PUTs coordinated by this node
-`consistent_put_objsize_mean` | Mean object size for strongly consistent PUTs on this node in the last minute
-`consistent_put_objsize_median` | Median object size for strongly consistent PUTs on this node in the last minute
-`consistent_put_objsize_95` | 95th-percentile object size for strongly consistent PUTs on this node in the last minute
-`consistent_put_objsize_99` | 99th-percentile object size for strongly consistent PUTs on this node in the last minute
-`consistent_put_objsize_100` | 100th-percentile object size for strongly consistent PUTs on this node in the last minute
-`consistent_put_time_mean` | Mean time between reception of client PUTs to strongly consistent keys and subsequent response
-`consistent_put_time_median` | Median time between reception of client PUTs to strongly consistent keys and subsequent response
-`consistent_put_time_95` | 95th-percentile time between reception of client PUTs to strongly consistent keys and subsequent response
-`consistent_put_time_99` | 99th-percentile time between reception of client PUTs to strongly consistent keys and subsequent response
-`consistent_put_time_100` | 100th-percentile time between reception of client PUTs to strongly consistent keys and subsequent response
+| Stat                            | Description                                                                                                |
+|:--------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| `consistent_puts`               | Number of strongly consistent PUTs coordinated by this node in the last minute                             |
+| `consistent_puts_total`         | Total number of strongly consistent PUTs coordinated by this node                                          |
+| `consistent_put_objsize_mean`   | Mean object size for strongly consistent PUTs on this node in the last minute                              |
+| `consistent_put_objsize_median` | Median object size for strongly consistent PUTs on this node in the last minute                            |
+| `consistent_put_objsize_95`     | 95th-percentile object size for strongly consistent PUTs on this node in the last minute                   |
+| `consistent_put_objsize_99`     | 99th-percentile object size for strongly consistent PUTs on this node in the last minute                   |
+| `consistent_put_objsize_100`    | 100th-percentile object size for strongly consistent PUTs on this node in the last minute                  |
+| `consistent_put_time_mean`      | Mean time between reception of client PUTs to strongly consistent keys and subsequent response             |
+| `consistent_put_time_median`    | Median time between reception of client PUTs to strongly consistent keys and subsequent response           |
+| `consistent_put_time_95`        | 95th-percentile time between reception of client PUTs to strongly consistent keys and subsequent response  |
+| `consistent_put_time_99`        | 99th-percentile time between reception of client PUTs to strongly consistent keys and subsequent response  |
+| `consistent_put_time_100`       | 100th-percentile time between reception of client PUTs to strongly consistent keys and subsequent response |

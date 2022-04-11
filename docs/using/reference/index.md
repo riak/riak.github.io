@@ -3,21 +3,21 @@ title: "Riak KV Usage Reference"
 id: managing_ref
 ---
 
-[ref log]: ./logging
-[ref handoff]: ./handoff
-[ref bucket types]: ./bucket-types
-[ref obj del]: ./object-deletion
-[ref runtime]: ./runtime-interaction
-[ref monitoring]: ./statistics-monitoring
-[ref snmp]: ./snmp
-[ref jmx]: ./jmx
-[ref search]: ./search
-[ref 2i]: ./secondary-indexes
-[ref custom code]: ./custom-code
-[ref strong consistency]: ./strong-consistency
-[ref mdc]: ./multi-datacenter
-[ref v3 mdc]: ./v3-multi-datacenter
-[ref v2 mdc]: ./v2-multi-datacenter
+[ref log]: ./logging.md
+[ref handoff]: ./handoff.md
+[ref bucket types]: ./bucket-types.md
+[ref obj del]: ./object-deletion.md
+[ref runtime]: ./runtime-interaction.md
+[ref monitoring]: ./statistics-monitoring.md
+[ref snmp]: ./snmp.md
+[ref jmx]: ./jmx.md
+[ref search]: ./search.md
+[ref 2i]: ./secondary-indexes.md
+[ref custom code]: ./custom-code.md
+[ref strong consistency]: ./strong-consistency.md
+[ref mdc]: ./multi-datacenter/index.md
+[ref v3 mdc]: ./v3-multi-datacenter/index.md
+[ref v2 mdc]: ./v2-multi-datacenter/index.md
 
 ## [Logging Reference][ref log]
 

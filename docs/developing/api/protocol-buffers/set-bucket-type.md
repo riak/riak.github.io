@@ -5,8 +5,8 @@ slug: set-bucket-type
 sidebar_position: 14
 ---
 
-Assigns a set of [bucket properties](/docs/developing/api/protocol-buffers/set-bucket-props) to a
-[bucket type](/docs/developing/usage/bucket-types).
+Assigns a set of [bucket properties](../../../developing/api/protocol-buffers/set-bucket-props.md) to a
+[bucket type](../../../developing/usage/bucket-types.md).
 
 ## Request
 
@@ -18,4 +18,4 @@ message RpbSetBucketTypeReq {
 ```
 
 The `type` field specifies the name of the bucket type as a binary. The
-`props` field contains an [`RpbBucketProps`](/docs/developing/api/protocol-buffers/get-bucket-props).
+`props` field contains an [`RpbBucketProps`](../../../developing/api/protocol-buffers/get-bucket-props.md).

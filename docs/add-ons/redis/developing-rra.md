@@ -6,12 +6,12 @@ sidebar_position: 2
 ---
 
 [redis-clients]: http://redis.io/clients
-[usage bucket types]: /docs/developing/usage/bucket-types
-[dev api http]: /docs/developing/api/http
+[usage bucket types]: ../../developing/usage/bucket-types.md
+[dev api http]: ../../developing/api/http/index.md
 [config-behaviors]: http://basho.com/posts/technical/riaks-config-behaviors-part-4/
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[usage commit hooks]: /docs/developing/usage/commit-hooks/
-[concept causal context]: /docs/learn/concepts/causal-context
+[apps replication properties]: ../../developing/app-guide/replication-properties.md
+[usage commit hooks]: ../../developing/usage/commit-hooks.md
+[concept causal context]: ../../learn/concepts/causal-context.md
 [ee]: http://basho.com/contact/
 
 This page will walk you through setting up your environment for development with Riak Redis Add-on (RRA), as well as present examples and configuration parameters for basic development operations.
@@ -158,15 +158,15 @@ consistency concern) may optionally be set within the nutcracker.conf. This will
 The following configuration parameters apply to `GET` and may be set within the
 RRA configuration file `/etc/cache_proxy/cache_proxy_22122.yml`:
 
-|Parameter       |Description      |Default|
-|----------------|-----------------|-------|
-|`n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3` |
-|`pr`            | How many vnodes must respond for a read to be deemed successful. | `0` |
-|`r`             | How many replicas need to agree when retrieving an existing object before responding. | `2` |
-|`basic_quorum`  | Whether to return early in some failure cases, e.g. when `r`=1 and you get 2 errors and a success. | `0` (false) |
-|`sloppy_quorum` | Whether to treat vnodes holding values for another vnode as acceptable within the quorum determination. | `0` (false) |
-|`notfound_ok`   | Whether to treat notfounds as successful reads for the purpose of `r`. | 1 (true) |
-|`timeout`       | The number of milliseconds to await a response. | `0` (server specified) |
+| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default                |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
+| `n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3`                    |
+| `pr`            | How many vnodes must respond for a read to be deemed successful.                                                                                                                                                                                                                                                                                                  | `0`                    |
+| `r`             | How many replicas need to agree when retrieving an existing object before responding.                                                                                                                                                                                                                                                                             | `2`                    |
+| `basic_quorum`  | Whether to return early in some failure cases, e.g. when `r`=1 and you get 2 errors and a success.                                                                                                                                                                                                                                                                | `0` (false)            |
+| `sloppy_quorum` | Whether to treat vnodes holding values for another vnode as acceptable within the quorum determination.                                                                                                                                                                                                                                                           | `0` (false)            |
+| `notfound_ok`   | Whether to treat notfounds as successful reads for the purpose of `r`.                                                                                                                                                                                                                                                                                            | 1 (true)               |
+| `timeout`       | The number of milliseconds to await a response.                                                                                                                                                                                                                                                                                                                   | `0` (server specified) |
 
 
 ### Sibling Resolution
@@ -231,12 +231,12 @@ in an override of the setting value at the bucket-level in Riak KV.
 The following configuration parameters apply to `SET` and may be set within the
 RRA configuration file `/etc/cache_proxy/cache_proxy_22122.yml`:
 
-|Parameter       |Description      |Default|
-|----------------|-----------------|-------|
-|`n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3` |
-|`pw`            | How many vnodes must respond for a write to be deemed successful. | `0` |
-|`w`             | How many replicas need to acknowledge the write before responding. | `2` |
-|`sloppy_quorum` | Whether to treat vnodes holding values for another vnode as acceptable within the quorum determination. | `0` (false) |
+| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default     |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| `n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3`         |
+| `pw`            | How many vnodes must respond for a write to be deemed successful.                                                                                                                                                                                                                                                                                                 | `0`         |
+| `w`             | How many replicas need to acknowledge the write before responding.                                                                                                                                                                                                                                                                                                | `2`         |
+| `sloppy_quorum` | Whether to treat vnodes holding values for another vnode as acceptable within the quorum determination.                                                                                                                                                                                                                                                           | `0` (false) |
 
 
 ### Sibling Explosion
@@ -309,9 +309,9 @@ connection.del("rra:test:food")
 The following configuration parameters apply to `DEL` and may be set within the
 RRA configuration file `/etc/cache_proxy/cache_proxy_22122.yml`:
 
-|Parameter       |Description      |Default|
-|----------------|-----------------|-------|
-|`n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3` |
-|`pw`            | How many vnodes must respond for a write to be deemed successful. | `0` |
-|`w`             | How many replicas need to acknowledge the write before responding. | `2` |
-|`sloppy_quorum` | Whether to treat vnodes holding values for another vnode as acceptable within the quorum determination. | `0` (false) |
+| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default     |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| `n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3`         |
+| `pw`            | How many vnodes must respond for a write to be deemed successful.                                                                                                                                                                                                                                                                                                 | `0`         |
+| `w`             | How many replicas need to acknowledge the write before responding.                                                                                                                                                                                                                                                                                                | `2`         |
+| `sloppy_quorum` | Whether to treat vnodes holding values for another vnode as acceptable within the quorum determination.                                                                                                                                                                                                                                                           | `0` (false) |

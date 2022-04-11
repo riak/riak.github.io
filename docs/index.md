@@ -6,15 +6,15 @@ sidebar_position: 0
 ---
 
 [aboutenterprise]: http://basho.com/contact/
-[config index]: /docs/configuring
-[downloads]: /docs/downloads/
-[install index]: /docs/setup/installing/
-[plan index]: /docs/setup/planning
-[perf open files]: /docs/using/performance/open-files-limit
-[install debian & ubuntu]: /docs/setup/installing/debian-ubuntu
-[usage search]: /docs/developing/usage/search
-[getting started]: /docs/developing/getting-started
-[dev client libraries]: /docs/developing/client-libraries
+[config index]: configuring/index.md
+[downloads]: setup/installing/index.md
+[install index]: setup/installing/index.md
+[plan index]: setup/planning/index.md
+[perf open files]: using/performance/open-files-limit
+[install debian & ubuntu]: setup/installing/debian-ubuntu
+[usage search]: developing/usage/search.md
+[getting started]: developing/getting-started/index.md
+[dev client libraries]: developing/client-libraries.md
 
 
 
@@ -46,8 +46,8 @@ Are you brand new to Riak KV? Start by [downloading][downloads] Riak KV, and the
 2. [Plan your Riak KV setup][plan index]
 3. [Configure Riak KV for your needs][config index]
 
-:::note "Developing with Riak KV"
-If you are looking to integrate Riak KV with your existing tools, check out the [Developing with Riak KV](/docs/developing) docs. They provide instructions and examples for languages such as: Java, Ruby, Python, Go, Haskell, NodeJS, Erlang, and more.
+:::note Developing with Riak KV
+If you are looking to integrate Riak KV with your existing tools, check out the [Developing with Riak KV](developing/index.md) docs. They provide instructions and examples for languages such as: Java, Ruby, Python, Go, Haskell, NodeJS, Erlang, and more.
 :::note
 
 ## Popular Docs

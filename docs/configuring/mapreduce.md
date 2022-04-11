@@ -5,9 +5,9 @@ slug: mapreduce
 sidebar_position: 6
 ---
 
-[usage mapreduce]: /docs/developing/usage/mapreduce
-[config reference#appconfig]: /docs/configuring/reference/#app-config
-[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
+[usage mapreduce]: ../developing/usage/mapreduce.md
+[config reference#appconfig]: ../configuring/reference.md#app-config
+[usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 
 ## Configuring MapReduce
 

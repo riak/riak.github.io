@@ -12,7 +12,7 @@ changes are made and when in order to measure the impact of those
 changes.
 
 For performance and tuning recommendations specific to running Riak
-clusters on the Amazon Web Services EC2 environment, see [AWS Performance Tuning](./amazon-web-services).
+clusters on the Amazon Web Services EC2 environment, see [AWS Performance Tuning](./amazon-web-services.md).
 
 :::note Note on other operating systems
 Unless otherwise specified, the tunings recommended below are for Linux
@@ -241,12 +241,12 @@ These settings have been tested and benchmarked by Basho in nodes with
 
 Riak and supporting tools can consume a large number of open file
 handles during normal operation. For stability, increasing the number of
-open files limit is necessary. See [Open Files Limit](./open-files-limit) for more
+open files limit is necessary. See [Open Files Limit](./open-files-limit.md) for more
 details.
 
 ## Other Tuning Docs
 
-* [AWS Performance Tuning](./amazon-web-services)
-* [Erlang VM Tuning](./erlang)
-* [Latency Reduction](./latency-reduction)
-* [Open Files Limit](./open-files-limit)
+* [AWS Performance Tuning](./amazon-web-services.md)
+* [Erlang VM Tuning](./erlang.md)
+* [Latency Reduction](./latency-reduction.md)
+* [Open Files Limit](./open-files-limit.md)

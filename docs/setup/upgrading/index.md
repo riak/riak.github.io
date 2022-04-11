@@ -4,11 +4,8 @@ id: upgrading
 sidebar_position: 3
 ---
 
-[upgrade checklist]: ./checklist
-[upgrade version]: ./version
-[upgrade cluster]: ./cluster
-[upgrade mdc]: ./multi-datacenter
-[upgrade search]: ./search
+[upgrade checklist]: ./checklist.md
+[upgrade version]: ./version.md
 
 ## [Production Checklist][upgrade checklist]
 

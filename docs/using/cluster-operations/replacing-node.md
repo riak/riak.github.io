@@ -6,7 +6,7 @@ sidebar_position: 2
 ---
 
 At some point, for various reasons, you might need to replace a node in
-your Riak cluster (which is different from [recovering a failed node](/docs/using/repair-recovery)). Here is the recommended way to go
+your Riak cluster (which is different from [recovering a failed node](../../using/repair-recovery/index.md)). Here is the recommended way to go
 about replacing a node.
 
 1. Back up your data directory on the node in question. In this example
@@ -24,21 +24,21 @@ scenario, we'll call the node `riak4`:
 cluster and have it replace the `riak4` node. We'll call the new node
 `riak7` for the purpose of this example.
 
-3. Start the new `riak7` node with [`riak start`](/docs/using/admin/riak-cli/#start):
+3. Start the new `riak7` node with [`riak start`](../../using/admin/riak-cli.md#start):
 
     ```bash
     riak start
     ```
 
 4. Plan the join of the new `riak7` node to an existing node already
-participating in the cluster; for example `riak0` with the [`riak-admin cluster join`](/docs/using/admin/riak-admin/#cluster) command executed on the new `riak7` node:
+participating in the cluster; for example `riak0` with the [`riak-admin cluster join`](../../using/admin/riak-admin.md#cluster) command executed on the new `riak7` node:
 
     ```bash
     riak-admin cluster join riak0
     ```
 
 5. Plan the replacement of the existing `riak4` node with the new
-`riak7` node using the [`riak-admin cluster replace`](/docs/using/admin/riak-admin/#cluster) command:
+`riak7` node using the [`riak-admin cluster replace`](../../using/admin/riak-admin.md#cluster) command:
 
     ```bash
     riak-admin cluster replace riak4 riak7
@@ -53,7 +53,7 @@ participating in the cluster; for example `riak0` with the [`riak-admin cluster 
     the node has not been joined to a cluster.
     </div>
 
-6. Examine the proposed cluster changes with the [`riak-admin cluster plan`](/docs/using/admin/riak-admin/#cluster) command executed on the new
+6. Examine the proposed cluster changes with the [`riak-admin cluster plan`](../../using/admin/riak-admin.md#cluster) command executed on the new
 `riak7` node:
 
     ```bash
@@ -61,13 +61,13 @@ participating in the cluster; for example `riak0` with the [`riak-admin cluster 
     ```
 
 7. If the changes are correct, you can commit them with the
-[`riak-admin cluster commit`](/docs/using/admin/riak-admin/#cluster) command:
+[`riak-admin cluster commit`](../../using/admin/riak-admin.md#cluster) command:
 
     ```bash
     riak-admin cluster commit
     ```
 
-    If you need to clear the proposed plan and start over, use [`riak-admin cluster clear`](/docs/using/admin/riak-admin/#cluster):
+    If you need to clear the proposed plan and start over, use [`riak-admin cluster clear`](../../using/admin/riak-admin.md#cluster):
 
     ```bash
     riak-admin cluster clear
@@ -75,8 +75,8 @@ participating in the cluster; for example `riak0` with the [`riak-admin cluster 
 
 Once you have successfully replaced the node, it should begin leaving
 the cluster. You can check on ring readiness after replacing the node
-with the [`riak-admin ringready`](/docs/using/admin/riak-admin/#ringready)
-and [`riak-admin member-status`](/docs/using/admin/riak-admin/#member-status)
+with the [`riak-admin ringready`](../../using/admin/riak-admin.md#ringready)
+and [`riak-admin member-status`](../../using/admin/riak-admin.md#member-status)
 commands.
 
 :::note Ring Settling

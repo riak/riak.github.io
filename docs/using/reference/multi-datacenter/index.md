@@ -4,10 +4,10 @@ id: managing_ref_mdc
 sidebar_position: 13
 ---
 
-[ref mdc stats]: ./statistics
-[ref mdc per bucket]: ./per-bucket-replication
-[ref mdc monitor]: ./monitoring
-[ref mdc comparison]: ./comparison
+[ref mdc stats]: ./statistics.md
+[ref mdc per bucket]: ./per-bucket-replication.md
+[ref mdc monitor]: ./monitoring.md
+[ref mdc comparison]: ./comparison.md
 
 ## [Statistics][ref mdc stats]
 

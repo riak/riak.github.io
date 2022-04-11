@@ -4,14 +4,14 @@ id: developing_index
 sidebar_position: 4
 ---
 
-[getting started]: ../developing/getting-started
-[usage index]: ../developing/usage
-[client libraries]: ../developing/client-libraries
-[dev data types]: ../developing/data-types
+[getting started]: ./getting-started/index.md
+[usage index]: ./usage/index.md
+[client libraries]: ./client-libraries.md
+[dev data types]: ./data-types/index.md
 [dev data modeling]: ../learn/use-cases.md
-[apps index]: ../developing/app-guide
-[dev api index]: ../developing/api
-[dev faq]: ../developing/faq
+[apps index]: ./app-guide/index.md
+[dev api index]: ./api/index.md
+[dev faq]: ./faq.md
 
 ## [Getting Started][getting started]
 

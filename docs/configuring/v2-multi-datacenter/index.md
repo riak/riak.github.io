@@ -4,10 +4,10 @@ id: configuring_v2
 sidebar_position: 10 
 ---
 
-[config v2 ssl]: /docs/configuring/v2-multi-datacenter/ssl
+[config v2 ssl]: ../../configuring/v2-multi-datacenter/ssl.md
 
 :::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/configuring/v3-multi-datacenter/) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../configuring/v3-multi-datacenter/index.md) instead.
 :::note
 
 Riak Enterprise's Multi-Datacenter Replication capabilities offer a

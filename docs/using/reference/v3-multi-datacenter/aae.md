@@ -5,9 +5,9 @@ slug: aae
 sidebar_position: 1
 ---
 
-[glossary aae]: /docs/learn/glossary/#active-anti-entropy-aae
-[config reference#advanced]: /docs/configuring/reference/#advanced-configuration
-[concept clusters]: /docs/learn/concepts/clusters
+[glossary aae]: ../../../learn/glossary.md#active-anti-entropy-aae
+[config reference#advanced]: ../../../configuring/reference.md#advanced-configuration
+[concept clusters]: ../../../learn/concepts/clusters.md
 
 > **Note: Technical preview**
 >

@@ -4,49 +4,49 @@ id: usage_security
 sidebar_position: 14
 ---
 
-Versions of Riak 2.0 and later come equipped with a [security subsystem](/docs/using/security/basics) that enables you to choose
+Versions of Riak 2.0 and later come equipped with a [security subsystem](../../../using/security/basics.md) that enables you to choose
 
 * which Riak users/clients are authorized to perform a wide variety of
   Riak operations, and
 * how those users/clients are required to authenticate themselves.
 
-The following four authentication mechanisms, aka [security sources](/docs/using/security/managing-sources/) are available:
+The following four authentication mechanisms, aka [security sources](../../../using/security/managing-sources.md) are available:
 
-* [Trust](/docs/using/security/managing-sources/#trust-based-authentication)-based
+* [Trust](../../../using/security/managing-sources.md#trust-based-authentication)-based
   authentication enables you to specify trusted
   [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)s
   from which all clients will be authenticated by default
-* [Password](/docs/using/security/managing-sources/#password-based-authentication)-based authentication requires
+* [Password](../../../using/security/managing-sources.md#password-based-authentication)-based authentication requires
   that clients provide a username and password
-* [Certificate](/docs/using/security/managing-sources/#certificate-based-authentication)-based authentication
+* [Certificate](../../../using/security/managing-sources.md#certificate-based-authentication)-based authentication
   requires that clients
-* [Pluggable authentication module (PAM)](/docs/using/security/managing-sources/#pam-based-authentication)-based authentication requires
+* [Pluggable authentication module (PAM)](../../../using/security/managing-sources.md#pam-based-authentication)-based authentication requires
   clients to authenticate using the PAM service specified using the
-  [`riak-admin security`](/docs/using/security/managing-sources/#managing-sources)
+  [`riak-admin security`](../../../using/security/managing-sources.md#managing-sources)
   command line interface
 
 Riak's approach to security is highly flexible. If you choose to use
 Riak's security feature, you do not need to require that all clients
 authenticate via the same means. Instead, you can specify authentication
 sources on a client-by-client, i.e. user-by-user, basis. This means that
-you can require clients performing, say, [MapReduce](/docs/developing/usage/mapreduce/)
-operations to use certificate auth, while clients performing [K/V Operations](/docs/developing/usage) have to use username and password. The approach
+you can require clients performing, say, [MapReduce](../../../developing/usage/mapreduce.md)
+operations to use certificate auth, while clients performing [K/V Operations](../../../developing/usage/index.md) have to use username and password. The approach
 that you adopt will depend on your security needs.
 
 This document provides a general overview of how that works. For
 managing security in Riak itself, see the following documents:
 
-* [Authentication and Authorization](/docs/using/security/basics)
-* [Managing Security Sources](/docs/using/security/managing-sources/)
+* [Authentication and Authorization](../../../using/security/basics.md)
+* [Managing Security Sources](../../../using/security/managing-sources.md)
 
 We also provide client-library-specific guides for the following
 officially supported clients:
 
-* [Java](/docs/developing/usage/security/java)
-* [Ruby](/docs/developing/usage/security/ruby)
-* [PHP](/docs/developing/usage/security/php)
-* [Python](/docs/developing/usage/security/python)
-* [Erlang](/docs/developing/usage/security/erlang)
+* [Java](../../../developing/usage/security/java.md)
+* [Ruby](../../../developing/usage/security/ruby.md)
+* [PHP](../../../developing/usage/security/php.md)
+* [Python](../../../developing/usage/security/python.md)
+* [Erlang](../../../developing/usage/security/erlang.md)
 
 ## Certificates, Keys, and Authorities
 
@@ -71,12 +71,12 @@ keys should never be shared beyond Riak and connecting clients.
 > **HTTP not supported**
 >
 > Certificate-based authentication is available only through Riak's
-[Protocol Buffers](/docs/developing/api/protocol-buffers/) interface. It is not available through the
-[HTTP API](/docs/developing/api/http).
+[Protocol Buffers](../../../developing/api/protocol-buffers/index.md) interface. It is not available through the
+[HTTP API](../../../developing/api/http/index.md).
 
 ### Default Names
 
-In Riak's [configuration files](/docs/configuring/reference/#security), the
+In Riak's [configuration files](../../../configuring/reference.md#security), the
 default certificate file names are as follows:
 
 | Cert                       | Filename         |

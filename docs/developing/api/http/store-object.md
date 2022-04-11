@@ -30,8 +30,8 @@ object when read.
 * `X-Riak-Meta-*` - any additional metadata headers that should be stored with
 the object.
 * `X-Riak-Index-*` - index entries under which this object should be indexed.
-[Read more about Secondary Indexing](/docs/developing/api/http/secondary-indexes)
-* `Link` - user and system-defined links to other resources. [Read more about Links.](/docs/developing/api/http/link-walking)
+[Read more about Secondary Indexing](../../../developing/api/http/secondary-indexes.md)
+* `Link` - user and system-defined links to other resources. [Read more about Links.](../../../developing/api/http/link-walking.md)
 
 Optional headers (only valid on `PUT`):
 
@@ -75,7 +75,7 @@ Important headers:
 * `Location` a relative URL to the newly-created object (when submitting without
 a key)
 
-If `returnbody=true`, any of the response headers expected from [HTTP Fetch Object](/docs/developing/api/http/fetch-object) may be present. Like when fetching the object, `300 Multiple Choices`
+If `returnbody=true`, any of the response headers expected from [HTTP Fetch Object](../../../developing/api/http/fetch-object.md) may be present. Like when fetching the object, `300 Multiple Choices`
 may be returned if siblings existed or were created as part of the operation,
 and the response can be dealt with similarly.
 

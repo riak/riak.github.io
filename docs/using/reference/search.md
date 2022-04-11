@@ -5,8 +5,8 @@ slug: search
 sidebar_position: 9
 ---
 
-[concept clusters]: /docs/learn/concepts/clusters
-[configuring search]: /docs/configuring/search
+[concept clusters]: ../../learn/concepts/clusters.md
+[configuring search]: ../../configuring/search.md
 
 > **Note on search 2.0 vs. legacy search**
 >
@@ -17,7 +17,7 @@ Yokozuna). For information about the deprecated Riak search, visit [the old Usin
 The project that implements Riak search is codenamed Yokozuna. This is a
 more detailed overview of the concepts and reasons behind the design of
 Yokozuna, for those interested. If you're simply looking to use Riak
-search, you should check out the [Using Search](/docs/developing/usage/search) document.
+search, you should check out the [Using Search](../../developing/usage/search.md) document.
 
 ![Yokozuna](/images/yokozuna.png)
 
@@ -117,7 +117,7 @@ but logically partition them in KV by using a date as the bucket name.
 A bucket _cannot_ be associated with many indexes---the `search_index`
 property must be a single name, not a list.
 
-See the [main Search documentation](/docs/developing/usage/search/#simple-setup) for details on creating an index.
+See the [main Search documentation](../../developing/usage/search.md#simple-setup) for details on creating an index.
 
 ## Extractors
 
@@ -279,7 +279,7 @@ The corresponding date type is declared under `<types>` like so.
 <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
 ```
 
-You can also find more information on to how customize your own [search schema](/docs/developing/usage/search-schemas).
+You can also find more information on to how customize your own [search schema](../../developing/usage/search-schemas.md).
 
 Yokozuna comes bundled with a [default schema](https://github.com/basho/yokozuna/blob/develop/priv/default_schema.xml)
 called `_yz_default`. This is an extremely general schema which makes
@@ -289,7 +289,7 @@ indexed.
 
 ## Active Anti-Entropy (AAE)
 
-[Active Anti-Entropy](/docs/learn/concepts/active-anti-entropy/) \(AAE) is the process of discovering and
+[Active Anti-Entropy](../../learn/concepts/active-anti-entropy.md) \(AAE) is the process of discovering and
 correcting entropy (divergence) between the data stored in Riak's
 key-value backend and the indexes stored in Solr. The impetus for AAE is
 that failures come in all shapes and sizes---disk failure, dropped
@@ -344,7 +344,7 @@ _analysis_.
 Solr provides many different field types which analyze data in different
 ways, and custom analyzer chains may be built by stringing together XML
 in the schema file, allowing custom analysis for each field. For more
-information on analysis, see [Search Schema](/docs/developing/usage/search-schemas).
+information on analysis, see [Search Schema](../../developing/usage/search-schemas.md).
 
 ## Tagging
 

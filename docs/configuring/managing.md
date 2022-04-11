@@ -5,9 +5,9 @@ slug: managing
 sidebar_position: 2
 ---
 
-[use admin riak cli]: /docs/using/admin/riak-cli
-[use admin riak cli#chkconfig]: /docs/using/admin/riak-cli/#chkconfig
-[config reference#search]: /docs/configuring/reference/#search
+[use admin riak cli]: ../using/admin/riak-cli.md
+[use admin riak cli#chkconfig]: ../using/admin/riak-cli.md#chkconfig
+[config reference#search]: ../configuring/reference.md#search
 
 ## Retrieving a Configuration Listing
 

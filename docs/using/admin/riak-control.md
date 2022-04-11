@@ -5,7 +5,7 @@ slug: riak-control
 sidebar_position: 3
 ---
 
-[config reference]: /docs/configuring/reference
+[config reference]: ../../configuring/reference.md
 
 Riak Control is a web-based administrative console for inspecting and
 manipulating Riak clusters.
@@ -99,7 +99,7 @@ and configured SSL and HTTPS.
 ## Enabling SSL and HTTPS
 
 In order to use SSL in conjunction with Riak Control, SSL must be
-enabled on each Riak node. For more information, see our [security documentation](/docs/using/security/basics#enabling-ssl). Once SSL is enabled, you can proceed to setting up [authentication](#authentication) for Riak Control.
+enabled on each Riak node. For more information, see our [security documentation](../../using/security/basics.md#enabling-ssl). Once SSL is enabled, you can proceed to setting up [authentication](#authentication) for Riak Control.
 
 Please note that Riak Control will not work if you have enabled
 authentication but SSL is not set up properly.
@@ -214,7 +214,7 @@ nodes in the cluster.
 ### Ring View
 
 One level deeper than the cluster view is the ring view. This is where you can
-see the health of each [vnode](/docs/learn/glossary/#vnode).
+see the health of each [vnode](../../learn/glossary.md#vnode).
 
 [ ![Ring View](/images/control_current_ring.png) ] (/images/control_current_ring.png)
 

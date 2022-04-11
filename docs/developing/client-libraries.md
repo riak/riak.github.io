@@ -25,9 +25,7 @@ variety of programming languages and environments.
 GitHub for bug reporting.
 
 In addition to the official clients, Basho provides some unofficial
-client libraries, listed below. There are also many client libraries and
-related [community projects](/community/projects/).
-
+client libraries, listed below.
 
 ## Community Libraries
 

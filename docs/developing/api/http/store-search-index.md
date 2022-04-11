@@ -5,7 +5,7 @@ slug: store-search-index
 sidebar_position: 16
 ---
 
-Creates a new Riak Search [index](/docs/developing/usage/search/#simple-setup).
+Creates a new Riak Search [index](../../../developing/usage/search.md#simple-setup).
 
 ## Request
 
@@ -16,11 +16,11 @@ PUT /search/index/<index_name>
 ## Optional Request Body
 
 If you run a `PUT` request to this endpoint without a request body, Riak
-will create a new Search index that uses the [default Search schema](/docs/developing/usage/search-schemas/#the-default-schema), i.e. `_yz_default`.
+will create a new Search index that uses the [default Search schema](../../../developing/usage/search-schemas.md#the-default-schema), i.e. `_yz_default`.
 
 To specify a different schema, however, you must pass Riak a JSON object
 as the request body in which the `schema` field specifies the name of
-the schema to use. If you've [stored a schema](/docs/developing/usage/search-schemas/#custom-schemas) called `my_custom_schema`, the following `PUT`
+the schema to use. If you've [stored a schema](../../../developing/usage/search-schemas.md#custom-schemas) called `my_custom_schema`, the following `PUT`
 request would create an index called `my_index` that used that schema:
 
 ```curl
@@ -29,7 +29,7 @@ curl -XPUT http://localhost:8098/search/index/my_index \
   -d '{"schema": "my_custom_schema"}'
 ```
 
-More information can be found in [Using Search](/docs/developing/usage/search).
+More information can be found in [Using Search](../../../developing/usage/search.md).
 
 ## Normal Response Codes
 

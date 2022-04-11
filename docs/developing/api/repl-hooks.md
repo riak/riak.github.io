@@ -138,13 +138,13 @@ from source, use the `erlc` from the Erlang version you used
 to compile Riak.
 :::note
 
-Distribution | Path
-:------------|:----
-CentOS & RHEL Linux | `/usr/lib64/riak/erts-5.10.3/bin/erlc` |
-Debian & Ubuntu Linux | `/usr/lib/riak/erts-5.10.3/bin/erlc` |
-FreeBSD | `/usr/local/lib/riak/erts-5.10.3/bin/erlc` |
-SmartOS | `/opt/local/lib/riak/erts-5.10.3/bin/erlc`
-Solaris 10 | `/opt/riak/lib/erts-5.10.3/bin/erlc`
+| Distribution          | Path                                       |
+|:----------------------|:-------------------------------------------|
+| CentOS & RHEL Linux   | `/usr/lib64/riak/erts-5.10.3/bin/erlc`     |
+| Debian & Ubuntu Linux | `/usr/lib/riak/erts-5.10.3/bin/erlc`       |
+| FreeBSD               | `/usr/local/lib/riak/erts-5.10.3/bin/erlc` |
+| SmartOS               | `/opt/local/lib/riak/erts-5.10.3/bin/erlc` |
+| Solaris 10            | `/opt/riak/lib/erts-5.10.3/bin/erlc`       |
 
 **Table 1**: Erlang compiler executable location for packaged Riak
 installations on supported platforms

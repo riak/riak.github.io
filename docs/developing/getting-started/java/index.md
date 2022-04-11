@@ -4,7 +4,7 @@ id: getting_started_java
 sidebar_position: 0
 ---
 
-If you haven't set up a Riak Node and started it, please visit [Running A Cluster](/docs/using/running-a-cluster) first.
+If you haven't set up a Riak Node and started it, please visit [Running A Cluster](../../../using/running-a-cluster.md) first.
 
 To try this flavor of Riak, a working installation of Java is required.
 

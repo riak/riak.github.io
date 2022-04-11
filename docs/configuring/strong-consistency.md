@@ -5,30 +5,30 @@ slug: strong-consistency
 sidebar_position: 8
 ---
 
-[apps strong consistency]: /docs/developing/app-guide/strong-consistency
-[concept strong consistency]: /docs/using/reference/strong-consistency
-[cluster ops add remove node]: /docs/using/cluster-operations/adding-removing-nodes
-[config reference#strong-cons]: /docs/configuring/reference#strong-consistency
-[use admin riak cli]: /docs/using/admin/riak-cli
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[glossary vnode]: /docs/learn/glossary#vnode
-[ring]: /docs/learn/concepts/clusters#the-ring
-[concept buckets]: /docs/learn/concepts/buckets
-[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
-[use admin riak-admin#ensemble]: /docs/using/admin/riak-admin/#riak-admin-ensemble-status
-[use admin riak-admin]: /docs/using/admin/riak-admin
-[config reference#advanced]: /docs/configuring/reference/#advanced-configuration
-[plan cluster capacity]: /docs/setup/planning/cluster-capacity
-[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[concept causal context]: /docs/learn/concepts/causal-context
-[dev data types]: /docs/developing/data-types
-[glossary aae]: /docs/learn/glossary/#active-anti-entropy-aae
-[cluster ops 2i]: /docs/using/reference/secondary-indexes
-[usage commit hooks]: /docs/developing/usage/commit-hooks
-[cluster ops obj del]: /docs/using/reference/object-deletion
-[dev client libraries]: /docs/developing/client-libraries
+[apps strong consistency]: ../developing/app-guide/strong-consistency.md
+[concept strong consistency]: ../using/reference/strong-consistency.md
+[cluster ops add remove node]: ../using/cluster-operations/adding-removing-nodes.md
+[config reference#strong-cons]: ../configuring/reference.md#strong-consistency
+[use admin riak cli]: ../using/admin/riak-cli.md
+[concept eventual consistency]: ../learn/concepts/eventual-consistency.md
+[plan backend bitcask]: ../setup/planning/backend/bitcask.md
+[glossary vnode]: ../learn/glossary.md#vnode
+[ring]: ../learn/concepts/clusters.md#the-ring
+[concept buckets]: ../learn/concepts/buckets.md
+[cluster ops bucket types]: ../using/cluster-operations/bucket-types.md
+[use admin riak-admin#ensemble]: ../using/admin/riak-admin.md#riak-admin-ensemble-status
+[use admin riak-admin]: ../using/admin/riak-admin.md
+[config reference#advanced]: ../configuring/reference.md#advanced-configuration
+[plan cluster capacity]: ../setup/planning/cluster-capacity.md
+[cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
+[apps replication properties]: ../developing/app-guide/replication-properties.md
+[concept causal context]: ../learn/concepts/causal-context.md
+[dev data types]: ../developing/data-types/index.md
+[glossary aae]: ../learn/glossary.md#active-anti-entropy-aae
+[cluster ops 2i]: ../using/reference/secondary-indexes.md
+[usage commit hooks]: ../developing/usage/commit-hooks.md
+[cluster ops obj del]: ../using/reference/object-deletion.md
+[dev client libraries]: ../developing/client-libraries.md
 
 > **Please Note:**
 >
@@ -110,13 +110,13 @@ While Riak uses N=3 by default, bear in mind that **higher values of N
 will allow for more fault tolerance**. The table below shows the number
 of allowable missing replicas for assorted values of N:
 
-Replicas | Allowable missing replicas
-:--------|:--------------------------
-3 | 1
-5 | 2
-7 | 3
-9 | 4
-15 | 7
+| Replicas | Allowable missing replicas |
+|:---------|:---------------------------|
+| 3        | 1                          |
+| 5        | 2                          |
+| 7        | 3                          |
+| 9        | 4                          |
+| 15       | 7                          |
 
 Thus, we recommend setting `n_val` higher than the default of 3 for
 strongly consistent operations. More on `n_val` in the section below.
@@ -300,14 +300,14 @@ Metadata:    best-effort replication (asynchronous)
 
 The following table provides a guide to `ensemble-status` output:
 
-Item | Meaning |
-|----|---------|
-|`Enabled` | Whether the consensus subsystem is enabled on the current node, i.e. whether the `strong_consistency` parameter in [`riak.conf`][config reference#strong-cons] has been set to `on`. If this reads `off` and you wish to enable strong consistency, see our documentation on [enabling strong consistency][config reference#strong-cons]. |
-|`Active` | Whether the consensus subsystem is active, i.e. whether there are enough nodes in the cluster to use strong consistency, which requires at least three nodes. |
-| `Ring Ready` | If `true`, then all of the [vnodes][glossary vnode] in the cluster have seen the current [ring][ring], which means that the strong consistency subsystem can be used; if `false`, then the system is not yet ready. If you have recently added or removed one or more nodes to/from the cluster, it may take some time for `Ring Ready` to change. |
-| `Validation` | This will display `strong` if the `tree_validation` setting in [`riak.conf`][config reference#strong-cons] has been set to `on` and `weak` if set to `off`. |
-| `Metadata` | This depends on the value of the `synchronous_tree_updates` setting in [`riak.conf`][config reference#strong-cons], which determines whether strong consistency-related Merkle trees are updated synchronously or asynchronously. If `best-effort replication (asynchronous)`, then `synchronous_tree_updates` is set to `false`; if `guaranteed replication (synchronous)` then `synchronous_tree_updates` is set to `true`. |
-| `Ensembles` | This displays a list of all of the currently existing ensembles active in the cluster.<br /><ul><li><code>Ensemble</code> --- The ID of the ensemble</li><li><code>Quorum</code> --- The number of ensemble peers that are either leading or following</li><li><code>Nodes</code> --- The number of nodes currently online</li><li><code>Leader</code> --- The current leader node for the ensemble</li></ul> |
+| Item         | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Enabled`    | Whether the consensus subsystem is enabled on the current node, i.e. whether the `strong_consistency` parameter in [`riak.conf`][config reference#strong-cons] has been set to `on`. If this reads `off` and you wish to enable strong consistency, see our documentation on [enabling strong consistency][config reference#strong-cons].                                                                                     |
+| `Active`     | Whether the consensus subsystem is active, i.e. whether there are enough nodes in the cluster to use strong consistency, which requires at least three nodes.                                                                                                                                                                                                                                                                 |
+| `Ring Ready` | If `true`, then all of the [vnodes][glossary vnode] in the cluster have seen the current [ring][ring], which means that the strong consistency subsystem can be used; if `false`, then the system is not yet ready. If you have recently added or removed one or more nodes to/from the cluster, it may take some time for `Ring Ready` to change.                                                                            |
+| `Validation` | This will display `strong` if the `tree_validation` setting in [`riak.conf`][config reference#strong-cons] has been set to `on` and `weak` if set to `off`.                                                                                                                                                                                                                                                                   |
+| `Metadata`   | This depends on the value of the `synchronous_tree_updates` setting in [`riak.conf`][config reference#strong-cons], which determines whether strong consistency-related Merkle trees are updated synchronously or asynchronously. If `best-effort replication (asynchronous)`, then `synchronous_tree_updates` is set to `false`; if `guaranteed replication (synchronous)` then `synchronous_tree_updates` is set to `true`. |
+| `Ensembles`  | This displays a list of all of the currently existing ensembles active in the cluster.<br /><ul><li><code>Ensemble</code> --- The ID of the ensemble</li><li><code>Quorum</code> --- The number of ensemble peers that are either leading or following</li><li><code>Nodes</code> --- The number of nodes currently online</li><li><code>Leader</code> --- The current leader node for the ensemble</li></ul>                 |
 
 **Note**: The **root ensemble**, designated by `root` in the sample
 output above, is a special ensemble that stores a list of nodes and
@@ -353,12 +353,12 @@ Leader ready: true
 
 The table below provides a guide to the output:
 
-Item | Meaning
-:----|:-------
-`Id` | The ID for the ensemble used internally by Riak, expressed as a 3-tuple. All ensembles are `kv`; the second element names the ring partition for which the ensemble is responsible; and the third element is the `n_val` for the keys for which the ensemble is responsible.
-`Leader` | Identifies the ensemble's leader. In this case, the leader is on node `riak@riak2` and is identified as peer `2` in the ensemble.
-`Leader ready` | States whether the ensemble's leader is ready to respond to requests. If not, requests to the ensemble will fail.
-`Peers` | A list of peer [vnodes][glossary vnode] associated with the ensemble.<br /><ul><li><code>Peer</code> --- The ID of the peer</li><li><code>Status</code> --- Whether the peer is a leader or a follower</li><li><code>Trusted</code> --- Whether the peer's Merkle tree is currently considered trusted or not</li><li><code>Epoch</code> --- The current consensus epoch for the peer. The epoch is incremented each time the leader changes.</li><li><code>Node</code> --- The node on which the peer resides.</li></ul>
+| Item           | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Id`           | The ID for the ensemble used internally by Riak, expressed as a 3-tuple. All ensembles are `kv`; the second element names the ring partition for which the ensemble is responsible; and the third element is the `n_val` for the keys for which the ensemble is responsible.                                                                                                                                                                                                                                              |
+| `Leader`       | Identifies the ensemble's leader. In this case, the leader is on node `riak@riak2` and is identified as peer `2` in the ensemble.                                                                                                                                                                                                                                                                                                                                                                                         |
+| `Leader ready` | States whether the ensemble's leader is ready to respond to requests. If not, requests to the ensemble will fail.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `Peers`        | A list of peer [vnodes][glossary vnode] associated with the ensemble.<br /><ul><li><code>Peer</code> --- The ID of the peer</li><li><code>Status</code> --- Whether the peer is a leader or a follower</li><li><code>Trusted</code> --- Whether the peer's Merkle tree is currently considered trusted or not</li><li><code>Epoch</code> --- The current consensus epoch for the peer. The epoch is incremented each time the leader changes.</li><li><code>Node</code> --- The node on which the peer resides.</li></ul> |
 
 More information on leaders, peers, Merkle trees, and other details can
 be found in [Implementation Details](#implementation-details) below.

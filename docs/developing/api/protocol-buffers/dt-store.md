@@ -5,7 +5,7 @@ slug: dt-store
 sidebar_position: 17
 ---
 
-A request to update the value of a [Riak Data Type](/docs/developing/data-types).
+A request to update the value of a [Riak Data Type](../../../developing/data-types/index.md).
 
 ## Request
 
@@ -15,7 +15,7 @@ Data Type's opaque context should be returned in the resulting
 `DtUpdateResp`.
 
 The `DtOp` value specifies which Data Type-specific operation is being
-performed. More on that in the [PBC Data Type Union](/docs/developing/api/protocol-buffers/dt-union) document.
+performed. More on that in the [PBC Data Type Union](../../../developing/api/protocol-buffers/dt-union.md) document.
 
 ```protobuf
 message DtUpdateReq {
@@ -37,14 +37,14 @@ message DtUpdateReq {
 
 #### Required Parameters
 
-| Parameter | Description                                                                                                                                                                                                  |
-|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                                                      |
-| `type`    | The bucket type of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map). Learn more about [using bucket types](/docs/using/cluster-operations/bucket-types). |
+| Parameter | Description                                                                                                                                                                                                        |
+|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                                                            |
+| `type`    | The bucket type of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map). Learn more about [using bucket types](../../../using/cluster-operations/bucket-types.md). |
 
 Also required is a `DtOp` message that specifies which operation is to
 be performed, depending on whether the Data Type being updated is a
-[counter](/docs/developing/api/protocol-buffers/dt-counter-store), [set](/docs/developing/api/protocol-buffers/dt-set-store), or [map](/docs/developing/api/protocol-buffers/dt-map-store).
+[counter](../../../developing/api/protocol-buffers/dt-counter-store.md), [set](../../../developing/api/protocol-buffers/dt-set-store.md), or [map](../../../developing/api/protocol-buffers/dt-map-store.md).
 
 ```protobuf
 message DtOp {
@@ -58,7 +58,7 @@ message DtOp {
 
 :::note Note on defaults and special values
 All of the optional parameters below have default values determined on a
-per-bucket basis. Please refer to the documentation on [setting bucket properties](../set-bucket-props) for more information.
+per-bucket basis. Please refer to the documentation on [setting bucket properties](./set-bucket-props.md) for more information.
 
 Furthermore, you can assign an integer value to the `w`, `dw`, `pr`, and
 `pw`, provided that that integer value is less than or equal to N, _or_
@@ -66,23 +66,23 @@ a special value denoting `one` (`4294967295-1`), `quorum`
 (`4294967295-2`), `all` (`4294967295-3`), or `default` (`4294967295-4`).
 :::note
 
-| Parameter         | Description                                                                                                                                                      |
-|:------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `key`             | The key where the Data Type is stored. If not specified, Riak will assign a random key and return that key to the client if `return_body` is set to `true`.      |
-| `context`         | The opaque binary "context" that informs Riak which version of a data type the client has seen, analogous to [vector clocks](/docs/learn/glossary/#vector-clock) |
-| `w`               | Write quorum, i.e. how many replicas to write to before returning a successful response                                                                          |
-| `dw`              | Durable write quorum, i.e. how many replicas to commit to durable storage before returning a successful response                                                 |
-| `pw`              | Primary write quorum, i.e. how many primary nodes must be up when the write is attempted                                                                         |
-| `return_body`     | Whether to return the contents of the stored object. Defaults to `false`.                                                                                        |
-| `timeout`         | The timeout duration, in milliseconds, after which Riak will return an error message                                                                             |
-| `sloppy_quorum`   | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable                                  |
-| `n_val`           | The number of nodes on which the value is to be stored                                                                                                           |
-| `include_context` | If `return_body` is set to `true`, the Data Type's opaque "context" will be returned to the client when the `DtUpdateResp` is sent to the client.                |
+| Parameter         | Description                                                                                                                                                           |
+|:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `key`             | The key where the Data Type is stored. If not specified, Riak will assign a random key and return that key to the client if `return_body` is set to `true`.           |
+| `context`         | The opaque binary "context" that informs Riak which version of a data type the client has seen, analogous to [vector clocks](../../../learn/glossary.md#vector-clock) |
+| `w`               | Write quorum, i.e. how many replicas to write to before returning a successful response                                                                               |
+| `dw`              | Durable write quorum, i.e. how many replicas to commit to durable storage before returning a successful response                                                      |
+| `pw`              | Primary write quorum, i.e. how many primary nodes must be up when the write is attempted                                                                              |
+| `return_body`     | Whether to return the contents of the stored object. Defaults to `false`.                                                                                             |
+| `timeout`         | The timeout duration, in milliseconds, after which Riak will return an error message                                                                                  |
+| `sloppy_quorum`   | If this parameter is set to `true`, the next available node in the ring will accept requests if any primary node is unavailable                                       |
+| `n_val`           | The number of nodes on which the value is to be stored                                                                                                                |
+| `include_context` | If `return_body` is set to `true`, the Data Type's opaque "context" will be returned to the client when the `DtUpdateResp` is sent to the client.                     |
 
 ## Response
 
 The response to a Data Type update request is analogous to
-[`RpbPutResp`](/docs/developing/api/protocol-buffers/store-object) for KV operations. If the
+[`RpbPutResp`](../../../developing/api/protocol-buffers/store-object.md) for KV operations. If the
 `return_body` is set in the update request message (as explained above),
 the message will include the opaque context of the Data Type (`context`)
 and the new value of the Data Type _after_ the update has completed

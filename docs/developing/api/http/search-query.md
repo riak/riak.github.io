@@ -5,7 +5,7 @@ slug: search-query
 sidebar_position: 13
 ---
 
-Performs a [Riak KV Search](/docs/developing/usage/search) query.
+Performs a [Riak KV Search](../../../developing/usage/search.md) query.
 
 ## Request
 
@@ -20,7 +20,7 @@ GET /search/query/<index_name>
     to be used when returning the Search payload. The currently
     available options are `json` and `xml`. The default is `xml`.
 * `q` --- The actual Search query itself. Examples can be found in
-    [Using Search](/docs/developing/usage/search). If a query is not specified, Riak will return
+    [Using Search](../../../developing/usage/search.md). If a query is not specified, Riak will return
     information about the index itself, e.g. the number of documents
     indexed.
 

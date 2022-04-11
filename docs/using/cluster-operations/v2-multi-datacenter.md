@@ -6,7 +6,7 @@ sidebar_position: 10
 ---
 
 :::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/using/cluster-operations/v3-multi-datacenter/) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../using/cluster-operations/v3-multi-datacenter.md) instead.
 :::note
 
 Riak Enterprise's Multi-Datacenter Replication system is largely
@@ -149,99 +149,99 @@ restarting Riak Enterprise.
 
 ### Client
 
-Field | Description
-:-----|:-----------
-`client_stats` | See <a href="http://docs.basho.com/docs/using/reference/multi-datacenter/statistics/#client-statistics">Client Statistics</a>
-`client_bytes_recv` | The total number of bytes the client has received since the server has been started
-`client_bytes_sent` | The total number of bytes sent to all connected sites
-`client_connect_errors` | The number of TCP/IP connection errors
-`client_connects` | A count of the number of site connections made to this node
-`client_redirect` | If a client connects to a non-leader node, it will be redirected to a leader node
-`client_rx_kbps` | A snapshot of the client (site)-received kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list.
-`client_tx_kbps` | A snapshot of the client (site)-sent kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list.
+| Field                   | Description                                                                                                                                                                       |
+|:------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `client_stats`          | See [Client Statistics](../reference/multi-datacenter/statistics.md#client-statistics)                                                                                            |
+| `client_bytes_recv`     | The total number of bytes the client has received since the server has been started                                                                                               |
+| `client_bytes_sent`     | The total number of bytes sent to all connected sites                                                                                                                             |
+| `client_connect_errors` | The number of TCP/IP connection errors                                                                                                                                            |
+| `client_connects`       | A count of the number of site connections made to this node                                                                                                                       |
+| `client_redirect`       | If a client connects to a non-leader node, it will be redirected to a leader node                                                                                                 |
+| `client_rx_kbps`        | A snapshot of the client (site)-received kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list. |
+| `client_tx_kbps`        | A snapshot of the client (site)-sent kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list.     |
 
 ### Server
 
-Field | Description
-:-----|:-----------
-`server_bytes_recv` | The total number of bytes the server (listener) has received
-`server_bytes_sent` | The total number of bytes the server (listener) has sent
-`server_connect_errors` | The number of listener to site connection errors
-`server_connects` | The number of times the listener connects to the client site
-`server_fullsyncs` | The number of fullsync operations that have occurred since the server was started
-`server_rx_kbps` | A snapshot of the server (listener) received kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list.
-`server_tx_kbps` | A snapshot of the server (listener) sent kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list.
-`server_stats` | See <a href="http://docs.basho.com/docs/using/reference/multi-datacenter/statistics/#server-statistics">Server Statistics</a>
+| Field                   | Description                                                                                                                                                                           |
+|:------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `server_bytes_recv`     | The total number of bytes the server (listener) has received                                                                                                                          |
+| `server_bytes_sent`     | The total number of bytes the server (listener) has sent                                                                                                                              |
+| `server_connect_errors` | The number of listener to site connection errors                                                                                                                                      |
+| `server_connects`       | The number of times the listener connects to the client site                                                                                                                          |
+| `server_fullsyncs`      | The number of fullsync operations that have occurred since the server was started                                                                                                     |
+| `server_rx_kbps`        | A snapshot of the server (listener) received kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list. |
+| `server_tx_kbps`        | A snapshot of the server (listener) sent kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list.     |
+| `server_stats`          | See [Server Statistics](../reference/multi-datacenter/statistics.md#server-statistics)                                                                                                |
 
 ### Elections and Objects
 
-Field | Description
-:-----|:-----------
-`elections_elected` | If the replication leader node becomes unresponsive or unavailable, a new leader node in the cluster will be elected
-`elections_leader_changed` | The number of times a Riak node has surrendered leadership
-`objects_dropped_no_clients` | If the realtime replication work queue is full and there aren't any clients to receive objects, then objects will be dropped from the queue. These objects will be synchronized during a fullsync operation.
-`objects_dropped_no_leader` | If a client (site) cannot connect to a leader, objects will be dropped during realtime replication
-`objects_forwarded` | The number of Riak objects forwarded to the leader the participate in replication. *Please note that this value will only be accurate on a non-leader node*.
-`objects_sent` | The number of objects sent via realtime replication
+| Field                        | Description                                                                                                                                                                                                  |
+|:-----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `elections_elected`          | If the replication leader node becomes unresponsive or unavailable, a new leader node in the cluster will be elected                                                                                         |
+| `elections_leader_changed`   | The number of times a Riak node has surrendered leadership                                                                                                                                                   |
+| `objects_dropped_no_clients` | If the realtime replication work queue is full and there aren't any clients to receive objects, then objects will be dropped from the queue. These objects will be synchronized during a fullsync operation. |
+| `objects_dropped_no_leader`  | If a client (site) cannot connect to a leader, objects will be dropped during realtime replication                                                                                                           |
+| `objects_forwarded`          | The number of Riak objects forwarded to the leader the participate in replication. *Please note that this value will only be accurate on a non-leader node*.                                                 |
+| `objects_sent`               | The number of objects sent via realtime replication                                                                                                                                                          |
 
 ### Other
 
-Field | Description
-:-----|:-----------
-`listener_<nodeid>` | Defines a replication listener that is running on node `<nodeid>`
-`[sitename]_ips` | Defines a replication site
-`leader` | Which node is the current leader of the cluster
-`local_leader_message_queue_len` | The length of the object queue on the leader
-`local_leader_heap_size `| The amount of memory the leader is using
+| Field                            | Description                                                       |
+|:---------------------------------|:------------------------------------------------------------------|
+| `listener_<nodeid>`              | Defines a replication listener that is running on node `<nodeid>` |
+| `[sitename]_ips`                 | Defines a replication site                                        |
+| `leader`                         | Which node is the current leader of the cluster                   |
+| `local_leader_message_queue_len` | The length of the object queue on the leader                      |
+| `local_leader_heap_size `        | The amount of memory the leader is using                          |
 
 ## Client Statistics
 
-Field | Description
-------|------------
-`node` | A unique ID for the Riak node on which the client (site) is running
-`site` | The connected site name configured with `riak-repl add-site`
-`strategy` | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist`, `syncv1`
-`fullsync_worker` | The Erlang process ID of the fullsync worker
-`waiting_to_retry` | The listeners currently waiting to retry replication after a failure
-`connected` | A list of connected clients<ul><li>`connected` --- The IP address and port of a connected client (site)</li><li>`cluster_name` --- The name of the connected client (site)</li><li>`connecting` --- The PID, IP address, and port of a client currently establishing a connection</li></ul>
-`state` | State shows what the current replication strategy is currently processing. The following definitions appear in the status output if keylist strategy is being used. They can be used by Basho support to identify replication issues.<ul><li>`request_partition`</li><li>`wait_for_fullsync`</li><li>`send_keylist`</li><li>`wait_ack`</li></ul>
+| Field              | Description                                                                                                                                                                                                                                                                                                                                      |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `node`             | A unique ID for the Riak node on which the client (site) is running                                                                                                                                                                                                                                                                              |
+| `site`             | The connected site name configured with `riak-repl add-site`                                                                                                                                                                                                                                                                                     |
+| `strategy`         | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist`, `syncv1`                                                                                                                                                                                                                             |
+| `fullsync_worker`  | The Erlang process ID of the fullsync worker                                                                                                                                                                                                                                                                                                     |
+| `waiting_to_retry` | The listeners currently waiting to retry replication after a failure                                                                                                                                                                                                                                                                             |
+| `connected`        | A list of connected clients<ul><li>`connected` --- The IP address and port of a connected client (site)</li><li>`cluster_name` --- The name of the connected client (site)</li><li>`connecting` --- The PID, IP address, and port of a client currently establishing a connection</li></ul>                                                      |
+| `state`            | State shows what the current replication strategy is currently processing. The following definitions appear in the status output if keylist strategy is being used. They can be used by Basho support to identify replication issues.<ul><li>`request_partition`</li><li>`wait_for_fullsync`</li><li>`send_keylist`</li><li>`wait_ack`</li></ul> |
 
 ## Bounded Queue
 
 The bounded queue is responsible for holding objects that are waiting to
-participate in realtime replication. Please see the [Riak Enterprise MDC Replication Configuration](/docs/configuring/v2-multi-datacenter/) guide for more information.
+participate in realtime replication. Please see the [Riak Enterprise MDC Replication Configuration](../../configuring/v2-multi-datacenter/index.md) guide for more information.
 
-Field | Description
-------|------------
-`queue_pid` | The Erlang process ID of the bounded queue
-`dropped_count` | The number of objects that failed to be enqueued in the bounded queue due to the queue being full. *These objects will be replicated during the next fullsync operation*.
-`queue_length` | The number of Riak objects currently in the bounded queue
-`queue_byte_size` | The size of all objects currently in the queue
-`queue_max_size` | The number of bytes the queue can hold before objects are dropped. *These objects will be replicated during the next fullsync operation*.
-`queue_percentage` | The percentage of the queue that is full
-`queue_pending` | The current count of "in-flight" objects we've sent that the client has not acknowledged
-`queue_max_pending` | The maximum number of objects that can be "in flight" before we refuse to send any more.
+| Field               | Description                                                                                                                                                               |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `queue_pid`         | The Erlang process ID of the bounded queue                                                                                                                                |
+| `dropped_count`     | The number of objects that failed to be enqueued in the bounded queue due to the queue being full. *These objects will be replicated during the next fullsync operation*. |
+| `queue_length`      | The number of Riak objects currently in the bounded queue                                                                                                                 |
+| `queue_byte_size`   | The size of all objects currently in the queue                                                                                                                            |
+| `queue_max_size`    | The number of bytes the queue can hold before objects are dropped. *These objects will be replicated during the next fullsync operation*.                                 |
+| `queue_percentage`  | The percentage of the queue that is full                                                                                                                                  |
+| `queue_pending`     | The current count of "in-flight" objects we've sent that the client has not acknowledged                                                                                  |
+| `queue_max_pending` | The maximum number of objects that can be "in flight" before we refuse to send any more.                                                                                  |
 
 ## Server Statistics
 
-Field | Description
-------|------------
-`node`  | A unique ID for the Riak node on which the server (listener) is running
-`site` | The connected site name configured with `riak-repl add-site`
-`strategy` | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist` or `syncv1`.
-`fullsync_worker` | The Erlang process ID of the fullsync worker
-`bounded_queue` | See the <a href="http://docs.basho.com/docs/using/cluster-operations/v2-multi-datacenter/#bounded-queue">Bounded Queue</a> section above
-`state` | State shows what the current replication strategy is processing. The following definitions appear in the status output if the keylist strategy is being used. They can be used by Basho support to identify replication issues.<ul><li>`wait_for_partition`</li><li>`build_keylist`</li><li>`wait_keylist`</li><li>`diff_bloom`</li><li>`diff_keylist`</li></ul>s
-`message_queue_len` | The number of Erlang messages that are waiting to be processed by the server
+| Field               | Description                                                                                                                                                                                                                                                                                                                                                       |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `node`              | A unique ID for the Riak node on which the server (listener) is running                                                                                                                                                                                                                                                                                           |
+| `site`              | The connected site name configured with `riak-repl add-site`                                                                                                                                                                                                                                                                                                      |
+| `strategy`          | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist` or `syncv1`.                                                                                                                                                                                                                                           |
+| `fullsync_worker`   | The Erlang process ID of the fullsync worker                                                                                                                                                                                                                                                                                                                      |
+| `bounded_queue`     | See the [Bounded Queue](../cluster-operations/v2-multi-datacenter.md#bounded-queue) section above                                                                                                                                                                                                                                                                 |
+| `state`             | State shows what the current replication strategy is processing. The following definitions appear in the status output if the keylist strategy is being used. They can be used by Basho support to identify replication issues.<ul><li>`wait_for_partition`</li><li>`build_keylist`</li><li>`wait_keylist`</li><li>`diff_bloom`</li><li>`diff_keylist`</li></ul>s |
+| `message_queue_len` | The number of Erlang messages that are waiting to be processed by the server                                                                                                                                                                                                                                                                                      |
 
 ## Keylist Strategy
 
 These similar fields are under both the `keylist_server` and
 `keylist_client` fields. Any differences are described in the table.
 
-Field | Description
-------|------------
-`fullsync` | On the client, the number of partitions that remain to be processed. On the server, the partition currently being processed by fullsync replication.
-`partition_start` | The number of elapsed seconds since replication has started on a given partition
-`stage_start` | The number of elapsed seconds since replication has started on a given stage
-`get_pool_size` | The number of Riak get finite state workers available to process requests
+| Field             | Description                                                                                                                                          |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `fullsync`        | On the client, the number of partitions that remain to be processed. On the server, the partition currently being processed by fullsync replication. |
+| `partition_start` | The number of elapsed seconds since replication has started on a given partition                                                                     |
+| `stage_start`     | The number of elapsed seconds since replication has started on a given stage                                                                         |
+| `get_pool_size`   | The number of Riak get finite state workers available to process requests                                                                            |

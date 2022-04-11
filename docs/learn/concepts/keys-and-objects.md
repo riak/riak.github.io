@@ -5,8 +5,8 @@ slug: keys-and-objects
 sidebar_position: 7
 ---
 
-[concept buckets]: /docs/learn/concepts/buckets
-[concept causal context vc]: /docs/learn/concepts/causal-context/#vector-clocks
+[concept buckets]: ../../learn/concepts/buckets.md
+[concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
 
 In an RDBMS, data is organized by tables that are individually
 identifiable entities. Within those tables exist rows of a data

@@ -5,7 +5,7 @@ slug: scheduling-fullsync
 sidebar_position: 3
 ---
 
-[config reference#advanced]: /docs/configuring/reference/#advanced-configuration
+[config reference#advanced]: ../../../configuring/reference.md#advanced-configuration
 
 The `fullsync_interval` parameter can be configured in the `riak-repl`
 section of [`advanced.config`][config reference#advanced] with either:

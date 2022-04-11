@@ -4,13 +4,12 @@ id: planning
 sidebar_position: 0
 ---
 
-[plan start]: ./start
-[plan backend]: ./backend
-[plan cluster capacity]: ./cluster-capacity
-[plan bitcask capacity]: ./bitcask-capacity-calc
-[plan backend bitcask]: ./backend/bitcask
-[plan best practices]: ./best-practices
-[plan future]: ./future
+[plan start]: ./start.md
+[plan backend]: ./backend/index.md
+[plan cluster capacity]: ./cluster-capacity.md
+[plan bitcask capacity]: ./bitcask-capacity-calc.mdx
+[plan backend bitcask]: ./backend/bitcask.md
+[plan best practices]: ./best-practices.md
 
 ## [Start Planning][plan start]
 

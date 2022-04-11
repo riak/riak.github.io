@@ -4,15 +4,15 @@ id: usage_conflict_resolution
 sidebar_position: 16
 ---
 
-[usage bucket types]: /docs/developing/usage/bucket-types
-[use ref strong consistency]: /docs/using/reference/strong-consistency
+[usage bucket types]: ../../../developing/usage/bucket-types.md
+[use ref strong consistency]: ../../../using/reference/strong-consistency.md
 
-One of Riak's [central goals](../../../learn/why-riak-kv) is high availability. It was built as a [clustered](/docs/learn/concepts/clusters) system in which any [node](/docs/learn/glossary/#node) is capable of receiving requests without requiring that
+One of Riak's [central goals](../../../learn/why-riak-kv) is high availability. It was built as a [clustered](../../../learn/concepts/clusters.md) system in which any [node](../../../learn/glossary.md#node) is capable of receiving requests without requiring that
 every node participate in each request.
 
-If you are using Riak in an [eventually consistent](/docs/learn/concepts/eventual-consistency) way, conflicts between object values on different nodes is
+If you are using Riak in an [eventually consistent](../../../learn/concepts/eventual-consistency.md) way, conflicts between object values on different nodes is
 unavoidable. Often, Riak can resolve these conflicts on its own
-internally if you use causal context, i.e. [vector clocks](/docs/learn/concepts/causal-context#vector-clocks) or [dotted version vectors](/docs/learn/concepts/causal-context#dotted-version-vectors), when updating objects. Instructions on this can be found in the section [below](#siblings).
+internally if you use causal context, i.e. [vector clocks](../../../learn/concepts/causal-context.md#vector-clocks) or [dotted version vectors](../../../learn/concepts/causal-context.md#dotted-version-vectors), when updating objects. Instructions on this can be found in the section [below](#siblings).
 
 :::note Important note on terminology
 In versions of Riak prior to 2.0, vector clocks were the only causal context
@@ -33,7 +33,7 @@ though, please bear in mind that we strongly recommend one of the
 following two options:
 
 1. If your data can be modeled as one of the currently available [Riak
-   Data Types](/docs/developing/data-types), we recommend using one of these types,
+   Data Types](../../../developing/data-types/index.md), we recommend using one of these types,
    because all of them have conflict resolution _built in_, completely
    relieving applications of the need to engage in conflict resolution.
 2. If your data cannot be modeled as one of the available Data Types,
@@ -52,8 +52,8 @@ a strongly consistent fashion. This document pertains to usage of Riak
 as an _eventually_ consistent system. If you'd like to use Riak's
 strong consistency feature, please refer to the following documents:
 >
-> * [Using Strong Consistency](/docs/developing/app-guide/strong-consistency) --- A guide for developers
-> * [Managing Strong Consistency](/docs/configuring/strong-consistency) --- A guide for operators
+> * [Using Strong Consistency](../../../developing/app-guide/strong-consistency.md) --- A guide for developers
+> * [Managing Strong Consistency](../../../configuring/strong-consistency.md) --- A guide for operators
 > * [strong consistency][use ref strong consistency] --- A more theoretical explication of strong
   consistency
 
@@ -61,10 +61,10 @@ strong consistency feature, please refer to the following documents:
 
 Riak's eventual consistency model is powerful because Riak is
 fundamentally non-opinionated about how data resolution takes place.
-While Riak _does_ have a set of [defaults](/docs/developing/app-guide/replication-properties#available-parameters), there are a variety of general
+While Riak _does_ have a set of [defaults](../../../developing/app-guide/replication-properties.md#available-parameters), there are a variety of general
 approaches to conflict resolution that are available. In Riak, you can
 mix and match conflict resolution strategies at the bucket level,
-[using bucket types][usage bucket types]. The most important [bucket properties](/docs/learn/concepts/buckets)
+[using bucket types][usage bucket types]. The most important [bucket properties](../../../learn/concepts/buckets.md)
 to consider when reasoning about conflict resolution are the
 `allow_mult` and `last_write_wins` properties.
 
@@ -76,7 +76,7 @@ If the [`allow_mult`](#siblings) parameter is set to
 `false`, Riak resolves all object replica conflicts internally and does
 not return siblings to the client. How Riak resolves those conflicts
 depends on the value that you set for a different bucket property,
-[`last_write_wins`](/docs/learn/concepts/buckets). If `last_write_wins` is set to `false`,
+[`last_write_wins`](../../../learn/concepts/buckets.md). If `last_write_wins` is set to `false`,
 Riak will resolve all conflicts on the basis of
 [timestamps](http://en.wikipedia.org/wiki/Timestamp), which are
 attached to all Riak objects as metadata.
@@ -130,20 +130,20 @@ made in accordance with your data model(s), business needs, and use
 cases. For examples of client-side sibling resolution, see the following
 client-library-specific docs:
 
-* [Java](/docs/developing/usage/conflict-resolution/java)
-* [Ruby](/docs/developing/usage/conflict-resolution/ruby)
-* [Python](/docs/developing/usage/conflict-resolution/python)
-* [C#](/docs/developing/usage/conflict-resolution/csharp)
-* [Node.js](/docs/developing/usage/conflict-resolution/nodejs)
+* [Java](../../../developing/usage/conflict-resolution/java.md)
+* [Ruby](../../../developing/usage/conflict-resolution/ruby.md)
+* [Python](../../../developing/usage/conflict-resolution/python.md)
+* [C#](../../../developing/usage/conflict-resolution/csharp.md)
+* [Node.js](../../../developing/usage/conflict-resolution/nodejs.md)
 
 In Riak versions 2.0 and later, `allow_mult` is set to `true` by default
-for any [bucket types](/docs/developing/usage/bucket-types) that you create. This means
+for any [bucket types](../../../developing/usage/bucket-types.md) that you create. This means
 that if you wish to avoid client-side sibling resolution, you have a few
 options:
 
-* Explicitly create and activate [bucket types](/docs/developing/usage/bucket-types)
+* Explicitly create and activate [bucket types](../../../developing/usage/bucket-types.md)
   that set `allow_mult` to `false`
-* Use Riak's [Configuration Files](/docs/configuring/reference) to change the [default bucket properties](/docs/configuring/reference#default-bucket-properties) for your
+* Use Riak's [Configuration Files](../../../configuring/reference.md) to change the [default bucket properties](../../../configuring/reference#default-bucket-properties) for your
   cluster. If you set the `buckets.default.allow_mult` parameter to
   `false`, all bucket types that you create will have `allow_mult` set
   to `false` by default.
@@ -153,7 +153,7 @@ options:
 When a value is stored in Riak, it is tagged with a piece of metadata
 called a **causal context** which establishes the object's initial
 version. Causal context comes in one of two possible forms, depending
-on what value you set for `dvv_enabled`. If set to `true`, [dotted version vectors](/docs/learn/concepts/causal-context#dotted-version-vectors) will be used; if set to `false` (the default), [vector clocks](/docs/learn/concepts/causal-context#vector-clocks) will be used.
+on what value you set for `dvv_enabled`. If set to `true`, [dotted version vectors](../../../learn/concepts/causal-context.md#dotted-version-vectors) will be used; if set to `false` (the default), [vector clocks](../../../learn/concepts/causal-context.md#vector-clocks) will be used.
 
 Causal context essentially enables Riak to compare the different values
 of objects stored in Riak and to determine a number of important things
@@ -178,11 +178,11 @@ If `allow_mult` is set to `true`, you should _always_ use causal context
 when updating objects, _unless you are certain that no object exists
 under that key_. Failing to use causal context with mutable data,
 especially for objects that are frequently updated, can lead to
-[sibling explosion](/docs/using/performance/latency-reduction#siblings), which can
+[sibling explosion](../../../using/performance/latency-reduction.md#siblings), which can
 produce a variety of problems in your cluster. Fortunately, much of the
 work involved with using causal context is handled automatically by
-Basho's official [client libraries](/docs/developing/client-libraries). Examples can be found for each
-client library in the [Object Updates](/docs/developing/usage/updating-objects) document.
+Basho's official [client libraries](../../../developing/client-libraries.md). Examples can be found for each
+client library in the [Object Updates](../../../developing/usage/updating-objects.md) document.
 
 ## Siblings
 
@@ -197,7 +197,7 @@ clients, Riak may not be able to choose a single value to store, in
 which case the object will be given a sibling. These writes could happen
 on the same node or on different nodes.
 2. **Stale causal context** --- Writes from any client using a stale
-[causal context](/docs/learn/concepts/causal-context). This is a less likely scenario if a client updates
+[causal context](../../../learn/concepts/causal-context.md). This is a less likely scenario if a client updates
 the object by reading the object first, fetching the causal context
 currently attached to the object, and then returning that causal context
 to Riak when performing the update (fortunately, our client libraries
@@ -346,7 +346,7 @@ curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/key
 > **Getting started with Riak KV clients**
 >
 > If you are connecting to Riak using one of Basho's official
-[client libraries](/docs/developing/client-libraries), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](/docs/developing/getting-started) section.
+[client libraries](../../../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../../../developing/getting-started/index.md) section.
 
 At this point, multiple objects have been stored in the same key without
 passing any causal context to Riak. Let's see what happens if we try to
@@ -467,11 +467,11 @@ by presenting the conflicting objects to the end user. For more
 information on application-side conflict resolution, see our
 client-library-specific documentation for the following languages:
 
-* [Java](/docs/developing/usage/conflict-resolution/java)
-* [Ruby](/docs/developing/usage/conflict-resolution/ruby)
-* [Python](/docs/developing/usage/conflict-resolution/python)
-* [C#](/docs/developing/usage/conflict-resolution/csharp)
-* [Node.js](/docs/developing/usage/conflict-resolution/nodejs)
+* [Java](../../../developing/usage/conflict-resolution/java.md)
+* [Ruby](../../../developing/usage/conflict-resolution/ruby.md)
+* [Python](../../../developing/usage/conflict-resolution/python.md)
+* [C#](../../../developing/usage/conflict-resolution/csharp.md)
+* [Node.js](../../../developing/usage/conflict-resolution/nodejs.md)
 
 We won't deal with conflict resolution in this section. Instead, we'll
 focus on how to use causal context.
@@ -599,7 +599,7 @@ once that limit has been exceeded.
 Sibling explosion occurs when an object rapidly collects siblings
 without being reconciled. This can lead to myriad issues. Having an
 enormous object in your node can cause reads of that object to crash
-the entire node. Other issues include [increased cluster latency](/docs/using/performance/latency-reduction) as the object is replicated and out-of-memory errors.
+the entire node. Other issues include [increased cluster latency](../../../using/performance/latency-reduction.md) as the object is replicated and out-of-memory errors.
 
 ### Vector Clock Explosion
 
@@ -644,12 +644,12 @@ properties to `true` leads to undefined behavior and should not be used.
 Riak regularly prunes vector clocks to prevent overgrowth based on four
 parameters which can be set for any bucket type that you create:
 
-Parameter | Default value | Description
-:---------|:--------------|:-----------
-`small_vclock` | `50` | If the length of the vector clock list is smaller than this value, the list's entries will not be pruned
-`big_vclock` | `50` | If the length of the vector clock list is larger than this value, the list will be pruned
-`young_vclock` | `20` | If a vector clock entry is younger than this value (in milliseconds), it will not be pruned
-`old_vclock` | `86400` (one day) | If a vector clock entry is older than this value (in milliseconds), it will be pruned
+| Parameter      | Default value     | Description                                                                                              |
+|:---------------|:------------------|:---------------------------------------------------------------------------------------------------------|
+| `small_vclock` | `50`              | If the length of the vector clock list is smaller than this value, the list's entries will not be pruned |
+| `big_vclock`   | `50`              | If the length of the vector clock list is larger than this value, the list will be pruned                |
+| `young_vclock` | `20`              | If a vector clock entry is younger than this value (in milliseconds), it will not be pruned              |
+| `old_vclock`   | `86400` (one day) | If a vector clock entry is older than this value (in milliseconds), it will be pruned                    |
 
 This diagram shows how the values of these parameters dictate the vector
 clock pruning process:

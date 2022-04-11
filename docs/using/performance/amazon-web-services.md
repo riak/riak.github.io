@@ -8,9 +8,9 @@ sidebar_position: 5
 This guide introduces best practices for tuning Riak cluster performance
 in the Amazon Web Services (AWS) Elastic Compute Cloud (EC2) environment.
 
-> **Note:**
->
-> The following guide is supplementary. Be sure to check out [Improving Performance](../) for general performance and tuning recommendations before continuing with this guide.
+:::note
+The following guide is supplementary. Be sure to check out [Improving Performance](./index.md) for general performance and tuning recommendations before continuing with this guide.
+:::note
 
 ## EC2 Instances
 
@@ -79,14 +79,14 @@ To set the scheduler to deadline, use the following command:
 echo deadline > /sys/block/xvdf/queue/scheduler
 ```
 
-More information on the disk scheduler is available in [Improving Performance](../).
+More information on the disk scheduler is available in [Improving Performance](./index.md).
 
 ### Virtual Memory Subsystem
 
 EBS volumes have considerably less bandwidth than hardware disks.  To
 avoid saturating EBS bandwidth and inducing IO latency spikes, it is
 recommended to tune the Linux virtual memory subsystem to flush smaller
-amounts of data more often. To do so, please see [Linux system performance tuning](../#optional-i-o-settings).
+amounts of data more often. To do so, please see [Linux system performance tuning](./index.md#optional-i-o-settings).
 
 ### Forensics
 
@@ -145,7 +145,7 @@ approximately-compatible data payloads with the Riak cluster directly.
 
 Benchmarking is critical to determining the appropriate EC2 instance
 types, and strongly recommended. More information is available on
-benchmarking Riak clusters with [Basho Bench](../benchmarking).
+benchmarking Riak clusters with [Basho Bench](./benchmarking.md).
 
 Besides running Basho Bench, we also advise that you load test Riak with
 your own tests to ensure that load imparted by MapReduce queries,
@@ -159,7 +159,7 @@ steady-state. While under a simulation of live load, the following
 states might be simulated:
 
 1.  Stop one or more nodes normally and restart them after a few moments
-    (simulates [rolling upgrade](../../../setup/upgrading/cluster)).
+    (simulates a rolling upgrade).
 2.  Join two or more nodes to the cluster.
 3.  Leave nodes from the cluster (after step #2).
 4.  Hard-kill the Riak `beam.smp` process (i.e., `kill -9`) and then
@@ -199,7 +199,7 @@ following attributes after a restart:
 * Public DNS
 
 Because these parameters play a role in a Riak instance's node name,
-ensure that you follow the steps outlined in the [Node Name Changed](../../repair-recovery/failed-node/#node-name-changed) section to replace
+ensure that you follow the steps outlined in the [Node Name Changed](../repair-recovery/failed-node.md#node-name-changed) section to replace
 it.
 
 To avoid this inconvenience, you can deploy Riak inside a
@@ -228,6 +228,6 @@ For more information on EC2 storage options, please see their
 
 ## References
 
-* [Improving Performance](../)
-* [Failure and Recovery](../../repair-recovery)
+* [Improving Performance](./index.md)
+* [Failure and Recovery](../repair-recovery/index.md)
 * [Basho Client Services Help Desk](https://help.basho.com)

@@ -5,8 +5,8 @@ slug: architecture
 sidebar_position: 0
 ---
 
-[glossary vnode]: /docs/learn/glossary/#vnode
-[concept clusters]: /docs/learn/concepts/clusters
+[glossary vnode]: ../../../learn/glossary.md#vnode
+[concept clusters]: ../../../learn/concepts/clusters.md
 
 ## How Version 3 Replication Works
 

@@ -27,8 +27,8 @@ Available properties:
 (concurrent updates)
 * `last_write_wins` (true or false) - whether to ignore object history (vector
 clock) when writing
-* `precommit` - [precommit hooks](/docs/developing/usage/commit-hooks)
-* `postcommit` - [postcommit hooks](/docs/developing/usage/commit-hooks)
+* `precommit` - [precommit hooks](../../../developing/usage/commit-hooks.md)
+* `postcommit` - [postcommit hooks](../../../developing/usage/commit-hooks.md)
 * `r, w, dw, rw` - default quorum values for operations on keys in the bucket.
 Valid values are:
   * `"all"` - all nodes must respond

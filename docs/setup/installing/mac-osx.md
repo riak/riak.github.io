@@ -5,9 +5,9 @@ slug: mac-osx
 sidebar_position: 3
 ---
 
-[perf open files]: /docs/using/performance/open-files-limit
-[install source erlang]: /docs/setup/installing/source/erlang
-[install verify]: /docs/setup/installing/verify
+[perf open files]: ../../using/performance/open-files-limit.md
+[install source erlang]: ../../setup/installing/source/erlang.md
+[install verify]: ../../setup/installing/verify.md
 
 The following steps are known to work with Mac OS X 10.8, 10.9
 (Mavericks), and Yosemite. You can install from source or download a

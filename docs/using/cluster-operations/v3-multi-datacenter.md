@@ -5,11 +5,11 @@ slug: v3-multi-datacenter
 sidebar_position: 9
 ---
 
-[config v3 mdc]: /docs/configuring/v3-multi-datacenter
-[config v3 nat]: /docs/configuring/v3-multi-datacenter/nat
-[config v3 quickstart]: /docs/configuring/v3-multi-datacenter/quick-start
-[config v3 ssl]: /docs/configuring/v3-multi-datacenter/ssl
-[ref v3 stats]: /docs/using/reference/multi-datacenter/statistics
+[config v3 mdc]: ../../configuring/v3-multi-datacenter/index.md
+[config v3 nat]: ../../configuring/v3-multi-datacenter/nat.md
+[config v3 quickstart]: ../../configuring/v3-multi-datacenter/quick-start.md
+[config v3 ssl]: ../../configuring/v3-multi-datacenter/ssl.md
+[ref v3 stats]: ../../using/reference/multi-datacenter/statistics.md
 
 This document explains how to manage replication with the `riak-repl`
 command. Some of these commands can be set or behavior altered by

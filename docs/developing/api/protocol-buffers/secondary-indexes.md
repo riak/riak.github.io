@@ -42,18 +42,18 @@ message RpbIndexReq {
 
 #### Optional Parameters
 
-| Parameter                   | Description                                                                                                                                                                          |
-|:----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `key`                       | The name of the index to be queried if `qtype` is set to `eq`                                                                                                                        |
-| `range_min` and `range_max` | The minimum and maximum values for a range query if `qtype` is set to `range`                                                                                                        |
-| `return_terms`              | If set to `true`, the response will include matched indexed values (for range queries only)                                                                                          |
-| `stream`                    | If set to `true`, keys matching the index query will be streamed to the client instead of waiting for `max_results` or the full result to be tabulated                               |
-| `max_results`               | If pagination is turned on, the number of results to be returned to the client                                                                                                       |
-| `continuation`              | If set to `true`, values are returned in a paginated response                                                                                                                        |
-| `timeout`                   | The timeout duration, in milliseconds, after which Riak will return an error message                                                                                                 |
-| `type`                      | The bucket type of the bucket that is being queried. If not set, the bucket type `default` will be used. Learn more about [using bucket types](/docs/developing/usage/bucket-types). |
-| `term_regex`                | If set to a regular expression (as a binary), a term filter will be applied to the index query                                                                                       |
-| `pagination_sort`           | If set to `true`, paginated results will be sorted, first by index value, then by key                                                                                                |
+| Parameter                   | Description                                                                                                                                                                                |
+|:----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `key`                       | The name of the index to be queried if `qtype` is set to `eq`                                                                                                                              |
+| `range_min` and `range_max` | The minimum and maximum values for a range query if `qtype` is set to `range`                                                                                                              |
+| `return_terms`              | If set to `true`, the response will include matched indexed values (for range queries only)                                                                                                |
+| `stream`                    | If set to `true`, keys matching the index query will be streamed to the client instead of waiting for `max_results` or the full result to be tabulated                                     |
+| `max_results`               | If pagination is turned on, the number of results to be returned to the client                                                                                                             |
+| `continuation`              | If set to `true`, values are returned in a paginated response                                                                                                                              |
+| `timeout`                   | The timeout duration, in milliseconds, after which Riak will return an error message                                                                                                       |
+| `type`                      | The bucket type of the bucket that is being queried. If not set, the bucket type `default` will be used. Learn more about [using bucket types](../../../developing/usage/bucket-types.md). |
+| `term_regex`                | If set to a regular expression (as a binary), a term filter will be applied to the index query                                                                                             |
+| `pagination_sort`           | If set to `true`, paginated results will be sorted, first by index value, then by key                                                                                                      |
 
 ## Response
 
@@ -71,12 +71,12 @@ message RpbIndexResp {
 
 #### Values
 
-| Parameter      | Description                                                                                                                                                                                                                                         |
-|:---------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `keys`         | A list of keys that match the index request                                                                                                                                                                                                         |
-| `results`      | If `return_terms` is specified with range queries, used to return matched index values as key/value pairs in `RpbPair` messages. More on `RpbPair` messages can be found in [PBC Fetch Object](/docs/developing/api/protocol-buffers/fetch-object). |
-| `continuation` | Used for paginated responses                                                                                                                                                                                                                        |
-| `done`         | Used for streaming. The value will be `true` when the current stream is done (either `max_results` has been reached or there are no more results).                                                                                                  |
+| Parameter      | Description                                                                                                                                                                                                                                            |
+|:---------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `keys`         | A list of keys that match the index request                                                                                                                                                                                                            |
+| `results`      | If `return_terms` is specified with range queries, used to return matched index values as key/value pairs in `RpbPair` messages. More on `RpbPair` messages can be found in [PBC Fetch Object](../../../developing/api/protocol-buffers/fetch-object.md). |
+| `continuation` | Used for paginated responses                                                                                                                                                                                                                           |
+| `done`         | Used for streaming. The value will be `true` when the current stream is done (either `max_results` has been reached or there are no more results).                                                                                                     |
 
 ## Example
 

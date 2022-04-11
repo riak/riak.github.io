@@ -5,7 +5,7 @@ slug: search-index-info
 sidebar_position: 14
 ---
 
-Retrieves information about all currently available [Search indexes](/docs/developing/usage/search) in JSON format.
+Retrieves information about all currently available [Search indexes](../../../developing/usage/search.md) in JSON format.
 
 ## Request
 

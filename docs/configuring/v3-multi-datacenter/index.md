@@ -4,8 +4,8 @@ id: configuring_v3
 sidebar_position: 9
 ---
 
-[config reference#advanced]: /docs/configuring/reference/#advanced-configuration
-[config v3 ssl#verify-peer]: /docs/configuring/v3-multi-datacenter/ssl/#verifying-peer-certificates
+[config reference#advanced]: ../../configuring/reference.md#advanced-configuration
+[config v3 ssl#verify-peer]: ../../configuring/v3-multi-datacenter/ssl.md#verifying-peer-certificates
 
 > **Note on the `cluster_mgr` setting**
 >

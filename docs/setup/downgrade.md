@@ -5,12 +5,11 @@ slug: downgrading
 sidebar_position: 4
 ---
 
-[rolling upgrade]: /docs/setup/upgrading/cluster
-[config ref]: /docs/configuring/reference
-[concept aae]: /docs/learn/concepts/active-anti-entropy/
-[aae status]: /docs/using/admin/riak-admin/#aae-status
+[config ref]: ../configuring/reference.md
+[concept aae]: ../learn/concepts/active-anti-entropy.md
+[aae status]: ../using/admin/riak-admin.md#aae-status
 
-Downgrades of Riak KV are tested and supported for two feature release versions, with the general procedure being similar to that of a [rolling upgrade][rolling upgrade].
+Downgrades of Riak KV are tested and supported for two feature release versions, with the general procedure being similar to that of a rolling upgrade.
 
 Depending on the versions involved in the downgrade, there are additional steps to be performed before, during, and after the upgrade on on each node. These steps are related to changes or new features that are not present in the downgraded version.
 

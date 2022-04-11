@@ -3,14 +3,14 @@ title: "Security & Firewalls"
 id: managing_security
 ---
 
-[config reference search]: /riak/kv/2.1.4/configuring/reference/#search
-[config search enabling]: /riak/kv/2.1.4/configuring/search/#enabling-riak-search
-[config v3 ssl]: /riak/kv/2.1.4/configuring/v3-multi-datacenter/ssl
+[config reference search]: ../../configuring/reference.md#search
+[config search enabling]: ../../configuring/search.md#enabling-riak-search
+[config v3 ssl]: ../../configuring/v3-multi-datacenter/ssl.md
 [JMX]: http://www.oracle.com/technetwork/java/javase/tech/javamanagement-140525.html
-[security basics]: /riak/kv/2.1.4/using/security/basics
-[security managing]: /riak/kv/2.1.4/using/security/managing-sources/
+[security basics]: ../../using/security/basics.md
+[security managing]: ../../using/security/managing-sources.md
 [Solr]: http://lucene.apache.org/solr/
-[usage search]: /riak/kv/2.1.4/developing/usage/search
+[usage search]: ../../developing/usage/search.md
 
 > **Internal security**
 >
@@ -89,10 +89,10 @@ another on the following ports:
 Riak clients must be able to contact at least one machine in a Riak
 cluster on the following TCP ports:
 
-Protocol | Port
-:--------|:----
-<a href="../../developing/api/http">HTTP</a> | TCP port 8098
-<a href="../../developing/api/protocol-buffers">Protocol Buffers</a> | TCP port 8087
+| Protocol                                                             | Port          |
+|:---------------------------------------------------------------------|:--------------|
+| <a href="../../developing/api/http">HTTP</a>                         | TCP port 8098 |
+| <a href="../../developing/api/protocol-buffers">Protocol Buffers</a> | TCP port 8087 |
 
 ### Riak Search Ports
 

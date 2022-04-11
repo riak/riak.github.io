@@ -5,12 +5,12 @@ slug: advanced-mapreduce
 sidebar_position: 3
 ---
 
-[usage 2i]: /docs/developing/usage/secondary-indexes
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[use ref custom code]: /docs/using/reference/custom-code
-[usage bucket types]: /docs/developing/usage/bucket-types
-[glossary vnode]: /docs/learn/glossary/#vnode
-[config reference]: /docs/configuring/reference
+[usage 2i]: ../../developing/usage/secondary-indexes.md
+[apps replication properties]: ../../developing/app-guide/replication-properties.md
+[use ref custom code]: ../../using/reference/custom-code.md
+[usage bucket types]: ../../developing/usage/bucket-types.md
+[glossary vnode]: ../../learn/glossary.md#vnode
+[config reference]: ../../configuring/reference.md
 [google mr]: http://research.google.com/archive/mapreduce.html
 [mapping list]: http://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html#v:map
 [function contrib]: https://github.com/basho/riak_function_contrib
@@ -371,7 +371,7 @@ Erlang client.
 :::note Distributing Erlang MapReduce Code
 Any modules and functions you use in your Erlang MapReduce calls must be
 available on all nodes in the cluster. Please read about
-[installing custom code](/docs/using/reference/custom-code).
+[installing custom code](../../using/reference/custom-code.md).
 :::note
 
 ### Erlang Example
@@ -718,7 +718,61 @@ You can use streaming with Erlang via the Riak KV local client or the
 Erlang Protocol Buffers API.  In either case, you will provide the call
 to `mapred_stream` with a `Pid` that will receive the streaming results.
 
-For examples, see [MapReduce pbstream.erl](/data/MapReduceExamples/pbstream.erl)
+#### Example
+
+```erlang
+-module(pbstream).
+
+-export([load/1, keys/0, bucket/0, map/3, pb_link/0, pb_link/2]).
+
+-define(QUERY, [{map, {modfun, riak_kv_mapreduce, map_object_value}, <<"filter_notfound">>, true}]).
+
+load(HowMany) ->
+  lists:foreach(fun(Index) ->
+    BIndex = list_to_binary(integer_to_list(Index)),
+    RObj   = riakc_obj:new(<<"examples">>, <<"key",BIndex/binary>>, <<"Value ",BIndex/binary>>),
+    riakc_pb_socket:put(pb_link(), RObj)
+                end, lists:seq(1, HowMany)).
+
+keys() ->
+  Inputs = [{<<"examples">>, <<"key1">>},
+    {<<"examples">>, <<"key2">>},
+    {<<"examples">>, <<"key3">>}],
+  riakc_pb_socket:mapred_stream(pb_link(), Inputs, ?QUERY, self()),
+  loop().
+
+bucket() ->
+  riakc_pb_socket:mapred_bucket_stream(pb_link(), <<"examples">>, ?QUERY, self(), 60000),
+  loop().
+
+pb_link() ->
+  pb_link("127.0.0.1", 8087).
+
+pb_link(Host, Port) ->
+  case get(pb_link) of
+    undefined ->
+      put(pb_link, riakc_pb_socket:start_link(Host, Port)),
+      pb_link(Host, Port);
+    {ok, Client} ->
+      Client;
+    Error ->
+      io:format("Error linking to pb socket ~p~n", [Error]),
+      {pb_link_error, Error}
+  end.
+
+%% @private
+
+loop() ->
+  receive
+    {_ReqId, done} ->
+      ok;
+    {_ReqId, {mapred,_Phase,Results}} ->
+      io:format("Streaming Results: ~p~n", [Results]),
+      loop();
+    {_ReqId, {error, Reason}} ->
+      io:format("Something bad happened! ~p~n", [Reason])
+  end.
+```
 
 
 ## Troubleshooting MapReduce, illustrated

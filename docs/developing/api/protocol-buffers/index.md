@@ -128,47 +128,47 @@ message RpbErrorResp {
 
 ## Bucket Operations
 
-* [PBC List Buckets](/docs/developing/api/protocol-buffers/list-buckets)
-* [PBC List Keys](/docs/developing/api/protocol-buffers/list-keys)
-* [PBC Get Bucket Properties](/docs/developing/api/protocol-buffers/get-bucket-props)
-* [PBC Set Bucket Properties](/docs/developing/api/protocol-buffers/set-bucket-props)
-* [PBC Reset Bucket Properties](/docs/developing/api/protocol-buffers/reset-bucket-props)
+* [PBC List Buckets](../../../developing/api/protocol-buffers/list-buckets.md)
+* [PBC List Keys](../../../developing/api/protocol-buffers/list-keys.md)
+* [PBC Get Bucket Properties](../../../developing/api/protocol-buffers/get-bucket-props.md)
+* [PBC Set Bucket Properties](../../../developing/api/protocol-buffers/set-bucket-props.md)
+* [PBC Reset Bucket Properties](../../../developing/api/protocol-buffers/reset-bucket-props.md)
 
 ## Object/Key Operations
 
-* [PBC Fetch Object](/docs/developing/api/protocol-buffers/fetch-object)
-* [PBC Store Object](/docs/developing/api/protocol-buffers/store-object)
-* [PBC Delete Object](/docs/developing/api/protocol-buffers/delete-object)
+* [PBC Fetch Object](../../../developing/api/protocol-buffers/fetch-object.md)
+* [PBC Store Object](../../../developing/api/protocol-buffers/store-object.md)
+* [PBC Delete Object](../../../developing/api/protocol-buffers/delete-object.md)
 
 ## Query Operations
 
-* [PBC MapReduce](/docs/developing/api/protocol-buffers/mapreduce)
-* [PBC Secondary Indexes](/docs/developing/api/protocol-buffers/secondary-indexes)
-* [PBC Search](/docs/developing/api/protocol-buffers/search)
+* [PBC MapReduce](../../../developing/api/protocol-buffers/mapreduce.md)
+* [PBC Secondary Indexes](../../../developing/api/protocol-buffers/secondary-indexes.md)
+* [PBC Search](../../../developing/api/protocol-buffers/search.md)
 
 ## Server Operations
 
-* [PBC Ping](/docs/developing/api/protocol-buffers/ping)
-* [PBC Server Info](/docs/developing/api/protocol-buffers/server-info)
+* [PBC Ping](../../../developing/api/protocol-buffers/ping.md)
+* [PBC Server Info](../../../developing/api/protocol-buffers/server-info.md)
 
 ## Bucket Type Operations
 
-* [PBC Get Bucket Type](/docs/developing/api/protocol-buffers/get-bucket-type)
-* [PBC Set Bucket Type](/docs/developing/api/protocol-buffers/set-bucket-type)
+* [PBC Get Bucket Type](../../../developing/api/protocol-buffers/get-bucket-type.md)
+* [PBC Set Bucket Type](../../../developing/api/protocol-buffers/set-bucket-type.md)
 
 ## Data Type Operations
 
-* [PBC Data Type Fetch](/docs/developing/api/protocol-buffers/dt-fetch)
-* [PBC Data Type Union](/docs/developing/api/protocol-buffers/dt-union)
-* [PBC Data Type Store](/docs/developing/api/protocol-buffers/dt-store)
-* [PBC Data Type Counter Store](/docs/developing/api/protocol-buffers/dt-counter-store)
-* [PBC Data Type Set Store](/docs/developing/api/protocol-buffers/dt-set-store)
-* [PBC Data Type Map Store](/docs/developing/api/protocol-buffers/dt-map-store)
+* [PBC Data Type Fetch](../../../developing/api/protocol-buffers/dt-fetch.md)
+* [PBC Data Type Union](../../../developing/api/protocol-buffers/dt-union.md)
+* [PBC Data Type Store](../../../developing/api/protocol-buffers/dt-store.md)
+* [PBC Data Type Counter Store](../../../developing/api/protocol-buffers/dt-counter-store.md)
+* [PBC Data Type Set Store](../../../developing/api/protocol-buffers/dt-set-store.md)
+* [PBC Data Type Map Store](../../../developing/api/protocol-buffers/dt-map-store.md)
 
 ## Yokozuna Operations
 
-* [PBC Yokozuna Index Get](/docs/developing/api/protocol-buffers/yz-index-get)
-* [PBC Yokozuna Index Put](/docs/developing/api/protocol-buffers/yz-index-put)
-* [PBC Yokozuna Index Delete](/docs/developing/api/protocol-buffers/yz-index-delete)
-* [PBC Yokozuna Schema Get](/docs/developing/api/protocol-buffers/yz-schema-get)
-* [PBC Yokozuna Schema Put](/docs/developing/api/protocol-buffers/yz-schema-put)
+* [PBC Yokozuna Index Get](../../../developing/api/protocol-buffers/yz-index-get.md)
+* [PBC Yokozuna Index Put](../../../developing/api/protocol-buffers/yz-index-put.md)
+* [PBC Yokozuna Index Delete](../../../developing/api/protocol-buffers/yz-index-delete.md)
+* [PBC Yokozuna Schema Get](../../../developing/api/protocol-buffers/yz-schema-get.md)
+* [PBC Yokozuna Schema Put](../../../developing/api/protocol-buffers/yz-schema-put.md)

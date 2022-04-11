@@ -6,7 +6,7 @@ sidebar_position: 2
 ---
 
 :::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/configuring/v3-multi-datacenter/ssl/) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../configuring/v3-multi-datacenter/ssl.md) instead.
 :::note
 
 ## Features

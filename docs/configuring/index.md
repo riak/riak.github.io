@@ -4,16 +4,16 @@ id: configuring
 sidebar_position: 2
 ---
 
-[config basic]: ../configuring/basic
-[config backend]: ../configuring/backend
-[config manage]: ../configuring/managing
-[config reference]: ../configuring/reference
-[config strong consistency]: ../configuring/strong-consistency
-[config load balance]: ../configuring/load-balancing-proxy
-[config mapreduce]: ../configuring/mapreduce
-[config search]: ../configuring/search
-[config v3 mdc]: ../configuring/v3-multi-datacenter
-[config v2 mdc]: ../configuring/v2-multi-datacenter
+[config basic]: ../configuring/basic.md
+[config backend]: ../configuring/backend.md
+[config manage]: ../configuring/managing.md
+[config reference]: ../configuring/reference.md
+[config strong consistency]: ../configuring/strong-consistency.md
+[config load balance]: ../configuring/load-balancing-proxy.md
+[config mapreduce]: ../configuring/mapreduce.md
+[config search]: ../configuring/search.md
+[config v3 mdc]: ../configuring/v3-multi-datacenter/index.md
+[config v2 mdc]: ../configuring/v2-multi-datacenter/index.md
 
 ## [Basic Configuration][config basic]
 

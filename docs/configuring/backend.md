@@ -5,10 +5,10 @@ slug: backend
 sidebar_position: 1
 ---
 
-[plan backend leveldb]: /docs/setup/planning/backend/leveldb
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[plan backend memory]: /docs/setup/planning/backend/memory
-[plan backend multi]: /docs/setup/planning/backend/multi
+[plan backend leveldb]: ../setup/planning/backend/leveldb.md
+[plan backend bitcask]: ../setup/planning/backend/bitcask.md
+[plan backend memory]: ../setup/planning/backend/memory.md
+[plan backend multi]: ../setup/planning/backend/multi.md
 
 ## LevelDB
 

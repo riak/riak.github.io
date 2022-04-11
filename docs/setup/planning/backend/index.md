@@ -4,11 +4,11 @@ id: planning_choose_backend
 sidebar_position: 2
 ---
 
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[plan backend leveldb]: /docs/setup/planning/backend/leveldb
-[plan backend memory]: /docs/setup/planning/backend/memory
-[plan backend multi]: /docs/setup/planning/backend/multi
-[dev api backend]: /docs/developing/api/backend
+[plan backend bitcask]: ../../../setup/planning/backend/bitcask.md
+[plan backend leveldb]: ../../../setup/planning/backend/leveldb.md
+[plan backend memory]: ../../../setup/planning/backend/memory.md
+[plan backend multi]: ../../../setup/planning/backend/multi.md
+[dev api backend]: ../../../developing/api/backend.md
 
 Pluggable storage backends are a key feature of Riak KV. They enable you to
 choose a low-level storage engine that suits specific operational needs.

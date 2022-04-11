@@ -5,10 +5,10 @@ slug: searching-data-types
 sidebar_position: 11
 ---
 
-Although [Riak Data Types](/docs/developing/data-types) function differently from other
+Although [Riak Data Types](../../developing/data-types/index.md) function differently from other
 Riak objects in some respects, when you're using Search you can think of
 them as normal Riak objects with special metadata attached (metadata
-that you don't need to worry about as a user). Riak's [counters](/docs/developing/data-types/#counters), [sets](/docs/developing/data-types/#sets), and [maps](/docs/developing/data-types/#maps)
+that you don't need to worry about as a user). Riak's [counters](../../developing/data-types/counters.md), [sets](../../developing/data-types/sets.md), and [maps](../../developing/data-types/maps.md)
 can be indexed and have their contents searched just like other Riak
 objects.
 
@@ -59,7 +59,7 @@ to search Data Types, they are provided only for reference.
 
 ### Top-level Schemas
 
-The default schema for [counters](/docs/developing/data-types/#counters) indexes each
+The default schema for [counters](../../developing/data-types/counters.md) indexes each
 counter as an integer.
 
 ```xml
@@ -76,7 +76,7 @@ Constructing queries for counters involves prefacing the query with
 | Counters with a value of 15                 | `counter:15`                              |
 | All counters within the index               | `counter:*`                               |
 
-The schema for [sets](/docs/developing/data-types/#sets) indexes each element of a set as
+The schema for [sets](../../developing/data-types/sets.md) indexes each element of a set as
 a string and indexes the set itself as multi-valued.
 
 ```xml
@@ -95,7 +95,7 @@ examples:
 
 ### Embedded Schemas
 
-For searching within [maps](/docs/developing/data-types/#maps), there are four schemas
+For searching within [maps](../../developing/data-types/maps.md), there are four schemas
 for embedded, aka dynamic, fields. Flags are indexed as booleans:
 
 ```xml
@@ -145,7 +145,7 @@ slightly more complex map example.
 Let's say that we're storing scores in a multiplayer online game in
 Riak. The game is called Boulderdash and it involves smashing digital
 boulders armed with nothing but witty retorts and arcane trivia
-knowledge. We'll create and activate a [bucket type](/docs/developing/usage/bucket-types) for [storing counters](/docs/developing/data-types/#counters) simply called
+knowledge. We'll create and activate a [bucket type](../../developing/usage/bucket-types.md) for [storing counters](../../developing/data-types/counters.md) simply called
 `counters`, like so:
 
 ```bash
@@ -605,7 +605,7 @@ curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:17" | jsonpp
 ## Sets Example
 
 Let's say that we're storing information about the hobbies of a group of
-people in sets. We'll create and activate a [bucket type](/docs/developing/usage/bucket-types) for [storing sets](/docs/developing/data-types/#sets) simply called `sets`,
+people in sets. We'll create and activate a [bucket type](../../developing/usage/bucket-types.md) for [storing sets](../../developing/data-types/sets.md) simply called `sets`,
 like so:
 
 ```bash
@@ -977,9 +977,9 @@ Just as expected, both sets we stored contain the element `winning`.
 
 ## Maps Example
 
-This example will build on the example in the [Using Data Types](/docs/developing/data-types)
+This example will build on the example in the [Using Data Types](../../developing/data-types/index.md)
 tutorial. That tutorial walks you through storing CMS-style user data in
-Riak [maps](/docs/developing/data-types/#maps), and we'd suggest that you
+Riak [maps](../../developing/data-types/maps.md), and we'd suggest that you
 familiarize yourself with that tutorial first. More specifically, user
 data is stored in the following fields in each user's map:
 

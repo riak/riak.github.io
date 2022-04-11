@@ -3,10 +3,10 @@ title: "Repair & Recovery"
 id: managing_repair_recover
 ---
 
-[repair recover fail]: ./failure-recovery/
-[repair recover errors]: ./errors/
-[repair recover repairs]: ./repairs/
-[repair recover restart]: ./rolling-restart/
+[repair recover fail]: ./failure-recovery.md
+[repair recover errors]: ./errors.md
+[repair recover repairs]: ./repairs.md
+[repair recover restart]: ./rolling-restart.md
 
 ## [Failure & Recovery][repair recover fail]
 

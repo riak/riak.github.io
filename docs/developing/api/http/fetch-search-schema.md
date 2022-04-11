@@ -5,7 +5,7 @@ slug: fetch-search-schema
 sidebar_position: 18
 ---
 
-Retrieves a Riak KV [search schema](/docs/developing/usage/search-schemas).
+Retrieves a Riak KV [search schema](../../../developing/usage/search-schemas.md).
 
 ## Request
 

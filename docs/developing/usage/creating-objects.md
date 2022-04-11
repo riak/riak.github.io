@@ -5,7 +5,7 @@ slug: creating-objects
 sidebar_position: 0
 ---
 
-[usage content types]: /docs/developing/usage/content-types
+[usage content types]: ../../developing/usage/content-types.md
 
 Writes in Riak KV (storing or modifying objects) are like HTTP `PUT`
 requests. Here is the basic form of writes:
@@ -16,7 +16,7 @@ PUT /types/<type>/buckets/<bucket>/keys/<key>
 # If you're using HTTP to interact with Riak, you can also use POST
 ```
 
-As an example, let's store an object containing information about a dog named Rufus. We'll store that object in the key `rufus` in the bucket `dogs`, which bears the `animals` [bucket type](/docs/using/cluster-operations/bucket-types).
+As an example, let's store an object containing information about a dog named Rufus. We'll store that object in the key `rufus` in the bucket `dogs`, which bears the `animals` [bucket type](../../using/cluster-operations/bucket-types.md).
 
 The object we're storing will be very simple, just a basic text snippet
 of something that Rufus might say. Let's build the object and then store
@@ -111,7 +111,7 @@ rsp := svc.Response
 Notice that we specified both a value for the object, i.e. `WOOF!`, and
 a content type, `text/plain`. See [content types][usage content types] for more information.
 
-Now, you run the same read operation as in [Reading Objects](/docs/developing/usage/reading-objects). If the write operation was successful, you should be able to successfully read the object. Please note that the operation will fail if you don't first create the bucket-type `animals` as per the page on [bucket types](/docs/using/cluster-operations/bucket-types).
+Now, you run the same read operation as in [Reading Objects](../../developing/usage/reading-objects.md). If the write operation was successful, you should be able to successfully read the object. Please note that the operation will fail if you don't first create the bucket-type `animals` as per the page on [bucket types](../../using/cluster-operations/bucket-types.md).
 
 ### Store an Object
 
@@ -131,18 +131,18 @@ PUT /types/TYPE/buckets/BUCKET/keys/KEY
 There is no need to intentionally create buckets in Riak. They pop into
 existence when keys are added to them, and disappear when all keys have
 been removed from them. If you don't specify a bucket's type, the type
-[`default`](/docs/developing/usage/bucket-types) will be applied.
+[`default`](../../developing/usage/bucket-types.md) will be applied.
 
 #### Write Parameters
 
 Write requests support the following parameters:
 
-Parameter | Default | Description
-:---------|:--------|:-----------
-`w` | `quorum` | How many replicas to write to before returning a successful response
-`pw` | `0` | How many primary vnodes must respond for a write to be deemed successful
-`dw` | `quorum` | How many replicas to commit to durable storage before returning a successful response
-`returnbody` | `false` | Whether to return the contents of the stored object
+| Parameter    | Default  | Description                                                                           |
+|:-------------|:---------|:--------------------------------------------------------------------------------------|
+| `w`          | `quorum` | How many replicas to write to before returning a successful response                  |
+| `pw`         | `0`      | How many primary vnodes must respond for a write to be deemed successful              |
+| `dw`         | `quorum` | How many replicas to commit to durable storage before returning a successful response |
+| `returnbody` | `false`  | Whether to return the contents of the stored object                                   |
 
 Here is an example of storing an object (another brief text snippet)
 under the key `viper` in the bucket `dodge`, which bears the type

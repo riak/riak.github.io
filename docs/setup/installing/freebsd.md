@@ -5,9 +5,8 @@ slug: freebsd
 sidebar_position: 2
 ---
 
-[install source erlang]: /docs/setup/installing/source/erlang
-[downloads]: /docs/downloads/
-[install verify]: /docs/setup/installing/verify
+[install source erlang]: ../../setup/installing/source/erlang.md
+[install verify]: ../../setup/installing/verify.md
 
 You can install Riak on FreeBSD for the AMD64 architecture with a binary package or by building from source code.
 
@@ -82,7 +81,7 @@ If you do not currently have the following software installed, please install it
 * sudo
 
 ### Installation
-First download the version you wish to install from [Basho downloads][downloads].
+First download the version you wish to install.
 
 Next, unpack and build a release from source:
 

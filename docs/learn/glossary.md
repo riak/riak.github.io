@@ -6,39 +6,39 @@ sidebar_position: 2
 ---
 
 
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[basho bench GH]: http://github.com/basho/basho_bench/
-[cluster ops add remove node]: /docs/using/cluster-operations/adding-removing-nodes
-[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
-[concept buckets]: /docs/learn/concepts/buckets
-[concept causal context vc]: /docs/learn/concepts/causal-context/#vector-clocks
-[concept clusters]: /docs/learn/concepts/clusters
-[concept crdts]: /docs/learn/concepts/crdts
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[concept keys objects]: /docs/learn/concepts/keys-and-objects
-[concept replication]: /docs/learn/concepts/replication
-[concept strong consistency]: /docs/learn/concepts/strong-consistency
-[dev kv model]: /docs/developing/key-value-modeling
-[concept replication aae]: /docs/learn/concepts/replication/#active-anti-entropy
-[dev api http]: /docs/developing/api/http
-[dev data model]: /docs/developing/data-modeling
-[dev data types]: /docs/developing/data-types
-[glossary read rep]: /docs/learn/glossary/#read-repair
-[glossary vnode]: /learn/glossary#vnode
+[apps replication properties]: ../developing/app-guide/replication-properties.md
+[basho bench GH]: http://github.com/basho/basho_bench.md
+[cluster ops add remove node]: ../using/cluster-operations/adding-removing-nodes.md
+[cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
+[concept buckets]: ../learn/concepts/buckets.md
+[concept causal context vc]: ../learn/concepts/causal-context.md#vector-clocks
+[concept clusters]: ../learn/concepts/clusters.md
+[concept crdts]: ../learn/concepts/crdts.md
+[concept eventual consistency]: ../learn/concepts/eventual-consistency.md
+[concept keys objects]: ../learn/concepts/keys-and-objects.md
+[concept replication]: ../learn/concepts/replication.md
+[concept strong consistency]: ../learn/concepts/strong-consistency.md
+[dev kv model]: ../developing/key-value-modeling.md
+[concept replication aae]: ../learn/concepts/replication.md#active-anti-entropy
+[dev api http]: ../developing/api/http/index.md
+[dev data model]: ../learn/use-cases.md
+[dev data types]: ../developing/data-types/index.md
+[glossary read rep]: ../learn/glossary.md#read-repair
+[glossary vnode]: #vnode
 [Lager]: https://github.com/basho/lager
-[learn dynamo]: /docs/learn/dynamo
-[plan cluster capacity]: /docs/setup/planning/cluster-capacity
-[repair recover failure recovery]: /docs/using/repair-recovery/failure-recovery
-[repair recover repairs]: /docs/using/repair-recovery/repairs
+[learn dynamo]: ../learn/dynamo.md
+[plan cluster capacity]: ../setup/planning/cluster-capacity.md
+[repair recover failure recovery]: ../using/repair-recovery/failure-recovery.md
+[repair recover repairs]: ../using/repair-recovery/repairs.md
 [Riak Core]: https://github.com/basho/riak_core
 [Riak KV]: https://github.com/basho/riak_kv
 [Riak Pipe]: https://github.com/basho/riak_pipe
 [Riak Pipe - the New MapReduce Power]: http://basho.com/riak-pipe-the-new-mapreduce-power/
 [Riak Pipe - Riak's Distributed Processing Framework]: http://vimeo.com/53910999
 [Understanding Riak's Configurable Behaviors]: http://basho.com/riaks-config-behaviors-part-2/
-[usage mapreduce]: /docs/developing/usage/mapreduce
-[usage search]: /docs/developing/usage/search
-[usage secondary-indexes]: /docs/developing/usage/secondary-indexes
+[usage mapreduce]: ../developing/usage/mapreduce.md
+[usage search]: ../developing/usage/search.md
+[usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 [Where To Start With Riak Core]: http://basho.com/where-to-start-with-riak-core/
 [Wikipedia:Consistent Hashing]: http://en.wikipedia.org/wiki/Consistent_hashing
 
@@ -66,7 +66,7 @@ Basho Bench is a benchmarking tool created to conduct accurate and
 repeatable performance tests and stress tests and to produce performance
 graphs.
 
-* [Basho Bench](/docs/using/performance/benchmarking)
+* [Basho Bench](../using/performance/benchmarking.md)
 * [GitHub repository][basho bench GH]
 
 ## Bucket
@@ -85,7 +85,7 @@ Bucket types enable you to create and manage sets of bucket properties
 that, when applied to buckets, dictate those buckets' behavior. They
 also act as a third namespace in Riak in addition to buckets and keys.
 
-* [Bucket Types](/docs/developing/usage/bucket-types)
+* [Bucket Types](../developing/usage/bucket-types.md)
 
 ## Cluster
 

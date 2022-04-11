@@ -4,7 +4,7 @@ id: security_manage_sources
 ---
 
 If you're looking for more general information on Riak Security, it may
-be best to start with our general guide to [authentication and authorization](/docs/using/security/basics).
+be best to start with our general guide to [authentication and authorization](../../using/security/basics.md).
 
 This document provides more granular information on the four available
 authentication sources in Riak Security: trusted networks, password,
@@ -14,8 +14,8 @@ respectively, in the `riak-admin security` interface.
 
 The examples below will assume that the network in question is
 `127.0.0.1/32` and that a Riak user named `riakuser` has been
-[created](/docs/using/security/basics/#user-management) and that
-security has been [enabled](/docs/using/security/basics/#the-basics).
+[created](../../using/security/basics.md#user-management) and that
+security has been [enabled](../../using/security/basics.md#the-basics).
 
 :::note Note on SSL connections
 If you use _any_ of the aforementioned security sources, even `trust`, you
@@ -110,7 +110,7 @@ Authority](http://en.wikipedia.org/wiki/Root_certificate).
 > **Note**
 >
 > At this time, client certificates are not supported in Riak's HTTP
-interface, and can be used only through the [protocol buffers interface](/docs/developing/api/protocol-buffers/).
+interface, and can be used only through the [protocol buffers interface](../../developing/api/protocol-buffers/index.md).
 
 Let's specify that our user `riakuser` is going to be authenticated
 using a certificate on `localhost`:
@@ -133,7 +133,7 @@ their `CN` and Riak username match.
 On the server side, you need to configure Riak by specifying a path to
 your certificates. First, copy all relevant files to your Riak cluster.
 The default directory for certificates is `/etc`, though you can specify
-a different directory in your [`riak.conf`](/docs/configuring/reference/) by either uncommenting those lines if you choose to use the defaults or setting the paths yourself:
+a different directory in your [`riak.conf`](../../configuring/reference.md) by either uncommenting those lines if you choose to use the defaults or setting the paths yourself:
 
 ```riakconf
 ssl.certfile = /path/to/cert.pem
@@ -144,7 +144,7 @@ ssl.cacertfile = /path/to/cacert.pem
 In the client-side example above, the client's `CN` and Riak username
 needed to match. On the server (i.e. Riak) side, the `CN` specified _on
 each node_ must match the node's name as registered by Riak. You can
-find the node's name in [`riak.conf`](/docs/configuring/reference/) under the parameter `nodename`. And so if the `nodename` for a cluster is
+find the node's name in [`riak.conf`](../../configuring/reference.md) under the parameter `nodename`. And so if the `nodename` for a cluster is
 `riak-node-1`, you would need to generate your certificate with that in
 mind, as in this OpenSSL example:
 
@@ -153,7 +153,7 @@ openssl req -new ... '/CN=riak-node-1'
 ```
 
 Once certificates have been properly generated and configured on all of
-the nodes in your Riak cluster, you need to perform a [rolling restart](/docs/using/repair-recovery/rolling-restart/). Once that process is complete, you can use the client
+the nodes in your Riak cluster, you need to perform a [rolling restart](../../using/repair-recovery/rolling-restart.md). Once that process is complete, you can use the client
 certificate that you generated for the user `riakuser`.
 
 How to use Riak clients in conjunction with OpenSSL and other

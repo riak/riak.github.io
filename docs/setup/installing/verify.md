@@ -5,10 +5,10 @@ slug: verify
 sidebar_position: 10
 ---
 
-[client libraries]: /docs/developing/client-libraries
-[perf open files]: /docs/using/performance/open-files-limit
-[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
-[cluster ops inspect node]: /docs/using/cluster-operations/inspecting-node
+[client libraries]: ../../developing/client-libraries.md
+[perf open files]: ../../using/performance/open-files-limit.md
+[cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+[cluster ops inspect node]: ../../using/cluster-operations/inspecting-node.md
 
 After you've installed Riak KV, we recommend checking the liveness of
 each node to ensure that requests are being properly served.

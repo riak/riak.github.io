@@ -5,7 +5,7 @@ slug: suse
 sidebar_position: 7
 ---
 
-[install verify]: /docs/setup/installing/verify
+[install verify]: ../../setup/installing/verify.md
 
 Riak KV can be installed on OpenSuse and SLES systems using a binary package. The following steps have been tested to work with Riak on
 the following x86/x86_64 flavors of SuSE:

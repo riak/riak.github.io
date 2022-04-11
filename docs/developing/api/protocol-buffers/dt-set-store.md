@@ -6,7 +6,7 @@ sidebar_position: 19
 ---
 
 An operation to update a set, either on its own (at the bucket/key
-level) or [inside of a map](/docs/developing/api/protocol-buffers/dt-map-store).
+level) or [inside of a map](../../../developing/api/protocol-buffers/dt-map-store.md).
 
 ## Request
 

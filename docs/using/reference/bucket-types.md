@@ -7,7 +7,7 @@ sidebar_position: 3
 
 Bucket types allow groups of buckets to share configuration details and
 for Riak users to manage bucket properties more efficiently than in the
-older configuration system based on [bucket properties](/docs/developing/usage/bucket-types/#bucket-properties-and-operations).
+older configuration system based on [bucket properties](../../developing/usage/bucket-types.md#bucket-properties-and-operations).
 
 :::note Important note on cluster downgrades
 If you upgrade a Riak to version 2.0 or later, you can still downgrade the
@@ -20,7 +20,7 @@ activated, you can no longer downgrade the cluster to a pre-2.0 version.
 
 The older configuration system, based on bucket properties, involves
 setting bucket properties for specific buckets either through
-[HTTP](/docs/developing/api/http/set-bucket-props) or [Protocol Buffers](/docs/developing/api/protocol-buffers/set-bucket-props). With this approach, you can take any given bucket and
+[HTTP](../../developing/api/http/set-bucket-props.md) or [Protocol Buffers](../../developing/api/protocol-buffers/set-bucket-props.md). With this approach, you can take any given bucket and
 modify a wide range of properties, from `n_val` to `allow_mult` and far
 beyond.
 
@@ -32,13 +32,13 @@ with a few crucial differences:
   previous system required configuration to be set on a per-bucket basis
 * Nearly all bucket properties can be updated using bucket types, except the
   `datatype` and `consistent` properties, related to
-  [Riak data types](/docs/developing/data-types), and [strong consistency](/docs/developing/app-guide/strong-consistency) respectively
+  [Riak data types](../../developing/data-types/index.md), and [strong consistency](../../developing/app-guide/strong-consistency.md) respectively
 * Bucket types are more performant than bucket properties because
   divergence from Riak's defaults doesn't have to be gossiped around the
   cluster for every bucket, which means less computational overhead
 
 It is important to note that buckets are not assigned types in the same
-way that they are configured when using [bucket properties](/docs/developing/usage/bucket-types/#bucket-properties-and-operations). You cannot simply take a
+way that they are configured when using [bucket properties](../../developing/usage/bucket-types.md#bucket-properties-and-operations). You cannot simply take a
 bucket `my_bucket` and assign it a type the way that you would, say,
 set `allow_mult` to `false` or `n_val` to `5`, because there is no
 `type` parameter contained within the bucket's properties (i.e.
@@ -112,7 +112,7 @@ object of the following form:
 
 > **Getting started with Riak clients**
 >
-> If you are connecting to Riak using one of Basho's official [client libraries](/docs/developing/client-libraries), you can find more information about getting started with your client in our [Developing with Riak KV: Getting Started](/docs/developing/getting-started) section.
+> If you are connecting to Riak using one of Basho's official [client libraries](../../developing/client-libraries.md), you can find more information about getting started with your client in our [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
 
 If creation is successful, you should see the following output:
 
@@ -514,7 +514,7 @@ associated with the `default` bucket type:
 
 ## Bucket Types and the `allow_mult` Setting
 
-Prior to Riak 2.0, Riak created [siblings](/docs/learn/concepts/causal-context/#siblings) in the case of conflicting updates only when explicitly instructed to do so, i.e. when `allow_mult` is to `true`. The default `allow_mult` setting was `false`.
+Prior to Riak 2.0, Riak created [siblings](../../learn/concepts/causal-context.md#siblings) in the case of conflicting updates only when explicitly instructed to do so, i.e. when `allow_mult` is to `true`. The default `allow_mult` setting was `false`.
 
 In version 2.0, this is changing in a subtle way. Now, there are two
 different default settings for `allow_mult` in play:
@@ -527,7 +527,7 @@ different default settings for `allow_mult` in play:
 
 The consequence is that applications that have previously ignored
 conflict resolutions in certain buckets (or all buckets) can continue to
-do so. New applications, however, are encouraged to retain and [resolve siblings](/docs/developing/usage/conflict-resolution) with the appropriate application-side business logic.
+do so. New applications, however, are encouraged to retain and [resolve siblings](../../developing/usage/conflict-resolution/index.md) with the appropriate application-side business logic.
 
 To give an example, let's have a look at the properties associated with
 the `default` bucket type:
@@ -578,8 +578,8 @@ riak-admin bucket-type update n_val_of_2 '{"props":{"allow_mult":false}}'
 ## Bucket Type Example
 
 Let's say that you'd like to create a bucket type called
-`user_account_bucket` with a [pre-commit hook](/docs/developing/usage/commit-hooks/#pre-commit-hooks) called `syntax_check` and two [post-commit
-hooks](/docs/developing/usage/commit-hooks/#Post-Commit-Hooks) called `welcome_email` and `update_registry`. This would involve four steps:
+`user_account_bucket` with a [pre-commit hook](../../developing/usage/commit-hooks.md#pre-commit-hooks) called `syntax_check` and two [post-commit
+hooks](../../developing/usage/commit-hooks.md#Post-Commit-Hooks) called `welcome_email` and `update_registry`. This would involve four steps:
 
 1. Creating a JavaScript object containing the appropriate `props`
    settings:
@@ -707,7 +707,7 @@ curl -XPUT \
 In this example, the bucket `sensitive_user_data` bears the
 configuration established by the `no_siblings` bucket type, and it bears
 that configuration _on the basis of the query's structure_. This is
-because buckets act as a [separate namespace](#buckets-as-namespaces) in Riak, in addition to [buckets](/docs/learn/concepts/buckets) and [keys](/docs/learn/concepts/keys-and-objects).
+because buckets act as a [separate namespace](#buckets-as-namespaces) in Riak, in addition to [buckets](../../learn/concepts/buckets.md) and [keys](../../learn/concepts/keys-and-objects.md).
 
 Let's say that we're using Riak to store internet memes. We've been
 using a bucket called `current_memes` using the bucket type

@@ -5,10 +5,10 @@ slug: nat
 sidebar_position: 1
 ---
 
-[config v2 ssl]: /docs/configuring/v2-multi-datacenter/ssl
+[config v2 ssl]: ../../configuring/v2-multi-datacenter/ssl.md
 
 :::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](/docs/configuring/v3-multi-datacenter/nat/) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../configuring/v3-multi-datacenter/nat.md) instead.
 :::note
 
 Riak Enterprise supports replication of data on networks that use static

@@ -17,4 +17,4 @@ message RpbAuthReq {
 }
 ```
 
-For more on authentication, see our documentation on [Authentication and Authorization](/docs/using/security/basics).
+For more on authentication, see our documentation on [Authentication and Authorization](../../../using/security/basics.md).

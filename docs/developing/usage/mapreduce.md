@@ -5,13 +5,13 @@ slug: mapreduce
 sidebar_position: 6
 ---
 
-[usage 2i]: /docs/developing/usage/secondary-indexes
-[usage search]: /docs/developing/usage/search
-[usage types]: /docs/developing/usage/bucket-types
-[api http]: /docs/developing/api/http
-[api pb]: /docs/developing/api/protocol-buffers
-[glossary vnode]: /docs/learn/glossary/#vnode
-[guide mapreduce]: /docs/developing/app-guide/advanced-mapreduce
+[usage 2i]: ../../developing/usage/secondary-indexes.md
+[usage search]: ../../developing/usage/search.md
+[usage types]: ../../developing/usage/bucket-types.md
+[api http]: ../../developing/api/http/index.md
+[api pb]: ../../developing/api/protocol-buffers/index.md
+[glossary vnode]: ../../learn/glossary.md#vnode
+[guide mapreduce]: ../../developing/app-guide/advanced-mapreduce.md
 
 :::note Use MapReduce sparingly
 In Riak KV, MapReduce is the primary method for non-primary-key-based

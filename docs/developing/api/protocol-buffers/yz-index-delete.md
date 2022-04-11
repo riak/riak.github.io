@@ -19,5 +19,5 @@ message RpbYokozunaIndexDeleteReq {
 
 ## Response
 
-Returns a [RpbDelResp](/docs/developing/api/protocol-buffers/#message-codes) code with no data on success.
+Returns a [RpbDelResp](../../../developing/api/protocol-buffers/index.md#message-codes) code with no data on success.
 

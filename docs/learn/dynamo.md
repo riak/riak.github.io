@@ -134,8 +134,8 @@ or redistribution.
 >
 > And, nodes can be added and removed from your Riak cluster as needed.
 
-[Consistent Hashing]: /docs/learn/glossary/#consistent-hashing
-[Gossip Protocol]: /docs/learn/glossary/#gossiping
+[Consistent Hashing]: ../learn/glossary.md#consistent-hashing
+[Gossip Protocol]: ../learn/glossary#gossiping
 
 In the past year, Dynamo has been the underlying storage technology for a number
 of the core services in Amazon’s e-commerce platform. It was able to scale to
@@ -655,8 +655,8 @@ verify the validity of the context object supplied in the put request.
 >
 > Riak KV has two APIs: an [HTTP API] and a [Protocol Buffers API].
 
-[HTTP API]: /docs/developing/api/http/
-[Protocol Buffers API]: /docs/developing/api/protocol-buffers/
+[HTTP API]: ../developing/api/http/index.md
+[Protocol Buffers API]: ../developing/api/protocol-buffers/index.md
 
 Dynamo treats both the key and the object supplied by the caller as an opaque
 array of bytes. It applies a MD5 hash on the key to generate a 128-bit
@@ -732,8 +732,8 @@ capacity, accounting for heterogeneity in the physical infrastructure.
 
 > [Further Reading on Partitioning in Riak KV] and [All about the Riak KV Ring].
 
-[Further Reading on Partitioning in Riak KV]: /docs/learn/concepts/clusters/
-[All about the Riak KV Ring]: /docs/learn/concepts/clusters/#the-ring
+[Further Reading on Partitioning in Riak KV]: ../learn/concepts/clusters.md
+[All about the Riak KV Ring]: ../learn/concepts/clusters.md#the-ring
 
 ### 4.3 Replication
 
@@ -856,7 +856,7 @@ require reconciliation.
 > As you may have already figured out, Riak KV uses vector clocks for object
 > versioning, too. Here are a whole host of resources to keep you busy for a while:
 >
-> [Vector Clock on Riak KV Glossary](/docs/learn/glossary/#vector-clock)
+> [Vector Clock on Riak KV Glossary](../learn/glossary.md#vector-clock)
 >
 > [Why Vector Clocks are Easy](http://basho.com/posts/technical/why-vector-clocks-are-easy/)
 > |
@@ -981,11 +981,11 @@ R and W are usually configured to be less than N, to provide better latency.
 >
 >Some more resources on R and W:
 >
->[REST API](/docs/developing/api/http/)
+>[REST API](../developing/api/http/index.md)
 >
->[Writing Data](/docs/developing/usage/creating-objects/)
+>[Writing Data](../developing/usage/creating-objects.md)
 >
->[Reading Data](/docs/developing/usage/reading-objects/)
+>[Reading Data](../developing/usage/reading-objects.md)
 
 Upon receiving a put() request for a key, the coordinator generates the vector
 clock for the new version and writes the new version locally. The coordinator
@@ -1006,8 +1006,7 @@ versions are then reconciled and the reconciled version superseding the current
 versions is written back.
 
 > Same for Riak KV. Reconciling divergent versions in Riak KV is called
-> [Read Repair](/docs/learn/concepts/replication/#read-repair).
-
+> [Read Repair](../learn/concepts/replication.md#read-repair).
 
 ### 4.6 Handling Failures: Hinted Handoff
 
@@ -1024,8 +1023,8 @@ consistent hashing ring.
 > You can glimpse at Riak KV's preference list (or *preflist*) calculation in
 > the [Replication] walkthrough.
 
-[Hinted handoff]: /docs/learn/glossary/#hinted-handoff
-[Replication]: /docs/developing/usage/replication/
+[Hinted handoff]: ../learn/glossary.md#hinted-handoff
+[Replication]: ../developing/usage/replication.md
 
 Consider the example of Dynamo configuration given in <a href="#figure-2">Figure
 2</a> with N=3. In this example, if node A is temporarily down or unreachable
@@ -1065,7 +1064,7 @@ outage.
 > [Multi Datacenter Replication] is implemented in the commercial extension to
 > Riak KV, called [Riak KV Enterprise Edition].
 
-[Multi Datacenter Replication]: /docs/using/reference/v3-multi-datacenter/architecture/
+[Multi Datacenter Replication]: ../using/reference/v3-multi-datacenter/architecture.md
 [Riak KV Enterprise Edition]: http://basho.com/products/riak-kv/
 
 
@@ -1116,15 +1115,15 @@ addressed, however, by the refined partitioning scheme described in Section 6.2.
 > This section is well expressed in [Adding and Removing Nodes] and
 > [Failure Scenarios].
 
-[Adding and Removing Nodes]: /docs/using/cluster-operations/adding-removing-nodes/
-[Failure Scenarios]: /docs/learn/concepts/eventual-consistency/
+[Adding and Removing Nodes]: ../using/cluster-operations/adding-removing-nodes.md/
+[Failure Scenarios]: ../learn/concepts/eventual-consistency.md/
 
 #### 4.8.1 Ring Membership
 
 > Riak KV operators can trigger node management via the
 > [riak-admin command-line tool].
 
-[riak-admin command-line tool]: /docs/using/admin/riak-admin/
+[riak-admin command-line tool]: ../using/admin/riak-admin.md
 
 In Amazon’s environment node outages (due to failures and maintenance tasks) are
 often transient but may last for extended intervals. A node outage rarely
@@ -1152,7 +1151,7 @@ membership change histories.
 > Riak KV's ring state holds membership information, and is propgated via
 > [gossiping], including random reconciliation, defaulting to once a minute.
 
-[gossiping]: /docs/learn/glossary/#gossiping
+[gossiping]: ../learn/glossary.md#gossiping
 
 When a node starts for the first time, it chooses its set of tokens (virtual
 nodes in the consistent hash space) and maps nodes to their respective token
@@ -1187,7 +1186,7 @@ service. Typically seeds are fully functional nodes in the Dynamo ring.
 >
 > See _[The Node Join Process]_ for more.
 
-[The Node Join Process]: /docs/using/cluster-operations/adding-removing-nodes/#joining-nodes-to-form-a-cluster
+[The Node Join Process]: ../using/cluster-operations/adding-removing-nodes.md#joining-nodes-to-form-a-cluster
 
 
 #### 4.8.3 Failure Detection
@@ -1281,11 +1280,11 @@ majority of Dynamo’s production instances use BDB Transactional Data Store.
 > supports [secondary indexes]). The Memory backend is an excellent choice when
 > speed is important and durability is not. It also has TTL support.
 
-[backend options]: /docs/setup/planning/backend/
-[Bitcask]: /docs/setup/planning/backend/bitcask/
-[LevelDB]: /docs/setup/planning/backend/leveldb/
-[Memory]: /docs/setup/planning/backend/memory/
-[secondary indexes]: /docs/developing/usage/secondary-indexes/
+[backend options]: ../setup/planning/backend/index.md
+[Bitcask]: ../setup/planning/backend/bitcask.md
+[LevelDB]: ../setup/planning/backend/leveldb.md
+[Memory]: ../setup/planning/backend/memory.md
+[secondary indexes]: ../developing/usage/secondary-indexes.md
 
 The request coordination component is built on top of an event-driven messaging
 substrate where the message processing pipeline is split into multiple stages
@@ -1319,7 +1318,7 @@ relieves the anti-entropy protocol from having to do it.
 
 > Riak KV implements [Read Repair].
 
-[Read Repair]: /docs/learn/concepts/replication/#read-repair
+[Read Repair]: ../learn/concepts/replication.md#read-repair
 
 As noted earlier, write requests are coordinated by one of the top N nodes in
 the preference list. Although it is desirable always to have the first node
@@ -1343,7 +1342,7 @@ the performance at the 99.9 percentile.
 > [Basho Bench] against your own Riak cluster to discover your own
 > optimal values.
 
-[Basho Bench]: /docs/using/performance/benchmarking/
+[Basho Bench]: ../using/performance/benchmarking.md
 
 Dynamo is used by several services with different configurations. These
 instances differ by their version reconciliation logic, and read/write quorum
@@ -1365,7 +1364,7 @@ shopping cart.
 > counters.
 
 [Statebox]: https://github.com/mochi/statebox_riak
-[CRDTs]: /docs/developing/data-types/
+[CRDTs]: ../developing/data-types/index.md
 
 
 * Timestamp based reconciliation: This case differs from the previous one only
@@ -1514,7 +1513,7 @@ strategies on load distribution.
 
 > Riak follows a SHA1 based consistent hashing for [partitioning].
 
-[partitioning]: /docs/learn/concepts/replication/#understanding-replication-by-example
+[partitioning]: ../learn/concepts/replication.md#understanding-replication-by-example
 
 To study the load imbalance and its correlation with request load, the total
 number of requests received by each node was measured for a period of 24 hours -
@@ -1628,8 +1627,8 @@ system in a way that preserves these properties.
 >
 > See [The Node Join Process] and [Replacing a Node].
 
-[The Node Join Process]: /docs/using/cluster-operations/adding-removing-nodes/#joining-nodes-to-form-a-cluster
-[Replacing a Node]: /docs/using/cluster-operations/replacing-node/
+[The Node Join Process]: ../using/cluster-operations/adding-removing-nodes.md#joining-nodes-to-form-a-cluster
+[Replacing a Node]: ../using/cluster-operations/replacing-node.md
 
 The efficiency of these three strategies is evaluated for a system with S=30 and
 N=3. However, comparing these different strategies in a fair manner is hard as
@@ -1738,7 +1737,7 @@ on physical timestamps, any node can coordinate a write request.
 >
 > See [Load Balancing] for more information.
 
-[Load Balancing]: /docs/configuring/load-balancing-proxy/
+[Load Balancing]: ../configuring/load-balancing-proxy.md
 
 An alternative approach to request coordination is to move the state machine to
 the client nodes. In this scheme client applications use a library to perform
@@ -1764,7 +1763,7 @@ using timestamps based versioning.
 > Note that the Riak clients do not coordinate with Riak's preference list, but
 > simply round-robin requests, letting the Riak cluster handle routing.
 
-[client libraries]: /docs/developing/client-libraries/
+[client libraries]: ../developing/client-libraries.md
 
 An important advantage of the client-driven coordination approach is that a load
 balancer is no longer required to uniformly distribute client load. Fair load
@@ -1886,7 +1885,7 @@ is actively addressed by O(1) DHT systems(e.g., [14]).
 > [Basho Bench] to help discover your optimal setup. Nothing will give you
 > better numbers than real experimentation.
 
-[Basho Bench]: /docs/using/performance/benchmarking/
+[Basho Bench]: ../using/performance/benchmarking.md
 
 ## 7. Conclusions
 

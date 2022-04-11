@@ -5,13 +5,13 @@ slug: cluster-capacity
 sidebar_position: 3
 ---
 
-[plan backend leveldb]: /docs/setup/planning/backend/leveldb
-[plan bitcask capacity]: /docs/setup/planning/bitcask-capacity-calc
-[plan index]: /docs/setup/planning
-[concept replication]: /docs/learn/concepts/replication
-[use admin riak-admin#cluster]: /docs/using/admin/riak-admin/#cluster
-[config reference]: /docs/configuring/reference
-[perf benchmark]: /docs/using/performance/benchmarking
+[plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+[plan bitcask capacity]: ../../setup/planning/bitcask-capacity-calc.mdx
+[plan index]: ../../setup/planning/index.md
+[concept replication]: ../../learn/concepts/replication.md
+[use admin riak-admin#cluster]: ../../using/admin/riak-admin.md#cluster
+[config reference]: ../../configuring/reference.md
+[perf benchmark]: ../../using/performance/benchmarking.md
 [LVM]: http://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)
 
 
@@ -75,7 +75,7 @@ Many of the considerations taken when configuring a machine to serve a
 database apply to configuring a node for Riak as well. Mounting
 disks with noatime and having separate disks for your OS and Riak data
 lead to much better performance. See [Planning for a
-Riak System](../start) for more information.
+Riak System](./start.md) for more information.
 
 ### Disk Space Planning and Ownership Handoff
 
@@ -210,7 +210,7 @@ different network environments. We recommend that you produce as
 little latency between nodes as possible, as high latency leads to
 sub-optimal performance. 
 
-Deploying a single Riak cluster across two datacenters is not recommended. If your use case requires this capability, Basho offers a [Multi Data Center Replication: Architecture](../../../using/reference/v3-multi-datacenter/architecture) option that is built to keep multiple Riak clusters in
+Deploying a single Riak cluster across two datacenters is not recommended. If your use case requires this capability, Basho offers a [Multi Data Center Replication: Architecture](../../using/reference/v3-multi-datacenter/architecture.md) option that is built to keep multiple Riak clusters in
 sync across several geographically diverse deployments.
 
 * [Learn more about Riak Enterprise](http://basho.com/products/riak-overview/).

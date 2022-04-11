@@ -5,7 +5,7 @@ slug: ssl
 sidebar_position: 2
 ---
 
-[config reference#advanced.config]: /docs/configuring/reference/#the-advanced-config-file
+[config reference#advanced.config]: ../../configuring/reference.md#the-advanced-config-file
 
 ## Features
 

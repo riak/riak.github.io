@@ -5,22 +5,22 @@ slug: object-deletion
 sidebar_position: 4
 ---
 
-[concept eventual consistency]: ../../../learn/concepts/eventual-consistency
-[concept clusters]: ../../../learn/concepts/clusters
-[glossary vnode]: ../../../learn/glossary/#vnode
-[usage delete objects]: ../../../developing/usage/deleting-objects
-[developing keylist]: ../../../developing/api/http/list-keys
-[developing mapreduce]: ../../../developing/usage/mapreduce
-[cluster mdc]: ../../cluster-operations/v3-multi-datacenter
-[config advanced]: ../../../configuring/reference/#advanced-configuration
-[glossary sloppy quorum]: ../../../learn/glossary/#sloppy-quorum
-[bitcask merging]: ../../../setup/planning/backend/bitcask/#disk-usage-and-merging-settings
-[leveldb compaction]: ../../../setup/planning/backend/leveldb/#compaction
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+[concept clusters]: ../../learn/concepts/clusters.md
+[glossary vnode]: ../../learn/glossary.md#vnode
+[usage delete objects]: ../../developing/usage/deleting-objects.md
+[developing keylist]: ../../developing/api/http/list-keys.md
+[developing mapreduce]: ../../developing/usage/mapreduce.md
+[cluster mdc]: ../cluster-operations/v3-multi-datacenter.md
+[config advanced]: ../../configuring/reference.md#advanced-configuration
+[glossary sloppy quorum]: ../../learn/glossary.md#sloppy-quorum
+[bitcask merging]: ../../setup/planning/backend/bitcask.md#disk-usage-and-merging-settings
+[leveldb compaction]: ../../setup/planning/backend/leveldb.md#compaction
 
 In single-server, non-clustered data storage systems, object deletion
 is a trivial process. In an [eventually consistent][concept eventual consistency], [clustered][concept clusters] system like Riak, however,
 object deletion is far less trivial because objects live on multiple
-[nodes](../../../learn/glossary/#nodes), which means that a deletion process must be chosen to determine when an object can be removed from the storage backend.
+[nodes](../../learn/glossary.md#nodes), which means that a deletion process must be chosen to determine when an object can be removed from the storage backend.
 
 ## Object Deletion Example
 

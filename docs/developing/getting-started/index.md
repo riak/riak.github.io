@@ -4,8 +4,8 @@ id: developing_getting_started
 sidebar_position: 0
 ---
 
-[install index]: ../../setup/installing
-[dev client libraries]: ../../developing/client-libraries
+[install index]: ../../setup/installing/index.md
+[dev client libraries]: ../../developing/client-libraries.md
 
 Welcome, new Riak developer! This guide will get you started developing
 against Riak KV with minimal fuss.

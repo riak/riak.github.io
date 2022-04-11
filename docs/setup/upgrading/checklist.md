@@ -5,24 +5,24 @@ slug: checklist
 sidebar_position: 0
 ---
 
-[perf open files]: /docs/using/performance/open-files-limit
-[perf index]: /docs/using/performance
+[perf open files]: ../../using/performance/open-files-limit.md
+[perf index]: ../../using/performance/index.md
 [ntp]: http://www.ntp.org/
-[security basics]: /docs/using/security/basics
-[cluster ops load balance]: /docs/configuring/load-balancing-proxy
-[config reference]: /docs/configuring/reference
-[config backend]: /docs/configuring/backend
-[usage search]: /docs/developing/usage/search
-[usage conflict resolution]: /docs/developing/usage/conflict-resolution
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[apps replication properties]: /docs/developing/app-guide/replication-properties
-[concept strong consistency]: /docs/using/reference/strong-consistency
-[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
-[use admin commands]: /docs/using/admin/commands
-[use admin riak control]: /docs/using/admin/riak-control
-[cluster ops inspect node]: /docs/using/cluster-operations/inspecting-node
-[troubleshoot http]: /docs/using/troubleshooting/http-204
-[use admin riak-admin]: /docs/using/admin/riak-admin
+[security basics]: ../../using/security/basics.md
+[cluster ops load balance]: ../../configuring/load-balancing-proxy.md
+[config reference]: ../../configuring/reference.md
+[config backend]: ../../configuring/backend.md
+[usage search]: ../../developing/usage/search.md
+[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+[apps replication properties]: ../../developing/app-guide/replication-properties.md
+[concept strong consistency]: ../../using/reference/strong-consistency.md
+[cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+[use admin commands]: ../../using/admin/commands.md
+[use admin riak control]: ../../using/admin/riak-control.md
+[cluster ops inspect node]: ../../using/cluster-operations/inspecting-node.md
+[troubleshoot http]: ../../using/troubleshooting/http-204.md
+[use admin riak-admin]: ../../using/admin/riak-admin.md
 [SANs]: http://en.wikipedia.org/wiki/Storage_area_network
 
 Deploying Riak KV to a realtime production environment from a development or testing environment can be a complex process. While the specifics of that process will always depend on your environment and practices, there are some basics for you to consider and a few questions that you will want to ask while making this transition.

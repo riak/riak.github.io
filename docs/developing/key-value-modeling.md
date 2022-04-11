@@ -6,7 +6,7 @@ sidebar_position: 3
 ---
 
 While Riak enables you to take advantage of a wide variety of features
-that can be useful in application development, such as [Search](/docs/developing/usage/search), [secondary indexes (2i)](/docs/developing/usage/secondary-indexes/), and [Riak Data Types](/docs/developing/data-types/), Riak almost always performs best when you
+that can be useful in application development, such as [Search](../developing/usage/search.md), [secondary indexes (2i)](../developing/usage/secondary-indexes.md), and [Riak Data Types](../developing/data-types/index.md), Riak almost always performs best when you
 build your application around basic CRUD operations (create, read,
 update, and delete) on objects, i.e. when you use Riak as a "pure"
 key/value store.
@@ -14,7 +14,7 @@ key/value store.
 In this tutorial, we'll suggest some strategies for naming and modeling
 for key/value object interactions with Riak. If you'd like to use some
 of Riak's other features, we recommend checking out the documentation
-for each of them or consulting our guide to [building applications with Riak](/docs/developing/app-guide/) for a better sense of which features you might need.
+for each of them or consulting our guide to [building applications with Riak](../developing/app-guide/index.md) for a better sense of which features you might need.
 
 ## Advantages of Key/Value Operations
 
@@ -27,12 +27,12 @@ objects. Instead, it interacts with objects on a one-by-one basis, using
 Primary key lookups store and fetch objects in Riak on the basis of
 three basic locators:
 
-* The object's [key](/docs/learn/concepts/keys-and-objects#keys), which can be anything you
+* The object's [key](../learn/concepts/keys-and-objects.md#keys), which can be anything you
   want as long as it is [Unicode compliant](http://www.unicode.org/)
-* The [bucket](/docs/learn/concepts/buckets) which houses the object and its key (bucket
+* The [bucket](../learn/concepts/buckets.md) which houses the object and its key (bucket
   names are also Unicode compliant)
-* The [bucket type](/docs/developing/usage/bucket-types) that determines the bucket's
-  [replication](/docs/developing/app-guide/replication-properties) and other properties
+* The [bucket type](../developing/usage/bucket-types.md) that determines the bucket's
+  [replication](../developing/app-guide/replication-properties.md) and other properties
 
 It may be useful to think of this system as analogous to a nested
 key/value [hash](http://en.wikipedia.org/wiki/Hash_function) as you
@@ -69,7 +69,7 @@ Storing data in Riak is a lot like this. Let's say that we want to store
 JSON objects with a variety of information about every episode of the
 Simpsons. We could store each season in its own bucket and each episode
 in its own key within that bucket. Here's what the URL structure would
-look like (for the [HTTP API](/docs/developing/api/http)):
+look like (for the [HTTP API](../developing/api/http/index.md)):
 
 ```
 GET/PUT/DELETE /bucket/<season>/keys/<episode number>
@@ -127,13 +127,13 @@ records, which are all stored in the bucket `users` with each user's
 username acting as the key. The problem at this point is this: how can
 Riak know which user records actually exist?
 
-One way to determine this is to [list all keys](/docs/developing/api/protocol-buffers/list-keys) in the
+One way to determine this is to [list all keys](../developing/api/protocol-buffers/list-keys.md) in the
 bucket `users`. This approach, however, is _not_ recommended, because
 listing all keys in a bucket is a very expensive operation that should
 not be used in production. And so another strategy must be employed.
 
-A better possibility is to use [Riak sets](/docs/developing/data-types/#sets) to
-store lists of keys in a bucket. Riak sets are a [Riak Data Type](/docs/developing/data-types) that enable you to store lists of binaries or strings in Riak.
+A better possibility is to use [Riak sets](../developing/data-types/sets.md) to
+store lists of keys in a bucket. Riak sets are a [Riak Data Type](../developing/data-types/index.md) that enable you to store lists of binaries or strings in Riak.
 Unlike normal Riak objects, you can interact with Riak sets much like
 you interact with sets in most programming languages, i.e. you can add
 and remove elements at will.
@@ -142,7 +142,7 @@ Going back to our user data example, instead of simply storing user
 records in our `users` bucket, we could set up our application to store
 each key in a set when a new record is created. We'll store this set in
 the bucket `user_info_sets` (we'll keep it simple) and in the key
-`usernames`. The following will also assume that we've [set up a bucket type](/docs/developing/data-types/#setting-up-buckets-to-use-riak-data-types) called
+`usernames`. The following will also assume that we've [set up a bucket type](../developing/data-types/index.md#setting-up-buckets-to-use-riak-data-types) called
 `sets`.
 
 We can interact with that set on the basis of its location:
@@ -180,7 +180,7 @@ user_id_set = Set(bucket, 'usernames')
 
 > **Getting started with Riak clients**
 >
-> If you are connecting to Riak using one of Basho's official [client libraries](/docs/developing/client-libraries), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](/docs/developing/getting-started).
+> If you are connecting to Riak using one of Basho's official [client libraries](../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../developing/getting-started/index.md).
 
 Then, we can create a function that stores a user record's key in that
 set every time a record is created:
@@ -424,8 +424,8 @@ def get_user_by_username(username):
 
 ## Bucket Types as Additional Namespaces
 
-Riak [bucket types](/docs/developing/usage/bucket-types) have two essential functions:
-they enable you to manage [bucket configurations](/docs/learn/concepts/buckets) in an
+Riak [bucket types](../developing/usage/bucket-types.md) have two essential functions:
+they enable you to manage [bucket configurations](../learn/concepts/buckets.md) in an
 efficient and streamlined way and, more importantly for our purposes
 here, they act as a third namespace in Riak in addition to buckets and
 keys. Thus, in Riak versions 2.0 and later you have access to a third
@@ -433,7 +433,7 @@ layer of information for locating objects if you wish.
 
 While bucket types are typically used to assign different bucket
 properties to groups of buckets, you can also create named bucket types
-that simply extend Riak's [defaults](/docs/developing/usage/bucket-types/#bucket-types-as-namespaces) or multiple bucket types that have
+that simply extend Riak's [defaults](../developing/usage/bucket-types.md#bucket-types-as-namespaces) or multiple bucket types that have
 the same configuration but have different names.
 
 Here's an example of creating four bucket types that only extend Riak's

@@ -5,7 +5,7 @@ slug: nodejs
 sidebar_position: 4
 ---
 
-For reasons explained in the [Introduction to conflict resolution](/docs/developing/usage/conflict-resolution), we strongly recommend adopting a conflict resolution strategy that
+For reasons explained in the [Introduction to conflict resolution](../../../developing/usage/conflict-resolution/index.md), we strongly recommend adopting a conflict resolution strategy that
 requires applications to resolve siblings according to use-case-specific
 criteria. Here, we'll provide a brief guide to conflict resolution using the
 official [Riak Node.js client](https://github.com/basho/riak-nodejs-client).

@@ -5,7 +5,7 @@ slug: adding-removing-nodes
 sidebar_position: 0
 ---
 
-[use running cluster]: /docs/using/running-a-cluster
+[use running cluster]: ../../using/running-a-cluster.md
 
 This page describes the process of adding and removing nodes to and from
 a Riak KV cluster. For information on creating a cluster check out [Running a Cluster][use running cluster].
@@ -16,7 +16,7 @@ Just like the initial configuration steps, this step has to be repeated
 for every node in your cluster. Before a node can join an existing
 cluster it needs to be started. Depending on your mode of installation,
 use either the init scripts installed by the Riak binary packages or
-simply the script [`riak`](/docs/using/admin/riak-cli/):
+simply the script [`riak`](../../using/admin/riak-cli.md):
 
 ```bash
 /etc/init.d/riak start

@@ -4,10 +4,10 @@ id: setup_index
 sidebar_position: 5
 ---
 
-[plan index]: ../setup/planning
-[install index]: ../setup/installing
-[upgrade index]: ../setup/upgrading
-[downgrade]: ../setup/downgrade
+[plan index]: ./planning/index.md
+[install index]: ./installing/index.md
+[upgrade index]: ./upgrading/index.md
+[downgrade]: ./downgrade.md
 
 ## [Planning][plan index]
 

@@ -342,7 +342,7 @@ The `riak-debug` and `riak-admin diag` commands should only be used after a new 
 
 ## Strong Consistency Stats
 
-Riak tabulates a variety of stats related to Riak's optional [strong consistency](../../reference/strong-consistency) feature. The table below lists those stats.
+Riak tabulates a variety of stats related to Riak's optional [strong consistency](../reference/strong-consistency.md) feature. The table below lists those stats.
 
 ### GET-related stats
 
@@ -478,6 +478,6 @@ you, but here's how to set them:
 
 ## Related Resources
 
-* [The riak-admin configuration management tool](../../admin/riak-admin/)
+* [The riak-admin configuration management tool](../admin/riak-admin.md)
 * [Riaknostic](http://riaknostic.basho.com/)
-* [HTTP API Status](../../../developing/api/http/status/)
+* [HTTP API Status](../../developing/api/http/status.md)

@@ -5,19 +5,18 @@ slug: faq
 sidebar_position: 7
 ---
 
-[[Basho Bench]: /docs/using/performance/benchmarking
-[Bitcask]: /docs/setup/planning/backend/bitcask
-[Bucket Properties]: /docs/developing/usage
+[Basho Bench]: ../using/performance/benchmarking.md
+[Bitcask]: ../setup/planning/backend/bitcask.md
+[Bucket Properties]: ../developing/usage/index.md
 [built-in functions list]: https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js
-[commit hooks]: /docs/developing/usage/commit-hooks
-[Configuration Files]: /docs/configuring/reference
+[commit hooks]: ../developing/usage/commit-hooks.md
+[Configuration Files]: ../configuring/reference.md
 [contrib.basho.com]: https://github.com/basho/riak_function_contrib
-[Erlang Riak Client]: /docs/developing/client-libraries
-[MapReduce]: /docs/developing/usage/mapreduce
-[Memory]: /docs/setup/planning/backend/memory
-[Riak CS]: /riak/cs/2.1.1
-[System Planning]: /docs/setup/planning/start/#network-configuration-load-balancing
-[vector clocks]: /docs/learn/concepts/causal-context#vector-clocks
+[Erlang Riak Client]: ../developing/client-libraries.md
+[MapReduce]: ../developing/usage/mapreduce.md
+[Memory]: ../setup/planning/backend/memory.md
+[System Planning]: ../setup/planning/start.md/#network-configuration-load-balancing
+[vector clocks]: ../learn/concepts/causal-context.md#vector-clocks
 
 
 ## General
@@ -330,7 +329,7 @@ E: 4-9-14-12*
 
 
 **A:**
-  There isn't a limit on object size, but we suggest you keep it to no more than 1-2MB for performance reasons. Variables such as network speed can directly affect the maximum usable object size for a given cluster. You should use a tool like [Basho Bench] to determine the performance of your cluster with a given object size before moving to production use. Or if your use case demands storing many large objects, you may want to consider the [Riak CS] object storage system, which is designed for precisely that purpose.
+  There isn't a limit on object size, but we suggest you keep it to no more than 1-2MB for performance reasons. Variables such as network speed can directly affect the maximum usable object size for a given cluster. You should use a tool like [Basho Bench] to determine the performance of your cluster with a given object size before moving to production use. Or if your use case demands storing many large objects, you may want to consider the Riak CS object storage system, which is designed for precisely that purpose.
   
 
 ---
@@ -473,7 +472,7 @@ E: 4-9-14-12*
 
 
 **A:**
-  Allowing multiple users, also known as multitenancy, is not built into Riak (though it is built into [Riak CS]). Riak has no built-in authentication.
+  Allowing multiple users, also known as multitenancy, is not built into Riak (though it is built into Riak CS). Riak has no built-in authentication.
 
   If you need to restrict access, consider putting an authenticating reverse-proxy server in front of it.
 

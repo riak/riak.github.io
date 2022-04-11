@@ -5,6 +5,8 @@ slug: benchmarking
 sidebar_position: 0
 ---
 
+[install erlang]: ../../setup/installing/source/erlang.md
+
 Basho Bench is a benchmarking tool created to conduct accurate and
 repeatable performance tests and stress tests, and to produce
 performance graphs.
@@ -41,7 +43,7 @@ You can download the pre-built packages below, or build it from source.
 
 #### Prerequisites
 
-* Erlang must be installed. See [Installing Erlang](/docs/setup/installing/source/erlang) for instructions
+* Erlang must be installed. See [Installing Erlang][install erlang] for instructions
     and versioning requirements. Note: Unless you're an experienced
     Erlang developer, we recommend that you use Ubuntu 14.04 LTS (and
     not CentOS), when building ```basho_bench``` from source.  Later
@@ -583,6 +585,4 @@ new(ID) -> {ok, State} or {error, Reason}.
 run(Op, KeyGen, ValueGen, State) -> {ok, NewState} or {error, Reason, NewState}.
 ```
 
-See the [existing
-drivers](https://github.com/basho/basho_bench/tree/master/src) for
-more details.
+See the [existing drivers](https://github.com/basho/basho_bench/tree/master/src) for more details.

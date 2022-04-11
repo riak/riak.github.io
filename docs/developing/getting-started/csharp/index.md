@@ -4,7 +4,7 @@ id: getting_started_csharp
 sidebar_position: 3
 ---
 
-If you haven't set up a Riak Node and started it, please visit [Running A Cluster](/docs/using/running-a-cluster) first.
+If you haven't set up a Riak Node and started it, please visit [Running A Cluster](../../../using/running-a-cluster.md) first.
 
 To try this flavor of Riak, a working installation of the .NET Framework or Mono is required. 
 
@@ -66,4 +66,4 @@ We are now ready to start interacting with Riak.
 
 ## Next Steps
 
-[CRUD Operations](/docs/developing/getting-started/csharp/crud-operations)
+[CRUD Operations](../../../developing/getting-started/csharp/crud-operations.md)

@@ -5,7 +5,7 @@ slug: yz-schema-get
 sidebar_position: 24
 ---
 
-Fetch a [search schema](/docs/developing/usage/search-schemas) from Riak Search.
+Fetch a [search schema](../../../developing/usage/search-schemas.md) from Riak Search.
 
 ## Request
 

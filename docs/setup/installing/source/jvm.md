@@ -5,7 +5,7 @@ slug: jvm
 sidebar_position: 1
 ---
 
-[usage search]: /docs/developing/usage/search
+[usage search]: ../../../developing/usage/search.md
 
 If you are using [Riak Search 2.0][usage search], codename Yokozuna,
 you will need to install **Java 1.6 or later** to run [Apache

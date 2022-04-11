@@ -5,8 +5,8 @@ slug: erlang
 sidebar_position: 0
 ---
 
-[install index]: /docs/setup/installing
-[security basics]: /docs/using/security/basics
+[install index]: ../../../setup/installing/index.md
+[security basics]: ../../../using/security/basics.md
 
 Pre-packaged versions of Riak include an Erlang installation. If you are building Riak from source, you will need to install [Basho's patched version of Erlang](http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz). **If you do not use this version of Erlang, you will not be able to use Riak's [security features][security basics].**
 

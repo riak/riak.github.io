@@ -4,14 +4,14 @@ id: managing
 sidebar_position: 3
 ---
 
-[use running cluster]: ../using/running-a-cluster
-[use admin index]: ../using/admin/
-[cluster ops index]: ../using/cluster-operations
-[repair recover index]: ../using/repair-recovery
-[security index]: ../using/security
-[perf index]: ../using/performance
-[troubleshoot index]: ../using/troubleshooting
-[use ref]: ../using/reference
+[use running cluster]: ../using/running-a-cluster.md
+[use admin index]: ../using/admin/index.md
+[cluster ops index]: ../using/cluster-operations/index.md
+[repair recover index]: ../using/repair-recovery/index.md
+[security index]: ../using/security/index.md
+[perf index]: ../using/performance/index.md
+[troubleshoot index]: ../using/troubleshooting/index.md
+[use ref]: ../using/reference/index.md
 
 ## [Running a Cluster][use running cluster]
 

@@ -5,7 +5,7 @@ slug: mapreduce
 sidebar_position: 8
 ---
 
-[MapReduce](/docs/developing/usage/mapreduce) is a generic way to query Riak by specifying inputs and constructing a set of map, reduce, and link phases through which data will flow.
+[MapReduce](../../../developing/usage/mapreduce.md) is a generic way to query Riak by specifying inputs and constructing a set of map, reduce, and link phases through which data will flow.
 
 ## Request
 
@@ -14,7 +14,7 @@ POST /mapred
 ```
 
 Important headers:
-* `Content-Type` - must always be `application/json`.  The format of the request body is described in detail on the [MapReduce](/docs/developing/usage/mapreduce) page.
+* `Content-Type` - must always be `application/json`.  The format of the request body is described in detail on the [MapReduce](../../../developing/usage/mapreduce) page.
 
 Optional query parameters:
 * `chunked` - when set to `true`, results will be returned as they are received in `multipart/mixed` format using chunked-encoding.

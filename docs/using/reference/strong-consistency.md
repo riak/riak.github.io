@@ -5,10 +5,10 @@ slug: strong-consistency
 sidebar_position: 12
 ---
 
-[usage bucket types]: /docs/developing/usage/bucket-types
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
+[usage bucket types]: ../../developing/usage/bucket-types.md
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
 
-Riak was originally designed as an [eventually consistent](/docs/learn/concepts/eventual-consistency) system, fundamentally geared toward providing partition
+Riak was originally designed as an [eventually consistent](../../learn/concepts/eventual-consistency.md) system, fundamentally geared toward providing partition
 (i.e. fault) tolerance and high read and write availability.
 
 While this focus on high availability is a great fit for many data
@@ -19,7 +19,7 @@ In Riak, strong consistency is applied [using bucket types][usage bucket types],
 enables developers to apply strong consistency guarantees on a per-key
 basis.
 
-Elsewhere in the documentation there are instructions for [enabling and using](/docs/developing/app-guide/strong-consistency/) strong consistency, as well as a [guide for operators](/docs/configuring/strong-consistency) looking to manage,
+Elsewhere in the documentation there are instructions for [enabling and using](../../developing/app-guide/strong-consistency.md) strong consistency, as well as a [guide for operators](../../configuring/strong-consistency.md) looking to manage,
 configure, and monitor strong consistency.
 
 ## Strong vs. Eventual Consistency
@@ -127,12 +127,12 @@ tolerance. Consistent operations can still succeed when a minority of
 replicas in each ensemble can be offline, faulty, or unreachable. In
 other words, **strongly consistent operations will succeed as long as
 quorum is maintained**. A fuller discussion can be found in the
-[operations](/docs/configuring/strong-consistency/#fault-tolerance)
+[operations](../../configuring/strong-consistency.md#fault-tolerance)
 documentation.
 
 A second trade-off regards performance. Riak's implementation of strong
-consistency involves a complex [consensus subsystem](/docs/using/reference/strong-consistency/#implementation-details) that typically requires more communication between Riak nodes than eventually consistent operations,
+consistency involves a complex [consensus subsystem](../../using/reference/strong-consistency.md#implementation-details) that typically requires more communication between Riak nodes than eventually consistent operations,
 which can entail a performance hit of varying proportions, depending on
 a variety of factors.
 
-Ways to address this issue can be found in [strong consistency and performance](/docs/configuring/strong-consistency/#performance).
+Ways to address this issue can be found in [strong consistency and performance](../../configuring/strong-consistency.md#performance).

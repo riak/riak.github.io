@@ -7,18 +7,18 @@ sidebar_position: 0
 
 [github bitcask]: https://github.com/basho/bitcask
 [bitcask design pdf]: http://basho.com/assets/bitcask-intro.pdf
-[use admin riak cli]: /docs/using/admin/riak-cli
-[config reference]: /docs/configuring/reference
-[glossary vnode]: /docs/learn/glossary/#vnode
-[learn clusters]: /docs/learn/concepts/clusters
-[plan backend multi]: /docs/setup/planning/backend/multi
-[usage search]: /docs/developing/usage/search
+[use admin riak cli]: ../../../using/admin/riak-cli.md
+[config reference]: ../../../configuring/reference.md
+[glossary vnode]: ../../../learn/glossary.md#vnode
+[learn clusters]: ../../../learn/concepts/clusters.md
+[plan backend multi]: ../../../setup/planning/backend/multi.md
+[usage search]: ../../../developing/usage/search.md
 
-[glossary aae]: /docs/learn/glossary/#active-anti-entropy-aae
-[perf open files]: /docs/using/performance/open-files-limit
+[glossary aae]: ../../../learn/glossary.md#active-anti-entropy-aae
+[perf open files]: ../../../using/performance/open-files-limit.md
 
-[plan bitcask capacity]: /docs/setup/planning/bitcask-capacity-calc
-[usage delete objects]: /docs/developing/usage/deleting-objects
+[plan bitcask capacity]: ../../../setup/planning/bitcask-capacity-calc.mdx
+[usage delete objects]: ../../../developing/usage/deleting-objects.md
 
 [Bitcask][github bitcask] is an Erlang application that provides an API for storing and retrieving key/value data using log-structured hash tables that provide very fast access. The [design][bitcask design pdf] of Bitcask was inspired, in part, by log-structured filesystems and log file merging.
 
@@ -742,7 +742,7 @@ bitcask.expiry.grace_time = 1h
 #### Automatic expiration and Riak Search
 
 If you are using [Riak Search][usage search] in conjunction with
-Bitcask, please be aware that automatic expiry does not apply to [Search Indexes](../../../../developing/usage/search). If objects are indexed using Search,
+Bitcask, please be aware that automatic expiry does not apply to [Search Indexes](../../../developing/usage/search.md). If objects are indexed using Search,
 those objects can be expired by Bitcask yet still registered in Search
 indexes, which means that Search queries may return keys that no longer
 exist. Riak's [active anti-entropy (AAE)][glossary aae] subsystem will eventually

@@ -5,10 +5,10 @@ slug: riak-cli
 sidebar_position: 2
 ---
 
-[configuration file]: /docs/configuring/reference/
+[configuration file]: ../../configuring/reference.md
 [escript]: http://www.erlang.org/doc/man/escript.html
-[`riak-admin`]: /docs/using/admin/riak-admin/#top
-[configuration]: /docs/configuring/reference/
+[`riak-admin`]: ../../using/admin/riak-admin.md#top
+[configuration]: ../../configuring/reference.md
 
 ## riak
 

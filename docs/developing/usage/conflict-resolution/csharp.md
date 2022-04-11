@@ -5,7 +5,7 @@ slug: csharp
 sidebar_position: 3
 ---
 
-For reasons explained in the [Introduction to conflict resolution](/docs/developing/usage/conflict-resolution), we strongly recommend adopting a conflict resolution strategy that requires applications to resolve siblings according to use-case-specific
+For reasons explained in the [Introduction to conflict resolution](../../../developing/usage/conflict-resolution/index.md), we strongly recommend adopting a conflict resolution strategy that requires applications to resolve siblings according to use-case-specific
 criteria. Here, we'll provide a brief guide to conflict resolution using the
 official [Riak .NET client][riak_dotnet_client].
 

@@ -58,7 +58,7 @@ riak-admin handoff disable both --all
 ## Other Command-line Tools
 
 In addition to enabling and disabling handoff, the
-[`riak-admin`](/docs/using/admin/riak-admin/) interface enables you to
+[`riak-admin`](../../using/admin/riak-admin.md) interface enables you to
 retrieve a summary of handoff-related activity and other information.
 
 ### summary
@@ -73,14 +73,14 @@ riak-admin handoff summary
 This will return a table that will provide the following information
 about each node in your cluster:
 
-Header | Description
-:------|:-----------
-`Node` | The name of the node
-`Total` | Total number of active transfers throughout the entire cluster
-`Ownership` | Total number of ownership exchanges
-`Resize` | Total handoffs related to ring resizing operations (This should always be 0, as the Resize Ring feature has been deprecated)
-`Hinted` | Total number of [hinted handoffs](../../reference/handoff#types-of-handoff)
-`Repair` | Total repair-related handoffs. More information can be found [here](https://github.com/basho/riak_core/commit/036e409eb83903315dd43a37c7a93c9256863807).
+| Header      | Description                                                                                                                                              |
+|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Node`      | The name of the node                                                                                                                                     |
+| `Total`     | Total number of active transfers throughout the entire cluster                                                                                           |
+| `Ownership` | Total number of ownership exchanges                                                                                                                      |
+| `Resize`    | Total handoffs related to ring resizing operations (This should always be 0, as the Resize Ring feature has been deprecated)                             |
+| `Hinted`    | Total number of [hinted handoffs](../reference/handoff.md#types-of-handoff)                                                                              |
+| `Repair`    | Total repair-related handoffs. More information can be found [here](https://github.com/basho/riak_core/commit/036e409eb83903315dd43a37c7a93c9256863807). |
 
 ### details
 
@@ -95,7 +95,7 @@ ongoing transfers`. Otherwise, you will something like this:
 
 ### config
 
-This command displays the values for handoff-specific [configurable parameters](/docs/configuring/reference/#intra-cluster-handoff) on each node in
+This command displays the values for handoff-specific [configurable parameters](../../configuring/reference.md#intra-cluster-handoff) on each node in
 the cluster, including:
 
 * `transfer_limit`

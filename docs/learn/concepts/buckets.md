@@ -5,25 +5,25 @@ slug: buckets
 sidebar_position: 1
 ---
 
-[apps cluster metadata]: /docs/developing/app-guide/cluster-metadata
-[cluster ops bucket types]: /docs/using/cluster-operations/bucket-types
-[cluster ops strong consistency]: /docs/using/cluster-operations/strong-consistency
-[concept causal context]: /docs/learn/concepts/causal-context
-[concept causal context sib]: /docs/learn/concepts/causal-context/#siblings
-[concept replication]: /docs/learn/concepts/replication
-[concept strong consistency]: /docs/using/reference/strong-consistency
-[config basic]: /docs/configuring/basic
-[dev api http]: /docs/developing/api/http
-[dev data types]: /docs/developing/data-types
-[glossary ring]: /docs/learn/glossary/#ring
-[plan backend leveldb]: /docs/setup/planning/backend/leveldb
-[plan backend bitcask]: /docs/setup/planning/backend/bitcask
-[plan backend memory]: /docs/setup/planning/backend/memory
-[plan backend multi]: /docs/setup/planning/backend/multi
-[usage bucket types]: /docs/developing/usage/bucket-types
-[usage commit hooks]: /docs/developing/usage/commit-hooks
-[usage conflict resolution]: /docs/developing/usage/conflict-resolution
-[usage replication]: /docs/developing/usage/replication
+[apps cluster metadata]: ../../developing/app-guide/cluster-metadata.md
+[cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+[cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
+[concept causal context]: ../../learn/concepts/causal-context.md
+[concept causal context sib]: ../../learn/concepts/causal-context.md#siblings
+[concept replication]: ../../learn/concepts/replication.md
+[concept strong consistency]: ../../using/reference/strong-consistency.md
+[config basic]: ../../configuring/basic.md
+[dev api http]: ../../developing/api/http/index.md
+[dev data types]: ../../developing/data-types/index.md
+[glossary ring]: ../../learn/glossary.md#ring
+[plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+[plan backend bitcask]: ../../setup/planning/backend/bitcask.md
+[plan backend memory]: ../../setup/planning/backend/memory.md
+[plan backend multi]: ../../setup/planning/backend/multi.md
+[usage bucket types]: ../../developing/usage/bucket-types.md
+[usage commit hooks]: ../../developing/usage/commit-hooks.md
+[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+[usage replication]: ../../developing/usage/replication.md
 
 
 Buckets are used to define a virtual keyspace for storing Riak objects.

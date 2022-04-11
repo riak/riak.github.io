@@ -59,8 +59,8 @@ StoreValue.Response updateOpResp = client.execute(updateOp);
 ```
 
 For more in depth information on updating objects and sibling resolution in
-Riak, see [Updating Objects](/docs/developing/usage/updating-objects/)
-and [Conflict Resolution](/docs/developing/usage/conflict-resolution/)
+Riak, see [Updating Objects](../../../developing/usage/updating-objects.md)
+and [Conflict Resolution](../../../developing/usage/conflict-resolution/index.md)
 documentation.
 
 ## Updating Objects

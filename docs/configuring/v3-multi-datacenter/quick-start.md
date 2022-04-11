@@ -5,9 +5,9 @@ slug: quick-start
 sidebar_position: 0
 ---
 
-[perf index]: /docs/using/performance
-[config v3 mdc]: /docs/configuring/v3-multi-datacenter
-[cluster ops v3 mdc]: /docs/using/cluster-operations/v3-multi-datacenter
+[perf index]: ../../using/performance/index.md
+[config v3 mdc]: ../../configuring/v3-multi-datacenter/index.md
+[cluster ops v3 mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
 
 This guide will walk you through the process of configuring Riak's v3
 Replication to perform replication between two sample Riak clusters on

@@ -3,10 +3,10 @@ title: "Cluster Administration"
 id: managing_cluster_admin
 ---
 
-[use admin commands]: ./commands/
-[use admin riak cli]: ./riak-cli/
-[use admin riak-admin]: ./riak-admin/
-[use admin riak control]: ./riak-control/
+[use admin commands]: ./commands.md
+[use admin riak cli]: ./riak-cli.md
+[use admin riak-admin]: ./riak-admin.md
+[use admin riak control]: ./riak-control.md
 
 ## [Cluster Admin Commands][use admin commands]
 

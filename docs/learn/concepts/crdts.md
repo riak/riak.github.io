@@ -6,20 +6,20 @@ sidebar_position: 5
 ---
 
 [crdts pdf]: http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf
-[data types converg]: /docs/learn/concepts/crdts/#convergence
+[data types converg]: ../../learn/concepts/crdts.md#convergence
 [crdts reading list]: http://christophermeiklejohn.com/crdt/2014/07/22/readings-in-crdts.html
-[data types impl]: /docs/learn/concepts/crdts/#implementation
-[concept causal context dvv]: /docs/learn/concepts/causal-context/#dotted-version-vectors
-[concept causal context sib]: /docs/learn/concepts/causal-context/#siblings
-[concept causal context vc]: /docs/learn/concepts/causal-context/#vector-clocks
-[concept eventual consistency]: /docs/learn/concepts/eventual-consistency
-[concept strong consistency]: /docs/learn/concepts/strong-consistency
-[dev data types]: /docs/developing/data-types
+[data types impl]: ../../learn/concepts/crdts.md#implementation
+[concept causal context dvv]: ../../learn/concepts/causal-context.md#dotted-version-vectors
+[concept causal context sib]: ../../learn/concepts/causal-context.md#siblings
+[concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+[concept strong consistency]: ../../learn/concepts/strong-consistency.md
+[dev data types]: ../../developing/data-types/index.md
 [riak_dt]: https://github.com/basho/riak_dt
-[dev data types context]: /riak/kv/2.1.4/developing/data-types/#data-types-and-context
-[glossary node]: /docs/learn/glossary/#node
-[glossary vnode]: /docs/learn/glossary/#vnode
-[usage conflict resolution]: /docs/developing/usage/conflict-resolution
+[dev data types context]: ../../developing/data-types/index.md#data-types-and-context
+[glossary node]: ../../learn/glossary.md#node
+[glossary vnode]: ../../learn/glossary.md#vnode
+[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
 
 Riak Data Types are convergent replicated data types (CRDTs), inspired by the work of [Marc Shapiro, Nuno Preguiça, Carlos Baquero, and Marek Zawirski][crdts pdf]. Riak KV supports the following eventually-convergent data types, described in later sections:
 
