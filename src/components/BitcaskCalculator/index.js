@@ -102,9 +102,6 @@ function calculateRam(nRam) {
 function reducer(state, action) {
   const value = parseInt(action.payload, 10);
 
-    console.log(action.type);
-    console.log(action.payload);
-
   switch (action.type) {
     case "nBucketSize":
           console.log("called");

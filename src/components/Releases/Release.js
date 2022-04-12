@@ -22,7 +22,7 @@ export default function Release({ latest, first, name, tarball_url, zipball_url,
   );
 }
 
-function Link({name, url}) {
+function Link({ name, url }) {
   return <a href={url}>{name}</a>;
 }
 
@@ -31,7 +31,7 @@ function ReleaseNotes({ version_match }) {
     return <>No release notes found</>;
   }
 
-  const [_full, major, minor, _, patch, patch_version] = version_match;
+  const [, major, minor, , patch, patch_version] = version_match;
   const patch_fmt = patch_version === undefined ? "" : `---patch-${patch_version}`;
   const full_version = `${major}${minor}${patch}`
   const url = `https://github.com/basho/riak/blob/develop-3.0/RELEASE-NOTES.md#riak-kv-${full_version}-release-notes${patch_fmt}`
@@ -44,7 +44,7 @@ function PackagesDownload({ version_match }) {
     return <>No download link found</>;
   }
 
-  const [_full, major, minor, _, patch, patch_version] = version_match;
+  const [, major, minor, , patch, patch_version] = version_match;
   const major_version = `${major}.${minor}`;
   const patch_fmt = patch === undefined ? "" : `.${patch}`;
   const patch_version_fmt = patch_version === undefined ? patch_fmt : `${patch_fmt}p${patch_version}`;
