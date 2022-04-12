@@ -1,7 +1,7 @@
 # Website
 
 This is a migrated version of the Riak KV 2.2.3+ docs from [basho/basho_docs](https://www.github.com/basho/basho_docs).
-Much of the documentation was manually transformed with the basho_docs_transform tool and plenty of manual adjustment. 
+Much of the documentation was manually transformed with the [basho_docs_transform tool](./tools/basho_docs_transform/README.md) and plenty of manual adjustment. 
 In the future previous versions of Riak KV and other Riak software (e.g, Riak TS) could also be placed here.
 
 ## Editing
