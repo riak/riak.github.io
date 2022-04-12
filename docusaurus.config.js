@@ -81,17 +81,17 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/riak',
-              },
-              {
                 label: 'GitHub',
                 href: 'https://github.com/basho',
               },
               {
                 label: 'Slack',
                 href: 'https://postriak.slack.com/',
-              }
+              },
+              {
+                label: 'Stack Overflow',
+                href: 'https://stackoverflow.com/questions/tagged/riak',
+              },
             ],
           },
           {
@@ -100,11 +100,15 @@ const config = {
               {
                 label: 'Blog',
                 to: '/blog',
+              },
+              {
+                label: 'Releases',
+                to: '/releases',
               }
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Riak. Apache 2.0. Built with Docusaurus.`,
+        copyright: `Copyright Riak © ${new Date().getFullYear()}. Apache 2.0. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
