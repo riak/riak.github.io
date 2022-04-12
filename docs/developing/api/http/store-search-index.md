@@ -5,7 +5,7 @@ slug: store-search-index
 sidebar_position: 16
 ---
 
-Creates a new Riak Search [index](../../../developing/usage/search.md#simple-setup).
+Creates a new Riak Search [index](../../../developing/usage/search.md#setup).
 
 ## Request
 

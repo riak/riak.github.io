@@ -65,7 +65,7 @@ Important headers:
 and validation-based caching
 * `Last-Modified` - a timestamp for when the object was last written, in HTTP
 datetime format
-* `Link` - user- and system-defined links to other resources. [Read more about Links.](../../../learn/glossary.md#links)
+* `Link` - user- and system-defined links to other resources. [Read more about Links.](../../../learn/glossary.md)
 
 The body of the response will be the contents of the object except when siblings
 are present.

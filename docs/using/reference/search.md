@@ -117,7 +117,7 @@ but logically partition them in KV by using a date as the bucket name.
 A bucket _cannot_ be associated with many indexes---the `search_index`
 property must be a single name, not a list.
 
-See the [main Search documentation](../../developing/usage/search.md#simple-setup) for details on creating an index.
+See the [main Search documentation](../../developing/usage/search.md#setup) for details on creating an index.
 
 ## Extractors
 
@@ -155,13 +155,13 @@ The first question is answered by the _extractor mapping_. By default
 Yokozuna ships with extractors for several common data types. Below is a
 table of this default mapping:
 
-Content Type | Erlang Module
-:------------|:-------------
-`application/json` | `yz_json_extractor`
-`application/xml`  | `yz_xml_extractor`
-`text/plain`       | `yz_text_extractor`
-`text/xml`         | `yz_xml_extractor`
-N/A                | `yz_noop_extractor`
+| Content Type       | Erlang Module       |
+|:-------------------|:--------------------|
+| `application/json` | `yz_json_extractor` |
+| `application/xml`  | `yz_xml_extractor`  |
+| `text/plain`       | `yz_text_extractor` |
+| `text/xml`         | `yz_xml_extractor`  |
+| N/A                | `yz_noop_extractor` |
 
 The answer to the second question is a function of the implementation
 of the extractor module. Every extractor must conform to the

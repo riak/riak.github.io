@@ -85,14 +85,14 @@ riak chkconfig
 
 ## riak_core Settings
 
-| Setting                | Options           | Default     | Description                                                                                                                                                                                                                                                                       |
-|:-----------------------|:------------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `keyfile`              | `path` (string)   | `undefined` | Fully qualified path to an ssl `.pem` key file                                                                                                                                                                                                                                    |
-| `cacertdir`            | `path` (string)   | `undefined` | The `cacertdir` is a fully-qualified directory containing all the CA certificates needed to verify the CA chain back to the root                                                                                                                                                  |
-| `certfile`             | `path` (string)   | `undefined` | Fully qualified path to a `.pem` cert file                                                                                                                                                                                                                                        |
-| `ssl_depth`            | `depth` (integer) | `1`         | Set the depth to check for SSL CA certs. See [1](#f1).                                                                                                                                                                                                                            |
-| `ssl_enabled`          | `true`, `false`   | `false`     | Enable SSL communications                                                                                                                                                                                                                                                         |
-| `peer_common_name_acl` | `cert` (string)   | `"*"`       | Verify an SSL peer’s certificate common name. You can provide an ACL as a list of common name *patterns*, and you can wildcard the leftmost part of any of the patterns, so `*.basho.com` would match `site3.basho.com` but not `foo.bar.basho.com` or `basho.com`. See [2](#f2). |
+| Setting                | Options           | Default     | Description                                                                                                                                                                                                                                                                   |
+|:-----------------------|:------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `keyfile`              | `path` (string)   | `undefined` | Fully qualified path to an ssl `.pem` key file                                                                                                                                                                                                                                |
+| `cacertdir`            | `path` (string)   | `undefined` | The `cacertdir` is a fully-qualified directory containing all the CA certificates needed to verify the CA chain back to the root                                                                                                                                              |
+| `certfile`             | `path` (string)   | `undefined` | Fully qualified path to a `.pem` cert file                                                                                                                                                                                                                                    |
+| `ssl_depth`            | `depth` (integer) | `1`         | Set the depth to check for SSL CA certs. See [^1]).                                                                                                                                                                                                                           |
+| `ssl_enabled`          | `true`, `false`   | `false`     | Enable SSL communications                                                                                                                                                                                                                                                     |
+| `peer_common_name_acl` | `cert` (string)   | `"*"`       | Verify an SSL peer’s certificate common name. You can provide an ACL as a list of common name *patterns*, and you can wildcard the leftmost part of any of the patterns, so `*.basho.com` would match `site3.basho.com` but not `foo.bar.basho.com` or `basho.com`. See [^2]. |
 
 ## Heartbeat Settings
 
@@ -113,13 +113,13 @@ attempt to re-connect more often that it needs to. On the other hand,
 lengthening the timeout will make Riak less sensitive to cases in which
 the connection really has been compromised.
 
-1. SSL depth is the maximum number of non-self-issued
+[^1]: SSL depth is the maximum number of non-self-issued
  intermediate certificates that may follow the peer certificate in a valid
  certificate chain. If depth is `0`, the PEER must be signed by the trusted
  ROOT-CA directly; if `1` the path can be PEER, CA, ROOT-CA; if depth is `2`
  then PEER, CA, CA, ROOT-CA and so on.
 
-2. If the ACL is specified and not the special value `*`,
+[^2]: If the ACL is specified and not the special value `*`,
   peers presenting certificates not matching any of the patterns will not be
   allowed to connect.
   If no ACLs are configured, no checks on the common name are done, except

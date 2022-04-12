@@ -194,9 +194,9 @@ additionally:
 1. Mark the original instance down in the cluster using
    [`riak-admin down <node>`](../../using/admin/riak-admin.md#down)
 2. Join the restored node to the cluster using
-   [`riak-admin cluster join <node>`](../../using/admin/riak-admin.md#cluster-join)
+   [`riak-admin cluster join <node>`](../../using/admin/riak-admin.md#cluster)
 3. Replace the original instance with the renamed instance with
-   [`riak-admin cluster force-replace <node1> <node2>`](../../using/admin/riak-admin.md#cluster-force-replace)
+   [`riak-admin cluster force-replace <node1> <node2>`](../../using/admin/riak-admin.md#cluster)
 4. Plan the changes to the cluster with `riak-admin cluster plan`
 5. Finally, commit the cluster changes with `riak-admin cluster commit`
 

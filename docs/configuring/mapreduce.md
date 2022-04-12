@@ -6,7 +6,7 @@ sidebar_position: 6
 ---
 
 [usage mapreduce]: ../developing/usage/mapreduce.md
-[config reference#appconfig]: ../configuring/reference.md#app-config
+[config reference#appconfig]: ../configuring/reference.md#advanced-configuration
 [usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 
 ## Configuring MapReduce

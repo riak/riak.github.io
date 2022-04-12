@@ -10,11 +10,11 @@ automatically recognize the location of the resources for specific operations.
 
 The standard resources are:
 
-* `riak_kv_wm_buckets` - [Bucket Operations](../../../developing/api/http/index.md#bucket-operations)
+* `riak_kv_wm_buckets` - [Bucket Operations](../../../developing/api/http/index.md#bucket-related-operations)
 * `riak_kv_wm_index` - [HTTP Secondary Indexes](../../../developing/api/http/secondary-indexes.md)
 * `riak_kv_wm_link_walker` - [HTTP Link Walking](../../../developing/api/http/link-walking.md)
 * `riak_kv_wm_mapred` - [HTTP MapReduce](../../../developing/api/http/mapreduce.md)
-* `riak_kv_wm_object`- [Object/Key Operations](../../../developing/api/http/index.md/#object-key-operations)
+* `riak_kv_wm_object`- [Object/Key Operations](../../../developing/api/http/index.md#object-related-operations)
 * `riak_kv_wm_ping` - [HTTP Ping](../../../developing/api/http/ping.md)
 * `riak_kv_wm_props` - [HTTP Set Bucket Properties](../../../developing/api/http/set-bucket-props.md)
 * `riak_kv_wm_stats` - [HTTP Status](../../../developing/api/http/status.md)

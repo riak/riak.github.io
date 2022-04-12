@@ -136,7 +136,7 @@ At the time of writing, the only backend that supports asynchronous writes is
 LevelDB. Riak will automatically fall back to synchronous writes with all other
 backends.
 
-:::note "Note on the `multi` backend"
+:::note Note on the `multi` backend
 The [Multi](../../setup/planning/backend/multi.md) backend does not
 support asynchronous writes. Therefore, if LevelDB is used with the Multi
 backend, it will be used in synchronous mode.

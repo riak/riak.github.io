@@ -20,7 +20,7 @@ sidebar_position: 4
 In single-server, non-clustered data storage systems, object deletion
 is a trivial process. In an [eventually consistent][concept eventual consistency], [clustered][concept clusters] system like Riak, however,
 object deletion is far less trivial because objects live on multiple
-[nodes](../../learn/glossary.md#nodes), which means that a deletion process must be chosen to determine when an object can be removed from the storage backend.
+[nodes](../../learn/glossary.md#node), which means that a deletion process must be chosen to determine when an object can be removed from the storage backend.
 
 ## Object Deletion Example
 

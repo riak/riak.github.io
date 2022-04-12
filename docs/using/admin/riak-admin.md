@@ -25,7 +25,7 @@ sidebar_position: 1
 [repair recover index]: ../../using/repair-recovery/index.md
 [cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
 [cluster ops handoff]: ../../using/cluster-operations/handoff.md
-[use admin riak-admin#stats]: ../../using/admin/riak-admin.md#stats
+[use admin riak-admin#stats]: ../../using/admin/riak-admin.md#status
 
 ## `riak-admin`
 
@@ -441,8 +441,7 @@ Information is written to `console.log` upon completion of the process.
 A `--downgrade` switch can be specified when downgrading a node to a version
 of Riak prior to version 1.3.1.
 
-Additional details are available in the [Riak 1.3.1 release
-notes](https://github.com/basho/riak/blob/1.3/RELEASE-NOTES.md).
+Additional details are available in the [Riak 1.3.1 release notes](https://github.com/basho/riak/blob/riak-1.3.1/RELEASE-NOTES.md).
 
 ## top
 

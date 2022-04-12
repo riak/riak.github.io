@@ -47,7 +47,7 @@ backends.
 > **Note on 2i and strong consistency**
 Secondary indexes do not currently work with the [strong consistency][use ref strong consistency]
 feature introduced in Riak version 2.0. If you store objects in
-[strongly consistent buckets](../../developing/app-guide/strong-consistency.md#creating-a-strongly-consistent-bucket-type) and attach
+[strongly consistent buckets](../../developing/app-guide/strong-consistency.md#creating-consistent-bucket-types) and attach
 secondary index metadata to those objects, you can still perform
 strongly consistent operations on those objects but the secondary
 indexes will be ignored.

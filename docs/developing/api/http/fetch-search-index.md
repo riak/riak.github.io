@@ -5,7 +5,7 @@ slug: fetch-search-index
 sidebar_position: 15
 ---
 
-Retrieves information about a Riak Search [index](../../../developing/usage/search.md#simple-setup).
+Retrieves information about a Riak Search [index](../../../developing/usage/search.md#setup).
 
 ## Request
 

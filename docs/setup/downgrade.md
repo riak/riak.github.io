@@ -7,7 +7,7 @@ sidebar_position: 4
 
 [config ref]: ../configuring/reference.md
 [concept aae]: ../learn/concepts/active-anti-entropy.md
-[aae status]: ../using/admin/riak-admin.md#aae-status
+[aae status]: ../using/admin/riak-admin.md
 
 Downgrades of Riak KV are tested and supported for two feature release versions, with the general procedure being similar to that of a rolling upgrade.
 
@@ -34,10 +34,10 @@ For every node in the cluster:
 
 ### Components That Complicate Downgrades
 
-| Feature                                 | automatic | required | Notes                                                       |
-|:----------------------------------------|:---------:|:--------:|:------------------------------------------------------------|
-| Migration to Solr 4.10.4                |     ✔     |    ✔     | Applies to all clusters using Riak Search.                  |
-| Active Anti-Entropy file format changes |     ✔     |          | Can be opted out using a [capability](#aae_tree_capability) |
+| Feature                                 | automatic | required | Notes                                      |
+|:----------------------------------------|:---------:|:--------:|:-------------------------------------------|
+| Migration to Solr 4.10.4                |     ✔     |    ✔     | Applies to all clusters using Riak Search. |
+| Active Anti-Entropy file format changes |     ✔     |          | Can be opted out using a capability        |
 
 ### When Downgrading is No Longer an Option
 

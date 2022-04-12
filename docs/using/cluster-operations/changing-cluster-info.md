@@ -131,12 +131,10 @@ The nodes in our example cluster are currently configured to use the *10.1.42.* 
 
 This process can be accomplished in three phases. The details and steps required of each phase are presented in the following section.
 
-1. [Down the node to be reconfigured](#down)
-2. [Reconfigure node to use new address](#reconfigure)
-3. [Repeat previous steps on each node](#repeat)
+1. [Down the node to be reconfigured](#down-the-node)
+2. [Reconfigure node to use new address](#reconfigure-node-to-use-new-address)
+3. [Repeat previous steps on each node](#repeat-previous-steps-on-each-node)
 
-
-<a id="down"></a>
 #### Down the Node
 
 1. Stop Riak on `node1.localdomain`:
@@ -167,7 +165,6 @@ This process can be accomplished in three phases. The details and steps required
 
     This step informs the cluster that `riak@10.1.42.11` is offline and ring-state transitions should be allowed. While we're executing the `riak-admin down` command from `node2.localdomain` in this example, the command can be executed from any currently running node.
 
-<a id="reconfigure"></a>
 #### Reconfigure Node to Use New Address
 
 Reconfigure `node1.localdomain` to listen on the new private IP address *192.168.17.11* by following these steps:
@@ -299,7 +296,6 @@ lost`. Since we didn't delete any data files and we are replacing the node
 with itself under a new name, we will not lose any replicas.
 :::note
 
-<a id="repeat"></a>
 #### Repeat previous steps on each node
 
 Repeat the steps above for each of the remaining nodes in the cluster.

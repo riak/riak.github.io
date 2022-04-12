@@ -7,7 +7,7 @@ sidebar_position: 3
 
 Bucket types allow groups of buckets to share configuration details and
 for Riak users to manage bucket properties more efficiently than in the
-older configuration system based on [bucket properties](../../developing/usage/bucket-types.md#bucket-properties-and-operations).
+older configuration system based on [bucket properties](../../developing/usage/bucket-types.md#bucket-properties).
 
 :::note Important note on cluster downgrades
 If you upgrade a Riak to version 2.0 or later, you can still downgrade the
@@ -38,7 +38,7 @@ with a few crucial differences:
   cluster for every bucket, which means less computational overhead
 
 It is important to note that buckets are not assigned types in the same
-way that they are configured when using [bucket properties](../../developing/usage/bucket-types.md#bucket-properties-and-operations). You cannot simply take a
+way that they are configured when using [bucket properties](../../developing/usage/bucket-types.md#bucket-properties). You cannot simply take a
 bucket `my_bucket` and assign it a type the way that you would, say,
 set `allow_mult` to `false` or `n_val` to `5`, because there is no
 `type` parameter contained within the bucket's properties (i.e.
@@ -85,13 +85,13 @@ Bucket types are created, updated, activated, and more through the
 
 Below is a full list of available sub-commands:
 
-Command | Action | Form |
-:-------|:-------|:-----|
-`create` | Create or modify a bucket type before activation | `create <type> <json>` |
-`activate` | Activate a bucket type | `activate <type>` |
-`list` | List all currently available bucket types and their activation status | `list` |
-`status` | Display the status and properties of a specific bucket type | `status <type>` |
-`update` | Update a bucket type after activation | `update <type> <json>` |
+| Command    | Action                                                                | Form                   |
+|:-----------|:----------------------------------------------------------------------|:-----------------------|
+| `create`   | Create or modify a bucket type before activation                      | `create <type> <json>` |
+| `activate` | Activate a bucket type                                                | `activate <type>`      |
+| `list`     | List all currently available bucket types and their activation status | `list`                 |
+| `status`   | Display the status and properties of a specific bucket type           | `status <type>`        |
+| `update`   | Update a bucket type after activation                                 | `update <type> <json>` |
 
 ### Creating a Bucket Type
 
@@ -579,7 +579,7 @@ riak-admin bucket-type update n_val_of_2 '{"props":{"allow_mult":false}}'
 
 Let's say that you'd like to create a bucket type called
 `user_account_bucket` with a [pre-commit hook](../../developing/usage/commit-hooks.md#pre-commit-hooks) called `syntax_check` and two [post-commit
-hooks](../../developing/usage/commit-hooks.md#Post-Commit-Hooks) called `welcome_email` and `update_registry`. This would involve four steps:
+hooks](../../developing/usage/commit-hooks.md) called `welcome_email` and `update_registry`. This would involve four steps:
 
 1. Creating a JavaScript object containing the appropriate `props`
    settings:

@@ -423,14 +423,14 @@ to disambiguate.
 Permissions that can be granted for basic key/value access
 functionality:
 
-Permission | Operation |
-:----------|:----------|
-`riak_kv.get` | Retrieve objects
-`riak_kv.put` | Create or update objects
-`riak_kv.delete` | Delete objects
-`riak_kv.index` | Index objects using secondary indexes (2i)
-`riak_kv.list_keys` | List all of the keys in a bucket
-`riak_kv.list_buckets` | List all buckets
+| Permission             | Operation                                  |
+|:-----------------------|:-------------------------------------------|
+| `riak_kv.get`          | Retrieve objects                           |
+| `riak_kv.put`          | Create or update objects                   |
+| `riak_kv.delete`       | Delete objects                             |
+| `riak_kv.index`        | Index objects using secondary indexes (2i) |
+| `riak_kv.list_keys`    | List all of the keys in a bucket           |
+| `riak_kv.list_buckets` | List all buckets                           |
 
 :::note Note on Listing Keys and Buckets
 `riak_kv.list_keys` and `riak_kv.list_buckets` are both very expensive

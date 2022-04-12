@@ -45,7 +45,7 @@ maps, which means that the `_yz_default` schema will automatically index
 Data Types on the basis of their assigned content type. This means that
 there is no extra work involved in indexing Riak Data Types. You can
 simply store them and begin querying, provided that they are properly
-indexed, which is covered in the [examples](#riak-data-types-and-search) section below.
+indexed, which is covered in the [examples](#data-types-and-search-examples) section below.
 
 As mentioned above, there are no default schemas available for maps.
 This is because maps are essentially carriers for the other Data Types.

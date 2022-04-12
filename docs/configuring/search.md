@@ -84,7 +84,7 @@ You can read more about throttling [here][cluster-ops aae throttle].
 
 Set the throttling tiers delay for [active anti-entropy][glossary aae]; no default.
 
-Each tier is a [minimum Solrq queue size](#search-anti-entropy-throttle-tier-solrq-queue-length) and a time-delay that the throttle should observe at that size and above. 
+Each tier is a [minimum Solrq queue size](#searchanti_entropythrottletiersolrq_queue_length) and a time-delay that the throttle should observe at that size and above. 
 
 For example:
 
@@ -94,7 +94,7 @@ search.anti_entropy.throttle.tier1.delay = 0ms
 search.anti_entropy.throttle.tier2.solrq_queue_length = 40
 search.anti_entropy.throttle.tier2.delay = 5ms
 ```
-will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both [`.solrq_queue_length`](#search-anti-entropy-throttle-tier-solrq-queue-length) and `.delay` must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#search-anti-entropy-throttle).
+will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both [`.solrq_queue_length`](#searchanti_entropythrottletiersolrq_queue_length) and `.delay` must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#searchanti_entropythrottle).
 
 Valid values: Non-negative integer
 
@@ -102,7 +102,7 @@ Valid values: Non-negative integer
 
 Set the throttling tiers for [active anti-entropy][glossary aae]; no default.
 
-Each tier is a minimum Solrq queue size and a [time-delay](#search-anti-entropy-throttle-tier-delay) that the throttle
+Each tier is a minimum Solrq queue size and a [time-delay](#searchanti_entropythrottletierdelay) that the throttle
 should observe at that size and above. 
 
 For example:
@@ -113,7 +113,7 @@ search.anti_entropy.throttle.tier1.delay = 0ms
 search.anti_entropy.throttle.tier2.solrq_queue_length = 40
 search.anti_entropy.throttle.tier2.delay = 5ms
 ```
-will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both `.solrq_queue_length` and [`.delay`](#search-anti-entropy-throttle-tier-delay) must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#search-anti-entropy-throttle).
+will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both `.solrq_queue_length` and [`.delay`](#searchanti_entropythrottletierdelay) must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#searchanti_entropythrottletierdelay).
 
 Valid values: Non-negative integer
 
@@ -140,7 +140,7 @@ Valid values: `on` or `off`
 
 ### `search.index.error_threshold.failure_count`
 
-The number of failures encountered while updating a search index within [`search.queue.error_threshold.failure_interval`](#search-queue-error-threshold-failure-interval) before Riak KV will skip updates to that index; defaults to `3`.
+The number of failures encountered while updating a search index within [`search.queue.error_threshold.failure_interval`](#searchindexerror_thresholdfailure_interval) before Riak KV will skip updates to that index; defaults to `3`.
 
 Valid values: Integer
 
@@ -148,7 +148,7 @@ Valid values: Integer
 
 The window of time during which `search.queue.error_threshold.failure_count` failures will cause Riak KV to skip updates to a search index; defaults to `5000`. 
 
-If [`search.queue.error_threshold.failure_count`](#search-queue-error-threshold-failure-count) errors have occurred within this interval on a given search index, then Riak will skip updates to that index until the [`search.queue.error_threshold.reset_interval`](#search-queue-error-threshold-reset-interval) has passed.
+If [`search.queue.error_threshold.failure_count`](#searchindexerror_thresholdfailure_count) errors have occurred within this interval on a given search index, then Riak will skip updates to that index until the [`search.queue.error_threshold.reset_interval`](#searchindexerror_thresholdreset_interval) has passed.
 
 Valid values: Milliseconds
 
@@ -196,8 +196,8 @@ The strategy for how purging is handled when the `search.queue.high_watermark` i
 
 Valid values:  `purge_one`, `purge_index`, or `off`
 
-* `purge_one` removes the oldest item on the queue from an erroring (references to fuses blown in the code) index in order to get below the [`search.queue.high_watermark`](#search-queue-high-watermark) 
-* `purge_index` removes all items associated with one random erroring (references to fuses blown in the code) index in order to get below the [`search.queue.high_watermark`](#search-queue-high-watermark)
+* `purge_one` removes the oldest item on the queue from an erroring (references to fuses blown in the code) index in order to get below the [`search.queue.high_watermark`](#searchqueuehigh_watermark) 
+* `purge_index` removes all items associated with one random erroring (references to fuses blown in the code) index in order to get below the [`search.queue.high_watermark`](#searchqueuehigh_watermark)
 * `off` disables purging
 
 ### `search.root_dir`

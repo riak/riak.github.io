@@ -16,7 +16,7 @@ sidebar_position: 8
 [ring]: ../learn/concepts/clusters.md#the-ring
 [concept buckets]: ../learn/concepts/buckets.md
 [cluster ops bucket types]: ../using/cluster-operations/bucket-types.md
-[use admin riak-admin#ensemble]: ../using/admin/riak-admin.md#riak-admin-ensemble-status
+[use admin riak-admin#ensemble]: ../using/admin/riak-admin.md#ensemble-status
 [use admin riak-admin]: ../using/admin/riak-admin.md
 [config reference#advanced]: ../configuring/reference.md#advanced-configuration
 [plan cluster capacity]: ../setup/planning/cluster-capacity.md

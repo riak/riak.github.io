@@ -35,7 +35,7 @@ is one of the features that differentiates Riak from other databases.
 At the bottom of the page, you'll find a [screencast](../../developing/app-guide/replication-properties.md#screencast) that briefly explains how to adjust your
 replication levels to match your application and business needs.
 
-:::note "Note on strong consistency"
+:::note Note on strong consistency
 An option introduced in Riak version 2.0 is to use Riak as a
 [strongly consistent](../../using/reference/strong-consistency.md)
 system for data in specified buckets. Using Riak in this way is
@@ -151,7 +151,7 @@ curl -XPUT http://localhost:8098/types/n_val_equals_2/buckets/test_bucket/keys/t
 Now, whenever we write to a bucket of this type, Riak will write a
 replica of the object to two different nodes.
 
-:::note "A Word on Setting the N Value"
+:::note A Word on Setting the N Value
 `n_val` must be greater than 0 and less than or equal to the number of actual
 nodes in your cluster to get all the benefits of replication. We advise
 against modifying the `n_val` of a bucket after its initial creation as this
@@ -325,7 +325,7 @@ more likely to receive the most up-to-date values, but at the cost of a
 higher probability that reads or writes will fail because primary vnodes
 are unavailable.
 
-:::note "Note on PW"
+:::note Note on PW
 If PW is set to a non-zero value, there is a higher risk (usually very small)
 that failure will be reported to the client upon write. But this does not
 necessarily mean that the write has failed completely. If there are reachable
@@ -349,7 +349,7 @@ documentation on [Bitcask][plan backend bitcask], [LevelDB][plan backend leveldb
 
 ## Delete Quorum with RW
 
-:::note title="Deprecation notice"
+:::note Deprecation notice
 It is no longer necessary to specify an RW value when making delete requests.
 We explain its meaning here, however, because RW still shows up as a property
 of Riak buckets (as `rw`) for the sake of backwards compatibility. Feel free

@@ -15,7 +15,7 @@ respectively, in the `riak-admin security` interface.
 The examples below will assume that the network in question is
 `127.0.0.1/32` and that a Riak user named `riakuser` has been
 [created](../../using/security/basics.md#user-management) and that
-security has been [enabled](../../using/security/basics.md#the-basics).
+security has been [enabled](../../using/security/basics.md).
 
 :::note Note on SSL connections
 If you use _any_ of the aforementioned security sources, even `trust`, you

@@ -24,7 +24,7 @@ sidebar_position: 0
 [perf open files]: ../using/performance/open-files-limit.md
 [perf index]: ../using/performance/index.md
 [perf aws]: ../using/performance/amazon-web-services.md
-[Cluster Capacity Planning]: ../setup/planning/cluster-capacity.md#ring-size-number-of-partitions
+[Cluster Capacity Planning]: ../setup/planning/cluster-capacity.md#ring-sizenumber-of-partitions
 
 This document covers the parameters that are commonly adjusted when
 setting up a new cluster. We recommend that you also review the detailed

@@ -71,7 +71,7 @@ siblings in your cluster, as explained in the [next section](#siblings).
 
 In Riak, object conflicts are handled by keeping multiple versions of
 the object in the cluster either until a client takes action to resolve
-the conflict or until [active anti-entropy](../../learn/glossary.md#active-anti-entropy) resolves the conflict without client intervention. While sibling production is normal, [sibling explosion](../../learn/concepts/causal-context.md#sibling-explosion) is a problem that can come about if many siblings of an object are produced. The negative effects are the same as those associated with [large objects](#large-objects).
+the conflict or until [active anti-entropy](../../learn/glossary.md#active-anti-entropy-aae) resolves the conflict without client intervention. While sibling production is normal, [sibling explosion](../../learn/concepts/causal-context.md#sibling-explosion) is a problem that can come about if many siblings of an object are produced. The negative effects are the same as those associated with [large objects](#large-objects).
 
 ### Mitigation
 
@@ -150,7 +150,7 @@ your use case, we recommend checking out our guide to [configuring Bitcask](../.
 
 The more files you keep in memory, the faster LevelDB will perform in
 general. To make sure that you are using your system resources
-appropriately with LevelDB, check out our guide to [LevelDB parameter planning](../../setup/planning/backend/leveldb.md#parameter-planning).
+appropriately with LevelDB, check out our guide to [LevelDB parameter planning](../../setup/planning/backend/leveldb.md).
 
 ## OS Tuning
 

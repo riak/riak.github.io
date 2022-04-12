@@ -13,7 +13,7 @@ sidebar_position: 3
 [plan backend memory]: ../setup/planning/backend/memory.md
 [config backend memory]: ../setup/planning/backend/memory.md#configuring-the-memory-backend
 [plan backend multi]: ../setup/planning/backend/multi.md
-[config backend multi]: ../setup/planning/backend/multi.md#configuring-multiple-backends-1
+[config backend multi]: ../setup/planning/backend/multi.md#configuring-multiple-backends
 [use admin riak cli]: ../using/admin/riak-cli.md
 [use admin riak-admin]: ../using/admin/riak-admin.md
 [glossary aae]: ../learn/glossary.md#active-anti-entropy-aae

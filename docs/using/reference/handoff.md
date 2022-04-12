@@ -118,7 +118,7 @@ that you interact with via normal reads and writes.
 The `handoff.max_rejects` setting enables you to set the maximum
 duration that a [vnode](../../learn/glossary.md#vnode) can be blocked by multiplying the
 `handoff.max_rejects` setting by the value of
-[`vnode_management_timer`](../../configuring/reference.md#vnode_management_timer).
+[`vnode_management_timer`](../../configuring/reference.md#miscellaneous).
 Thus, if you set `handoff.max_rejects` to 10 and
 `vnode_management_timer` to 5 seconds (i.e. `5s`), non-K/V subsystems
 can block K/V handoff for a maximum of 50 seconds. The default for

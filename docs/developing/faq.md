@@ -15,7 +15,7 @@ sidebar_position: 7
 [Erlang Riak Client]: ../developing/client-libraries.md
 [MapReduce]: ../developing/usage/mapreduce.md
 [Memory]: ../setup/planning/backend/memory.md
-[System Planning]: ../setup/planning/start.md/#network-configuration-load-balancing
+[System Planning]: ../setup/planning/start.md#network-configuration--load-balancing
 [vector clocks]: ../learn/concepts/causal-context.md#vector-clocks
 
 

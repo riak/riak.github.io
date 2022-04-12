@@ -19,10 +19,10 @@ Pre-packaged versions of Riak include an Erlang installation. If you are buildin
 #### Contents
 
 * [kerl](#kerl-prerequisites)
-* [Debian/Ubuntu](#debian-ubuntu-prerequisites)
-* [FreeBSD/Solaris](#freebsd-solaris-prerequisites)
+* [Debian/Ubuntu](#debianubuntu-prerequisites)
+* [FreeBSD/Solaris](#freebsdsolaris-prerequisites)
 * [Mac OS X](#mac-os-x-prerequisites)
-* [RHEL/CentOS](#rhel-centos-prerequisites)
+* [RHEL/CentOS](#rhelcentos-prerequisites)
 
 To build and install Erlang you must have a GNU-compatible build system and these tools:
 
@@ -162,7 +162,7 @@ sudo apt-get install libwxbase2.8 libwxgtk2.8-dev libqt4-opengl-dev
 
 ### Next Steps
 
-Once you've installed the prerequisites, continue with [Installing on Debian/Ubuntu](#installing-on-debian-ubuntu).
+Once you've installed the prerequisites, continue with [Installing on Debian/Ubuntu](#installing-on-debianubuntu).
 
 
 
@@ -189,7 +189,7 @@ sudo pkg install wx28-gtk2-2.8.12_4
 
 ### Next Steps
 
-Once you've installed the prerequisites, continue with [Installing on FreeBSD/Solaris](#installing-on-freebsd-solaris).
+Once you've installed the prerequisites, continue with [Installing on FreeBSD/Solaris](#installing-on-freebsdsolaris).
 
 
 
@@ -251,17 +251,17 @@ sudo yum install wxBase.x86_64
 
 ### Next Steps
 
-Once you've installed the prerequisites, continue with [Installing on RHEL/CentOS](#installing-on-rhel-centos).
+Once you've installed the prerequisites, continue with [Installing on RHEL/CentOS](#installing-on-rhelcentos).
 
 
 
 ## Installation
 
 * [Installing with kerl](#installing-with-kerl)
-* [Installing on Debian/Ubuntu](#installing-on-debian-ubuntu)
-* [Installing on FreeBSD/Solaris](#installing-on-freebsd-solaris)
+* [Installing on Debian/Ubuntu](#installing-on-debianubuntu)
+* [Installing on FreeBSD/Solaris](#installing-on-freebsdsolaris)
 * [Installing on Mac OS X](#installing-on-mac-os-x)
-* [Installing on RHEL/CentOS](#installing-on-rhel-centos)
+* [Installing on RHEL/CentOS](#installing-on-rhelcentos)
 
 ## Installing with kerl
 
@@ -305,7 +305,7 @@ erl
 
 ## Installing on Debian/Ubuntu
 
-First make sure you have installed the necessary dependencies found in [Debian/Ubuntu Prerequisites](#debian-ubuntu-prerequisites).
+First make sure you have installed the necessary dependencies found in [Debian/Ubuntu Prerequisites](#debianubuntu-prerequisites).
 
 Next download [Basho's patched version of Erlang](http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz).
 
@@ -343,7 +343,7 @@ erl
 
 ## Installing on FreeBSD/Solaris
 
-First make sure you installed the necessary dependencies in [FreeBSD/Solaris Prerequisites](#freebsd-solaris-prerequisites).
+First make sure you installed the necessary dependencies in [FreeBSD/Solaris Prerequisites](#freebsdsolaris-prerequisites).
 
 Next download [Basho's patched version of Erlang](http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz):
 
@@ -505,7 +505,7 @@ erl
 
 ## Installing on RHEL/CentOS
 
-First make sure you have installed the necessary dependencies and prerequisites found in [RHEL/CentOS Prerequisites](#rhel-centos-prerequisites).
+First make sure you have installed the necessary dependencies and prerequisites found in [RHEL/CentOS Prerequisites](#rhelcentos-prerequisites).
 
 Using `wget`:
 

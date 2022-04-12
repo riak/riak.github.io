@@ -23,8 +23,9 @@ sidebar_position: 1
 
 You can upgrade one node or your whole cluster to Riak KV 2.2.3 by following the instructions below.
 
-:::tip KV nodes negotiate with each other to determine supported operating modes. This allows clusters containing mixed-versions of Riak KV to interoperate without special configuration, and simplifies rolling upgrades.
-:::note
+:::tip 
+KV nodes negotiate with each other to determine supported operating modes. This allows clusters containing mixed-versions of Riak KV to interoperate without special configuration, and simplifies rolling upgrades.
+:::tip
 
 
 ### General Process

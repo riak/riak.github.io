@@ -95,7 +95,7 @@ key: "k"
 | 254  | `RpbAuthResp`              |
 | 255  | `RpbStartTls`              |
 
-:::note "Message Definitions"
+:::note Message Definitions
 All Protocol Buffers messages are defined in the `riak.proto` and other
 `.proto` files in the `/src` directory of the
 <a href="https://github.com/basho/riak_pb">RiakPB</a> project.

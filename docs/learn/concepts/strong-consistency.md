@@ -37,7 +37,7 @@ If you successfully write a value to a key in a strongly consistent
 system, the next successful read of that key is guaranteed to show that
 write. A client will never see out-of-date values. The drawback is that
 some operations may fail if an insufficient number of object replicas
-are available. More on this in the section on [trade-offs](#trade-offs).
+are available.
 
 In an eventually consistent system, on the other hand, a read may return
 an out-of-date value, particularly during system or network failures.

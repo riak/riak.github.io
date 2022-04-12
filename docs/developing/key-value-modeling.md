@@ -142,7 +142,7 @@ Going back to our user data example, instead of simply storing user
 records in our `users` bucket, we could set up our application to store
 each key in a set when a new record is created. We'll store this set in
 the bucket `user_info_sets` (we'll keep it simple) and in the key
-`usernames`. The following will also assume that we've [set up a bucket type](../developing/data-types/index.md#setting-up-buckets-to-use-riak-data-types) called
+`usernames`. The following will also assume that we've [set up a bucket type](../developing/data-types/index.md#creating-a-bucket-with-a-riak-data-type) called
 `sets`.
 
 We can interact with that set on the basis of its location:
@@ -433,7 +433,7 @@ layer of information for locating objects if you wish.
 
 While bucket types are typically used to assign different bucket
 properties to groups of buckets, you can also create named bucket types
-that simply extend Riak's [defaults](../developing/usage/bucket-types.md#bucket-types-as-namespaces) or multiple bucket types that have
+that simply extend Riak's [defaults](../developing/usage/bucket-types.md) or multiple bucket types that have
 the same configuration but have different names.
 
 Here's an example of creating four bucket types that only extend Riak's

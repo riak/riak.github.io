@@ -4,8 +4,8 @@ id: cluster_operations_aae
 sidebar_position: 9
 ---
 
-[config search#throttledelay]: ../../configuring/search.md#search-anti-entropy-throttle-$tier-delay
-[config search#throttle]: ../../configuring/search.md#search-anti-entropy-throttle
+[config search#throttledelay]: ../../configuring/search.md#searchanti_entropythrottletierdelay
+[config search#throttle]: ../../configuring/search.md#searchanti_entropythrottle
 
 Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) \(AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
 
@@ -46,12 +46,12 @@ anti_entropy = active-debug
 ]}
 ```
 
-Remember that you will need to [restart the node](../admin/riak-admin.md#restart) for any configuration-related changes to take effect.
+Remember that you will need to restart the node for any configuration-related changes to take effect.
 
 ## Disabling Active Anti-Entropy
 
 Alternatively, AAE can be switched off if you would like to repair
-object inconsistencies using [read repair](../../learn/concepts/active-anti-entropy.md#read-repair) alone:
+object inconsistencies using [read repair](../../learn/concepts/active-anti-entropy.md) alone:
 
 ```riakconf
 anti_entropy = passive
@@ -79,7 +79,7 @@ The default directory for AAE data is `./data/anti_entropy`, as in the
 example above, but this can be changed. See the section below titled
 **Data Directory**.
 
-Remember that you will need to [restart the node](../admin/riak-admin.md#restart) for any configuration-related changes to take effect.
+Remember that you will need to restart the node for any configuration-related changes to take effect.
 
 The directory deletion method above can also be used to force a
 rebuilding of hash trees.

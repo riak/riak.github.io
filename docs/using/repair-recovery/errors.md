@@ -123,7 +123,7 @@ Riak to explain the correct course of action. For example, the
 `map/reduce` `parse_input` phase will respond like this when it
 encounters an invalid input:
 
-:::note "Note on inputs"
+:::note Note on inputs
 Inputs must be a binary bucket, a tuple of bucket and key-filters, a list of
 target tuples, a search index, or modfun tuple: `INPUT`.
 :::note

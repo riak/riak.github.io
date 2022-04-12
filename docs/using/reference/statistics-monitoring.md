@@ -60,18 +60,18 @@ investigate unexpected spikes or dips in the throughput.  The
 following stats are recorded for operations that happened *during the
 last minute*.
 
-Metric | Relevance | Operations (for the last minute)
-:--------|:--------|:--------------------------------
-```node_gets``` | K/V | Reads coordinated by this node
-```node_puts``` | K/V | Writes coordinated by this node
-```vnode_counter_update``` | Data Types | Update [Counters][data_types_counters] operations coordinated by local vnodes
-```vnode_set_update``` | Data Types | Update [Sets][data_types_sets] operations coordinated by local vnodes
-```vnode_map_update``` | Data Types | Update [Maps][data_types_maps] operations coordinated by local vnodes
-```search_query_throughput_one``` | Search | Search queries on the node
-```search_index_throughtput_one``` | Search | Documents indexed by Search
-```consistent_gets``` | Strong Consistency | Consistent reads on this node
-```consistent_puts``` | Strong Consistency | Consistent writes on this node
-```vnode_index_reads``` | Secondary Indexes | Number of local replicas participating in secondary index reads
+| Metric                             | Relevance          | Operations (for the last minute)                                              |
+|:-----------------------------------|:-------------------|:------------------------------------------------------------------------------|
+| ```node_gets```                    | K/V                | Reads coordinated by this node                                                |
+| ```node_puts```                    | K/V                | Writes coordinated by this node                                               |
+| ```vnode_counter_update```         | Data Types         | Update [Counters][data_types_counters] operations coordinated by local vnodes |
+| ```vnode_set_update```             | Data Types         | Update [Sets][data_types_sets] operations coordinated by local vnodes         |
+| ```vnode_map_update```             | Data Types         | Update [Maps][data_types_maps] operations coordinated by local vnodes         |
+| ```search_query_throughput_one```  | Search             | Search queries on the node                                                    |
+| ```search_index_throughtput_one``` | Search             | Documents indexed by Search                                                   |
+| ```consistent_gets```              | Strong Consistency | Consistent reads on this node                                                 |
+| ```consistent_puts```              | Strong Consistency | Consistent writes on this node                                                |
+| ```vnode_index_reads```            | Secondary Indexes  | Number of local replicas participating in secondary index reads               |
 
 Note that there are no separate stats for updates to Flags or
 Registers, as these are included in ```vnode_map_update```.
@@ -90,46 +90,46 @@ represents experienced latency. Mean, Median, and 95th-, 99th-, and
 100th-percentile (Max) counters are displayed. These are one-minute stats.
 :::note
 
-Metric | Also | Relevance | Latency (in microseconds)
-:------|:-----|:----------|:-------------------------
-```node_get_fsm_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | K/V | Time between reception of client read request and subsequent response to client
-```node_put_fsm_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | K/V | Time between reception of client write request and subsequent response to client
-```object_counter_merge_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100```  | Data Types | Time it takes to perform an Update Counter operation
-```object_set_merge_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100```  | Data Types | Time it takes to perform an Update Set operation
-```object_map_merge_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100```  | Data Types | Time it takes to perform an Update Map operation
-```search_query_latency_median``` | ```_min```, ```_95```, ```_99```, ```_999```, ```_max``` | Search | Search query latency
-```search_index_latency_median``` | ```_min```, ```_95```, ```_99```, ```_999```, ```_max``` | Search | Time it takes Search to index a new document
-```consistent_get_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | Strong Consistency | Strongly consistent read latency
-```consistent_put_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | Strong Consistency | Strongly consistent write latency
+| Metric                               | Also                                                     | Relevance          | Latency (in microseconds)                                                        |
+|:-------------------------------------|:---------------------------------------------------------|:-------------------|:---------------------------------------------------------------------------------|
+| ```node_get_fsm_time_mean```         | ```_median```, ```_95```, ```_99```, ```_100```          | K/V                | Time between reception of client read request and subsequent response to client  |
+| ```node_put_fsm_time_mean```         | ```_median```, ```_95```, ```_99```, ```_100```          | K/V                | Time between reception of client write request and subsequent response to client |
+| ```object_counter_merge_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100```          | Data Types         | Time it takes to perform an Update Counter operation                             |
+| ```object_set_merge_time_mean```     | ```_median```, ```_95```, ```_99```, ```_100```          | Data Types         | Time it takes to perform an Update Set operation                                 |
+| ```object_map_merge_time_mean```     | ```_median```, ```_95```, ```_99```, ```_100```          | Data Types         | Time it takes to perform an Update Map operation                                 |
+| ```search_query_latency_median```    | ```_min```, ```_95```, ```_99```, ```_999```, ```_max``` | Search             | Search query latency                                                             |
+| ```search_index_latency_median```    | ```_min```, ```_95```, ```_99```, ```_999```, ```_max``` | Search             | Time it takes Search to index a new document                                     |
+| ```consistent_get_time_mean```       | ```_median```, ```_95```, ```_99```, ```_100```          | Strong Consistency | Strongly consistent read latency                                                 |
+| ```consistent_put_time_mean```       | ```_median```, ```_95```, ```_99```, ```_100```          | Strong Consistency | Strongly consistent write latency                                                |
 
 ### Erlang Resource Usage Metrics
 
 These are system metrics from the perspective of the Erlang VM,
 measuring resources allocated and used by Erlang.
 
-Metric | Notes
-:------|:-------------------------
-```sys_process_count``` | Number of processes currently running in the Erlang VM
-```memory_processes``` | Total amount of memory allocated for Erlang processes (in bytes)
-```memory_processes_used``` | Total amount of memory used by Erlang processes (in bytes)
+| Metric                      | Notes                                                            |
+|:----------------------------|:-----------------------------------------------------------------|
+| ```sys_process_count```     | Number of processes currently running in the Erlang VM           |
+| ```memory_processes```      | Total amount of memory allocated for Erlang processes (in bytes) |
+| ```memory_processes_used``` | Total amount of memory used by Erlang processes (in bytes)       |
 
 ### General Riak Load/Health Metrics
 
 These various stats give a picture of the general level of activity or
 load on the Riak node at any given moment.
 
-Metric | Also | Notes
-:------|:-----|:------------------
-```node_get_fsm_siblings_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | Number of siblings encountered during all GET operations by this node within the last minute. Watch for abnormally high sibling counts, especially max ones.
-```node_get_fsm_objsize_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | Object size encountered by this node within the last minute. Abnormally large objects (especially paired with high sibling counts) can indicate sibling explosion.
-```riak_search_vnodeq_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | Number of unprocessed messages in the vnode message queues of the Riak Search subsystem on this node in the last minute. The queues give you an idea of how backed up Solr is getting.
-```search_index_fail_one``` | | Number of "Failed to index document" errors Search encountered for the last minute
-```pbc_active``` | | Number of currently active protocol buffer connections
-```pbc_connects``` | | Number of new protocol buffer connections established during the last minute
-```read_repairs``` | | Number of read repair operations this node has coordinated in the last minute (determine baseline, watch for abnormal spikes)
-```list_fsm_active``` | | Number of List Keys FSMs currently active (should be 0)
-```node_get_fsm_rejected``` | | Number of GET FSMs actively being rejected by Sidejob's overload protection
-```node_put_fsm_rejected``` | | Number of PUT FSMs actively being rejected by Sidejob's overload protection
+| Metric                           | Also                                            | Notes                                                                                                                                                                                  |
+|:---------------------------------|:------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ```node_get_fsm_siblings_mean``` | ```_median```, ```_95```, ```_99```, ```_100``` | Number of siblings encountered during all GET operations by this node within the last minute. Watch for abnormally high sibling counts, especially max ones.                           |
+| ```node_get_fsm_objsize_mean```  | ```_median```, ```_95```, ```_99```, ```_100``` | Object size encountered by this node within the last minute. Abnormally large objects (especially paired with high sibling counts) can indicate sibling explosion.                     |
+| ```riak_search_vnodeq_mean```    | ```_median```, ```_95```, ```_99```, ```_100``` | Number of unprocessed messages in the vnode message queues of the Riak Search subsystem on this node in the last minute. The queues give you an idea of how backed up Solr is getting. |
+| ```search_index_fail_one```      |                                                 | Number of "Failed to index document" errors Search encountered for the last minute                                                                                                     |
+| ```pbc_active```                 |                                                 | Number of currently active protocol buffer connections                                                                                                                                 |
+| ```pbc_connects```               |                                                 | Number of new protocol buffer connections established during the last minute                                                                                                           |
+| ```read_repairs```               |                                                 | Number of read repair operations this node has coordinated in the last minute (determine baseline, watch for abnormal spikes)                                                          |
+| ```list_fsm_active```            |                                                 | Number of List Keys FSMs currently active (should be 0)                                                                                                                                |
+| ```node_get_fsm_rejected```      |                                                 | Number of GET FSMs actively being rejected by Sidejob's overload protection                                                                                                            |
+| ```node_put_fsm_rejected```      |                                                 | Number of PUT FSMs actively being rejected by Sidejob's overload protection                                                                                                            |
 
 ### General Riak Search Load/Health Metrics
 
@@ -177,7 +177,7 @@ A comprehensive list of available stats can be found in the
 The `riak-admin stat` command is related to the `riak-admin status`
 command but provides a more fine-grained interface for interacting with
 stats and information. Full documentation of this command can be found
-in the [Inspecting a Node](../../using/cluster-operations/inspecting-node.md#riak-admin-stat) document.
+in the [Inspecting a Node](../../using/cluster-operations/inspecting-node.md#riak-admin-status) document.
 
 ## Statistics and Monitoring Tools
 
