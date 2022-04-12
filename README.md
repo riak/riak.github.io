@@ -1,17 +1,24 @@
 # Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This is a migrated version of the Riak KV 2.2.3+ docs from [basho/basho_docs](https://www.github.com/basho/basho_docs).
+Much of the documentation was manually transformed with the basho_docs_transform tool and plenty of manual adjustment. 
+In the future previous versions of Riak KV and other Riak software (e.g, Riak TS) could also be placed here.
 
-### Installation
+## Editing
+
+If you only wish to make change the contents of the markdown files, you (should) be able to edit the files on GitHub 
+with GitHub Actions automating the building and deployment of the website.
+
+## Installation
 
 ```
-$ yarn
+$ npm install 
 ```
 
 ### Local Development
 
 ```
-$ yarn start
+$ npm run start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
@@ -19,23 +26,16 @@ This command starts a local development server and opens up a browser window. Mo
 ### Build
 
 ```
-$ yarn build
+$ npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+## Mermaid
+
+To aid in the creation of diagrams [mdx-mermaid](https://github.com/sjwall/mdx-mermaid) is accessible both in documentation *and* blog posts.
+This uses [mermaid](https://mermaid-js.github.io/mermaid/#/) to easily create diagrams. 
+
 ### Deployment
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+GitHub Actions should automatically deploy the site to [riak.github.io](https://www.riak.github.io)
