@@ -27,7 +27,7 @@ At one of these points we will have to split the model.
 
 The simplest way to split up data would be to use the same identity key across different buckets. A good example of this would be a `Customer` object, an `Order` object, and an `OrderSummaries` object that keeps rolled up info about orders such as Total, etc. Let's put some data into Riak KV so we can play with it.
 
-```golang
+```go
 package main
 
 import (
@@ -331,7 +331,7 @@ func createOrderSummary(customerId string, orders []*Order) *OrderSummary {
 
 While individual `Customer` and `Order` objects don't change much (or shouldn't change), the `Order Summaries` object will likely change often. It will do double duty by acting as an index for all a customer's orders and also holding some relevant data, such as the order total, etc. If we showed this information in our application often, it's only one extra request to get all the info.
 
-```golang
+```go
 util.Log.Println("Fetching related data by shared key")
 
 cmds = cmds[:0]
@@ -412,7 +412,7 @@ See [Using Secondary Indexes (2i)](../../../developing/usage/secondary-indexes.m
 
 If you're coming from a SQL world, Secondary Indexes (2i) are a lot like SQL indexes. They are a way to quickly look up objects based on a secondary key, without scanning through the whole dataset. This makes it very easy to find groups of related data by values or ranges of values. To properly show this off, we will add some more data to our application, and add some secondary index entries at the same time:
 
-```golang
+```go
 util.Log.Println("Adding Index Data")
 
 // fetch orders to add index data
@@ -495,7 +495,7 @@ As you may have noticed, ordinary key/value data is opaque to 2i, so we have to 
 
 Now let's find all of Jane Appleseed's processed orders. We'll lookup the orders by searching the `saleperson_id_int` index for Jane's id of `9000`:
 
-```golang
+```go
 util.Log.Println("Index Queries")
 
 cmd, err = riak.NewSecondaryIndexQueryCommandBuilder().
@@ -528,7 +528,7 @@ Jane processed orders 1 and 3.  We used an *integer* index to reference Jane's i
 
 Let's say that the VP of Sales wants to know how many orders came in during October 2013. In this case, we can exploit 2i's range queries. Let's search the `order_date_bin` index for entries between `20131001` and `20131031`:  
 
-```golang
+```go
 cmd, err = riak.NewSecondaryIndexQueryCommandBuilder().
   WithBucket(ordersBucket).
   WithIndexName("OrderDate_bin").

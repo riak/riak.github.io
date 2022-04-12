@@ -81,7 +81,7 @@ obj = bucket.get('champion')
 obj.data = 'Harlem Globetrotters'
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("sports", "nba", "champion");
 var obj = new RiakObject(id, "Washington Generals",
     RiakConstants.ContentTypes.TextPlain);
@@ -138,7 +138,7 @@ UpdatedObj = riakc_obj:update_value(Obj, <<"Harlem Globetrotters">>),
 {ok, NewestObj} = riakc_pb_socket:put(Pid, UpdatedObj, [return_body]).
 ```
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -246,7 +246,7 @@ obj.vclock
 # a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
-```csharp
+```c#
 // Using the RiakObject obj from above:
 var vclock = result.Value.VectorClock;
 Console.WriteLine(Convert.ToBase64String(vclock));
@@ -274,7 +274,7 @@ riakc_obj:vclock(Obj).
 %% 6,175,157,255,57,131,41,145,49,143,149,225,240,...>>
 ```
 
-```golang
+```go
 svc := cmd.(*riak.StoreValueCommand)
 rsp := svc.Response
 fmt.Println(rsp.VClock)
@@ -397,7 +397,7 @@ obj.data = 'Pete Carroll'
 obj.store()
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("siblings", "coaches", "seahawks");
 var obj = new RiakObject(id, "Pete Carroll",
     RiakConstants.ContentTypes.TextPlain);
@@ -428,7 +428,7 @@ Obj = riakc_obj:new({<<"siblings">>, <<"coaches">>},
 riakc_pb_socket:put(Pid, Obj).
 ```
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -516,7 +516,7 @@ def update_coach(team, new_coach):
 update_coach('packers', 'Vince Lombardi')
 ```
 
-```csharp
+```c#
 private void UpdateCoach(string team, string newCoach)
 {
     var id = new RiakObjectId("siblings", "coaches", team);
@@ -560,7 +560,7 @@ update_coach(team, new_coach) ->
 update_coach('packers', 'Vince Lombardi')
 ```
 
-```golang
+```go
 func updateCoach(cluster *riak.Cluster, team, newCoach string) error {
     var cmd riak.Command
     var err error

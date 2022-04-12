@@ -280,7 +280,7 @@ bucket = client.bucket('my_bucket')
 bucket.get('my_key')
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("my_bucket", "my_key");
 client.Get(id);
 ```
@@ -344,7 +344,7 @@ bucket1.get('my_key')
 bucket2.get('my_key')
 ```
 
-```csharp
+```c#
 var id1 = new RiakObjectId("type1", "my_bucket", "my_key");
 var id2 = new RiakObjectId("type2", "my_bucket", "my_key");
 var rslt1 = client.Get(id1);
@@ -424,7 +424,7 @@ bucket1.get('my_key')
 bucket2.get('my_key')
 ```
 
-```csharp
+```c#
 var id1 = new RiakObjectId("default", "my_bucket", "my_key");
 var obj1 = new RiakObject(id1, "value", RiakConstants.ContentTypes.TextPlain);
 client.Put(obj1);
@@ -671,7 +671,7 @@ obj.data = '{ ... user data ... }'
 obj.store()
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("no_siblings", "sensitive_user_data", "user19735");
 var obj = new RiakObject(id, "{\"name\":\"Bob\"}");
 var rslt = client.Put(obj);
@@ -755,7 +755,7 @@ obj.data = 'all your base are belong to us'
 obj.store()
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("no_siblings", "old_memes", "all_your_base");
 var obj = new RiakObject(id, "all your base are belong to us",
     RiakConstants.ContentTypes.TextPlain);

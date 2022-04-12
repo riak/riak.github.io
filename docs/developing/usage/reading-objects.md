@@ -46,7 +46,7 @@ bucket = client.bucket_type('animals').bucket('dogs')
 obj = bucket.get('rufus')
 ```
 
-```csharp
+```c#
 // Using the Riak .NET Client it is best to specify a bucket type/bucket/key
 // RiakObjectId object that can be used as a reference for further
 // operations
@@ -65,7 +65,7 @@ client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, funct
                             <<"rufus">>).
 ```
 
-```golang
+```go
 cmd, err = riak.NewFetchValueCommandBuilder().
   WithBucketType("animals").
   WithBucket("dogs").
@@ -126,7 +126,7 @@ obj = bucket.get('rufus', r=3)
 print obj.data
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("animals", "dogs", "rufus");
 var opts = new RiakGetOptions();
 opts.SetR(3);
@@ -153,7 +153,7 @@ client.fetchValue(fetchOptions, function (err, rslt) {
                                 [{r, 3}]).
 ```
 
-```golang
+```go
 cmd, err := riak.NewFetchValueCommandBuilder().
     WithBucketType("animals").
     WithBucket("dogs").
@@ -216,7 +216,7 @@ $response->isSuccess(); // false
 riak.RiakError: 'no_type'
 ```
 
-```csharp
+```c#
 result.IsSuccess == false
 result.ResultCode == ResultCode.NotFound
 ```
@@ -229,7 +229,7 @@ rslt.isNotFound === true;
 {error,notfound}
 ```
 
-```golang
+```go
 fvc := cmd.(*riak.FetchValueCommand)
 rsp := fvc.Response
 rsp.IsNotFound // Will be true

@@ -109,7 +109,7 @@ client.create_search_schema('blog_post_schema', schema_data)
 xml_file.close()
 ```
 
-```csharp
+```c#
 var schemaXml = File.ReadAllText("blog_post_schema.xml");
 var schema = new SearchSchema("blog_post_schema", schemaXml);
 var rslt = client.PutSearchSchema(schema);
@@ -168,7 +168,7 @@ client.create_search_index('blog_posts', 'blog_post_schema')
 client.create_search_index('blog_posts', 'blog_post_schema')
 ```
 
-```csharp
+```c#
 var idx = new SearchIndex("blog_posts", "blog_post_schema");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -383,7 +383,7 @@ class BlogPost:
         self.map.store()
 ```
 
-```csharp
+```c#
 /*
  * Please see the code in the RiakClientExamples project:
  * https://github.com/basho/riak-dotnet-client/tree/develop/src/RiakClientExamples/Dev/Search
@@ -461,7 +461,7 @@ blog_post1 = BlogPost('cat_pics_quarterly',
                       true)
 ```
 
-```csharp
+```c#
 var keywords = new HashSet<string> { "adorbs", "cheshire" };
 
 var post = new BlogPost(
@@ -527,7 +527,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 results = client.fulltext_search('blog_posts', 'keywords_set:funny')
 ```
 
-```csharp
+```c#
 var searchRequest = new RiakSearchRequest("blog_posts", "keywords_set:funny");
 var rslt = client.Search(searchRequest);
 ```
@@ -575,7 +575,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 results = client.fulltext_search('blog_posts', 'content_register:furry')
 ```
 
-```csharp
+```c#
 var searchRequest = new RiakSearchRequest("blog_posts", "content_register:furry");
 var rslt = client.Search(searchRequest);
 ```

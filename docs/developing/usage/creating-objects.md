@@ -185,7 +185,7 @@ obj.data = 'vroom'
 obj.store(w=3)
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("cars", "dodge", "viper");
 var obj = new RiakObject(id, "vroom", "text/plain");
 var options = new RiakPutOptions();
@@ -218,7 +218,7 @@ Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
 riakc_pb_socket:put(Pid, Object).
 ```
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -308,7 +308,7 @@ obj.data = 'vroom'
 obj.store(w=3, return_body=True)
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("cars", "dodge", "viper");
 var obj = new RiakObject(id, "vroom", "text/plain");
 var options = new RiakPutOptions();
@@ -344,7 +344,7 @@ Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
 riakc_pb_socket:put(Pid, Object, [return_body]).
 ```
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -454,7 +454,7 @@ obj.key
 'ZPFF18PUqGW9efVou7EHhfE6h8a'
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("users", "random_user_keys", null);
 var obj = new RiakObject(id, @"{'user':'data'}",
     RiakConstants.ContentTypes.ApplicationJson);
@@ -498,7 +498,7 @@ riakc_pb_socket:put(Pid, Object).
                undefined}}
 ```
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "application/json",
     Charset:         "utf-8",

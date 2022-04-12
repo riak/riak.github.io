@@ -104,7 +104,7 @@ from riak.datatypes import Set
 set = Set(bucket, key)
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // As with counters, with the Riak .NET Client you interact with sets
@@ -193,7 +193,7 @@ from riak.datatypes import Set
 cities_set = Set(travel, 'cities')
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // Now we'll create a Builder object for the set with which we want to
@@ -260,7 +260,7 @@ count($set->getData());
 len(cities_set) == 0
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new FetchSet.Builder()
@@ -344,7 +344,7 @@ cities_set.add('Toronto')
 cities_set.add('Montreal')
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var adds = new[] { "Toronto", "Montreal" };
@@ -460,7 +460,7 @@ cities_set.add('Ottawa')
 cities_set.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var removes = new[] { "Montreal" };
@@ -577,7 +577,7 @@ cities_set.value
 cities_set.reload()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 foreach (var value in setResponse.AsStrings)
@@ -674,7 +674,7 @@ in_array('Ottawa', $set->getData()); # true
 # True
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 using System.Linq;
@@ -726,7 +726,7 @@ count($set->getData());
 len(cities_set)
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 using System.Linq;

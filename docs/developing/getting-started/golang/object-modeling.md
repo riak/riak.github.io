@@ -422,7 +422,7 @@ func (t *TimelineRepository) getModel() models.Model {
 
 Finally, let's test them:
 
-```golang
+```go
 package main
 
 import (

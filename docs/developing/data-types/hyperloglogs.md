@@ -100,7 +100,7 @@ import (
 )
 ```
 
-```csharp
+```c#
 // In the C# client, buckets are just string parameters to operations.
 // See the examples below for more information.
 ```
@@ -168,7 +168,7 @@ hll = Hll(bucket, key)
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
 
-```csharp
+```c#
 // In the C# client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
@@ -269,7 +269,7 @@ client.fetchHll(options, function (err, rslt) {
 // Prints "Not Found" to logger.info.
 ```
 
-```csharp
+```c#
  var fetch = new FetchHll.Builder()
                     .WithBucketType("hlls")
                     .WithBucket("hello")
@@ -347,7 +347,7 @@ myhll.store()
 // We will add values in the next example
 ```
 
-```csharp
+```c#
 // We will add values in the next example
 ```
 
@@ -455,7 +455,7 @@ client.updateHll(options, function (err, rslt) {
 });
 ```
 
-```csharp
+```c#
 var adds = new HashSet<string> { "Jokes", "Are", "Better", "Explained", "Jokes" };
 
 var update = new UpdateHll.Builder(adds)
@@ -573,7 +573,7 @@ client.fetchHll(options, function (err, rslt) {
 // unique elements we've added to the data structure.
 ```
 
-```csharp
+```c#
 var fetch = new FetchHll.Builder()
                     .WithBucketType("hlls")
                     .WithBucket("hello")

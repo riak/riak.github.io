@@ -277,7 +277,7 @@ obj2.data = 'Stimpy'
 obj2.store()
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 
 var renObj = new RiakObject(id, "Ren", RiakConstants.ContentTypes.TextPlain);
@@ -374,7 +374,7 @@ obj = bucket.get('best_character')
 obj.siblings
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 var getResult = client.Get(id);
 RiakObject obj = getResult.Value;
@@ -418,7 +418,7 @@ com.basho.riak.client.cap.UnresolvedConflictException: Siblings found
 [<riak.content.RiakContent object at 0x10a00eb90>, <riak.content.RiakContent object at 0x10a00ebd0>]
 ```
 
-```csharp
+```c#
 Sibling count: 2
     VTag: 1DSVo7VED8AC6llS8IcDE6
     VTag: 7EiwrlFAJI5VMLK87vU4tE
@@ -533,7 +533,7 @@ new_obj.data = 'Stimpy'
 new_obj.store(vclock=vclock)
 ```
 
-```csharp
+```c#
 // First, fetch the object
 var getResult = client.Get(id);
 

@@ -69,7 +69,7 @@ client.create_search_schema('cartoons', schema_data)
 xml_file.close()
 ```
 
-```csharp
+```c#
 var xml = File.ReadAllText("cartoons.xml");
 var schema = new SearchSchema("cartoons", xml);
 var rslt = client.PutSearchSchema(schema);

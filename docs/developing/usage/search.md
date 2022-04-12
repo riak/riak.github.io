@@ -87,7 +87,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
 client.create_search_index('famous')
 ```
 
-```csharp
+```c#
 var idx = new SearchIndex("famous");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -114,7 +114,7 @@ client.execute(store);
 riakc_pb_socket:create_search_index(Pid, <<"famous">>).
 ```
 
-```golang
+```go
 cmd, err := riak.NewStoreIndexCommandBuilder().
     WithIndexName("famous").
     WithTimeout(time.Second * 30).
@@ -163,7 +163,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
 client.create_search_index('famous', '_yz_default')
 ```
 
-```csharp
+```c#
 var idx = new SearchIndex("famous", "_yz_default");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -182,7 +182,7 @@ client.execute(store);
 riakc_pb_socket:create_search_index(Pid, <<"famous">>, <<"_yz_default">>, []).
 ```
 
-```golang
+```go
 cmd, err := riak.NewStoreIndexCommandBuilder().
     WithIndexName("famous").
     WithSchemaName("_yz_default").
@@ -284,7 +284,7 @@ bucket = client.bucket('cats')
 bucket.set_properties({'search_index': 'famous'})
 ```
 
-```csharp
+```c#
 var properties = new RiakBucketProperties();
 properties.SetSearchIndex("famous");
 var rslt = client.SetBucketProperties("cats", properties);
@@ -311,7 +311,7 @@ client.execute(store);
 riakc_pb_socket:set_search_index(Pid, <<"cats">>, <<"famous">>).
 ```
 
-```golang
+```go
 cmd, err := riak.NewStoreBucketPropsCommandBuilder().
     WithBucketType("animals").
     WithBucket("cats").
@@ -467,7 +467,7 @@ cat = bucket.new('panthro', {'name_s':'Panthro', 'age_i':36})
 cat.store()
 ```
 
-```csharp
+```c#
 var lionoId = new RiakObjectId("animals", "cats", "liono");
 var lionoObj = new { name_s = "Lion-o", age_i = 30, leader = true };
 var lionoRiakObj = new RiakObject(lionoId, lionoObj);
@@ -552,7 +552,7 @@ C3 = riakc_obj:new({<<"animals">>, <<"cats">>}, <<"panthro">>,
 riakc_pb_socket:put(Pid, C3),
 ```
 
-```golang
+```go
 o1 := &riak.Object{
     Key:             "liono",
     Value:           []byte("{\"name_s\":\"Lion-o\",\"age_i\":30,\"leader_b\":true}"),
@@ -749,7 +749,7 @@ print results
 print results['docs']
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest
 {
     Query = new RiakFluentSearch("famous", "name_s")
@@ -800,7 +800,7 @@ io:fwrite("~p~n", [Docs]).
 %% https://github.com/basho/riak-erlang-client/blob/master/include/riakc.hrl
 ```
 
-```golang
+```go
 cmd, err := riak.NewSearchCommandBuilder().
     WithIndexName("famous").
     WithQuery("name_s:Lion*").
@@ -918,7 +918,7 @@ print object.data
 # {"name_s": "Lion-o", "age_i": 30, "leader_b": true}
 ```
 
-```csharp
+```c#
 RiakSearchResult searchResult = searchRslt.Value;
 
 RiakSearchResultDocument doc = searchResult.Documents.First();
@@ -959,7 +959,7 @@ io:fwrite("~s~n", [Val]).
 %% {"name_s":"Lion-o", "age_i":30, "leader_b":true}
 ```
 
-```golang
+```go
 doc := sc.Response.Docs[0] // NB: SearchDoc struct type
 
 cmd, err = riak.NewFetchValueCommandBuilder().
@@ -1027,7 +1027,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 client.fulltext_search('famous', 'age_i:[30 TO *]')
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("famous", "age_i:[30 TO *]");
 
 /*
@@ -1056,7 +1056,7 @@ client.execute(search);
 riakc_pb_socket:search(Pid, <<"famous">>, <<"age_i:[30 TO *]">>),
 ```
 
-```golang
+```go
 cmd, err := riak.NewSearchCommandBuilder().
     WithIndexName("famous").
     WithQuery("age_i:[30 TO *]").
@@ -1108,7 +1108,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 client.fulltext_search('famous', 'leader_b:true AND age_i:[30 TO *]')
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest
 {
     Query = new RiakFluentSearch("famous", "leader_b")
@@ -1130,7 +1130,7 @@ client.execute(search);
 riakc_pb_socket:search(Pid, <<"famous">>, <<"leader_b:true AND age_i:[30 TO *]">>),
 ```
 
-```golang
+```go
 cmd, err := riak.NewSearchCommandBuilder().
     WithIndexName("famous").
     WithQuery("leader_b:true AND age_i:[30 TO *]").
@@ -1174,7 +1174,7 @@ client.delete_search_index('famous')
 client.delete_search_index('famous')
 ```
 
-```csharp
+```c#
 var rslt = client.DeleteSearchIndex("famous");
 ```
 
@@ -1202,7 +1202,7 @@ client.execute(search);
 riakc_pb_socket:delete_search_index(Pid, <<"famous">>, []),
 ```
 
-```golang
+```go
 cmd, err := riak.NewStoreBucketPropsCommandBuilder().
     WithBucketType("animals").
     WithBucket("cats").
@@ -1299,7 +1299,7 @@ start = ROWS_PER_PAGE * (page - 1)
 client.fulltext_search('famous', '*:*', start=start, rows=ROWS_PER_PAGE)
 ```
 
-```csharp
+```c#
 int rowsPerPage = 2;
 int page = 2;
 int start = rowsPerPage * (page - 1);
@@ -1340,7 +1340,7 @@ Start = ?ROWS_PER_PAGE * (Page - 1),
 riakc_pb_socket:search(Pid, <<"famous">>, <<"*:*">>, [{start, Start},{rows, ?ROWS_PER_PAGE}]),
 ```
 
-```golang
+```go
 rowsPerPage := uint32(2)
 page := uint32(2)
 start := rowsPerPage * (page - uint32(1))

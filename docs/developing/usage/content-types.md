@@ -40,7 +40,7 @@ ArgumentError: content_type is not defined!
 # type when storing other types of data.
 ```
 
-```csharp
+```c#
 // Using the Riak .NET Client, the response when storing an object without
 // specifying a content type will depend on what is being stored.
 // If you store a Dictionary, for example, the client will
@@ -63,7 +63,7 @@ ArgumentError: content_type is not defined!
 %% on.
 ```
 
-```golang
+```go
 // In the Go client, you must always specify a content type.
 ```
 
@@ -111,7 +111,7 @@ obj.data = 'I have nothing to declare but my genius'
 obj.store()
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("quotes", "oscar_wilde", "genius");
 var obj = new RiakObject(id, "I have nothing to declare but my genius",
     RiakConstants.ContentTypes.TextPlain);
@@ -140,7 +140,7 @@ Object = riakc_obj:new({<<"quotes">>, <<"oscar_wilde">>},
 riakc_pb_socket:put(Pid, Object).
 ```
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",

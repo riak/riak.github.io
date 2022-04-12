@@ -88,7 +88,7 @@ from riak.datatypes import Map
 map = Map(bucket, key)
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateMap.Builder()
@@ -158,7 +158,7 @@ customers = client.bucket_type('map_bucket').bucket('customers')
 map = customers.net('ahmed_info')
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateMap.Builder()
@@ -248,7 +248,7 @@ map.registers['phone_number'].assign(str(5551234567))
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateMap.Builder()
@@ -363,7 +363,7 @@ map.store()
 ```
 
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // Using our builder from above:
@@ -455,7 +455,7 @@ echo $map->getFlag('enterprise_customer'); // false
 map.reload().flags['enterprise_customer'].value
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 Map ahmedMap = response.Value;
@@ -528,7 +528,7 @@ map.counters['page_visits'].increment()
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -635,7 +635,7 @@ for interest in ['robots', 'opera', 'motorcycles']:
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var interestsAdds = new[] { "robots", "opera", "motorcycles" };
@@ -747,7 +747,7 @@ for interest in ['robots', 'opera', 'motorcycles']:
     interest in reloaded_map.sets['interests'].value
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 Map ahmedMap = response.Value;
@@ -825,7 +825,7 @@ map.sets['interests'].add('indie pop')
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -969,7 +969,7 @@ map.maps['annika_info'].registers['phone_number'].assign(str(5559876543))
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1077,7 +1077,7 @@ echo $map->getMap('annika_info')->getRegister('first_name'); // Annika
 map.reload().maps['annika_info'].registers['first_name'].value
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 ahmedMap = response.Value;
@@ -1152,7 +1152,7 @@ del map.maps['annika_info'].registers['first_name']
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1273,7 +1273,7 @@ map.maps['annika_info'].flags['free_plan'].enable()
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1400,7 +1400,7 @@ echo $map->getMap('annika_info')->getFlag('enterprise_plan'); // false
 map.reload().maps['annika_info'].flags['enterprise_plan'].value
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 ahmedMap = response.Value;
@@ -1471,7 +1471,7 @@ map.maps['annika_info'].counters['widget_purchases'].increment()
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1566,7 +1566,7 @@ map.maps['annika_info'].sets['interests'].add('tango dancing')
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1663,7 +1663,7 @@ map.maps['annika_info'].sets['interests'].discard('tango dancing')
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1794,7 +1794,7 @@ map.maps['annika_info'].maps['purchase'].sets['items'].add('large widget')
 map.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();

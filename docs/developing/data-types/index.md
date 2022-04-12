@@ -144,7 +144,7 @@ ahmed_map.context
 # g2wAAAABaAJtAAAACCMJ/vlTlb0zYQFq
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // Note: using a previous UpdateMap or FetchMap result

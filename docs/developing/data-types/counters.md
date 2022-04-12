@@ -80,7 +80,7 @@ $bucket = new \Basho\Riak\Bucket('counters', 'counters');
 bucket = client.bucket_type('counters').bucket('counters')
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // You can either use the appropriate Options class or the Builder
@@ -159,7 +159,7 @@ from riak.datatypes import Counter
 counter = Counter(bucket, key)
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var fetchCounterOptions = new FetchCounterOptions("counters", "counters", "<key>");
@@ -227,7 +227,7 @@ bucket = client.bucket_type('counters').bucket('traffic_tickets')
 counter = bucket.new('traffic_tickets')
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var fetchCounterOptions = new FetchCounterOptions("counters", "counters", "traffic_tickts");
@@ -298,7 +298,7 @@ counter.increment()
 counter.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 UpdateCounter updateCmd = new UpdateCounter.Builder(increment: 1)
@@ -371,7 +371,7 @@ counter.increment(5)
 counter.increment(5)
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateCounter.Builder(5)
@@ -468,7 +468,7 @@ counter.value
 counter.reload()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var fetchCounterOptions = new FetchCounterOptions("counters", "counters", "traffic_tickts");
@@ -563,7 +563,7 @@ counter.decrement()
 counter.decrement(3)
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var updateCmd = new UpdateCounter.Builder(-3)

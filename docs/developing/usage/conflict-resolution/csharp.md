@@ -17,7 +17,7 @@ siblings, that property will return an empty list.
 
 Here's an example of an object with siblings:
 
-```csharp
+```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 
 var renObj = new RiakObject(id, "Ren", RiakConstants.ContentTypes.TextPlain);
@@ -49,7 +49,7 @@ the canonical value.
 In this example, you will ignore the contents of the `Siblings` list and will
 fetch, update and store the definitive value.
 
-```csharp
+```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 
 var renObj = new RiakObject(id, "Ren", RiakConstants.ContentTypes.TextPlain);
@@ -79,7 +79,7 @@ Debug.Assert(obj.Siblings.Count == 0);
 This example shows a basic sibling resolution strategy in which the first
 sibling is chosen as the canonical value.
 
-```csharp
+```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 
 var renObj = new RiakObject(id, "Ren", RiakConstants.ContentTypes.TextPlain);

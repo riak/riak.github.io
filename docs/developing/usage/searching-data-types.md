@@ -179,7 +179,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
 client.create_search_index('scores', '_yz_default')
 ```
 
-```csharp
+```c#
 var idx = new SearchIndex("scores", "_yz_default");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -269,7 +269,7 @@ joan_rivers_counter.increment(25)
 joan_rivers_counter.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 var cmd = new UpdateCounter.Builder()
@@ -383,7 +383,7 @@ results['num_found']
 # 1
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("scores", "counter:[20 TO *]");
 var rslt = client.Search(search);
 RiakSearchResult searchResult = rslt.Value;
@@ -471,7 +471,7 @@ doc['_yz_rb'] # 'people'
 doc['_yz_rt'] # 'counters'
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("scores", "counter:[20 TO *]");
 var rslt = client.Search(search);
 
@@ -533,7 +533,7 @@ $response->getNumFound(); // 1
 results = client.fulltext_search('scores', 'counter:[* TO 15]')
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("scores", "counter:[* TO 15]");
 var rslt = client.Search(search);
 ```
@@ -579,7 +579,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 results = client.fulltext_search('scores', 'counter:17')
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("scores", "counter:17");
 var rslt = client.Search(search);
 ```
@@ -639,7 +639,7 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
 client.create_search_index('hobbies', '_yz_default')
 ```
 
-```csharp
+```c#
 var searchIndex = new SearchIndex("hobbies", "_yz_default");
 var rslt = client.PutSearchIndex(searchIndex);
 ```
@@ -741,7 +741,7 @@ ronnie_james_dio_set.add('winning')
 ronnie_james_dio_set.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 var cmd = new UpdateSet.Builder()
@@ -841,7 +841,7 @@ results = client.fulltext_search('hobbies', 'set:football')
 # This should return a dict with fields like 'num_found' and 'docs'
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("hobbies", "set:football");
 var rslt = client.Search(search);
 
@@ -902,7 +902,7 @@ results['num_found']
 # 1
 ```
 
-```csharp
+```c#
 RiakSearchResult searchResult = rslt.Value;
 Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
@@ -953,7 +953,7 @@ results['num_found']
 # 2
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("hobbies", "set:winning");
 ```
 
@@ -1025,7 +1025,7 @@ client.create_search_index('customers', '_yz_default')
 client.create_search_index('customers', '_yz_default')
 ```
 
-```csharp
+```c#
 var searchIndex = new SearchIndex("customers", "_yz_default");
 var rslt = client.PutSearchIndex(searchIndex);
 ```
@@ -1172,7 +1172,7 @@ for interest in ['loving rock and roll', 'being in the Blackhearts']:
 joan_jett.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 // Note: similar code for Joan Jett
@@ -1292,7 +1292,7 @@ results['num_found']
 # 1
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("customers", "page_visits_counter:[15 TO *]");
 var rslt = client.Search(search);
 ```
@@ -1343,7 +1343,7 @@ results['docs'][0]['first_name_register']
 # u'Joan'
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("customers", "page_visits_counter:[15 TO *]");
 var rslt = client.Search(search);
 var firstDoc = searchResult.Documents.First();
@@ -1388,7 +1388,7 @@ results['num_found']
 # 2
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("customers", "interests_set:*");
 var rslt = client.Search(search);
 ```
@@ -1438,7 +1438,7 @@ results['num_found'] # 1
 results['docs'][0]['first_name_register'] # u'Joan'
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("customers", "interests_set:loving*");
 var rslt = client.Search(search);
 ```
@@ -1505,7 +1505,7 @@ joan_jett.maps['alter_ego'].registers['name'].assign('Robert Plant')
 joan_jett.store()
 ```
 
-```csharp
+```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 const string nameRegister = "name";
@@ -1602,7 +1602,7 @@ results = client.fulltext_search('customers', 'alter_ego_map.name_register:*')
 results['num_found'] # 2
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("customers", "alter_ego_map.name_register:*");
 var rslt = client.Search(search);
 ```
@@ -1655,7 +1655,7 @@ results['num_found'] # 1
 results['docs'][0]['first_name_register'] # u'Joan
 ```
 
-```csharp
+```c#
 var search = new RiakSearchRequest("customers", "alter_ego_map.name_register:*Plant");
 var rslt = client.Search(search);
 ```

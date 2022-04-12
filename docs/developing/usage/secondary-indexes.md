@@ -167,7 +167,7 @@ obj.add_index('email_bin', 'jsmith@basho.com')
 obj.store()
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("default", "users", "john_smith");
 var obj = new RiakObject(id, "...user data...",
     RiakConstants.ContentTypes.TextPlain);
@@ -213,7 +213,7 @@ Obj2 = riakc_obj:update_metadata(Obj, MD2),
 riakc_pb_socket:put(Pid, Obj2).
 ```
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -301,7 +301,7 @@ bucket = client.bucket('users') # equivalent to client.bucket_type('default').bu
 bucket.get_index('twitter_bin', 'jsmith123').results
 ```
 
-```csharp
+```c#
 var idxId = new RiakIndexId("default", "users", "twitter");
 var rslt = client.GetSecondaryIndex(idxId, "jsmith123");
 var idxRslt = rslt.Value;
@@ -349,7 +349,7 @@ client.execute(cmd);
                               <<"jsmith123">>). %% index
 ```
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("users").
@@ -387,7 +387,7 @@ john_smith
 ['john_smith']
 ```
 
-```csharp
+```c#
 john_smith
 ```
 
@@ -400,7 +400,7 @@ john_smith
                       undefined,undefined}}.
 ```
 
-```golang
+```go
 john_smith
 ```
 
@@ -585,7 +585,7 @@ obj4.add_index('field1_bin', 'val4').add_index('field1_bin', 'val4a').add_index(
 obj4.store()
 ```
 
-```csharp
+```c#
 var larryId = new RiakObjectId("indexes", "people", "larry");
 var larry = new RiakObject(larryId, "My name is Larry",
     RiakConstants.ContentTypes.TextPlain);
@@ -752,7 +752,7 @@ VeronicaIndexes = riakc_obj:set_secondary_index(
 VeronicaWithIndexes = riakc_obj:update_metadata(Veronica, VeronicaIndexes).
 ```
 
-```golang
+```go
 o1 := &riak.Object{
     Key:   "larry",
     Value: []byte("My name is Larry"),
@@ -900,7 +900,7 @@ obj.add_index('field2_foo', 1001)
 riak.RiakError: "Riak 2i fields must end with either '_bin' or '_int'."
 ```
 
-```csharp
+```c#
 // The Riak .NET Client will not allow you to provide invalid index names,
 // because you are not required to add "_bin" or "_int" to the end of
 // those names
@@ -945,7 +945,7 @@ MD2 = riakc_obj:set_secondary_index(MD1, [{{foo_index, "field2"}, [1001]}]).
                     riakc_obj:set_secondary_index( ... ).
 ```
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("users").
@@ -1039,7 +1039,7 @@ obj.add_index('field2_int', 'bar')
 riak.RiakError: '{precommit_fail,[{field_parsing_failed,{<<"field2_int">>,<<"bar">>}}]}'
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("indexes", "people", "larry");
 var obj = new RiakObject(id, "test value", "text/plain");
 var intIdx = obj.IntIndex("test-int-idx");
@@ -1090,7 +1090,7 @@ MD2 = riakc_obj:set_secondary_index(MD1, [{{integer_index, "field2"}, [<<"bar">>
         called as integer_to_list(<<"bar">>) ...
 ```
 
-```golang
+```go
 obj := &riak.Object{
     BucketType:      "indexes",
     Bucket:          "people",
@@ -1170,7 +1170,7 @@ bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field1_bin', 'val1')
 ```
 
-```csharp
+```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field1");
 // Note: using a string argument indicates a binary index query:
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, "val1");
@@ -1197,7 +1197,7 @@ client.execute(binIdxCmd);
 ).
 ```
 
-```golang
+```go
 c1, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1242,7 +1242,7 @@ bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field2_int', 1001)
 ```
 
-```csharp
+```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field2");
 // Note: using an integer argument indicates an int index query:
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, 1001);
@@ -1269,7 +1269,7 @@ client.execute(intIdxCmd);
 ).
 ```
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1345,7 +1345,7 @@ bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field1_bin', 'val2', 'val4')
 ```
 
-```csharp
+```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field1");
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, "val2", "val4");
 var indexResult = indexRiakResult.Value;
@@ -1371,7 +1371,7 @@ client.execute(binIdxCmd);
 ).
 ```
 
-```golang
+```go
 c1, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1416,7 +1416,7 @@ bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field2_int', 1002, 1004)
 ```
 
-```csharp
+```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field2");
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, 1002, 1004);
 var indexResult = indexRiakResult.Value;
@@ -1442,7 +1442,7 @@ client.execute(intIdxCmd);
 ).
 ```
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1518,7 +1518,7 @@ bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index('hashtags_bin', 'rock', 'rocl', return_terms=True)
 ```
 
-```csharp
+```c#
 var riakIndexId = new RiakIndexId("indexes", "tweets", "hashtags");
 var options = new RiakIndexGetOptions();
 options.SetReturnTerms(true);
@@ -1547,7 +1547,7 @@ client.execute(binIdxCmd);
 ).
 ```
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("tweets").
@@ -1624,7 +1624,7 @@ bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index('hashtags_bin', 'ri', 'ru', max_results=5)
 ```
 
-```csharp
+```c#
 var idxId = new RiakIndexId("indexes", "tweets", "hashtags");
 var options = new RiakIndexGetOptions();
 options.SetMaxResults(5);
@@ -1690,7 +1690,7 @@ do_query();
 ).
 ```
 
-```golang
+```go
 func doPaginatedQuery(cluster *riak.Cluster, continuation []byte) error {
   builder := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
@@ -1798,7 +1798,7 @@ bucket.get_index(
 )
 ```
 
-```csharp
+```c#
 // rslt is the previous 2i fetch result
 var idxId = new RiakIndexId("indexes", "tweets", "hashtags");
 var options = new RiakIndexGetOptions();
@@ -1825,7 +1825,7 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ).
 ```
 
-```golang
+```go
 // See above example
 ```
 
@@ -1906,7 +1906,7 @@ for key in bucket.stream_index('myindex_bin', 'foo'):
     keys.append(key)
 ```
 
-```csharp
+```c#
 var riakIndexId = new RiakIndexId("indexes", "tweets", "hashtags");
 var indexRiakResult = client.StreamGetSecondaryIndex(riakIndexId, "ri", "ru");
 var indexResult = indexRiakResult.Value;
@@ -1938,7 +1938,7 @@ client.execute(binIdxCmd);
 ).
 ```
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("tweets").

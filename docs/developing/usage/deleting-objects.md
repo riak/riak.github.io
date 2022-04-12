@@ -42,7 +42,7 @@ bucket = client.bucket_type('quotes').bucket('oscar_wilde')
 bucket.delete('genius')
 ```
 
-```csharp
+```c#
 var id = new RiakObjectId("users", "random_user_keys", null);
 var obj = new RiakObject(id, @"{'user':'data'}",
     RiakConstants.ContentTypes.ApplicationJson);
@@ -69,7 +69,7 @@ client.deleteValue(options, function (err, rslt) {
 riakc_pb_socket:delete(Pid, {<<"quotes">>, <<"oscar_wilde">>}, <<"genius">>)
 ```
 
-```golang
+```go
 // Continuing from above example
 cmd, err = riak.NewDeleteValueCommandBuilder().
     WithBucketType("users").

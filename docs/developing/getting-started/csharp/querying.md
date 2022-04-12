@@ -50,7 +50,7 @@ for these POCOs in `Customer.cs`, `Order.cs` and
 `OrderSummaries.cs`.  Let's put some data into Riak so we can play
 with it.
 
-```csharp
+```c#
 Console.WriteLine("Creating Data");
 Customer customer = CreateCustomer();
 IEnumerable<Order> orders = CreateOrders(customer);
@@ -86,7 +86,7 @@ orders, and also holding some relevant data such as the order total,
 etc. If we showed this information in our application often, it's only
 one extra request to get all the info.
 
-```csharp
+```c#
 Console.WriteLine("Fetching related data by shared key");
 string key = "1";
 
@@ -126,7 +126,7 @@ very easy to find groups of related data by values, or even ranges of
 values. To properly show this off, we will make a note of where
 secondary index data is added to our model objects.
 
-```csharp
+```c#
 private static RiakObject ToRiakObject(Order order)
 {
     var orderRiakObjectId = new RiakObjectId(ordersBucketName, order.Id.ToString());
@@ -147,7 +147,7 @@ have to add entries to the indexes at the application level. Now let's
 find all of Jane Appleseed's processed orders, we'll look up the orders
 by searching the `SalespersonId` integer index for Jane's id of `9000`.
 
-```csharp
+```c#
 // Query for order keys where the SalesPersonId index is set to 9000
 var riakIndexId = new RiakIndexId(ordersBucketName, ordersSalesPersonIdIndexName);
 RiakResult<RiakIndexResult> indexRiakResult = client.GetSecondaryIndex(riakIndexId, 9000); // NB: *must* use 9000 as integer here.
@@ -169,7 +169,7 @@ this case, we can exploit 2i's range queries. Let's search the
 `OrderDate` binary index for entries between `2013-10-01` and
 `2013-10-31`.
 
-```csharp
+```c#
 // Query for orders where the OrderDate index is between 2013-10-01 and 2013-10-31
 riakIndexId = new RiakIndexId(ordersBucketName, ordersOrderDateIndexName);
 indexRiakResult = client.GetSecondaryIndex(riakIndexId, "2013-10-01", "2013-10-31"); // NB: *must* use strings here.

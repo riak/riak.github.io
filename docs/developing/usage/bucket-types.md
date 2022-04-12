@@ -15,6 +15,8 @@ if you have existing data with a type-free bucket (i.e. under the
 `default` bucket type) you can set the `search_index` property for a
 specific bucket.
 
+### Java
+
 ```java
 Namespace catsBucket = new Namespace("cats");
 StoreBucketPropsOperation storePropsOp = new StoreBucketPropsOperation.Builder(catsBucket)
@@ -23,10 +25,14 @@ StoreBucketPropsOperation storePropsOp = new StoreBucketPropsOperation.Builder(c
 client.execute(storePropsOp);
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket('cats')
 bucket.properties = {'search_index' => 'famous'}
 ```
+
+### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\Search\AssociateIndex($riak))
@@ -36,16 +42,22 @@ bucket.properties = {'search_index' => 'famous'}
     ->execute();
 ```
 
+### Python
+
 ```python
 bucket = client.bucket('cats')
 bucket.set_properties({'search_index': 'famous'})
 ```
 
-```csharp
+### C# 
+
+```c#
 var properties = new RiakBucketProperties();
 properties.SetSearchIndex("famous");
 var rslt = client.SetBucketProperties("cats", properties);
 ```
+
+### JavaScript 
 
 ```javascript
 var bucketProps_cb = function (err, rslt) {
@@ -64,11 +76,15 @@ var store = new Riak.Commands.KV.StoreBucketProps.Builder()
 client.execute(store);
 ```
 
+### Erlang 
+
 ```erlang
 riakc_pb_socket:set_search_index(Pid, <<"cats">>, <<"famous">>).
 ```
 
-```golang
+### Go 
+
+```go
 cmd, err := riak.NewStoreBucketPropsCommandBuilder().
     WithBucketType("animals").
     WithBucket("cats").
@@ -80,6 +96,8 @@ if err != nil {
 
 err = cluster.Execute(cmd)
 ```
+
+### Curl 
 
 ```curl
 curl -XPUT $RIAK_HOST/buckets/cats/props \
