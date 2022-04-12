@@ -56,6 +56,7 @@ const config = {
             label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/releases', label: 'Releases', position: 'left'},
           {
             href: 'https://github.com/basho/',
             position: 'right',
@@ -71,7 +72,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Riak KV Documenation',
+                label: 'Riak KV Documentation',
                 to: '/docs/',
               },
             ],
