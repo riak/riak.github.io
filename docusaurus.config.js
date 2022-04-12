@@ -86,6 +86,10 @@ const config = {
                 href: 'https://github.com/basho',
               },
               {
+                label: 'GitHub Discussions',
+                href: 'https://github.com/basho/riak/discussions',
+              },
+              {
                 label: 'Slack',
                 href: 'https://postriak.slack.com/',
               },
