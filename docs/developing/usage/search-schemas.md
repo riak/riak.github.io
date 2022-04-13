@@ -39,6 +39,8 @@ Let's say that you have already created a schema named `cartoons` in a
 file named `cartoons.xml`. This would register the custom schema in Riak
 Search:
 
+### Java
+
 ```java
 import org.apache.commons.io.FileUtils;
 
@@ -49,10 +51,14 @@ StoreSchema storeSchemaOp = new StoreSchema.Builder(schema).build();
 client.execute(storeSchemaOp);
 ```
 
+### Ruby 
+
 ```ruby
 schema_data = File.read("cartoons.xml")
 client.create_search_schema("cartoons", schema_data)
 ```
+
+### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\Search\StoreSchema($riak))
@@ -62,6 +68,8 @@ client.create_search_schema("cartoons", schema_data)
   ->execute();
 ```
 
+### Python 
+
 ```python
 xml_file = open('cartoons.xml', 'r')
 schema_data = xml_file.read()
@@ -69,11 +77,15 @@ client.create_search_schema('cartoons', schema_data)
 xml_file.close()
 ```
 
+### C# 
+
 ```c#
 var xml = File.ReadAllText("cartoons.xml");
 var schema = new SearchSchema("cartoons", xml);
 var rslt = client.PutSearchSchema(schema);
 ```
+
+### JavaScript 
 
 ```javascript
 var fs = require('fs');
@@ -98,10 +110,14 @@ fs.readFile('cartoons.xml', function (err, data) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 {ok, SchemaData} = file:read_file("cartoons.xml"),
 riakc_pb_socket:create_search_schema(Pid, <<"cartoons">>, SchemaData).
 ```
+
+### Curl 
 
 ```curl
 curl -XPUT http://localhost:8098/search/schema/cartoons \

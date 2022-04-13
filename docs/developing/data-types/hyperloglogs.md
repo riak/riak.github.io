@@ -57,10 +57,14 @@ location that contains our counter.
 
 For this example we'll use the `hlls` bucket type created and activated above and a bucket called `hlls`:
 
+### Erlang
+
 ```erlang
 %% Buckets are simply named binaries in the Erlang client. See the
 %% examples below for more information
 ```
+
+### Java 
 
 ```java
 // In the Java client, a bucket/bucket type combination is specified
@@ -72,6 +76,8 @@ Location hllLocation =
   new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
+### Python 
+
 ```python
 bucket_type = client.bucket_type('hlls')
 bucket = bucket_type.bucket('my_hlls')
@@ -82,6 +88,8 @@ hll = bucket.new(key)
 from riak.datatypes import Hll
 hll = Hll(bucket, key)
 ```
+
+### Go 
 
 ```go
 // Buckets and bucket types are simply strings in the Go client.
@@ -100,15 +108,21 @@ import (
 )
 ```
 
+### C# 
+
 ```c#
 // In the C# client, buckets are just string parameters to operations.
 // See the examples below for more information.
 ```
 
+### JavaScript
+
 ```javascript
 // In the Node.js client, buckets are just string parameters to operations.
 // See the examples below for more information.
 ```
+
+### PHP 
 
 ```php
 $command = (new Command\Builder\FetchHll($riak_client))
@@ -116,9 +130,13 @@ $command = (new Command\Builder\FetchHll($riak_client))
     ->build();
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket_type('hlls').bucket('my_hlls')
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
@@ -127,11 +145,12 @@ curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 # requests, which end in /keys/<key>
 ```
 
-
 ## Create a HyperLogLog data type
 
 To create a hyperloglog data structure, you need to specify a bucket/key pair to
 hold that hyperloglog. Here is the general syntax for doing so:
+
+### Erlang
 
 ```erlang
 HLL = riakc_hll:new().
@@ -140,6 +159,8 @@ HLL = riakc_hll:new().
 %% collect operations as you mutate them. We will associate the data
 %% structure with a bucket type, bucket, and key later on.
 ```
+
+### Java 
 
 ```java
 // In the Java client, you specify the location of Data Types
@@ -152,6 +173,8 @@ Location hllLocation =
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
 
+### Python 
+
 ```python
 bucket_type = client.bucket_type('hlls')
 bucket = bucket_type.bucket('my_hlls')
@@ -163,20 +186,28 @@ from riak.datatypes import Hll
 hll = Hll(bucket, key)
 ```
 
+### Go 
+
 ```go
 // In the Go client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
+
+### C# 
 
 ```c#
 // In the C# client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
 
+### JavaScript 
+
 ```javascript
 // In the Node.js client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
+
+### PHP 
 
 ```php
 // Note that "hlls" is just an example HLL bucket type name used
@@ -192,10 +223,14 @@ $command = (new Command\Builder\UpdateHll($riak_client))
 $response = $command->execute();
 ```
 
+### Ruby 
+
 ```ruby
 key = "darkness"
 hll = Riak::Crdt::HyperLogLog.new(bucket, key)
 ```
+
+### Curl 
 
 ```curl
 # You cannot create an empty hyperloglog data structure through the HTTP
@@ -204,7 +239,11 @@ hll = Riak::Crdt::HyperLogLog.new(bucket, key)
 # examples below.
 ```
 
+### Upon creation of a hyperloglog
+
 Upon creation, our hyperloglog data structure is empty:
+
+#### Erlang
 
 ```erlang
 HLL.
@@ -213,6 +252,8 @@ HLL.
 %% {hll,0,[]}
 ```
 
+#### Java 
+
 ```java
 FetchHll fetch = new FetchHll.Builder(hllLocation)
     .build();
@@ -220,9 +261,13 @@ RiakHll hll = client.execute(fetch);
 boolean isEmpty = hll.getCardinality() == 0;
 ```
 
+#### Python 
+
 ```python
 is_empty = hll.value == 0
 ```
+
+#### Go 
 
 ```go
 var resp *riak.FetchHllResponse
@@ -250,6 +295,8 @@ fmt.Println("Hyperloglog isNotFound: ", resp.IsNotFound)
 return nil
 ```
 
+#### JavaScript 
+
 ```javascript
 var options = {
     bucketType: 'hlls',
@@ -268,6 +315,8 @@ client.fetchHll(options, function (err, rslt) {
 });
 // Prints "Not Found" to logger.info.
 ```
+
+#### C# 
 
 ```c#
  var fetch = new FetchHll.Builder()
@@ -309,6 +358,8 @@ curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
 
 ## Add elements to a HyperLogLog data type
 
+### Erlang
+
 ```erlang
 HLL1 = riakc_hll:add_element(<<"Jokes">>, HLL),
 RepeatHLL1 = riakc_hll:add_element(<<"Jokes">>, HLL),
@@ -320,6 +371,8 @@ HLL2.
 %% {hll,0,[<<"Are">>,<<"Better">>,<<"Explained">>, <<"Jokes">>]}
 ```
 
+### Java 
+
 ```java
 HllUpdate hllUpdate = new HllUpdate()
                         .add("Jokes")
@@ -329,6 +382,8 @@ HllUpdate hllUpdate = new HllUpdate()
 hllUpdate.getElementAdds();
 // Returns the set of ["Jokes", "Are", "Better", "Explained"]                     
 ```
+
+### Python 
 
 ```python
 bucket_type = client.bucket_type('hlls')
@@ -343,17 +398,25 @@ myhll.store()
 # myhll.value == 4
 ```
 
+### Go 
+
 ```go
 // We will add values in the next example
 ```
+
+### C# 
 
 ```c#
 // We will add values in the next example
 ```
 
+### JavaScript 
+
 ```javascript
 // We will add values in the next example
 ```
+
+### PHP 
 
 ```php
 $command = (new Command\Builder\UpdateHll($riak_client))
@@ -368,8 +431,12 @@ $command = (new Command\Builder\UpdateHll($riak_client))
 $response = $command->execute();
 ```
 
+### Ruby 
+
 ```ruby
 ```
+
+### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness \
@@ -377,9 +444,13 @@ curl -XPOST http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness \
   -d '{"add_all":["my", "old", "friend"]}'
 ```
 
+### Pushing and fetching a hyperloglog
+
 However, when using a non-HTTP client, the approximate cardinality/value of our
 data structure will be 0, locally, until its pushed to the server and then
-[fetched](#retrieve-a-hyperloglog-datatype) from the server.
+[fetched](#retrieve-a-hyperloglog-data-type) from the server.
+
+#### Erlang
 
 ```erlang
 riakc_hll:value(HLL2) == 0.
@@ -397,6 +468,8 @@ ok = riakc_pb_socket:update_type(Pid, Bucket, Key, riakc_hll:to_op(HLL2)).
 ok = riakc_pb_socket:update_type(Pid, Bucket, Key, riakc_hll:to_op(RepeatHLL1)).
 ```
 
+#### Java 
+
 ```java
 // Using hllUpdate and hllLocation from above examples
 
@@ -404,6 +477,8 @@ UpdateHll update = new UpdateHll.Builder(hllLocation, hllUpdate)
         .build();
 client.execute(update);
 ```
+
+#### Python 
 
 ```python
 bucket_type = client.bucket_type('hlls')
@@ -417,6 +492,8 @@ myhll.add('Jokes')
 myhll.store()
 # myhll.value == 4
 ```
+
+#### Go 
 
 ```go
 adds := [][]byte{
@@ -440,6 +517,8 @@ if err != nil {
 return cluster.Execute(cmd)
 ```
 
+#### JavaScript 
+
 ```javascript
 var options = {
     bucketType: 'hlls',
@@ -455,6 +534,8 @@ client.updateHll(options, function (err, rslt) {
 });
 ```
 
+#### C# 
+
 ```c#
 var adds = new HashSet<string> { "Jokes", "Are", "Better", "Explained", "Jokes" };
 
@@ -468,6 +549,8 @@ var update = new UpdateHll.Builder(adds)
 RiakResult rslt = client.Execute(update);
 ```
 
+####  PHP
+
 ```php
 $command = (new Command\Builder\UpdateHll($riak_client))
     ->add('Jokes')
@@ -480,6 +563,8 @@ $command = (new Command\Builder\UpdateHll($riak_client))
 
 $response = $command->execute();
 ```
+
+#### Ruby 
 
 ```ruby
 hll.add('Jokes')
@@ -496,6 +581,8 @@ end
 Now, we can check the approximate count-of (a.k.a. the cardinality of the elements
 added to) our hyperloglog data structure:
 
+### Erlang
+
 ```erlang
 {ok, HLL3} = riakc_pb_socket:fetch_type(Pid, Bucket, Key),
 riakc_hll:value(HLL3) == 4.
@@ -507,6 +594,8 @@ riakc_hll:value(HLL3) == 4.
 %% unique elements we've added to the data structure.
 ```
 
+### Java 
+
 ```java
 FetchHll hllFetchCmd = new FetchHll.Builder(location).build();
 RiakHll hll = client.execute(hllFetchCmd);
@@ -517,12 +606,16 @@ hll.getCardinality();
 // unique elements we've added to the data structure.
 ```
 
+### Python 
+
 ```python
 bucket_type = client.bucket_type('hlls')
 bucket = bucket_type.bucket('my_hlls')
 myhll = bucket.get('hll_one')
 # myhll.value == 4
 ```
+
+### Go 
 
 ```go
 var resp *riak.FetchHllResponse
@@ -551,6 +644,8 @@ fmt.Println("Hyperloglog cardinality: ", resp.Cardinality)
 return nil
 ```
 
+### JavaScript 
+
 ```javascript
 var options = {
     bucketType: 'hlls',
@@ -572,6 +667,8 @@ client.fetchHll(options, function (err, rslt) {
 // We added "Jokes" twice, but, remember, the algorithm only counts the
 // unique elements we've added to the data structure.
 ```
+
+### C# 
 
 ```c#
 var fetch = new FetchHll.Builder()
@@ -598,6 +695,8 @@ else
 // unique elements we've added to the data structure.
 ```
 
+### PHP 
+
 ```php
 $command = (new Command\Builder\FetchHll($riak_client))
     ->buildLocation('darkness', 'hello', 'hlls')
@@ -613,10 +712,14 @@ $this->assertEquals(4, $response->getHll()->getData());
 // unique elements we've added to the data structure.
 ```
 
+### Ruby 
+
 ```ruby
 puts hll.cardinality
 # Prints "4"
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness

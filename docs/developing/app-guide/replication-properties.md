@@ -176,10 +176,14 @@ riak-admin bucket-type activate r_equals_1
 
 Here's an example read request using the `r_equals_1` bucket type:
 
+### Ruby
+
 ```ruby
 bucket = client.bucket_type('r_equals_1').bucket('animal_facts')
 obj = bucket.get('chimpanzee')
 ```
+
+### Java 
 
 ```java
 Location chimpanzeeFact =
@@ -190,6 +194,8 @@ RiakObject obj = response.getValue(RiakObject.class);
 System.out.println(obj.getValue().toString());
 ```
 
+### PHP 
+
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
   ->buildLocation('chimpanzee', 'animal_facts', 'r_equals_1')
@@ -199,16 +205,22 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
 echo $response->getObject()->getData();
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket_type('r_equals_1').bucket('animal_facts')
 bucket.get('chimpanzee')
 ```
+
+### Erlang 
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
                                 {<<"r_equals_1">>, <<"animal_facts">>},
                                 <<"chimpanzee">>).
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/r_equals_1/buckets/animal_facts/keys/chimpanzee
@@ -242,6 +254,8 @@ riak-admin activate w_equals_3
 
 Now, we can attempt a write to a bucket bearing the type `w_equals_3`:
 
+### Ruby
+
 ```ruby
 bucket = client.bucket_type('w_equals_3').bucket('animal_facts')
 obj = Riak::RObject.new(bucket, 'giraffe')
@@ -249,6 +263,8 @@ obj.raw_data = 'The species name of the giraffe is Giraffa camelopardalis'
 obj.content_type = 'text/plain'
 obj.store
 ```
+
+### Java 
 
 ```java
 Location storyKey =
@@ -262,12 +278,16 @@ StoreValue store = new StoreValue.Builder(obj)
 client.execute(store);
 ```
 
+### PHP 
+
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
   ->buildLocation('giraffe', 'animal_facts', 'w_equals_3')
   ->build()
   ->execute();
 ```
+
+### Python 
 
 ```python
 bucket = client.bucket_type('w_equals_3').bucket('animal_facts')
@@ -277,6 +297,8 @@ obj.data = 'The species name of the giraffe is Giraffa camelopardalis'
 obj.store()
 ```
 
+### Erlang 
+
 ```erlang
 Obj = riakc_object:new({<<"w_equals_3">>, <<"animal_facts">>},
                        <<"giraffe">>,
@@ -284,6 +306,8 @@ Obj = riakc_object:new({<<"w_equals_3">>, <<"animal_facts">>},
                        <<"text/plain">>),
 riakc_pb_socket:put(Pid, Obj).
 ```
+
+### Curl 
 
 ```curl
 curl -XPUT \
@@ -421,10 +445,14 @@ Let's say that you want to set `r` to 2 and `notfound_ok` to `true` for
 just one read. We'll fetch [John Stockton](http://en.wikipedia.org/wiki/John_Stockton)'s
 statistics from the `nba_stats` bucket.
 
+### Ruby
+
 ```ruby
 bucket = client.bucket('nba_stats')
 obj = bucket.get('john_stockton', r: 2, notfound_ok: true)
 ```
+
+### Java 
 
 ```java
 Location johnStocktonStats =
@@ -436,6 +464,8 @@ FetchValue fetch = new FetchValue.Builder(johnStocktonStats)
 client.execute(fetch);
 ```
 
+### PHP 
+
 ```php
 (new \Basho\Riak\Command\Builder\FetchObject($riak))
   ->buildLocation('john_stockton', 'nba_stats')
@@ -445,10 +475,14 @@ client.execute(fetch);
   ->execute();
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket('nba_stats')
 obj = bucket.get('john_stockton', r=2, notfound_ok=True)
 ```
+
+### Erlang 
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -457,14 +491,20 @@ obj = bucket.get('john_stockton', r=2, notfound_ok=True)
                                 [{r, 2}, {notfound_ok, true}]).
 ```
 
+### Curl 
+
 ```curl
 curl http://localhost:8098/buckets/nba_stats/keys/john_stockton?r=2&notfound_ok=true
 ```
+
+#### w = 3 and dw = 2
 
 Now, let's say that you want to attempt a write with `w` set to 3 and
 `dw` set to 2. As in the previous example, we'll be using the `default`
 bucket type, which enables us to not specify a bucket type upon write.
 Here's what that would look like:
+
+#### Ruby
 
 ```ruby
 bucket = client.bucket('nba_stats')
@@ -473,6 +513,8 @@ obj.content_type = 'application/json'
 obj.data = '{"stats":{ ... large stats object ... }}'
 obj.store(w: 3, dw: 2)
 ```
+
+#### Java 
 
 ```java
 Location michaelJordanKey =
@@ -488,6 +530,8 @@ StoreValue store = new StoreValue.Builder(obj)
 client.execute(store);
 ```
 
+#### PHP 
+
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
   ->buildJsonObject('{'stats':{ ... large stats object ... }}')
@@ -498,6 +542,8 @@ client.execute(store);
   ->execute();
 ```
 
+#### Erlang 
+
 ```erlang
 Obj = riakc_obj:new(<<"nba_stats">>,
                     <<"michael_jordan">>,
@@ -505,6 +551,8 @@ Obj = riakc_obj:new(<<"nba_stats">>,
                     <<"application/json">>),
 riakc_pb_socket:put(Pid, Obj).
 ```
+
+#### Curl 
 
 ```curl
 curl -XPUT \

@@ -99,6 +99,8 @@ bucket `users`, which bears the `default` bucket type. Let's say that an
 application would like add a Twitter handle and an email address to this
 object as secondary indexes.
 
+### Java
+
 ```java
 Location johnSmithKey = new Location(new Namespace("default", "users"), "john_smith");
 
@@ -120,6 +122,8 @@ StoreValue store = new StoreValue.Builder(obj)
 client.execute(store);
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket_type('default').bucket('users')
 obj = Riak::RObject.new(bucket, 'john_smith')
@@ -140,6 +144,8 @@ bucket = client.bucket('users')
 obj.store
 ```
 
+### PHP 
+
 ```php
 $object = (new \Basho\Riak\Object('{"user_data":{ ... }}', ['Content-type' => 'application/json']))
   ->addValueToIndex('twitter_bin', 'jsmith123')
@@ -151,6 +157,8 @@ $object = (new \Basho\Riak\Object('{"user_data":{ ... }}', ['Content-type' => 'a
   ->build()
   ->execute();
 ```
+
+### Python 
 
 ```python
 bucket = client.bucket_type('default').bucket('users')
@@ -167,6 +175,8 @@ obj.add_index('email_bin', 'jsmith@basho.com')
 obj.store()
 ```
 
+### C# 
+
 ```c#
 var id = new RiakObjectId("default", "users", "john_smith");
 var obj = new RiakObject(id, "...user data...",
@@ -175,6 +185,8 @@ obj.BinIndex("twitter").Set("jsmith123");
 obj.BinIndex("email").Set"jsmith@basho.com");
 var rslt = client.Put(obj);
 ```
+
+### JavaScript
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -190,6 +202,8 @@ client.storeValue({ value: riakObj }, function (err, rslt) {
     }
 });
 ```
+
+### Erlang 
 
 ```erlang
 Obj = riakc_obj:new({<<"default">>, <<"users">>},
@@ -212,6 +226,8 @@ MD2 = riakc_obj:set_secondary_index(
 Obj2 = riakc_obj:update_metadata(Obj, MD2),
 riakc_pb_socket:put(Pid, Obj2).
 ```
+
+### Go 
 
 ```go
 obj := &riak.Object{
@@ -238,6 +254,8 @@ if err := cluster.Execute(cmd); err != nil {
     return err
 }
 ```
+
+### Curl 
 
 ```curl
 curl -XPOST localhost:8098/types/default/buckets/users/keys/john_smith \
@@ -266,6 +284,8 @@ This has accomplished the following:
 Let's query the `users` bucket on the basis of Twitter handle to make
 sure that we can find our stored object:
 
+### Java
+
 ```java
 Namespace usersBucket = new Namespace("users");
 BinIndexQuery biq = new BinIndexQuery.Builder(usersBucket, "twitter", "jsmith123")
@@ -277,6 +297,8 @@ for (BinIndexQuery.Response.Entry entry : entries) {
 }
 ```
 
+### Ruby
+
 ```ruby
 bucket = client.bucket('users')
 bucket.get_index('twitter_bin', 'jsmith123')
@@ -285,6 +307,8 @@ bucket.get_index('twitter_bin', 'jsmith123')
 bucket = client.bucket_type('default').bucket('users')
 bucket.get_index('twitter_bin', 'jsmith123')
 ```
+
+### PHP
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -296,10 +320,14 @@ $response = (new \Basho\Riak\Command\Builder\QueryIndex($riak))
   ->getResults();
 ```
 
+### Python
+
 ```python
 bucket = client.bucket('users') # equivalent to client.bucket_type('default').bucket('users')
 bucket.get_index('twitter_bin', 'jsmith123').results
 ```
+
+### C#
 
 ```c#
 var idxId = new RiakIndexId("default", "users", "twitter");
@@ -310,6 +338,8 @@ foreach (var keyTerm in idxRslt.IndexKeyTerms)
     Debug.WriteLine(keyTerm.Key);
 }
 ```
+
+### JavaScript
 
 ```javascript
 var query_keys = [];
@@ -341,6 +371,8 @@ var cmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
 client.execute(cmd);
 ```
 
+### Erlang
+
 ```erlang
 {ok, Results} =
     riakc_pb_socket:get_index(Pid,
@@ -348,6 +380,8 @@ client.execute(cmd);
                               {binary_index, "twitter"}, %% index name
                               <<"jsmith123">>). %% index
 ```
+
+### Go
 
 ```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
@@ -365,44 +399,64 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
+### Curl
+
 ```curl
 curl localhost:8098/buckets/users/index/twitter_bin/jsmith123
 ```
 
-The response:
+### response:
+
+#### Java
 
 ```java
 john_smith
 ```
 
+#### Ruby
+
 ```ruby
 ["john_smith"]
 ```
+
+#### PHP
 
 ```php
 ['john_smith']
 ```
 
+#### Python
+
 ```python
 ['john_smith']
 ```
+
+#### C#
 
 ```c#
 john_smith
 ```
 
+### JavaScript
+
 ```javascript
 john_smith
 ```
+
+### Erlang
 
 ```erlang
 {ok,{index_results_v1,[<<"john_smith">>],
                       undefined,undefined}}.
 ```
 
+### Go
+
 ```go
 john_smith
 ```
+
+### Curl
 
 ```curl
 {
@@ -424,6 +478,8 @@ storing both integer and string (aka binary) fields. Field names are
 automatically lowercased, some fields have multiple values, and
 duplicate fields are automatically de-duplicated, as in the following
 example:
+
+### Java
 
 ```java
 Namespace peopleBucket = new Namespace("indexes", "people");
@@ -467,6 +523,8 @@ StoreValue storeVeronica = new StoreValue.Builder(veronica)
 client.execute(storeVeronica);
 ```
 
+### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
 
@@ -504,6 +562,8 @@ obj4.indexes['field2_int'] = [1004]
 obj4.indexes['field2_int'] = [1007]
 obj4.store
 ```
+
+### PHP
 
 ```php
 $bucket = new \Basho\Riak\Bucket('people', 'indexes');
@@ -557,6 +617,8 @@ $object = (new \Basho\Riak\Object'My name is Veronica', ['Content-type' => 'text
   ->execute();
 ```
 
+### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
 
@@ -584,6 +646,8 @@ obj4.data = 'Veronica'
 obj4.add_index('field1_bin', 'val4').add_index('field1_bin', 'val4a').add_index('field1_bin', 'val4b').add_index('field2_int', 1004).add_index('field2_int', 1004).add_index('field2_int', 1005).add_index('field2_int', 1006).add_index('field2_int', 1004).add_index('field2_int', 1004).add_index('field2_int', 1004).add_index('field2_int', 1007)
 obj4.store()
 ```
+
+### C#
 
 ```c#
 var larryId = new RiakObjectId("indexes", "people", "larry");
@@ -624,6 +688,8 @@ veronica.IntIndex("FIELD2").Set(new BigInteger[] {
 
 client.Put(veronica);
 ```
+
+### JavaScript
 
 ```javascript
 function store_cb(err, rslt, async_cb) {
@@ -702,6 +768,8 @@ async.parallel(storeFuncs, function (err, rslts) {
 });
 ```
 
+### Erlang
+
 ```erlang
 Larry = riakc_obj:new(
     {<<"indexes">>, <<"people">>},
@@ -751,6 +819,8 @@ VeronicaIndexes = riakc_obj:set_secondary_index(
 ),
 VeronicaWithIndexes = riakc_obj:update_metadata(Veronica, VeronicaIndexes).
 ```
+
+### Go
 
 ```go
 o1 := &riak.Object{
@@ -818,6 +888,8 @@ for _, obj := range objs {
 wg.Wait()
 ```
 
+### Curl
+
 ```curl
 curl -v -XPUT localhost:8098/types/indexes/buckets/people/keys/larry \
   -H "x-riak-index-field1_bin: val1" \
@@ -867,11 +939,15 @@ specified with an invalid field name or type. The system responds with
 
 Invalid field name:
 
+### Java
+
 ```java
 // The Java client will not allow you to provide invalid index names,
 // because you are not required to add "_bin" or "_int" to the end of
 // those names
 ```
+
+### Ruby
 
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
@@ -885,11 +961,15 @@ obj.indexes['field2_foo'] = [1001]
 NoMethodError: undefined method 'map' for 1001:Fixnum
 ```
 
+### PHP
+
 ```php
 // throws \InvalidArgumentException
 $object = (new \Basho\Riak\Object('{"user_data":{ ... }}', ['Content-type' => 'application/json']))
   ->addValueToIndex('twitter', 'jsmith123');
 ```
+
+### Python
 
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
@@ -899,6 +979,8 @@ obj.add_index('field2_foo', 1001)
 # Result:
 riak.RiakError: "Riak 2i fields must end with either '_bin' or '_int'."
 ```
+
+### C#
 
 ```c#
 // The Riak .NET Client will not allow you to provide invalid index names,
@@ -930,6 +1012,8 @@ error: query_cb err: 'Error processing incoming message: error:function_clause:[
         ...
 ```
 
+### Erlang
+
 ```erlang
 Obj = riakc_obj:new(
     {<<"indexes">>, <<"people">>},
@@ -944,6 +1028,8 @@ MD2 = riakc_obj:set_secondary_index(MD1, [{{foo_index, "field2"}, [1001]}]).
 ** exception error: no function clause matching
                     riakc_obj:set_secondary_index( ... ).
 ```
+
+### Go
 
 ```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
@@ -976,6 +1062,8 @@ error: query_cb err: 'Error processing incoming message: error:function_clause:[
         ...
 ```
 
+### Curl
+
 ```curl
 curl -XPUT 127.0.0.1:8098/types/indexes/buckets/people/keys/larry \
   -H "x-riak-index-field2_foo: 1001" \
@@ -985,7 +1073,9 @@ curl -XPUT 127.0.0.1:8098/types/indexes/buckets/people/keys/larry \
 Unknown field type for field: 'field2_foo'.
 ```
 
-Incorrect data type:
+### Incorrect data type:
+
+#### Java
 
 ```java
 Location key = new Location(new Namespace("people"), "larry");
@@ -1002,6 +1092,8 @@ Error:(46, 68) java: no suitable method found for add(java.lang.String)
       (argument mismatch; java.lang.String cannot be converted to java.util.Collection<java.lang.Long>)
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
 obj = Riak::RObject.new(bucket, 'larry')
@@ -1013,6 +1105,8 @@ obj.indexes['field2_int'] = %w{ bar }
 
 NoMethodError: undefined method 'map' for 1001:Fixnum
 ```
+
+#### PHP
 
 ```php
 // throws \InvalidArgumentException
@@ -1029,6 +1123,8 @@ $object = (new \Basho\Riak\Object('{"user_data":{ ... }}', ['Content-type' => 'a
   ->addValueToIndex('twitter_bin', 12);
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
 obj = RiakObject(client, bucket, 'larry')
@@ -1038,6 +1134,8 @@ obj.add_index('field2_int', 'bar')
 # attempt to store the object, you will get an error response such as this:
 riak.RiakError: '{precommit_fail,[{field_parsing_failed,{<<"field2_int">>,<<"bar">>}}]}'
 ```
+
+#### C#
 
 ```c#
 var id = new RiakObjectId("indexes", "people", "larry");
@@ -1050,6 +1148,8 @@ intIdx.Add("invalid-value");
 
 The value could not be parsed.
 ```
+
+#### JavaScript
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -1074,6 +1174,8 @@ TypeError: must start with number, buffer, array or string
     at new Buffer (buffer.js:67:11)
 ```
 
+#### Erlang
+
 ```erlang
 Obj = riakc_obj:new(
     {<<"indexes">>, <<"people">>},
@@ -1089,6 +1191,8 @@ MD2 = riakc_obj:set_secondary_index(MD1, [{{integer_index, "field2"}, [<<"bar">>
      in function  integer_to_list/1
         called as integer_to_list(<<"bar">>) ...
 ```
+
+#### Go
 
 ```go
 obj := &riak.Object{
@@ -1119,6 +1223,8 @@ if err := cluster.Execute(cmd); err != nil {
 {precommit_fail,[{field_parsing_failed,{<<"field2_int">>,<<"bar">>}}]}
 ```
 
+#### Curl
+
 ```curl
 curl -XPUT 127.0.0.1:8098/types/indexes/buckets/people/keys/larry \
   -H "x-riak-index-field2_int: bar" \
@@ -1144,16 +1250,22 @@ The following examples perform an exact match index query.
 
 Query a binary index:
 
+#### Java
+
 ```java
 Namespace myBucket = new Namespace("indexes", "people");
 BinIndexQuery biq = new BinIndexQuery.Builder(myBucket, "field1", "val1").build();
 BinIndexQuery.Response response = client.execute(biq);
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field1_bin', 'val1')
 ```
+
+#### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -1165,10 +1277,14 @@ bucket.get_index('field1_bin', 'val1')
   ->getResults();
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field1_bin', 'val1')
 ```
+
+#### C#
 
 ```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field1");
@@ -1176,6 +1292,8 @@ var riakIndexId = new RiakIndexId("indexes", "people", "field1");
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, "val1");
 var indexResult = indexRiakResult.Value;
 ```
+
+#### JavaScript
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1188,6 +1306,8 @@ var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
 client.execute(binIdxCmd);
 ```
 
+#### Erlang
+
 ```erlang
 {ok, Results} = riakc_pb_socket:get_index(
     Pid,
@@ -1196,6 +1316,8 @@ client.execute(binIdxCmd);
     <<"val1">>
 ).
 ```
+
+#### Go
 
 ```go
 c1, err := riak.NewSecondaryIndexQueryCommandBuilder().
@@ -1209,11 +1331,15 @@ if err != nil {
 }
 ```
 
+#### Curl
+
 ```curl
 curl localhost:8098/types/indexes/buckets/people/index/field1_bin/val1
 ```
 
-Query an integer index:
+###Query an integer index:
+
+#### Java
 
 ```java
 Namespace myBucket = new Namespace("indexes", "people");
@@ -1222,10 +1348,14 @@ IntIndexQuery iiq = new IntIndexQuery.Builder(myBucket, "field2", 1001L)
 IntIndexQuery.Response response = client.execute(iiq);
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field2_int', 1001)
 ```
+
+#### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -1237,10 +1367,14 @@ bucket.get_index('field2_int', 1001)
   ->getResults();
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field2_int', 1001)
 ```
+
+#### C#
 
 ```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field2");
@@ -1248,6 +1382,8 @@ var riakIndexId = new RiakIndexId("indexes", "people", "field2");
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, 1001);
 var indexResult = indexRiakResult.Value;
 ```
+
+#### JavaScript
 
 ```javascript
 var intIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1260,6 +1396,8 @@ var intIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
 client.execute(intIdxCmd);
 ```
 
+#### Erlang
+
 ```erlang
 {ok, Results} = riakc_pb_socket:get_index(
     Pid,
@@ -1268,6 +1406,8 @@ client.execute(intIdxCmd);
     1001
 ).
 ```
+
+#### Go
 
 ```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
@@ -1280,6 +1420,8 @@ if err != nil {
     return err
 }
 ```
+
+#### Curl
 
 ```curl
 curl localhost:8098/types/indexes/buckets/people/index/field2_int/1001
@@ -1318,6 +1460,8 @@ The following examples perform a range query.
 
 Query a binary index...
 
+#### Java
+
 ```java
 Namespace myBucket = new Namespace("indexes", "people");
 BinIndexQuery biq = new BinIndexQuery.Builder(myBucket, "field1", "val2", "val4")
@@ -1325,10 +1469,14 @@ BinIndexQuery biq = new BinIndexQuery.Builder(myBucket, "field1", "val2", "val4"
 BinIndexQuery.Response response = client.execute(biq);
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field1_bin', 'val2'..'val4')
 ```
+
+#### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -1340,16 +1488,22 @@ bucket.get_index('field1_bin', 'val2'..'val4')
   ->getResults();
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field1_bin', 'val2', 'val4')
 ```
+
+#### C#
 
 ```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field1");
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, "val2", "val4");
 var indexResult = indexRiakResult.Value;
 ```
+
+#### JavaScript
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1362,6 +1516,8 @@ var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
 client.execute(binIdxCmd);
 ```
 
+#### Erlang
+
 ```erlang
 {ok, Results} = riakc_pb_socket:get_index_range(
     Pid,
@@ -1370,6 +1526,8 @@ client.execute(binIdxCmd);
     <<"val2">>, <<"val4">> %% range query for keys between "val2" and "val4"
 ).
 ```
+
+#### Go
 
 ```go
 c1, err := riak.NewSecondaryIndexQueryCommandBuilder().
@@ -1383,11 +1541,15 @@ if err != nil {
 }
 ```
 
+#### Curl
+
 ```curl
 curl localhost:8098/types/indexes/buckets/people/index/field1_bin/val2/val4
 ```
 
-Or query an integer index...
+##Or query an integer index...
+
+#### Java
 
 ```java
 Namespace myBucket = new Namespace("indexes", "people");
@@ -1396,10 +1558,14 @@ IntIndexQuery iiq = new IntIndexQuery.Builder(myBucket, "field2", 1002L, 1004L)
 IntIndexQuery.Response response = client.execute(iiq);
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field2_int', 1002..1004)
 ```
+
+#### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -1411,16 +1577,22 @@ bucket.get_index('field2_int', 1002..1004)
   ->getResults();
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('field2_int', 1002, 1004)
 ```
+
+#### C#
 
 ```c#
 var riakIndexId = new RiakIndexId("indexes", "people", "field2");
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, 1002, 1004);
 var indexResult = indexRiakResult.Value;
 ```
+
+#### JavaScript
 
 ```javascript
 var intIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1433,6 +1605,8 @@ var intIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
 client.execute(intIdxCmd);
 ```
 
+#### Erlang
+
 ```erlang
 {ok, Results} = riakc_pb_socket:get_index_range(
     Pid,
@@ -1442,6 +1616,8 @@ client.execute(intIdxCmd);
 ).
 ```
 
+#### Go
+
 ```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
@@ -1450,6 +1626,8 @@ cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithIntRange(1002, 1004).
     Build()
 ```
+
+#### Curl
 
 ```curl
 curl localhost:8098/types/indexes/buckets/people/index/field2_int/1002/1004
@@ -1489,6 +1667,8 @@ When performing a range query, it is possible to retrieve the matched
 index values alongside the Riak keys using `return_terms=true`. An
 example from a small sampling of Twitter data with indexed hash tags:
 
+##### Java
+
 ```java
 Namespace tweetsBucket = new Namespace("indexes", "tweets");
 BinIndexQuery biq = new BinIndexQuery.Builder(tweetsBucket, "hashtags", "rock", "rocl")
@@ -1497,10 +1677,14 @@ BinIndexQuery biq = new BinIndexQuery.Builder(tweetsBucket, "hashtags", "rock", 
 BinIndexQuery.Response response = client.execute(biq);
 ```
 
+##### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index('hashtags_bin', 'rock'..'rocl', return_terms: true)
 ```
+
+##### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -1513,10 +1697,14 @@ bucket.get_index('hashtags_bin', 'rock'..'rocl', return_terms: true)
   ->getResults();
 ```
 
+##### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index('hashtags_bin', 'rock', 'rocl', return_terms=True)
 ```
+
+##### C#
 
 ```c#
 var riakIndexId = new RiakIndexId("indexes", "tweets", "hashtags");
@@ -1525,6 +1713,8 @@ options.SetReturnTerms(true);
 var indexRiakResult = client.GetSecondaryIndex(riakIndexId, "rock", "rocl", options);
 var indexResult = indexRiakResult.Value;
 ```
+
+##### JavaScript
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1538,6 +1728,8 @@ var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
 client.execute(binIdxCmd);
 ```
 
+##### Erlang
+
 ```erlang
 {ok, Results} = riakc_pb_socket:get_index_range(
     Pid,
@@ -1546,6 +1738,8 @@ client.execute(binIdxCmd);
     <<"rock">>, <<"rocl">>          %% range query for keys between "val2" and "val4"
 ).
 ```
+
+##### Go
 
 ```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
@@ -1562,6 +1756,8 @@ if err := cluster.Execute(cmd); err != nil {
     return err
 }
 ```
+
+##### Curl
 
 ```curl
 curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/rock/rocl?return_terms=true
@@ -1595,6 +1791,8 @@ included in the results to allow the client to request the next page.
 Here is an example of a range query with both `return_terms` and
 pagination against the same Twitter data set.
 
+#### Java
+
 ```java
 Namespace tweetsBucket = new Namespace("indexes", "tweets");
 BinIndexQuery biq = new BinIndexQuery.Builder(tweetsBucket, "hashtags", "ri", "ru")
@@ -1603,10 +1801,14 @@ BinIndexQuery biq = new BinIndexQuery.Builder(tweetsBucket, "hashtags", "ri", "r
 BinIndexQuery.Response response = client.execute(biq);
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index('hashtags_bin', 'ri'..'ru', max_results: 5)
 ```
+
+#### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -1619,10 +1821,14 @@ bucket.get_index('hashtags_bin', 'ri'..'ru', max_results: 5)
   ->getResults();
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index('hashtags_bin', 'ri', 'ru', max_results=5)
 ```
+
+#### C#
 
 ```c#
 var idxId = new RiakIndexId("indexes", "tweets", "hashtags");
@@ -1633,6 +1839,8 @@ var rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 options.SetContinuation(rslt.Continuation);
 rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
+
+#### JavaScript
 
 ```javascript
 function do_query(continuation) {
@@ -1680,6 +1888,8 @@ function pagination_cb(err, rslt) {
 do_query();
 ```
 
+#### Erlang
+
 ```erlang
 {ok, Results} = riakc_pb_socket:get_index_range(
     Pid,
@@ -1689,6 +1899,8 @@ do_query();
     {max_results, 5}
 ).
 ```
+
+#### Go
 
 ```go
 func doPaginatedQuery(cluster *riak.Cluster, continuation []byte) error {
@@ -1732,6 +1944,8 @@ func queryingPagination(cluster *riak.Cluster) error {
 }
 ```
 
+#### Curl
+
 ```curl
 curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/ri/ru?max_results=5&return_terms=true
 ```
@@ -1751,8 +1965,12 @@ Here is an example JSON response (your client-specific response may differ):
 }
 ```
 
+### Feeding the previous result set back into the query
+
 Take the continuation value from the previous result set and feed it
 back into the query.
+
+#### Java
 
 ```java
 Namespace tweetsBucket = new Namespace("indexes", "tweets");
@@ -1764,6 +1982,8 @@ BinIndexQuery biq = new BinIndexQuery.Builder(tweetsBucket, "hashtags", "ri", "r
 BinIndexQuery.Response response = client.execute(biq);
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index(
@@ -1774,6 +1994,8 @@ bucket.get_index(
   return_terms: true
 )
 ```
+
+#### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\QueryIndex($riak))
@@ -1787,6 +2009,8 @@ bucket.get_index(
   ->getResults();
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('tweets')
 bucket.get_index(
@@ -1798,6 +2022,8 @@ bucket.get_index(
 )
 ```
 
+#### C#
+
 ```c#
 // rslt is the previous 2i fetch result
 var idxId = new RiakIndexId("indexes", "tweets", "hashtags");
@@ -1807,9 +2033,13 @@ options.SetContinuation(rslt.Continuation);
 rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
+#### JavaScript
+
 ```javascript
 // See above example
 ```
+
+#### Erlang
 
 ```erlang
 {ok, Results} = riakc_pb_socket:get_index_range(
@@ -1825,9 +2055,13 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ).
 ```
 
+#### Go
+
 ```go
 // See above example
 ```
+
+#### Curl
 
 ```curl
 curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/ri/ru?continuation=g2gCbQAAAAdyaXBqYWtlbQAAABIzNDkyMjA2ODcwNTcxMjk0NzM=&max_results=5&return_terms=true
@@ -1862,6 +2096,8 @@ The result:
 
 It is also possible to stream results:
 
+#### Java
+
 ```java
 // Available in Riak Java Client 2.1.0 and later
 int pollTimeoutMS = 200;
@@ -1888,10 +2124,14 @@ streamingFuture.await();
 Assert.assertTrue(streamingFuture.isDone());
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('indexes').bucket('people')
 bucket.get_index('myindex_bin', 'foo', stream: true)
 ```
+
+#### PHP
 
 ```php
 /*
@@ -1899,12 +2139,16 @@ bucket.get_index('myindex_bin', 'foo', stream: true)
 */
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('indexes').bucket('people')
 keys = []
 for key in bucket.stream_index('myindex_bin', 'foo'):
     keys.append(key)
 ```
+
+#### C#
 
 ```c#
 var riakIndexId = new RiakIndexId("indexes", "tweets", "hashtags");
@@ -1915,6 +2159,8 @@ foreach (var key in indexResult.IndexKeyTerms)
     // Do something with key...
 }
 ```
+
+#### JavaScript
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1928,6 +2174,8 @@ var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
 client.execute(binIdxCmd);
 ```
 
+#### Erlang
+
 ```erlang
 {ok, KeyStream} = riakc_pb_socket:get_index_eq(
     Pid,
@@ -1937,6 +2185,8 @@ client.execute(binIdxCmd);
     [{stream, true}] %% enable streaming
 ).
 ```
+
+#### Go
 
 ```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
@@ -1955,6 +2205,8 @@ if err := cluster.Execute(cmd); err != nil {
     return err
 }
 ```
+
+#### Curl
 
 ```curl
 curl localhost:8098/types/indexes/buckets/people/index/myindex_bin/foo?stream=true

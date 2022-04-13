@@ -231,6 +231,8 @@ return `siblings_allowed is active`. Now, we'll create two objects and
 write both of them to the same key without first fetching the object
 (which obtains the causal context):
 
+### Java
+
 ```java
 Location bestCharacterKey =
   new Location(new Namespace("siblings_allowed", "nickolodeon"), "best_character");
@@ -251,6 +253,8 @@ client.execute(store1);
 client.execute(store2);
 ```
 
+### Ruby
+
 ```ruby
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
 obj1 = Riak::RObject.new(bucket, 'best_character')
@@ -263,6 +267,8 @@ obj2.content_type = 'text/plain'
 obj2.raw_data = 'Stimpy'
 obj2.store
 ```
+
+### Python
 
 ```python
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
@@ -277,6 +283,8 @@ obj2.data = 'Stimpy'
 obj2.store()
 ```
 
+### C#
+
 ```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 
@@ -286,6 +294,8 @@ var stimpyObj = new RiakObject(id, "Stimpy", RiakConstants.ContentTypes.TextPlai
 var renResult = client.Put(renObj);
 var stimpyResult = client.Put(stimpyObj);
 ```
+
+### JavaScript
 
 ```javascript
 var obj1 = new Riak.Commands.KV.RiakObject();
@@ -320,6 +330,8 @@ async.parallel(storeFuncs, function (err, rslts) {
 });
 ```
 
+### Erlang
+
 ```erlang
 Obj1 = riakc_obj:new({<<"siblings_allowed">>, <<"nickolodeon">>},
                      <<"best_character">>,
@@ -332,6 +344,8 @@ Obj2 = riakc_obj:new({<<"siblings_allowed">>, <<"nickolodeon">>},
 riakc_pb_socket:put(Pid, Obj1),
 riakc_pb_socket:put(Pid, Obj2).
 ```
+
+### Curl
 
 ```curl
 curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/keys/best_character \
@@ -348,9 +362,13 @@ curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/key
 > If you are connecting to Riak using one of Basho's official
 [client libraries](../../../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../../../developing/getting-started/index.md) section.
 
+### Reading the contents of an object
+
 At this point, multiple objects have been stored in the same key without
 passing any causal context to Riak. Let's see what happens if we try to
 read contents of the object:
+
+#### Java
 
 ```java
 Location bestCharacterKey =
@@ -362,17 +380,23 @@ RiakObject obj = response.getValue(RiakObject.class);
 System.out.println(obj.getValue().toString());
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
 obj = bucket.get('best_character')
 obj
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
 obj = bucket.get('best_character')
 obj.siblings
 ```
+
+#### C#
 
 ```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
@@ -387,6 +411,8 @@ foreach (var sibling in obj.Siblings)
 }
 ```
 
+#### JavaScript
+
 ```javascript
 client.fetchValue({
     bucketType: 'siblings_allowed', bucket:
@@ -400,23 +426,35 @@ client.fetchValue({
 });
 ```
 
+#### Curl
+
 ```curl
 curl http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
 ```
 
 Uh-oh! Siblings have been found. We should get this response:
 
+##### Handling siblings
+
+###### Java
+
 ```java
 com.basho.riak.client.cap.UnresolvedConflictException: Siblings found
 ```
+
+###### Ruby
 
 ```ruby
 <Riak::RObject {nickolodeon,best_character} [#<Riak::RContent [text/plain]:"Ren">, #<Riak::RContent [text/plain]:"Stimpy">]>
 ```
 
+###### Python
+
 ```python
 [<riak.content.RiakContent object at 0x10a00eb90>, <riak.content.RiakContent object at 0x10a00ebd0>]
 ```
+
+###### C#
 
 ```c#
 Sibling count: 2
@@ -424,9 +462,13 @@ Sibling count: 2
     VTag: 7EiwrlFAJI5VMLK87vU4tE
 ```
 
+###### JavaScript
+
 ```javascript
 info: nickolodeon/best_character has '2' siblings
 ```
+
+###### Curl
 
 ```curl
 Siblings:
@@ -491,6 +533,8 @@ that point, we can modify the object's value, and when we write the
 object back to Riak, _the causal context will automatically be attached
 to it_. Let's see what that looks like in practice:
 
+#### Java
+
 ```java
 // First, we fetch the object
 Location bestCharacterKey =
@@ -509,6 +553,8 @@ StoreValue store = new StoreValue.Builder(obj)
 client.execute(store);
 ```
 
+#### Ruby
+
 ```ruby
 # First, we fetch the object
 bucket = client.bucket('nickolodeon')
@@ -521,6 +567,8 @@ obj.raw_data = 'Stimpy'
 obj.store
 ```
 
+#### Python
+
 ```python
 # First, we fetch the object
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
@@ -532,6 +580,8 @@ new_obj.data = 'Stimpy'
 # Then we store the object, which has the vector clock already attached
 new_obj.store(vclock=vclock)
 ```
+
+#### C#
 
 ```c#
 // First, fetch the object
@@ -549,6 +599,8 @@ obj = putRslt.Value;
 // Voila, no more siblings!
 Debug.Assert(obj.Siblings.Count == 0);
 ```
+
+#### JavaScript
 
 ```javascript
 client.fetchValue({
@@ -574,6 +626,8 @@ client.fetchValue({
     }
 );
 ```
+
+#### Curl
 
 ```curl
 curl -i http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character

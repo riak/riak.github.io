@@ -59,6 +59,9 @@ First, we need to direct our client to the bucket type/bucket/key location that 
 The syntax for creating a map is analogous to the
 syntax for creating other data types:
 
+
+### Java
+
 ```java
 // In the Java client, a bucket/bucket type combination is specified
 // using a Namespace object. To specify bucket, bucket type, and key,
@@ -69,14 +72,20 @@ Location map =
   new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket_type('bucket_type_name').bucket('bucket_name')
 map = Riak::Crdt::Map.new(bucket, key)
 ```
 
+### PHP 
+
 ```php
 $location = new \Basho\Riak\Location('key', 'bucket', 'bucket_type');
 ```
+
+### Python
 
 ```python
 # The client detects the bucket type's datatype and automatically
@@ -88,6 +97,8 @@ from riak.datatypes import Map
 map = Map(bucket, key)
 ```
 
+### C# 
+
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
@@ -96,6 +107,8 @@ var builder = new UpdateMap.Builder()
     .WithBucket("<bucket>")
     .WithKey("<key>");
 ```
+
+### JavaScript 
 
 ```javascript
 // Options to pass to the various map methods
@@ -106,11 +119,15 @@ var options = {
 };
 ```
 
+### Erlang 
+
 ```erlang
 %% Maps in the Erlang client are opaque data structures that
 %% collect operations as you mutate them. We will associate the data
 %% structure with a bucket type, bucket, and key later on.
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
@@ -125,6 +142,8 @@ For this example, say we want to use Riak KV to store information about our comp
 
 We can create a map for the user Ahmed (`ahmed_info`) using the `maps` bucket type:
 
+### Java
+
 ```java
 // In the Java client, you specify the location of data types
 // before you perform operations on them:
@@ -132,6 +151,8 @@ We can create a map for the user Ahmed (`ahmed_info`) using the `maps` bucket ty
 Location ahmedMap =
   new Location(new Namespace("maps", "customers"), "ahmed_info");
 ```
+
+### Ruby 
 
 ```ruby
 customers = client.bucket_type('maps').bucket('customers')
@@ -149,14 +170,20 @@ customers = client.bucket('customers')
 map = Riak::Crdt::Map.new(customers, 'ahmed_info')
 ```
 
+### PHP 
+
 ```php
 $location = new \Basho\Riak\Location('ahmed_info', 'customers', 'maps');
 ```
+
+### Python 
 
 ```python
 customers = client.bucket_type('map_bucket').bucket('customers')
 map = customers.net('ahmed_info')
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -167,6 +194,8 @@ var builder = new UpdateMap.Builder()
     .WithKey("ahmed_info");
 ```
 
+### JavaScript 
+
 ```javascript
 var options = {
     bucketType: 'maps',
@@ -175,6 +204,8 @@ var options = {
 };
 ```
 
+### Erlang 
+
 ```erlang
 Map = riakc_map:new().
 
@@ -182,6 +213,8 @@ Map = riakc_map:new().
 %% collect operations as you mutate them. We will associate the data
 %% structure with a bucket type, bucket, and key later on.
 ```
+
+### Curl 
 
 ```curl
 # You cannot create an empty map through the HTTP interface. Maps can only
@@ -201,6 +234,8 @@ Continuing with our previous `customers` example, let's store some information i
 The first piece of information we want to store in our map is Ahmed's name and
 phone number, both of which are best stored as registers:
 
+#### Java
+
 ```java
 // Using our "ahmedMap" location from above:
 
@@ -213,6 +248,8 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, mu)
           .build();
 client.execute(update);
 ```
+
+#### Ruby 
 
 ```ruby
 # The Ruby client enables you to batch operations together if you're
@@ -228,6 +265,8 @@ end
 map.registers['phone_number'] = 5551234567.to_s
 ```
 
+#### PHP 
+
 ```php
 (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->updateRegister('first_name', 'Ahmed')
@@ -236,6 +275,8 @@ map.registers['phone_number'] = 5551234567.to_s
     ->build()
     ->execute();
 ```
+
+#### Python 
 
 ```python
 map.registers['first_name'].assign('Ahmed')
@@ -247,6 +288,8 @@ map.registers['phone_number'].assign(str(5551234567))
 
 map.store()
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -274,6 +317,8 @@ PrintMap(response.Value);
 // Map: {"Counters":{},"Sets":{},"Registers":{"first_name":"Ahmed","phone_number":"5551234567"},"Flags":{},"Maps":{}}
 ```
 
+#### JavaScript 
+
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
 mapOp.setRegister('first_name', new Buffer('Ahmed'));
@@ -293,6 +338,8 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 Map1 = riakc_map:update({<<"first_name">>, register},
                         fun(R) -> riakc_register:set(<<"Ahmed">>, R) end,
@@ -301,6 +348,8 @@ Map2 = riakc_map:update({<<"phone_number">>, register},
                         fun(R) -> riakc_register:set(<<"5551234567">>, R) end,
                         Map1).
 ```
+
+#### Curl 
 
 ```curl
 # Updates can be performed all at once. The following will create two new
@@ -335,6 +384,8 @@ Now let's say that we add an Enterprise plan to our pricing model. We'll
 create an `enterprise_customer` flag to track whether Ahmed has signed
 up for the new plan. He hasn't yet, so we'll set it to `false`:
 
+#### Java
+
 ```java
 // Using our "ahmedMap" location from above:
 
@@ -345,9 +396,13 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, mu)
 client.execute(update);
 ```
 
+#### Ruby 
+
 ```ruby
 map.flags['enterprise_customer'] = false
 ```
+
+#### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\UpdateMap($riak))
@@ -357,11 +412,14 @@ map.flags['enterprise_customer'] = false
     ->execute();
 ```
 
+#### Python 
+
 ```python
 map.flags['enterprise_customer'].disable()
 map.store()
 ```
 
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -383,6 +441,8 @@ response = cmd.Response;
          "Flags":{"enterprise_customer":false},"Maps":{}}
 ```
 
+#### JavaScript 
+
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
 mapOp.setFlag('enterprise_customer', false);
@@ -401,11 +461,15 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 Map4 = riakc_map:update({<<"enterprise_customer">>, flag},
                         fun(F) -> riakc_flag:disable(F) end,
                         Map3).
 ```
+
+#### Curl
 
 ```curl
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -424,7 +488,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   }'
 ```
 
+#### Retrieving the value of the flag
+
 We can retrieve the value of that flag at any time:
+
+##### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -435,11 +503,15 @@ RiakMap map = response.getDatatype();
 System.out.println(map.getFlag("enterprise_customer").view());
 ```
 
+##### Ruby 
+
 ```ruby
 map.flags['enterprise_customer']
 
 # false
 ```
+
+##### PHP 
 
 ```php
 $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
@@ -451,9 +523,13 @@ $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
 echo $map->getFlag('enterprise_customer'); // false
 ```
 
+##### Python 
+
 ```python
 map.reload().flags['enterprise_customer'].value
 ```
+
+##### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -461,6 +537,8 @@ map.reload().flags['enterprise_customer'].value
 Map ahmedMap = response.Value;
 ahmedMap.Flags["enterprise_customer"]
 ```
+
+##### JavaScript
 
 ```javascript
 var options = {
@@ -478,6 +556,8 @@ client.fetchMap(options, function (err, rslt) {
 });
 ```
 
+##### Erlang 
+
 ```erlang
 %% The value fetched from Riak is always immutable, whereas the "dirty
 %% value" takes into account local modifications that have not been
@@ -485,6 +565,8 @@ client.fetchMap(options, function (err, rslt) {
 
 riakc_map:dirty_value(Map4).
 ```
+
+##### Curl 
 
 ```curl
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -496,6 +578,8 @@ We also want to know how many times Ahmed has visited our website. We'll
 use a `page_visits` counter for that and run the following operation
 when Ahmed visits our page for the first time:
 
+### Java
+
 ```java
 // Using our "ahmedMap" location from above:
 
@@ -506,11 +590,15 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, new CounterUpdate(1))
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 map.counters['page_visits'].increment
 
 # This operation may return false even if successful
 ```
+
+### PHP 
 
 ```php
 $updateCounter = (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
@@ -523,10 +611,14 @@ $updateCounter = (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
     ->execute();
 ```
 
+### Python 
+
 ```python
 map.counters['page_visits'].increment()
 map.store()
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -564,11 +656,15 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+### Erlang
+
 ```erlang
 Map3 = riakc_map:update({<<"page_visits">>, counter},
                         fun(C) -> riakc_counter:increment(1, C) end,
                         Map2).
 ```
+
+### Curl 
 
 ```curl
 # The following will create a new counter and increment it by 1
@@ -594,6 +690,8 @@ design a user experience for him. Through his purchasing decisions, we
 find out that Ahmed likes robots, opera, and motorcycles. We'll store
 that information in a set inside of our map:
 
+### Java 
+
 ```java
 // Using our "ahmedMap" location from above:
 
@@ -608,6 +706,8 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, mu)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 map.batch do |m|
   %{ robots opera motorcycles }.each do |interest|
@@ -615,6 +715,8 @@ map.batch do |m|
   end
 end
 ```
+
+### PHP 
 
 ```php
 $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
@@ -629,11 +731,15 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
     ->execute();
 ```
 
+### Python 
+
 ```python
 for interest in ['robots', 'opera', 'motorcycles']:
     map.sets['interests'].add(interest)
 map.store()
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -655,6 +761,8 @@ MapResponse response = cmd.Response;
          "Maps":{}}
 ```
 
+### JavaScript 
+
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
 mapOp.addToSet('interests', 'robots');
@@ -675,6 +783,8 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 Map4 = riakc_map:update({<<"interests">>, set},
                         fun(S) -> riakc_set:add_element(<<"robots">>, S) end, Map3),
@@ -685,6 +795,8 @@ Map6 = riakc_map:update({<<"interests">>, set},
                         fun(S) -> riakc_set:add_element(<<"motorcycles">>, S) end,
                         Map4).
 ```
+
+### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -703,8 +815,12 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   }'
 ```
 
+### Verifying `interests`
+
 We can then verify that the `interests` set includes these three
 interests:
+
+#### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -720,6 +836,8 @@ System.out.println(interests.contains(BinaryValue.create("robots")));
 // Checking for "opera" and "motorcycles" works the same way
 ```
 
+#### Ruby 
+
 ```ruby
 map.batch do |m|
   %w{ robots opera motorcycles }.each do |interest|
@@ -729,6 +847,8 @@ end
 
 # This will return three Boolean values
 ```
+
+#### PHP 
 
 ```php
 $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
@@ -741,11 +861,15 @@ $sets = $map->getSet('interests');
 var_dump($sets->getData());
 ```
 
+#### Python 
+
 ```python
 reloaded_map = map.reload()
 for interest in ['robots', 'opera', 'motorcycles']:
     interest in reloaded_map.sets['interests'].value
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -757,6 +881,8 @@ ahmedMap.Sets.GetValue("interests").Contains("robots");
 ahmedMap.Sets.GetValue("interests").Contains("opera");
 ahmedMap.Sets.GetValue("interests").Contains("motorcycles");
 ```
+
+#### JavaScript
 
 ```javascript
 var options = {
@@ -774,17 +900,25 @@ client.fetchMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 riakc_map:dirty_value(Map6).
 ```
+
+#### Curl 
 
 ```curl
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info?include_context=false
 ```
 
+### Changing the value of `interests`
+
 We learn from a recent purchasing decision that Ahmed actually doesn't
 seem to like opera. He's much more keen on indie pop. Let's change the
 `interests` set to reflect that:
+
+### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -799,12 +933,16 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, mu)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 map.batch do |m|
   m.sets['interests'].remove('opera')
   m.sets['interests'].add('indie pop')
 end
 ```
+
+### PHP 
 
 ```php
 $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
@@ -819,11 +957,15 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
     ->execute();
 ```
 
+### Python
+
 ```python
 map.sets['interests'].discard('opera')
 map.sets['interests'].add('indie pop')
 map.store()
 ```
+
+### C#
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -850,6 +992,8 @@ ahmedMap.Sets.GetValue("interests").Contains("indie pop");
 ahmedMap.Sets.GetValue("interests").Contains("robots");
 ahmedMap.Sets.GetValue("interests").Contains("motorcycles");
 ```
+
+### JavaScript
 
 ```javascript
 var options = {
@@ -878,6 +1022,8 @@ client.fetchMap(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 Map7 = riakc_map:update({<<"interests">>, set},
                         fun(S) -> riakc_set:del_element(<<"opera">>, S) end, Map6),
@@ -885,6 +1031,8 @@ Map8 = riakc_map:update({<<"interests">>, set},
                         fun(S) -> riakc_set:add_element(<<"indie pop">>, S) end,
                         Map7).
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -922,6 +1070,8 @@ Annika inside of a map called `annika_info`.
 First, we'll store Annika's first name, last name, and phone number in
 registers:
 
+### Java
+
 ```java
 // Using our "ahmedMap" location from above:
 
@@ -940,6 +1090,8 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, ahmedUpdate)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 map.maps['annika_info'].batch do |m|
   m.registers['first_name'] = 'Annika'
@@ -947,6 +1099,8 @@ map.maps['annika_info'].batch do |m|
   m.registers['phone_number'] = 5559876543.to_s
 end
 ```
+
+### PHP 
 
 ```php
 $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
@@ -962,12 +1116,16 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->execute();
 ```
 
+### Python 
+
 ```python
 map.maps['annika_info'].registers['first_name'].assign('Annika')
 map.maps['annika_info'].registers['last_name'].assign('Weiss')
 map.maps['annika_info'].registers['phone_number'].assign(str(5559876543))
 map.store()
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -983,6 +1141,8 @@ builder.WithMapOperation(mapOperation);
 UpdateMap cmd = builder.Build();
 client.Execute(cmd);
 ```
+
+### JavaScript
 
 ```javascript
 var options = {
@@ -1006,6 +1166,8 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 Map12 = riakc_map:update(
     {<<"annika_info">>, map},
@@ -1027,6 +1189,8 @@ Map14 = riakc_map:update(
     Map13).
 ```
 
+### Curl 
+
 ```curl
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
@@ -1045,8 +1209,12 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   '
 ```
 
+### Obtaining a value in a map
+
 The value of a register in a map can be obtained without a special
 method:
+
+#### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -1060,11 +1228,15 @@ String annikaFirstName = response.getDatatype()
         .toString();
 ```
 
+#### Ruby 
+
 ```ruby
 map.maps['annika_info'].registers['first_name']
 
 # "Annika"
 ```
+
+#### PHP 
 
 ```php
 # with param 'returnbody' = 'true', we can fetch the map from our last response
@@ -1073,9 +1245,13 @@ $map->getMap();
 echo $map->getMap('annika_info')->getRegister('first_name'); // Annika
 ```
 
+#### Python 
+
 ```python
 map.reload().maps['annika_info'].registers['first_name'].value
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1083,6 +1259,8 @@ map.reload().maps['annika_info'].registers['first_name'].value
 ahmedMap = response.Value;
 ahmedMap.Maps["annika_info"].Registers.GetValue("first_name");
 ```
+
+#### JavaScript
 
 ```javascript
 var options = {
@@ -1101,16 +1279,24 @@ client.fetchMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 riakc_map:dirty_value(Map14).
 ```
+
+#### Curl 
 
 ```curl
 # Specific values for fields inside of maps (or maps within maps, for that
 # matter), cannot be obtained directly through the HTTP interface.
 ```
 
+### Removing Registers
+
 Registers can also be removed:
+
+#### Java
 
 ```java
 // This example uses our "ahmedMap" location from above. Operations that
@@ -1131,9 +1317,13 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, ahmedUpdate)
 client.execute(update);
 ```
 
+#### Ruby 
+
 ```ruby
 map.maps['annika_info'].registers.remove('first_name')
 ```
+
+#### PHP 
 
 ```php
 $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
@@ -1147,10 +1337,14 @@ $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->execute();
 ```
 
+#### Python 
+
 ```python
 del map.maps['annika_info'].registers['first_name']
 map.store()
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1166,6 +1360,8 @@ builder
 UpdateMap cmd = builder.Build();
 client.Execute(cmd);
 ```
+
+#### JavaScript 
 
 ```javascript
 var options = {
@@ -1197,11 +1393,15 @@ client.fetchMap(options, function (err, rslt) {
     });
 ```
 
+#### Erlang 
+
 ```erlang
 Map15 = riakc_map:update({<<"annika_info">>, map},
                          fun(M) -> riakc_map:erase({<<"phone_number">>, register}, M) end,
                          Map14).
 ```
+
+#### Curl 
 
 ```curl
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -1223,8 +1423,12 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   '
 ```
 
+### Storing multiple entries
+
 Now, we'll store whether Annika is subscribed to a variety of plans
 within the company as well:
+
+#### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -1244,6 +1448,8 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, ahmedUpdate)
 client.execute(update);
 ```
 
+#### Ruby 
+
 ```ruby
 map.maps['annika_info'].batch do |m|
   m.flags['enterprise_plan'] = false
@@ -1251,6 +1457,8 @@ map.maps['annika_info'].batch do |m|
   m.flags['free_plan'] = true
 end
 ```
+
+#### PHP 
 
 ```php
 $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
@@ -1266,12 +1474,16 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->execute();
 ```
 
+#### Python 
+
 ```python
 map.maps['annika_info'].flags['enterprise_plan'].disable()
 map.maps['annika_info'].flags['family_plan'].disable()
 map.maps['annika_info'].flags['free_plan'].enable()
 map.store()
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1287,6 +1499,8 @@ builder.WithMapOperation(mapOperation);
 MapUpdate cmd = builder.Build();
 client.Execute(cmd);
 ```
+
+#### JavaScript
 
 ```javascript
 var options = {
@@ -1322,6 +1536,8 @@ client.fetchMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 Map16 = riakc_map:update(
     {<<"annika_info">>, map},
@@ -1345,6 +1561,8 @@ Map18 = riakc_map:update(
         M) end,
     Map17).
 ```
+
+#### Curl 
 
 ```curl
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -1370,7 +1588,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   '
 ```
 
+### Retrieving the value of the flag
+
 The value of a flag can be retrieved at any time:
+
+#### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -1383,11 +1605,15 @@ boolean enterprisePlan = response.getDatatype()
         .view();
 ```
 
+#### Ruby 
+
 ```ruby
 map.maps['annika_info'].flags['enterprise_plan']
 
 # false
 ```
+
+#### PHP 
 
 ```php
 # with param 'returnbody' = 'true', we can fetch the map from our last response
@@ -1396,9 +1622,13 @@ $map->getMap();
 echo $map->getMap('annika_info')->getFlag('enterprise_plan'); // false
 ```
 
+#### Python 
+
 ```python
 map.reload().maps['annika_info'].flags['enterprise_plan'].value
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1406,6 +1636,8 @@ map.reload().maps['annika_info'].flags['enterprise_plan'].value
 ahmedMap = response.Value;
 ahmedMap.Maps["annika_info"].Flags["enterprise_plan"];
 ```
+
+#### JavaScript 
 
 ```javascript
 var options = {
@@ -1424,17 +1656,25 @@ client.fetchMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 riakc_map:dirty_value(Map18).
 ```
+
+#### Curl 
 
 ```curl
 # Specific values for fields inside of maps (or maps within maps, for that
 # matter), cannot be obtained directly through the HTTP interface.
 ```
 
+### Tracking the number of purchases
+
 It's also important to track the number of purchases that Annika has
 made with our company. Annika just made her first widget purchase:
+
+### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -1448,9 +1688,13 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, ahmedUpdate)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 map.maps['annika_info'].counters['widget_purchases'].increment
 ```
+
+### PHP 
 
 ```php
 $updateCounter = (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
@@ -1466,10 +1710,14 @@ $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->execute();
 ```
 
+### Python 
+
 ```python
 map.maps['annika_info'].counters['widget_purchases'].increment()
 map.store()
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1482,6 +1730,8 @@ builder.WithMapOperation(mapOperation);
 UpdateMap cmd = builder.Build();
 client.Execute(cmd);
 ```
+
+### JavaScript
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -1501,6 +1751,8 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 Map19 = riakc_map:update(
     {<<"annika_info">>, map},
@@ -1510,6 +1762,8 @@ Map19 = riakc_map:update(
         M) end,
     Map18).
 ```
+
+### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -1527,7 +1781,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   '
 ```
 
+### Storing interests as a set
+
 Now let's store Annika's interests in a set:
+
+#### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -1542,9 +1800,13 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, ahmedUpdate)
 client.execute(update);
 ```
 
+#### Ruby 
+
 ```ruby
 map.maps['annika_info'].sets['interests'].add('tango dancing')
 ```
+
+#### PHP 
 
 ```php
 $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
@@ -1561,10 +1823,14 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->execute();
 ```
 
+#### Python 
+
 ```python
 map.maps['annika_info'].sets['interests'].add('tango dancing')
 map.store()
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1575,6 +1841,8 @@ mapOperation.Map("annika_info").AddToSet("interests", "tango dancing");
 builder.WithMapOperation(mapOperation);
 client.Execute(builder.Build());
 ```
+
+#### JavaScript 
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -1595,6 +1863,8 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 Map20 = riakc_map:update(
     {<<"annika_info">>, map},
@@ -1604,6 +1874,8 @@ Map20 = riakc_map:update(
         M) end,
     Map19).
 ```
+
+#### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -1623,7 +1895,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   '
 ```
 
+### Removing the interest
+
 We can remove that interest in just the way that we would expect:
+
+#### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -1639,9 +1915,13 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, ahmedUpdate)
 client.execute(update);
 ```
 
+#### Ruby 
+
 ```ruby
 map.maps['annika_info'].sets['interests'].remove('tango dancing')
 ```
+
+#### PHP 
 
 ```php
 $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
@@ -1658,10 +1938,14 @@ $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->execute();
 ```
 
+#### Python 
+
 ```python
 map.maps['annika_info'].sets['interests'].discard('tango dancing')
 map.store()
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1675,6 +1959,8 @@ builder
     .WithContext(response.Context);
 client.Execute(builder.Build());
 ```
+
+#### JavaScript 
 
 ```javascript
 var options = {
@@ -1704,6 +1990,8 @@ client.fetchMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 Map21 = riakc_map:update(
     {<<"annika_info">>, map},
@@ -1713,6 +2001,8 @@ Map21 = riakc_map:update(
         M) end,
     Map20).
 ```
+
+#### Curl 
 
 ```curl
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -1738,8 +2028,12 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   '
 ```
 
+### Storing specific information in a map
+
 If we wanted to add store information about one of Annika's specific
 purchases, we could do so within a map:
+
+#### Java
 
 ```java
 // Using our "ahmedMap" location from above:
@@ -1758,6 +2052,8 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, ahmedUpdate)
 client.execute(update);
 ```
 
+#### Ruby 
+
 ```ruby
 map.maps['annika_info'].maps['purchase'].batch do |m|
   m.flags['first_purchase'] = true
@@ -1765,6 +2061,8 @@ map.maps['annika_info'].maps['purchase'].batch do |m|
   m.sets['items'].add('large widget')
 end
 ```
+
+#### PHP 
 
 ```php
 $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
@@ -1786,6 +2084,8 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
     ->execute();
 ```
 
+#### Python 
+
 ```python
 map.maps['annika_info'].maps['purchase'].flags['first_purchase'].enable()
 map.maps['annika_info'].maps['purchase'].register['amount'].assign(str(1271))
@@ -1793,6 +2093,8 @@ map.maps['annika_info'].maps['purchase'].sets['items'].add('large widget')
 # and so on
 map.store()
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -1806,6 +2108,8 @@ mapOperation.Map("annika_info").Map("purchase")
 builder.WithMapOperation(mapOperation);
 client.Execute(builder.Build());
 ```
+
+#### JavaScript 
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -1829,6 +2133,8 @@ client.updateMap(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 Map22 = riakc_map:update(
     {<<"annika_info">>, map},
@@ -1842,6 +2148,8 @@ Map22 = riakc_map:update(
     Map21
 ).
 ```
+
+#### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \

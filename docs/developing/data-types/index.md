@@ -107,6 +107,8 @@ If no context is given when attempting a remove or remove-like operation, the op
 
 In the example below we'll fetch the context [from a user data map created for Ahmed](./maps.md#create-a-map):
 
+### Java
+
 ```java
 // Using the "ahmedMap" Location from above:
 
@@ -118,6 +120,8 @@ System.out.prinntln(ctx.getValue().toString())
 // An indecipherable string of Unicode characters should then appear
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket('users')
 ahmed_map = Riak::Crdt::Map.new(bucket, 'ahmed_info', 'maps')
@@ -125,6 +129,8 @@ ahmed_map.instance_variable_get(:@context)
 
 # => "\x83l\x00\x00\x00\x01h\x02m\x00\x00\x00\b#\t\xFE\xF9S\x95\xBD3a\x01j"
 ```
+
+### PHP 
 
 ```php
 $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
@@ -136,6 +142,8 @@ $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
 echo $map->getContext(); // g2wAAAACaAJtAAAACLQFHUkv4m2IYQdoAm0AAAAIxVKxCy5pjMdhCWo=
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket_type('maps').bucket('users')
 ahmed_map = Map(bucket, 'ahmed_info')
@@ -143,6 +151,8 @@ ahmed_map.context
 
 # g2wAAAABaAJtAAAACCMJ/vlTlb0zYQFq
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -153,6 +163,8 @@ Console.WriteLine(format: "Context: {0}", args: Convert.ToBase64String(result.Co
 // Output:
 // Context: g2wAAAACaAJtAAAACLQFHUkv4m2IYQdoAm0AAAAIxVKxCy5pjMdhCWo=
 ```
+
+### JavaScript
 
 ```javascript
 var options = {
@@ -172,6 +184,8 @@ client.fetchMap(options, function (err, rslt) {
 // Output:
 // context: 'g2wAAAACaAJtAAAACLQFHUmjDf4EYTBoAm0AAAAIxVKxC6F1L2dhSWo='
 ```
+
+### Erlang 
 
 ```erlang
 %% You cannot fetch a data type's context directly using the Erlang
@@ -201,6 +215,8 @@ convergence logic driving Riak data types. The example below shows you
 how to fetch a data type's context and then pass it back to Riak. More
 specifically, we'll remove the `paid_account` flag from the map:
 
+#### Java
+
 ```java
 // This example uses our "ahmedMap" location from above:
 
@@ -216,6 +232,7 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, removePaidAccountField)
 client.execute(update);
 ```
 
+#### PHP 
 
 ```php
 $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))

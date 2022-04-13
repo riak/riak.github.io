@@ -19,16 +19,22 @@ the same effect as deleting it.
 Let's try to delete the `genius` key from the `oscar_wilde` bucket
 (which bears the type `quotes`):
 
+## Java
+
 ```java
 Location geniusQuote = new Location(new Namespace("quotes", "oscar_wilde"), "genius");
 DeleteValue delete = new DeleteValue.Builder(geniusQuote).build();
 client.execute(delete);
 ```
 
+## Ruby 
+
 ```ruby
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
 bucket.delete('genius')
 ```
+
+## PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\DeleteObject($riak))
@@ -37,10 +43,14 @@ bucket.delete('genius')
   ->execute();
 ```
 
+## Python 
+
 ```python
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
 bucket.delete('genius')
 ```
+
+## C# 
 
 ```c#
 var id = new RiakObjectId("users", "random_user_keys", null);
@@ -51,6 +61,8 @@ string key = rslt.Value.Key;
 id = new RiakObjectId("users", "random_user_keys", key);
 var del_rslt = client.Delete(id);
 ```
+
+## JavaScript 
 
 ```javascript
 // continuing from above example
@@ -65,9 +77,13 @@ client.deleteValue(options, function (err, rslt) {
 });
 ```
 
+## Erlang 
+
 ```erlang
 riakc_pb_socket:delete(Pid, {<<"quotes">>, <<"oscar_wilde">>}, <<"genius">>)
 ```
+
+## Go 
 
 ```go
 // Continuing from above example
@@ -88,6 +104,8 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
+## Curl 
+
 ```curl
 curl -XDELETE http://localhost:8098/types/quotes/buckets/oscar_wilde/keys/genius
 ```
@@ -102,6 +120,7 @@ part of the [fetch operation](../../developing/api/protocol-buffers/fetch-object
 with the official Riak clients for Ruby, Java, and Erlang, as in the
 example below:
 
+### Ruby
 
 ```ruby
 object.delete
@@ -109,10 +128,14 @@ deleted_object = bucket.get('bucket', 'key', deletedvclock: true)
 deleted_object.vclock
 ```
 
+### Python 
+
 ```python
 # It is not currently possible to fetch the causal context for a deleted
 # key in the Python client.
 ```
+
+### Java 
 
 ```java
 Location loc = new Location("<bucket>")
@@ -125,6 +148,8 @@ FetchValue.Response response = client.execute(fetch);
 System.out.println(response.getVclock().asString());
 ```
 
+### Erlang 
+
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
                               {<<"bucket_type">>, <<"bucket">>},
@@ -134,6 +159,8 @@ System.out.println(response.getVclock().asString());
 %% In the Erlang client, the vector clock is accessible using the Obj
 %% object obtained above.
 ```
+
+### PHP 
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))

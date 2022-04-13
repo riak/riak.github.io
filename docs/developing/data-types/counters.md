@@ -59,6 +59,8 @@ location that contains our counter.
 
 For this example we'll use the `counters` bucket type created and activated above and a bucket called `counters`:
 
+### Java
+
 ```java
 // In the Java client, a bucket/bucket type combination is specified
 // using a Namespace object. To specify bucket, bucket type, and key,
@@ -68,17 +70,25 @@ Namespace countersBucket = new Namespace("counters", "counters");
 Location location = new Location(countersBucket, "<insert_key_here>");
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket_type('counters').bucket('counters')
 ```
+
+### PHP 
 
 ```php
 $bucket = new \Basho\Riak\Bucket('counters', 'counters');
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket_type('counters').bucket('counters')
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -96,6 +106,8 @@ FetchCounter cmd = new FetchCounter.Builder()
     .Build();
 ```
 
+### JavaScript
+
 ```javascript
 // The following can be passed as options to FetchCounter
 var options = {
@@ -105,10 +117,14 @@ var options = {
 };
 ```
 
+### Erlang 
+
 ```erlang
 %% Buckets are simply named binaries in the Erlang client. See the
 %% examples below for more information
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/counters/buckets/counters/datatypes/<key>
@@ -122,6 +138,8 @@ curl http://localhost:8098/types/counters/buckets/counters/datatypes/<key>
 To create a counter, you need to specify a bucket/key pair to hold that
 counter. Here is the general syntax for doing so:
 
+### Java
+
 ```java
 // Here, we'll use the Namespace object that we created above and
 // incorporate it into a Location object that includes the key (as yet
@@ -134,6 +152,8 @@ Location counter = new Location(countersBucket, "<key>");
 Location counter = new Location(new Namespace("counters", "counters"), "<key>");
 ```
 
+### Ruby
+
 ```ruby
 counter = Riak::Crdt::Counter.new(bucket, key, bucket_type)
 
@@ -143,10 +163,14 @@ bucket = client.bucket_type(bucket_type).bucket(bucket)
 counter = Riak::Crdt::Counter.new(bucket, key)
 ```
 
+### PHP 
+
 ```php
 # using the $bucket var created earlier
 $location = new \Basho\Riak\Location('key', $bucket);
 ```
+
+### Python 
 
 ```python
 # The client detects the bucket type's data type and automatically
@@ -159,6 +183,8 @@ from riak.datatypes import Counter
 counter = Counter(bucket, key)
 ```
 
+### C#
+
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
@@ -167,6 +193,8 @@ FetchCounter cmd = new FetchCounter(fetchCounterOptions);
 RiakResult rslt = client.Execute(cmd);
 CounterResponse response = cmd.Response;
 ```
+
+### JavaScript 
 
 ```javascript
 // The following can be passed as options to the *Counter methods on the
@@ -178,10 +206,14 @@ var options = {
 };
 ```
 
+### Erlang 
+
 ```erlang
 %% Counters are not encapsulated with the bucket/key in the Erlang
 %% client. See the examples below for more information.
 ```
+
+### Curl 
 
 ```curl
 # This will create a counter with an initial value of 0
@@ -191,16 +223,22 @@ curl -XPOST http://localhost:8098/types/counters/buckets/<bucket>/datatypes/<key
   -d '{"increment": 0}'
 ```
 
+### Using the `counters` bucket type
+
 Let's say that we want to create a counter called `traffic_tickets` in
 our `counters` bucket to keep track of our legal misbehavior. We can
 create this counter and ensure that the `counters` bucket will use our
 `counters` bucket type like this:
+
+#### Java
 
 ```java
 // Using the countersBucket Namespace object from above:
 
 Location trafficTickets = new Location(countersBucket, "traffic_tickets");
 ```
+
+#### Ruby 
 
 ```ruby
 bucket = client.bucket_type('counters').bucket('counters')
@@ -217,15 +255,21 @@ bucket = client.bucket('counters')
 counter = Riak::Crdt::Counter.new(bucket, 'traffic_tickets')
 ```
 
+#### PHP 
+
 ```php
 # using the $bucket var created earlier
 $location = new \Basho\Riak\Location('traffic_tickets', $bucket);
 ```
 
+#### Python 
+
 ```python
 bucket = client.bucket_type('counters').bucket('traffic_tickets')
 counter = bucket.new('traffic_tickets')
 ```
+
+#### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -235,6 +279,8 @@ FetchCounter cmd = new FetchCounter(fetchCounterOptions);
 RiakResult rslt = client.Execute(cmd);
 CounterResult = cmd.Result;
 ```
+
+#### JavaScript
 
 ```javascript
 // Using the options from above:
@@ -246,6 +292,8 @@ var options = {
 };
 ```
 
+#### Erlang 
+
 ```erlang
 Counter = riakc_counter:new().
 
@@ -253,6 +301,8 @@ Counter = riakc_counter:new().
 %% operations as you mutate them. We will associate the data structure
 %% with a bucket type, bucket, and key later on.
 ```
+
+#### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
@@ -266,6 +316,8 @@ Now that our client knows which bucket/key pairing to use for our
 counter, `traffic_tickets` will start out at 0 by default. If we happen
 to get a ticket that afternoon, we can increment the counter:
 
+### Java
+
 ```java
 // Using the "trafficTickets" Location from above:
 
@@ -275,12 +327,16 @@ UpdateCounter update = new UpdateCounter.Builder(trafficTickets, cu)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 counter.increment
 
 # This will increment the counter both on the application side and in
 Riak
 ```
+
+### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
@@ -290,6 +346,8 @@ Riak
     ->execute();
 ```
 
+### Python 
+
 ```python
 counter.increment()
 
@@ -297,6 +355,8 @@ counter.increment()
 # using the store() method.
 counter.store()
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -312,6 +372,8 @@ RiakResult rslt = client.Execute(updateCmd);
 CounterResponse response = updateCmd.Response;
 // response.Value will be 1
 ```
+
+### JavaScript 
 
 ```javascript
 // Using the options from above:
@@ -330,6 +392,8 @@ client.updateCounter(options,
     });
 ```
 
+### Erlang 
+
 ```erlang
 Counter1 = riakc_counter:increment(Counter).
 ```
@@ -347,6 +411,8 @@ by more than 1 (but always by an integer).
 
 Continuing with our `traffic_tickets` example, let's say we receive 5 tickets in a single day:
 
+### Java
+
 ```java
 // Using the "trafficTickets" Location from above:
 CounterUpdate cu = new CounterUpdate(5);
@@ -355,9 +421,13 @@ UpdateCounter update = new UpdateCounter.Builder(trafficTickets, cu)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 counter.increment(5)
 ```
+
+### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
@@ -367,9 +437,13 @@ counter.increment(5)
     ->execute();
 ```
 
+### Python 
+
 ```python
 counter.increment(5)
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -398,6 +472,8 @@ response = updateCmd.Response;
 // response.Value is 5 less than before
 ```
 
+### JavaScript 
+
 ```javascript
 var options = {
     bucketType: 'counters',
@@ -413,9 +489,13 @@ client.updateCounter(options,
     });
 ```
 
+### Erlang 
+
 ```erlang
 Counter2 = riakc_counter:increment(5, Counter1).
 ```
+
+### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
@@ -427,6 +507,8 @@ curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traf
 
 We can retrieve the value of the counter and view how many tickets have accumulated:
 
+### Java
+
 ```java
 // Using the "trafficTickets" Location from above:
 FetchCounter fetch = new FetchCounter.Builder(trafficTickets)
@@ -436,10 +518,14 @@ RiakCounter counter = response.getDatatype();
 Long ticketsCount = counter.view();
 ```
 
+### Ruby 
+
 ```ruby
 counter.value
 # Output will always be an integer
 ```
+
+### PHP 
 
 ```php
 $trafficTickets = (new \Basho\Riak\Command\Builder\FetchCounter($riak))
@@ -450,6 +536,8 @@ $trafficTickets = (new \Basho\Riak\Command\Builder\FetchCounter($riak))
 
 $trafficTickets->getData(); # returns an integer
 ```
+
+### Python 
 
 ```python
 counter.dirty_value
@@ -468,6 +556,8 @@ counter.value
 counter.reload()
 ```
 
+### C# 
+
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
@@ -477,6 +567,8 @@ RiakResult rslt = client.Execute(cmd);
 CounterResponse response = cmd.Response;
 // response.Value has the counter value
 ```
+
+### JavaScript 
 
 ```javascript
 var options = {
@@ -502,6 +594,8 @@ client.fetchCounter(options,
 );
 ```
 
+### Erlang 
+
 ```erlang
 riakc_counter:dirty_value(Counter2).
 
@@ -520,6 +614,8 @@ riakc_counter:value(Counter2).
                                             <<"traffic_tickets">>).
 ```
 
+### Curl 
+
 ```curl
 curl http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets
 
@@ -533,6 +629,8 @@ Counters enable you to decrement values in addition to incrementing them as seen
 
 For example, let's say we hire an expert lawyer who gets one of the traffic tickets stricken from our record:
 
+### Java
+
 ```java
 // Using the "trafficTickets" Location from above:
 CounterUpdate cu = new CounterUpdate(-1);
@@ -541,12 +639,16 @@ UpdateCounter update = new UpdateCounter.Builder(trafficTickets, cu)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 counter.decrement
 
 # Just like incrementing, you can also decrement by more than one, e.g.:
 counter.decrement(3)
 ```
+
+### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
@@ -556,12 +658,16 @@ counter.decrement(3)
     ->execute();
 ```
 
+### Python 
+
 ```python
 counter.decrement()
 
 # Just like incrementing, you can also decrement by more than one, e.g.:
 counter.decrement(3)
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -576,6 +682,8 @@ rslt = client.Execute(updateCmd);
 response = updateCmd.Response;
 // response.Value is three less than before
 ```
+
+### JavaScript 
 
 ```javascript
 var options = {
@@ -594,6 +702,8 @@ var options = {
 };
 ```
 
+### Erlang 
+
 ```erlang
 Counter3 = riakc_counter:decrement(Counter2).
 
@@ -610,6 +720,8 @@ riakc_pb_socket:update_type(Pid, {<<"counters">>,<<"counters">>},
                             <<"traffic_tickets">>,
                             riakc_counter:to_op(Counter4)).
 ```
+
+### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \

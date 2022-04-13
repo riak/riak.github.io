@@ -148,6 +148,8 @@ Here is an example of storing an object (another brief text snippet)
 under the key `viper` in the bucket `dodge`, which bears the type
 `cars`, with `w` set to `3`:
 
+#### Java
+
 ```java
 Location viperKey = new Location(new Namespace("cars", "dodge"), "viper");
 BinaryValue text = BinaryValue.create("vroom");
@@ -160,6 +162,8 @@ StoreValue store = new StoreValue.Builder(myKey, obj)
 client.execute(store);
 ```
 
+#### Ruby 
+
 ```ruby
 bucket = client.bucket_type('cars').bucket('dodge')
 obj = Riak::RObject.new(bucket, 'viper')
@@ -167,6 +171,8 @@ obj.content_type = 'text/plain'
 obj.raw_data = 'vroom'
 obj.store(w: 3)
 ```
+
+#### Python 
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -177,6 +183,8 @@ obj.store(w: 3)
   ->execute();
 ```
 
+#### Python 
+
 ```python
 bucket = client.bucket_type('cars').bucket('dodge')
 obj = RiakObject(client, bucket, 'viper')
@@ -185,6 +193,8 @@ obj.data = 'vroom'
 obj.store(w=3)
 ```
 
+#### C# 
+
 ```c#
 var id = new RiakObjectId("cars", "dodge", "viper");
 var obj = new RiakObject(id, "vroom", "text/plain");
@@ -192,6 +202,8 @@ var options = new RiakPutOptions();
 options.SetW(new Quorum(3));
 var result = client.Put(obj, options);
 ```
+
+#### JavaScript 
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -209,6 +221,8 @@ client.storeValue(options, function (err, rslt) {
 });
 ```
 
+#### Erlang 
+
 ```erlang
 Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
                        <<"viper">>,
@@ -217,6 +231,8 @@ Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
                        [{w, 3}]).
 riakc_pb_socket:put(Pid, Object).
 ```
+
+#### Go 
 
 ```go
 obj := &riak.Object{
@@ -245,6 +261,8 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
+#### Curl
+
 ```curl
 curl -XPUT \
   -H "Content-Type: text/plain" \
@@ -269,6 +287,8 @@ Normal HTTP status codes (responses will vary for client libraries):
 
 For example, using the same object from above:
 
+##### Java
+
 ```java
 Location viperKey = new Location(new Namespace("cars", "dodge"), "viper");
 BinaryValue text = BinaryValue.create("vroom");
@@ -282,6 +302,8 @@ StoreValue store = new StoreValue.Builder(myKey, obj)
 client.execute(store);
 ```
 
+##### Ruby 
+
 ```ruby
 bucket = client.bucket_type('cars').bucket('dodge')
 obj = Riak::RObject.new(bucket, 'viper')
@@ -289,6 +311,8 @@ obj.content_type = 'text/plain'
 obj.raw_data = 'vroom'
 obj.store(w: 3, returnbody: true)
 ```
+
+##### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -300,6 +324,8 @@ obj.store(w: 3, returnbody: true)
   ->execute();
 ```
 
+##### Python 
+
 ```python
 bucket = client.bucket_type('cars').bucket('dodge')
 obj = RiakObject(client, bucket, 'viper')
@@ -307,6 +333,8 @@ obj.content_type = 'text/plain'
 obj.data = 'vroom'
 obj.store(w=3, return_body=True)
 ```
+
+##### C# 
 
 ```c#
 var id = new RiakObjectId("cars", "dodge", "viper");
@@ -316,6 +344,8 @@ options.SetW(new Quorum(3));
 options.SetReturnBody(true);
 var result = client.Put(obj, options);
 ```
+
+##### JavaScript 
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -336,6 +366,8 @@ client.storeValue(options, function (err, rslt) {
 });
 ```
 
+##### Erlang 
+
 ```erlang
 Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
                        <<"viper">>,
@@ -343,6 +375,8 @@ Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
                        <<"text/plain">>).
 riakc_pb_socket:put(Pid, Object, [return_body]).
 ```
+
+##### Go 
 
 ```go
 obj := &riak.Object{
@@ -371,6 +405,8 @@ if err := cluster.Execute(cmd); err != nil {
     return
 }
 ```
+
+##### Curl 
 
 ```curl
 curl -XPUT \
@@ -404,6 +440,8 @@ Normal status codes:
 This command will store an object in the bucket `random_user_keys`,
 which bears the bucket type `users`.
 
+#### Java
+
 ```java
 Namespace locationWithoutKey = new Namespace("users", "random_user_keys");
 BinaryValue text = BinaryValue.create("{'user':'data'}");
@@ -418,6 +456,8 @@ String key = client.execute(store).getLocation().getKeyAsString();
 "ZPFF18PUqGW9efVou7EHhfE6h8a"
 ```
 
+#### Ruby 
+
 ```ruby
 bucket = client.bucket_type('users').bucket('random_user_keys')
 obj = Riak::RObject.new(bucket)
@@ -431,6 +471,8 @@ obj.key
 "GB8fW6DDZtXogK19OLmaJf247DN"
 ```
 
+#### PHP 
+
 ```php
 $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
   ->buildBucket('random_user_keys', 'users')
@@ -440,6 +482,8 @@ $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
 
 echo $response->getLocation()->getKey(); // GB8fW6DDZtXogK19OLmaJf247DN
 ```
+
+#### Python 
 
 ```python
 bucket = client.bucket_type('users').bucket('random_user_keys')
@@ -454,6 +498,8 @@ obj.key
 'ZPFF18PUqGW9efVou7EHhfE6h8a'
 ```
 
+#### C# 
+
 ```c#
 var id = new RiakObjectId("users", "random_user_keys", null);
 var obj = new RiakObject(id, @"{'user':'data'}",
@@ -464,6 +510,8 @@ Debug.WriteLine(format: "Generated key: {0}", args: rslt.Value.Key);
 // The .NET client will output a random key similar to this:
 // Generated key: DWDsnpYSqOU363c0Bqe8hCwAM7Q
 ```
+
+#### JavaScript 
 
 ```javascript
 var user = {
@@ -486,6 +534,8 @@ client.storeValue(options, function (err, rslt) {
 // info: Generated key: VBAMoX0OOucymVCxeQEYzLzzAh2
 ```
 
+#### Erlang 
+
 ```erlang
 Object = riakc_obj:new({<<"users">>, <<"random_user_keys">>}, undefined, <<"{'user':'data'}">>, <<"application/json">>).
 riakc_pb_socket:put(Pid, Object).
@@ -497,6 +547,8 @@ riakc_pb_socket:put(Pid, Object).
                <<"EZ7pp4bpdfpZw0fPUdTUafveQjO">>,undefined,[],undefined,
                undefined}}
 ```
+
+#### Go 
 
 ```go
 obj := &riak.Object{
@@ -529,6 +581,8 @@ fmt.Printf("Generated key: %v\n", rsp.GeneratedKey)
 // Output:
 // Generated key: QSHkZjFdWwfrxtKl3wtUhL2gz7N
 ```
+
+#### Curl 
 
 ```curl
 curl -i -XPOST \

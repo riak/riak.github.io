@@ -78,6 +78,8 @@ GitHub](https://github.com/basho/basho_docs/raw/master/extras/data/blog_post_sch
 Let's store that schema in a file called `blog_post_schema.xml` and
 upload that schema to Riak:
 
+## Java
+
 ```java
 import org.apache.commons.io.FileUtils;
 
@@ -88,10 +90,14 @@ StoreSchema storeSchemaOp = new StoreSchema.Builder(schema).build();
 client.execute(storeSchemaOp);
 ```
 
+## Ruby 
+
 ```ruby
 schema_data = File.read('blog_post_schema.xml')
 client.create_search_schema('blog_post_schema', schema_data)
 ```
+
+## PHP 
 
 ```php
 $schema_string = file_get_contents('blog_post_schema.xml');
@@ -102,6 +108,8 @@ $schema_string = file_get_contents('blog_post_schema.xml');
   ->execute();
 ```
 
+## Python 
+
 ```python
 xml_file = open('blog_post_schema.xml', 'r')
 schema_data = xml_file.read()
@@ -109,11 +117,15 @@ client.create_search_schema('blog_post_schema', schema_data)
 xml_file.close()
 ```
 
+## C# 
+
 ```c#
 var schemaXml = File.ReadAllText("blog_post_schema.xml");
 var schema = new SearchSchema("blog_post_schema", schemaXml);
 var rslt = client.PutSearchSchema(schema);
 ```
+
+## JavaScript 
 
 ```javascript
 /*
@@ -132,6 +144,8 @@ client.storeSchema(options, function (err, rslt) {
 });
 ```
 
+## Erlang 
+
 ```erlang
 {ok, SchemaData} = file:read_file("blog_post_schema.xml"),
 riakc_pb_socket:create_search_schema(Pid, <<"blog_post_schema">>, SchemaData).
@@ -143,8 +157,12 @@ curl -XPUT $RIAK_HOST/search/schema/blog_post_schema \
      --data-binary @blog_post_schema.xml
 ```
 
+## Creating a schema
+
 With our schema uploaded, we can create an index called `blog_posts` and
 associate that index with our schema:
+
+### Java
 
 ```java
 YokozunaIndex blogPostIndex = new YokozunaIndex("blog_posts", "blog_post_schema");
@@ -152,9 +170,13 @@ StoreIndex storeIndex = new StoreIndex.Builder(blogPostIndex).build();
 client.execute(storeIndex);
 ```
 
+### Ruby 
+
 ```ruby
 client.create_search_index('blog_posts', 'blog_post_schema')
 ```
+
+### PHP 
 
 ```php
 (new Command\Builder\Search\StoreIndex($riak))
@@ -164,14 +186,20 @@ client.create_search_index('blog_posts', 'blog_post_schema')
   ->execute();
 ```
 
+### Python 
+
 ```python
 client.create_search_index('blog_posts', 'blog_post_schema')
 ```
+
+### C# 
 
 ```c#
 var idx = new SearchIndex("blog_posts", "blog_post_schema");
 var rslt = client.PutSearchIndex(idx);
 ```
+
+### JavaScript 
 
 ```javascript
 var options = {
@@ -185,9 +213,13 @@ client.storeIndex(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 riakc_pb_socket:create_search_index(Pid, <<"blog_posts">>, <<"blog_post_schema">>, []).
 ```
+
+### Curl 
 
 ```curl
 curl -XPUT $RIAK_HOST/search/index/blog_posts \
@@ -234,6 +266,8 @@ one of the Riak Data Types, we can create an interface in our
 application to serve as that translation layer. Using the method
 described in [Data Modeling with Riak Data Types](../../learn/use-cases.md), we can construct a
 class that looks like this:
+
+### Java 
 
 ```java
 import java.util.Set;
@@ -297,6 +331,8 @@ public class BlogPost {
 }
 ```
 
+### Ruby 
+
 ```ruby
 class BlogPost
   def initialize(bucket_name, title, author, content, keywords, date_posted, published)
@@ -316,6 +352,8 @@ class BlogPost
   end
 end
 ```
+
+### PHP 
 
 ```php
 class BlogPost {
@@ -365,6 +403,8 @@ class BlogPost {
 }
 ```
 
+### Python 
+
 ```python
 from riak.datatypes import Map
 
@@ -383,12 +423,16 @@ class BlogPost:
         self.map.store()
 ```
 
+### C# 
+
 ```c#
 /*
  * Please see the code in the RiakClientExamples project:
  * https://github.com/basho/riak-dotnet-client/tree/develop/src/RiakClientExamples/Dev/Search
  */
 ```
+
+### JavaScript 
 
 ```javascript
 /*
@@ -397,7 +441,11 @@ class BlogPost:
  */
 ```
 
+## Viewing the blog posts
+
 Now, we can store some blog posts. We'll start with just one:
+
+### Java
 
 ```java
 Set<String> keywords = new HashSet<String>();
@@ -419,6 +467,8 @@ try {
 }
 ```
 
+### Ruby 
+
 ```ruby
 keywords = ['adorbs', 'cheshire']
 date = Time.now.strftime('%Y-%m-%d %H:%M')
@@ -430,6 +480,8 @@ blog_post1 = BlogPost.new('cat_pics_quarterly',
                           date,
                           true)
 ```
+
+### PHP 
 
 ```php
 $keywords = ['adorbs', 'cheshire'];
@@ -447,6 +499,8 @@ $post1 = new BlogPost(
 );
 ```
 
+### Python 
+
 ```python
 import datetime
 
@@ -460,6 +514,8 @@ blog_post1 = BlogPost('cat_pics_quarterly',
                       date,
                       true)
 ```
+
+### C# 
 
 ```c#
 var keywords = new HashSet<string> { "adorbs", "cheshire" };
@@ -475,6 +531,8 @@ var post = new BlogPost(
 var repo = new BlogPostRepository(client, "cat_pics_quarterly");
 string id = repo.Save(post);
 ```
+
+### JavaScript 
 
 ```javascript
 var post = new BlogPost(
@@ -500,6 +558,8 @@ start querying for whatever we'd like. Let's say that we want to find
 all blog posts with the keyword `funny` (after all, some cat pics are
 quite serious, and we may not want those).
 
+### Java
+
 ```java
 String index = "blog_posts";
 String query = "keywords_set:funny";
@@ -511,9 +571,13 @@ cluster.execute(searchOp);
 List<Map<String, List<String>>> results = searchOp.get().getAllResults();
 ```
 
+### Ruby 
+
 ```ruby
 results = client.search('blog_posts', 'keywords_set:funny')
 ```
+
+### PHP 
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -523,14 +587,20 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
   ->execute();
 ```
 
+### Python 
+
 ```python
 results = client.fulltext_search('blog_posts', 'keywords_set:funny')
 ```
+
+### C# 
 
 ```c#
 var searchRequest = new RiakSearchRequest("blog_posts", "keywords_set:funny");
 var rslt = client.Search(searchRequest);
 ```
+
+### JavaScript 
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -542,11 +612,17 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
+### Curl 
+
 ```curl
 curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=keywords_set:funny"
 ```
 
+## Filtering posts
+
 Or we can find posts that contain the word `furry`:
+
+### Java
 
 ```java
 String index = "blog_posts";
@@ -558,6 +634,8 @@ SearchOperation searchOp = new SearchOperation
 cluster.execute(searchOp);
 List<Map<String, List<String>>> results = searchOp.get().getAllResults();
 ```
+
+### Ruby 
 
 ```ruby
 results = client.search('blog_posts', 'content_register:furry')
@@ -571,14 +649,20 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
   ->execute();
 ```
 
+### Python 
+
 ```python
 results = client.fulltext_search('blog_posts', 'content_register:furry')
 ```
+
+### C# 
 
 ```c#
 var searchRequest = new RiakSearchRequest("blog_posts", "content_register:furry");
 var rslt = client.Search(searchRequest);
 ```
+
+### JavaScript 
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -589,6 +673,8 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 
 client.execute(searchCmd);
 ```
+
+### Curl 
 
 ```curl
 curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=content_register:furry"

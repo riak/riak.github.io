@@ -186,26 +186,38 @@ with the object.
 If you attempt a write to a non-empty key without including causal
 context, you will receive the following error:
 
+### Ruby
+
 ```ruby
 Riak::Conflict: The object is in conflict (has siblings) and cannot be treated singly or saved:
 ```
 
+### Java 
+
 ```java
 java.lang.IllegalArgumentException: VClock cannot be null.
 ```
+
+### PHP 
 
 ```php
 $response->isSuccess();  // false
 $response->getStatusCode(); // 412
 ```
 
+### Python 
+
 ```python
 riak.RiakError: 'failed'
 ```
 
+### Erlang 
+
 ```erlang
 {error,<<"failed">>}
 ```
+
+### Curl 
 
 ```curl
 <html><head><title>412 Precondition Failed</title></head><body><h1>Precondition Failed</h1>Precondition Failed<p><hr><address>mochiweb+webmachine web server</address></body></html>

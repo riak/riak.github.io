@@ -22,6 +22,8 @@ GET /types/<type>/buckets/<bucket>/keys/<key>
 Here is an example of a read performed on the key `rufus` in the bucket
 `dogs`, which bears the bucket type `animals`. Please note that for this example to work, you must have first created the bucket-type `animals` as per the instructions on the [bucket type](../../using/cluster-operations/bucket-types.md) page.
 
+## Java
+
 ```java
 // In the Java client, it is best to specify a bucket type/bucket/key
 // Location object that can be used as a reference for further
@@ -29,10 +31,14 @@ Here is an example of a read performed on the key `rufus` in the bucket
 Location myKey = new Location(new Namespace("animals", "dogs"), "rufus");
 ```
 
+## Ruby 
+
 ```ruby
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = bucket.get('rufus')
 ```
+
+## PHP 
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
@@ -41,10 +47,14 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
   ->execute();
 ```
 
+## Python 
+
 ```python
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = bucket.get('rufus')
 ```
+
+## C# 
 
 ```c#
 // Using the Riak .NET Client it is best to specify a bucket type/bucket/key
@@ -53,17 +63,23 @@ obj = bucket.get('rufus')
 var id = new RiakObjectId("animals", "dogs", "rufus");
 ```
 
+## JavaScript 
+
 ```javascript
 client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, function (err, rslt) {
     assert(rslt.isNotFound);
 });
 ```
 
+## Erlang 
+
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
                             {<<"animals">>, <<"dogs">>},
                             <<"rufus">>).
 ```
+
+## Go 
 
 ```go
 cmd, err = riak.NewFetchValueCommandBuilder().
@@ -75,6 +91,8 @@ if err != nil {
     // error occurred
 }
 ```
+
+## Curl
 
 ```curl
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
@@ -95,6 +113,8 @@ response).
 
 Here is an example of attempting a read with `r` set to `3`:
 
+### Java
+
 ```java
 // Using the "myKey" location specified above:
 FetchValue fetch = new FetchValue.Builder(myKey)
@@ -105,11 +125,15 @@ RiakObject obj = response.getValue(RiakObject.class);
 System.out.println(obj.getValue());
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = bucket.get('rufus', r: 3)
 p obj.data
 ```
+
+### PHP 
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
@@ -120,11 +144,15 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
 var_dump($response->getObject()->getData());
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = bucket.get('rufus', r=3)
 print obj.data
 ```
+
+### C# 
 
 ```c#
 var id = new RiakObjectId("animals", "dogs", "rufus");
@@ -133,6 +161,8 @@ opts.SetR(3);
 var rslt = client.Get(id, opts);
 Debug.WriteLine(Encoding.UTF8.GetString(rslt.Value.Value));
 ```
+
+### JavaScript 
 
 ```javascript
 var fetchOptions = {
@@ -146,12 +176,16 @@ client.fetchValue(fetchOptions, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
                                 {<<"animals">>, <<"dogs">>},
                                 <<"rufus">>,
                                 [{r, 3}]).
 ```
+
+### Go 
 
 ```go
 cmd, err := riak.NewFetchValueCommandBuilder().
@@ -174,6 +208,8 @@ if err := cluster.Execute(cmd); err != nil {
 fvc := cmd.(*riak.FetchValueCommand)
 rsp := svc.Response
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus?r=3
@@ -199,41 +235,59 @@ great deal, so make sure to check the documentation for your specific client.
 
 If there's no object stored in the location where you attempt a read, you'll get the following response:
 
+### Java 
+
 ```java
 java.lang.NullPointerException
 ```
 
+### Ruby 
+
 ```ruby
 Riak::ProtobuffsFailedRequest: Expected success from Riak but received not_found. The requested object was not found.
 ```
+
+### PHP 
 
 ```php
 $response->getStatusCode(); // 404
 $response->isSuccess(); // false
 ```
 
+### Python 
+
 ```python
 riak.RiakError: 'no_type'
 ```
+
+### C# 
 
 ```c#
 result.IsSuccess == false
 result.ResultCode == ResultCode.NotFound
 ```
 
+### JavaScript 
+
 ```javascript
 rslt.isNotFound === true;
 ```
 
+### Erlang 
+
 ```erlang
 {error,notfound}
 ```
+
+### Go 
 
 ```go
 fvc := cmd.(*riak.FetchValueCommand)
 rsp := fvc.Response
 rsp.IsNotFound // Will be true
 ```
+
+### Curl 
 
 ```curl
 not found

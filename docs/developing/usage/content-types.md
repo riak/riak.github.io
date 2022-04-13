@@ -11,6 +11,8 @@ and beyond. It's important to note that _all_ objects stored in
 Riak need a specified content type. If you don't specify a
 content type, the reaction will vary based on your client library:
 
+## Java
+
 ```java
 // In the Java client, the response when storing an object without
 // specifying a content type will depend on what is being stored. If you
@@ -20,11 +22,15 @@ content type, the reaction will vary based on your client library:
 // stored as JSON by default, and so on.
 ```
 
+## Ruby 
+
 ```ruby
 # In the Ruby client, you must always specify a content type. If you
 # you don't, you'll see the following error:
 ArgumentError: content_type is not defined!
 ```
+
+## PHP 
 
 ```php
 # PHP will default to cURLs default content-type for POST & PUT requests:
@@ -34,11 +40,15 @@ ArgumentError: content_type is not defined!
 # it will store the item with application/json as the content-type
 ```
 
+## Python 
+
 ```python
 # In the Python client, the default content type is "application/json".
 # Because of this, you should always make sure to specify the content
 # type when storing other types of data.
 ```
+
+## C# 
 
 ```c#
 // Using the Riak .NET Client, the response when storing an object without
@@ -48,11 +58,15 @@ ArgumentError: content_type is not defined!
 // POCOs are stored as JSON by default, and so on.
 ```
 
+## JavaScript 
+
 ```javascript
 // In the Node.js client, the default content type is "application/json".
 // Because of this, you should always make sure to specify the content
 // type when storing other types of data.
 ```
+
+## Erlang 
 
 ```erlang
 %% In the Erlang client, the response when storing an object without
@@ -62,6 +76,8 @@ ArgumentError: content_type is not defined!
 %% string, the client will specify "application/x-erlang-binary"; and so
 %% on.
 ```
+
+## Go 
 
 ```go
 // In the Go client, you must always specify a content type.
@@ -76,6 +92,8 @@ more information.
 For all writes to Riak, you will need to specify a content type, for
 example `text/plain` or `application/json`.
 
+### Java
+
 ```java
 Location wildeGeniusQuote = new Location(new Namespace("quotes", "oscar_wilde"), "genius");
 BinaryValue text = BinaryValue.create("I have nothing to declare but my genius");
@@ -87,6 +105,8 @@ StoreValue store = new StoreValue.Builder(myKey, obj)
 client.execute(store);
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
 obj = Riak::RObject.new(bucket, 'genius')
@@ -94,6 +114,8 @@ obj.content_type = 'text/plain'
 obj.raw_data = 'I have nothing to declare but my genius'
 obj.store
 ```
+
+### PHP 
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -103,6 +125,8 @@ $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
   ->execute();
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
 obj = RiakObject(client, bucket, 'genius')
@@ -111,12 +135,16 @@ obj.data = 'I have nothing to declare but my genius'
 obj.store()
 ```
 
+### C# 
+
 ```c#
 var id = new RiakObjectId("quotes", "oscar_wilde", "genius");
 var obj = new RiakObject(id, "I have nothing to declare but my genius",
     RiakConstants.ContentTypes.TextPlain);
 var rslt = client.Put(obj);
 ```
+
+### JavaScript 
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -132,6 +160,8 @@ client.storeValue({
 });
 ```
 
+### Erlang 
+
 ```erlang
 Object = riakc_obj:new({<<"quotes">>, <<"oscar_wilde">>},
                        <<"genius">>,
@@ -139,6 +169,8 @@ Object = riakc_obj:new({<<"quotes">>, <<"oscar_wilde">>},
                        <<"text/plain">>).
 riakc_pb_socket:put(Pid, Object).
 ```
+
+### Go 
 
 ```go
 obj := &riak.Object{
@@ -168,6 +200,8 @@ if err := cluster.Execute(cmd); err != nil {
 svc := cmd.(*riak.StoreValueCommand)
 rsp := svc.Response
 ```
+
+### Curl 
 
 ```curl
 curl -XPUT \

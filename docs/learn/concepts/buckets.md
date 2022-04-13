@@ -124,6 +124,8 @@ API][dev api http]. The following would fetch the properties for the bucket
 `animals` if that bucket had a default configuration, i.e. the `default`
 bucket type:
 
+### Java
+
 ```java
 Namespace animalsBucket = new Namespace("animals");
 FetchBucketProperties fetchProps =
@@ -132,10 +134,14 @@ FetchBucketProperties.Response response = client.execute(fetchProps);
 BucketProperties props = response.getProperties();
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket('animals')
 bucket.properties
 ```
+
+### PHP 
 
 ```php
 $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak))
@@ -146,14 +152,20 @@ $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak
   ->getProperties();
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket('animals')
 bucket.get_properties()
 ```
 
+### Erlang 
+
 ```erlang
 {ok, Props} = riakc_pb_socket:get_bucket(Pid, <<"animals">>).
 ```
+
+### Curl 
 
 ```curl
 # Assuming that Riak is running on "localhost" and port 8087:
@@ -161,9 +173,13 @@ bucket.get_properties()
 curl http://localhost:8087/types/default/buckets/animals/props
 ```
 
+### Handling Different Bucket Types
+
 If the bucket `animals` had a different type that you had created and
 activated, e.g. `my_custom_type`, you could fetch the bucket properties
 like so:
+
+#### Java
 
 ```java
 Namespace customTypedBucket = new Namespace("my_custom_type", "animals");
@@ -173,10 +189,14 @@ FetchBucketProperties.Response response = client.execute(fetchProps);
 BucketProperties props = response.getProperties();
 ```
 
+#### Ruby
+
 ```ruby
 bucket = client.bucket_type('my_custom_type').bucket('animals')
 bucket.properties
 ```
+
+#### PHP
 
 ```php
 $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak))
@@ -187,14 +207,20 @@ $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak
   ->getProperties();
 ```
 
+#### Python
+
 ```python
 bucket = client.bucket_type('my_custom_type').bucket('animals')
 bucket.get_properties()
 ```
 
+#### Erlang
+
 ```erlang
 {ok, Props} = riakc_pb_socket:get_bucket(Pid, {<<"my_custom_type">>, <<"animals">>}).
 ```
+
+#### Curl
 
 ```curl
 curl http://localhost:8087/types/my_custom_type/buckets/animals/props

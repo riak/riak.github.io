@@ -113,10 +113,14 @@ Reads via the cache proxy service are analogous to a Redis `GET`, with the added
 
 To request a value at a bucket/key in Riak KV, issue the following:
 
+### Erlang
+
 ```erlang
 {ok, RedisClientPid} = eredis:start_link("127.0.0.1", 22122).
 {ok, Value} = eredis:q(RedisClientPid, ["GET", "rra:test:food"]).
 ```
+
+### Javascript 
 
 ```javascript
 var redis = require("redis"),
@@ -124,6 +128,8 @@ var redis = require("redis"),
 
 client.get("rra:test:food", redis.print);
 ```
+
+### Python 
 
 ```python
 import redis
@@ -133,6 +139,8 @@ r = redis.StrictRedis(host="127.0.0.1", port=22122)
 r.get("rra:test:food")
 ```
 
+### Ruby 
+
 ```ruby
 require "redis"
 
@@ -140,6 +148,8 @@ redis = Redis.new(host: "127.0.0.1", port: 22122)
 
 redis.get("rra:test:food")
 ```
+
+### Scala 
 
 ```scala
 import com.lambdaworks.redis._
@@ -185,10 +195,14 @@ operations.
 
 To set a value at a bucket/key in Riak KV, issue the following:
 
+### Erlang 
+
 ```erlang
 {ok, RedisClientPid} = eredis:start_link("127.0.0.1", 22122).
 {ok, KeysAffected} = eredis:q(RedisClientPid, ["SET", "rra:test:food", "apple"]).
 ```
+
+### JavaScript
 
 ```javascript
 var redis = require("redis"),
@@ -196,6 +210,8 @@ var redis = require("redis"),
 
 client.set("rra:test:food", "apple", redis.print);
 ```
+
+### Python 
 
 ```python
 import redis
@@ -205,6 +221,8 @@ r = redis.StrictRedis(host="127.0.0.1", port=22122)
 r.set("rra:test:food", "apple")
 ```
 
+### Ruby 
+
 ```ruby
 require "redis"
 
@@ -212,6 +230,8 @@ redis = Redis.new(host: "127.0.0.1", port: 22122)
 
 redis.set("rra:test:food', 'apple")
 ```
+
+### Scala 
 
 ```scala
 import com.lambdaworks.redis._
@@ -267,10 +287,14 @@ cache.
 
 To delete a value at a bucket/key in Riak KV, issue the following:
 
+### Erlang 
+
 ```erlang
 {ok, RedisClientPid} = eredis:start_link("127.0.0.1", 22122).
 {ok, KeysAffected} = eredis:q(RedisClientPid, ["DEL", "rra:test:food"]).
 ```
+
+### JavaScript 
 
 ```javascript
 var redis = require("redis"),
@@ -278,6 +302,8 @@ var redis = require("redis"),
 
 client.del("rra:test:food", redis.print);
 ```
+
+### Python 
 
 ```python
 import redis
@@ -287,6 +313,8 @@ r = redis.StrictRedis(host="127.0.0.1", port=22122)
 r.del("rra:test:food")
 ```
 
+### Ruby 
+
 ```ruby
 require "redis"
 
@@ -294,6 +322,8 @@ redis = Redis.new(host: "127.0.0.1", port: 22122)
 
 redis.del("rra:test:food")
 ```
+
+### Scala 
 
 ```scala
 import com.lambdaworks.redis._

@@ -147,12 +147,16 @@ the bucket `user_info_sets` (we'll keep it simple) and in the key
 
 We can interact with that set on the basis of its location:
 
+### Java
+
 ```java
 Location userIdSet = new Location(new Namespace("sets", "user_info_sets"), "usernames");
 
 // With this Location, we can construct fetch operations like this:
 FetchSet fetchUserIdSet = new FetchSet.Builder(userIdSet).build();
 ```
+
+### Ruby 
 
 ```ruby
 require 'riak'
@@ -165,11 +169,15 @@ set_bucket = client.bucket('user_info_sets')
 $user_id_set = Riak::Crdt::Set.new(set_bucket, 'usernames', 'sets')
 ```
 
+### PHP 
+
 ```php
 $command = (new \Basho\Riak\Command\Builder\FetchSet($riak))
     ->buildLocation('usernames', 'user_info_sets', 'sets')
     ->build();
 ```
+
+### Python 
 
 ```python
 from riak.datatypes import Set
@@ -178,12 +186,12 @@ bucket = client.bucket_type('sets').bucket('user_info_sets')
 user_id_set = Set(bucket, 'usernames')
 ```
 
-> **Getting started with Riak clients**
->
-> If you are connecting to Riak using one of Basho's official [client libraries](../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../developing/getting-started/index.md).
+### Getting started with Riak clients
+If you are connecting to Riak using one of Basho's official [client libraries](../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../developing/getting-started/index.md).
 
-Then, we can create a function that stores a user record's key in that
-set every time a record is created:
+Then, we can create a function that stores a user record's key in that set every time a record is created:
+
+#### Java
 
 ```java
 // A User class for constructing user records
@@ -220,6 +228,8 @@ public void storeUserRecord(User user) throws Exception {
 }
 ```
 
+#### Ruby 
+
 ```ruby
 class User
   attr_accessor :username, :info
@@ -238,6 +248,8 @@ def store_record(user)
   user_id_set.add(user.username)
 end
 ```
+
+#### PHP 
 
 ```php
 class User
@@ -268,6 +280,8 @@ function store_user(User $user)
 }
 ```
 
+#### Python 
+
 ```python
 class User:
     def __init__(self, username, info):
@@ -289,10 +303,14 @@ def store_record(user):
     user_id_set.store()
 ```
 
+#### Iteration
+
 Now, let's say that we want to be able to pull up all user records in
 the bucket at once. We could do so by iterating through the usernames
 stored in our set and then fetching the object corresponding to each
 username:
+
+##### Java 
 
 ```java
 public Set<User> fetchAllUserRecords() {
@@ -320,6 +338,8 @@ public Set<User> fetchAllUserRecords() {
 }
 ```
 
+##### Ruby
+
 ```ruby
 # Using the "user_id_set" set from above
 
@@ -333,6 +353,8 @@ def fetch_all_user_records
   user_records
 end
 ```
+
+##### PHP 
 
 ```php
 function fetch_users()
@@ -358,6 +380,8 @@ function fetch_users()
 }
 ```
 
+##### Python 
+
 ```python
 # We'll create a generator object that will yield a list of Riak objects
 def fetch_all_user_records():
@@ -381,6 +405,8 @@ object with an inappropriate key is stored in that bucket, it won't even
 be seen by your application because it will only ever query keys that
 begin with `user_`:
 
+### Java
+
 ```java
 // Assuming that we've created a class User:
 
@@ -395,6 +421,8 @@ public User getUserByUsername(String username) {
 }
 ```
 
+### Ruby 
+
 ```ruby
 def get_user_by_username(username)
   bucket = client.bucket('users')
@@ -402,6 +430,8 @@ def get_user_by_username(username)
   return obj.raw_data
 end
 ```
+
+### PHP 
 
 ```php
 function fetchUser($user_name)
@@ -414,6 +444,8 @@ function fetchUser($user_name)
     return $response->getObject()->getData();
 }
 ```
+
+### Python 
 
 ```python
 def get_user_by_username(username):

@@ -256,16 +256,22 @@ create and activate a new bucket type.
 In versions of Riak prior to 2.0, all queries are made to a bucket/key
 pair, as in the following example read request:
 
+### Java
+
 ```java
 Location myKey = new Location(new Namespace("my_bucket"), "my_key");
 FetchValue fetch = new FetchValue.Builder(myKey).build();
 client.execute(fetch);
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket('my_bucket')
 bucket.get('my_key')
 ```
+
+### PHP 
 
 ```php
 $location = new Location('my_key', new Bucket('my_bucket'));
@@ -275,26 +281,36 @@ $location = new Location('my_key', new Bucket('my_bucket'));
   ->execute();
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket('my_bucket')
 bucket.get('my_key')
 ```
+
+### C# 
 
 ```c#
 var id = new RiakObjectId("my_bucket", "my_key");
 client.Get(id);
 ```
 
+### JavaScript 
+
 ```javascript
 client.fetchValue({ bucket: 'my_bucket', key: 'my_key' }, function (err, rslt) {
 });
 ```
+
+### Erlang 
 
 ```erlang
 {ok, Object} = riakc_pb_socket:get(Pid,
                                    <<"my_bucket">>,
                                    <<"my_key">>).
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/buckets/my_bucket/keys/my_key
@@ -307,6 +323,8 @@ accordance with a different type. Thus, the following two requests will
 be made to _completely different objects_, even though the bucket and key
 names are the same:
 
+#### Java
+
 ```java
 Location key1 =
   new Location(new Namespace("type1", "my_bucket"), "my_key");
@@ -318,12 +336,16 @@ client.execute(fetch1);
 client.execute(fetch2);
 ```
 
+#### Ruby 
+
 ```ruby
 bucket1 = client.bucket_type('type1').bucket('my_bucket')
 bucket2 = client.bucket_type('type2').bucket('my_bucket')
 bucket1.get('my_key')
 bucket2.get('my_key')
 ```
+
+#### PHP 
 
 ```php
 $location1 = new \Basho\Riak\Location('my_key', new Bucket('my_bucket', 'type1'));
@@ -337,6 +359,8 @@ $builder->atLocation($location2)
   ->execute();
 ```
 
+#### Python 
+
 ```python
 bucket1 = client.bucket_type('type1').bucket('my_bucket')
 bucket2 = client.bucket_type('type2').bucket('my_bucket')
@@ -344,12 +368,16 @@ bucket1.get('my_key')
 bucket2.get('my_key')
 ```
 
+#### C# 
+
 ```c#
 var id1 = new RiakObjectId("type1", "my_bucket", "my_key");
 var id2 = new RiakObjectId("type2", "my_bucket", "my_key");
 var rslt1 = client.Get(id1);
 var rslt2 = client.Get(id2);
 ```
+
+#### JavaScript
 
 ```javascript
 client.fetchValue({
@@ -363,6 +391,8 @@ client.fetchValue({
 });
 ```
 
+#### Erlang 
+
 ```erlang
 {ok, Obj1} = riakc_pb_socket:get(Pid,
                                  {<<"type1">>, <<"my_bucket">>},
@@ -371,6 +401,8 @@ client.fetchValue({
                                  {<<"type2">>, <<"my_bucket">>},
                                  <<"my_key">>).
 ```
+
+#### Curl 
 
 ```curl
 curl http://localhost:8098/types/type1/buckets/my_bucket/keys/my_key
@@ -383,9 +415,13 @@ type, bucket, and key rather than to a bucket/key pair, as in previous
 versions.
 :::note
 
+### Identical Queries
+
 If requests are made to a bucket/key pair without a specified bucket
 type, `default` will be used in place of a bucket type. The following
 queries are thus identical:
+
+#### Java
 
 ```java
 Location withDefaultBucketType =
@@ -398,12 +434,16 @@ client.execute(fetch1);
 client.execute(fetch2);
 ```
 
+#### Ruby
+
 ```ruby
 bucket1 = client.bucket_type('default').bucket('my_bucket')
 bucket2 = client.bucket('my_bucket')
 bucket1.get('my_key')
 bucket2.get('my_key')
 ```
+
+#### PHP
 
 ```php
 $location1 = new \Basho\Riak\Location('my_key', new Bucket('my_bucket', 'default'));
@@ -417,12 +457,16 @@ $builder->atLocation($location2)
   ->execute();
 ```
 
+#### Python
+
 ```python
 bucket1 = client.bucket_type('default').bucket('my_bucket')
 bucket2 = client.bucket('my_bucket')
 bucket1.get('my_key')
 bucket2.get('my_key')
 ```
+
+#### C# 
 
 ```c#
 var id1 = new RiakObjectId("default", "my_bucket", "my_key");
@@ -435,6 +479,8 @@ var getRslt = client.Get(id2);
 RiakObject obj2 = getRslt.Value;
 // Note: obj1.Value and obj2.Value are equal
 ```
+
+#### JavaScript 
 
 ```javascript
 var obj1 = new Riak.Commands.KV.RiakObject();
@@ -460,6 +506,8 @@ client.storeValue({ value: obj1 }, function (err, rslt) {
 });
 ```
 
+#### Erlang
+
 ```erlang
 {ok, Obj1} = riakc_pb_socket:get(Pid,
                                  {<<"default">>, <<"my_bucket">>},
@@ -468,6 +516,8 @@ client.storeValue({ value: obj1 }, function (err, rslt) {
                                  <<"my_bucket">>,
                                  <<"my_key">>).
 ```
+
+#### Curl
 
 ```curl
 curl http://localhost:8098/buckets/my_bucket/keys/my_key
@@ -636,6 +686,8 @@ the bucket `sensitive_user_data`, you would need to run operations on
 that bucket in accordance with the format above. Here is an example
 write:
 
+### Java
+
 ```java
 Location key = new Location("sensitive_user_data")
         .setBucketType("no_siblings")
@@ -647,6 +699,8 @@ StoreValue store = new StoreValue.Builder(obj).build();
 client.execute(store);
 ```
 
+### Ruby
+
 ```ruby
 bucket = client.bucket_type('no_siblings').bucket('sensitive_user_data')
 obj = Riak::RObject.new(bucket, 'user19735')
@@ -654,6 +708,8 @@ obj.content_type = 'application/json'
 obj.raw_data = '{ ... user data ... }'
 obj.store
 ```
+
+### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -663,6 +719,8 @@ obj.store
   ->execute();
 ```
 
+### Python
+
 ```python
 bucket = client.bucket_type('no_siblings').bucket('sensitive_user_data')
 obj = RiakObject(client, bucket, 'user19735')
@@ -671,11 +729,15 @@ obj.data = '{ ... user data ... }'
 obj.store()
 ```
 
+### C# 
+
 ```c#
 var id = new RiakObjectId("no_siblings", "sensitive_user_data", "user19735");
 var obj = new RiakObject(id, "{\"name\":\"Bob\"}");
 var rslt = client.Put(obj);
 ```
+
+### JavaScript 
 
 ```javascript
 var obj = { name: 'Bob' };
@@ -688,6 +750,8 @@ client.storeValue({
     }
 });
 ```
+
+### Erlang
 
 ```erlang
 Object = riakc_obj:new({<<"no_siblings">>, <<"sensitive_user_data">>},
@@ -703,6 +767,8 @@ curl -XPUT \
   -d "{ ... user data ... }" \
   http://localhost:8098/types/no_siblings/buckets/sensitive_user_data/keys/user19735
 ```
+
+## Bucket properties inheritance with no_siblings 
 
 In this example, the bucket `sensitive_user_data` bears the
 configuration established by the `no_siblings` bucket type, and it bears
@@ -721,6 +787,8 @@ us" to the `old_memes` bucket. If the bucket type `no_siblings` has been
 created and activated, the request will ensure that the `old_memes`
 bucket inherits all of the properties from the type `no_siblings`:
 
+### Java
+
 ```java
 Location allYourBaseKey =
   new Location(new Namespace("no_siblings", "old_memes"), "all_your_base");
@@ -731,6 +799,8 @@ StoreValue store = new StoreValue.Builder(obj).build();
 client.execute(store);
 ```
 
+### Ruby
+
 ```ruby
 bucket = client.bucket_type('no_siblings').bucket('old_memes')
 obj = Riak::RObject.new(bucket, 'all_your_base')
@@ -738,6 +808,8 @@ obj.content_type = 'text/plain'
 obj.raw_data = 'all your base are belong to us'
 obj.store
 ```
+
+### PHP
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -747,6 +819,8 @@ obj.store
   ->execute();
 ```
 
+### Python
+
 ```python
 bucket = client.bucket_type('no_siblings').bucket('old_memes')
 obj = RiakObject(client, bucket, 'all_your_base')
@@ -755,12 +829,16 @@ obj.data = 'all your base are belong to us'
 obj.store()
 ```
 
+### C# 
+
 ```c#
 var id = new RiakObjectId("no_siblings", "old_memes", "all_your_base");
 var obj = new RiakObject(id, "all your base are belong to us",
     RiakConstants.ContentTypes.TextPlain);
 var rslt = client.Put(obj);
 ```
+
+### JavaScript 
 
 ```javascript
 var obj = new Riak.Commands.KV.RiakObject();
@@ -776,6 +854,8 @@ client.storeValue({ value: obj }, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 Object = riakc_obj:new({<<"no_siblings">>, <<"old_memes">>},
                        <<"all_your_base">>,
@@ -783,6 +863,8 @@ Object = riakc_obj:new({<<"no_siblings">>, <<"old_memes">>},
                        <<"text/plain">>),
 riakc_pb_socket:put(Pid, Object).
 ```
+
+### Curl 
 
 ```curl
 curl -XPUT \

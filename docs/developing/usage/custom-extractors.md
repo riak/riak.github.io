@@ -237,6 +237,8 @@ store in a `http_header_schema.xml` file:
 
 Now, we can store the schema:
 
+### Java
+
 ```java
 import org.apache.commons.io.FileUtils
 
@@ -247,10 +249,14 @@ StoreSchema storeSchemaOp = new StoreSchema.Builder(schema).build();
 client.execute(storeSchemaOp);
 ```
 
+### Ruby 
+
 ```ruby
 schema_xml = File.read('http_header_schema.xml')
 client.create_search_schema('http_header_schema', schema_xml)
 ```
+
+### PHP 
 
 ```php
 $schema_string = file_get_contents('http_header_schema.xml');
@@ -261,6 +267,8 @@ $schema_string = file_get_contents('http_header_schema.xml');
   ->execute();
 ```
 
+### Python 
+
 ```python
 import io
 
@@ -268,14 +276,20 @@ schema_xml = open('http_header_schema.xml').read()
 client.create_search_schema('http_header_schema', schema_xml)
 ```
 
+### Curl 
+
 ```curl
 curl -XPUT $RIAK_HOST/search/schema/http_header_schema \
      -H 'Content-Type: application/xml' \
      --data-binary @http_header_schema.xml
 ```
 
+### Creating a search index
+
 Riak now has our schema stored and ready for use. Let's create a search
 index called `header_data` that's associated with our new schema:
+
+#### Java
 
 ```java
 YokozunaIndex headerDataIndex = new YokozunaIndex("header_data", "http_header_schema");
@@ -284,9 +298,13 @@ StoreSearchIndex storeIndex = new StoreSearchIndex.Builder(headerDataIndex)
 client.execute(storeIndex);
 ```
 
+#### Ruby 
+
 ```ruby
 client.create_search_index('header_data', 'http_header_schema')
 ```
+
+#### PHP 
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreIndex($riak))
@@ -296,9 +314,13 @@ client.create_search_index('header_data', 'http_header_schema')
   ->execute();
 ```
 
+#### Python 
+
 ```python
 client.create_search_index('header_data', 'http_header_schema')
 ```
+
+#### Curl 
 
 ```curl
 curl -XPUT $RIAK_HOST/search/index/header_data \
@@ -316,9 +338,13 @@ riak-admin bucket-type create http_data_store '{"props":{"search_index":"header_
 riak-admin bucket-type activate http_data_store
 ```
 
+### Using a custom data store
+
 Let's use the same `google_packet.bin` file that we used previously and
 store it in a bucket with the `http_data_store` bucket type, making sure
 to use our custom `application/httpheader` MIME type:
+
+#### Java
 
 ```java
 Location key = new Location(new Namespace("http_data_store", "packets"), "google");
@@ -335,6 +361,8 @@ StoreValue storeOp = new StoreValue.Builder(packetObject)
 client.execute(storeOp);
 ```
 
+#### Ruby 
+
 ```ruby
 packet_data = File.read('google_packet.bin')
 bucket = client.bucket_type('http_data_store').bucket('packets')
@@ -343,6 +371,8 @@ obj.content_type = 'application/httpheader'
 obj.raw_data = packetData
 obj.store
 ```
+
+#### PHP 
 
 ```php
 $object = new Object(file_get_contents("google_packet.bin"), ['Content-Type' => 'application/httpheader']);
@@ -354,6 +384,8 @@ $object = new Object(file_get_contents("google_packet.bin"), ['Content-Type' => 
   ->execute();
 ```
 
+#### Python 
+
 ```python
 packet_data = open('google_packet.bin').read()
 bucket = client.bucket_type('http_data_store').bucket('packets')
@@ -363,16 +395,22 @@ obj.data = packet_data
 obj.store()
 ```
 
+#### Curl 
+
 ```curl
 curl -XPUT $RIAK_HOST/types/http_data_store/buckets/packets/keys/google \
      -H 'Content-Type: application/httpheader' \
      --data-binary @google_packet.bin
 ```
 
+### Querying a custom data store 
+
 Now that we have some header packet data stored, we can query our
 `header_data` index on whatever basis we'd like. First, let's verify
 that we'll get one result if we query for objects that have the HTTP
 method `GET`:
+
+#### Java
 
 ```java
 // Using the same method from above:
@@ -382,10 +420,14 @@ String query = "method:GET";
 int numberFound = results.numResults(); // 1
 ```
 
+#### Ruby 
+
 ```ruby
 results = client.search('http_header_schema', 'method:GET')
 results['num_found'] # 1
 ```
+
+#### PHP 
 
 ```php
 $response = (\Basho\Riak\Command\Search\FetchObjects($riak))
@@ -397,10 +439,14 @@ $response = (\Basho\Riak\Command\Search\FetchObjects($riak))
 $response->getNumFound();
 ```
 
+#### Python 
+
 ```python
 results = client.fulltext_search('http_header_schema', 'method:GET')
 results['num_found'] # 1
 ```
+
+#### Curl 
 
 ```curl
 curl "$RIAK_HOST/search/query/header_data?wt=json&q=method:GET"

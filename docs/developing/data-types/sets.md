@@ -62,6 +62,8 @@ Using sets involves creating a bucket/key pair to house a set and running set-sp
 Here is the general syntax for creating a bucket type/bucket/key
 combination to handle a set:
 
+### Java
+
 ```java
 // In the Java client, a bucket/bucket type combination is specified
 // using a Namespace object. To specify bucket, bucket type, and key,
@@ -72,6 +74,8 @@ Location set =
   new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
+### Ruby 
+
 ```ruby
 # Note: both the Riak Ruby Client and Ruby the language have a class
 # called Set. Make sure that you refer to the Ruby version as ::Set and
@@ -81,9 +85,13 @@ bucket = client.bucket_type('bucket_type_name').bucket('bucket_name')
 set = Riak::Crdt::Set.new(bucket, key)
 ```
 
+### PHP 
+
 ```php
 $location = new \Basho\Riak\Location('key', new \Basho\Riak\Bucket('bucket_name', 'bucket_type'));
 ```
+
+### Python 
 
 ```python
 # Note: The Python standard library `collections` module has an abstract
@@ -104,6 +112,8 @@ from riak.datatypes import Set
 set = Set(bucket, key)
 ```
 
+### C# 
+
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
@@ -123,6 +133,8 @@ FetchSetOptions options = new FetchSetOptions("sets", "travel", "cities");
 Assert.AreEqual(options, builder.Options);
 ```
 
+### JavaScript 
+
 ```javascript
 // As with counters, with the Riak Node.js Client you interact with sets on the
 // basis of the set's location in Riak, as specified by an options object.
@@ -134,11 +146,15 @@ var options = {
 };
 ```
 
+### Erlang 
+
 ```erlang
 %% Like counters, sets are not encapsulated in a
 %% bucket/key in the Erlang client. See below for more
 %% information.
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
@@ -152,6 +168,8 @@ curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 For the following example, we will use a set to store a list of cities that we
 want to visit. Let's create a Riak set stored in the key `cities` in the bucket `travel` using the `sets` bucket type created previously:
 
+### Java 
+
 ```java
 // In the Java client, you specify the location of Data Types
 // before you perform operations on them:
@@ -159,6 +177,8 @@ want to visit. Let's create a Riak set stored in the key `cities` in the bucket 
 Location citiesSet =
   new Location(new Namespace("sets", "travel"), "cities");
 ```
+
+### Ruby 
 
 ```ruby
 travel = client.bucket_type('sets').bucket('travel')
@@ -176,9 +196,13 @@ travel = client.bucket('travel')
 cities_set = Riak::Crdt::Set.new(travel, 'cities')
 ```
 
+### PHP 
+
 ```php
 $location = new \Basho\Riak\Location('cities', 'travel', 'sets');
 ```
+
+### Python
 
 ```python
 travel = client.bucket_type('sets').bucket('travel')
@@ -193,6 +217,8 @@ from riak.datatypes import Set
 cities_set = Set(travel, 'cities')
 ```
 
+### C# 
+
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
@@ -204,6 +230,8 @@ var builder = new FetchSet.Builder()
     .WithKey("cities");
 ```
 
+### JavaScript 
+
 ```javascript
 // Now we'll create a options object for the set with which we want to
 // interact:
@@ -214,6 +242,8 @@ var options = {
 };
 ```
 
+### Erlang 
+
 ```erlang
 CitiesSet = riakc_set:new().
 
@@ -222,14 +252,20 @@ CitiesSet = riakc_set:new().
 %% structure with a bucket type, bucket, and key later on.
 ```
 
+### Curl 
+
 ```curl
 # You cannot create an empty set through the HTTP interface. Sets can
 # only be created when an element is added to them, as in the examples
 # below.
 ```
 
+## Verifying if a set is empty
+
 Upon creation, our set is empty. We can verify that it is empty at any
 time:
+
+### Java
 
 ```java
 // Using our "cities" Location from above:
@@ -241,9 +277,13 @@ RiakSet set = response.getDatatype();
 boolean isEmpty = set.viewAsSet().isEmpty();
 ```
 
+### Ruby 
+
 ```ruby
 cities_set.empty?
 ```
+
+### PHP 
 
 ```php
 # use $location from earlier
@@ -256,9 +296,13 @@ $set = (new \Basho\Riak\Command\Builder\FetchSet($riak))
 count($set->getData());
 ```
 
+### Python
+
 ```python
 len(cities_set) == 0
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -273,6 +317,8 @@ RiakResult rslt = client.Execute(fetchSetCommand);
 SetResponse response = fetchSetCommand.Response;
 // response.Value will be null
 ```
+
+### JavaScript 
 
 ```javascript
 var options = {
@@ -291,6 +337,8 @@ client.fetchSet(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 riakc_set:size(CitiesSet) == 0.
 
@@ -299,6 +347,8 @@ riakc_set:size(CitiesSet) == 0.
 %% set that was not fetched, this is an empty collection, so the size
 %% is 0.
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
@@ -312,6 +362,8 @@ curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
 But let's say that we read a travel brochure saying that Toronto and
 Montreal are nice places to go. Let's add them to our `cities` set:
 
+### Java
+
 ```java
 // Using our "cities" Location from above:
 
@@ -323,10 +375,14 @@ UpdateSet update = new UpdateSet.Builder(citiesSet, su)
 client.execute(update);
 ```
 
+### Ruby 
+
 ```ruby
 cities_set.add('Toronto')
 cities_set.add('Montreal')
 ```
+
+### PHP 
 
 ```php
 # use $location from earlier
@@ -339,10 +395,14 @@ $response = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
     ->execute();
 ```
 
+### Python 
+
 ```python
 cities_set.add('Toronto')
 cities_set.add('Montreal')
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -362,6 +422,8 @@ SetResponse response = cmd.Response;
 Assert.Contains("Toronto", response.AsStrings.ToArray());
 Assert.Contains("Montreal", response.AsStrings.ToArray());
 ```
+
+### JavaScript 
 
 ```javascript
 var options = {
@@ -385,10 +447,14 @@ var cmd = new Riak.Commands.CRDT.UpdateSet.Builder()
 client.execute(cmd);
 ```
 
+### Erlang 
+
 ```erlang
 CitiesSet1 = riakc_set:add_element(<<"Toronto">>, CitiesSet),
 CitiesSet2 = riakc_set:add_element(<<"Montreal">>, CitiesSet1).
 ```
+
+### Curl 
 
 ```curl
 curl -XPOST http://localhost:8098/types/sets/buckets/travel/datatypes/cities \
@@ -408,6 +474,8 @@ set, which provides our client access to the set's [causal context](../../learn/
 
 Once we've fetched the set, we can remove the element `Montreal` and
 store the set:
+
+### Java
 
 ```java
 // Using our "citiesSet" Location from above
@@ -435,11 +503,15 @@ client.execute(update);
 // found at the bottom of this document
 ```
 
+### Ruby 
+
 ```ruby
 cities_set.remove('Montreal')
 cities_set.add('Hamilton')
 cities_set.add('Ottawa')
 ```
+
+### PHP 
 
 ```php
 # use $location & $response from earlier
@@ -453,12 +525,16 @@ cities_set.add('Ottawa')
     ->execute();
 ```
 
+### Python 
+
 ```python
 cities_set.discard('Montreal')
 cities_set.add('Hamilton')
 cities_set.add('Ottawa')
 cities_set.store()
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -486,6 +562,8 @@ Assert.Contains("Hamilton", responseStrings);
 Assert.Contains("Ottawa", responseStrings);
 ```
 
+### JavaScript 
+
 ```javascript
 var options = {
     bucketType: 'sets',
@@ -511,11 +589,15 @@ client.fetchSet(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 CitiesSet3 = riakc_set:del_element(<<"Montreal">>, CitiesSet2),
 CitiesSet4 = riakc_set:add_element(<<"Hamilton">>, CitiesSet3),
 CitiesSet5 = riakc_set:add_element(<<"Ottawa">>, CitiesSet4).
 ```
+
+### Curl 
 
 ```curl
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
@@ -532,6 +614,8 @@ curl -XPOST http://localhost:8098/types/sets/buckets/travel/datatypes/cities \
 
 Now, we can check on which cities are currently in our set:
 
+### Java
+
 ```java
 // Using our "cities" Location from above:
 
@@ -544,11 +628,15 @@ for (BinaryValue city : binarySet) {
 }
 ```
 
+### Ruby 
+
 ```ruby
 cities_set.members
 
 #<Set: {"Hamilton", "Ottawa", "Toronto"}>
 ```
+
+### PHP 
 
 ```php
 # use $location from earlier
@@ -560,6 +648,8 @@ $set = (new \Basho\Riak\Command\Builder\FetchSet($riak))
 
 var_dump($set->getData());
 ```
+
+### Python 
 
 ```python
 cities_set.dirty_value
@@ -577,6 +667,8 @@ cities_set.value
 cities_set.reload()
 ```
 
+### C# 
+
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
@@ -590,6 +682,8 @@ foreach (var value in setResponse.AsStrings)
 // Cities Set Value: Ottawa
 // Cities Set Value: Toronto
 ```
+
+### JavaScript 
 
 ```javascript
 var options = {
@@ -610,6 +704,8 @@ client.fetchSet(options, function(err, rslt) {
 // info: cities set values: 'Hamilton, Ottawa, Toronto'
 ```
 
+### Erlang 
+
 ```erlang
 riakc_set:dirty_value(CitiesSet5).
 
@@ -628,6 +724,8 @@ riakc_set:value(CitiesSet5).
                                          <<"cities">>).
 ```
 
+### Curl 
+
 ```curl
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
 
@@ -645,12 +743,16 @@ curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities?include_co
 
 Or we can see whether our set includes a specific member:
 
+### Java
+
 ```java
 // Using our "citiesSet" from above:
 
 System.out.println(citiesSet.contains(("Vancouver"));
 System.out.println(citiesSet.contains("Ottawa"));
 ```
+
+### Ruby 
 
 ```ruby
 cities_set.include? 'Vancouver'
@@ -660,11 +762,15 @@ cities_set.include? 'Ottawa'
 # true
 ```
 
+### PHP 
+
 ```php
 in_array('Vancouver', $set->getData()); # false
 
 in_array('Ottawa', $set->getData()); # true
 ```
+
+### Python 
 
 ```python
 'Vancouver' in cities_set
@@ -673,6 +779,8 @@ in_array('Ottawa', $set->getData()); # true
 'Ottawa' in cities_set
 # True
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -683,6 +791,8 @@ bool includesVancouver = response.AsStrings.Any(v => v == "Vancouver");
 bool includesOttawa = response.AsStrings.Any(v => v == "Ottawa");
 ```
 
+### JavaScript 
+
 ```javascript
 // Use standard javascript array method indexOf()
 
@@ -691,6 +801,8 @@ cities_set.indexOf('Vancouver'); // if present, index is >= 0
 cities_set.indexOf('Ottawa'); // if present, index is >= 0
 ```
 
+### Erlang 
+
 ```erlang
 %% At this point, Set5 is the most "recent" set from the standpoint
 %% of our application.
@@ -698,6 +810,8 @@ cities_set.indexOf('Ottawa'); // if present, index is >= 0
 riakc_set:is_element(<<"Vancouver">>, CitiesSet5).
 riakc_set:is_element(<<"Ottawa">>, CitiesSet5).
 ```
+
+### Curl 
 
 ```curl
 # With the HTTP interface, this can be determined from the output of
@@ -708,23 +822,33 @@ riakc_set:is_element(<<"Ottawa">>, CitiesSet5).
 
 We can also determine the size of the set:
 
+### Java 
+
 ```java
 // Using our "citiesSet" from above:
 
 int numberOfCities = citiesSet.size();
 ```
 
+### Ruby 
+
 ```ruby
 cities_set.members.length
 ```
+
+### PHP 
 
 ```php
 count($set->getData());
 ```
 
+### Python 
+
 ```python
 len(cities_set)
 ```
+
+### C# 
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -735,15 +859,21 @@ using System.Linq;
 setResponse.Values.Count();
 ```
 
+### JavaScript 
+
 ```javascript
 // Use standard javascript array property length
 
 var cities_set_size = result.values.length;
 ```
 
+### Erlang 
+
 ```erlang
 riakc_set:size(CitiesSet5).
 ```
+
+### Curl 
 
 ```curl
 # With the HTTP interface, this can be determined from the output of

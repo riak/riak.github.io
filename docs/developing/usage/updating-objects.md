@@ -42,6 +42,8 @@ database to reflect this new development in the league, we want to make
 a new write to the `champion` key. Let's read the object stored there
 and modify the value.
 
+### Java
+
 ```java
 Location currentChampion = new Location(new Namespace("sports", "nba"), "champion");
 FetchValue fetch = new FetchValue.Builder(currentChampion)
@@ -51,12 +53,16 @@ RiakObject obj = response.getValue(RiakObject.class);
 obj.setValue(BinaryValue.create("Harlem Globetrotters"))
 ```
 
+### Ruby 
+
 ```ruby
 bucket = client.bucket_type('sports').bucket('nba')
 obj = bucket.get('champion')
 obj.raw_data = 'Harlem Globetrotters'
 obj.store
 ```
+
+### PHP 
 
 ```php
 $location = new \Basho\Riak\Location('champion', new \Basho\Riak\Bucket('nba', 'sports'));
@@ -75,11 +81,15 @@ $object->setData('Harlem Globetrotters');
   ->execute();
 ```
 
+### Python 
+
 ```python
 bucket = client.bucket_type('sports').bucket('nba')
 obj = bucket.get('champion')
 obj.data = 'Harlem Globetrotters'
 ```
+
+### C# 
 
 ```c#
 var id = new RiakObjectId("sports", "nba", "champion");
@@ -93,6 +103,8 @@ obj.SetObject("Harlem Globetrotters",
     RiakConstants.ContentTypes.TextPlain);
 rslt = client.Put(obj);
 ```
+
+### JavaScript 
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -127,6 +139,8 @@ client.storeValue(options, function (err, rslt) {
 });
 ```
 
+### Erlang 
+
 ```erlang
 %% In the Erlang client, you cannot view a context objectdirectly, but it
 %% will be included in the output when you fetch an object:
@@ -137,6 +151,8 @@ client.storeValue(options, function (err, rslt) {
 UpdatedObj = riakc_obj:update_value(Obj, <<"Harlem Globetrotters">>),
 {ok, NewestObj} = riakc_pb_socket:put(Pid, UpdatedObj, [return_body]).
 ```
+
+### Go 
 
 ```go
 obj := &riak.Object{
@@ -193,6 +209,8 @@ obj = rsp.Values[0]
 fmt.Printf("champion: %v", string(obj.Value))
 ```
 
+### Curl 
+
 ```curl
 # When using curl, the context object is attached to the X-Riak-Vclock header
 
@@ -206,11 +224,15 @@ X-Riak-Vclock: a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 # accompany the write for Riak to be able to use the context object
 ```
 
+## Riak Clients and Object context
+
 In the samples above, we didn't need to actually interact with the
 context object, as retaining and passing along the context object was
 accomplished automatically by the client. If, however, you do need
 access to an object's context, the clients enable you to fetch it from
 the object:
+
+### Java
 
 ```java
 // Using the RiakObject obj from above:
@@ -222,6 +244,8 @@ System.out.println(vClock.asString());
 // a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
+### Ruby
+
 ```ruby
 # Using the RObject obj from above:
 
@@ -231,11 +255,15 @@ obj.vclock
 # a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
+### PHP
+
 ```php
 # Using the RObject obj from above:
 
 echo $object->getVclock(); // a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
+
+### Python
 
 ```python
 # Using the RiakObject obj from above:
@@ -246,6 +274,8 @@ obj.vclock
 # a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
+### C#
+
 ```c#
 // Using the RiakObject obj from above:
 var vclock = result.Value.VectorClock;
@@ -254,6 +284,8 @@ Console.WriteLine(Convert.ToBase64String(vclock));
 // The output will look something like this:
 // a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
+
+### JavaScript
 
 ```javascript
 // Using the RiakObject fetchedObj from above:
@@ -264,6 +296,8 @@ logger.info("vclock: %s", fetchedObj.getVClock().toString('base64'));
 // vclock: a85hYGBgymDKBVIcR4M2cov1HeHKYEpkymNlsE2cfo4PKjXXjuOU+FHdWqAUM1CqECSVBQA=
 ```
 
+### Erlang
+
 ```erlang
 %% Using the Obj object from above:
 
@@ -273,6 +307,8 @@ riakc_obj:vclock(Obj).
 %% <<107,206,97,96,96,96,204,96,202,5,82,28,202,156,255,126,
 %% 6,175,157,255,57,131,41,145,49,143,149,225,240,...>>
 ```
+
+### Go
 
 ```go
 svc := cmd.(*riak.StoreValueCommand)
@@ -360,6 +396,8 @@ is the name of the team, e.g. `giants`, `broncos`, etc. Each object will
 consist of the name of the coach in plain text. Here's an example of
 creating and storing such an object:
 
+### Ruby
+
 ```ruby
 bucket = client.bucket('coaches')
 obj = bucket.get_or_new('seahawks', type: 'siblings')
@@ -367,6 +405,8 @@ obj.content_type = 'text/plain'
 obj.raw_data = 'Pete Carroll'
 obj.store
 ```
+
+### PHP
 
 ```php
 $location = new \Basho\Riak\Location('seahawks', new \Basho\Riak\Bucket('coaches', 'siblings'));
@@ -389,6 +429,8 @@ if ($response->isSuccess()) {
   ->execute();
 ```
 
+### Python
+
 ```python
 bucket = client.bucket_type('siblings').bucket('coaches')
 obj = RiakObject(client, bucket, 'seahawks')
@@ -397,12 +439,16 @@ obj.data = 'Pete Carroll'
 obj.store()
 ```
 
+### C#
+
 ```c#
 var id = new RiakObjectId("siblings", "coaches", "seahawks");
 var obj = new RiakObject(id, "Pete Carroll",
     RiakConstants.ContentTypes.TextPlain);
 var rslt = client.Put(obj);
 ```
+
+### JavaScript
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -420,6 +466,8 @@ client.storeValue({ value: riakObj }, function (err, rslt) {
 });
 ```
 
+### Erlang
+
 ```erlang
 Obj = riakc_obj:new({<<"siblings">>, <<"coaches">>},
                      <<"seahawks">>,
@@ -427,6 +475,8 @@ Obj = riakc_obj:new({<<"siblings">>, <<"coaches">>},
                      <<"text/plain">>).
 riakc_pb_socket:put(Pid, Obj).
 ```
+
+### Go
 
 ```go
 obj := &riak.Object{
@@ -456,9 +506,13 @@ if err := cluster.Execute(cmd); err != nil {
 fmt.Println("Stored Pete Carroll")
 ```
 
+### Updating objects
+
 Every once in a while, though, head coaches change in the NFL, which
 means that our data would need to be updated. Below is an example
 function for updating such objects:
+
+#### Ruby
 
 ```ruby
 def update_coach(team, new_coach)
@@ -474,6 +528,8 @@ end
 # Example usage
 update_coach('packers', 'Vince Lombardi')
 ```
+
+#### PHP
 
 ```php
 function update_coach($team, $coach) {
@@ -502,6 +558,8 @@ function update_coach($team, $coach) {
 echo update_coach('packers', 'Vince Lombardi'); // true
 ```
 
+#### Python
+
 ```python
 def update_coach(team, new_coach):
     bucket = client.bucket_type('siblings').bucket('coaches')
@@ -516,6 +574,8 @@ def update_coach(team, new_coach):
 update_coach('packers', 'Vince Lombardi')
 ```
 
+#### C#
+
 ```c#
 private void UpdateCoach(string team, string newCoach)
 {
@@ -527,6 +587,8 @@ private void UpdateCoach(string team, string newCoach)
     client.Put(obj);
 }
 ```
+
+#### JavaScript
 
 ```javascript
 function update_coach(team, newCoach) {
@@ -548,6 +610,8 @@ function update_coach(team, newCoach) {
 }
 ```
 
+#### Erlang
+
 ```erlang
 update_coach(team, new_coach) ->
     {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -559,6 +623,8 @@ update_coach(team, new_coach) ->
 %% Example usage
 update_coach('packers', 'Vince Lombardi')
 ```
+
+#### Go
 
 ```go
 func updateCoach(cluster *riak.Cluster, team, newCoach string) error {
