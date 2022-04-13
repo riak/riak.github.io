@@ -17,6 +17,15 @@ function HomepageHeader() {
           <Link className="button button--secondary button--lg" to="/docs">
             Riak KV Documentation
           </Link>
+          <span className={styles.githubButtonWrapper}>
+            <iframe
+              className={styles.githubButton}
+              src="https://ghbtns.com/github-btn.html?user=basho&amp;repo=riak&amp;type=star&amp;count=true&amp;size=large"
+              width={160}
+              height={30}
+              title="GitHub Stars"
+            />
+          </span>
         </div>
       </div>
     </header>
