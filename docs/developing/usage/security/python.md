@@ -72,7 +72,7 @@ provided that the
 [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) from
 which the client is connecting has been specified as trusted. More on
 specifying trusted CIDRs can be found in [Trust-based
-Authentication](../../../using/security/managing-sources.md#Trust-based-Authentication).
+Authentication](../../../using/security/managing-sources.md#trust-based-authentication).
 
 **Note**: The examples in the following sections specify certs on the
 basis of their filepaths, e.g. `/ssl_dir/cacertfile.pem`. In addition to

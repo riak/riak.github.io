@@ -1115,8 +1115,8 @@ addressed, however, by the refined partitioning scheme described in Section 6.2.
 > This section is well expressed in [Adding and Removing Nodes] and
 > [Failure Scenarios].
 
-[Adding and Removing Nodes]: ../using/cluster-operations/adding-removing-nodes.md/
-[Failure Scenarios]: ../learn/concepts/eventual-consistency.md/
+[Adding and Removing Nodes]: ../using/cluster-operations/adding-removing-nodes.md
+[Failure Scenarios]: ../learn/concepts/eventual-consistency.md
 
 #### 4.8.1 Ring Membership
 

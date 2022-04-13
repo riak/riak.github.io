@@ -8,12 +8,12 @@ sidebar_position: 4
 [dev data model#log]: ../../learn/use-cases.md#log-data
 [dev data model#sensor]: ../../learn/use-cases.md#sensor-data
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
-[dev data model#user]: ../../learn/use-cases.md#user-data
+[dev data model#user]: ../../learn/use-cases.md#user-accounts
 [dev kv model]: ../../developing/key-value-modeling.md
 [dev data types]: ../../developing/data-types/index.md
-[dev data types#counters]: ../../developing/data-types/index.md#counters
-[dev data types#sets]: ../../developing/data-types/index.md#sets
-[dev data types#maps]: ../../developing/data-types/index.md#maps
+[dev data types#counters]: ../../developing/data-types/counters.md
+[dev data types#sets]: ../../developing/data-types/sets.md
+[dev data types#maps]: ../../developing/data-types/maps.md
 [usage create objects]: ../../developing/usage/creating-objects.md
 [usage search]: ../../developing/usage/search.md
 [use ref search]: ../../using/reference/search.md

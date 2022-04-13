@@ -28,7 +28,7 @@ But even when you use causal context, Riak cannot always decide which
 value is most causally recent, especially in cases involving concurrent
 updates to an object. So how does Riak behave when it can't decide on a
 single most-up-to-date value? **That is your choice**. A full listing of
-available options can be found in the [section below](#client-and-server-side-conflict-resolution). For now,
+available options can be found in the [section below](#client--and-server-side-conflict-resolution). For now,
 though, please bear in mind that we strongly recommend one of the
 following two options:
 

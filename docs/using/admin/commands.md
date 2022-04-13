@@ -8,8 +8,8 @@ sidebar_position: 0
 [use admin riak-admin#cluster]: ../../using/admin/riak-admin.md#cluster
 [concept clusters]: ../../learn/concepts/clusters.md
 [cluster ops add remove node]: ../../using/cluster-operations/adding-removing-nodes.md
-[use admin riak-admin#cluster-plan]: ../../using/admin/riak-admin.md#cluster-plan
-[use admin riak-admin#cluster-commit]: ../../using/admin/riak-admin.md#cluster-commit
+[use admin riak-admin#cluster-plan]: ../../using/admin/commands.md#plan
+[use admin riak-admin#cluster-commit]: ../../using/admin/commands.md#commit
 
 
 This document explains usage of the [`riak-admin cluster`][use admin riak-admin#cluster] interface, which enables you to perform a wide

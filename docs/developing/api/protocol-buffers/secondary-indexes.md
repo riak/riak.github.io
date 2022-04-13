@@ -71,12 +71,12 @@ message RpbIndexResp {
 
 #### Values
 
-| Parameter      | Description                                                                                                                                                                                                                                            |
-|:---------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `keys`         | A list of keys that match the index request                                                                                                                                                                                                            |
+| Parameter      | Description                                                                                                                                                                                                                                               |
+|:---------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `keys`         | A list of keys that match the index request                                                                                                                                                                                                               |
 | `results`      | If `return_terms` is specified with range queries, used to return matched index values as key/value pairs in `RpbPair` messages. More on `RpbPair` messages can be found in [PBC Fetch Object](../../../developing/api/protocol-buffers/fetch-object.md). |
-| `continuation` | Used for paginated responses                                                                                                                                                                                                                           |
-| `done`         | Used for streaming. The value will be `true` when the current stream is done (either `max_results` has been reached or there are no more results).                                                                                                     |
+| `continuation` | Used for paginated responses                                                                                                                                                                                                                              |
+| `done`         | Used for streaming. The value will be `true` when the current stream is done (either `max_results` has been reached or there are no more results).                                                                                                        |
 
 ## Example
 
