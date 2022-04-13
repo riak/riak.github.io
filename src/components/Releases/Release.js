@@ -57,9 +57,15 @@ function PackagesDownload({ version_match }) {
 function Latest() {
   return (
     <div>
-      <img src={require('@site/static/images/layout/hugs.png').default} />
+      <Hug />
       <p className={styles.latest}>Latest</p>
-      <img src={require('@site/static/images/layout/hugs.png').default} />
+      <Hug />
     </div>
   );
+}
+
+function Hug() {
+  const alt = "A new version of Riak has been released! Yay!"
+
+  return <img src={require('@site/static/images/layout/hugs.png').default} alt={alt} title={alt} />;
 }
