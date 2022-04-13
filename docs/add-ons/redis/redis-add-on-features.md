@@ -6,9 +6,6 @@ sidebar_position: 3
 ---
 
 [ee]: http://basho.com/contact/
-[GET-sequence]: /images/redis/GET_seq.msc.png
-[SET-sequence]: /images/redis/SET_seq.msc.png
-[DEL-sequence]: /images/redis/DEL_seq.msc.png
 [Object-lifetime]: /images/redis/Object_lifetime.msc.png
 [redis docs]: http://redis.io/commands
 [twemproxy docs]: https://github.com/twitter/twemproxy/blob/master/notes/redis.md
