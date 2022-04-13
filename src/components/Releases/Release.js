@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 export default function Release({ latest, first, name, tarball_url, zipball_url, html_url, tag_name }) {
   const version_match = tag_name.match(/riak-([0-9]+).([0-9]+)(.)?([0-9]+)?p?([0-9]+)?/);
-  const latest_label = latest ? <p className={styles.latest}>Latest</p> : <></>;
+  const latest_label = latest ? <Latest /> : <></>;
   const github = <Link name="GitHub" url={html_url} />;
   const packages_download = <PackagesDownload version_match={version_match} />;
   const release_notes = <ReleaseNotes version_match={version_match} />;
@@ -52,4 +52,14 @@ function PackagesDownload({ version_match }) {
   const url = `https://files.tiot.jp/riak/kv/${major_version}/${full_version}`;
 
   return <Link name="Download" url={url} />
+}
+
+function Latest() {
+  return (
+    <div>
+      <img src={require('@site/static/images/layout/hugs.png').default} />
+      <p className={styles.latest}>Latest</p>
+      <img src={require('@site/static/images/layout/hugs.png').default} />
+    </div>
+  );
 }
