@@ -17,7 +17,26 @@
 }
 
 .buttons {
+  --ifm-button-size-multiplier: 1.6;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.buttons a {
+  margin: 20px 36px;
+}
+
+.githubButtonWrapper span {
+  display: flex;
+}
+
+.githubButton iframe {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+  .githubButton iframe {
+    display: none;
+  }
 }
