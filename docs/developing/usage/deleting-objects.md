@@ -106,7 +106,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 ## Curl 
 
-```curl
+```bash
 curl -XDELETE http://localhost:8098/types/quotes/buckets/oscar_wilde/keys/genius
 ```
 

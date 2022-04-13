@@ -190,7 +190,7 @@ data, let's store some in Riak and then query it. We'll put the example
 packet data from above in a `google_packet.bin` file. Then, we'll `PUT`
 that binary to Riak's `/search/extract` endpoint:
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/extract \
      -H 'Content-Type: application/httpheader' \ # Note that we used our custom MIME type
      --data-binary @google_packet.bin
@@ -278,7 +278,7 @@ client.create_search_schema('http_header_schema', schema_xml)
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/schema/http_header_schema \
      -H 'Content-Type: application/xml' \
      --data-binary @http_header_schema.xml
@@ -322,7 +322,7 @@ client.create_search_index('header_data', 'http_header_schema')
 
 #### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/index/header_data \
      -H 'Content-Type: application/json' \
      -d '{"schema":"http_header_schema"}'
@@ -397,7 +397,7 @@ obj.store()
 
 #### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/types/http_data_store/buckets/packets/keys/google \
      -H 'Content-Type: application/httpheader' \
      --data-binary @google_packet.bin
@@ -448,7 +448,7 @@ results['num_found'] # 1
 
 #### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/header_data?wt=json&q=method:GET"
 
 # This should return a fairly large JSON object with a "num_found" field

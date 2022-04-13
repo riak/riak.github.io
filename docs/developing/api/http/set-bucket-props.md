@@ -63,7 +63,7 @@ If successful, no content will be returned in the response body.
 
 ## Example
 
-```curl
+```bash
 $ curl -v -XPUT http://127.0.0.1:8098/buckets/test/props \
        -H "Content-Type: application/json" -d '{"props":{"n_val":5}}'
 * About to connect() to 127.0.0.1 port 8098 (#0)

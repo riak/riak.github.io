@@ -36,7 +36,7 @@ Here, we have specified that anyone connecting to Riak from the
 designated CIDR (in this case `localhost`) will be successfully
 authenticated:
 
-```curl
+```bash
 curl https://localhost:8098/types/<type>/buckets/<bucket>/keys/<key>
 ```
 
@@ -54,7 +54,7 @@ riak-admin security add-source riakuser 127.0.0.1/32 trust
 Now, `riakuser` can interact with Riak without providing credentials.
 Here's an example in which only the username is passed to Riak:
 
-```curl
+```bash
 curl -u riakuser: \
   https://localhost:8098/types/<type>/buckets/<bucket>/keys/<key>
 ```
@@ -95,7 +95,7 @@ riak-admin security add-source otheruser 127.0.0.1/32 password
 Now, our `riakuser` must enter a username and password to have any
 access to Riak whatsoever:
 
-```curl
+```bash
 curl -u riakuser:captheorem4life \
   https://localhost:8098/types/<type>/buckets/<bucket>/keys/<key>
 ```
@@ -200,7 +200,7 @@ That command should output the following:
 You can test that setup most easily by using `curl`. A normal request to
 Riak without specifying a user will return an `Unauthorized` message:
 
-```curl
+```bash
 curl -u riakuser: \
   https://localhost:8098/types/<type>/buckets/<bucket>/keys/<key>
 ```
@@ -216,7 +216,7 @@ authenticated by your PAM service, you should get either `not found` or
 a Riak object if one is stored in the specified bucket type/bucket/key
 path:
 
-```curl
+```bash
 curl -u riakuser:<pam_password> \
   https://localhost:8098/types/<type>/buckets/<bucket>/keys/<key>
 ```

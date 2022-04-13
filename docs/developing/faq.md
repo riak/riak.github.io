@@ -532,7 +532,7 @@ E: 4-9-14-12*
 **A:**
   There is no straightforward command to delete an entire bucket. You must delete all of the key/value objects individually. Thus, the following will not work:
 
-  ```curl
+  ```bash
   curl -X DELETE http://your-host:8098/riak/your-bucket
   ```
 

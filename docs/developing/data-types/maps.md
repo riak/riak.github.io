@@ -99,7 +99,7 @@ map = Map(bucket, key)
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateMap.Builder()
@@ -129,7 +129,7 @@ var options = {
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 
 # Note that this differs from the URL structure for non-data type requests,
@@ -185,7 +185,7 @@ map = customers.net('ahmed_info')
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateMap.Builder()
@@ -216,7 +216,7 @@ Map = riakc_map:new().
 
 ### Curl 
 
-```curl
+```bash
 # You cannot create an empty map through the HTTP interface. Maps can only
 # be created when a field is added to them, as in the examples below.
 ```
@@ -291,7 +291,7 @@ map.store()
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateMap.Builder()
@@ -351,7 +351,7 @@ Map2 = riakc_map:update({<<"phone_number">>, register},
 
 #### Curl 
 
-```curl
+```bash
 # Updates can be performed all at once. The following will create two new
 # registers in the map and also set the value of those registers to the
 # desired values
@@ -421,7 +421,7 @@ map.store()
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // Using our builder from above:
@@ -471,7 +471,7 @@ Map4 = riakc_map:update({<<"enterprise_customer">>, flag},
 
 #### Curl
 
-```curl
+```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
 
 # Response
@@ -531,7 +531,7 @@ map.reload().flags['enterprise_customer'].value
 
 ##### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 Map ahmedMap = response.Value;
@@ -568,7 +568,7 @@ riakc_map:dirty_value(Map4).
 
 ##### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
 ```
 
@@ -620,7 +620,7 @@ map.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -666,7 +666,7 @@ Map3 = riakc_map:update({<<"page_visits">>, counter},
 
 ### Curl 
 
-```curl
+```bash
 # The following will create a new counter and increment it by 1
 
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -741,7 +741,7 @@ map.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var interestsAdds = new[] { "robots", "opera", "motorcycles" };
@@ -798,7 +798,7 @@ Map6 = riakc_map:update({<<"interests">>, set},
 
 ### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '
@@ -871,7 +871,7 @@ for interest in ['robots', 'opera', 'motorcycles']:
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 Map ahmedMap = response.Value;
@@ -908,7 +908,7 @@ riakc_map:dirty_value(Map6).
 
 #### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info?include_context=false
 ```
 
@@ -967,7 +967,7 @@ map.store()
 
 ### C#
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1034,7 +1034,7 @@ Map8 = riakc_map:update({<<"interests">>, set},
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
 
 # Response
@@ -1127,7 +1127,7 @@ map.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1191,7 +1191,7 @@ Map14 = riakc_map:update(
 
 ### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '
@@ -1253,7 +1253,7 @@ map.reload().maps['annika_info'].registers['first_name'].value
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 ahmedMap = response.Value;
@@ -1287,7 +1287,7 @@ riakc_map:dirty_value(Map14).
 
 #### Curl 
 
-```curl
+```bash
 # Specific values for fields inside of maps (or maps within maps, for that
 # matter), cannot be obtained directly through the HTTP interface.
 ```
@@ -1346,7 +1346,7 @@ map.store()
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1403,7 +1403,7 @@ Map15 = riakc_map:update({<<"annika_info">>, map},
 
 #### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
 
 # Response
@@ -1485,7 +1485,7 @@ map.store()
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1564,7 +1564,7 @@ Map18 = riakc_map:update(
 
 #### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
 
 # Response
@@ -1630,7 +1630,7 @@ map.reload().maps['annika_info'].flags['enterprise_plan'].value
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 ahmedMap = response.Value;
@@ -1664,7 +1664,7 @@ riakc_map:dirty_value(Map18).
 
 #### Curl 
 
-```curl
+```bash
 # Specific values for fields inside of maps (or maps within maps, for that
 # matter), cannot be obtained directly through the HTTP interface.
 ```
@@ -1719,7 +1719,7 @@ map.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1765,7 +1765,7 @@ Map19 = riakc_map:update(
 
 ### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '
@@ -1832,7 +1832,7 @@ map.store()
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -1877,7 +1877,7 @@ Map20 = riakc_map:update(
 
 #### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '
@@ -1947,7 +1947,7 @@ map.store()
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -2004,7 +2004,7 @@ Map21 = riakc_map:update(
 
 #### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
 
 # Response
@@ -2096,7 +2096,7 @@ map.store()
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var mapOperation = new UpdateMap.MapOperation();
@@ -2151,7 +2151,7 @@ Map22 = riakc_map:update(
 
 #### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '

@@ -232,7 +232,7 @@ document created for an object, without actually writing the object, you
 can use the extract HTTP endpoint. This will do a dry-run extraction and
 return the document structure as `application/json`.
 
-```curl
+```bash
 curl -XPUT http://localhost:8098/search/extract \
      -H 'Content-Type: application/json' \
      --data-binary @object.json

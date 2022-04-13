@@ -91,7 +91,7 @@ obj.data = 'Harlem Globetrotters'
 
 ### C# 
 
-```c#
+```csharp
 var id = new RiakObjectId("sports", "nba", "champion");
 var obj = new RiakObject(id, "Washington Generals",
     RiakConstants.ContentTypes.TextPlain);
@@ -211,7 +211,7 @@ fmt.Printf("champion: %v", string(obj.Value))
 
 ### Curl 
 
-```curl
+```bash
 # When using curl, the context object is attached to the X-Riak-Vclock header
 
 curl -i http://localhost:8098/types/sports/buckets/nba/keys/champion
@@ -276,7 +276,7 @@ obj.vclock
 
 ### C#
 
-```c#
+```csharp
 // Using the RiakObject obj from above:
 var vclock = result.Value.VectorClock;
 Console.WriteLine(Convert.ToBase64String(vclock));
@@ -441,7 +441,7 @@ obj.store()
 
 ### C#
 
-```c#
+```csharp
 var id = new RiakObjectId("siblings", "coaches", "seahawks");
 var obj = new RiakObject(id, "Pete Carroll",
     RiakConstants.ContentTypes.TextPlain);
@@ -576,7 +576,7 @@ update_coach('packers', 'Vince Lombardi')
 
 #### C#
 
-```c#
+```csharp
 private void UpdateCoach(string team, string newCoach)
 {
     var id = new RiakObjectId("siblings", "coaches", team);

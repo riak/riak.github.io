@@ -312,7 +312,7 @@ client.fetchValue({ bucket: 'my_bucket', key: 'my_key' }, function (err, rslt) {
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/buckets/my_bucket/keys/my_key
 ```
 
@@ -404,7 +404,7 @@ client.fetchValue({
 
 #### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/type1/buckets/my_bucket/keys/my_key
 curl http://localhost:8098/types/type2/buckets/my_bucket/keys/my_key
 ```
@@ -519,7 +519,7 @@ client.storeValue({ value: obj1 }, function (err, rslt) {
 
 #### Curl
 
-```curl
+```bash
 curl http://localhost:8098/buckets/my_bucket/keys/my_key
 curl http://localhost:8098/types/default/my_bucket/keys/my_key
 ```
@@ -761,7 +761,7 @@ Object = riakc_obj:new({<<"no_siblings">>, <<"sensitive_user_data">>},
 riakc_pb_socket:put(Pid, Object).
 ```
 
-```curl
+```bash
 curl -XPUT \
   -H "Content-Type: application/json" \
   -d "{ ... user data ... }" \
@@ -866,7 +866,7 @@ riakc_pb_socket:put(Pid, Object).
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT \
   -H "Content-Type: text/plain" \
   -d "all your base are belong to us" \

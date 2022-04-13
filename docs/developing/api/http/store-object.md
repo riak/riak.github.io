@@ -81,7 +81,7 @@ and the response can be dealt with similarly.
 
 ## Example: Storing Without Key
 
-```curl
+```bash
 $ curl -v http://127.0.0.1:8098/buckets/test/keys \
        -H "Content-Type: text/plain" -d 'this is a test'
 * About to connect() to 127.0.0.1 port 8098 (#0)
@@ -108,7 +108,7 @@ $ curl -v http://127.0.0.1:8098/buckets/test/keys \
 
 ## Example: Storing With Key
 
-```curl
+```bash
 $ curl -v -XPUT -d '{"bar":"baz"}' -H "Content-Type: application/json" -H "X-Riak-Vclock: a85hYGBgzGDKBVIszMk55zKYEhnzWBlKIniO8mUBAA==" http://127.0.0.1:8098/buckets/test/keys/doc?returnbody=true
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected

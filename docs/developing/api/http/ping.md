@@ -21,7 +21,7 @@ Normal status codes:
 
 ## Example
 
-```curl
+```bash
 $ curl -v http://127.0.0.1:8098/ping
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected

@@ -99,7 +99,7 @@ err = cluster.Execute(cmd)
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/buckets/cats/props \
      -H'content-type:application/json' \
      -d'{"props":{"search_index":"famous"}}'

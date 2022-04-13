@@ -144,7 +144,7 @@ err = cluster.Execute(cmd)
 
 ### Curl 
 
-```curl
+```bash
 export RIAK_HOST="http://localhost:8098"
 
 curl -XPUT $RIAK_HOST/search/index/famous
@@ -230,7 +230,7 @@ err = cluster.Execute(cmd)
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/index/famous \
      -H 'Content-Type: application/json' \
      -d '{"schema":"_yz_default"}'
@@ -268,7 +268,7 @@ riak-admin bucket-type activate animals
 And this step applies the index to the `cats` bucket, which bears the
 `animals` bucket type we just created and activated:
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/types/animals/buckets/cats/props \
      -H 'Content-Type: application/json' \
      -d '{"props":{"search_index":"famous"}}'
@@ -377,7 +377,7 @@ err = cluster.Execute(cmd)
 
 #### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/buckets/cats/props \
      -H'content-type:application/json' \
      -d'{"props":{"search_index":"famous"}}'
@@ -670,7 +670,7 @@ wg.Wait()
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/types/animals/buckets/cats/keys/liono \
      -H 'Content-Type: application/json' \
      -d '{"name_s":"Lion-o", "age_i":30, "leader_b":true}'
@@ -908,7 +908,7 @@ if json, jerr := json.MarshalIndent(sc.Response.Docs, "", "  "); jerr != nil {
 
 #### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=name_s:Lion*" | jsonpp
 ```
 
@@ -1083,7 +1083,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 #### Curl 
 
-```curl
+```bash
 curl $RIAK_HOST/types/animals/buckets/cats/keys/liono
 
 # Response:
@@ -1195,7 +1195,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 #### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=age_i:%5B30%20TO%20*%5D" | jsonpp
 ```
 
@@ -1285,7 +1285,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 #### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=leader_b:true%20AND%20age_i:%5B25%20TO%20*%5D" | jsonpp
 ```
 
@@ -1387,7 +1387,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 #### Curl 
 
-```curl
+```bash
 curl -XDELETE $RIAK_HOST/search/index/famous
 ```
 
@@ -1395,7 +1395,7 @@ If an index does have a bucket associated with it, then that index's
 `search_index` property must be changed to either a different index name
 or to the sentinel value `_dont_index_`.
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/types/animals/buckets/cats/props \
      -H 'Content-Type: application/json' \
      -d '{"props":{"search_index":"_dont_index_"}}'
@@ -1537,7 +1537,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 ##### Curl 
 
-```curl
+```bash
 ROWS_PER_PAGE=2
 PAGE=2
 START=$(($ROWS_PER_PAGE * ($PAGE-1)))
@@ -1611,7 +1611,7 @@ In this example we're searching for all famous cats that are not
 leaders and counting up the results using Javascript for both map and
 reduce. It should return the reduced sum of `[3]`.
 
-```curl
+```bash
 curl -XPOST $RIAK_HOST/mapred \
      -H 'Content-Type: application/json' \
      -d '{"inputs":{"module":"yokozuna","function":"mapred_search","arg":["famous","NOT leader_b:true"]},"query":[{"map":{"language":"javascript","keep":false,"source":"function(v) { return [1]; }"}},{"reduce":{"language":"javascript","keep":true,"name":"Riak.reduceSum"}}]}'

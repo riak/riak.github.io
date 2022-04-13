@@ -347,7 +347,7 @@ riakc_pb_socket:put(Pid, Obj2).
 
 ### Curl
 
-```curl
+```bash
 curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/keys/best_character \
   -H "Content-Type: text/plain" \
   -d "Ren"
@@ -428,7 +428,7 @@ client.fetchValue({
 
 #### Curl
 
-```curl
+```bash
 curl http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
 ```
 
@@ -470,7 +470,7 @@ info: nickolodeon/best_character has '2' siblings
 
 ###### Curl
 
-```curl
+```bash
 Siblings:
 175xDv0I3UFCfGRC7K7U9z
 6zY2mUCFPEoL834vYCDmPe
@@ -482,7 +482,7 @@ HTTP). If you're using the HTTP interface and want to view all sibling
 values, you can attach an `Accept: multipart/mixed` header to your
 request:
 
-```curl
+```bash
 curl -H "Accept: multipart/mixed" \
   http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
 ```
@@ -629,7 +629,7 @@ client.fetchValue({
 
 #### Curl
 
-```curl
+```bash
 curl -i http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
 
 # In the HTTP interface, the causal context can be found in the

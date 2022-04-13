@@ -66,19 +66,19 @@ touch ~/.kerlrc
 
 Next add the following contents to your `~/.kerlrc` file:
 
-```shell
+```bashell
 KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads
                         --enable-kernel-poll --without-odbc --enable-darwin-64bit"
 ```
 
 Then check for the presence of autoconf by running:
 
-```shell
+```bashell
 which autoconf
 ```
 If this returns `autoconf not found`, install autoconf by running:
 
-```shell
+```bashell
 sudo pkg update
 sudo pkg install autoconf
 ```
@@ -98,7 +98,7 @@ touch ~/.kerlrc
 
 Next add the following contents to your `~/.kerlrc` file:
 
-```shell
+```bashell
 KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads
                         --enable-kernel-poll --without-odbc --enable-darwin-64bit"
 ```
@@ -107,7 +107,7 @@ On OS X 10.9 (Mavericks) or later, you may need to install [autoconf](https://ww
 
 Check for the presence of autoconf by running:
 
-```shell
+```bashell
 which autoconf
 ```
 
@@ -115,13 +115,13 @@ If this returns `autoconf not found`, install autoconf with:
 
 With Homebrew:
 
-```shell
+```bashell
 brew install autoconf
 ```
 
 Or with curl:
 
-```shell
+```bashell
 curl -O http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
 tar zxvf autoconf-2.69.tar.gz
 cd autoconf-2.69

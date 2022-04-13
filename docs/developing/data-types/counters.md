@@ -90,7 +90,7 @@ bucket = client.bucket_type('counters').bucket('counters')
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // You can either use the appropriate Options class or the Builder
@@ -126,7 +126,7 @@ var options = {
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/counters/buckets/counters/datatypes/<key>
 
 # Note that this differs from the URL structure for non-Data-Type
@@ -185,7 +185,7 @@ counter = Counter(bucket, key)
 
 ### C#
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var fetchCounterOptions = new FetchCounterOptions("counters", "counters", "<key>");
@@ -215,7 +215,7 @@ var options = {
 
 ### Curl 
 
-```curl
+```bash
 # This will create a counter with an initial value of 0
 
 curl -XPOST http://localhost:8098/types/counters/buckets/<bucket>/datatypes/<key> \
@@ -271,7 +271,7 @@ counter = bucket.new('traffic_tickets')
 
 #### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var fetchCounterOptions = new FetchCounterOptions("counters", "counters", "traffic_tickts");
@@ -304,7 +304,7 @@ Counter = riakc_counter:new().
 
 #### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
   -H "Content-Type: application/json" \
   -d '{"increment": 0}'
@@ -358,7 +358,7 @@ counter.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 UpdateCounter updateCmd = new UpdateCounter.Builder(increment: 1)
@@ -398,7 +398,7 @@ client.updateCounter(options,
 Counter1 = riakc_counter:increment(Counter).
 ```
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
   -H "Content-Type: application/json" \
   -d '{"increment": 1}'
@@ -445,7 +445,7 @@ counter.increment(5)
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new UpdateCounter.Builder(5)
@@ -497,7 +497,7 @@ Counter2 = riakc_counter:increment(5, Counter1).
 
 ### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
   -H "Content-Type: application/json" \
   -d '{"increment": 5}'
@@ -558,7 +558,7 @@ counter.reload()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var fetchCounterOptions = new FetchCounterOptions("counters", "counters", "traffic_tickts");
@@ -616,7 +616,7 @@ riakc_counter:value(Counter2).
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets
 
 # Response:
@@ -669,7 +669,7 @@ counter.decrement(3)
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var updateCmd = new UpdateCounter.Builder(-3)
@@ -723,7 +723,7 @@ riakc_pb_socket:update_type(Pid, {<<"counters">>,<<"counters">>},
 
 ### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
   -H "Content-Type: application/json" \
   -d '{"decrement": 3}'

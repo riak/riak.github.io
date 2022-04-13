@@ -44,7 +44,7 @@ form
 
 Request JSON response
 
-```curl
+```bash
 $ curl -i http://localhost:8098 -H "Accept: application/json"
 HTTP/1.1 200 OK
 Vary: Accept

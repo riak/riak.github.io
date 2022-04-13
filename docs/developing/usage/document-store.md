@@ -119,7 +119,7 @@ xml_file.close()
 
 ## C# 
 
-```c#
+```csharp
 var schemaXml = File.ReadAllText("blog_post_schema.xml");
 var schema = new SearchSchema("blog_post_schema", schemaXml);
 var rslt = client.PutSearchSchema(schema);
@@ -151,7 +151,7 @@ client.storeSchema(options, function (err, rslt) {
 riakc_pb_socket:create_search_schema(Pid, <<"blog_post_schema">>, SchemaData).
 ```
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/schema/blog_post_schema \
      -H 'Content-Type: application/xml' \
      --data-binary @blog_post_schema.xml
@@ -194,7 +194,7 @@ client.create_search_index('blog_posts', 'blog_post_schema')
 
 ### C# 
 
-```c#
+```csharp
 var idx = new SearchIndex("blog_posts", "blog_post_schema");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -221,7 +221,7 @@ riakc_pb_socket:create_search_index(Pid, <<"blog_posts">>, <<"blog_post_schema">
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/index/blog_posts \
      -H 'Content-Type: application/json' \
      -d '{"schema": "blog_post_schema"}'
@@ -425,7 +425,7 @@ class BlogPost:
 
 ### C# 
 
-```c#
+```csharp
 /*
  * Please see the code in the RiakClientExamples project:
  * https://github.com/basho/riak-dotnet-client/tree/develop/src/RiakClientExamples/Dev/Search
@@ -517,7 +517,7 @@ blog_post1 = BlogPost('cat_pics_quarterly',
 
 ### C# 
 
-```c#
+```csharp
 var keywords = new HashSet<string> { "adorbs", "cheshire" };
 
 var post = new BlogPost(
@@ -595,7 +595,7 @@ results = client.fulltext_search('blog_posts', 'keywords_set:funny')
 
 ### C# 
 
-```c#
+```csharp
 var searchRequest = new RiakSearchRequest("blog_posts", "keywords_set:funny");
 var rslt = client.Search(searchRequest);
 ```
@@ -614,7 +614,7 @@ client.execute(searchCmd);
 
 ### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=keywords_set:funny"
 ```
 
@@ -657,7 +657,7 @@ results = client.fulltext_search('blog_posts', 'content_register:furry')
 
 ### C# 
 
-```c#
+```csharp
 var searchRequest = new RiakSearchRequest("blog_posts", "content_register:furry");
 var rslt = client.Search(searchRequest);
 ```
@@ -676,7 +676,7 @@ client.execute(searchCmd);
 
 ### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=content_register:furry"
 ```
 

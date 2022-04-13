@@ -219,7 +219,7 @@ riak.RiakError: 'failed'
 
 ### Curl 
 
-```curl
+```bash
 <html><head><title>412 Precondition Failed</title></head><body><h1>Precondition Failed</h1>Precondition Failed<p><hr><address>mochiweb+webmachine web server</address></body></html>
 ```
 

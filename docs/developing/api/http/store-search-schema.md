@@ -20,7 +20,7 @@ formed XML schema. More information can be found in the [Search Schema](../../..
 `my_schema.xml` and would like to create a new schema called
 `my_custom_schema`, you would use the following HTTP request:
 
-```curl
+```bash
 curl -XPUT http://localhost:8098/search/schema/my_custom_schema \
   -H "Content-Type: application/xml" \
   --data-binary @my_schema.xml

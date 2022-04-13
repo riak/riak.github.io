@@ -56,7 +56,7 @@ obj = bucket.get('rufus')
 
 ## C# 
 
-```c#
+```csharp
 // Using the Riak .NET Client it is best to specify a bucket type/bucket/key
 // RiakObjectId object that can be used as a reference for further
 // operations
@@ -94,7 +94,7 @@ if err != nil {
 
 ## Curl
 
-```curl
+```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
 ```
 
@@ -154,7 +154,7 @@ print obj.data
 
 ### C# 
 
-```c#
+```csharp
 var id = new RiakObjectId("animals", "dogs", "rufus");
 var opts = new RiakGetOptions();
 opts.SetR(3);
@@ -211,7 +211,7 @@ rsp := svc.Response
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus?r=3
 ```
 
@@ -262,7 +262,7 @@ riak.RiakError: 'no_type'
 
 ### C# 
 
-```c#
+```csharp
 result.IsSuccess == false
 result.ResultCode == ResultCode.NotFound
 ```
@@ -289,6 +289,6 @@ rsp.IsNotFound // Will be true
 
 ### Curl 
 
-```curl
+```bash
 not found
 ```

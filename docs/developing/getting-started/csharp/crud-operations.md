@@ -13,7 +13,7 @@ The Riak .NET Client makes use of a `RiakObject` class to encapsulate Riak key/v
 
 Add the `RiakClient.Models` namespace to your using directive. Your usings should look like this:
 
-```c#
+```csharp
 using System;
 using System.Collections.Generic;
 using RiakClient;
@@ -22,7 +22,7 @@ using RiakClient.Models;
 
 Add the `Person` class to the `TasteOfRiak` namespace:
 
-```c#
+```csharp
 public class Person
 {
     public string EmailAddress { get; set; }
@@ -33,7 +33,7 @@ public class Person
 
 Now let's create some people!
 
-```c#
+```csharp
 var people = new[]
 {
     new Person {
@@ -75,7 +75,7 @@ Once again, we check the response from Riak. If things are successful, you'll se
 
 Let's find a person!
 
-```c#
+```csharp
 var result = client.Get(contributors, "bashoman@basho.com");
 if (result.IsSuccess)
 {
@@ -97,7 +97,7 @@ After verifying that we've been able to communicate with Riak *and* that we have
 
 Let's say that Basho Man has decided to be known as Riak Man:
 
-```c#
+```csharp
 bashoman.FirstName = "Riak";
 
 var o = new RiakObject(contributors, bashoman.EmailAddress, bashoman);
@@ -117,7 +117,7 @@ Updating an object involves creating a new `RiakObject` then using `RiakClient.P
 
 ### Deleting Data
 
-```c#
+```csharp
 var deleteResult = client.Delete(contributors, "johndoe@gmail.com");
 if (deleteResult.IsSuccess)
 {

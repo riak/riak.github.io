@@ -142,7 +142,7 @@ riak-admin bucket-type activate n_val_equals_2
 Now, all buckets that bear the type `n_val_equals_2` will have `n_val`
 set to 2. Here's an example write:
 
-```curl
+```bash
 curl -XPUT http://localhost:8098/types/n_val_equals_2/buckets/test_bucket/keys/test_key \
   -H "Content-Type: text/plain" \
   -d "the n_val on this write is 2"
@@ -229,7 +229,7 @@ bucket.get('chimpanzee')
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/r_equals_1/buckets/animal_facts/keys/chimpanzee
 ```
 
@@ -316,7 +316,7 @@ riakc_pb_socket:put(Pid, Obj).
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT \
   -H "Content-type: text/plain" \
   -d "The species name of the giraffe is Giraffa camelopardalis" \
@@ -500,7 +500,7 @@ obj = bucket.get('john_stockton', r=2, notfound_ok=True)
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/buckets/nba_stats/keys/john_stockton?r=2&notfound_ok=true
 ```
 
@@ -561,7 +561,7 @@ riakc_pb_socket:put(Pid, Obj).
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT \
   -H "Content-Type: application/json" \
   -d '{"stats":{ ... large stats object ... }}' \

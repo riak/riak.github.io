@@ -263,7 +263,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 #### Curl
 
-```curl
+```bash
 curl -XPUT \
   -H "Content-Type: text/plain" \
   -d "vroom" \
@@ -408,7 +408,7 @@ if err := cluster.Execute(cmd); err != nil {
 
 ##### Curl 
 
-```curl
+```bash
 curl -XPUT \
   -H "Content-Type: text/plain" \
   -d "vroom" \
@@ -584,7 +584,7 @@ fmt.Printf("Generated key: %v\n", rsp.GeneratedKey)
 
 #### Curl 
 
-```curl
+```bash
 curl -i -XPOST \
   -H "Content-Type: text/plain" \
   -d "this is a test" \

@@ -167,7 +167,7 @@ bucket.get_properties()
 
 ### Curl 
 
-```curl
+```bash
 # Assuming that Riak is running on "localhost" and port 8087:
 
 curl http://localhost:8087/types/default/buckets/animals/props
@@ -222,6 +222,6 @@ bucket.get_properties()
 
 #### Curl
 
-```curl
+```bash
 curl http://localhost:8087/types/my_custom_type/buckets/animals/props
 ```

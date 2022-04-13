@@ -44,7 +44,7 @@ bucket properties. See [Managing Bucket Types Through the Command Line](http://d
 
 ## Example
 
-```curl
+```bash
 $ curl -v http://127.0.0.1:8098/buckets/test/props
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected

@@ -121,7 +121,7 @@ the word "caremad."
 For the sake of simplicity, we'll use [curl](http://curl.haxx.se/)
 in conjunction with Riak KV's [HTTP API][api http] to store the objects:
 
-```curl
+```bash
 curl -XPUT http://localhost:8098/buckets/training/keys/foo \
   -H 'Content-Type: text/plain' \
   -d 'caremad data goes here'

@@ -23,7 +23,7 @@ as the request body in which the `schema` field specifies the name of
 the schema to use. If you've [stored a schema](../../../developing/usage/search-schemas.md#custom-schemas) called `my_custom_schema`, the following `PUT`
 request would create an index called `my_index` that used that schema:
 
-```curl
+```bash
 curl -XPUT http://localhost:8098/search/index/my_index \
   -H "Content-Type: application/json" \
   -d '{"schema": "my_custom_schema"}'

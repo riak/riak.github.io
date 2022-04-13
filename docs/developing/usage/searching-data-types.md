@@ -189,7 +189,7 @@ client.create_search_index('scores', '_yz_default')
 
 ### C# 
 
-```c#
+```csharp
 var idx = new SearchIndex("scores", "_yz_default");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -213,7 +213,7 @@ riakc_pb_socket:create_search_index(Pid, <<"scores">>, <<"_yz_default">>, []).
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/index/hobbies \
   -H 'Content-Type: application/json' \
   -d '{"schema":"_yz_default"}'
@@ -297,7 +297,7 @@ joan_rivers_counter.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 var cmd = new UpdateCounter.Builder()
@@ -373,7 +373,7 @@ riakc_pb_socket:update_type(Pid,
 
 ### Curl 
 
-```curl
+```bash
 # We do not recommend working with Riak Data Types via curl. Try using
 # one of our client libraries instead.
 ```
@@ -427,7 +427,7 @@ results['num_found']
 
 ### C# 
 
-```c#
+```csharp
 var search = new RiakSearchRequest("scores", "counter:[20 TO *]");
 var rslt = client.Search(search);
 RiakSearchResult searchResult = rslt.Value;
@@ -466,7 +466,7 @@ NumberFound = Results#search_results.num_found.
 
 ### curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:[20 TO *]" | jsonpp
 ```
 
@@ -531,7 +531,7 @@ doc['_yz_rt'] # 'counters'
 
 ### C# 
 
-```c#
+```csharp
 var search = new RiakSearchRequest("scores", "counter:[20 TO *]");
 var rslt = client.Search(search);
 
@@ -564,7 +564,7 @@ BucketType = proplists:get_value(<<"_yz_rt", Doc).
 
 ### Curl 
 
-```curl
+```bash
 # Use the JSON object from above to locate bucket, key, and bucket type
 # information
 ```
@@ -611,7 +611,7 @@ results = client.fulltext_search('scores', 'counter:[* TO 15]')
 
 ### C# 
 
-```c#
+```csharp
 var search = new RiakSearchRequest("scores", "counter:[* TO 15]");
 var rslt = client.Search(search);
 ```
@@ -636,7 +636,7 @@ client.execute(searchCmd);
 
 ### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:[* TO 15]" | jsonpp
 ```
 
@@ -675,7 +675,7 @@ results = client.fulltext_search('scores', 'counter:17')
 
 ### C# 
 
-```c#
+```csharp
 var search = new RiakSearchRequest("scores", "counter:17");
 var rslt = client.Search(search);
 ```
@@ -700,7 +700,7 @@ client.execute(searchCmd);
 
 ### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:17" | jsonpp
 ```
 
@@ -751,7 +751,7 @@ client.create_search_index('hobbies', '_yz_default')
 
 ### C# 
 
-```c#
+```csharp
 var searchIndex = new SearchIndex("hobbies", "_yz_default");
 var rslt = client.PutSearchIndex(searchIndex);
 ```
@@ -775,7 +775,7 @@ riakc_pb_socket:create_search_index(Pid, <<"hobbies">>, <<"_yz_default">>).
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/index/hobbies \
   -H 'Content-Type: application/json' \
   -d '{"schema": "_yz_default"}'
@@ -871,7 +871,7 @@ ronnie_james_dio_set.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 var cmd = new UpdateSet.Builder()
@@ -987,7 +987,7 @@ results = client.fulltext_search('hobbies', 'set:football')
 
 ### C# 
 
-```c#
+```csharp
 var search = new RiakSearchRequest("hobbies", "set:football");
 var rslt = client.Search(search);
 
@@ -1029,7 +1029,7 @@ client.execute(searchCmd);
 
 ### Curl 
 
-```curl
+```bash
 curl "$RIAK_HOST/search/query/hobbies?wt=json&q=set:football" | jsonpp
 ```
 
@@ -1066,7 +1066,7 @@ results['num_found']
 
 ### C# 
 
-```c#
+```csharp
 RiakSearchResult searchResult = rslt.Value;
 Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
@@ -1087,7 +1087,7 @@ NumberFound = Results#search_results.num_found.
 
 ### Curl 
 
-```curl
+```bash
 ```
 
 ## How many sets contain `winning`?
@@ -1135,7 +1135,7 @@ results['num_found']
 
 ### C#
 
-```c#
+```csharp
 var search = new RiakSearchRequest("hobbies", "set:winning");
 ```
 
@@ -1221,7 +1221,7 @@ client.create_search_index('customers', '_yz_default')
 
 ### C#
 
-```c#
+```csharp
 var searchIndex = new SearchIndex("customers", "_yz_default");
 var rslt = client.PutSearchIndex(searchIndex);
 ```
@@ -1243,7 +1243,7 @@ client.storeIndex(options, function (err, rslt) {
 riakc_pb_socket:create_search_index(Pid, <<"customers">>, <<"_yz_default">>).
 ```
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/search/index/customers \
   -H 'Content-Type: application/json' \
   -d '{"schema":"_yz_default"}'
@@ -1382,7 +1382,7 @@ joan_jett.store()
 
 ### C#
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 // Note: similar code for Joan Jett
@@ -1514,7 +1514,7 @@ results['num_found']
 
 #### C#
 
-```c#
+```csharp
 var search = new RiakSearchRequest("customers", "page_visits_counter:[15 TO *]");
 var rslt = client.Search(search);
 ```
@@ -1579,7 +1579,7 @@ results['docs'][0]['first_name_register']
 
 #### C#
 
-```c#
+```csharp
 var search = new RiakSearchRequest("customers", "page_visits_counter:[15 TO *]");
 var rslt = client.Search(search);
 var firstDoc = searchResult.Documents.First();
@@ -1636,7 +1636,7 @@ results['num_found']
 
 #### C#
 
-```c#
+```csharp
 var search = new RiakSearchRequest("customers", "interests_set:*");
 var rslt = client.Search(search);
 ```
@@ -1699,7 +1699,7 @@ results['docs'][0]['first_name_register'] # u'Joan'
 
 #### C#
 
-```c#
+```csharp
 var search = new RiakSearchRequest("customers", "interests_set:loving*");
 var rslt = client.Search(search);
 ```
@@ -1778,7 +1778,7 @@ joan_jett.store()
 
 #### C#
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
 
 const string nameRegister = "name";

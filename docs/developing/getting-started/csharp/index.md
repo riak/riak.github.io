@@ -23,7 +23,7 @@ remote cluster.
 
 Connecting to Riak with the Riak .NET Client requires creating a cluster object and then creating a new client object.
 
-```c#
+```csharp
 using System;
 using RiakClient;
 
@@ -46,7 +46,7 @@ This creates a new `RiakCluster` which is used to create a new `RiakClient`. A `
 
 Let's make sure the cluster is online. Add this to your `Main` method:
 
-```c#
+```csharp
 var pingResult = client.Ping();
 
 if (pingResult.IsSuccess)

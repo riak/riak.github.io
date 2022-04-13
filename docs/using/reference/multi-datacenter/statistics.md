@@ -214,12 +214,12 @@ more information.
 These stats can be accessed via the command line with the following
 command:
 
-```curl
+```bash
 curl -q http://127.0.0.1:8098/riak-repl/stats
 ```
 
 A simple way to view formatted statistics is to use a command such as:
 
-```curl
+```bash
 curl -q http://127.0.0.1:8098/riak-repl/stats | jsonpp
 ```

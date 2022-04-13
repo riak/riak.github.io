@@ -242,7 +242,7 @@ remains is to try the custom function in a MapReduce query. For
 example, let's return keys contained within a bucket named `messages`
 (please pick a bucket which contains keys in your environment).
 
-```curl
+```bash
 curl -XPOST localhost:8098/mapred \
   -H 'Content-Type: application/json'   \
   -d '{"inputs":"messages","query":[{"map":{"language":"erlang","module":"mr_example","function":"get_keys"}}]}'

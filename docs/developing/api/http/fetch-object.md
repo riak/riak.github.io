@@ -90,7 +90,7 @@ given in the response.
 
 ## Simple Example
 
-```curl
+```bash
 $ curl -v http://127.0.0.1:8098/buckets/test/keys/doc2
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -122,7 +122,7 @@ $ curl -v http://127.0.0.1:8098/buckets/test/keys/doc2
 
 Simple call to fetch an object that has siblings:
 
-```curl
+```bash
 $ curl -v http://127.0.0.1:8098/buckets/test/keys/doc
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -151,7 +151,7 @@ Siblings:
 
 Now request one of the siblings directly:
 
-```curl
+```bash
 $ curl -v http://127.0.0.1:8098/buckets/test/keys/doc?vtag=16vic4eU9ny46o4KPiDz1f
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -179,7 +179,7 @@ $ curl -v http://127.0.0.1:8098/buckets/test/keys/doc?vtag=16vic4eU9ny46o4KPiDz1
 
 ### Get all siblings in one request
 
-```curl
+```bash
 $ curl -v http://127.0.0.1:8098/buckets/test/keys/doc -H "Accept: multipart/mixed"
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected

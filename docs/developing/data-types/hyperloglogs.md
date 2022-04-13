@@ -110,7 +110,7 @@ import (
 
 ### C# 
 
-```c#
+```csharp
 // In the C# client, buckets are just string parameters to operations.
 // See the examples below for more information.
 ```
@@ -138,7 +138,7 @@ bucket = client.bucket_type('hlls').bucket('my_hlls')
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 
 # Note that this differs from the URL structure for non-Data-Type
@@ -195,7 +195,7 @@ hll = Hll(bucket, key)
 
 ### C# 
 
-```c#
+```csharp
 // In the C# client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
@@ -232,7 +232,7 @@ hll = Riak::Crdt::HyperLogLog.new(bucket, key)
 
 ### Curl 
 
-```curl
+```bash
 # You cannot create an empty hyperloglog data structure through the HTTP
 # interface.
 # Hyperloglogs can only be created when an element is added to them, as in the
@@ -318,7 +318,7 @@ client.fetchHll(options, function (err, rslt) {
 
 #### C# 
 
-```c#
+```csharp
  var fetch = new FetchHll.Builder()
                     .WithBucketType("hlls")
                     .WithBucket("hello")
@@ -349,7 +349,7 @@ puts hll.cardinality
 # Prints "0"
 ```
 
-```curl
+```bash
 curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
 
 # Response
@@ -406,7 +406,7 @@ myhll.store()
 
 ### C# 
 
-```c#
+```csharp
 // We will add values in the next example
 ```
 
@@ -438,7 +438,7 @@ $response = $command->execute();
 
 ### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness \
   -H "Content-Type: application/json" \
   -d '{"add_all":["my", "old", "friend"]}'
@@ -536,7 +536,7 @@ client.updateHll(options, function (err, rslt) {
 
 #### C# 
 
-```c#
+```csharp
 var adds = new HashSet<string> { "Jokes", "Are", "Better", "Explained", "Jokes" };
 
 var update = new UpdateHll.Builder(adds)
@@ -670,7 +670,7 @@ client.fetchHll(options, function (err, rslt) {
 
 ### C# 
 
-```c#
+```csharp
 var fetch = new FetchHll.Builder()
                     .WithBucketType("hlls")
                     .WithBucket("hello")
@@ -721,7 +721,7 @@ puts hll.cardinality
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
 
 # Response

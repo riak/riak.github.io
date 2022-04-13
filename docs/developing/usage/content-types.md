@@ -50,7 +50,7 @@ ArgumentError: content_type is not defined!
 
 ## C# 
 
-```c#
+```csharp
 // Using the Riak .NET Client, the response when storing an object without
 // specifying a content type will depend on what is being stored.
 // If you store a Dictionary, for example, the client will
@@ -137,7 +137,7 @@ obj.store()
 
 ### C# 
 
-```c#
+```csharp
 var id = new RiakObjectId("quotes", "oscar_wilde", "genius");
 var obj = new RiakObject(id, "I have nothing to declare but my genius",
     RiakConstants.ContentTypes.TextPlain);
@@ -203,7 +203,7 @@ rsp := svc.Response
 
 ### Curl 
 
-```curl
+```bash
 curl -XPUT \
   -H "Content-Type: text/plain" \
   -d "I have nothing to declare but my genius" \

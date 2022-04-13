@@ -41,7 +41,7 @@ will be an array of bucket names.
 
 ## Example
 
-```curl
+```bash
 $ curl -i http://localhost:8098/buckets?buckets=true
 HTTP/1.1 200 OK
 Vary: Accept-Encoding

@@ -394,7 +394,7 @@ for i := 0; i < len(cmds); i++ {
 
 Which returns our amalgamated objects:
 
-```sh
+```bash
 2015/12/29 09:44:10 OrderSummary 1: {"CustomerId":"I4R9AdTpJ7RL13qj14ED9Qjzbyy","Summaries":[{"Id":"1","Total":415.98,"Date":"2013-10-01T14:42:26Z"},{"Id":"2","Total":359.99,"Date":"2013-10-15T16:43:16Z"},{"Id":"3","Total":74.98,"Date":"2013-11-03T17:45:28Z"}]}
 2015/12/29 09:44:10 Customer     1: {"Name":"John Smith","Address":"123 Main Street","City":"Columbus","State":"Ohio","Zip":"43210","Phone":"+1-614-555-5555","CreatedDate":"2013-10-01T14:30:26Z"
 ```
@@ -519,7 +519,7 @@ for _, rslt := range qcmd.Response.Results {
 
 Which returns:
 
-```sh
+```bash
 2015/12/29 09:44:10 Jane's Orders, key:  3
 2015/12/29 09:44:10 Jane's Orders, key:  1
 ```
@@ -550,7 +550,7 @@ for _, rslt := range qcmd.Response.Results {
 
 Which returns:
 
-```sh
+```bash
 2015/12/29 09:44:10 October's Orders, key:  1
 2015/12/29 09:44:10 October's Orders, key:  2
 ```

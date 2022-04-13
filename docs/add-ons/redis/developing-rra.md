@@ -63,7 +63,7 @@ bucket-type is created in Riak without specifying the data type, so effectively
 an opaque value, ie a `string`. The following command provides an example of
 creating the bucket-type `rra`:
 
-```sh
+```bash
 if ! riak-admin bucket-type status rra >/dev/null 2>&1; then
     riak-admin bucket-type create rra '{"props":{}}'
     riak-admin bucket-type activate rra
@@ -74,7 +74,7 @@ fi
 
 The following is an example, using Riak KV's default HTTP port, of setting `allow_mult` to 'true' and `last_write_wins` to 'false':
 
-```sh
+```bash
 curl -XPUT -H 'Content-Type: application/json' \
          -d '{"props": {"allow_mult": true, "last_write_wins": false}}' \
          'http://127.0.0.1:8098/types/rra/buckets/test/props'

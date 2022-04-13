@@ -35,7 +35,7 @@ riak-admin bucket-type activate animals
 And this step applies the index to the `cats` bucket, which bears the
 `animals` bucket type we just created and activated:
 
-```curl
+```bash
 curl -XPUT $RIAK_HOST/types/animals/buckets/cats/props \
      -H 'Content-Type: application/json' \
      -d '{"props":{"search_index":"famous"}}'

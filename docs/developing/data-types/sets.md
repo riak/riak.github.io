@@ -114,7 +114,7 @@ set = Set(bucket, key)
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // As with counters, with the Riak .NET Client you interact with sets
@@ -156,7 +156,7 @@ var options = {
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 
 # Note that this differs from the URL structure for non-data type requests,
@@ -219,7 +219,7 @@ cities_set = Set(travel, 'cities')
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // Now we'll create a Builder object for the set with which we want to
@@ -254,7 +254,7 @@ CitiesSet = riakc_set:new().
 
 ### Curl 
 
-```curl
+```bash
 # You cannot create an empty set through the HTTP interface. Sets can
 # only be created when an element is added to them, as in the examples
 # below.
@@ -304,7 +304,7 @@ len(cities_set) == 0
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var builder = new FetchSet.Builder()
@@ -350,7 +350,7 @@ riakc_set:size(CitiesSet) == 0.
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
 
 # Response
@@ -404,7 +404,7 @@ cities_set.add('Montreal')
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var adds = new[] { "Toronto", "Montreal" };
@@ -456,7 +456,7 @@ CitiesSet2 = riakc_set:add_element(<<"Montreal">>, CitiesSet1).
 
 ### Curl 
 
-```curl
+```bash
 curl -XPOST http://localhost:8098/types/sets/buckets/travel/datatypes/cities \
   -H "Content-Type: application/json" \
   -d '{"add_all":["Toronto", "Montreal"]}'
@@ -536,7 +536,7 @@ cities_set.store()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 var removes = new[] { "Montreal" };
@@ -599,7 +599,7 @@ CitiesSet5 = riakc_set:add_element(<<"Ottawa">>, CitiesSet4).
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
 
 # Response
@@ -669,7 +669,7 @@ cities_set.reload()
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 foreach (var value in setResponse.AsStrings)
@@ -726,7 +726,7 @@ riakc_set:value(CitiesSet5).
 
 ### Curl 
 
-```curl
+```bash
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
 
 # Response
@@ -782,7 +782,7 @@ in_array('Ottawa', $set->getData()); # true
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 using System.Linq;
@@ -813,7 +813,7 @@ riakc_set:is_element(<<"Ottawa">>, CitiesSet5).
 
 ### Curl 
 
-```curl
+```bash
 # With the HTTP interface, this can be determined from the output of
 # a fetch command like the one displayed in the example above
 ```
@@ -850,7 +850,7 @@ len(cities_set)
 
 ### C# 
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 using System.Linq;
@@ -875,7 +875,7 @@ riakc_set:size(CitiesSet5).
 
 ### Curl 
 
-```curl
+```bash
 # With the HTTP interface, this can be determined from the output of
 # a fetch command like the one displayed in the example above
 ```
