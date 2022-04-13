@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Riak',
-  tagline: 'Documentation for Riak',
+  title: 'Riak KV',
+  tagline: 'Documentation for Riak KV 2.2.3+',
   url: 'https://www.riak.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -44,7 +44,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Riak',
+        title: 'Riak KV',
         logo: {
           alt: 'My Site Logo',
           src: 'images/branding/riak-logo.png',
