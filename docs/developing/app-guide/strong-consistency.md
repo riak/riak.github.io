@@ -5,6 +5,9 @@ slug: strong-consistency
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
 [use ref strong consistency#trade-offs]: ../../using/reference/strong-consistency.md#trade-offs
@@ -186,42 +189,51 @@ with the object.
 If you attempt a write to a non-empty key without including causal
 context, you will receive the following error:
 
-### Ruby
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 Riak::Conflict: The object is in conflict (has siblings) and cannot be treated singly or saved:
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 java.lang.IllegalArgumentException: VClock cannot be null.
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response->isSuccess();  // false
 $response->getStatusCode(); // 412
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 riak.RiakError: 'failed'
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {error,<<"failed">>}
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 <html><head><title>412 Precondition Failed</title></head><body><h1>Precondition Failed</h1>Precondition Failed<p><hr><address>mochiweb+webmachine web server</address></body></html>
 ```
+
+</TabItem>
+</Tabs>
 
 > **Getting Started with Riak KV clients**
 >

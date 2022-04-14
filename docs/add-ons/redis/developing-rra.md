@@ -5,6 +5,9 @@ slug: developing-rra
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [redis-clients]: http://redis.io/clients
 [usage bucket types]: ../../developing/usage/bucket-types.md
 [dev api http]: ../../developing/api/http/index.md
@@ -113,14 +116,16 @@ Reads via the cache proxy service are analogous to a Redis `GET`, with the added
 
 To request a value at a bucket/key in Riak KV, issue the following:
 
-### Erlang
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 {ok, RedisClientPid} = eredis:start_link("127.0.0.1", 22122).
 {ok, Value} = eredis:q(RedisClientPid, ["GET", "rra:test:food"]).
 ```
 
-### Javascript 
+</TabItem>
+<TabItem label="Javascript" value="javascript">
 
 ```javascript
 var redis = require("redis"),
@@ -129,7 +134,8 @@ var redis = require("redis"),
 client.get("rra:test:food", redis.print);
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 import redis
@@ -139,7 +145,8 @@ r = redis.StrictRedis(host="127.0.0.1", port=22122)
 r.get("rra:test:food")
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 require "redis"
@@ -149,7 +156,8 @@ redis = Redis.new(host: "127.0.0.1", port: 22122)
 redis.get("rra:test:food")
 ```
 
-### Scala 
+</TabItem>
+<TabItem label="Scala" value="scala">
 
 ```scala
 import com.lambdaworks.redis._
@@ -159,6 +167,9 @@ var connection = client.connect()
 
 var value = connection.get("rra:test:food")
 ```
+
+</TabItem>
+</Tabs>
 
 ### Get Configuration Parameters
 
@@ -195,14 +206,16 @@ operations.
 
 To set a value at a bucket/key in Riak KV, issue the following:
 
-### Erlang 
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 {ok, RedisClientPid} = eredis:start_link("127.0.0.1", 22122).
 {ok, KeysAffected} = eredis:q(RedisClientPid, ["SET", "rra:test:food", "apple"]).
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var redis = require("redis"),
@@ -211,7 +224,8 @@ var redis = require("redis"),
 client.set("rra:test:food", "apple", redis.print);
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 import redis
@@ -221,7 +235,8 @@ r = redis.StrictRedis(host="127.0.0.1", port=22122)
 r.set("rra:test:food", "apple")
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 require "redis"
@@ -231,7 +246,8 @@ redis = Redis.new(host: "127.0.0.1", port: 22122)
 redis.set("rra:test:food', 'apple")
 ```
 
-### Scala 
+</TabItem>
+<TabItem label="Scala" value="scala">
 
 ```scala
 import com.lambdaworks.redis._
@@ -241,6 +257,9 @@ var connection = client.connect()
 
 connection.set("rra:test:food", "apple")
 ```
+
+</TabItem>
+</Tabs>
 
 ### Set Configuration Parameters
 

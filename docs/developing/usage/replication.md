@@ -5,6 +5,9 @@ slug: replication
 sidebar_position: 15
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [usage bucket types]: ../../developing/usage/bucket-types.md
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
@@ -183,14 +186,16 @@ riak-admin bucket-type activate r_equals_1
 
 Here's an example read request using the `r_equals_1` bucket type:
 
-### Ruby
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 bucket = client.bucket_type('r_equals_1').bucket('animal_facts')
 obj = bucket.get('chimpanzee')
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 Location chimpanzeeFact =
@@ -201,7 +206,8 @@ RiakObject obj = response.getValue(RiakObject.class);
 System.out.println(obj.getValue().toString());
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
@@ -212,14 +218,16 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
 echo $response->getObject()->getData();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('r_equals_1').bucket('animal_facts')
 bucket.get('chimpanzee')
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -227,11 +235,15 @@ bucket.get('chimpanzee')
                                 <<"chimpanzee">>).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/r_equals_1/buckets/animal_facts/keys/chimpanzee
 ```
+
+</TabItem>
+</Tabs>
 
 As explained above, reads to buckets with the `r_equals_1` type will
 typically be completed more quickly, but if the first node to respond
@@ -261,7 +273,8 @@ riak-admin activate w_equals_3
 
 Now, we can attempt a write to a bucket bearing the type `w_equals_3`:
 
-### Ruby
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 bucket = client.bucket_type('w_equals_3').bucket('animal_facts')
@@ -271,7 +284,8 @@ obj.content_type = 'text/plain'
 obj.store
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 Location storyKey =
@@ -285,7 +299,8 @@ StoreValue store = new StoreValue.Builder(obj)
 client.execute(store);
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -294,7 +309,8 @@ client.execute(store);
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('w_equals_3').bucket('animal_facts')
@@ -304,7 +320,8 @@ obj.data = 'The species name of the giraffe is Giraffa camelopardalis'
 obj.store()
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Obj = riakc_object:new({<<"w_equals_3">>, <<"animal_facts">>},
@@ -314,7 +331,8 @@ Obj = riakc_object:new({<<"w_equals_3">>, <<"animal_facts">>},
 riakc_pb_socket:put(Pid, Obj).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT \
@@ -322,6 +340,9 @@ curl -XPUT \
   -d "The species name of the giraffe is Giraffa camelopardalis" \
   http://localhost:8098/types/w_equals_3/buckets/animal_facts/keys/giraffe
 ```
+
+</TabItem>
+</Tabs>
 
 Writing our `story.txt` will return a success response from Riak only if
 3 nodes respond that the write was successful. Setting `w` to 1, for
@@ -452,14 +473,16 @@ Let's say that you want to set `r` to 2 and `notfound_ok` to `true` for
 just one read. We'll fetch [John Stockton](http://en.wikipedia.org/wiki/John_Stockton)'s
 statistics from the `nba_stats` bucket.
 
-### Ruby 
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 bucket = client.bucket('nba_stats')
 obj = bucket.get('john_stockton', r: 2, notfound_ok: true)
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 Location johnStocktonStats =
@@ -471,7 +494,8 @@ FetchValue fetch = new FetchValue.Builder(johnStocktonStats)
 client.execute(fetch);
 ```
 
-### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\FetchObject($riak))
@@ -482,14 +506,16 @@ client.execute(fetch);
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket('nba_stats')
 obj = bucket.get('john_stockton', r=2, notfound_ok=True)
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -498,20 +524,23 @@ obj = bucket.get('john_stockton', r=2, notfound_ok=True)
                                 [{r, 2}, {notfound_ok, true}]).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/buckets/nba_stats/keys/john_stockton?r=2&notfound_ok=true
 ```
 
-## w = 3 and dw = 2
+</TabItem>
+</Tabs>
 
 Now, let's say that you want to attempt a write with `w` set to 3 and
 `dw` set to 2. As in the previous example, we'll be using the `default`
 bucket type, which enables us to not specify a bucket type upon write.
 Here's what that would look like:
 
-### Ruby
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 bucket = client.bucket('nba_stats')
@@ -521,7 +550,8 @@ obj.data = '{"stats":{ ... large stats object ... }}'
 obj.store(w: 3, dw: 2)
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 Location michaelJordanKey =
@@ -537,7 +567,8 @@ StoreValue store = new StoreValue.Builder(obj)
 client.execute(store);
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -549,7 +580,8 @@ client.execute(store);
   ->execute();
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Obj = riakc_obj:new(<<"nba_stats">>,
@@ -559,7 +591,8 @@ Obj = riakc_obj:new(<<"nba_stats">>,
 riakc_pb_socket:put(Pid, Obj).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT \
@@ -567,6 +600,9 @@ curl -XPUT \
   -d '{"stats":{ ... large stats object ... }}' \
   http://localhost:8098/buckets/nba_stats/keys/michael_jordan?w=3&dw=2
 ```
+
+</TabItem>
+</Tabs>
 
 All of Basho's [official Riak clients](../../developing/client-libraries.md) enable you to
 set replication properties this way. For more detailed information,

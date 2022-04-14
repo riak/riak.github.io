@@ -5,6 +5,9 @@ slug: creating-objects
 sidebar_position: 0
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [usage content types]: ../../developing/usage/content-types.md
 
 Writes in Riak KV (storing or modifying objects) are like HTTP `PUT`
@@ -22,7 +25,11 @@ The object we're storing will be very simple, just a basic text snippet
 of something that Rufus might say. Let's build the object and then store
 it.
 
-``` java
+<Tabs>
+
+<TabItem label="Java" value="java" default>
+
+```java
 String quote = "WOOF!";
 Namespace bucket = new Namespace("animals", "dogs");
 Location rufusLocation = new Location(bucket, "rufus");
@@ -35,7 +42,11 @@ StoreValue storeOp = new StoreValue.Builder(rufusObject)
 client.execute(storeOp);
 ```
 
-``` ruby
+</TabItem>
+
+<TabItem label="Ruby" value="ruby">
+
+```ruby
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = Riak::RObject.new(bucket, 'rufus')
 obj.content_type = 'text/plain'
@@ -43,7 +54,10 @@ obj.data = 'WOOF!'
 obj.store
 ```
 
-``` php
+</TabItem>
+<TabItem label="PHP" value="php">
+
+```php
 $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
   ->buildLocation('rufus', 'users', 'animals')
   ->buildObject('WOOF!', 'text/plain')
@@ -51,7 +65,10 @@ $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
   ->execute();
 ```
 
-``` python
+</TabItem>
+<TabItem label="Python" value="python">
+
+```python
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = RiakObject(client, bucket, 'rufus')
 obj.content_type = 'text/plain'
@@ -59,13 +76,19 @@ obj.data = 'WOOF!'
 obj.store()
 ```
 
-``` csharp
+</TabItem>
+<TabItem label="C#" value="c#">
+
+```csharp
 var id = new RiakObjectId("animals", "dogs", "rufus")
 var obj = new RiakObject(id, "WOOF!", "text/plain");
 var result = client.Put(obj);
 ```
 
-``` javascript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
+
+```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
 riakObj.setContentType('text/plain');
 riakObj.setValue('WOOF!');
@@ -79,7 +102,10 @@ client.storeValue({
 });
 ```
 
-``` golang
+</TabItem>
+<TabItem label="Go" value="go">
+
+```golang
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -107,6 +133,9 @@ if err := cluster.Execute(cmd); err != nil {
 svc := cmd.(*riak.StoreValueCommand)
 rsp := svc.Response
 ```
+
+</TabItem>
+</Tabs>
 
 Notice that we specified both a value for the object, i.e. `WOOF!`, and
 a content type, `text/plain`. See [content types][usage content types] for more information.
@@ -148,7 +177,8 @@ Here is an example of storing an object (another brief text snippet)
 under the key `viper` in the bucket `dodge`, which bears the type
 `cars`, with `w` set to `3`:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location viperKey = new Location(new Namespace("cars", "dodge"), "viper");
@@ -162,7 +192,8 @@ StoreValue store = new StoreValue.Builder(myKey, obj)
 client.execute(store);
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('cars').bucket('dodge')
@@ -172,7 +203,8 @@ obj.raw_data = 'vroom'
 obj.store(w: 3)
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -183,7 +215,8 @@ obj.store(w: 3)
   ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('cars').bucket('dodge')
@@ -193,7 +226,8 @@ obj.data = 'vroom'
 obj.store(w=3)
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("cars", "dodge", "viper");
@@ -203,7 +237,8 @@ options.SetW(new Quorum(3));
 var result = client.Put(obj, options);
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -221,7 +256,8 @@ client.storeValue(options, function (err, rslt) {
 });
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
@@ -232,7 +268,8 @@ Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
 riakc_pb_socket:put(Pid, Object).
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 obj := &riak.Object{
@@ -261,7 +298,8 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-#### Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT \
@@ -269,6 +307,9 @@ curl -XPUT \
   -d "vroom" \
   http://localhost:8098/types/cars/buckets/dodge/keys/viper?w=3
 ```
+
+</TabItem>
+</Tabs>
 
 Again, the above will only work if the `cars` bucket type has been created and activated.
 
@@ -287,7 +328,8 @@ Normal HTTP status codes (responses will vary for client libraries):
 
 For example, using the same object from above:
 
-##### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location viperKey = new Location(new Namespace("cars", "dodge"), "viper");
@@ -302,7 +344,8 @@ StoreValue store = new StoreValue.Builder(myKey, obj)
 client.execute(store);
 ```
 
-##### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('cars').bucket('dodge')
@@ -312,7 +355,8 @@ obj.raw_data = 'vroom'
 obj.store(w: 3, returnbody: true)
 ```
 
-##### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -324,7 +368,8 @@ obj.store(w: 3, returnbody: true)
   ->execute();
 ```
 
-##### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('cars').bucket('dodge')
@@ -334,7 +379,8 @@ obj.data = 'vroom'
 obj.store(w=3, return_body=True)
 ```
 
-##### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("cars", "dodge", "viper");
@@ -345,7 +391,8 @@ options.SetReturnBody(true);
 var result = client.Put(obj, options);
 ```
 
-##### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -366,7 +413,8 @@ client.storeValue(options, function (err, rslt) {
 });
 ```
 
-##### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
@@ -376,7 +424,8 @@ Object = riakc_obj:new({<<"cars">>, <<"dodge">>},
 riakc_pb_socket:put(Pid, Object, [return_body]).
 ```
 
-##### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 obj := &riak.Object{
@@ -406,7 +455,8 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-##### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT \
@@ -414,6 +464,9 @@ curl -XPUT \
   -d "vroom" \
   http://localhost:8098/types/cars/buckets/dodge/keys/viper?w=3&returnbody=true
 ```
+
+</TabItem>
+</Tabs>
 
 ### Store a New Object and Assign a Random Key
 
@@ -440,7 +493,8 @@ Normal status codes:
 This command will store an object in the bucket `random_user_keys`,
 which bears the bucket type `users`.
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace locationWithoutKey = new Namespace("users", "random_user_keys");
@@ -456,7 +510,8 @@ String key = client.execute(store).getLocation().getKeyAsString();
 "ZPFF18PUqGW9efVou7EHhfE6h8a"
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('users').bucket('random_user_keys')
@@ -471,7 +526,8 @@ obj.key
 "GB8fW6DDZtXogK19OLmaJf247DN"
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -483,7 +539,8 @@ $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
 echo $response->getLocation()->getKey(); // GB8fW6DDZtXogK19OLmaJf247DN
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('users').bucket('random_user_keys')
@@ -498,7 +555,8 @@ obj.key
 'ZPFF18PUqGW9efVou7EHhfE6h8a'
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("users", "random_user_keys", null);
@@ -511,7 +569,8 @@ Debug.WriteLine(format: "Generated key: {0}", args: rslt.Value.Key);
 // Generated key: DWDsnpYSqOU363c0Bqe8hCwAM7Q
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var user = {
@@ -534,7 +593,8 @@ client.storeValue(options, function (err, rslt) {
 // info: Generated key: VBAMoX0OOucymVCxeQEYzLzzAh2
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Object = riakc_obj:new({<<"users">>, <<"random_user_keys">>}, undefined, <<"{'user':'data'}">>, <<"application/json">>).
@@ -548,7 +608,8 @@ riakc_pb_socket:put(Pid, Object).
                undefined}}
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 obj := &riak.Object{
@@ -582,7 +643,8 @@ fmt.Printf("Generated key: %v\n", rsp.GeneratedKey)
 // Generated key: QSHkZjFdWwfrxtKl3wtUhL2gz7N
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -i -XPOST \
@@ -595,3 +657,6 @@ curl -i -XPOST \
 
 Location: /buckets/test/keys/G7FYUXtTsEdru4NP32eijMIRK3o
 ```
+
+</TabItem>
+</Tabs>

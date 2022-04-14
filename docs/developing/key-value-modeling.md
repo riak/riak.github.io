@@ -5,6 +5,9 @@ slug: key-value-modeling
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 While Riak enables you to take advantage of a wide variety of features
 that can be useful in application development, such as [Search](../developing/usage/search.md), [secondary indexes (2i)](../developing/usage/secondary-indexes.md), and [Riak Data Types](../developing/data-types/index.md), Riak almost always performs best when you
 build your application around basic CRUD operations (create, read,
@@ -147,7 +150,8 @@ the bucket `user_info_sets` (we'll keep it simple) and in the key
 
 We can interact with that set on the basis of its location:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location userIdSet = new Location(new Namespace("sets", "user_info_sets"), "usernames");
@@ -156,7 +160,8 @@ Location userIdSet = new Location(new Namespace("sets", "user_info_sets"), "user
 FetchSet fetchUserIdSet = new FetchSet.Builder(userIdSet).build();
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 require 'riak'
@@ -169,7 +174,8 @@ set_bucket = client.bucket('user_info_sets')
 $user_id_set = Riak::Crdt::Set.new(set_bucket, 'usernames', 'sets')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $command = (new \Basho\Riak\Command\Builder\FetchSet($riak))
@@ -177,7 +183,8 @@ $command = (new \Basho\Riak\Command\Builder\FetchSet($riak))
     ->build();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 from riak.datatypes import Set
@@ -186,12 +193,18 @@ bucket = client.bucket_type('sets').bucket('user_info_sets')
 user_id_set = Set(bucket, 'usernames')
 ```
 
-### Getting started with Riak clients
-If you are connecting to Riak using one of Basho's official [client libraries](../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../developing/getting-started/index.md).
+</TabItem>
+</Tabs>
 
-Then, we can create a function that stores a user record's key in that set every time a record is created:
+> **Getting started with Riak clients**
+>
+> If you are connecting to Riak using one of Basho's official [client libraries](../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../developing/getting-started/index.md).
 
-#### Java
+Then, we can create a function that stores a user record's key in that
+set every time a record is created:
+
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // A User class for constructing user records
@@ -228,7 +241,8 @@ public void storeUserRecord(User user) throws Exception {
 }
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 class User
@@ -249,7 +263,8 @@ def store_record(user)
 end
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 class User
@@ -280,7 +295,8 @@ function store_user(User $user)
 }
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 class User:
@@ -303,14 +319,16 @@ def store_record(user):
     user_id_set.store()
 ```
 
-#### Iteration
+</TabItem>
+</Tabs>
 
 Now, let's say that we want to be able to pull up all user records in
 the bucket at once. We could do so by iterating through the usernames
 stored in our set and then fetching the object corresponding to each
 username:
 
-##### Java 
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 public Set<User> fetchAllUserRecords() {
@@ -338,7 +356,8 @@ public Set<User> fetchAllUserRecords() {
 }
 ```
 
-##### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 # Using the "user_id_set" set from above
@@ -354,7 +373,8 @@ def fetch_all_user_records
 end
 ```
 
-##### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 function fetch_users()
@@ -380,7 +400,8 @@ function fetch_users()
 }
 ```
 
-##### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 # We'll create a generator object that will yield a list of Riak objects
@@ -394,6 +415,9 @@ def fetch_all_user_records():
 list(fetch_all_user_records())
 ```
 
+</TabItem>
+</Tabs>
+
 ## Naming and Object Verification
 
 Another advantage of structured naming is that you can prevent queries
@@ -405,7 +429,8 @@ object with an inappropriate key is stored in that bucket, it won't even
 be seen by your application because it will only ever query keys that
 begin with `user_`:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Assuming that we've created a class User:
@@ -421,7 +446,8 @@ public User getUserByUsername(String username) {
 }
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 def get_user_by_username(username)
@@ -431,7 +457,8 @@ def get_user_by_username(username)
 end
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 function fetchUser($user_name)
@@ -445,7 +472,8 @@ function fetchUser($user_name)
 }
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 def get_user_by_username(username):
@@ -453,6 +481,9 @@ def get_user_by_username(username):
   obj = bucket.get('user_{}'.format(username))
   return obj.data
 ```
+
+</TabItem>
+</Tabs>
 
 ## Bucket Types as Additional Namespaces
 

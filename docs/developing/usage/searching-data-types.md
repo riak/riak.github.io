@@ -5,6 +5,9 @@ slug: searching-data-types
 sidebar_position: 11
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Although [Riak Data Types](../../developing/data-types/index.md) function differently from other
 Riak objects in some respects, when you're using Search you can think of
 them as normal Riak objects with special metadata attached (metadata
@@ -156,7 +159,8 @@ riak-admin bucket-type activate counters
 Now, we'll create a search index called `scores` that uses the default
 schema (as in some of the examples above):
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 YokozunaIndex scoresIndex = new YokozunaIndex("scores", "_yz_default");
@@ -165,13 +169,15 @@ StoreIndex storeIndex = new StoreIndex.Builder(scoresIndex)
 client.execute(storeIndex);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.create_search_index('scores', '_yz_default')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
@@ -181,20 +187,23 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.create_search_index('scores', '_yz_default')
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var idx = new SearchIndex("scores", "_yz_default");
 var rslt = client.PutSearchIndex(idx);
 ```
 
-###  JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var options = {
@@ -205,19 +214,24 @@ client.storeIndex(options, function (err, rslt) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:create_search_index(Pid, <<"scores">>, <<"_yz_default">>, []).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/hobbies \
   -H 'Content-Type: application/json' \
   -d '{"schema":"_yz_default"}'
 ```
+
+</TabItem>
+</Tabs>
 
 Now, we can modify our `counters` bucket type to associate that bucket
 type with our `scores` index:
@@ -226,15 +240,14 @@ type with our `scores` index:
 riak-admin bucket-type update counters '{"props":{"search_index":"scores"}}'
 ```
 
-## Using different buckets
-
 At this point, all of the counters that we stored in any bucket with the
 bucket type `counters` will be indexed in our `scores` index. So let's
 start playing with some counters. All counters will be stored in the
 bucket `people`, while the key for each counter will be the username of
 each player:
 
-### Java 
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace peopleBucket = new Namespace("counters", "people");
@@ -252,7 +265,8 @@ UpdateCounter update = new UpdateCounter.Builder(joanRiversCounter, cu)
 client.execute(update);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('people')
@@ -264,7 +278,8 @@ joan_rivers_counter = Riak::Crdt::Counter.new(bucket, 'joan_rivers', 'counters')
 joan_rivers_counter.increment(25)
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $builder = (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
@@ -279,7 +294,8 @@ $builder->withIncrement(25)
     ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 from riak.datatypes import Counter
@@ -295,7 +311,8 @@ joan_rivers_counter.increment(25)
 joan_rivers_counter.store()
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
@@ -317,7 +334,8 @@ cmd = new UpdateCounter.Builder()
 rslt = client.Execute(cmd);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var funcs = [
@@ -354,7 +372,8 @@ async.parallel(funcs, function (err, rslts) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 ChristopherHitchensCounter = riakc_counter:new(),
@@ -371,18 +390,23 @@ riakc_pb_socket:update_type(Pid,
                             riakc_counter:to_op(RiversCounter1)).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 # We do not recommend working with Riak Data Types via curl. Try using
 # one of our client libraries instead.
 ```
 
+</TabItem>
+</Tabs>
+
 So now we have two counters, one with a value of 10 and the other with a
 value of 25. Let's query to see how many counters have a value greater
 than 20, just to be sure:
 
-### Java 
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 String index = "scores";
@@ -393,7 +417,8 @@ cluster.execute(searchOp);
 SearchOperation.Response results = searchOp.get();
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('scores', 'counter:[20 TO *]')
@@ -403,7 +428,8 @@ results['num_found']
 # 1
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -415,7 +441,8 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 $response->getNumFound(); // 1
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('scores', 'counter:[20 TO *]')
@@ -425,7 +452,8 @@ results['num_found']
 # 1
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("scores", "counter:[20 TO *]");
@@ -434,7 +462,8 @@ RiakSearchResult searchResult = rslt.Value;
 Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -456,7 +485,8 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Results} = riakc_pb_socket:search(Pid, <<"scores">>, <<"counter:[20 TO *]">>),
@@ -464,16 +494,21 @@ NumberFound = Results#search_results.num_found.
 %% 1
 ```
 
-### curl 
+</TabItem>
+<TabItem label="curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:[20 TO *]" | jsonpp
 ```
 
+</TabItem>
+</Tabs>
+
 And there we are: only one of our two stored sets has a value over 20.
 To find out which set that is, we can dig into our results:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the "results" object from above:
@@ -484,7 +519,8 @@ String bucket = foundObject.get("_yz_rb").get(0); // "people"
 String bucketType = foundObject.get("_yz_rt").get(0); // "counters"
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 doc = results['docs'][0]
@@ -499,7 +535,8 @@ doc['_yz_rb'] # 'people'
 doc['_yz_rt'] # 'counters'
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $doc = $response->getDocs()[0];
@@ -514,7 +551,8 @@ $doc['_yz_rb'] # 'people'
 $doc['_yz_rt'] # 'counters'
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 doc = results['docs'][0]
@@ -529,7 +567,8 @@ doc['_yz_rb'] # 'people'
 doc['_yz_rt'] # 'counters'
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("scores", "counter:[20 TO *]");
@@ -543,7 +582,8 @@ Console.WriteLine("Key: {0} Bucket: {1} Type: {2}",
     firstDoc.Key, firstDoc.Bucket, firstDoc.BucketType);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var doc = rslt.docs[0];
@@ -553,7 +593,8 @@ var bucket = doc['_yz_rb'];
 var bucketType = doc['_yz_rt'];
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Doc = lists:nth(1, Docs),
@@ -562,18 +603,21 @@ Bucket = proplists:get_value(<<"_yz_rb">>, Doc),
 BucketType = proplists:get_value(<<"_yz_rt", Doc).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 # Use the JSON object from above to locate bucket, key, and bucket type
 # information
 ```
 
-## Seeing how many counters are below 15
+</TabItem>
+</Tabs>
 
 Alternatively, we can see how many counters have values below 15:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 String index = "scores";
@@ -585,13 +629,15 @@ cluster.execute(searchOp);
 SearchOperation.Response results = searchOp.get();
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('scores', 'counter:[* TO 15]')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -603,20 +649,23 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 $response->getNumFound(); // 1
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('scores', 'counter:[* TO 15]')
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("scores", "counter:[* TO 15]");
 var rslt = client.Search(search);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -628,36 +677,42 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Results} = riakc_pb_socket:search(Pid, <<"scores">>, <<"counter:[* TO 15]").
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:[* TO 15]" | jsonpp
 ```
 
-## Seeing how many counters are below 17
+</TabItem>
+</Tabs>
 
 Or we can see how many counters have a value of 17 exactly:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method as above, just changing the query:
 String query = "counter:17";
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('scores', 'counter:17')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -667,20 +722,23 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('scores', 'counter:17')
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("scores", "counter:17");
 var rslt = client.Search(search);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -692,17 +750,22 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Results} = riakc_pb_socket:search(Pid, <<"scores">>, <<"counter:17">>).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:17" | jsonpp
 ```
+
+</TabItem>
+</Tabs>
 
 ## Sets Example
 
@@ -718,7 +781,8 @@ riak-admin bucket-type activate sets
 Now, we'll create a Search index called `hobbies` that uses the default
 schema (as in some of the examples above):
 
-### Java 
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 YokozunaIndex hobbiesIndex = new YokozunaIndex("hobbies");
@@ -727,13 +791,15 @@ StoreIndex storeIndex =
 client.execute(storeIndex);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.create_search_index('hobbies', '_yz_default')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
@@ -743,20 +809,23 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.create_search_index('hobbies', '_yz_default')
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var searchIndex = new SearchIndex("hobbies", "_yz_default");
 var rslt = client.PutSearchIndex(searchIndex);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var options = {
@@ -767,19 +836,24 @@ client.storeIndex(options, function (err, rslt) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:create_search_index(Pid, <<"hobbies">>, <<"_yz_default">>).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/hobbies \
   -H 'Content-Type: application/json' \
   -d '{"schema": "_yz_default"}'
 ```
+
+</TabItem>
+</Tabs>
 
 Now, we can modify our `sets` bucket type to associate that bucket type
 with our `hobbies` index:
@@ -788,14 +862,13 @@ with our `hobbies` index:
 riak-admin bucket-type update sets '{"props":{"search_index":"hobbies"}}'
 ```
 
-## Storing multiple sets 
-
 Now, all of the sets that we store in any bucket with the bucket type
 `sets` will be automatically indexed as a set. So let's say that we
 store three sets for two different people describing their respective
 hobbies, in the bucket `people`:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace peopleBucket = new Namespace("sets", "people");
@@ -817,7 +890,8 @@ client.execute(update1);
 client.execute(update2);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('people')
@@ -832,7 +906,8 @@ ronnie_james_dio_set.add('rocking')
 ronnie_james_dio_set.add('winning')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $builder = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
@@ -850,7 +925,8 @@ $builder->add('wailing')
     ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 from riak.datatypes import Set
@@ -869,7 +945,8 @@ ronnie_james_dio_set.add('winning')
 ronnie_james_dio_set.store()
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
@@ -891,7 +968,8 @@ cmd = new UpdateSet.Builder()
 rslt = client.Execute(cmd);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var funcs = [
@@ -928,7 +1006,8 @@ async.parallel(funcs, function (err, rslts) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 MikeDitkaSet = riakc_set:new(),
@@ -949,26 +1028,30 @@ riakc_pb_socket:update_type(Pid,
                             riakc_set:to_op(RonnieJamesDioSet)).
 ```
 
-## Querying the `hobbies` index
+</TabItem>
+</Tabs>
 
 Now, we can query our `hobbies` index to see if anyone has the hobby
 `football`:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method explained above, just changing the query:
 String query = "set:football";
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('hobbies', 'set:football')
 # This should return a dict with fields like 'num_found' and 'docs'
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -978,14 +1061,16 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
   ->execute();
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('hobbies', 'set:football')
 # This should return a dict with fields like 'num_found' and 'docs'
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("hobbies", "set:football");
@@ -999,7 +1084,8 @@ Console.WriteLine("Key: {0} Bucket: {1} Type: {2}",
     firstDoc.Key, firstDoc.Bucket, firstDoc.BucketType);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -1021,81 +1107,95 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Results} = riakc_pb_socket:search(Pid, <<"hobbies">>, <<"set:football">>).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/hobbies?wt=json&q=set:football" | jsonpp
 ```
 
-## How many set contain `football`?
+</TabItem>
+</Tabs>
 
 Let's see how many sets contain the element `football`:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method explained above for getting search results:
 int numberFound = results.numResults(); // 1
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results['num_found']
 # 1
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response->getNumFound(); // 1
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results['num_found']
 # 1
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 RiakSearchResult searchResult = rslt.Value;
 Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 rslt.numFound;
 // 1
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 NumberFound = Results#search_results.num_found.
 %% 1
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
+
 ```
 
-## How many sets contain `winning`?
+</TabItem>
+</Tabs>
 
 Success! We stored two sets, only one of which contains the element
 `football`. Now, let's see how many sets contain the element `winning`:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method explained above, just changing the query:
@@ -1105,7 +1205,8 @@ String query = "set:winning";
 int numberFound = results.numResults(); // 2
 ```
 
-### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('hobbies', 'set:winning')
@@ -1113,7 +1214,8 @@ results['num_found']
 # 2
 ```
 
-### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1125,7 +1227,8 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 $response->getNumFound(); // 2
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('hobbies', 'set:winning')
@@ -1133,13 +1236,15 @@ results['num_found']
 # 2
 ```
 
-### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("hobbies", "set:winning");
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1151,13 +1256,17 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Results} = riakc_pb_socket:search(Pid, <<"hobbies">>, <<"set:winning">>).
 NumberFound = Results#search_results.num_found.
 %% 2
 ```
+
+</TabItem>
+</Tabs>
 
 Just as expected, both sets we stored contain the element `winning`.
 
@@ -1188,7 +1297,8 @@ riak-admin bucket-type activate maps
 Now, let's create a search index called `customers` using the default
 schema:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 YokozunaIndex customersIndex = new YokozunaIndex("customers", "_yz_default");
@@ -1197,13 +1307,15 @@ StoreIndex storeIndex =
 client.execute(storeIndex);
 ```
 
-### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.create_search_index('customers', '_yz_default')
 ```
 
-### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new Command\Builder\Search\StoreIndex($riak))
@@ -1213,20 +1325,23 @@ client.create_search_index('customers', '_yz_default')
   ->execute();
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.create_search_index('customers', '_yz_default')
 ```
 
-### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var searchIndex = new SearchIndex("customers", "_yz_default");
 var rslt = client.PutSearchIndex(searchIndex);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var options = {
@@ -1237,17 +1352,24 @@ client.storeIndex(options, function (err, rslt) {
 });
 ```
 
-### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:create_search_index(Pid, <<"customers">>, <<"_yz_default">>).
 ```
+
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/customers \
   -H 'Content-Type: application/json' \
   -d '{"schema":"_yz_default"}'
 ```
+
+</TabItem>
+</Tabs>
 
 With our index created, we can associate our new `customers` index with
 our `maps` bucket type:
@@ -1258,7 +1380,8 @@ riak-admin bucket-type update maps '{"props":{"search_index":"customers"}}'
 
 Now we can create some maps along the lines suggested above:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace customersBucket = new Namespace("maps", "customers");
@@ -1287,7 +1410,8 @@ client.execute(update1);
 client.execute(update2);
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('customers')
@@ -1317,7 +1441,8 @@ joan_jett.batch do |jj|
 end
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $counterBuilder = (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
@@ -1355,7 +1480,8 @@ foreach(['loving rock and roll', 'being in the Blackhearts'] as $interest) {
   ->execute();
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('maps').bucket('customers')
@@ -1380,7 +1506,8 @@ for interest in ['loving rock and roll', 'being in the Blackhearts']:
 joan_jett.store()
 ```
 
-### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
@@ -1412,7 +1539,8 @@ var cmd = new UpdateMap.Builder()
 RiakResult rslt = client.Execute(cmd);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var funcs = [
@@ -1467,6 +1595,9 @@ async.parallel(funcs, function (err, rslts) {
 });
 ```
 
+</TabItem>
+</Tabs>
+
 ### Searching Counters Within Maps
 
 We now have two maps stored in Riak that we can query. Let's query to
@@ -1474,7 +1605,8 @@ see how many users have page visit counters above 15. Unlike the
 counters example above, we have to specify _which_ counter we're
 querying:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method explained above, just changing the query:
@@ -1484,7 +1616,8 @@ String query = "page_visits_counter:[15 TO *]";
 int numberFound = results.numResults(); // 1
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('customers', 'page_visits_counter:[15 TO *]')
@@ -1492,7 +1625,8 @@ results['num_found']
 # 1
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1504,7 +1638,8 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 $response->getNumFound(); // 1
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('customers', 'page_visits_counter:[15 TO *]')
@@ -1512,14 +1647,16 @@ results['num_found']
 # 1
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("customers", "page_visits_counter:[15 TO *]");
 var rslt = client.Search(search);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -1541,12 +1678,14 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### Checking the result
+</TabItem>
+</Tabs>
 
 As expected, one of our two stored maps has a `page_visits` counter
 above 15. Let's make sure that we have the right result:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method from above:
@@ -1557,27 +1696,31 @@ String registerValue =
   results.getAllResults().get(0).get("first_name_register").get(0); // Joan
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results['docs'][0]['first_name_register']
 # 'Joan'
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response->getDocs()[0]->first_name_register']; // Joan
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results['docs'][0]['first_name_register']
 # u'Joan'
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("customers", "page_visits_counter:[15 TO *]");
@@ -1585,12 +1728,16 @@ var rslt = client.Search(search);
 var firstDoc = searchResult.Documents.First();
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var doc = rslts.docs[0];
 doc.page_visits_register;
 ```
+
+</TabItem>
+</Tabs>
 
 Success! Now we can test out searching sets.
 
@@ -1600,21 +1747,24 @@ Each of the maps we stored thus far had an `interests` set. First, let's
 see how many of our maps even _have_ sets called `interests` using a
 wildcard query:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method from above:
 String query = "interests_set:*";
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('customers', 'interests_set:*')
 # 2
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1626,7 +1776,8 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 $response->getNumFound(); // 2
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('customers', 'interests_set:*')
@@ -1634,14 +1785,16 @@ results['num_found']
 # 2
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("customers", "interests_set:*");
 var rslt = client.Search(search);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1653,11 +1806,14 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### How many maps have items in `interests` that begin with `loving`?
+</TabItem>
+</Tabs>
 
-As expected, both stored maps have an `interests` set.
+As expected, both stored maps have an `interests` set. Now let's see how
+many maps have items in `interests` sets that begin with `loving`:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method from above:
@@ -1669,7 +1825,8 @@ String registerValue =
   results.getAllResults().get(0).get("first_name_register").get(0); // Joan
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('customers', 'interests_set:loving*')
@@ -1677,7 +1834,8 @@ results['num_found'] # 1
 results['docs'][0]['first_name_register'] # 'Joan'
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1689,7 +1847,8 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 $response->getDocs()[0]->first_name_register']; // Joan
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('customers', 'interests_set:loving*')
@@ -1697,14 +1856,16 @@ results['num_found'] # 1
 results['docs'][0]['first_name_register'] # u'Joan'
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var search = new RiakSearchRequest("customers", "interests_set:loving*");
 var rslt = client.Search(search);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1716,6 +1877,9 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
+</TabItem>
+</Tabs>
+
 As expected, only our Joan Jett map has one item in its `interests` set
 that starts with `loving`.
 
@@ -1725,7 +1889,8 @@ Before we can try to search maps within maps, we need to actually store
 some. Let's add a `alter_ego` map to both of the maps we've stored thus
 far. Each person's alter ego will have a first name only.
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location idrisElbaMap = new Location(customersBucket, "idris_elba");
@@ -1737,7 +1902,8 @@ UpdateMap addSubMap = new UpdateMap.Builder(idrisElbaMap, alterEgoUpdate);
 client.execute(addSubMap);
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 idris_elba.maps['alter_ego'].registers['name'] = 'John Luther'
@@ -1745,7 +1911,8 @@ idris_elba.maps['alter_ego'].registers['name'] = 'John Luther'
 joan_jett.maps['alter_ego'].registers['name'] = 'Robert Plant'
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $mapBuilder = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
@@ -1766,7 +1933,8 @@ $mapBuilder->updateRegister('name', 'Robert Plant')
   ->execute();
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 idris_elba.maps['alter_ego'].registers['name'].assign('John Luther')
@@ -1776,7 +1944,8 @@ joan_jett.maps['alter_ego'].registers['name'].assign('Robert Plant')
 joan_jett.store()
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Search/SearchDataTypes.cs
@@ -1797,7 +1966,8 @@ var cmd = new UpdateMap.Builder()
 RiakResult rslt = client.Execute(cmd);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var funcs = [
@@ -1844,14 +2014,16 @@ async.parallel(funcs, function (err, rslts) {
 });
 ```
 
-### Finding maps that have a `name` register embedded within an `alter_ego` map
+</TabItem>
+</Tabs>
 
 Querying maps within maps involves construct queries that separate the
 different levels of depth with a single dot. Here's an example query for
 finding maps that have a `name` register embedded within an `alter_ego`
 map:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method from above:
@@ -1861,14 +2033,16 @@ String query = "alter_ego_map.name_register:*";
 int numberFound = results.numResults(); // 2
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('customers', 'alter_ego_map.name_register:*')
 results['num_found'] # 2
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1880,21 +2054,24 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 $response->getNumFound(); // 2
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('customers', 'alter_ego_map.name_register:*')
 results['num_found'] # 2
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var search = new RiakSearchRequest("customers", "alter_ego_map.name_register:*");
 var rslt = client.Search(search);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1906,14 +2083,16 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 client.execute(searchCmd);
 ```
 
-### find out which maps have an `alter_ego` sub-map that contains a `name` register that ends with `Plant`
+</TabItem>
+</Tabs>
 
 Once we know how to query embedded fields like this, we can query those
 just like any other. Let's find out which maps have an `alter_ego`
 sub-map that contains a `name` register that ends with `PLant`, and
 display that customer's first name:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method from above:
@@ -1925,7 +2104,8 @@ String registerValue =
   results.getAllResults().get(0).get("first_name_register").get(0); // Joan
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('customers', 'alter_ego_map.name_register:*Plant')
@@ -1933,7 +2113,8 @@ results['num_found'] # 1
 results['docs'][0]['first_name_register'] # 'Joan'
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1946,7 +2127,8 @@ $response->getNumFound(); // 1
 $response->getDocs()[0]->first_name_register']; // Joan
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('customers', 'alter_ego_map.name_register:*Plant')
@@ -1954,14 +2136,16 @@ results['num_found'] # 1
 results['docs'][0]['first_name_register'] # u'Joan
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var search = new RiakSearchRequest("customers", "alter_ego_map.name_register:*Plant");
 var rslt = client.Search(search);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1972,5 +2156,8 @@ var searchCmd = new Riak.Commands.YZ.Search.Builder()
 
 client.execute(searchCmd);
 ```
+
+</TabItem>
+</Tabs>
 
 Success! We've now queried not just maps but also maps within maps.

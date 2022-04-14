@@ -5,6 +5,9 @@ slug: updating-objects
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [glossary vnode]: ../../learn/glossary.md#vnode
 
 ## Using Causal Context
@@ -42,7 +45,8 @@ database to reflect this new development in the league, we want to make
 a new write to the `champion` key. Let's read the object stored there
 and modify the value.
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location currentChampion = new Location(new Namespace("sports", "nba"), "champion");
@@ -53,7 +57,8 @@ RiakObject obj = response.getValue(RiakObject.class);
 obj.setValue(BinaryValue.create("Harlem Globetrotters"))
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('sports').bucket('nba')
@@ -62,7 +67,8 @@ obj.raw_data = 'Harlem Globetrotters'
 obj.store
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $location = new \Basho\Riak\Location('champion', new \Basho\Riak\Bucket('nba', 'sports'));
@@ -81,7 +87,8 @@ $object->setData('Harlem Globetrotters');
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('sports').bucket('nba')
@@ -89,7 +96,8 @@ obj = bucket.get('champion')
 obj.data = 'Harlem Globetrotters'
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var id = new RiakObjectId("sports", "nba", "champion");
@@ -104,7 +112,8 @@ obj.SetObject("Harlem Globetrotters",
 rslt = client.Put(obj);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -139,7 +148,8 @@ client.storeValue(options, function (err, rslt) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 %% In the Erlang client, you cannot view a context objectdirectly, but it
@@ -152,7 +162,8 @@ UpdatedObj = riakc_obj:update_value(Obj, <<"Harlem Globetrotters">>),
 {ok, NewestObj} = riakc_pb_socket:put(Pid, UpdatedObj, [return_body]).
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 obj := &riak.Object{
@@ -209,7 +220,8 @@ obj = rsp.Values[0]
 fmt.Printf("champion: %v", string(obj.Value))
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 # When using curl, the context object is attached to the X-Riak-Vclock header
@@ -224,7 +236,8 @@ X-Riak-Vclock: a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 # accompany the write for Riak to be able to use the context object
 ```
 
-## Riak Clients and Object context
+</TabItem>
+</Tabs>
 
 In the samples above, we didn't need to actually interact with the
 context object, as retaining and passing along the context object was
@@ -232,7 +245,8 @@ accomplished automatically by the client. If, however, you do need
 access to an object's context, the clients enable you to fetch it from
 the object:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the RiakObject obj from above:
@@ -244,7 +258,8 @@ System.out.println(vClock.asString());
 // a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
-### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 # Using the RObject obj from above:
@@ -255,7 +270,8 @@ obj.vclock
 # a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
-### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 # Using the RObject obj from above:
@@ -263,7 +279,8 @@ obj.vclock
 echo $object->getVclock(); // a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 # Using the RiakObject obj from above:
@@ -274,7 +291,8 @@ obj.vclock
 # a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
-### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // Using the RiakObject obj from above:
@@ -285,7 +303,8 @@ Console.WriteLine(Convert.ToBase64String(vclock));
 // a85hYGBgzGDKBVIcWu/1S4OVPaIymBIZ81gZbskuOMOXBQA=
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 // Using the RiakObject fetchedObj from above:
@@ -296,7 +315,8 @@ logger.info("vclock: %s", fetchedObj.getVClock().toString('base64'));
 // vclock: a85hYGBgymDKBVIcR4M2cov1HeHKYEpkymNlsE2cfo4PKjXXjuOU+FHdWqAUM1CqECSVBQA=
 ```
 
-### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 %% Using the Obj object from above:
@@ -308,7 +328,8 @@ riakc_obj:vclock(Obj).
 %% 6,175,157,255,57,131,41,145,49,143,149,225,240,...>>
 ```
 
-### Go
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 svc := cmd.(*riak.StoreValueCommand)
@@ -318,6 +339,9 @@ fmt.Println(rsp.VClock)
 // Output:
 // X3hNXFq3ythUqvvrG9eJEGbUyLS
 ```
+
+</TabItem>
+</Tabs>
 
 ## The Object Update Cycle
 
@@ -396,7 +420,8 @@ is the name of the team, e.g. `giants`, `broncos`, etc. Each object will
 consist of the name of the coach in plain text. Here's an example of
 creating and storing such an object:
 
-### Ruby
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 bucket = client.bucket('coaches')
@@ -406,7 +431,8 @@ obj.raw_data = 'Pete Carroll'
 obj.store
 ```
 
-### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $location = new \Basho\Riak\Location('seahawks', new \Basho\Riak\Bucket('coaches', 'siblings'));
@@ -429,7 +455,8 @@ if ($response->isSuccess()) {
   ->execute();
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('siblings').bucket('coaches')
@@ -439,7 +466,8 @@ obj.data = 'Pete Carroll'
 obj.store()
 ```
 
-### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var id = new RiakObjectId("siblings", "coaches", "seahawks");
@@ -448,7 +476,8 @@ var obj = new RiakObject(id, "Pete Carroll",
 var rslt = client.Put(obj);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -466,7 +495,8 @@ client.storeValue({ value: riakObj }, function (err, rslt) {
 });
 ```
 
-### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Obj = riakc_obj:new({<<"siblings">>, <<"coaches">>},
@@ -476,7 +506,8 @@ Obj = riakc_obj:new({<<"siblings">>, <<"coaches">>},
 riakc_pb_socket:put(Pid, Obj).
 ```
 
-### Go
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 obj := &riak.Object{
@@ -506,13 +537,15 @@ if err := cluster.Execute(cmd); err != nil {
 fmt.Println("Stored Pete Carroll")
 ```
 
-### Updating objects
+</TabItem>
+</Tabs>
 
 Every once in a while, though, head coaches change in the NFL, which
 means that our data would need to be updated. Below is an example
 function for updating such objects:
 
-#### Ruby
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 def update_coach(team, new_coach)
@@ -529,7 +562,8 @@ end
 update_coach('packers', 'Vince Lombardi')
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 function update_coach($team, $coach) {
@@ -558,7 +592,8 @@ function update_coach($team, $coach) {
 echo update_coach('packers', 'Vince Lombardi'); // true
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 def update_coach(team, new_coach):
@@ -574,7 +609,8 @@ def update_coach(team, new_coach):
 update_coach('packers', 'Vince Lombardi')
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 private void UpdateCoach(string team, string newCoach)
@@ -588,7 +624,8 @@ private void UpdateCoach(string team, string newCoach)
 }
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 function update_coach(team, newCoach) {
@@ -610,7 +647,8 @@ function update_coach(team, newCoach) {
 }
 ```
 
-#### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 update_coach(team, new_coach) ->
@@ -624,7 +662,8 @@ update_coach(team, new_coach) ->
 update_coach('packers', 'Vince Lombardi')
 ```
 
-#### Go
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 func updateCoach(cluster *riak.Cluster, team, newCoach string) error {
@@ -667,6 +706,9 @@ func updateCoach(cluster *riak.Cluster, team, newCoach string) error {
     return nil
 }
 ```
+
+</TabItem>
+</Tabs>
 
 In the example above, you can see the three steps in action: first, the
 object is read, which automatically fetches the object's causal context;

@@ -4,6 +4,9 @@ id: developing_data_types
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [wiki crdt]: https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type#Others
 [concept crdt]: ../../learn/concepts/crdts.md
 [ops bucket type]: ../../using/cluster-operations/bucket-types.md
@@ -107,7 +110,8 @@ If no context is given when attempting a remove or remove-like operation, the op
 
 In the example below we'll fetch the context [from a user data map created for Ahmed](./maps.md#create-a-map):
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the "ahmedMap" Location from above:
@@ -120,7 +124,8 @@ System.out.prinntln(ctx.getValue().toString())
 // An indecipherable string of Unicode characters should then appear
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('users')
@@ -130,7 +135,8 @@ ahmed_map.instance_variable_get(:@context)
 # => "\x83l\x00\x00\x00\x01h\x02m\x00\x00\x00\b#\t\xFE\xF9S\x95\xBD3a\x01j"
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
@@ -142,7 +148,8 @@ $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
 echo $map->getContext(); // g2wAAAACaAJtAAAACLQFHUkv4m2IYQdoAm0AAAAIxVKxCy5pjMdhCWo=
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('maps').bucket('users')
@@ -152,7 +159,8 @@ ahmed_map.context
 # g2wAAAABaAJtAAAACCMJ/vlTlb0zYQFq
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
@@ -164,7 +172,8 @@ Console.WriteLine(format: "Context: {0}", args: Convert.ToBase64String(result.Co
 // Context: g2wAAAACaAJtAAAACLQFHUkv4m2IYQdoAm0AAAAIxVKxCy5pjMdhCWo=
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var options = {
@@ -185,13 +194,17 @@ client.fetchMap(options, function (err, rslt) {
 // context: 'g2wAAAACaAJtAAAACLQFHUmjDf4EYTBoAm0AAAAIxVKxC6F1L2dhSWo='
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 %% You cannot fetch a data type's context directly using the Erlang
 %% client. This is actually quite all right, as the client automatically
 %% manages contexts when making updates.
 ```
+
+</TabItem>
+</Tabs>
 
 > **Context with the Ruby, Python, and Erlang clients**
 >
@@ -215,7 +228,8 @@ convergence logic driving Riak data types. The example below shows you
 how to fetch a data type's context and then pass it back to Riak. More
 specifically, we'll remove the `paid_account` flag from the map:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // This example uses our "ahmedMap" location from above:
@@ -232,7 +246,8 @@ UpdateMap update = new UpdateMap.Builder(ahmedMap, removePaidAccountField)
 client.execute(update);
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $map = (new \Basho\Riak\Command\Builder\FetchMap($riak))
@@ -251,6 +266,9 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
     ->build()
     ->execute();
 ```
+
+</TabItem>
+</Tabs>
 
 ## Usage Examples
 

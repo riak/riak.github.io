@@ -5,6 +5,9 @@ slug: bucket-types
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Bucket types allow groups of buckets to share configuration details and
 for Riak users to manage bucket properties more efficiently than in the
 older configuration system based on [bucket properties](../../developing/usage/bucket-types.md#bucket-properties).
@@ -256,7 +259,8 @@ create and activate a new bucket type.
 In versions of Riak prior to 2.0, all queries are made to a bucket/key
 pair, as in the following example read request:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location myKey = new Location(new Namespace("my_bucket"), "my_key");
@@ -264,14 +268,16 @@ FetchValue fetch = new FetchValue.Builder(myKey).build();
 client.execute(fetch);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('my_bucket')
 bucket.get('my_key')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $location = new Location('my_key', new Bucket('my_bucket'));
@@ -281,28 +287,32 @@ $location = new Location('my_key', new Bucket('my_bucket'));
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket('my_bucket')
 bucket.get('my_key')
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("my_bucket", "my_key");
 client.Get(id);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 client.fetchValue({ bucket: 'my_bucket', key: 'my_key' }, function (err, rslt) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Object} = riakc_pb_socket:get(Pid,
@@ -310,11 +320,15 @@ client.fetchValue({ bucket: 'my_bucket', key: 'my_key' }, function (err, rslt) {
                                    <<"my_key">>).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/buckets/my_bucket/keys/my_key
 ```
+
+</TabItem>
+</Tabs>
 
 With the addition of bucket types in Riak 2.0, bucket types can be used
 as _an additional namespace_ on top of buckets and keys. The same bucket
@@ -323,7 +337,8 @@ accordance with a different type. Thus, the following two requests will
 be made to _completely different objects_, even though the bucket and key
 names are the same:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location key1 =
@@ -336,7 +351,8 @@ client.execute(fetch1);
 client.execute(fetch2);
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket1 = client.bucket_type('type1').bucket('my_bucket')
@@ -345,7 +361,8 @@ bucket1.get('my_key')
 bucket2.get('my_key')
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $location1 = new \Basho\Riak\Location('my_key', new Bucket('my_bucket', 'type1'));
@@ -359,7 +376,8 @@ $builder->atLocation($location2)
   ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket1 = client.bucket_type('type1').bucket('my_bucket')
@@ -368,7 +386,8 @@ bucket1.get('my_key')
 bucket2.get('my_key')
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id1 = new RiakObjectId("type1", "my_bucket", "my_key");
@@ -377,7 +396,8 @@ var rslt1 = client.Get(id1);
 var rslt2 = client.Get(id2);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 client.fetchValue({
@@ -391,7 +411,8 @@ client.fetchValue({
 });
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Obj1} = riakc_pb_socket:get(Pid,
@@ -402,12 +423,16 @@ client.fetchValue({
                                  <<"my_key">>).
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/type1/buckets/my_bucket/keys/my_key
 curl http://localhost:8098/types/type2/buckets/my_bucket/keys/my_key
 ```
+
+</TabItem>
+</Tabs>
 
 :::note Note on object location
 In Riak 2.x, _all requests_ must be made to a location specified by a bucket
@@ -415,13 +440,12 @@ type, bucket, and key rather than to a bucket/key pair, as in previous
 versions.
 :::note
 
-### Identical Queries
-
 If requests are made to a bucket/key pair without a specified bucket
 type, `default` will be used in place of a bucket type. The following
 queries are thus identical:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location withDefaultBucketType =
@@ -434,7 +458,8 @@ client.execute(fetch1);
 client.execute(fetch2);
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket1 = client.bucket_type('default').bucket('my_bucket')
@@ -443,7 +468,8 @@ bucket1.get('my_key')
 bucket2.get('my_key')
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $location1 = new \Basho\Riak\Location('my_key', new Bucket('my_bucket', 'default'));
@@ -457,7 +483,8 @@ $builder->atLocation($location2)
   ->execute();
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket1 = client.bucket_type('default').bucket('my_bucket')
@@ -466,7 +493,8 @@ bucket1.get('my_key')
 bucket2.get('my_key')
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id1 = new RiakObjectId("default", "my_bucket", "my_key");
@@ -480,7 +508,8 @@ RiakObject obj2 = getRslt.Value;
 // Note: obj1.Value and obj2.Value are equal
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var obj1 = new Riak.Commands.KV.RiakObject();
@@ -506,7 +535,8 @@ client.storeValue({ value: obj1 }, function (err, rslt) {
 });
 ```
 
-#### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Obj1} = riakc_pb_socket:get(Pid,
@@ -517,12 +547,16 @@ client.storeValue({ value: obj1 }, function (err, rslt) {
                                  <<"my_key">>).
 ```
 
-#### Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/buckets/my_bucket/keys/my_key
 curl http://localhost:8098/types/default/my_bucket/keys/my_key
 ```
+
+</TabItem>
+</Tabs>
 
 ## Default Bucket Properties
 
@@ -686,7 +720,8 @@ the bucket `sensitive_user_data`, you would need to run operations on
 that bucket in accordance with the format above. Here is an example
 write:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location key = new Location("sensitive_user_data")
@@ -699,7 +734,8 @@ StoreValue store = new StoreValue.Builder(obj).build();
 client.execute(store);
 ```
 
-### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('no_siblings').bucket('sensitive_user_data')
@@ -709,7 +745,8 @@ obj.raw_data = '{ ... user data ... }'
 obj.store
 ```
 
-### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -719,7 +756,8 @@ obj.store
   ->execute();
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('no_siblings').bucket('sensitive_user_data')
@@ -729,7 +767,8 @@ obj.data = '{ ... user data ... }'
 obj.store()
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("no_siblings", "sensitive_user_data", "user19735");
@@ -737,7 +776,8 @@ var obj = new RiakObject(id, "{\"name\":\"Bob\"}");
 var rslt = client.Put(obj);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var obj = { name: 'Bob' };
@@ -751,7 +791,8 @@ client.storeValue({
 });
 ```
 
-### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Object = riakc_obj:new({<<"no_siblings">>, <<"sensitive_user_data">>},
@@ -761,6 +802,9 @@ Object = riakc_obj:new({<<"no_siblings">>, <<"sensitive_user_data">>},
 riakc_pb_socket:put(Pid, Object).
 ```
 
+</TabItem>
+<TabItem label="Curl" value="curl">
+
 ```bash
 curl -XPUT \
   -H "Content-Type: application/json" \
@@ -768,7 +812,8 @@ curl -XPUT \
   http://localhost:8098/types/no_siblings/buckets/sensitive_user_data/keys/user19735
 ```
 
-## Bucket properties inheritance with no_siblings 
+</TabItem>
+</Tabs>
 
 In this example, the bucket `sensitive_user_data` bears the
 configuration established by the `no_siblings` bucket type, and it bears
@@ -787,7 +832,8 @@ us" to the `old_memes` bucket. If the bucket type `no_siblings` has been
 created and activated, the request will ensure that the `old_memes`
 bucket inherits all of the properties from the type `no_siblings`:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location allYourBaseKey =
@@ -799,7 +845,8 @@ StoreValue store = new StoreValue.Builder(obj).build();
 client.execute(store);
 ```
 
-### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('no_siblings').bucket('old_memes')
@@ -809,7 +856,8 @@ obj.raw_data = 'all your base are belong to us'
 obj.store
 ```
 
-### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -819,7 +867,8 @@ obj.store
   ->execute();
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('no_siblings').bucket('old_memes')
@@ -829,7 +878,8 @@ obj.data = 'all your base are belong to us'
 obj.store()
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("no_siblings", "old_memes", "all_your_base");
@@ -838,7 +888,8 @@ var obj = new RiakObject(id, "all your base are belong to us",
 var rslt = client.Put(obj);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var obj = new Riak.Commands.KV.RiakObject();
@@ -854,7 +905,8 @@ client.storeValue({ value: obj }, function (err, rslt) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Object = riakc_obj:new({<<"no_siblings">>, <<"old_memes">>},
@@ -864,7 +916,8 @@ Object = riakc_obj:new({<<"no_siblings">>, <<"old_memes">>},
 riakc_pb_socket:put(Pid, Object).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT \
@@ -872,6 +925,9 @@ curl -XPUT \
   -d "all your base are belong to us" \
   http://localhost:8098/types/no_siblings/buckets/old_memes/keys/all_your_base
 ```
+
+</TabItem>
+</Tabs>
 
 This query would both create the bucket `old_memes` and ensure that the
 configuration contained in the `no_siblings` bucket type is applied to

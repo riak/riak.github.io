@@ -5,6 +5,9 @@ slug: buckets
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [apps cluster metadata]: ../../developing/app-guide/cluster-metadata.md
 [cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
 [cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
@@ -124,7 +127,8 @@ API][dev api http]. The following would fetch the properties for the bucket
 `animals` if that bucket had a default configuration, i.e. the `default`
 bucket type:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace animalsBucket = new Namespace("animals");
@@ -134,14 +138,16 @@ FetchBucketProperties.Response response = client.execute(fetchProps);
 BucketProperties props = response.getProperties();
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('animals')
 bucket.properties
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak))
@@ -152,20 +158,23 @@ $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak
   ->getProperties();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket('animals')
 bucket.get_properties()
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Props} = riakc_pb_socket:get_bucket(Pid, <<"animals">>).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 # Assuming that Riak is running on "localhost" and port 8087:
@@ -173,13 +182,15 @@ bucket.get_properties()
 curl http://localhost:8087/types/default/buckets/animals/props
 ```
 
-### Handling Different Bucket Types
+</TabItem>
+</Tabs>
 
 If the bucket `animals` had a different type that you had created and
 activated, e.g. `my_custom_type`, you could fetch the bucket properties
 like so:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace customTypedBucket = new Namespace("my_custom_type", "animals");
@@ -189,14 +200,16 @@ FetchBucketProperties.Response response = client.execute(fetchProps);
 BucketProperties props = response.getProperties();
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('my_custom_type').bucket('animals')
 bucket.properties
 ```
 
-#### PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak))
@@ -207,21 +220,27 @@ $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak
   ->getProperties();
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('my_custom_type').bucket('animals')
 bucket.get_properties()
 ```
 
-#### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Props} = riakc_pb_socket:get_bucket(Pid, {<<"my_custom_type">>, <<"animals">>}).
 ```
 
-#### Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8087/types/my_custom_type/buckets/animals/props
 ```
+
+</TabItem>
+</Tabs>

@@ -5,6 +5,9 @@ slug: deleting-objects
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The delete command follows a predictable pattern and looks like this:
 
 ```
@@ -19,7 +22,8 @@ the same effect as deleting it.
 Let's try to delete the `genius` key from the `oscar_wilde` bucket
 (which bears the type `quotes`):
 
-## Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location geniusQuote = new Location(new Namespace("quotes", "oscar_wilde"), "genius");
@@ -27,14 +31,16 @@ DeleteValue delete = new DeleteValue.Builder(geniusQuote).build();
 client.execute(delete);
 ```
 
-## Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
 bucket.delete('genius')
 ```
 
-## PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\DeleteObject($riak))
@@ -43,14 +49,16 @@ bucket.delete('genius')
   ->execute();
 ```
 
-## Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
 bucket.delete('genius')
 ```
 
-## C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("users", "random_user_keys", null);
@@ -62,7 +70,8 @@ id = new RiakObjectId("users", "random_user_keys", key);
 var del_rslt = client.Delete(id);
 ```
 
-## JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 // continuing from above example
@@ -77,13 +86,15 @@ client.deleteValue(options, function (err, rslt) {
 });
 ```
 
-## Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:delete(Pid, {<<"quotes">>, <<"oscar_wilde">>}, <<"genius">>)
 ```
 
-## Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 // Continuing from above example
@@ -104,11 +115,15 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-## Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XDELETE http://localhost:8098/types/quotes/buckets/oscar_wilde/keys/genius
 ```
+
+</TabItem>
+</Tabs>
 
 ## Client Library Examples
 
@@ -120,7 +135,8 @@ part of the [fetch operation](../../developing/api/protocol-buffers/fetch-object
 with the official Riak clients for Ruby, Java, and Erlang, as in the
 example below:
 
-### Ruby
+<Tabs>
+<TabItem label="Ruby" value="ruby" default>
 
 ```ruby
 object.delete
@@ -128,14 +144,16 @@ deleted_object = bucket.get('bucket', 'key', deletedvclock: true)
 deleted_object.vclock
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 # It is not currently possible to fetch the causal context for a deleted
 # key in the Python client.
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 Location loc = new Location("<bucket>")
@@ -148,7 +166,8 @@ FetchValue.Response response = client.execute(fetch);
 System.out.println(response.getVclock().asString());
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -160,7 +179,8 @@ System.out.println(response.getVclock().asString());
 %% object obtained above.
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
@@ -170,3 +190,6 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
 
 echo $response->getVclock(); // a85hYGBgzGDKBVI8m9WOeb835ZRhYCg1zGBKZM5jZdhnceAcXxYA
 ```
+
+</TabItem>
+</Tabs>

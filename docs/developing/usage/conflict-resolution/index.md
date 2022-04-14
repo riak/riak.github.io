@@ -4,6 +4,9 @@ id: usage_conflict_resolution
 sidebar_position: 16
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [usage bucket types]: ../../../developing/usage/bucket-types.md
 [use ref strong consistency]: ../../../using/reference/strong-consistency.md
 
@@ -231,7 +234,8 @@ return `siblings_allowed is active`. Now, we'll create two objects and
 write both of them to the same key without first fetching the object
 (which obtains the causal context):
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location bestCharacterKey =
@@ -253,7 +257,8 @@ client.execute(store1);
 client.execute(store2);
 ```
 
-### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
@@ -268,7 +273,8 @@ obj2.raw_data = 'Stimpy'
 obj2.store
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
@@ -283,7 +289,8 @@ obj2.data = 'Stimpy'
 obj2.store()
 ```
 
-### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
@@ -295,7 +302,8 @@ var renResult = client.Put(renObj);
 var stimpyResult = client.Put(stimpyObj);
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var obj1 = new Riak.Commands.KV.RiakObject();
@@ -330,7 +338,8 @@ async.parallel(storeFuncs, function (err, rslts) {
 });
 ```
 
-### Erlang
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Obj1 = riakc_obj:new({<<"siblings_allowed">>, <<"nickolodeon">>},
@@ -345,7 +354,8 @@ riakc_pb_socket:put(Pid, Obj1),
 riakc_pb_socket:put(Pid, Obj2).
 ```
 
-### Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/keys/best_character \
@@ -357,18 +367,20 @@ curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/key
   -d "Stimpy"
 ```
 
+</TabItem>
+</Tabs>
+
 > **Getting started with Riak KV clients**
 >
 > If you are connecting to Riak using one of Basho's official
 [client libraries](../../../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../../../developing/getting-started/index.md) section.
 
-### Reading the contents of an object
-
 At this point, multiple objects have been stored in the same key without
 passing any causal context to Riak. Let's see what happens if we try to
 read contents of the object:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location bestCharacterKey =
@@ -380,7 +392,8 @@ RiakObject obj = response.getValue(RiakObject.class);
 System.out.println(obj.getValue().toString());
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
@@ -388,7 +401,8 @@ obj = bucket.get('best_character')
 obj
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('siblings_allowed').bucket('nickolodeon')
@@ -396,7 +410,8 @@ obj = bucket.get('best_character')
 obj.siblings
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
@@ -411,7 +426,8 @@ foreach (var sibling in obj.Siblings)
 }
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 client.fetchValue({
@@ -426,35 +442,41 @@ client.fetchValue({
 });
 ```
 
-#### Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
 ```
 
+</TabItem>
+</Tabs>
+
 Uh-oh! Siblings have been found. We should get this response:
 
-##### Handling siblings
-
-###### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 com.basho.riak.client.cap.UnresolvedConflictException: Siblings found
 ```
 
-###### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 <Riak::RObject {nickolodeon,best_character} [#<Riak::RContent [text/plain]:"Ren">, #<Riak::RContent [text/plain]:"Stimpy">]>
 ```
 
-###### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 [<riak.content.RiakContent object at 0x10a00eb90>, <riak.content.RiakContent object at 0x10a00ebd0>]
 ```
 
-###### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 Sibling count: 2
@@ -462,19 +484,24 @@ Sibling count: 2
     VTag: 7EiwrlFAJI5VMLK87vU4tE
 ```
 
-###### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 info: nickolodeon/best_character has '2' siblings
 ```
 
-###### Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 Siblings:
 175xDv0I3UFCfGRC7K7U9z
 6zY2mUCFPEoL834vYCDmPe
 ```
+
+</TabItem>
+</Tabs>
 
 As you can see, reading an object with sibling values will result in
 some form of "multiple choices" response (e.g. `300 Multiple Choices` in
@@ -533,7 +560,8 @@ that point, we can modify the object's value, and when we write the
 object back to Riak, _the causal context will automatically be attached
 to it_. Let's see what that looks like in practice:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // First, we fetch the object
@@ -553,7 +581,8 @@ StoreValue store = new StoreValue.Builder(obj)
 client.execute(store);
 ```
 
-#### Ruby
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 # First, we fetch the object
@@ -567,7 +596,8 @@ obj.raw_data = 'Stimpy'
 obj.store
 ```
 
-#### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 # First, we fetch the object
@@ -581,7 +611,8 @@ new_obj.data = 'Stimpy'
 new_obj.store(vclock=vclock)
 ```
 
-#### C#
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 // First, fetch the object
@@ -600,7 +631,8 @@ obj = putRslt.Value;
 Debug.Assert(obj.Siblings.Count == 0);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 client.fetchValue({
@@ -627,7 +659,8 @@ client.fetchValue({
 );
 ```
 
-#### Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -i http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
@@ -640,6 +673,9 @@ X-Riak-Vclock: a85hYGBgzGDKBVIcR4M2cgczH7HPYEpkzGNlsP/VfYYvCwA=
 # When performing a write to the same key, that same header needs to
 # accompany the write for Riak to be able to use the vector clock
 ```
+
+</TabItem>
+</Tabs>
 
 :::note Concurrent conflict resolution
 It should be noted that it is possible to have two clients that are

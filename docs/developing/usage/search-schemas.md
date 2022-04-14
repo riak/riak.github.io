@@ -5,6 +5,9 @@ slug: search-schemas
 sidebar_position: 10 
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [concept clusters]: ../../learn/concepts/clusters.md
 
 > **Note on Search 2.0 vs. Legacy Search**
@@ -39,7 +42,8 @@ Let's say that you have already created a schema named `cartoons` in a
 file named `cartoons.xml`. This would register the custom schema in Riak
 Search:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 import org.apache.commons.io.FileUtils;
@@ -51,14 +55,16 @@ StoreSchema storeSchemaOp = new StoreSchema.Builder(schema).build();
 client.execute(storeSchemaOp);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 schema_data = File.read("cartoons.xml")
 client.create_search_schema("cartoons", schema_data)
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\Search\StoreSchema($riak))
@@ -68,7 +74,8 @@ client.create_search_schema("cartoons", schema_data)
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 xml_file = open('cartoons.xml', 'r')
@@ -77,7 +84,8 @@ client.create_search_schema('cartoons', schema_data)
 xml_file.close()
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var xml = File.ReadAllText("cartoons.xml");
@@ -85,7 +93,8 @@ var schema = new SearchSchema("cartoons", xml);
 var rslt = client.PutSearchSchema(schema);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var fs = require('fs');
@@ -110,20 +119,25 @@ fs.readFile('cartoons.xml', function (err, data) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, SchemaData} = file:read_file("cartoons.xml"),
 riakc_pb_socket:create_search_schema(Pid, <<"cartoons">>, SchemaData).
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT http://localhost:8098/search/schema/cartoons \
      -H 'Content-Type:application/xml' \
      --data-binary @cartoons.xml
 ```
+
+</TabItem>
+</Tabs>
 
 ## Creating a Custom Schema
 

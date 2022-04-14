@@ -5,6 +5,9 @@ slug: custom-extractors
 sidebar_position: 13
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Solr, and by extension Riak Search, has default extractors for a wide
 variety of data types, including JSON, XML, and plaintext. Riak Search
 ships with the following extractors:
@@ -237,7 +240,8 @@ store in a `http_header_schema.xml` file:
 
 Now, we can store the schema:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 import org.apache.commons.io.FileUtils
@@ -249,14 +253,16 @@ StoreSchema storeSchemaOp = new StoreSchema.Builder(schema).build();
 client.execute(storeSchemaOp);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 schema_xml = File.read('http_header_schema.xml')
 client.create_search_schema('http_header_schema', schema_xml)
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $schema_string = file_get_contents('http_header_schema.xml');
@@ -267,7 +273,8 @@ $schema_string = file_get_contents('http_header_schema.xml');
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 import io
@@ -276,7 +283,8 @@ schema_xml = open('http_header_schema.xml').read()
 client.create_search_schema('http_header_schema', schema_xml)
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/schema/http_header_schema \
@@ -284,12 +292,14 @@ curl -XPUT $RIAK_HOST/search/schema/http_header_schema \
      --data-binary @http_header_schema.xml
 ```
 
-### Creating a search index
+</TabItem>
+</Tabs>
 
 Riak now has our schema stored and ready for use. Let's create a search
 index called `header_data` that's associated with our new schema:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java">
 
 ```java
 YokozunaIndex headerDataIndex = new YokozunaIndex("header_data", "http_header_schema");
@@ -298,13 +308,15 @@ StoreSearchIndex storeIndex = new StoreSearchIndex.Builder(headerDataIndex)
 client.execute(storeIndex);
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.create_search_index('header_data', 'http_header_schema')
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\StoreIndex($riak))
@@ -314,19 +326,24 @@ client.create_search_index('header_data', 'http_header_schema')
   ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.create_search_index('header_data', 'http_header_schema')
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/header_data \
      -H 'Content-Type: application/json' \
      -d '{"schema":"http_header_schema"}'
 ```
+
+</TabItem>
+</Tabs>
 
 Now, we can create and activate a [bucket type](../../developing/usage/bucket-types.md)
 for all of the HTTP header data that we plan to store. Any bucket that
@@ -338,13 +355,12 @@ riak-admin bucket-type create http_data_store '{"props":{"search_index":"header_
 riak-admin bucket-type activate http_data_store
 ```
 
-### Using a custom data store
-
 Let's use the same `google_packet.bin` file that we used previously and
 store it in a bucket with the `http_data_store` bucket type, making sure
 to use our custom `application/httpheader` MIME type:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location key = new Location(new Namespace("http_data_store", "packets"), "google");
@@ -361,7 +377,8 @@ StoreValue storeOp = new StoreValue.Builder(packetObject)
 client.execute(storeOp);
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 packet_data = File.read('google_packet.bin')
@@ -372,7 +389,8 @@ obj.raw_data = packetData
 obj.store
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $object = new Object(file_get_contents("google_packet.bin"), ['Content-Type' => 'application/httpheader']);
@@ -384,7 +402,8 @@ $object = new Object(file_get_contents("google_packet.bin"), ['Content-Type' => 
   ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 packet_data = open('google_packet.bin').read()
@@ -395,7 +414,8 @@ obj.data = packet_data
 obj.store()
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/types/http_data_store/buckets/packets/keys/google \
@@ -403,14 +423,16 @@ curl -XPUT $RIAK_HOST/types/http_data_store/buckets/packets/keys/google \
      --data-binary @google_packet.bin
 ```
 
-### Querying a custom data store 
+</TabItem>
+</Tabs>
 
 Now that we have some header packet data stored, we can query our
 `header_data` index on whatever basis we'd like. First, let's verify
 that we'll get one result if we query for objects that have the HTTP
 method `GET`:
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the same method from above:
@@ -420,14 +442,16 @@ String query = "method:GET";
 int numberFound = results.numResults(); // 1
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search('http_header_schema', 'method:GET')
 results['num_found'] # 1
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (\Basho\Riak\Command\Search\FetchObjects($riak))
@@ -439,14 +463,16 @@ $response = (\Basho\Riak\Command\Search\FetchObjects($riak))
 $response->getNumFound();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('http_header_schema', 'method:GET')
 results['num_found'] # 1
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/header_data?wt=json&q=method:GET"
@@ -454,3 +480,6 @@ curl "$RIAK_HOST/search/query/header_data?wt=json&q=method:GET"
 # This should return a fairly large JSON object with a "num_found" field
 # The value of that field should be 1
 ```
+
+</TabItem>
+</Tabs>

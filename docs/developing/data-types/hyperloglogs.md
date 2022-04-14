@@ -5,6 +5,9 @@ slug: hyperloglogs
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The examples in this section will show you how to use hyperloglogs on their own.
 
 ## Set Up a Bucket Type
@@ -57,14 +60,16 @@ location that contains our counter.
 
 For this example we'll use the `hlls` bucket type created and activated above and a bucket called `hlls`:
 
-### Erlang
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 %% Buckets are simply named binaries in the Erlang client. See the
 %% examples below for more information
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 // In the Java client, a bucket/bucket type combination is specified
@@ -76,7 +81,8 @@ Location hllLocation =
   new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket_type = client.bucket_type('hlls')
@@ -89,7 +95,8 @@ from riak.datatypes import Hll
 hll = Hll(bucket, key)
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 // Buckets and bucket types are simply strings in the Go client.
@@ -108,21 +115,24 @@ import (
 )
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // In the C# client, buckets are just string parameters to operations.
 // See the examples below for more information.
 ```
 
-### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 // In the Node.js client, buckets are just string parameters to operations.
 // See the examples below for more information.
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $command = (new Command\Builder\FetchHll($riak_client))
@@ -130,13 +140,15 @@ $command = (new Command\Builder\FetchHll($riak_client))
     ->build();
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('hlls').bucket('my_hlls')
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
@@ -145,12 +157,16 @@ curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 # requests, which end in /keys/<key>
 ```
 
+</TabItem>
+</Tabs>
+
 ## Create a HyperLogLog data type
 
 To create a hyperloglog data structure, you need to specify a bucket/key pair to
 hold that hyperloglog. Here is the general syntax for doing so:
 
-### Erlang
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 HLL = riakc_hll:new().
@@ -160,7 +176,8 @@ HLL = riakc_hll:new().
 %% structure with a bucket type, bucket, and key later on.
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 // In the Java client, you specify the location of Data Types
@@ -173,7 +190,8 @@ Location hllLocation =
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket_type = client.bucket_type('hlls')
@@ -186,28 +204,32 @@ from riak.datatypes import Hll
 hll = Hll(bucket, key)
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 // In the Go client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // In the C# client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 // In the Node.js client, there is no intermediate "empty" hyperloglog data type.
 // Hyperloglogs can be created when an element is added to them, as in the examples below.
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 // Note that "hlls" is just an example HLL bucket type name used
@@ -223,14 +245,16 @@ $command = (new Command\Builder\UpdateHll($riak_client))
 $response = $command->execute();
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 key = "darkness"
 hll = Riak::Crdt::HyperLogLog.new(bucket, key)
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 # You cannot create an empty hyperloglog data structure through the HTTP
@@ -239,11 +263,13 @@ hll = Riak::Crdt::HyperLogLog.new(bucket, key)
 # examples below.
 ```
 
-### Upon creation of a hyperloglog
+</TabItem>
+</Tabs>
 
 Upon creation, our hyperloglog data structure is empty:
 
-#### Erlang
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 HLL.
@@ -252,7 +278,8 @@ HLL.
 %% {hll,0,[]}
 ```
 
-#### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 FetchHll fetch = new FetchHll.Builder(hllLocation)
@@ -261,13 +288,15 @@ RiakHll hll = client.execute(fetch);
 boolean isEmpty = hll.getCardinality() == 0;
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 is_empty = hll.value == 0
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 var resp *riak.FetchHllResponse
@@ -295,7 +324,8 @@ fmt.Println("Hyperloglog isNotFound: ", resp.IsNotFound)
 return nil
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var options = {
@@ -316,7 +346,8 @@ client.fetchHll(options, function (err, rslt) {
 // Prints "Not Found" to logger.info.
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
  var fetch = new FetchHll.Builder()
@@ -334,6 +365,9 @@ if (response.NotFound)
 // Prints "Not Found" to the console.
 ```
 
+</TabItem>
+<TabItem label="PHP" value="php">
+
 ```php
 $command = (new Command\Builder\FetchHll($riak_client))
     ->buildLocation('darkness', 'hello', 'hlls')
@@ -344,10 +378,16 @@ $response = $command->execute();
 $response->getCode() == '404';
 ```
 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
+
 ```ruby
 puts hll.cardinality
 # Prints "0"
 ```
+
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
@@ -356,9 +396,14 @@ curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
 {"type":"hll","error":"notfound"}
 ```
 
+</TabItem>
+</Tabs>
+
+
 ## Add elements to a HyperLogLog data type
 
-### Erlang
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 HLL1 = riakc_hll:add_element(<<"Jokes">>, HLL),
@@ -371,7 +416,8 @@ HLL2.
 %% {hll,0,[<<"Are">>,<<"Better">>,<<"Explained">>, <<"Jokes">>]}
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 HllUpdate hllUpdate = new HllUpdate()
@@ -383,7 +429,8 @@ hllUpdate.getElementAdds();
 // Returns the set of ["Jokes", "Are", "Better", "Explained"]                     
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket_type = client.bucket_type('hlls')
@@ -398,25 +445,29 @@ myhll.store()
 # myhll.value == 4
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 // We will add values in the next example
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // We will add values in the next example
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 // We will add values in the next example
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $command = (new Command\Builder\UpdateHll($riak_client))
@@ -431,12 +482,15 @@ $command = (new Command\Builder\UpdateHll($riak_client))
 $response = $command->execute();
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
+
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness \
@@ -444,13 +498,15 @@ curl -XPOST http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness \
   -d '{"add_all":["my", "old", "friend"]}'
 ```
 
-### Pushing and fetching a hyperloglog
+</TabItem>
+</Tabs>
 
 However, when using a non-HTTP client, the approximate cardinality/value of our
 data structure will be 0, locally, until its pushed to the server and then
 [fetched](#retrieve-a-hyperloglog-data-type) from the server.
 
-#### Erlang
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 riakc_hll:value(HLL2) == 0.
@@ -468,7 +524,8 @@ ok = riakc_pb_socket:update_type(Pid, Bucket, Key, riakc_hll:to_op(HLL2)).
 ok = riakc_pb_socket:update_type(Pid, Bucket, Key, riakc_hll:to_op(RepeatHLL1)).
 ```
 
-#### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 // Using hllUpdate and hllLocation from above examples
@@ -478,7 +535,8 @@ UpdateHll update = new UpdateHll.Builder(hllLocation, hllUpdate)
 client.execute(update);
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket_type = client.bucket_type('hlls')
@@ -493,7 +551,8 @@ myhll.store()
 # myhll.value == 4
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 adds := [][]byte{
@@ -517,7 +576,8 @@ if err != nil {
 return cluster.Execute(cmd)
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var options = {
@@ -534,7 +594,8 @@ client.updateHll(options, function (err, rslt) {
 });
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var adds = new HashSet<string> { "Jokes", "Are", "Better", "Explained", "Jokes" };
@@ -549,7 +610,8 @@ var update = new UpdateHll.Builder(adds)
 RiakResult rslt = client.Execute(update);
 ```
 
-####  PHP
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $command = (new Command\Builder\UpdateHll($riak_client))
@@ -564,7 +626,8 @@ $command = (new Command\Builder\UpdateHll($riak_client))
 $response = $command->execute();
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 hll.add('Jokes')
@@ -576,12 +639,16 @@ hll.batch do |s|
 end
 ```
 
+</TabItem>
+</Tabs>
+
 ## Retrieve a HyperLogLog data type
 
 Now, we can check the approximate count-of (a.k.a. the cardinality of the elements
 added to) our hyperloglog data structure:
 
-### Erlang
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 {ok, HLL3} = riakc_pb_socket:fetch_type(Pid, Bucket, Key),
@@ -594,7 +661,8 @@ riakc_hll:value(HLL3) == 4.
 %% unique elements we've added to the data structure.
 ```
 
-### Java 
+</TabItem>
+<TabItem label="Java" value="java">
 
 ```java
 FetchHll hllFetchCmd = new FetchHll.Builder(location).build();
@@ -606,7 +674,8 @@ hll.getCardinality();
 // unique elements we've added to the data structure.
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket_type = client.bucket_type('hlls')
@@ -615,7 +684,8 @@ myhll = bucket.get('hll_one')
 # myhll.value == 4
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 var resp *riak.FetchHllResponse
@@ -644,7 +714,8 @@ fmt.Println("Hyperloglog cardinality: ", resp.Cardinality)
 return nil
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var options = {
@@ -668,7 +739,8 @@ client.fetchHll(options, function (err, rslt) {
 // unique elements we've added to the data structure.
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var fetch = new FetchHll.Builder()
@@ -695,7 +767,8 @@ else
 // unique elements we've added to the data structure.
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $command = (new Command\Builder\FetchHll($riak_client))
@@ -712,14 +785,16 @@ $this->assertEquals(4, $response->getHll()->getData());
 // unique elements we've added to the data structure.
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 puts hll.cardinality
 # Prints "4"
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
@@ -727,3 +802,6 @@ curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
 # Response
 {"type":"hll","value":"4"}
 ```
+
+</TabItem>
+</Tabs>

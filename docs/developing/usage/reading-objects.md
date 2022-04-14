@@ -5,6 +5,9 @@ slug: reading-objects
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [glossary vnode]: ../../learn/glossary.md#vnode
 
 You can think of reads in Riak as analogous to HTTP `GET` requests. You
@@ -22,7 +25,8 @@ GET /types/<type>/buckets/<bucket>/keys/<key>
 Here is an example of a read performed on the key `rufus` in the bucket
 `dogs`, which bears the bucket type `animals`. Please note that for this example to work, you must have first created the bucket-type `animals` as per the instructions on the [bucket type](../../using/cluster-operations/bucket-types.md) page.
 
-## Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // In the Java client, it is best to specify a bucket type/bucket/key
@@ -31,14 +35,16 @@ Here is an example of a read performed on the key `rufus` in the bucket
 Location myKey = new Location(new Namespace("animals", "dogs"), "rufus");
 ```
 
-## Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = bucket.get('rufus')
 ```
 
-## PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
@@ -47,14 +53,16 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
   ->execute();
 ```
 
-## Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('animals').bucket('dogs')
 obj = bucket.get('rufus')
 ```
 
-## C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // Using the Riak .NET Client it is best to specify a bucket type/bucket/key
@@ -63,7 +71,8 @@ obj = bucket.get('rufus')
 var id = new RiakObjectId("animals", "dogs", "rufus");
 ```
 
-## JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, function (err, rslt) {
@@ -71,7 +80,8 @@ client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, funct
 });
 ```
 
-## Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -79,7 +89,8 @@ client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, funct
                             <<"rufus">>).
 ```
 
-## Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err = riak.NewFetchValueCommandBuilder().
@@ -92,11 +103,15 @@ if err != nil {
 }
 ```
 
-## Curl
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
 ```
+
+</TabItem>
+</Tabs>
 
 ## Read Parameters
 
@@ -113,7 +128,8 @@ response).
 
 Here is an example of attempting a read with `r` set to `3`:
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the "myKey" location specified above:
@@ -125,7 +141,8 @@ RiakObject obj = response.getValue(RiakObject.class);
 System.out.println(obj.getValue());
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('animals').bucket('dogs')
@@ -133,7 +150,8 @@ obj = bucket.get('rufus', r: 3)
 p obj.data
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
@@ -144,7 +162,8 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
 var_dump($response->getObject()->getData());
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('animals').bucket('dogs')
@@ -152,7 +171,8 @@ obj = bucket.get('rufus', r=3)
 print obj.data
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var id = new RiakObjectId("animals", "dogs", "rufus");
@@ -162,7 +182,8 @@ var rslt = client.Get(id, opts);
 Debug.WriteLine(Encoding.UTF8.GetString(rslt.Value.Value));
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var fetchOptions = {
@@ -176,7 +197,8 @@ client.fetchValue(fetchOptions, function (err, rslt) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -185,7 +207,8 @@ client.fetchValue(fetchOptions, function (err, rslt) {
                                 [{r, 3}]).
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewFetchValueCommandBuilder().
@@ -209,11 +232,15 @@ fvc := cmd.(*riak.FetchValueCommand)
 rsp := svc.Response
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus?r=3
 ```
+
+</TabItem>
+</Tabs>
 
 If you're using HTTP, you will most often see the following response
 codes:
@@ -235,51 +262,59 @@ great deal, so make sure to check the documentation for your specific client.
 
 If there's no object stored in the location where you attempt a read, you'll get the following response:
 
-### Java 
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 java.lang.NullPointerException
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 Riak::ProtobuffsFailedRequest: Expected success from Riak but received not_found. The requested object was not found.
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response->getStatusCode(); // 404
 $response->isSuccess(); // false
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 riak.RiakError: 'no_type'
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 result.IsSuccess == false
 result.ResultCode == ResultCode.NotFound
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 rslt.isNotFound === true;
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {error,notfound}
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 fvc := cmd.(*riak.FetchValueCommand)
@@ -287,8 +322,12 @@ rsp := fvc.Response
 rsp.IsNotFound // Will be true
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 not found
 ```
+
+</TabItem>
+</Tabs>

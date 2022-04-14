@@ -5,6 +5,9 @@ slug: search
 sidebar_position: 5
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [usage search schema]: ./search-schemas.md
 [bucket types]: ./bucket-types.md
 
@@ -65,7 +68,8 @@ will depend on your [configuration](../../configuring/reference.md#client-interf
 Let's start by creating an index called `famous` that uses the default
 schema.
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 YokozunaIndex famousIndex = new YokozunaIndex("famous");
@@ -74,13 +78,15 @@ StoreIndex storeIndex =
 client.execute(storeIndex);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.create_search_index('famous')
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
@@ -89,20 +95,23 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.create_search_index('famous')
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var idx = new SearchIndex("famous");
 var rslt = client.PutSearchIndex(idx);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var storeIndex_cb = function (err, rslt) {
@@ -122,13 +131,15 @@ var store = new Riak.Commands.YZ.StoreIndex.Builder()
 client.execute(store);
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:create_search_index(Pid, <<"famous">>).
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewStoreIndexCommandBuilder().
@@ -142,7 +153,8 @@ if err != nil {
 err = cluster.Execute(cmd)
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 export RIAK_HOST="http://localhost:8098"
@@ -150,14 +162,16 @@ export RIAK_HOST="http://localhost:8098"
 curl -XPUT $RIAK_HOST/search/index/famous
 ```
 
-## Getting started with Riak clients
+</TabItem>
+</Tabs>
 
 If you are connecting to Riak using one of Basho's official [client libraries](../../developing/client-libraries.md), you can find more information about getting started with your client in the [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
 
 Note that the above command is exactly the same as the following, which
 explicitly defines the default schema.
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 YokozunaIndex famousIndex = new YokozunaIndex("famous", "_yz_default");
@@ -166,13 +180,15 @@ StoreIndex storeIndex = new StoreIndex.Builder(famousIndex)
 client.execute(storeIndex);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.create_search_index("famous", "_yz_default")
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
@@ -182,20 +198,23 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.create_search_index('famous', '_yz_default')
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var idx = new SearchIndex("famous", "_yz_default");
 var rslt = client.PutSearchIndex(idx);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var store = new Riak.Commands.YZ.StoreIndex.Builder()
@@ -207,13 +226,15 @@ var store = new Riak.Commands.YZ.StoreIndex.Builder()
 client.execute(store);
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:create_search_index(Pid, <<"famous">>, <<"_yz_default">>, []).
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewStoreIndexCommandBuilder().
@@ -228,13 +249,17 @@ if err != nil {
 err = cluster.Execute(cmd)
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/famous \
      -H 'Content-Type: application/json' \
      -d '{"schema":"_yz_default"}'
 ```
+
+</TabItem>
+</Tabs>
 
 ## Associating an Index
 
@@ -293,7 +318,8 @@ if you have existing data with a type-free bucket (i.e. under the
 default bucket type) you can set the `search_index` property for a
 specific bucket.
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace catsBucket = new Namespace("cats");
@@ -303,14 +329,16 @@ StoreBucketPropsOperation storePropsOp = new StoreBucketPropsOperation.Builder(c
 client.execute(storePropsOp);
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('cats')
 bucket.properties = {'search_index' => 'famous'}
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\Search\AssociateIndex($riak))
@@ -320,14 +348,16 @@ bucket.properties = {'search_index' => 'famous'}
     ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket('cats')
 bucket.set_properties({'search_index': 'famous'})
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var properties = new RiakBucketProperties();
@@ -335,7 +365,8 @@ properties.SetSearchIndex("famous");
 var rslt = client.SetBucketProperties("cats", properties);
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var bucketProps_cb = function (err, rslt) {
@@ -354,13 +385,15 @@ var store = new Riak.Commands.KV.StoreBucketProps.Builder()
 client.execute(store);
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:set_search_index(Pid, <<"cats">>, <<"famous">>).
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewStoreBucketPropsCommandBuilder().
@@ -375,13 +408,17 @@ if err != nil {
 err = cluster.Execute(cmd)
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/buckets/cats/props \
      -H'content-type:application/json' \
      -d'{"props":{"search_index":"famous"}}'
 ```
+
+</TabItem>
+</Tabs>
 
 Once you have created the index association, any new data will be indexed on 
 ingest according to your schema.
@@ -431,7 +468,8 @@ type, which for this example is `application/json`. In the case of Ruby
 and Python the content type is automatically set for you based on the
 object given.
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace animalsBucket = new Namespace("animals");
@@ -461,7 +499,8 @@ client.execute(lionoStore);
 // The other storage operations can be performed the same way
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('animals').bucket("cats")
@@ -483,7 +522,8 @@ cat.data = {"name_s" => "Panthro", "age_i" => 36}
 cat.store
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $bucket = new \Basho\Riak\Bucket('cats', 'animals');
@@ -510,7 +550,8 @@ $storeObjectBuilder->withLocation(new \Basho\Riak\Location('panthro', $bucket))
 $storeObjectBuilder->build()->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('animals').bucket('cats')
@@ -528,7 +569,8 @@ cat = bucket.new('panthro', {'name_s':'Panthro', 'age_i':36})
 cat.store()
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var lionoId = new RiakObjectId("animals", "cats", "liono");
@@ -552,7 +594,8 @@ var rslts = client.Put(new[] {
 });
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 function store_cb(err, rslt, async_cb) {
@@ -595,7 +638,8 @@ async.parallel(storeFuncs, function (err, rslts) {
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 CO = riakc_obj:new({<<"animals">>, <<"cats">>}, <<"liono">>,
@@ -619,7 +663,8 @@ C3 = riakc_obj:new({<<"animals">>, <<"cats">>}, <<"panthro">>,
 riakc_pb_socket:put(Pid, C3),
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 o1 := &riak.Object{
@@ -668,7 +713,8 @@ for _, obj := range objs {
 wg.Wait()
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/types/animals/buckets/cats/keys/liono \
@@ -687,6 +733,9 @@ curl -XPUT $RIAK_HOST/types/animals/buckets/cats/keys/panthro \
      -H 'Content-Type: application/json' \
      -d '{"name_s":"Panthro", "age_i":36}'
 ```
+
+</TabItem>
+</Tabs>
 
 If you've used Riak before, you may have noticed that this is no
 different from storing values without Riak Search. That's because we
@@ -785,7 +834,8 @@ which actually includes most of the single-node Solr queries. This
 example searches for all documents in which the `name_s` value begins
 with `Lion` by means of a glob (wildcard) match.
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 SearchOperation searchOp = new SearchOperation
@@ -798,7 +848,8 @@ List<Map<String, List<String>>> results = searchOp.get().getAllResults();
 System.out.println(results);
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 results = client.search("famous", "name_s:Lion*")
@@ -806,7 +857,8 @@ p results
 p results['docs']
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -820,13 +872,17 @@ $response->getNumFound(); // 1
 var_dump($response->getDocs());
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 results = client.fulltext_search('famous', 'name_s:Lion*')
 print results
 print results['docs']
 ```
+
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var search = new RiakSearchRequest
@@ -852,7 +908,8 @@ foreach (RiakSearchResultDocument doc in searchResult.Documents)
 }
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -870,7 +927,8 @@ var search = new Riak.Commands.YZ.Search.Builder()
 client.execute(search);
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 {ok, Results} = riakc_pb_socket:search(Pid, <<"famous">>, <<"name_s:Lion*">>),
@@ -883,7 +941,8 @@ io:fwrite("~p~n", [Docs]).
 %% https://github.com/basho/riak-erlang-client/blob/master/include/riakc.hrl
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewSearchCommandBuilder().
@@ -906,11 +965,15 @@ if json, jerr := json.MarshalIndent(sc.Response.Docs, "", "  "); jerr != nil {
 }
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=name_s:Lion*" | jsonpp
 ```
+
+</TabItem>
+</Tabs>
 
 The response to a query will be an object containing details about the
 response, such as a query's max score and a list of documents which
@@ -949,14 +1012,13 @@ values you'll use most often are `_yz_rt` (Riak bucket type), `_yz_rb`
 similarity of the matching doc to the query via [Lucene
 scoring](https://lucene.apache.org/core/4_6_0/core/org/apache/lucene/search/package-summary.html#scoring).
 
-### Using Solr
-
 In this example the query fields are returned because they're stored in
 Solr. This depends on your schema. If they are not stored, you'll have
 to perform a separate Riak GET operation to retrieve the value using the
 `_yz_rk` value.
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // Using the results object from above
@@ -974,7 +1036,8 @@ System.out.println(obj.getValue());
 // {"name_s": "Lion-o", "age_i": 30, "leader_b": true}
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 doc = results['docs'].first
@@ -986,7 +1049,8 @@ p object.data
 # {"name_s" => "Lion-o", "age_i" => 30, "leader_b" => true}
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $doc = $response->getDocs()[0];
@@ -1004,7 +1068,8 @@ $object = (new \Basho\Riak\Command\Builder\FetchObject($riak))
 var_dump($object->getData());
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 doc = results['docs'][0]
@@ -1015,7 +1080,8 @@ print object.data
 # {"name_s": "Lion-o", "age_i": 30, "leader_b": true}
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 RiakSearchResult searchResult = searchRslt.Value;
@@ -1030,7 +1096,8 @@ Debug.WriteLine(Encoding.UTF8.GetString(obj.Value));
 // {"name_s":"Lion-o","age_i":30,"leader_b":true}
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var doc = rslt.docs.pop();
@@ -1048,7 +1115,8 @@ client.fetchValue(args, function (err, rslt) {
 });
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 [{Index,Doc}|_] = Docs,
@@ -1062,7 +1130,8 @@ io:fwrite("~s~n", [Val]).
 %% {"name_s":"Lion-o", "age_i":30, "leader_b":true}
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 doc := sc.Response.Docs[0] // NB: SearchDoc struct type
@@ -1081,7 +1150,8 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl $RIAK_HOST/types/animals/buckets/cats/keys/liono
@@ -1090,6 +1160,9 @@ curl $RIAK_HOST/types/animals/buckets/cats/keys/liono
 
 {"name_s":"Lion-o", "age_i":30, "leader_b":true}
 ```
+
+</TabItem>
+</Tabs>
 
 This was one simple glob query example. There are many query options, a
 more complete list of which can be found by digging into [searching
@@ -1108,7 +1181,8 @@ To find the ages of all famous cats who are 30 or younger: `age_i:[0 TO
 30]`. If you wanted to find all cats 30 or older, you could include a
 glob as a top end of the range: `age_i:[30 TO *]`.
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 String index = "famous";
@@ -1120,13 +1194,15 @@ cluster.execute(searchOp);
 SearchOperation.Response results = searchOp.get();
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.search("famous", "age_i:[30 TO *]")
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1136,13 +1212,15 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
   ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.fulltext_search('famous', 'age_i:[30 TO *]')
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var search = new RiakSearchRequest("famous", "age_i:[30 TO *]");
@@ -1160,7 +1238,8 @@ var search = new RiakSearchRequest("famous", "age_i:[30 TO *]");
 var rslt = client.Search(search);
 ```
 
-#### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var search = new Riak.Commands.YZ.Search.Builder()
@@ -1171,13 +1250,15 @@ var search = new Riak.Commands.YZ.Search.Builder()
 client.execute(search);
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:search(Pid, <<"famous">>, <<"age_i:[30 TO *]">>),
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewSearchCommandBuilder().
@@ -1193,11 +1274,15 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=age_i:%5B30%20TO%20*%5D" | jsonpp
 ```
+
+</TabItem>
+</Tabs>
 
 ### Boolean
 
@@ -1207,7 +1292,8 @@ Let's say we want to see who is capable of being a US Senator (at least
 30 years old, and a leader). It requires a conjunctive query:
 `leader_b:true AND age_i:[25 TO *]`.
 
-#### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 String index = "famous";
@@ -1217,13 +1303,15 @@ cluster.execute(searchOp);
 SearchOperation.Response results = searchOp.get();
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.search("famous", "leader_b:true AND age_i:[30 TO *]")
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
@@ -1233,13 +1321,15 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
   ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.fulltext_search('famous', 'leader_b:true AND age_i:[30 TO *]')
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var search = new RiakSearchRequest
@@ -1250,7 +1340,8 @@ var search = new RiakSearchRequest
 };
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var search = new Riak.Commands.YZ.Search.Builder()
@@ -1261,13 +1352,15 @@ var search = new Riak.Commands.YZ.Search.Builder()
 client.execute(search);
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:search(Pid, <<"famous">>, <<"leader_b:true AND age_i:[30 TO *]">>),
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewSearchCommandBuilder().
@@ -1283,17 +1376,22 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=leader_b:true%20AND%20age_i:%5B25%20TO%20*%5D" | jsonpp
 ```
 
+</TabItem>
+</Tabs>
+
 ### Deleting Indexes
 
 Indexes may be deleted if they have no buckets associated with them:
 
-#### Java 
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 String index = "famous";
@@ -1302,13 +1400,15 @@ YzDeleteIndexOperation deleteOp = new YzDeleteIndexOperation.Builder(index)
 cluster.execute(deleteOp);
 ```
 
-#### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 client.delete_search_index('famous')
 ```
 
-#### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new Command\Builder\Search\DeleteIndex($riak))
@@ -1317,19 +1417,22 @@ client.delete_search_index('famous')
   ->execute();
 ```
 
-#### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 client.delete_search_index('famous')
 ```
 
-#### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var rslt = client.DeleteSearchIndex("famous");
 ```
 
-#### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 function delete_cb(err, rslt) {
@@ -1351,13 +1454,15 @@ var search = new Riak.Commands.YZ.DeleteIndex.Builder()
 client.execute(search);
 ```
 
-#### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:delete_search_index(Pid, <<"famous">>, []),
 ```
 
-#### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewStoreBucketPropsCommandBuilder().
@@ -1385,11 +1490,15 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-#### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XDELETE $RIAK_HOST/search/index/famous
 ```
+
+</TabItem>
+</Tabs>
 
 If an index does have a bucket associated with it, then that index's
 `search_index` property must be changed to either a different index name
@@ -1414,7 +1523,8 @@ For example, assuming we want two results per page, getting the second
 page is easy, where `start` is calculated as (rows per page) * (page
 number - 1).
 
-##### Java 
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 int rowsPerPage = 2;
@@ -1430,7 +1540,8 @@ client.execute(searchOp);
 StoreOperation.Response response = searchOp.get();
 ```
 
-##### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 ROWS_PER_PAGE=2
@@ -1440,7 +1551,8 @@ start = ROWS_PER_PAGE * (page - 1)
 client.search("famous", "*:*", {:start => start, :rows => ROWS_PER_PAGE})
 ```
 
-##### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $maxRows = 2;
@@ -1456,7 +1568,8 @@ $start = $rowsPerPAge * (page - 1);
   ->execute();
 ```
 
-##### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 ROWS_PER_PAGE=2
@@ -1466,7 +1579,8 @@ start = ROWS_PER_PAGE * (page - 1)
 client.fulltext_search('famous', '*:*', start=start, rows=ROWS_PER_PAGE)
 ```
 
-##### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 int rowsPerPage = 2;
@@ -1485,7 +1599,8 @@ var search = new RiakSearchRequest
 var rslt = client.Search(search);
 ```
 
-##### JavaScript
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var rowsPerPage = 2;
@@ -1502,7 +1617,8 @@ var search = new Riak.Commands.YZ.Search.Builder()
 client.execute(search);
 ```
 
-##### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 -define(ROWS_PER_PAGE, 2).
@@ -1513,7 +1629,8 @@ Start = ?ROWS_PER_PAGE * (Page - 1),
 riakc_pb_socket:search(Pid, <<"famous">>, <<"*:*">>, [{start, Start},{rows, ?ROWS_PER_PAGE}]),
 ```
 
-##### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 rowsPerPage := uint32(2)
@@ -1535,7 +1652,8 @@ if err := cluster.Execute(cmd); err != nil {
 }
 ```
 
-##### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 ROWS_PER_PAGE=2
@@ -1545,6 +1663,9 @@ START=$(($ROWS_PER_PAGE * ($PAGE-1)))
 curl
 curl "$RIAK_HOST/search/query/famous?wt=json&q=*:*&start=$START&rows=$ROWS_PER_PAGE" | jsonpp
 ```
+
+</TabItem>
+</Tabs>
 
 ### Pagination Warning
 

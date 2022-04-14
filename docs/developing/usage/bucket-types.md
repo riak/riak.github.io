@@ -5,6 +5,9 @@ slug: bucket-types
 sidebar_position: 8
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 If you ever need to turn off indexing for a bucket, set the
 `search_index` property to the `_dont_index_` sentinel value.
 
@@ -15,7 +18,8 @@ if you have existing data with a type-free bucket (i.e. under the
 `default` bucket type) you can set the `search_index` property for a
 specific bucket.
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Namespace catsBucket = new Namespace("cats");
@@ -25,14 +29,16 @@ StoreBucketPropsOperation storePropsOp = new StoreBucketPropsOperation.Builder(c
 client.execute(storePropsOp);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket('cats')
 bucket.properties = {'search_index' => 'famous'}
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 (new \Basho\Riak\Command\Builder\Search\AssociateIndex($riak))
@@ -42,14 +48,16 @@ bucket.properties = {'search_index' => 'famous'}
     ->execute();
 ```
 
-### Python
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket('cats')
 bucket.set_properties({'search_index': 'famous'})
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```c#
 var properties = new RiakBucketProperties();
@@ -57,7 +65,8 @@ properties.SetSearchIndex("famous");
 var rslt = client.SetBucketProperties("cats", properties);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var bucketProps_cb = function (err, rslt) {
@@ -76,13 +85,15 @@ var store = new Riak.Commands.KV.StoreBucketProps.Builder()
 client.execute(store);
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 riakc_pb_socket:set_search_index(Pid, <<"cats">>, <<"famous">>).
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 cmd, err := riak.NewStoreBucketPropsCommandBuilder().
@@ -97,10 +108,14 @@ if err != nil {
 err = cluster.Execute(cmd)
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/buckets/cats/props \
      -H'content-type:application/json' \
      -d'{"props":{"search_index":"famous"}}'
 ```
+
+</TabItem>
+</Tabs>

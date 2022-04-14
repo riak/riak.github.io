@@ -5,13 +5,17 @@ slug: content-types
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Riak KV is a fundamentally content-agnostic database. You can use it to
 store anything you want, from JSON to XML to HTML to binaries to images
 and beyond. It's important to note that _all_ objects stored in
 Riak need a specified content type. If you don't specify a
 content type, the reaction will vary based on your client library:
 
-## Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 // In the Java client, the response when storing an object without
@@ -22,7 +26,8 @@ content type, the reaction will vary based on your client library:
 // stored as JSON by default, and so on.
 ```
 
-## Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 # In the Ruby client, you must always specify a content type. If you
@@ -30,7 +35,8 @@ content type, the reaction will vary based on your client library:
 ArgumentError: content_type is not defined!
 ```
 
-## PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 # PHP will default to cURLs default content-type for POST & PUT requests:
@@ -40,7 +46,8 @@ ArgumentError: content_type is not defined!
 # it will store the item with application/json as the content-type
 ```
 
-## Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 # In the Python client, the default content type is "application/json".
@@ -48,7 +55,8 @@ ArgumentError: content_type is not defined!
 # type when storing other types of data.
 ```
 
-## C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 // Using the Riak .NET Client, the response when storing an object without
@@ -58,7 +66,8 @@ ArgumentError: content_type is not defined!
 // POCOs are stored as JSON by default, and so on.
 ```
 
-## JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 // In the Node.js client, the default content type is "application/json".
@@ -66,7 +75,8 @@ ArgumentError: content_type is not defined!
 // type when storing other types of data.
 ```
 
-## Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 %% In the Erlang client, the response when storing an object without
@@ -77,11 +87,15 @@ ArgumentError: content_type is not defined!
 %% on.
 ```
 
-## Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 // In the Go client, you must always specify a content type.
 ```
+
+</TabItem>
+</Tabs>
 
 Because content type negotiation varies so widely from client to client,
 we recommend consulting the documentation for your preferred client for
@@ -92,7 +106,8 @@ more information.
 For all writes to Riak, you will need to specify a content type, for
 example `text/plain` or `application/json`.
 
-### Java
+<Tabs>
+<TabItem label="Java" value="java" default>
 
 ```java
 Location wildeGeniusQuote = new Location(new Namespace("quotes", "oscar_wilde"), "genius");
@@ -105,7 +120,8 @@ StoreValue store = new StoreValue.Builder(myKey, obj)
 client.execute(store);
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
@@ -115,7 +131,8 @@ obj.raw_data = 'I have nothing to declare but my genius'
 obj.store
 ```
 
-### PHP 
+</TabItem>
+<TabItem label="PHP" value="php">
 
 ```php
 $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
@@ -125,7 +142,8 @@ $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
   ->execute();
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 bucket = client.bucket_type('quotes').bucket('oscar_wilde')
@@ -135,7 +153,8 @@ obj.data = 'I have nothing to declare but my genius'
 obj.store()
 ```
 
-### C# 
+</TabItem>
+<TabItem label="C#" value="c#">
 
 ```csharp
 var id = new RiakObjectId("quotes", "oscar_wilde", "genius");
@@ -144,7 +163,8 @@ var obj = new RiakObject(id, "I have nothing to declare but my genius",
 var rslt = client.Put(obj);
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -160,7 +180,8 @@ client.storeValue({
 });
 ```
 
-### Erlang 
+</TabItem>
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 Object = riakc_obj:new({<<"quotes">>, <<"oscar_wilde">>},
@@ -170,7 +191,8 @@ Object = riakc_obj:new({<<"quotes">>, <<"oscar_wilde">>},
 riakc_pb_socket:put(Pid, Object).
 ```
 
-### Go 
+</TabItem>
+<TabItem label="Go" value="go">
 
 ```go
 obj := &riak.Object{
@@ -201,7 +223,8 @@ svc := cmd.(*riak.StoreValueCommand)
 rsp := svc.Response
 ```
 
-### Curl 
+</TabItem>
+<TabItem label="Curl" value="curl">
 
 ```bash
 curl -XPUT \
@@ -212,3 +235,6 @@ curl -XPUT \
 # Please note that POST is also a valid method for writes, for the sake
 # of compatibility
 ```
+
+</TabItem>
+</Tabs>
