@@ -184,7 +184,7 @@ attempting to use it
 
 Here is an example `nginx.conf` file:
 
-```config
+```nginx
 upstream riak_hosts {
   # server  10.0.1.10:8098;
   # server  10.0.1.11:8098;

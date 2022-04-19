@@ -27,7 +27,7 @@ You can set up your cluster to use the Multi backend using Riak's
 storage_backend = multi
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {storage_backend, riak_kv_multi_backend},
@@ -121,7 +121,7 @@ keep the settings organized.
 
 Below is the general form for your `app.config` file:
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {multi_backend_default, <<"bitcask_mult">>},
@@ -189,7 +189,7 @@ multi_backend.leveldb_mult.leveldb.data_root = /var/lib/riak/leveldb_mult
 multi_backend.default = bitcask_mult
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {multi_backend_default, <<"bitcask_mult">>},

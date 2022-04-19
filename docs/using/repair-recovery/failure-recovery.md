@@ -105,9 +105,3 @@ spreading load and increasing available CPU and IOPS.
 ## Cluster Recovery From Backups
 
 See [Changing Cluster Information](../../using/cluster-operations/changing-cluster-info.md#clusters-from-backups) for instructions on cluster recovery.
-
-:::tip
-If you are a licensed Riak Enterprise or CS customer and require assistance or
-further advice with a cluster recovery, please file a ticket with the
-[Basho Helpdesk](https://help.basho.com).
-:::tip

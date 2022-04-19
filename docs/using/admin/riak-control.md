@@ -31,7 +31,7 @@ listener.https.<name> = 127.0.0.1:8096
 
 ```
 
-```appconfig
+```erlang
  {riak_api,
      [
         %% Other configs
@@ -62,7 +62,7 @@ following in your [configuration files][config reference]:
 riak_control = off
 ```
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {enabled, false},
@@ -76,7 +76,7 @@ Enabling Riak Control is simple:
 riak_control = on
 ```
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {enabled, true},
@@ -114,7 +114,7 @@ default. To enable authentication:
 riak_control.auth.mode = userlist
 ```
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {auth, userlist}, %% The only other available option is "none"
@@ -135,7 +135,7 @@ riak_control.auth.user.polly.password = h4x0r123
 riak_control.auth.user.riakrocks.password = cap_theorem_4_life
 ```
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {userlist, [

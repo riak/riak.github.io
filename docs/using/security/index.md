@@ -63,7 +63,7 @@ erlang.distribution.port_range.minimum = 6000
 erlang.distribution.port_range.maximum = 7999
 ```
 
-```appconfig
+```erlang
 { kernel, [
             {inet_dist_listen_min, 6000},
             {inet_dist_listen_max, 7999}

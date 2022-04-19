@@ -71,8 +71,7 @@ syntax for creating other data types:
 // use a Location object that incorporates the Namespace object, as is
 // done below.
 
-Location map =
-  new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
+Location map = new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
 </TabItem>
@@ -162,8 +161,7 @@ We can create a map for the user Ahmed (`ahmed_info`) using the `maps` bucket ty
 // In the Java client, you specify the location of data types
 // before you perform operations on them:
 
-Location ahmedMap =
-  new Location(new Namespace("maps", "customers"), "ahmed_info");
+Location ahmedMap = new Location(new Namespace("maps", "customers"), "ahmed_info");
 ```
 
 </TabItem>

@@ -58,7 +58,7 @@ Values
 Here is how submitting a JSON encoded job to sum up a bucket full of
 JSON encoded values.
 
-```
+```json
 {"inputs": "bucket_501653",
  "query":
     [{"map": {"arg": null,

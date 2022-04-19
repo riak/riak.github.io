@@ -1,15 +1,5 @@
 import React, { useState, useReducer } from 'react';
 
-const INITIAL_STATE = {
-  bytesInAPtr: 8, // 64  bit system
-  nTotalKeys: 183915891,
-  nBucketSize: 10, // 10  avg byte length bucket names
-  nKeySize: 36, // 36  avg byte length keys
-  nRecordSize: 36, // 36  values
-  nRam: 16, // 16  GB RAM
-  nNVal: 3 // "N" value of 3
-};
-
 function formatNumber(str) {
   str += "";
 
@@ -75,24 +65,24 @@ function abbreviateNumber(num) {
 }
 
 function sizeOfNullBKP(bytesInAPtr) {
-    return 44.5 + 13 + 8;
+  return 44.5 + 13 + 8;
 }
 
 function estimateNodes({bytesInAPtr, nTotalKeys, nBucketSize, nNVal, nRam, nKeySize}) {
-    const m = (nKeySize + nBucketSize + sizeOfNullBKP(bytesInAPtr)) * nTotalKeys * nNVal;
-    const ram = calculateRam(nRam);
+  const m = (nKeySize + nBucketSize + sizeOfNullBKP(bytesInAPtr)) * nTotalKeys * nNVal;
+  const ram = calculateRam(nRam);
 
-    return ((m / ram) < nNVal + 1) ? nNVal + 2 : Math.ceil(m / ram);
+  return ((m / ram) < nNVal + 1) ? nNVal + 2 : Math.ceil(m / ram);
 }
 
 function estimateKeyDir({bytesInAPtr, nKeySize, nBucketSize, nTotalKeys, nNVal}) {
-    return (nKeySize + nBucketSize + sizeOfNullBKP(bytesInAPtr)) * nTotalKeys  * nNVal;
+  return (nKeySize + nBucketSize + sizeOfNullBKP(bytesInAPtr)) * nTotalKeys  * nNVal;
 }
 
 function estimateStorage({nTotalKeys, nBucketSize, nNVal, nRecordSize, nKeySize}) {
-    // using REST/HTTP API (which creates HTTP headers in kb/p's creating unexpected overhead)
-    // still doesn't account for link headers, tombstones, etc.
-    return (14 + (13 + nBucketSize + nKeySize) + (91 + nBucketSize + nKeySize + nRecordSize) + (18 + (13 + nBucketSize + nKeySize))) * nTotalKeys * nNVal;
+  // using REST/HTTP API (which creates HTTP headers in kb/p's creating unexpected overhead)
+  // still doesn't account for link headers, tombstones, etc.
+  return (14 + (13 + nBucketSize + nKeySize) + (91 + nBucketSize + nKeySize + nRecordSize) + (18 + (13 + nBucketSize + nKeySize))) * nTotalKeys * nNVal;
 }
 
 function calculateRam(nRam) {
@@ -104,7 +94,6 @@ function reducer(state, action) {
 
   switch (action.type) {
     case "nBucketSize":
-          console.log("called");
       return { ...state, nBucketSize: value };
       
     case "nTotalKeys":
@@ -130,10 +119,8 @@ function reducer(state, action) {
 function Input({ info, label, action, value, handleChange, setInfo}) {
   return (
     <div onClick={_ => setInfo(info)} >
-      <label>
-        {label}:   
-        <input type="number" value={value} onChange={e => handleChange(action, e.target.value)}></input>
-      </label>
+      <label>{label}: </label>
+      <input type="number" value={value} onChange={e => handleChange(action, e.target.value)}></input>
     </div>
   );
 }
@@ -171,47 +158,50 @@ function Inputs({ state, handleChange, setInfo }) {
       info: "How many keys will be stored in your cluster?",
       label: "Total Number of Keys",
       action: "nTotalKeys",
-      value: 183915891,
     },
     {
-      info: "How long will your average bucket name be? Keep in mind that if you are using multi-byte characters or URL enconding your length should reflect that.",
-      label: "Average Bucket Size (Bytes)", 
+      info: "How long will your average bucket name be? Keep in mind that if you are using multi-byte characters or URL encoding your length should reflect that.",
+      label: "Average Bucket Size (Bytes)",
       action: "nBucketSize",
-      value: 10,
     },
     {
-      info: "How long will your average key be?  Here again, keep in mind that if you are using multi-byte characters or URL enconding your length should reflect that.",
-      label: "Average Key Size (Bytes)", 
+      info: "How long will your average key be?  Here again, keep in mind that if you are using multi-byte characters or URL encoding your length should reflect that.",
+      label: "Average Key Size (Bytes)",
       action: "nKeySize",
-      value: 36
     },
     {
       info: "How much data will you store on average per bucket/key pair?",
-      label: "Average Value Size (Bytes)", 
+      label: "Average Value Size (Bytes)",
       action: "nRecordSize",
-      value: 6,
     },
     {
       info: "How much physical RAM on each server will be dedicated to the storage engine?  This should not be the total amount of RAM available, at most it should be 80% of the total RAM.",
       label: "RAM Per Node (in GB)",
       action: "nRam",
-      value: 16
     },
     {
       info: "What will the cluster's 'N' value be?  How many copies of each item will you store?",
       label: "N (Number of Write Copies)",
       action: "nNVal",
-      value: 3,
     },
   ];
 
-  return inputs.map(({info, label, action, value}) => 
+  return inputs.map(({ info, label, action }) =>
       <Input key={action} info={info} label={label} action={action} value={state[action]} handleChange={handleChange} setInfo={setInfo} />); 
 }
 
 export default function BitcaskCalculator() {
+  const initialState = {
+    bytesInAPtr: 8, // 64  bit system
+    nTotalKeys: 183915891,
+    nBucketSize: 10, // 10  avg byte length bucket names
+    nKeySize: 36, // 36  avg byte length keys
+    nRecordSize: 36, // 36  values
+    nRam: 16, // 16  GB RAM
+    nNVal: 3 // "N" value of 3
+  };
   const [info, setInfo] = useState("");
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const handleChange = (action, payload) => dispatch({ type: action, payload });
 
   return (
@@ -222,4 +212,3 @@ export default function BitcaskCalculator() {
     </>
   );
 }
-

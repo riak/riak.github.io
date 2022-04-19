@@ -193,7 +193,7 @@ erlang.distribution.port_range.minimum = 3000
 erlang.distribution.port_range.maximum = 5000
 ```
 
-```appconfig
+```erlang
 %% The older, app.config-based system uses different parameter names
 %% for specifying the minimum and maximum port
 
@@ -213,7 +213,7 @@ port to 5000:
 erlang.distribution.port_range.minimum = 5000
 ```
 
-```appconfig
+```erlang
 {kernel, [
           % ...
           {inet_dist_listen_min, 5000},

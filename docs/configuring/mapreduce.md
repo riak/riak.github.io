@@ -74,8 +74,6 @@ files which will be loaded when Riak initializes Javascript VMs.
     %{js_source_dir, "/tmp/js_source"},
 ```
 
-<!-- TODO: Pulled from MapReduce-Implementation.md -->
-
 ## Configuration Tuning for Javascript
 
 If you load larger JSON objects in your buckets there is a possibility you might encounter an error like the following:

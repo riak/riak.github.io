@@ -365,7 +365,8 @@ Docs](https://github.com/basho/basho_docs).
 * [Circonus](http://circonus.com)
 * [New Relic](http://newrelic.com)
 * [Splunk](http://www.splunk.com)
-* [Riak Docs on Github](https://github.com/basho/basho_docs)
+* [Riak Docs on Github](https://github.com/riak/riak.github.io)
+* [Old Riak Docs on Github](https://github.com/basho/basho_docs)
 
 
 [sysctl_vm_txt]: https://www.kernel.org/doc/Documentation/sysctl/vm.txt

@@ -23,7 +23,6 @@ Riak KV also has 1 context-free data type, that has similar usage but does not r
 
 - [HyperLogLogs](./hyperloglogs.md) (abbreviated `hll` in many places)
 
-
 Counters, sets, maps, and hyperloglogs can be used as bucket-level data types or types that you interact with directly. Flags and registers must be [embedded in maps](./maps.md).
 
 For more information on how CRDTs work in Riak KV see [Concepts: Data Types][concept crdt].

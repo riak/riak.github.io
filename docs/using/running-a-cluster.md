@@ -55,7 +55,7 @@ configuration file:
 listener.protobuf.internal = 127.0.0.1:8087
 ```
 
-```appconfig
+```erlang
 %% In the pb section of riak_core:
 
 {"127.0.0.1", 8087 },
@@ -67,7 +67,7 @@ becomes
 listener.protobuf.internal = 192.168.1.10:8087
 ```
 
-```appconfig
+```erlang
 %% In the pb section of riak_core:
 
 {"192.168.1.10", 8087 },
@@ -93,7 +93,7 @@ configuration in an analogous way:
 listener.http.internal = 127.0.0.1:8098
 ```
 
-```appconfig
+```erlang
 %% In the riak_core section:
 
 {http, [ {"127.0.0.1", 8098 } ]},
@@ -105,7 +105,7 @@ becomes
 listener.http.internal = 192.168.1.10:8098
 ```
 
-```appconfig
+```erlang
 {http, [ {"192.168.1.10", 8098 } ]},
 ```
 
@@ -286,7 +286,7 @@ node. For example:
     handoff.port = 8199
     ```
 
-    ```appconfig
+    ```erlang
     %% In the pb section of riak_core:
     {"127.0.0.1", 8187 }
 

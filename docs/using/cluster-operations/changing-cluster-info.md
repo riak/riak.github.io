@@ -52,7 +52,7 @@ listener.http.internal = 127.0.0.1:8098
 listener.protobuf.internal = 127.0.0.1:8087
 ```
 
-```appconfig
+```erlang
 % In the riak_api section
 
 % For HTTP
@@ -70,7 +70,7 @@ interfaces and networks, e.g.:
 listener.http.internal = 0.0.0.0:8098
 ```
 
-```appconfig
+```erlang
 % In the riak_core section
 {http, [ {"0.0.0.0", 8098 } ]},
 ```
@@ -83,7 +83,7 @@ following line:
 listener.protobuf.internal = 0.0.0.0:8087
 ```
 
-```appconfig
+```erlang
 % In the riak_core section
 {pb, [ {"0.0.0.0", 8087} ] },
 ```

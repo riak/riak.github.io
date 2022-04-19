@@ -98,14 +98,14 @@ servers (nodes) in the cluster have already been joined together.
 1.  Change the ring creation size parameter by uncommenting it and then
 setting it to the desired value, for example 64:
 
-    ```riakconf
-    ring_size = 64
-    ```
+```riakconf
+ring_size = 64
+```
 
-    ```appconfig
-    %% In the riak_core section:
-    {ring_creation_size, 64}
-    ```
+```erlang
+%% In the riak_core section:
+{ring_creation_size, 64}
+```
 
 2.  Stop all nodes
 3.  Remove the ring data file on each node (see [Backing up Riak][cluster ops backup] for the location of this file) 
@@ -117,14 +117,14 @@ setting it to the desired value, for example 64:
 1.  Change the ring creation size parameter by uncommenting it and then
 setting it to the desired value, for example 64:
 
-    ```riakconf
-    ring_size = 64
-    ```
+```riakconf
+ring_size = 64
+```
 
-    ```appconfig
-    %% In the riak_core section:
-    {ring_creation_size, 64}
-    ```
+```erlang
+%% In the riak_core section:
+{ring_creation_size, 64}
+```
 
 2.  Stop all nodes
 3.  Remove the ring data file on each node (see [Backing up Riak][cluster ops backup] for
@@ -187,7 +187,7 @@ buckets.default.last_write_wins = true
 buckets.default.r = 3
 ```
 
-```appconfig
+```erlang
 {default_bucket_props, [
     {last_write_wins,true},
     {r,3},

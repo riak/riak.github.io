@@ -74,8 +74,7 @@ combination to handle a set:
 // use a Location object that incorporates the Namespace object, as is
 // done below.
 
-Location set =
-  new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
+Location set = new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
 </TabItem>
@@ -189,8 +188,7 @@ want to visit. Let's create a Riak set stored in the key `cities` in the bucket 
 // In the Java client, you specify the location of Data Types
 // before you perform operations on them:
 
-Location citiesSet =
-  new Location(new Namespace("sets", "travel"), "cities");
+Location citiesSet = new Location(new Namespace("sets", "travel"), "cities");
 ```
 
 </TabItem>

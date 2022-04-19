@@ -29,7 +29,7 @@ example:
 storage_backend = memory
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
     ...,
     {storage_backend, riak_kv_memory_backend},
@@ -79,7 +79,7 @@ memory_backend.max_memory_per_vnode = 10MB
 memory_backend.max_memory_per_vnode = 2GB
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, the equivalent setting is max_memory,
 %% which must be expressed in megabytes:
 
@@ -113,7 +113,7 @@ memory_backend.ttl = 10m
 memory_backend.ttl = 3h
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, the ttl setting must be expressed in
 %% seconds:
 

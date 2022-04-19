@@ -448,7 +448,6 @@ former form is equivalent to `{{Bucket,Key},undefined}`.
 The query is given as a list of map, reduce and link phases. Map and
 reduce phases are each expressed as tuples in the following form:
 
-
 ```erlang
 {Type, FunTerm, Arg, Keep}
 ```
@@ -496,17 +495,14 @@ advance, but condition #2 above still holds.
 
 Link phases are expressed in the following form:
 
-
 ```erlang
 {link, Bucket, Tag, Keep}
 ```
-
 
 `Bucket` is either a binary name of a bucket to match, or the atom `_`,
 which matches any bucket. `Tag` is either a binary tag to match, or the
 atom `_`, which matches any tag. `Keep` has the same meaning as in map
 and reduce phases.
-
 
 > There are a small group of prebuilt Erlang MapReduce functions available
 with Riak KV. Check them out [on GitHub](https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl).

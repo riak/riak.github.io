@@ -14,7 +14,7 @@ integer, and any potential conflicts will be automatically resolved by Riak.
 Riak counters can only be used if the bucket has the `allow_mult` property
 set to `true`.
 
-```
+```bash
 curl -XPUT localhost:8098/buckets/BUCKET/props \
   -H "Content-Type: application/json" \
   -d "{\"props\" : {\"allow_mult\": true}}"

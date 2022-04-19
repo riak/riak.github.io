@@ -129,7 +129,8 @@ To request a value at a bucket/key in Riak KV, issue the following:
 
 ```javascript
 var redis = require("redis"),
-    client = redis.createClient(22122, "127.0.0.1");
+
+client = redis.createClient(22122, "127.0.0.1");
 
 client.get("rra:test:food", redis.print);
 ```
@@ -219,7 +220,8 @@ To set a value at a bucket/key in Riak KV, issue the following:
 
 ```javascript
 var redis = require("redis"),
-    client = redis.createClient(22122, "127.0.0.1");
+
+client = redis.createClient(22122, "127.0.0.1");
 
 client.set("rra:test:food", "apple", redis.print);
 ```
@@ -306,23 +308,27 @@ cache.
 
 To delete a value at a bucket/key in Riak KV, issue the following:
 
-### Erlang 
+<Tabs>
+<TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 {ok, RedisClientPid} = eredis:start_link("127.0.0.1", 22122).
 {ok, KeysAffected} = eredis:q(RedisClientPid, ["DEL", "rra:test:food"]).
 ```
 
-### JavaScript 
+</TabItem>
+<TabItem label="JavaScript" value="javascript">
 
 ```javascript
 var redis = require("redis"),
-    client = redis.createClient(22122, "127.0.0.1");
+
+client = redis.createClient(22122, "127.0.0.1");
 
 client.del("rra:test:food", redis.print);
 ```
 
-### Python 
+</TabItem>
+<TabItem label="Python" value="python">
 
 ```python
 import redis
@@ -332,7 +338,8 @@ r = redis.StrictRedis(host="127.0.0.1", port=22122)
 r.del("rra:test:food")
 ```
 
-### Ruby 
+</TabItem>
+<TabItem label="Ruby" value="ruby">
 
 ```ruby
 require "redis"
@@ -342,7 +349,8 @@ redis = Redis.new(host: "127.0.0.1", port: 22122)
 redis.del("rra:test:food")
 ```
 
-### Scala 
+</TabItem>
+<TabItem label="Scala" value="scala">
 
 ```scala
 import com.lambdaworks.redis._
@@ -352,6 +360,9 @@ var connection = client.connect()
 
 connection.del("rra:test:food")
 ```
+
+</TabItem>
+</Tabs>
 
 ### Delete Configuration Parameters
 

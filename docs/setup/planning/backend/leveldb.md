@@ -92,7 +92,7 @@ the Bitcask storage engine by default. To switch to eLevelDB, set the
 storage_backend = leveldb
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {storage_backend, riak_kv_eleveldb_backend},
@@ -117,7 +117,7 @@ If you are using the older, `app.config`-based system, the equivalent to
 the `leveldb.data_root` is the `data_root` setting, as in the following
 example:
 
-```appconfig
+```erlang
 {eleveldb, [
     {data_root, "/path/to/leveldb"},
 
@@ -431,7 +431,7 @@ leveldb.tiered.path.fast = /mnt/fast_raid
 leveldb.tiered.path.slow = /mnt/slow_raid
 ```
 
-```appconfig
+```erlang
 {eleveldb, [
     {tiered_slow_level, 4},
     {tiered_fast_prefix, "/mnt/fast_raid"},

@@ -60,7 +60,7 @@ handoff.ssl.certfile = /ssl_dir/cert.pem
 handoff.ssl.keyfile = /ssl_dir/key.pem
 ```
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {handoff_ssl_options, [
@@ -81,7 +81,7 @@ port to 9000:
 handoff.port = 9000
 ```
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {handoff_port, 9000},
@@ -101,7 +101,7 @@ background manager is disabled by default. The following will enable it:
 handoff.use_background_manager = on
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
     %% Other configs
     {handoff_use_background_manager, on},
@@ -129,7 +129,7 @@ can block K/V handoff for a maximum of 50 seconds. The default for
 handoff.max_rejects = 10
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
     %% Other configs
     {handoff_rejected_max, 10},
@@ -148,7 +148,7 @@ of higher resource intensity. This would set `transfer_limit` to 5:
 transfer_limit = 5
 ```
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {handoff_concurrency, 5},
@@ -173,7 +173,7 @@ handoff.outbound = off
 handoff.inbound = off
 ```
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {disable_outbound_handoff, true},

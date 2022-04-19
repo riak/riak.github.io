@@ -84,9 +84,7 @@ replication, as illustrated in the Figure below.
 5. The secondary cluster replicates the updates within the cluster to
    achieve the new object values, completing the fullsync cycle
 
-<br />
 ![MDC Fullsync](/images/MDC_Full-sync-small.png)
-<br />
 
 ## Realtime Replication
 
@@ -102,9 +100,7 @@ replication, as illustrated in the Figure below.
 5. The site node within the secondary cluster receives and replicates
    the update
 
-<br />
 ![MDC Realtime](/images/MDC-real-time-sync-small.png)
-<br />
 
 ## Restrictions
 

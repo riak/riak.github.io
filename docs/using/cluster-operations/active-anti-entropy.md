@@ -20,7 +20,7 @@ In Riak versions 2.0 and later, AAE is turned on by default.
 anti_entropy = active
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
 
   {anti_entropy, {on, []}},
@@ -36,7 +36,7 @@ provides verbose debugging message output:
 anti_entropy = active-debug
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
 
     %% With debugging
@@ -57,7 +57,7 @@ object inconsistencies using [read repair](../../learn/concepts/active-anti-entr
 anti_entropy = passive
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
 
     %% AAE turned off

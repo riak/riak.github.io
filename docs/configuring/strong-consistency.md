@@ -68,7 +68,7 @@ each node's [configuration files][config reference#strong-cons].
 strong_consistency = on
 ```
 
-```appconfig
+```erlang
 %% In the older, app.config-based system, the strong consistency
 %% parameter is enable_consensus:
 

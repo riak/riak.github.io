@@ -368,8 +368,7 @@ client.execute(update);
 ```ruby
 counter.increment
 
-# This will increment the counter both on the application side and in
-Riak
+# This will increment the counter both on the application side and in Riak
 ```
 
 </TabItem>

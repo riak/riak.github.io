@@ -734,7 +734,7 @@ listener.https.$name = 127.0.0.1:8088
 # By default, "internal" is used as the "name" setting
 ```
 
-```appconfig
+```erlang
 {riak_core, [
              %% Other configs
              {https, [{"127.0.0.1", 8088}]},
@@ -805,7 +805,7 @@ If you are using the older, `app.config`-based configuration system,
 these paths can be set in the `ssl` subsection of the `riak_core`
 section. The corresponding parameters are shown in the example below:
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
 

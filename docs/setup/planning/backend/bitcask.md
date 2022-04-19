@@ -106,7 +106,7 @@ You can set Bitcask as the storage engine using each node's
 storage_backend = bitcask
 ```
 
-```appconfig
+```erlang
 {riak_kv, [
   {storage_backend, riak_kv_bitcask_backend},
   %% Other riak_kv settings...
@@ -134,7 +134,7 @@ bitcask.data_root = ./data/bitcask
 bitcask.io_mode = erlang
 ```
 
-```appconfig
+```erlang
 {bitcask, [
     {data_root, "/var/lib/riak/bitcask"},
     {io_mode, erlang},
@@ -164,7 +164,7 @@ The following example sets the parameter to 10 seconds:
 bitcask.sync.open_timeout = 10s
 ```
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {open_timeout, 10} %% This value must be expressed in seconds
@@ -214,7 +214,7 @@ bitcask.sync.strategy = interval
 bitcask.sync.interval = 65s
 ```
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
         {sync_strategy, none},
@@ -257,7 +257,7 @@ etc. The following example sets the max file size to 1 GB:
 bitcask.max_file_size = 1GB
 ```
 
-```appconfig
+```erlang
 %% The max_file_size setting must be expressed in bytes, as in the
 %% example below
 
@@ -290,7 +290,7 @@ The following example sets the parameter to `strict`:
 bitcask.hintfile_checksums = strict
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, substitute "require_hint_crc" for
 %% "hintfile_checksums", "true" for "strict", and "false" for
 %% "allow_missing"
@@ -316,7 +316,7 @@ The following example sets `io_mode` to `erlang`:
 bitcask.io_mode = erlang
 ```
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {io_mode, erlang},
@@ -346,7 +346,7 @@ If you are using the older, `app.config`-based configuration system, you
 can disable the check that generates this warning by adding the
 following to the `riak_kv` section of your `app.config`:
 
-```appconfig
+```erlang
 {riak_kv, [
     ...,
     {o_sync_warning_logged, false},
@@ -400,7 +400,7 @@ following example sets the merge policy to `never`:
 bitcask.merge.policy = never
 ```
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {merge_window, never},
@@ -423,7 +423,7 @@ bitcask.merge.window.start = 3
 bitcask.merge.window.end = 17
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, you specify the merge window using
 %% a tuple, as in the following example:
 
@@ -488,7 +488,7 @@ bitcask.merge.triggers.fragmentation = 55
 bitcask.merge.triggers.dead_bytes = 1GB
 ```
 
-```appconfig
+```erlang
 %% The equivalent settings in the app.config-based system are
 %% frag_merge_trigger and dead_bytes_merge_trigger, respectively. The
 %% latter must be expressed in bytes.
@@ -542,7 +542,7 @@ bitcask.merge.thresholds.dead_bytes = 200MB
 bitcask.merge.thresholds.small_file = 25MB
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, the settings corresponding to those
 %% listed above are frag_threshold, dead_bytes_threshold, and
 %% small_files threshold, respectively. The latter two settings must be
@@ -574,7 +574,7 @@ the `bitcask.merge_check_interval` parameter. The default is 3 minutes.
 bitcask.merge_check_interval = 3m
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, this setting is expressed in
 %% milliseconds and found in the riak_kv section rather than the bitcask
 %% section:
@@ -601,7 +601,7 @@ percentage of `bitcask.merge_check_interval`. The default is 30%.
 bitcask.merge_check_jitter = 30%
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, this setting is expressed as a float
 %% and found in the riak_kv section rather than the bitcask section:
 
@@ -627,7 +627,7 @@ merge settings. When set to `true` (as in the example below), each time
 a merge trigger is met, the partition/vnode ID and mergeable files will
 be logged.
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {log_needs_merge, true},
@@ -661,7 +661,7 @@ bitcask.max_age = 0.5s
 bitcask.max_puts = 1000
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, the corresponding parameters are
 %% max_fold_age and max_fold_puts, respectively. The former must be
 %% expressed in milliseconds, while the latter must be an integer:
@@ -693,7 +693,7 @@ to expire after 1 day:
 bitcask.expiry = 1d
 ```
 
-```appconfig
+```erlang
 %% In the app.config-based system, expiry is expressed in terms of
 %% seconds:
 
@@ -728,7 +728,7 @@ grace period to 1 hour:
 bitcask.expiry.grace_time = 1h
 ```
 
-```appconfig
+```erlang
 %% The equivalent setting in the app.config-based system is
 %% expiry_grace_time. This must be expressed in seconds:
 
