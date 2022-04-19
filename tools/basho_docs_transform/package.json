@@ -1,0 +1,19 @@
+{
+  "name": "basho_docs_transform",
+  "version": "0.0.1",
+  "description": "A document used to transform markdown files from basho/basho to one compatible with docusaurus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^2.1.2",
+    "minimist": "^1.2.5",
+    "remark": "^10.0.1",
+    "remark-hugo-shortcodes": "^0.2.13",
+    "unist-util-visit": "^1.4.0",
+    "yaml-front-matter": "^3.4.1"
+  }
+}
