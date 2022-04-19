@@ -116,7 +116,7 @@ function reducer(state, action) {
   }
 }
 
-function Input({ info, label, action, value, handleChange, setInfo}) {
+function Input({ info, label, action, value, handleChange, setInfo }) {
   return (
     <div onClick={_ => setInfo(info)} >
       <label>{label}: </label>

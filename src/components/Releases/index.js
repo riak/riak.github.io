@@ -20,14 +20,13 @@ export default function Releases() {
     return <h2>Failed to load from GitHub API</h2>;
   }
 
-  const filtered = releases.filter(({draft, prerelease}) => !draft && !prerelease);
-  const releases_list = filtered.map(({id, name, tarball_url, zipball_url, html_url, tag_name}, i) => {
-    const latest = i === 0;
+  const releases_list = releases
+    .filter(({draft, prerelease}) => !draft && !prerelease)
+    .map(({id, name, tarball_url, zipball_url, html_url, tag_name}, i) => {
+      const latest = i === 0;
 
-    return <Release key={id} latest={latest} name={name} tarball_url={tarball_url} zipball_url={zipball_url} html_url={html_url} tag_name={tag_name} />;
-  });
+      return <Release key={id} latest={latest} name={name} tarball_url={tarball_url} zipball_url={zipball_url} html_url={html_url} tag_name={tag_name} />;
+    });
 
-  return (
-    <div>{releases_list}</div>
-  );
+  return <div>{releases_list}</div>;
 }
