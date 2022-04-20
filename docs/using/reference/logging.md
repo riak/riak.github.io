@@ -20,11 +20,11 @@ location of that directory differs from platform to platform. The table
 below shows you where log files are stored on all supported operating
 systems.
 
-OS | Directory
-:--|:---------
-Ubuntu, Debian, CentOS, RHEL | `/var/log/riak`
-Solaris, OpenSolaris | `/opt/riak/log`
-Source install and Mac OS X | `./log` (where the `.` represents the root installation directory)
+| OS                           | Directory                                                          |
+|:-----------------------------|:-------------------------------------------------------------------|
+| Ubuntu, Debian, CentOS, RHEL | `/var/log/riak`                                                    |
+| Solaris, OpenSolaris         | `/opt/riak/log`                                                    |
+| Source install and Mac OS X  | `./log` (where the `.` represents the root installation directory) |
 
 ## Log Files
 

@@ -5,7 +5,7 @@ slug: /
 sidebar_position: 0
 ---
 
-[aboutenterprise]: http://basho.com/contact/
+[riak_repl]: https://github.com/basho/riak_repl 
 [config index]: configuring/index.md
 [downloads]: setup/installing/index.md
 [install index]: setup/installing/index.md
@@ -18,7 +18,7 @@ sidebar_position: 0
 
 Riak KV is a distributed NoSQL database designed to deliver maximum data availability by distributing data across multiple servers. As long as your Riak KV client can reach one Riak server, it should be able to write data.
 
-[Riak KV Enterprise][aboutenterprise] includes multi-datacenter cluster replication, which ensures low-latency and robust business continuity.
+[Riak Replication][riak_repl] includes multi-datacenter cluster replication, which ensures low-latency and robust business continuity.
 
 ## Supported Operating Systems
 

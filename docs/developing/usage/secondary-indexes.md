@@ -2174,7 +2174,7 @@ bucket.get_index(
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 // rslt is the previous 2i fetch result
 var idxId = new RiakIndexId("indexes", "tweets", "hashtags");
 var options = new RiakIndexGetOptions();
@@ -2312,7 +2312,7 @@ for key in bucket.stream_index('myindex_bin', 'foo'):
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var riakIndexId = new RiakIndexId("indexes", "tweets", "hashtags");
 var indexRiakResult = client.StreamGetSecondaryIndex(riakIndexId, "ri", "ru");
 var indexResult = indexRiakResult.Value;

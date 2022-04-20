@@ -59,7 +59,7 @@ bucket.set_properties({'search_index': 'famous'})
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var properties = new RiakBucketProperties();
 properties.SetSearchIndex("famous");
 var rslt = client.SetBucketProperties("cats", properties);

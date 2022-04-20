@@ -21,7 +21,7 @@ section of [`advanced.config`][config reference#advanced] with either:
 
 Sharing a fullsync time (in minutes) for all sinks:
 
-```advancedconfig
+```erlang
 {riak_repl, [
     % ...
     {data_root, "/configured/repl/data/root"},
@@ -32,7 +32,7 @@ Sharing a fullsync time (in minutes) for all sinks:
 
 List of multiple sinks with separate times in minutes:
 
-```advancedconfig
+```erlang
 {riak_repl, [
     % ...
     {data_root, "/configured/repl/data/root"},

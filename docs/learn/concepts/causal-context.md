@@ -5,7 +5,6 @@ slug: causal-context
 sidebar_position: 3
 ---
 
-
 [concept aae]: ../../learn/concepts/active-anti-entropy.md
 [concept clusters]: ../../learn/concepts/clusters.md
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
@@ -26,7 +25,6 @@ sidebar_position: 3
 [Improving Logical Clocks in Riak with Dotted Version Vectors: A Case Study]: http://paginas.fe.up.pt/~prodei/dsie12/papers/paper_19.pdf
 [Dotted Version Vector Sets]: https://github.com/ricardobcl/Dotted-Version-Vectors
 [A History of Time in Riak]: https://www.youtube.com/watch?v=3SWSw3mKApM
-
 
 Because Riak is an [eventually consistent][concept eventual consistency],
 [clustered][concept clusters] database, [conflicts][usage conflict resolution] between
@@ -170,7 +168,6 @@ about which objects are more current than others in cases of conflict.
 dotted version vectors instead of vector clocks, as DVVs are far better
 at limiting the number of siblings produced in a cluster, which can
 prevent a wide variety of potential issues.
-
 
 ## DVVs Versus Vector Clocks
 

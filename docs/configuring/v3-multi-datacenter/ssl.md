@@ -27,7 +27,7 @@ virtual private network (VPM) for inter-datacenter connections.
 To configure SSL, you will need to include the following 4 settings in
 the `riak-core` section of [`advanced.confg`][config reference#advanced.config]:
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {ssl_enabled, true},
@@ -82,7 +82,7 @@ setting of the `peer_common_name_acl` property.
 The following example will only allow connections from peer certificate
 names like `db.bashosamplecorp.com` and `security.bashosamplecorp.com`:
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {peer_common_name_acl, ["db.bashosamplecorp.com", "security.bashosamplecorp.com"]}
@@ -95,7 +95,7 @@ The following example will allow connections from peer certificate names
 like `foo.bashosamplecorp.com` or `db.bashosamplecorp.com`, but not a
 peer certificate name like `db.backup.bashosamplecorp.com`.
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {peer_common_name_acl, ["*.bashosamplecorp.com"]}
@@ -106,7 +106,7 @@ peer certificate name like `db.backup.bashosamplecorp.com`.
 
 This example will match any peer certificate name (and is the default):
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {peer_common_name_acl, "*"}
@@ -120,7 +120,7 @@ This example will match any peer certificate name (and is the default):
 You can adjust the way CA certificates are validated by adding the
 following to the `riak_repl` section of `advanced.config`:
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {ssl_depth, 3} % Sets the depth to 3
@@ -153,6 +153,5 @@ If SSL is enabled and a connection is made to a Riak Enterprise 1.0 or
 
 ### Self-Signed Certificates
 
-Read how to [generate your own CA and
-keys](http://www.debian-administration.org/articles/618). Ensure that
-you remove the password protection from the keys you generate.
+Read how to [generate your own CA and keys](http://www.debian-administration.org/articles/618). 
+Ensure that you remove the password protection from the keys you generate.

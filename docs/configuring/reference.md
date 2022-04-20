@@ -358,7 +358,7 @@ Configurable parameters for intra-cluster, i.e. inter-node, [handoff][cluster op
 ## SNMP
 
 Configurable parameters for the [Simple Network Management Protocol][use ref snmp]\(SNMP) server built into
-[Riak Enterprise](http://basho.com/riak-enterprise/).
+[Riak SNMP](https://github.com/basho/riak_snmp).
 
 | Config                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default              |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
@@ -381,7 +381,7 @@ Configurable parameters for the [Simple Network Management Protocol][use ref snm
 ## JMX
 
 Configuration parameters for the [JMX Monitoring][use ref jmx] system built into
-[Riak Enterprise](http://basho.com/riak-enterprise/).
+[Riak JMX](https://github.com/basho/riak_jmx).
 
 | Config                     | Description                                                         | Default |
 |----------------------------|---------------------------------------------------------------------|---------|
@@ -416,7 +416,7 @@ Unlike the `strong_consistency` setting, the settings listed below are
 available only in `advanced.config`, in the `riak_ensemble` section of
 that file. That section looks like this:
 
-```advancedconfig
+```erlang
 {riak_ensemble, [
     {parameter1, value},
     {parameter2, value},
@@ -464,7 +464,7 @@ The `advanced.config` file takes the same format as the `app.config`
 file familiar to users of versions of Riak prior to 2.0. Here is an
 example:
 
-```advancedconfig
+```erlang
 [
   {riak_core,
     [
@@ -508,7 +508,7 @@ If you are upgrading to Riak 2.x and wish to upgrade to the new [Riak Search][us
 legacy Search while the upgrade is underway. You can add the following
 snippet to your `advanced.config` configuration to do so:
 
-```advancedconfig
+```erlang
 [
     %% Other configs
 

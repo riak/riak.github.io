@@ -21,7 +21,7 @@ of nodes.
 
 This guide assumes that you have completed the following steps:
 
-* Install [Riak Enterprise](http://basho.com/riak-enterprise/)
+* Install [Riak Replication](https://github.com/basho/riak_kv)
 * Perform [System Tuning][perf index]
 * Review [Configuration][config v3 mdc]
 

@@ -397,7 +397,6 @@ one with a smaller window.
 
 The Riak Search batching subsystem provides statistics on run-time characteristics of search system components. These statistics are accessible via the standard Riak KV stats interfaces and can be monitored through standard enterprise management tools.
 
-
 * `search_index_throughput_(count|one)` - The total count of objects that have been indexed, per Riak node, and the count of objects that have been indexed within the metric measurement window.
 
 * `search_index_latency_(min|mean|max|median|95|99|999)` - The minimum, mean, maximum, median, 95th percentile, 99th percentile, and 99.9th percentile measurements of indexing latency, as measured from the time it takes to send a batch to Solr to the time the response is received from Solr, divided by the batch size.

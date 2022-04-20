@@ -87,7 +87,7 @@ xml_file.close()
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var xml = File.ReadAllText("cartoons.xml");
 var schema = new SearchSchema("cartoons", xml);
 var rslt = client.PutSearchSchema(schema);

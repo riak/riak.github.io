@@ -1754,11 +1754,13 @@ using timestamps based versioning.
 >
 > For example, using the Ruby driver, you could specify three nodes like this:
 >
->     client = Riak::Client.new(nodes: [
->       {host: '10.0.0.1'},
->       {host: '10.0.0.2'},
->       {host: '10.0.0.3'}
->     ])
+>```ruby
+>client = Riak::Client.new(nodes: [
+>   {host: '10.0.0.1'},
+>   {host: '10.0.0.2'},
+>   {host: '10.0.0.3'}
+>])
+>```
 >
 > Note that the Riak clients do not coordinate with Riak's preference list, but
 > simply round-robin requests, letting the Riak cluster handle routing.

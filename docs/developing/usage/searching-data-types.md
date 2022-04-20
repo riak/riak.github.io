@@ -2065,7 +2065,7 @@ results['num_found'] # 2
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var search = new RiakSearchRequest("customers", "alter_ego_map.name_register:*");
 var rslt = client.Search(search);
 ```
@@ -2139,7 +2139,7 @@ results['docs'][0]['first_name_register'] # u'Joan
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var search = new RiakSearchRequest("customers", "alter_ego_map.name_register:*Plant");
 var rslt = client.Search(search);
 ```

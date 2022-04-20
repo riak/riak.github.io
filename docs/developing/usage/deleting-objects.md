@@ -60,7 +60,7 @@ bucket.delete('genius')
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var id = new RiakObjectId("users", "random_user_keys", null);
 var obj = new RiakObject(id, @"{'user':'data'}",
     RiakConstants.ContentTypes.ApplicationJson);

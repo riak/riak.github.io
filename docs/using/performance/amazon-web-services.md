@@ -219,8 +219,7 @@ go down.
 
 On the other hand, EBS is effectively network attached storage that
 persists after instances go down. Along with EBS you can optionally
-enable [Provisioned
-IOPS](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.html)
+enable [Provisioned IOPS](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.html)
 (PIOPS) provide more stable performance.
 
 For more information on EC2 storage options, please see their

@@ -161,7 +161,7 @@ ahmed_map.context
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 // https://github.com/basho/riak-dotnet-client/blob/develop/src/RiakClientExamples/Dev/Using/DataTypes.cs
 
 // Note: using a previous UpdateMap or FetchMap result

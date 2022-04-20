@@ -256,6 +256,6 @@ instruct Nginx to handle such header names when doing Secondary Index
 queries over HTTP by adding the following directive to the appropriate
 `server` section of `nginx.conf`:
 
-```
+```nginx
 underscores_in_headers on;
 ```

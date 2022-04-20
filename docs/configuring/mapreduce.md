@@ -24,7 +24,7 @@ By default `mapred`, making the command path, for example:
 `http://localhost:8098/mapred`
 
 ```erlang
-    {mapred_name, "mapred"},
+{mapred_name, "mapred"},
 ```
 
 `mapred_2i_pipe` indicates whether [2i][usage secondary-indexes]
@@ -34,7 +34,7 @@ serially through a helper process (`false` or undefined).
 > **Note**: Set to `false` or leave undefined during an upgrade from 1.0.
 
 ```erlang
-    {mapred_2i_pipe, true},
+{mapred_2i_pipe, true},
 ```
 
 Each of these entries control how many Javascript virtual machines are
@@ -44,9 +44,9 @@ functions.
 This is largely relevant only if you are writing JavaScript M/R jobs.
 
 ```erlang
-    {map_js_vm_count, 8 },
-    {reduce_js_vm_count, 6 },
-    {hook_js_vm_count, 2 },
+{map_js_vm_count, 8 },
+{reduce_js_vm_count, 6 },
+{hook_js_vm_count, 2 },
 ```
 
 `js_max_vm_mem` is the maximum amount of memory, in megabytes, allocated
@@ -55,7 +55,7 @@ to the Javascript VMs. If unset, the default is 8MB.
 This is largely relevant only if you are writing JavaScript M/R jobs.
 
 ```erlang
-    {js_max_vm_mem, 8},
+{js_max_vm_mem, 8},
 ```
 
 `js_thread_stack` is the maximum amount of thread stack, in megabytes,
@@ -64,14 +64,14 @@ allocated to the Javascript VMs. If unset, the default is 16MB.
 > **Note**: This is not the same as the C thread stack.
 
 ```erlang
-    {js_thread_stack, 16},
+{js_thread_stack, 16},
 ```
 
 `js_source_dir` should point to a directory containing Javascript source
 files which will be loaded when Riak initializes Javascript VMs.
 
 ```erlang
-    %{js_source_dir, "/tmp/js_source"},
+%{js_source_dir, "/tmp/js_source"},
 ```
 
 ## Configuration Tuning for Javascript
@@ -81,7 +81,6 @@ If you load larger JSON objects in your buckets there is a possibility you might
 ```json
  {"lineno":465,"message":"InternalError: script stack space quota is exhausted","source":"unknown"}
 ```
-
 
 You can increase the amount of memory allocated to the Javascript VM stack by editing your app.config. The following will increase the stack size from 8MB to 32MB:
 

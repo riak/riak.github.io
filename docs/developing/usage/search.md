@@ -105,7 +105,7 @@ client.create_search_index('famous')
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var idx = new SearchIndex("famous");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -208,7 +208,7 @@ client.create_search_index('famous', '_yz_default')
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var idx = new SearchIndex("famous", "_yz_default");
 var rslt = client.PutSearchIndex(idx);
 ```
@@ -359,7 +359,7 @@ bucket.set_properties({'search_index': 'famous'})
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var properties = new RiakBucketProperties();
 properties.SetSearchIndex("famous");
 var rslt = client.SetBucketProperties("cats", properties);
@@ -572,7 +572,7 @@ cat.store()
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var lionoId = new RiakObjectId("animals", "cats", "liono");
 var lionoObj = new { name_s = "Lion-o", age_i = 30, leader = true };
 var lionoRiakObj = new RiakObject(lionoId, lionoObj);
@@ -884,7 +884,7 @@ print results['docs']
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var search = new RiakSearchRequest
 {
     Query = new RiakFluentSearch("famous", "name_s")
@@ -1083,7 +1083,7 @@ print object.data
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 RiakSearchResult searchResult = searchRslt.Value;
 
 RiakSearchResultDocument doc = searchResult.Documents.First();
@@ -1222,7 +1222,7 @@ client.fulltext_search('famous', 'age_i:[30 TO *]')
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var search = new RiakSearchRequest("famous", "age_i:[30 TO *]");
 
 /*
@@ -1331,7 +1331,7 @@ client.fulltext_search('famous', 'leader_b:true AND age_i:[30 TO *]')
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var search = new RiakSearchRequest
 {
     Query = new RiakFluentSearch("famous", "leader_b")
@@ -1427,7 +1427,7 @@ client.delete_search_index('famous')
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var rslt = client.DeleteSearchIndex("famous");
 ```
 
@@ -1582,7 +1582,7 @@ client.fulltext_search('famous', '*:*', start=start, rows=ROWS_PER_PAGE)
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 int rowsPerPage = 2;
 int page = 2;
 int start = rowsPerPage * (page - 1);

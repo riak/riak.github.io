@@ -43,7 +43,6 @@ For every node in the cluster:
 
 If you enabled LZ4 compression in LevelDB and/or enabled global expiration in LevelDB when you installed KV 2.2.3, you cannot downgrade.
 
-
 ## General Process
 
 :::note
@@ -59,6 +58,7 @@ This is benign and similar to the `not_built` and `already_locked` errors which 
 ```bash
 riak stop
 ```
+
 2\. Back up your Riak KV /etc and /data directories:
     
 ```bash

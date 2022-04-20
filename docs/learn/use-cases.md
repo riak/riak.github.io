@@ -66,26 +66,13 @@ using multiple keys (e.g. a UUID or email address),
 
 ### Session Storage Community Examples
 
-<table class="use-cases__image-links">
-  <tr>
-    <td>
-      <a href="https://player.vimeo.com/video/42744689" target="_blank" title="Scaling Riak at Kiip">
-        <img src="http://b.vimeocdn.com/ts/296/624/296624215_960.jpg"/>
-      </a>
-    </td>
-    <td>
-      <a href="https://player.vimeo.com/video/42744689" target="_blank" title="Riak at OpenX">Scaling Riak at Kiip</a>
-      <br />
-      In this talk, recorded at the May 2012 San Francisco Riak Meetup, Armon
-      Dadgar and Mitchell Hashimoto of Kiip give an overview of how and why they
-      are using Riak in production, and the road they took to get there. One of
-      the first subsystems they switched over to Riak was Sessions. You can also
-      read the blog post and catch the slides <a
-      href="http://basho.com/posts/business/Scaling-Riak-At-Kiip/" class="riak"
-      target="_blank">here.</a>
-    </td>
-  </tr>
-</table>
+#### Scaling Riak at Kiip
+
+In this [talk](https://player.vimeo.com/video/42744689), recorded at the May 2012 San Francisco Riak Meetup, Armon
+Dadgar and Mitchell Hashimoto of Kiip give an overview of how and why they
+are using Riak in production, and the road they took to get there. One of
+the first subsystems they switched over to Riak was Sessions. You can also
+read the blog post and catch the slides [here](http://basho.com/posts/business/Scaling-Riak-At-Kiip/).
 
 ## Serving Advertisements
 
@@ -107,24 +94,13 @@ advertising traffic, which primarily involves serving reads.
 
 ### Serving Advertisements Community Examples
 
-<table class="use-cases__image-links">
-  <tr>
-    <td>
-      <a href="http://player.vimeo.com/video/49775483" target="_blank" title="Riak at OpenX">
-        <img src="http://b.vimeocdn.com/ts/343/417/343417336_960.jpg"/>
-      </a>
-    </td>
-    <td>
-      <a href="http://player.vimeo.com/video/49775483" target="_blank" title="Riak at OpenX">Riak at OpenX</a>
-      <br />
-      Los Angeles-based OpenX will serves trillions of ads a year. In this talk,
-      Anthony Molinaro, Engineer at OpenX, goes in depth on their architecture,
-      how they've built their system, and why/how they're switching to Riak for
-      data storage after using databases like CouchDB and Cassandra in
-      production.
-    </td>
-  </tr>
-</table>
+#### Riak at OpenX
+
+Los Angeles-based OpenX will serves trillions of ads a year. In this [talk](http://player.vimeo.com/video/49775483),
+Anthony Molinaro, Engineer at OpenX, goes in depth on their architecture,
+how they've built their system, and why/how they're switching to Riak for
+data storage after using databases like CouchDB and Cassandra in
+production.
 
 ## Log Data
 
@@ -154,18 +130,7 @@ higher performance and yield more predictable latency.
 
 ### Log Data Community Examples
 
-<table class="use-cases__image-links">
-  <tr>
-    <td>
-      <a href="http://www.simonbuckle.com/2011/08/27/analyzing-apache-logs-with-riak/" target="_blank" title="Riak at OpenX">
-        <img src="/images/simon-analyzing-logs.png"/>
-      </a>
-    </td>
-    <td>
-      Simon Buckle on <a href="http://www.simonbuckle.com/2011/08/27/analyzing-apache-logs-with-riak/" target="_blank">analyzing Apache logs with Riak.</a>
-    </td>
-  </tr>
-</table>
+Simon Buckle on [analyzing Apache logs with Riak.](http://www.simonbuckle.com/2011/08/27/analyzing-apache-logs-with-riak/)
 
 ## Sensor Data
 
@@ -321,5 +286,5 @@ or other pieces of information useful for later retrieval.
 
 ### Articles et al Community Examples
 
-* Linkfluence case study on using Riak to (store social web content)[http://media.basho.com/pdf/Linkfluence-Case-Study-v2-1.pdf]
+* Linkfluence case study on using Riak to [store social web content](http://media.basho.com/pdf/Linkfluence-Case-Study-v2-1.pdf)
 * ideeli case study on [serving web pages with Riak](http://basho.com/assets/Basho-Case-Study-ideeli.pdf)

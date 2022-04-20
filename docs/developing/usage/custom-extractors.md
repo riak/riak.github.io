@@ -141,7 +141,7 @@ To instruct Riak where to find the resulting
 can be found in our documentation on [advanced](../../configuring/reference.md#advanced-configuration)). Here's an
 example:
 
-```advancedconfig
+```erlang
 [
   %% Other configs
   {vm_args, [

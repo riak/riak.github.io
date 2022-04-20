@@ -105,7 +105,7 @@ client.storeValue({
 </TabItem>
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -229,7 +229,7 @@ obj.store(w=3)
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var id = new RiakObjectId("cars", "dodge", "viper");
 var obj = new RiakObject(id, "vroom", "text/plain");
 var options = new RiakPutOptions();
@@ -382,7 +382,7 @@ obj.store(w=3, return_body=True)
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var id = new RiakObjectId("cars", "dodge", "viper");
 var obj = new RiakObject(id, "vroom", "text/plain");
 var options = new RiakPutOptions();
@@ -558,7 +558,7 @@ obj.key
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var id = new RiakObjectId("users", "random_user_keys", null);
 var obj = new RiakObject(id, @"{'user':'data'}",
     RiakConstants.ContentTypes.ApplicationJson);

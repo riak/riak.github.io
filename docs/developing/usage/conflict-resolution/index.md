@@ -292,7 +292,7 @@ obj2.store()
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 
 var renObj = new RiakObject(id, "Ren", RiakConstants.ContentTypes.TextPlain);
@@ -413,7 +413,7 @@ obj.siblings
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 var id = new RiakObjectId("siblings_allowed", "nickolodeon", "best_character");
 var getResult = client.Get(id);
 RiakObject obj = getResult.Value;
@@ -478,7 +478,7 @@ com.basho.riak.client.cap.UnresolvedConflictException: Siblings found
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 Sibling count: 2
     VTag: 1DSVo7VED8AC6llS8IcDE6
     VTag: 7EiwrlFAJI5VMLK87vU4tE
@@ -614,7 +614,7 @@ new_obj.store(vclock=vclock)
 </TabItem>
 <TabItem label="C#" value="c#">
 
-```c#
+```csharp
 // First, fetch the object
 var getResult = client.Get(id);
 

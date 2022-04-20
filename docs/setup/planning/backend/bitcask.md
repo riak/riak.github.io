@@ -822,7 +822,7 @@ possible and to minimize latency and maximize throughput.
 
   * **Multi-cluster replication (Riak Enterprise)**
 
-    If you are using [Riak Enterprise](http://basho.com/riak-enterprise/)
+    If you are using [Riak Replication](https://github.com/basho/riak_kv)
     with the replication feature enabled, your clusters might experience
     higher production of fragmentation and dead bytes. Additionally,
     because the fullsync feature operates across entire partitions, it

@@ -12,7 +12,7 @@ You can download the code for this chapter at
 
 To get started, let's create the models that we'll be using:
 
-```model.go
+```go
 package models
 
 type Model interface {
@@ -31,7 +31,7 @@ func (m *modelImpl) SetId(id string) {
 
 Our user model:
 
-```user.go
+```go
 package models
 
 type User struct {
@@ -58,7 +58,7 @@ func (u *User) GetId() string {
 
 And our message model:
 
-```msg.go
+```go
 package models
 
 import (
@@ -94,7 +94,7 @@ func (m *Msg) GetId() string {
 
 Our timeline model:
 
-```timeline.go
+```go
 package models
 
 type Timeline struct {
@@ -183,7 +183,7 @@ Now that we've figured out our object model, let's write some modules to
 act as repositories that will help us create and work with these records
 in Riak:
 
-```repository.go
+```go
 package repositories
 
 import (
@@ -311,7 +311,7 @@ func buildModel(m models.Model, obj *riak.Object) (models.Model, error) {
 
 <br/>
 
-```user-repository.go
+```go
 package repositories
 
 import (
@@ -348,7 +348,7 @@ func (u *UserRepository) getModel() models.Model {
 
 <br/>
 
-```msg-repository.go
+```go
 package repositories
 
 import (
@@ -385,7 +385,7 @@ func (m *MsgRepository) getModel() models.Model {
 
 <br/>
 
-```timeline-repository.go
+```go
 package repositories
 
 import (

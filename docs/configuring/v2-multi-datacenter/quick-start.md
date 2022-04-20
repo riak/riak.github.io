@@ -20,7 +20,6 @@ clusters.
 
 This Guide assumes that you have completed the following steps:
 
-* [Installing Riak Enterprise](http://basho.com/riak-enterprise/)
 * [Performing system tuning|System Performance Tuning][perf index]
 * [Reviewing configuration][config v2 mdc]
 

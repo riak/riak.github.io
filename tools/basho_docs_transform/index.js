@@ -102,7 +102,6 @@ function transformCodeToTabs(tree) {
       const transformed = [{ type: 'html', value: '<Tabs>' }];
 
       nodes.forEach((node, i) => {
-        const node_value = node.value;
         const lang = node.lang;
         const label = lang !== null ? ` label="${lang[0].toUpperCase()}${lang.slice(1).toLowerCase()}"` : '';
         const value = lang !== null ? ` value="${lang.toLowerCase()}"` : '';

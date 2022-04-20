@@ -22,7 +22,7 @@ Riak REPL SSL support consists of the following items:
 To configure SSL, you will need to include the following four settings
 in the `riak-repl` section of your `advanced.config`:
 
-```advancedconfig
+```erlang
 {riak-repl, [
              % ...
              {ssl_enabled, true},
@@ -71,7 +71,7 @@ setting of the `peer_common_name_acl` property.
 The following example will only allow connections from peer certificate
 names like `db.bashosamplecorp.com` and `security.bashosamplecorp.com`:
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {peer_common_name_acl, ["db.bashosamplecorp.com", "security.bashosamplecorp.com"]}
@@ -83,7 +83,7 @@ The following example will allow connections from peer certificate names
 like `foo.bashosamplecorp.com` or `db.bashosamplecorp.com`, but not a
 peer certificate name like `db.backup.bashosamplecorp.com`:
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {peer_common_name_acl, ["*.bashosamplecorp.com"]}
@@ -94,7 +94,7 @@ peer certificate name like `db.backup.bashosamplecorp.com`:
 
 This example will match any peer certificate name (and is the default):
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {peer_common_name_acl, "*"}
@@ -107,7 +107,7 @@ This example will match any peer certificate name (and is the default):
 You can adjust the way CA certificates are validated by adding the
 following to the `riak_repl` section of your `advanced.config`:
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {ssl_depth, ...}

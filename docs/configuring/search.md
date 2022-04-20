@@ -55,7 +55,6 @@ node's [configuration file][config reference] as follows:
 search = on
 ```
 
-
 ## Search Config Settings
 
 You will find all the Riak Search configuration settings in riak.conf. Setting `search` to `on` is required, but other search settings are optional. A handy reference list of these parameters can be found in our [configuration files][config reference#search] documentation.
@@ -113,6 +112,7 @@ search.anti_entropy.throttle.tier1.delay = 0ms
 search.anti_entropy.throttle.tier2.solrq_queue_length = 40
 search.anti_entropy.throttle.tier2.delay = 5ms
 ```
+
 will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both `.solrq_queue_length` and [`.delay`](#searchanti_entropythrottletierdelay) must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#searchanti_entropythrottletierdelay).
 
 Valid values: Non-negative integer
@@ -180,7 +180,7 @@ The minimum batch size, in number of Riak objects; defaults to `10`.
 
 Any batches that are smaller than this amount will not be immediately flushed to Solr, but are guaranteed to be flushed within the `search.queue.batch.flush_interval`.
 
-Valid valus: Integer
+Valid values: Integer
 
 ### `search.queue.high_watermark`
 

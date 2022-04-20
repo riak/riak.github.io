@@ -5,7 +5,6 @@ slug: clusters
 sidebar_position: 4
 ---
 
-
 [concept buckets]: ../../learn/concepts/buckets.md
 [concept keys objects]: ../../learn/concepts/keys-and-objects.md
 [concept replication]: ../../learn/concepts/replication.md
@@ -15,7 +14,6 @@ sidebar_position: 4
 [usage bucket types]: ../../developing/usage/bucket-types.md
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
 [usage replication]: ../../developing/usage/replication.md
-
 
 Riak's default mode of operation is to work as a cluster consisting of
 multiple [nodes][glossary node], i.e. multiple well-connected data

@@ -104,7 +104,7 @@ strategy will be used.
 
 To enable AAE w/ Version 3 MDC Replication:
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {fullsync_strategy, aae},

@@ -191,7 +191,7 @@ appropriate `n_val` and use the new bucket type instead.
 ### Fault Tolerance and Cluster Size
 
 From the standpoint of strongly consistent operations, larger clusters
-tend to be more fault tolerant. Spreading ensembles across more nodes will decrease the number of ensembles active on each node and thus decrease the number of quorums affected when a node goes down.
+tend to be more fault-tolerant. Spreading ensembles across more nodes will decrease the number of ensembles active on each node and thus decrease the number of quorums affected when a node goes down.
 
 Imagine a 3-node cluster in which all ensembles are N=3 ensembles. If
 two nodes go down, _all_ ensembles will lose quorum and will be unable
@@ -216,7 +216,7 @@ ensembles.
 These examples illustrate why we recommend higher values for N---again,
 at least N=5---as well as clusters with many nodes. The 50-node cluster
 example above is used only to illustrate why larger clusters are more
-fault tolerant. The definition of "many" nodes will vary according to your needs.
+fault-tolerant. The definition of "many" nodes will vary according to your needs.
 For recommendations regarding cluster size, see [Cluster Capacity Planning][plan cluster capacity].
 
 ### Offline Node Recommendations
@@ -231,7 +231,7 @@ Having multiple nodes leave the cluster at once can threaten quorum and
 thus affect the viability of some or all strongly consistent operations,
 depending on the size of the cluster.
 
-If you're using strong consistency and you do need to reboot multiple
+If you're using strong consistency, and you do need to reboot multiple
 nodes, we recommend rebooting them very carefully. Rebooting nodes too
 quickly in succession can force the cluster to lose quorum and thus be
 unable to service strongly consistent operations. The best strategy is

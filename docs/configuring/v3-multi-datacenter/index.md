@@ -24,7 +24,7 @@ of configurable parameters, see our documentation on [Advanced Configuration][co
 
 Here is a sample of the syntax:
 
-```advancedconfig
+```erlang
 {riak_core, [
     %% Every *node* runs one cluster_mgr
     {cluster_mgr, {"0.0.0.0", 9080 }},
@@ -54,7 +54,7 @@ syntax `{Setting, Value}`. For example, if you wished to set
 `riak_repl` section (appending a comma if you have more settings to
 follow):
 
-```advancedconfig
+```erlang
 {fullsync_on_connect, false}
 ```
 
@@ -131,7 +131,7 @@ Riak KV version 2.2.0 changed the values of the default bucket properties hash. 
 
 To replicate between Riak KV versions 2.2.0 or greater and Riak KV clusters less than version 2.2.0, add the necessary override in the advanced.config file:
 
-```advanced.config
+```erlang
 {riak_repl, [
     {override_capability, [
         {default_bucket_props_hash, [{use, [consistent, datatype, n_val, allow_mult, last_write_wins]}] }

@@ -91,7 +91,6 @@ $ snmpwalk -OS -c public -v 2c -m ALL \
   192.168.52.129:4000 RIAK 
 ```
 
-
 ## SNMP Counters
 
 **vnodeGets**  
