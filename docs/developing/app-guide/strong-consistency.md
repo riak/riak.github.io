@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 [concept version vector]: ../../learn/concepts/causal-context.md#dotted-version-vectors
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
 [usage update objects]: ../../developing/usage/updating-objects.md
-[use ref strong consistency#vs]: ../../using/reference/strong-consistency.md#strong-vs.-eventual-consistency
+[use ref strong consistency#vs]: ../../using/reference/strong-consistency.md#strong-vs-eventual-consistency
 [dev client libraries]: ../../developing/client-libraries.md
 [getting started]: ../../developing/getting-started/index.md
 [config strong consistency#details]: ../../configuring/strong-consistency.md#implementation-details
