@@ -12,6 +12,7 @@ const drafts = [];
 const redirects = [];
 const no_front_matters = [];
 
+// Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
 async function* getMarkdownFiles(dir) {
   const dirents = await readdir(dir, { withFileTypes: true });
 
@@ -126,7 +127,7 @@ function transformCodeToTabs(tree) {
 
     const new_children = new_tree.map(({ transformed, first_index, last_index }) => {
       const previous_sections = tree.children
-        .filter((_node, i) => i >= previous_section_end && i < first_index)
+        .filter((_node, i) => i >= previous_section_end && i < first_index);
 
       previous_section_end = last_index + 1;
 
