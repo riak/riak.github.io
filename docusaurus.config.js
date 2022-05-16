@@ -46,7 +46,7 @@ const config = {
       navbar: {
         title: 'Riak KV',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Riak Logo',
           src: 'images/branding/riak-logo.png',
         },
         items: [
