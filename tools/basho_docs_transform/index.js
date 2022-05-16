@@ -104,7 +104,7 @@ function transformCodeToTabs(tree) {
 
       nodes.forEach((node, i) => {
         const lang = node.lang;
-        const label = lang !== null ? ` label="${lang[0].toUpperCase()}${lang.slice(1).toLowerCase()}"` : '';
+        const label = lang !== null ? ` label='${lang[0].toUpperCase()}${lang.slice(1).toLowerCase()}"` : '';
         const value = lang !== null ? ` value="${lang.toLowerCase()}"` : '';
         const default_attribute = i === 0 ? ' default' : '';
         const heading = `<TabItem${label}${value}${default_attribute}>`;
