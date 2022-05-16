@@ -1,7 +1,7 @@
 {
   "name": "basho_docs_transform",
   "version": "0.0.1",
-  "description": "A document used to transform markdown files from basho/basho to one compatible with docusaurus",
+  "description": "A script used to transform markdown files from basho/basho to one compatible with docusaurus",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
