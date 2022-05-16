@@ -26,7 +26,7 @@ function PackagesDownload({ version_match }) {
   const full_version = `${major_version}${patch_version_fmt}`;
   const url = `https://files.tiot.jp/riak/kv/${major_version}/${full_version}`;
 
-  return <Link name="Download" url={url} />
+  return <Link name="Download" url={url} />;
 }
 
 function Latest() {
@@ -62,7 +62,7 @@ export default function Release({ latest, first, name, tarball_url, zipball_url,
     <>
       <h1 className="anchor anchorWithStickyNavbar_node_modules-@docusaurus-theme-classic-lib-next-theme-Heading-styles-module" id={tag_name}>
         {name}
-        <a className="hash-link" href={`#${tag_name}`} title="Direct link to heading">​</a>
+        <a className="hash-link" href={`#${tag_name}`} title="Direct link to heading"></a>
       </h1>
       {latest_label}
       <p>{github} &#124; {packages_download} &#124; {release_notes} &#124; {source_tgz} &#124; {source_zip}</p>
