@@ -8,11 +8,39 @@ const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
 const visit = require('unist-util-visit');
 const { shortcodes } = require('remark-hugo-shortcodes');
+const files_metadata = require('./files_metadata.json');
 const config = require('./config.json');
 
 const drafts = [];
 const redirects = [];
 const no_front_matters = [];
+
+function generateMetadata(output_docs_dir, f, parsed) {
+  // Split on the output path and an option version number (MAJOR.MINOR.PATH)
+  const path_match_regex = new RegExp(`${output_docs_dir}(?:\\d\\.\\d\\.\\d)?`);
+  const [, file_path] = f.split(path_match_regex);
+  const file_metadata = files_metadata[file_path]; 
+
+  if (file_metadata !== undefined) {
+    const title = `"${file_metadata.title}"`;
+    const id = file_metadata.id;
+    const slug = file_metadata.slug;
+    const sidebar_position = file_metadata.sidebar_position;
+
+    return {
+      ...(title !== undefined && { title }),
+      ...(id !== undefined && { id }),
+      ...(slug !== undefined && { slug }),
+      ...(sidebar_position !== undefined && { sidebar_position }),
+    };
+  }
+
+  const version = parsed.project_version;
+  const title = `"${parsed.title}"`;
+  const id = parsed.menu[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
+
+  return { title, id };
+}
 
 async function createIndexFiles(dirents) {
   const directories = dirents.filter(({ dirent }) => dirent.isDirectory());
@@ -192,16 +220,16 @@ function transformCodeToTabs(tree) {
   await configFileTreeChanges(output_docs_dir);
 
   for await (const { f, parsed } of getMarkdownFiles(output_docs_dir)) {
-    const title = parsed.title;
-    const version = parsed.project_version;
-    const id = parsed.menu[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
+    const metadata = Object.entries(generateMetadata(output_docs_dir, f, parsed))
+      .map(([meta_item, value]) => `${meta_item}: ${value}`)
+      .join('\n');
     const content = parsed.__content;
     const parsedContent = await remark()
         .use(shortcodes, shortcodeOptions)
         .use(transformShortcodes)
         .use(transformCodeToTabs)
         .process(content);
-    const output = `---\ntitle: ${title}\nid: ${id}\n---\n${parsedContent}`;
+    const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 
     await writeFile(f, output);
   }
