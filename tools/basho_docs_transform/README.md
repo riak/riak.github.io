@@ -33,3 +33,9 @@ If the ```keep_drafts``` is passed with a value of ```true``` any drafts will no
 ```
 node index.js \--input_docs_dir=/home/USERNAME/Documents/kv \--output_docs_dir=/tmp/kv \--name_ignored_files \--keep_drafts=true
 ```
+
+# get_files_metadata.js
+
+Reads the current docs and writes JSON to files_metadata.json containing the title, id, slug and sidebar_position for each page. 
+This exists because the current version (Riak KV 2.2.3) version of the docs were manually created. 
+We want to re-use this data when automatically transforming.
