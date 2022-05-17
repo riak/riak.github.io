@@ -1,5 +1,5 @@
 const { resolve, extname, basename, dirname, parse, join } = require('path');
-const { readdir, writeFile } = require('fs').promises;
+const { readdir, writeFile, unlink } = require('fs').promises;
 const { copySync, ensureDir, remove } = require('fs-extra');
 const util = require('util');
 const args = require('minimist')(process.argv.slice(2), { boolean: 'keep_drafts' });
@@ -8,6 +8,7 @@ const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
 const visit = require('unist-util-visit');
 const { shortcodes } = require('remark-hugo-shortcodes');
+const config = require('./config.json');
 
 const drafts = [];
 const redirects = [];
@@ -30,6 +31,23 @@ async function createIndexFiles(dirents) {
       mv(file, join(dir, 'index.md'), { mkdirp: true }, () => {});
     }
   }
+}
+
+async function configFileTreeChanges(dir) {
+  const renames = config.to_rename.map(async ({ from, to }) => { 
+    const from_path = join(dir, from);
+    const to_path = join(dir, to);
+
+    console.log(`Renaming ${from_path} to ${to_path}`);
+
+    mv(from_path, to_path, { mkdirp: true }, () => {});
+  });
+
+  return Promise.all(config.to_delete.map(async file_path => { 
+    console.log(`Deleting ${file_path}`);
+
+    await unlink(join(dir, file_path));
+  }));
 }
 
 // Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
@@ -170,6 +188,8 @@ function transformCodeToTabs(tree) {
   await ensureDir(output_docs_dir);
 
   copySync(args.input_docs_dir, output_docs_dir);
+
+  await configFileTreeChanges(output_docs_dir);
 
   for await (const { f, parsed } of getMarkdownFiles(output_docs_dir)) {
     const title = parsed.title;
