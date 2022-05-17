@@ -1,8 +1,9 @@
-const { resolve, extname, basename, dirname } = require('path');
+const { resolve, extname, basename, dirname, parse, join } = require('path');
 const { readdir, writeFile } = require('fs').promises;
 const { copySync, ensureDir, remove } = require('fs-extra');
 const util = require('util');
 const args = require('minimist')(process.argv.slice(2), { boolean: 'keep_drafts' });
+const mv = require('mv');
 const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
 const visit = require('unist-util-visit');
@@ -12,13 +13,33 @@ const drafts = [];
 const redirects = [];
 const no_front_matters = [];
 
+async function createIndexFiles(dirents) {
+  const directories = dirents.filter(({ dirent }) => dirent.isDirectory());
+  const markdown_files = dirents.filter(({ f }) => extname(f) === '.md');
+
+  for (const { f: file, } of markdown_files) {
+    const file_name = parse(file).name;
+
+    for (const { f: dir } of directories) {
+      if (file_name !== basename(dir)) {
+        continue;
+      }
+
+      console.log(`Moving ${file} to ${basename(dir)} (${join(dir, 'index.md')})`); 
+
+      mv(file, join(dir, 'index.md'), { mkdirp: true }, () => {});
+    }
+  }
+}
+
 // Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
 async function* getMarkdownFiles(dir) {
-  const dirents = await readdir(dir, { withFileTypes: true });
+  const dirents = (await readdir(dir, { withFileTypes: true }))
+    .map(dirent => ({ dirent, f: resolve(dir, dirent.name) }));
 
-  for (const dirent of dirents) {
-    const f = resolve(dir, dirent.name);
+  await createIndexFiles(dirents);
 
+  for (const { dirent, f } of dirents) {
     if (dirent.isDirectory()) {
         yield* getMarkdownFiles(f);
     }
@@ -151,6 +172,8 @@ function transformCodeToTabs(tree) {
   copySync(args.input_docs_dir, output_docs_dir);
 
   for await (const { f, parsed } of getMarkdownFiles(output_docs_dir)) {
+
+    /*
     const title = parsed.title;
     const version = parsed.project_version;
     const id = parsed.menu[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
@@ -163,8 +186,10 @@ function transformCodeToTabs(tree) {
     const output = `---\ntitle: ${title}\nid: ${id}\n---\n${parsedContent}`;
 
     await writeFile(f, output);
+    */
   }
 
+  /*
   if (args.name_ignored_files !== undefined) {
     // Print full arrays
     util.inspect.defaultOptions.maxArrayLength = null;
@@ -183,4 +208,5 @@ function transformCodeToTabs(tree) {
 
     console.log(`Num drafts: ${drafts.length}, Num redirects: ${redirects.length}, Num no front matter: ${no_front_matters.length}`);
   }
+  */
 })();

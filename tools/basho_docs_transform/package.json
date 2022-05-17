@@ -11,6 +11,7 @@
   "dependencies": {
     "fs-extra": "^2.1.2",
     "minimist": "^1.2.5",
+    "mv": "^2.1.1",
     "remark": "^10.0.1",
     "remark-hugo-shortcodes": "^0.2.13",
     "unist-util-visit": "^1.4.0",
