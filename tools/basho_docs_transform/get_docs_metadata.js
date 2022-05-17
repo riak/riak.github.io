@@ -33,5 +33,5 @@ async function* getMarkdownFiles(dir) {
     metadata[file_path] = { title, id, slug, sidebar_position };
   }
 
-  writeFile('files_metadata.json', JSON.stringify(metadata)); 
+  writeFile('docs_metadata.json', JSON.stringify(metadata)); 
 })();

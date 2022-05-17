@@ -8,7 +8,7 @@ const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
 const visit = require('unist-util-visit');
 const { shortcodes } = require('remark-hugo-shortcodes');
-const files_metadata = require('./files_metadata.json');
+const docs_metadata = require('./docs_metadata.json');
 const config = require('./config.json');
 
 const drafts = [];
@@ -19,13 +19,13 @@ function generateMetadata(output_docs_dir, f, parsed) {
   // Split on the output path and an option version number (MAJOR.MINOR.PATH)
   const path_match_regex = new RegExp(`${output_docs_dir}(?:\\d\\.\\d\\.\\d)?`);
   const [, file_path] = f.split(path_match_regex);
-  const file_metadata = files_metadata[file_path]; 
+  const doc_metadata = docs_metadata[file_path]; 
 
-  if (file_metadata !== undefined) {
-    const title = `"${file_metadata.title}"`;
-    const id = file_metadata.id;
-    const slug = file_metadata.slug;
-    const sidebar_position = file_metadata.sidebar_position;
+  if (doc_metadata !== undefined) {
+    const title = `"${docs_metadata.title}"`;
+    const id = doc_metadata.id;
+    const slug = doc_metadata.slug;
+    const sidebar_position = doc_metadata.sidebar_position;
 
     return {
       ...(title !== undefined && { title }),
