@@ -172,8 +172,6 @@ function transformCodeToTabs(tree) {
   copySync(args.input_docs_dir, output_docs_dir);
 
   for await (const { f, parsed } of getMarkdownFiles(output_docs_dir)) {
-
-    /*
     const title = parsed.title;
     const version = parsed.project_version;
     const id = parsed.menu[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
@@ -186,10 +184,8 @@ function transformCodeToTabs(tree) {
     const output = `---\ntitle: ${title}\nid: ${id}\n---\n${parsedContent}`;
 
     await writeFile(f, output);
-    */
   }
 
-  /*
   if (args.name_ignored_files !== undefined) {
     // Print full arrays
     util.inspect.defaultOptions.maxArrayLength = null;
@@ -208,5 +204,4 @@ function transformCodeToTabs(tree) {
 
     console.log(`Num drafts: ${drafts.length}, Num redirects: ${redirects.length}, Num no front matter: ${no_front_matters.length}`);
   }
-  */
 })();
