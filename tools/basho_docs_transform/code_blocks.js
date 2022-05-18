@@ -4,7 +4,7 @@ const visit = require('unist-util-visit');
 
 const NUM_IMPORTS = 2;
 //const NUM_INSERTED_BEFORE_BLOCK = 3 + NUM_IMPORTS;
-const NUM_INSERTED_BEFORE_BLOCK = 2;
+const NUM_INSERTED_BEFORE_BLOCK = 3;
 //const NUM_INSERTED_BEFORE_BLOCK = 2;
 
 function calculateIndex(tree_index, block_index, section_sum) {
@@ -80,7 +80,7 @@ function transformCodeBlock(tree) {
       const section_start_index = calculateIndex(blocks[0].i - 1, 0, section_sum); 
       const section_end_index = calculateIndex(blocks[last_block].i, last_block, section_sum) + NUM_INSERTED_BEFORE_BLOCK;
 
-      //tree.children.splice(section_start_index, 0, opening); 
+      tree.children.splice(section_start_index, 0, opening); 
 
       blocks.forEach(({ code, i: tree_index }, block_i) => {
         const insert_index = calculateIndex(tree_index, block_i, section_sum);
@@ -94,7 +94,7 @@ function transformCodeBlock(tree) {
         tree.children.splice(insert_index + NUM_INSERTED_BEFORE_BLOCK, 0, closing_item); 
       });
 
-      //tree.children.splice(section_end_index, 0, closing); 
+      tree.children.splice(section_end_index, 0, closing); 
     });
 
     tree.children.map((node, i) => console.log({ i: i, node }));
