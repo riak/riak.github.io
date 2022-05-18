@@ -1,6 +1,8 @@
 const { resolve, extname, parse } = require('path');
-const { readdir, writeFile } = require('fs').promises;
+const { readdir, readFile, writeFile } = require('fs').promises;
 const yamlFront = require('yaml-front-matter');
+const remark = require('remark');
+const visit = require('unist-util-visit');
 
 // Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
 async function* getMarkdownFiles(dir) {
@@ -20,6 +22,21 @@ async function* getMarkdownFiles(dir) {
   }
 }
 
+function gatherDefinitions({ file_path, metadata }) {
+  return tree => {
+    visit(tree, 'definition', node => {
+      metadata[file_path].definitions ??= {};
+      /*
+      if (metadata[file_path]?.definitions === undefined) {
+        metadata[file_path].definitions = {};
+      }
+      */
+
+      metadata[file_path].definitions[node.identifier] = node.url;
+    });
+  };
+}
+
 (async () => {
   const metadata = {};
 
@@ -31,6 +48,8 @@ async function* getMarkdownFiles(dir) {
     const [, file_path] = f.split('riak_docs/docs');
 
     metadata[file_path] = { title, id, slug, sidebar_position };
+
+    await remark().use(gatherDefinitions, { file_path, metadata }).process(parsed.__content); 
   }
 
   writeFile('docs_metadata.json', JSON.stringify(metadata)); 
