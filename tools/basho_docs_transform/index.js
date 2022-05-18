@@ -1,5 +1,5 @@
 const { resolve, extname, basename, dirname, parse, join } = require('path');
-const { readdir, writeFile, unlink } = require('fs').promises;
+const { readdir, writeFile } = require('fs').promises;
 const { copySync, ensureDir, remove } = require('fs-extra');
 const util = require('util');
 const args = require('minimist')(process.argv.slice(2), { boolean: 'keep_drafts' });
@@ -15,14 +15,19 @@ const drafts = [];
 const redirects = [];
 const no_front_matters = [];
 
-function generateMetadata(output_docs_dir, f, parsed) {
+function getDocMetadata(output_docs_dir, f) {
   // Split on the output path and an option version number (MAJOR.MINOR.PATH)
   const path_match_regex = new RegExp(`${output_docs_dir}(?:\\d\\.\\d\\.\\d)?`);
   const [, file_path] = f.split(path_match_regex);
-  const doc_metadata = docs_metadata[file_path]; 
+
+  return docs_metadata[file_path]; 
+}
+
+function generateMetadata(output_docs_dir, f, parsed) {
+  const doc_metadata = getDocMetadata(output_docs_dir, f);
 
   if (doc_metadata !== undefined) {
-    const title = `"${docs_metadata.title}"`;
+    const title = `"${doc_metadata.title}"`;
     const id = doc_metadata.id;
     const slug = doc_metadata.slug;
     const sidebar_position = doc_metadata.sidebar_position;
@@ -74,7 +79,7 @@ async function configFileTreeChanges(dir) {
   return Promise.all(config.to_delete.map(async file_path => { 
     console.log(`Deleting ${file_path}`);
 
-    await unlink(join(dir, file_path));
+    await remove(join(dir, file_path));
   }));
 }
 
@@ -163,6 +168,16 @@ function transformCodeToTabs(tree) {
       repeated_code[num_sections].push({ node_index: i, node: child });
     });
 
+    // Don't re-write the tree if no repeated code sections are present
+    if (repeated_code.length == 0) {
+      return;
+    }
+
+    const imports = [
+      { type: 'text', value: 'import Tabs from \'@theme/Tabs\';\n' },
+      { type: 'text', value: 'import TabItem from \'@theme/TabItem\';\n' },
+    ];
+
     const new_tree = repeated_code.map(repeated_section => {
       const first_index = repeated_section[0].node_index;
       const last_index = repeated_section[repeated_section.length - 1].node_index;
@@ -171,7 +186,7 @@ function transformCodeToTabs(tree) {
 
       nodes.forEach((node, i) => {
         const lang = node.lang;
-        const label = lang !== null ? ` label='${lang[0].toUpperCase()}${lang.slice(1).toLowerCase()}"` : '';
+        const label = lang !== null ? ` label="${lang[0].toUpperCase()}${lang.slice(1).toLowerCase()}"` : '';
         const value = lang !== null ? ` value="${lang.toLowerCase()}"` : '';
         const default_attribute = i === 0 ? ' default' : '';
         const heading = `<TabItem${label}${value}${default_attribute}>`;
@@ -201,7 +216,31 @@ function transformCodeToTabs(tree) {
       return previous_sections.concat(transformed);
     }).flat();
 
-    tree.children = new_children;
+    tree.children = imports.concat(new_children);
+  };
+}
+
+function transformDefinitions({ output_docs_dir, f }) {
+  const doc_metadata = getDocMetadata(output_docs_dir, f);
+
+  return tree => {
+    if (doc_metadata === undefined) {
+      return tree;
+    }
+
+    visit(tree, 'definition', node => {
+      if (doc_metadata?.definitions === undefined) {
+        return;
+      }
+
+      const found_definition = doc_metadata.definitions[node.identifier];
+
+      if (found_definition !== undefined) {
+        console.log(`Definition ${f}[${node.identifier}]: ${node.url} -> ${found_definition}`);
+
+        node.url = found_definition;
+      }
+    });
   };
 }
 
@@ -228,6 +267,7 @@ function transformCodeToTabs(tree) {
         .use(shortcodes, shortcodeOptions)
         .use(transformShortcodes)
         .use(transformCodeToTabs)
+        .use(transformDefinitions, { output_docs_dir, f })
         .process(content);
     const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 
