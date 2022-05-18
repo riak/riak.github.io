@@ -59,7 +59,7 @@ async function createIndexFiles(dirents) {
         continue;
       }
 
-      console.log(`Moving ${file} to ${basename(dir)} (${join(dir, 'index.md')})`); 
+      console.log(`Moving ${file} to ${basename(dir)} (${join(dir, 'index.md')})`);
 
       mv(file, join(dir, 'index.md'), { mkdirp: true }, () => {});
     }
@@ -264,6 +264,7 @@ function transformDefinitions({ output_docs_dir, f }) {
       .join('\n');
     const content = parsed.__content;
     const parsedContent = await remark()
+        .data('settings', { bullet: '*', listItemIndent: '1' })
         .use(shortcodes, shortcodeOptions)
         .use(transformShortcodes)
         .use(transformCodeToTabs)
