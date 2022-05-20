@@ -2,104 +2,89 @@ const fs = require('fs');
 const remark = require('remark');
 const visit = require('unist-util-visit');
 
-const NUM_IMPORTS = 2;
-//const NUM_INSERTED_BEFORE_BLOCK = 3 + NUM_IMPORTS;
-const NUM_INSERTED_BEFORE_BLOCK = 3;
-//const NUM_INSERTED_BEFORE_BLOCK = 2;
+function addInsert(inserts, node, counter) {
+  const new_counter = counter + 1;
 
-function calculateIndex(tree_index, block_index, section_sum) {
-  return (tree_index + (NUM_INSERTED_BEFORE_BLOCK * block_index)) + (NUM_INSERTED_BEFORE_BLOCK * section_sum);
+  //console.log({ node, str: `${counter} + 1 -> ${new_counter}` });
+
+  inserts.push({ index: counter + 1, node });
+
+  return counter + 1;
 }
 
-function transformCodeBlock(tree) {
-  return tree => {
-    const code_blocks = [];
-    const sections = 
-      tree.children
-        .map((node, i) => ({ node, i }))
-        .filter(({ node }) => node.type === 'code')
-        .reduce((sections, { node, i: node_index }) => {
-          // When multiple fenced code elements appear next to each other, group them together. 
-          const num_sections = sections.length;
-          const previous_section_index = num_sections - 1;
-          const last_block = sections[previous_section_index];
-          const new_block = { node, i: node_index };
+function transformCodeBlock() {
+  return (tree) => {
+    const inserts = [];
+    const opening_tabs = { type: 'html', value: '<Tabs>' };
+    const closing_tabs = { type: 'html', value: '</Tabs>' };
+    const opening_tab_item = { type: 'html', value: '<TabItem>' };
+    const closing_tab_item = { type: 'html', value: '</TabItem>' };
 
-          if (last_block === undefined) {
-            sections.push([new_block]);
+    let is_sequential = false;
+    let counter = 0;
 
-            return sections;
-          }
+    for (const [i, node] of tree.children.entries()) {
+      const previous_index = i - 1;
+      const previous = tree.children[previous_index];
 
-          const { i: previous_i } = last_block[last_block.length - 1];
+      if (node.type !== 'code' && is_sequential) {
+        is_sequential = false;
 
-          if (node_index - 1 === previous_i) {
-            sections[previous_section_index].push(new_block);
+        counter = addInsert(inserts, closing_tabs, counter) + 1;
 
-          } else {
-            sections[num_sections] = [new_block];
-          }
+        continue;
+      }
 
-          return sections;
-        }, []); 
+      if (node.type === 'code' && previous?.type === 'code') {
+        console.log(`here: ${counter}`);
 
-    // If no repeated code sections found, return early
-    if (sections.length === 0) {
-      return;
+        if (!is_sequential) {
+          is_sequential = true;
+
+          counter = addInsert(inserts, opening_tabs, counter);
+        }
+
+        // Insert for previous entry
+        counter = addInsert(inserts, opening_tab_item, counter);
+
+        counter = addInsert(inserts, closing_tab_item, counter + 1);
+
+        // Insert for current entry
+        counter = addInsert(inserts, opening_tab_item, counter);
+
+        counter = addInsert(inserts, closing_tab_item, counter + 1);
+      }
     }
 
-    //sections.map(blocks => console.log(blocks));
+    if (is_sequential) {
+      counter = addInsert(inserts, closing_tabs, counter);
+    }
+
+    const sorted = inserts.sort(({ index: a, index: b }) => a - b);
 
     /*
-    const tab_imports = [
-      { type: 'text', value: 'import Tabs from \'@theme/Tabs\';\n' },
-      { type: 'text', value: 'import TabItem from \'@theme/TabItem\';\n' },
+    const sorted = [
+      { index: 1, node: opening_tabs },
+        { index: 2, node: opening_tab_item },
+        { index: 4, node: closing_tab_item },
+        { index: 5, node: opening_tab_item },
+        { index: 7, node: closing_tab_item },
+      { index: 8, node: closing_tabs },
+      { index: 10, node: opening_tabs },
+        { index: 11, node: opening_tab_item },
+        { index: 13, node: closing_tab_item },
+        { index: 14, node: opening_tab_item },
+        { index: 16, node: closing_tab_item },
+      { index: 17, node: closing_tabs },
     ];
-
-    //tree.children.splice(0, 0, ...tab_imports); 
     */
 
-    let section_sum = 0;
+    console.log(sorted);
 
-    sections.forEach((blocks, section_i) => {
-      const opening = { type: 'html', value: `<Tabs (section=${section_i})>` };
-      const closing = { type: 'html', value: `</Tabs (section=${section_i})>` };
-
-      // Calculate the number of repeated code sections and maintain the sum as we go. 
-      // This ensures as we insert tab elements the initial tree indicies from sections are not 
-      // out of date (as the tree is an array we insert elements into)
-
-      // Add one to include this iteration 
-      const previous_index = section_i === 0 ? 0 : section_i + 1;
-      const thing = sections.slice(0, previous_index).length;
-      const num_previous_sections = section_i === 0 ? 0 : sections[section_i - 1].length;
-
-      section_sum += num_previous_sections;
-
-      const last_block = blocks.length - 1;
-      const section_start_index = calculateIndex(blocks[0].i - 1, 0, section_sum); 
-      const section_end_index = calculateIndex(blocks[last_block].i, last_block, section_sum) + NUM_INSERTED_BEFORE_BLOCK;
-
-      tree.children.splice(section_start_index, 0, opening); 
-
-      blocks.forEach(({ code, i: tree_index }, block_i) => {
-        const insert_index = calculateIndex(tree_index, block_i, section_sum);
-        const opening_item = { type: 'html', value: `<TabItem(section=${section_i} - block=${block_i} - tree=${tree_index})>` };
-        const closing_item = { type: 'html', value: `</TabItem(section=${section_i} - block=${block_i} - tree=${tree_index})>` };
-
-        //console.log({ section_i, block_i, tree_index, num_previous_sections, insert_index });
-
-        tree.children.splice(insert_index, 0, opening_item); 
-
-        tree.children.splice(insert_index + NUM_INSERTED_BEFORE_BLOCK, 0, closing_item); 
-      });
-
-      tree.children.splice(section_end_index, 0, closing); 
-    });
-
-    tree.children.map((node, i) => console.log({ i: i, node }));
+    sorted.forEach(({ index, node }) => tree.children.splice(index, 0, node));
   };
 }
+
 
 (async () => {
   const content = fs.readFileSync('codeblock.md', 'utf8');
@@ -108,5 +93,5 @@ function transformCodeBlock(tree) {
     .use(transformCodeBlock)
     .process(content);
 
-  //console.log(parsed);
+  console.log(parsed.contents);
 })();
