@@ -19,7 +19,7 @@ function formatLanguage(node_lang) {
 
   const lowered = node_lang.toLowerCase();
   const config_name = config.languages[node_lang];
-  const lang = config_name !== undefined ? config_name : node_lang;  
+  const lang = config_name || node_lang;
   const label = ` label="${lang}"`;
   const value = ` value="${lang.toLowerCase()}"`;
 
