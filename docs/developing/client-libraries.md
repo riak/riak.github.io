@@ -41,7 +41,7 @@ and send us a pull request.
 All of these projects and libraries are at various stages of completeness and
 may not suit your application's needs based on their level of maturity and
 activity.
-:::note
+:::
 
 ### Client Libraries and Frameworks
 
