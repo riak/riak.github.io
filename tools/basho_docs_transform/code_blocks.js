@@ -38,25 +38,17 @@ function transformCodeBlock() {
   const import_tab_item = { type: 'text', value: 'import TabItem from \'@theme/TabItem\';\n' };
   const opening_tabs = { type: 'html', value: '<Tabs>' };
   const closing_tabs = { type: 'html', value: '</Tabs>' };
-  const opening_tab_item = { type: 'html', value: '<TabItem>' };
   const closing_tab_item = { type: 'html', value: '</TabItem>' };
 
   return (tree) => {
     const inserts = [];
-    const insert_imports = tree.children.some(node => node.type === 'code');
-
-    if (insert_imports) {
-      // Always insert the imports on the first and second line
-      inserts.push({ index: 0, node: import_tab });
-
-      inserts.push({ index: 1, node: import_tab_item });
-    }
 
     // Set counter 2 in order to skip the imports
 
     let counter = 2;
     let non_code_sequence_gap = -1; // Set to -1 so that the gap is 0-indexed instead of 1
     let is_sequential = false;
+    let any_sequences = false;
 
     for (const [i, node] of tree.children.entries()) {
       const previous = tree.children[i - 1];
@@ -75,6 +67,15 @@ function transformCodeBlock() {
       }
 
       if (node.type === 'code' && previous?.type === 'code') {
+        if (!any_sequences) {
+          // Always insert the imports on the first and second line
+          inserts.push({ index: 0, node: import_tab });
+
+          inserts.push({ index: 1, node: import_tab_item });
+
+          any_sequences = true;
+        }
+
         if (!is_sequential) {
           const opening_tab_item = createTabItem(previous, true);
 
