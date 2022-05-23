@@ -7,27 +7,33 @@
     }
   ],
   "languages": {
-    "advancedconfig": "advanced.config",
-    "appconfig" :"app.config",
-    "riakconf": "riak.conf",
-    "riakcsconf": "riak-cs.conf",
-    "stanchionconf": "stanchion.conf",
-    "vmargs": "vm.args",
-    "bash": "Shell",
-    "curl": "CURL",
-    "csharp": "C#",
-    "erlang": "Erlang",
-    "golang": "Go",
-    "java": "Java",
-    "javascript": "JS",
-    "coffeescript": "Coffee",
-    "json": "JSON",
-    "php": "PHP",
-    "protobuf": "Protobuf",
-    "python": "Python",
-    "ruby": "Ruby",
-    "scala": "Scala",
-    "sql": "SQL",
-    "xml": "XML"
+    "names": {
+      "advancedconfig": "advanced.config",
+      "appconfig" :"app.config",
+      "riakconf": "riak.conf",
+      "riakcsconf": "riak-cs.conf",
+      "stanchionconf": "stanchion.conf",
+      "vmargs": "vm.args",
+      "bash": "Shell",
+      "curl": "CURL",
+      "csharp": "C#",
+      "erlang": "Erlang",
+      "golang": "Go",
+      "java": "Java",
+      "javascript": "JS",
+      "coffeescript": "Coffee",
+      "json": "JSON",
+      "php": "PHP",
+      "protobuf": "Protobuf",
+      "python": "Python",
+      "ruby": "Ruby",
+      "scala": "Scala",
+      "sql": "SQL",
+      "xml": "XML"
+    },
+    "to_rename": {
+      "curl": "bash",
+      "sh": "bash"
+    }
   }
 }

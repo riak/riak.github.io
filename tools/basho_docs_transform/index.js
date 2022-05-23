@@ -16,6 +16,11 @@ const drafts = [];
 const redirects = [];
 const no_front_matters = [];
 
+async function getDirEnts(dir) {
+  return (await readdir(dir, { withFileTypes: true }))
+    .map(dirent => ({ dirent, f: resolve(dir, dirent.name) }));
+}
+
 function getDocMetadata(output_docs_dir, f) {
   // Split on the output path and an option version number (MAJOR.MINOR.PATH)
   const path_match_regex = new RegExp(`${output_docs_dir}(?:\\d\\.\\d\\.\\d)?`);
@@ -26,6 +31,8 @@ function getDocMetadata(output_docs_dir, f) {
 
 function generateMetadata(output_docs_dir, f, parsed) {
   const doc_metadata = getDocMetadata(output_docs_dir, f);
+
+  console.log(`Generating matadata for ${f}`);
 
   if (doc_metadata !== undefined) {
     const title = `"${doc_metadata.title}"`;
@@ -60,9 +67,11 @@ async function createIndexFiles(dirents) {
         continue;
       }
 
-      console.log(`Moving ${file} to ${basename(dir)} (${join(dir, 'index.md')})`);
+      const moved_file_name = join(dir, 'index.md');
 
-      mv(file, join(dir, 'index.md'), { mkdirp: true }, () => {});
+      console.log(`Moving ${file} to ${basename(dir)} (${moved_file_name})`);
+
+      mv(file, moved_file_name, { mkdirp: true }, () => {});
     }
   }
 }
@@ -103,10 +112,11 @@ function fixLink(f, node, name, doc_metadata) {
 
 // Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
 async function* getMarkdownFiles(dir) {
-  const dirents = (await readdir(dir, { withFileTypes: true }))
-    .map(dirent => ({ dirent, f: resolve(dir, dirent.name) }));
+  // We need the intial dirents before moving
+  await createIndexFiles(await getDirEnts(dir));
 
-  await createIndexFiles(dirents);
+  // We need the updated dirents after moving files around
+  const dirents = await getDirEnts(dir);
 
   for (const { dirent, f } of dirents) {
     if (dirent.isDirectory()) {
@@ -184,6 +194,20 @@ function transformLinks({ output_docs_dir, f }) {
   };
 }
 
+function transformNodeLang() {
+  return tree => {
+    visit(tree, 'code', node => {
+      const new_block_lang = config.languages.to_rename?.[node.lang];
+
+      if (new_block_lang !== undefined) {
+        console.log(`Renaming language ${node.lang} -> ${new_block_lang}`);
+
+        node.lang = new_block_lang;
+      }
+    });
+  };
+}
+
 (async () => {
   const output_docs_dir = args.output_docs_dir;
   const shortcodeOptions = {
@@ -209,6 +233,7 @@ function transformLinks({ output_docs_dir, f }) {
         .use(transformShortcodes)
         .use(transformCodeBlock)
         .use(transformLinks, { output_docs_dir, f })
+        .use(transformNodeLang)
         .process(content);
     const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 
