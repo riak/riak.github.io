@@ -204,7 +204,7 @@ function transformLinks({ output_docs_dir, f }) {
       .join('\n');
     const content = parsed.__content;
     const parsedContent = await remark()
-        .data('settings', { bullet: '*', listItemIndent: '1' })
+        .data('settings', { bullet: '*', emphasis: '*', strong: '*', listItemIndent: '1' })
         .use(shortcodes, shortcodeOptions)
         .use(transformShortcodes)
         .use(transformCodeBlock)
