@@ -8,6 +8,7 @@ const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
 const visit = require('unist-util-visit');
 const { shortcodes } = require('remark-hugo-shortcodes');
+const { transformCodeBlock } = require('./code_blocks.js');
 const docs_metadata = require('./docs_metadata.json');
 const config = require('./config.json');
 
@@ -148,78 +149,6 @@ function transformShortcodes(tree) {
   };
 }
 
-function transformCodeToTabs(tree) {
-  return tree => {
-    const repeated_code = [];
-
-    let num_sections = 0;
-
-    tree.children.forEach((child, i) => {
-      if (child.type !== 'code') {
-        if (repeated_code[num_sections] !== undefined) {
-          num_sections++;
-        }
-
-        return;
-      }
-
-      repeated_code[num_sections] ??= [];
-
-      repeated_code[num_sections].push({ node_index: i, node: child });
-    });
-
-    // Don't re-write the tree if no repeated code sections are present
-    if (repeated_code.length == 0) {
-      return;
-    }
-
-    const imports = [
-      { type: 'text', value: 'import Tabs from \'@theme/Tabs\';\n' },
-      { type: 'text', value: 'import TabItem from \'@theme/TabItem\';\n' },
-    ];
-
-    const new_tree = repeated_code.map(repeated_section => {
-      const first_index = repeated_section[0].node_index;
-      const last_index = repeated_section[repeated_section.length - 1].node_index;
-      const nodes = repeated_section.map(({ node }) => node);
-      const transformed = [{ type: 'html', value: '<Tabs>' }];
-
-      nodes.forEach((node, i) => {
-        const lang = node.lang;
-        const label = lang !== null ? ` label="${lang[0].toUpperCase()}${lang.slice(1).toLowerCase()}"` : '';
-        const value = lang !== null ? ` value="${lang.toLowerCase()}"` : '';
-        const default_attribute = i === 0 ? ' default' : '';
-        const heading = `<TabItem${label}${value}${default_attribute}>`;
-        const opening = { type: 'html', value: heading };
-        const closing = { type: 'html', value: '</TabItem>' };
-
-        transformed.push(opening);
-
-        transformed.push(node);
-
-        transformed.push(closing);
-      });
-
-      transformed.push({ type: 'html', value: '</Tabs>' });
-
-      return { transformed, first_index, last_index };
-    });
-
-    let previous_section_end = 0;
-
-    const new_children = new_tree.map(({ transformed, first_index, last_index }) => {
-      const previous_sections = tree.children
-        .filter((_node, i) => i >= previous_section_end && i < first_index);
-
-      previous_section_end = last_index + 1;
-
-      return previous_sections.concat(transformed);
-    }).flat();
-
-    tree.children = imports.concat(new_children);
-  };
-}
-
 function transformDefinitions({ output_docs_dir, f }) {
   const doc_metadata = getDocMetadata(output_docs_dir, f);
 
@@ -267,7 +196,7 @@ function transformDefinitions({ output_docs_dir, f }) {
         .data('settings', { bullet: '*', listItemIndent: '1' })
         .use(shortcodes, shortcodeOptions)
         .use(transformShortcodes)
-        .use(transformCodeToTabs)
+        .use(transformCodeBlock)
         .use(transformDefinitions, { output_docs_dir, f })
         .process(content);
     const output = `---\n${metadata}\n---\n\n${parsedContent}`;

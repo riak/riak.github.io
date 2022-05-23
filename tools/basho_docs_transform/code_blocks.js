@@ -1,5 +1,6 @@
 const fs = require('fs');
 const remark = require('remark');
+const yamlFront = require('yaml-front-matter');
 const visit = require('unist-util-visit');
 const config = require('./config.json');
 
@@ -19,8 +20,8 @@ function formatLanguage(node_lang) {
   const lowered = node_lang.toLowerCase();
   const config_name = config.languages[node_lang];
   const lang = config_name !== undefined ? config_name : node_lang;  
-  const label = ` label="${lang[0].toUpperCase()}${lang.slice(1)}"`;
-  const value = ` value="${lang}"`;
+  const label = ` label="${lang}"`;
+  const value = ` value="${lang.toLowerCase()}"`;
 
   return { label, value }; 
 }
@@ -37,7 +38,7 @@ function transformCodeBlock() {
   const import_tab_item = { type: 'text', value: 'import TabItem from \'@theme/TabItem\';\n' };
   const opening_tabs = { type: 'html', value: '<Tabs>' };
   const closing_tabs = { type: 'html', value: '</Tabs>' };
-  //const opening_tab_item = { type: 'html', value: '<TabItem>' };
+  const opening_tab_item = { type: 'html', value: '<TabItem>' };
   const closing_tab_item = { type: 'html', value: '</TabItem>' };
 
   return (tree) => {
@@ -52,28 +53,37 @@ function transformCodeBlock() {
     }
 
     // Set counter 2 in order to skip the imports
+
     let counter = 2;
+    let non_code_sequence_gap = -1; // Set to -1 so that the gap is 0-indexed instead of 1
     let is_sequential = false;
 
     for (const [i, node] of tree.children.entries()) {
       const previous = tree.children[i - 1];
 
-      if (node.type !== 'code' && is_sequential) {
-        is_sequential = false;
+      if (node?.type !== 'code') {
+        non_code_sequence_gap += 1;
 
-        counter = addInsert(inserts, closing_tabs, counter) + 1;
+        if (is_sequential) {
+          is_sequential = false;
+        }
+      }
 
-        continue;
+      // Increment non-sequence code blocks
+      if (node.type === 'code' && previous?.type !== 'code') {
+        non_code_sequence_gap += 1;
       }
 
       if (node.type === 'code' && previous?.type === 'code') {
         if (!is_sequential) {
-          // is_default as the previous node is a code but not marked as sequential 
-          // (i.e., the first code block in a sequence)
           const opening_tab_item = createTabItem(previous, true);
 
+          counter += non_code_sequence_gap - 1;
+
+          non_code_sequence_gap = 0;
+
           counter = addInsert(inserts, opening_tabs, counter);
-          
+
           // Insert for previous entry
           counter = addInsert(inserts, opening_tab_item, counter);
 
@@ -83,30 +93,26 @@ function transformCodeBlock() {
         }
 
         const opening_tab_item = createTabItem(node, false);
+        const next = tree.children[i + 1];
 
         // Insert for current entry
         counter = addInsert(inserts, opening_tab_item, counter);
 
-        counter = addInsert(inserts, closing_tab_item, counter + 1);
+        if (next?.type !== 'code') {
+          counter = addInsert(inserts, closing_tab_item, counter + 1);
+          counter = addInsert(inserts, closing_tabs, counter);
+
+          is_sequential = false;
+        } else {
+          counter = addInsert(inserts, closing_tab_item, counter + 1);
+        }
       }
     }
 
-    if (is_sequential) {
-      counter = addInsert(inserts, closing_tabs, counter);
-    }
+    const sorted = inserts.sort(({ index: a, index: b }) => a - b);
 
-    inserts
-      .sort(({ index: a, index: b }) => b - a)
-      .forEach(({ index, node }) => tree.children.splice(index, 0, node));
+    sorted.forEach(({ index, node }) => tree.children.splice(index, 0, node));
   };
 }
 
-(async () => {
-  const content = fs.readFileSync('codeblock.md', 'utf8');
-
-  const parsed = await remark()
-    .use(transformCodeBlock)
-    .process(content);
-
-  console.log(parsed.contents);
-})();
+exports.transformCodeBlock = transformCodeBlock;
