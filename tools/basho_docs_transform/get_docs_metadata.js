@@ -22,17 +22,22 @@ async function* getMarkdownFiles(dir) {
   }
 }
 
+function addDefinition(file_path, metadata, name, url) {
+  metadata[file_path] ??= {};
+  metadata[file_path].links ??= {};
+
+  metadata[file_path].links[name] = url;
+}
+
 function gatherDefinitions({ file_path, metadata }) {
   return tree => {
-    visit(tree, 'definition', node => {
-      metadata[file_path].definitions ??= {};
-      /*
-      if (metadata[file_path]?.definitions === undefined) {
-        metadata[file_path].definitions = {};
-      }
-      */
+    visit(tree, 'definition', node => 
+      addDefinition(file_path, metadata, node.identifier, node.url));
 
-      metadata[file_path].definitions[node.identifier] = node.url;
+    visit(tree, 'link', node => {
+      const link_text = node.children[0]?.value;
+
+      addDefinition(file_path, metadata, link_text, node.url);
     });
   };
 }

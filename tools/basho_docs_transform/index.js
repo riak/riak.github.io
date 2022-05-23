@@ -84,6 +84,23 @@ async function configFileTreeChanges(dir) {
   }));
 }
 
+function fixLink(f, node, name, doc_metadata) {
+  if (doc_metadata?.links === undefined) {
+    return;
+  }
+
+  const found_definition = doc_metadata.links[name];
+
+  if (found_definition !== undefined) {
+    console.log(`Link ${f}[${name}]: ${node.url} -> ${found_definition}`);
+
+    node.url = found_definition;
+
+  } else {
+    console.log(`Unknown changd link ${f}[${name}]: ${node.url}`);
+  }
+}
+
 // Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
 async function* getMarkdownFiles(dir) {
   const dirents = (await readdir(dir, { withFileTypes: true }))
@@ -149,7 +166,7 @@ function transformShortcodes(tree) {
   };
 }
 
-function transformDefinitions({ output_docs_dir, f }) {
+function transformLinks({ output_docs_dir, f }) {
   const doc_metadata = getDocMetadata(output_docs_dir, f);
 
   return tree => {
@@ -157,18 +174,12 @@ function transformDefinitions({ output_docs_dir, f }) {
       return tree;
     }
 
-    visit(tree, 'definition', node => {
-      if (doc_metadata?.definitions === undefined) {
-        return;
-      }
+    visit(tree, 'definition', node => fixLink(f, node, node.identifier, doc_metadata));
 
-      const found_definition = doc_metadata.definitions[node.identifier];
+    visit(tree, 'link', node => {
+      const name = node.children[0]?.value; 
 
-      if (found_definition !== undefined) {
-        console.log(`Definition ${f}[${node.identifier}]: ${node.url} -> ${found_definition}`);
-
-        node.url = found_definition;
-      }
+      fixLink(f, node, name, doc_metadata);
     });
   };
 }
@@ -197,7 +208,7 @@ function transformDefinitions({ output_docs_dir, f }) {
         .use(shortcodes, shortcodeOptions)
         .use(transformShortcodes)
         .use(transformCodeBlock)
-        .use(transformDefinitions, { output_docs_dir, f })
+        .use(transformLinks, { output_docs_dir, f })
         .process(content);
     const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 
