@@ -26,6 +26,7 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/riak/riak.github.io/',
           remarkPlugins: [require('mdx-mermaid')],
+          includeCurrentVersion: process.env.NODE_ENV === 'development',
         },
         blog: {
           showReadingTime: true,
@@ -57,7 +58,14 @@ const config = {
             label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/bitcask-calculator', label: 'Bitcask Calculator', position: 'left'},
           {to: '/releases', label: 'Releases', position: 'left'},
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            dropdownActiveClassDisabled: true,
+            dropDownItemsAfter: [{to: '/versions', label: 'All versions'}],
+          },
           {
             href: 'https://github.com/basho/',
             position: 'right',
