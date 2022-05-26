@@ -227,7 +227,7 @@ repair data will depend mainly on your use case and on whether [active anti-entr
 
 You will need to run a repair if the following are both true:
 
-* Active anti-entropy is [disabled](../../learn/concepts/active-anti-entropy.md#disabling-active-anti-entropy)
+* Active anti-entropy is [disabled](../../learn/concepts/active-anti-entropy.md)
 * You have both non-expiring data and keys that are not accessed
   frequently (which means that they are not likely to be subject to
   [read repair](../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy))
@@ -235,7 +235,7 @@ You will need to run a repair if the following are both true:
 You will most likely not need to run a repair operation if _any_ of the
 following is true:
 
-* Active anti-entropy is [enabled](../../learn/concepts/active-anti-entropy.md#enabling-active-anti-entropy)
+* Active anti-entropy is [enabled](../../learn/concepts/active-anti-entropy.md)
 * Your entire key set is accessed frequently, allowing passive read
   repair to repair the partitions
 * Your data expires frequently

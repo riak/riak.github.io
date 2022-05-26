@@ -21,14 +21,14 @@ Basho officially supports a number of open-source [client libraries][dev client 
 for various programming languages and environments. Please select the
 language with which you'd like to proceed:
 
-* [Java](java)
-* [Ruby](ruby)
-* [Python](python)
-* [C#](csharp)
-* [Node.js](nodejs)
-* [Erlang](erlang)
-* [PHP](php)
-* [Go](golang)
+* [Java](java/index.md)
+* [Ruby](ruby/index.md)
+* [Python](python/index.md)
+* [C#](csharp/index.md)
+* [Node.js](nodejs/index.md)
+* [Erlang](erlang/index.md)
+* [PHP](php/index.md)
+* [Go](golang/index.md)
 
 ### Community-supported Client Libraries
 
