@@ -50,7 +50,7 @@ function generateMetadata(output_docs_dir, f, parsed) {
 
   const version = parsed.project_version;
   const title = `"${parsed.title}"`;
-  const id = parsed.menu[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
+  const id = parsed.menu?.[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
 
   return { title, id };
 }
@@ -194,13 +194,13 @@ function transformLinks({ output_docs_dir, f }) {
   };
 }
 
-function transformNodeLang() {
+function transformNodeLang({ f }) {
   return tree => {
     visit(tree, 'code', node => {
       const new_block_lang = config.languages.to_rename?.[node.lang];
 
       if (new_block_lang !== undefined) {
-        console.log(`Renaming language ${node.lang} -> ${new_block_lang}`);
+        console.log(`Renaming language (${f}) ${node.lang} -> ${new_block_lang}`);
 
         node.lang = new_block_lang;
       }
@@ -233,7 +233,7 @@ function transformNodeLang() {
         .use(transformShortcodes)
         .use(transformCodeBlock)
         .use(transformLinks, { output_docs_dir, f })
-        .use(transformNodeLang)
+        .use(transformNodeLang, { f })
         .process(content);
     const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 
