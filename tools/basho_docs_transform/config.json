@@ -1,5 +1,5 @@
 {
-  "to_delete": ["downloads.md", "release-notes.md"],
+  "to_delete": ["downloads.md", "release-notes.md", "setup/planning/bitcask-capacity-calc.md"],
   "to_rename": [
     {
       "from": "/setup/planning/bitcask-capacity-calc.md",
