@@ -17,7 +17,7 @@ sidebar_position: 0
 [glossary aae]: ../../../learn/glossary.md#active-anti-entropy-aae
 [perf open files]: ../../../using/performance/open-files-limit.md
 
-[plan bitcask capacity]: ../../../setup/planning/bitcask-capacity-calc.mdx
+[plan bitcask capacity]: /bitcask-calculator
 [usage delete objects]: ../../../developing/usage/deleting-objects.md
 
 [Bitcask][github bitcask] is an Erlang application that provides an API for storing and retrieving key/value data using log-structured hash tables that provide very fast access. The [design][bitcask design pdf] of Bitcask was inspired, in part, by log-structured filesystems and log file merging.

@@ -1,13 +1,15 @@
 ---
 title: "Bitcask Capacity Calculator"
-id: planning_cluster_bitcask_capacity
-slug: bitcask-capacity-calc
+id: bitcask-calculator
+slug: bitcask-calculator
 sidebar_position: 4
 ---
 
 import BitcaskCalculator from '@site/src/components/BitcaskCalculator';
 
-[plan backend bitcask]: ../../setup/planning/backend/bitcask.md
+# Bitcask Capacity Calculator
+
+[plan backend bitcask]: /docs/setup/planning/backend/bitcask
 
 These calculators will assist you in sizing your cluster if you plan to
 use the default [Bitcask][plan backend bitcask] storage back end.
@@ -26,12 +28,12 @@ ahead of your requirements.
 With the above information in mind, the following variables will factor
 into your RAM calculation:
 
-Variable | Description
-:--------|:-----------
-Static Bitcask per-key overhead | 44.5 bytes per key
-Estimated average bucket-plus-key length | The combined number of characters your bucket + keynames will require (on average). We'll assume 1 byte per character.
-Estimated total objects | The total number of key/value pairs your cluster will have when started
-Replication Value (`n_val`) | The number of times each key will be replicated when written to Riak (the default is 3)
+| Variable                                 | Description                                                                                                            |
+|:-----------------------------------------|:-----------------------------------------------------------------------------------------------------------------------|
+| Static Bitcask per-key overhead          | 44.5 bytes per key                                                                                                     |
+| Estimated average bucket-plus-key length | The combined number of characters your bucket + keynames will require (on average). We'll assume 1 byte per character. |
+| Estimated total objects                  | The total number of key/value pairs your cluster will have when started                                                |
+| Replication Value (`n_val`)              | The number of times each key will be replicated when written to Riak (the default is 3)                                |
 
 ## The actual equation
 

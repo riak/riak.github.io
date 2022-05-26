@@ -133,6 +133,7 @@ function Recommendations({ state }) {
 
   return (
     <>
+      <br />
       <h2 className="anchor anchorWithStickyNavbar_node_modules-@docusaurus-theme-classic-lib-next-theme-Heading-styles-module" id="recommendations">
         Recommendations
         <a class="hash-link" href="#recommendations" title="Direct link to heading">​</a>

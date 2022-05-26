@@ -8,7 +8,7 @@ sidebar_position: 0
 [plan backend]: ../../setup/planning/backend/index.md
 [plan cluster capacity]: ../../setup/planning/cluster-capacity.md
 [plan backend bitcask]: ../../setup/planning/backend/bitcask.md
-[plan bitcask capacity]: ../../setup/planning/bitcask-capacity-calc.mdx
+[plan bitcask capacity]: /bitcask-calculator
 
 Here are some steps and recommendations designing and configuring your
 Riak cluster.

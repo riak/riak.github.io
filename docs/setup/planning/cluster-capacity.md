@@ -6,7 +6,7 @@ sidebar_position: 3
 ---
 
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
-[plan bitcask capacity]: ../../setup/planning/bitcask-capacity-calc.mdx
+[plan bitcask capacity]: /bitcask-calculator 
 [plan index]: ../../setup/planning/index.md
 [concept replication]: ../../learn/concepts/replication.md
 [use admin riak-admin#cluster]: ../../using/admin/riak-admin.md#cluster
