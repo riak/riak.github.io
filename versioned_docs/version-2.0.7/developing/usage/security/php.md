@@ -1,7 +1,7 @@
 ---
 title: "PHP"
 id: usage_security_php
-slug: php
+slug: php 
 sidebar_position: 4
 ---
 
@@ -20,7 +20,7 @@ cluster and passing those `\Basho\Riak\Node` objects as an array to a
 `\Basho\Riak` object as a dependency. In this document, we will be working with
 only one node.
 
-If you are using Riak security, *all* connecting clients should have
+If you are using Riak security, _all_ connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
 regardless of which [security source](../../../using/security/managing-sources.md) you choose. All clients should also provide a username, regardless of
 security source. The example below sets up a single node object (we'll

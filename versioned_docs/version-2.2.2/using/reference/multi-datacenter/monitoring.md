@@ -29,7 +29,7 @@ Riak's statistics are calculated over a sliding 60-second window. Each time
 you query the stats interface, each sliding statistic shown is a sum or
 histogram value calculated from the previous 60 seconds of data. Because of
 this, the stats interface should not be queried more than once per minute.
-:::note
+:::
 
 ## Statistics
 

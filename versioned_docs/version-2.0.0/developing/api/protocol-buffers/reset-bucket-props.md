@@ -36,6 +36,7 @@ Erlang <<0,0,0,10,29,10,7,102,114,105,101,110,100,115>>
 
 RpbResetBucketReq protoc decode:
 bucket: "friends"
+
 ```
 
 #### Response

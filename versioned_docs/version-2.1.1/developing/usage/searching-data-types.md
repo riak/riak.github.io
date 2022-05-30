@@ -1,13 +1,12 @@
 ---
 title: "Searching with Data Types"
 id: usage_search_data_types
-slug: searching-data-types
+slug: searching-data-types 
 sidebar_position: 11
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 
 Although [Riak Data Types](../../developing/data-types/index.md) function differently from other
 Riak objects in some respects, when you're using Search you can think of
@@ -161,7 +160,6 @@ Now, we'll create a search index called `scores` that uses the default
 schema (as in some of the examples above):
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -172,7 +170,6 @@ client.execute(storeIndex);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -180,7 +177,6 @@ client.create_search_index('scores', '_yz_default')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -192,7 +188,6 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -200,7 +195,6 @@ client.create_search_index('scores', '_yz_default')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -209,7 +203,6 @@ var rslt = client.PutSearchIndex(idx);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -222,7 +215,6 @@ client.storeIndex(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -230,7 +222,6 @@ riakc_pb_socket:create_search_index(Pid, <<"scores">>, <<"_yz_default">>, []).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -240,7 +231,6 @@ curl -XPUT $RIAK_HOST/search/index/hobbies \
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, we can modify our `counters` bucket type to associate that bucket
@@ -257,7 +247,6 @@ bucket `people`, while the key for each counter will be the username of
 each player:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -277,7 +266,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -291,7 +279,6 @@ joan_rivers_counter.increment(25)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -308,7 +295,6 @@ $builder->withIncrement(25)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -326,7 +312,6 @@ joan_rivers_counter.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -350,7 +335,6 @@ rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -389,7 +373,6 @@ async.parallel(funcs, function (err, rslts) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -408,7 +391,6 @@ riakc_pb_socket:update_type(Pid,
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -417,7 +399,6 @@ riakc_pb_socket:update_type(Pid,
 ```
 
 </TabItem>
-
 </Tabs>
 
 So now we have two counters, one with a value of 10 and the other with a
@@ -425,7 +406,6 @@ value of 25. Let's query to see how many counters have a value greater
 than 20, just to be sure:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -438,7 +418,6 @@ SearchOperation.Response results = searchOp.get();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -450,7 +429,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -464,7 +442,6 @@ $response->getNumFound(); // 1
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -476,7 +453,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -487,7 +463,6 @@ Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -511,7 +486,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -521,22 +495,19 @@ NumberFound = Results#search_results.num_found.
 ```
 
 </TabItem>
-
-<TabItem label="CURL" value="curl">
+<TabItem label="curl" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:[20 TO *]" | jsonpp
 ```
 
 </TabItem>
-
 </Tabs>
 
 And there we are: only one of our two stored sets has a value over 20.
 To find out which set that is, we can dig into our results:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -549,7 +520,6 @@ String bucketType = foundObject.get("_yz_rt").get(0); // "counters"
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -566,7 +536,6 @@ doc['_yz_rt'] # 'counters'
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -583,7 +552,6 @@ $doc['_yz_rt'] # 'counters'
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -600,7 +568,6 @@ doc['_yz_rt'] # 'counters'
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -616,7 +583,6 @@ Console.WriteLine("Key: {0} Bucket: {1} Type: {2}",
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -628,7 +594,6 @@ var bucketType = doc['_yz_rt'];
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -639,7 +604,6 @@ BucketType = proplists:get_value(<<"_yz_rt", Doc).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -648,13 +612,11 @@ BucketType = proplists:get_value(<<"_yz_rt", Doc).
 ```
 
 </TabItem>
-
 </Tabs>
 
 Alternatively, we can see how many counters have values below 15:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -668,7 +630,6 @@ SearchOperation.Response results = searchOp.get();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -676,7 +637,6 @@ results = client.search('scores', 'counter:[* TO 15]')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -690,7 +650,6 @@ $response->getNumFound(); // 1
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -698,7 +657,6 @@ results = client.fulltext_search('scores', 'counter:[* TO 15]')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -707,7 +665,6 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -721,7 +678,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -729,7 +685,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -737,13 +692,11 @@ curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:[* TO 15]" | jsonpp
 ```
 
 </TabItem>
-
 </Tabs>
 
 Or we can see how many counters have a value of 17 exactly:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -752,7 +705,6 @@ String query = "counter:17";
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -760,7 +712,6 @@ results = client.search('scores', 'counter:17')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -772,7 +723,6 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -780,7 +730,6 @@ results = client.fulltext_search('scores', 'counter:17')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -789,7 +738,6 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -803,7 +751,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -811,7 +758,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -819,7 +765,6 @@ curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:17" | jsonpp
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Sets Example
@@ -837,7 +782,6 @@ Now, we'll create a Search index called `hobbies` that uses the default
 schema (as in some of the examples above):
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -848,7 +792,6 @@ client.execute(storeIndex);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -856,7 +799,6 @@ client.create_search_index('hobbies', '_yz_default')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -868,7 +810,6 @@ $response = (new \Basho\Riak\Command\Builder\Search\StoreIndex($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -876,7 +817,6 @@ client.create_search_index('hobbies', '_yz_default')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -885,7 +825,6 @@ var rslt = client.PutSearchIndex(searchIndex);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -898,15 +837,13 @@ client.storeIndex(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
-riakc_pb_socket:create_search_index(Pid, <<"hobbies">>, <<"_yz_default">>, []).
+riakc_pb_socket:create_search_index(Pid, <<"hobbies">>, <<"_yz_default">>).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -916,7 +853,6 @@ curl -XPUT $RIAK_HOST/search/index/hobbies \
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, we can modify our `sets` bucket type to associate that bucket type
@@ -932,7 +868,6 @@ store three sets for two different people describing their respective
 hobbies, in the bucket `people`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -956,7 +891,6 @@ client.execute(update2);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -973,7 +907,6 @@ ronnie_james_dio_set.add('winning')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -993,7 +926,6 @@ $builder->add('wailing')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1014,7 +946,6 @@ ronnie_james_dio_set.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1038,7 +969,6 @@ rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1077,7 +1007,6 @@ async.parallel(funcs, function (err, rslts) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1100,14 +1029,12 @@ riakc_pb_socket:update_type(Pid,
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, we can query our `hobbies` index to see if anyone has the hobby
 `football`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1116,7 +1043,6 @@ String query = "set:football";
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1125,7 +1051,6 @@ results = client.search('hobbies', 'set:football')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1137,7 +1062,6 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1146,7 +1070,6 @@ results = client.fulltext_search('hobbies', 'set:football')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1162,7 +1085,6 @@ Console.WriteLine("Key: {0} Bucket: {1} Type: {2}",
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1186,7 +1108,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1194,7 +1115,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1202,13 +1122,11 @@ curl "$RIAK_HOST/search/query/hobbies?wt=json&q=set:football" | jsonpp
 ```
 
 </TabItem>
-
 </Tabs>
 
 Let's see how many sets contain the element `football`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1217,7 +1135,6 @@ int numberFound = results.numResults(); // 1
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1226,7 +1143,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1234,7 +1150,6 @@ $response->getNumFound(); // 1
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1243,7 +1158,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1252,7 +1166,6 @@ Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1261,7 +1174,6 @@ rslt.numFound;
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1270,7 +1182,6 @@ NumberFound = Results#search_results.num_found.
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1278,14 +1189,12 @@ NumberFound = Results#search_results.num_found.
 ```
 
 </TabItem>
-
 </Tabs>
 
 Success! We stored two sets, only one of which contains the element
 `football`. Now, let's see how many sets contain the element `winning`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1297,7 +1206,6 @@ int numberFound = results.numResults(); // 2
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1307,7 +1215,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1321,7 +1228,6 @@ $response->getNumFound(); // 2
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1331,7 +1237,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1339,7 +1244,6 @@ var search = new RiakSearchRequest("hobbies", "set:winning");
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1353,7 +1257,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1363,7 +1266,6 @@ NumberFound = Results#search_results.num_found.
 ```
 
 </TabItem>
-
 </Tabs>
 
 Just as expected, both sets we stored contain the element `winning`.
@@ -1396,7 +1298,6 @@ Now, let's create a search index called `customers` using the default
 schema:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1407,7 +1308,6 @@ client.execute(storeIndex);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1415,7 +1315,6 @@ client.create_search_index('customers', '_yz_default')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1427,7 +1326,6 @@ client.create_search_index('customers', '_yz_default')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1435,7 +1333,6 @@ client.create_search_index('customers', '_yz_default')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1444,7 +1341,6 @@ var rslt = client.PutSearchIndex(searchIndex);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1457,15 +1353,13 @@ client.storeIndex(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
-riakc_pb_socket:create_search_index(Pid, <<"customers">>, <<"_yz_default">>, []).
+riakc_pb_socket:create_search_index(Pid, <<"customers">>, <<"_yz_default">>).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1475,7 +1369,6 @@ curl -XPUT $RIAK_HOST/search/index/customers \
 ```
 
 </TabItem>
-
 </Tabs>
 
 With our index created, we can associate our new `customers` index with
@@ -1488,7 +1381,6 @@ riak-admin bucket-type update maps '{"props":{"search_index":"customers"}}'
 Now we can create some maps along the lines suggested above:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1519,7 +1411,6 @@ client.execute(update2);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1551,7 +1442,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1591,7 +1481,6 @@ foreach(['loving rock and roll', 'being in the Blackhearts'] as $interest) {
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1618,7 +1507,6 @@ joan_jett.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1652,7 +1540,6 @@ RiakResult rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1709,18 +1596,16 @@ async.parallel(funcs, function (err, rslts) {
 ```
 
 </TabItem>
-
 </Tabs>
 
 ### Searching Counters Within Maps
 
 We now have two maps stored in Riak that we can query. Let's query to
 see how many users have page visit counters above 15. Unlike the
-counters example above, we have to specify *which* counter we're
+counters example above, we have to specify _which_ counter we're
 querying:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1732,7 +1617,6 @@ int numberFound = results.numResults(); // 1
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1742,7 +1626,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1756,7 +1639,6 @@ $response->getNumFound(); // 1
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1766,7 +1648,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1775,7 +1656,6 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1799,14 +1679,12 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 </Tabs>
 
 As expected, one of our two stored maps has a `page_visits` counter
 above 15. Let's make sure that we have the right result:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1819,7 +1697,6 @@ String registerValue =
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1828,7 +1705,6 @@ results['docs'][0]['first_name_register']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1836,7 +1712,6 @@ $response->getDocs()[0]->first_name_register']; // Joan
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1845,7 +1720,6 @@ results['docs'][0]['first_name_register']
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1855,7 +1729,6 @@ var firstDoc = searchResult.Documents.First();
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1864,7 +1737,6 @@ doc.page_visits_register;
 ```
 
 </TabItem>
-
 </Tabs>
 
 Success! Now we can test out searching sets.
@@ -1872,11 +1744,10 @@ Success! Now we can test out searching sets.
 ### Searching Sets Within Maps
 
 Each of the maps we stored thus far had an `interests` set. First, let's
-see how many of our maps even *have* sets called `interests` using a
+see how many of our maps even _have_ sets called `interests` using a
 wildcard query:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1885,7 +1756,6 @@ String query = "interests_set:*";
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1894,7 +1764,6 @@ results = client.search('customers', 'interests_set:*')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1908,7 +1777,6 @@ $response->getNumFound(); // 2
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1918,7 +1786,6 @@ results['num_found']
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1927,7 +1794,6 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1941,14 +1807,12 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 </Tabs>
 
 As expected, both stored maps have an `interests` set. Now let's see how
 many maps have items in `interests` sets that begin with `loving`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1962,7 +1826,6 @@ String registerValue =
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1972,7 +1835,6 @@ results['docs'][0]['first_name_register'] # 'Joan'
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1986,7 +1848,6 @@ $response->getDocs()[0]->first_name_register']; // Joan
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1996,7 +1857,6 @@ results['docs'][0]['first_name_register'] # u'Joan'
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2005,7 +1865,6 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2019,7 +1878,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 </Tabs>
 
 As expected, only our Joan Jett map has one item in its `interests` set
@@ -2032,7 +1890,6 @@ some. Let's add a `alter_ego` map to both of the maps we've stored thus
 far. Each person's alter ego will have a first name only.
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2046,7 +1903,6 @@ client.execute(addSubMap);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2056,7 +1912,6 @@ joan_jett.maps['alter_ego'].registers['name'] = 'Robert Plant'
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2079,7 +1934,6 @@ $mapBuilder->updateRegister('name', 'Robert Plant')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2091,7 +1945,6 @@ joan_jett.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2114,7 +1967,6 @@ RiakResult rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2163,7 +2015,6 @@ async.parallel(funcs, function (err, rslts) {
 ```
 
 </TabItem>
-
 </Tabs>
 
 Querying maps within maps involves construct queries that separate the
@@ -2172,7 +2023,6 @@ finding maps that have a `name` register embedded within an `alter_ego`
 map:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2184,7 +2034,6 @@ int numberFound = results.numResults(); // 2
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2193,7 +2042,6 @@ results['num_found'] # 2
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2207,7 +2055,6 @@ $response->getNumFound(); // 2
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2216,7 +2063,6 @@ results['num_found'] # 2
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2225,7 +2071,6 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2239,7 +2084,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 </Tabs>
 
 Once we know how to query embedded fields like this, we can query those
@@ -2248,7 +2092,6 @@ sub-map that contains a `name` register that ends with `PLant`, and
 display that customer's first name:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2262,7 +2105,6 @@ String registerValue =
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2272,7 +2114,6 @@ results['docs'][0]['first_name_register'] # 'Joan'
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2287,7 +2128,6 @@ $response->getDocs()[0]->first_name_register']; // Joan
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2297,7 +2137,6 @@ results['docs'][0]['first_name_register'] # u'Joan
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2306,7 +2145,6 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2320,7 +2158,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 </Tabs>
 
 Success! We've now queried not just maps but also maps within maps.

@@ -7,24 +7,11 @@ sidebar_position: 0
 
 [cluster ops log]: ../../using/cluster-operations/logging.md
 
-[config reference lager]: ../../configuring/reference.md#logging
-
-[Erlang]: http://www.erlang.org
-
-[facility level]: http://en.wikipedia.org/wiki/Syslog#Facility_levels
-
-[install source index]: ../../setup/installing/source/index.md
-
-[lager]: https://github.com/basho/lager
-
-[SASL]: http://www.erlang.org/doc/man/sasl_app.html
-
-[use admin riak cli attach direct]: ../../using/admin/riak-cli.md#attach-direct
-
 Logging in Riak KV is handled by a Basho-produced logging framework for
-[Erlang][Erlang] called [lager][lager].
+[Erlang](http://www.erlang.org) called
+[lager](https://github.com/basho/lager).
 
-lager provides a number of configuration options that you can use to fine-tune your Riak cluster's logging output. A compact listing of parameters can be found in our [configuration files][config reference lager] documentation. A more thorough explanation of these options can be found in this document.
+lager provides a number of configuration options that you can use to fine-tune your Riak cluster's logging output. A compact listing of parameters can be found in our [configuration files](../../configuring/reference.md#logging) documentation. A more thorough explanation of these options can be found in this document.
 
 ## Log Directory
 
@@ -48,8 +35,8 @@ directory:
 |:--------------|:-----------------------------------------------------------------------------------------|
 | `console.log` | Console log output                                                                       |
 | `crash.log`   | Crash logs                                                                               |
-| `erlang.log`  | Logs emitted by the [Erlang VM](../../using/performance/erlang.md) on which Riak runs.   |
-| `error.log`   | [Common Errors](../../using/repair-recovery/errors.md) emitted by Riak.                  |
+| `erlang.log`  | Logs emitted by the [Erlang VM](../performance/erlang.md) on which Riak runs.            |
+| `error.log`   | [Common errors](../repair-recovery/errors.md) emitted by Riak.                           |
 | `run_erl.log` | The log file for an Erlang process called `run_erl`. This file can typically be ignored. |
 
 ## Log Syntax
@@ -112,7 +99,7 @@ writing to `erlang.log.2`, then `erlang.log.3`, and so on. When
 
 ## SASL
 
-[SASL][SASL] (System Architecture
+[SASL](http://www.erlang.org/doc/man/sasl_app.html) (System Architecture
 Support Libraries) is Erlang's built-in error logger. You can enable it
 and disable it using the `sasl` parameter (which can be set to `on` or
 `off`). It is disabled by default. The following would enable it:
@@ -186,6 +173,7 @@ To set the maximum size of the crash log before it is rotated, use the
 `log.crash.size` parameter. You can specify the size in KB, MB, etc. The
 default is `10MB`.
 
+
 ### Other Crash Log Settings
 
 The maximum size of individual crash log messages can be set using the
@@ -230,7 +218,7 @@ which are listed in the table below. The default is `info`.
 * `warning`
 
 In addition to a log level, you must also select a [facility
-level][facility level] for syslog
+level](https://en.wikipedia.org/wiki/Syslog#Facility) for syslog
 messages amongst the available levels, which are listed in the table
 below. The default is `daemon`.
 
@@ -261,11 +249,11 @@ or to neither. This is determined by the value that you give to the
 * `file` --- Console logs will be emitted to a file. This is Riak's
     default behavior. The location of that file is determined by the
     `log.console.file` parameter. The default location is
-    `./log/console.log` on an installation from [source][install source index], but will differ on platform-specific installation,
+    `./log/console.log` on an installation from [source](../../setup/installing/source/index.md), but will differ on platform-specific installation,
     e.g.  `/var/log/riak` on Ubuntu, Debian, CentOS, and RHEL or
     `/opt/riak/log` on Solaris-based platforms.
 * `console` --- Console logs will be emitted to standard output, which
-    can be viewed by running the [`riak attach-direct`][use admin riak cli attach direct] command
+    can be viewed by running the [`riak attach-direct`](../../using/admin/riak-cli.md#attach-direct) command
 * `both` --- Console logs will be emitted both to a file and to standard
     output
 * `off` --- Console log messages will be disabled

@@ -9,7 +9,9 @@ Creates a new Riak Search [index](../../../developing/usage/search.md#setup).
 
 ## Request
 
-    PUT /search/index/<index_name>
+```
+PUT /search/index/<index_name>
+```
 
 ## Optional Request Body
 

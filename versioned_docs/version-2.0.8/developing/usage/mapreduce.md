@@ -1,9 +1,17 @@
 ---
 title: "Using MapReduce"
 id: usage_mapreduce
-slug: mapreduce
+slug: mapreduce 
 sidebar_position: 6
 ---
+
+[usage 2i]: ../../developing/usage/secondary-indexes.md
+[usage search]: ../../developing/usage/search.md
+[usage types]: ../../developing/usage/bucket-types.md
+[api http]: ../../developing/api/http/index.md
+[api pb]: ../../developing/api/protocol-buffers/index.md
+[glossary vnode]: ../../learn/glossary.md#vnode
+[guide mapreduce]: ../../developing/app-guide/advanced-mapreduce.md
 
 :::note Use MapReduce sparingly
 In Riak, MapReduce is the primary method for non-primary-key-based querying.
@@ -12,7 +20,7 @@ jobs, MapReduce operations can be very computationally expensive, sometimes to
 the extent that they can degrade performance in production clusters operating
 under load. Thus, we recommend running MapReduce operations in a controlled,
 rate-limited fashion and never for realtime querying purposes.
-:::
+:::note
 
 MapReduce (M/R) is a technique for dividing data processing work across
 a distributed system. It takes advantage of the parallel processing
@@ -20,28 +28,28 @@ power of distributed systems and also reduces network bandwidth, as the
 algorithm is passed around to where the data lives rather than
 transferring a potentially huge dataset to a client algorithm.
 
-Developers can use MapReduce for things like filtering documents by
+You can use MapReduce for things like: filtering documents by
 tags, counting words in documents, and extracting links to related data.
-In Riak, MapReduce is one method for querying that is not strictly based
-on key querying, alongside [secondary indexes](../../developing/usage/secondary-indexes.md)
-and [Search](../../developing/usage/search.md). MapReduce jobs can be submitted through the
-[HTTP API](../../developing/api/http/index.md) or the [Protocol Buffers API](../../developing/api/protocol-buffers/index.md), although we
+In Riak KV, MapReduce is one method for querying that is not strictly based
+on key querying, alongside [secondary indexes][usage 2i]
+and [search][usage search]. MapReduce jobs can be submitted through the
+[HTTP API][api http] or the [Protocol Buffers API][api pb], although we
 strongly recommend using the Protocol Buffers API for performance
 reasons.
 
 ## Features
 
-* Map phases execute in parallel with data locality
+* Map phases execute in parallel with data locality.
 * Reduce phases execute in parallel on the node where the job was
-  submitted
-* MapReduce queries written in Erlang
+  submitted.
+* MapReduce queries written in Erlang.
 
 ## When to Use MapReduce
 
 * When you know the set of objects over which you want to MapReduce
-  (i.e. the locations of the objects, as specified by [bucket type](../../developing/usage/bucket-types.md), bucket, and key)
+  (i.e. the locations of the objects, as specified by [bucket type][usage types], bucket, and key)
 * When you want to return actual objects or pieces of objects and not
-  just the keys. [Search](../../developing/usage/search.md) and [secondary indexes](../../developing/usage/secondary-indexes.md) are other means of returning objects based on
+  just the keys. [Search][usage search] and [secondary indexes][usage 2i] are other means of returning objects based on
   non-key-based queries, but they only return lists of keys and not
   whole objects.
 * When you need the utmost flexibility in querying your data. MapReduce
@@ -70,23 +78,23 @@ There are two steps in a MapReduce query:
   the results from the map step into a single output. The reduce phase
   is optional.
 
-Riak MapReduce queries have two components:
+Riak KV MapReduce queries have two components:
 
 * A list of inputs
 * A list of phases
 
 The elements of the input list are object locations as specified by
-[bucket type](../../developing/usage/bucket-types.md), bucket, and key. The elements of the
+[bucket type][usage types], bucket, and key. The elements of the
 phases list are chunks of information related to a map, a reduce, or a
 link function.
 
-A MapReduce query begins when a client makes the request to Riak. The
+A MapReduce query begins when a client makes the request to Riak KV. The
 node that the client contacts to make the request becomes the
-**coordinating node** responsible for the MapReduce job. As described
+*coordinating node* responsible for the MapReduce job. As described
 above, each job consists of a list of phases, where each phase is either
 a map or a reduce phase. The coordinating node uses the list of phases
 to route the object keys and the function that will operate over the
-objects stored in those keys and instruct the proper [vnode](../../learn/glossary.md#vnode) to
+objects stored in those keys and instruct the proper [vnode][glossary vnode] to
 run that function over the right objects.
 
 After running the map function, the results are sent back to the
@@ -103,14 +111,14 @@ orchestrates a MapReduce job.
 
 In this example, we'll create four objects with the text "caremad"
 repeated a varying number of times and store those objects in the bucket
-`training` (which does not bear a [bucket type](../../developing/usage/bucket-types.md)).
+`training` (which does not bear a [bucket type][usage types]).
 An Erlang MapReduce function will be used to count the occurrences of
 the word "caremad."
 
 ### Data object input commands
 
 For the sake of simplicity, we'll use [curl](http://curl.haxx.se/)
-in conjunction with Riak's [HTTP API](../../developing/api/http/index.md) to store the objects:
+in conjunction with Riak KV's [HTTP API][api http] to store the objects:
 
 ```bash
 curl -XPUT http://localhost:8098/buckets/training/keys/foo \
@@ -138,7 +146,7 @@ that the function be compiled and distributed to all nodes.
 For interactive use, however, it's not necessary to do so; instead, we
 can invoke the client library from the
 [Erlang shell](http://www.erlang.org/doc/man/shell.html) and define
-functions to send to Riak on the fly.
+functions to send to Riak KV on the fly.
 
 First we defined the map function, which specifies that we want to get
 the key for each object in the bucket `training` that contains the text
@@ -156,9 +164,13 @@ end end.
 ```
 
 Next, to call `ReFun` on all keys in the `training` bucket, we can do
-the following in the Erlang shell. **Do not use this in a production
-environment; listing all keys to identify those in the `training` bucket
-is a very expensive process.**
+the following in the Erlang shell. 
+
+:::note Warning
+Do not use this in a production
+environment; listing all keys to identify those in the `training` bucket 
+is a very expensive process.
+:::
 
 ```erlang
 {ok, Re} = re:compile("caremad").
@@ -167,9 +179,11 @@ is a very expensive process.**
 That will return output along the following lines, verifying that
 compilation has completed:
 
-    {ok,{re_pattern,0,0,
-                    <<69,82,67,80,69,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,99,0,100,
-                      ...>>}}
+```
+{ok,{re_pattern,0,0,
+                <<69,82,67,80,69,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,99,0,100,
+                  ...>>}}
+```
 
 Then, we can create a socket link to our cluster:
 
@@ -182,6 +196,11 @@ Then, we can create a socket link to our cluster:
 
 Then we can run the compiled MapReduce job on the `training` bucket:
 
+```erlang
+riakc_pb_socket:mapred_bucket(Riak, <<"training">>,
+    [{map, {qfun, ReFun}, Re, true}]).
+```
+
 If your bucket is part of a bucket type, you would use the following:
 
 ```erlang
@@ -190,17 +209,14 @@ Args = [{map, {qfun, ReFun}, Re, true}]),
 riakc_pb_socket:mapred_bucket(Riak, B, Args).
 ```
 
-```erlang
-riakc_pb_socket:mapred_bucket(Riak, <<"training">>,
-    [{map, {qfun, ReFun}, Re, true}]).
-```
-
 That will return a list of tuples. The first element in each tuple is
 the key for each object in the bucket, while the second element displays
 the number of instances of the word "caremad" in the object:
 
-    {ok,[{0,
-          [{<<"foo">>,1},{<<"bam">>,3},{<<"baz">>,0},{<<"bar">>,4}]}]}
+```
+{ok,[{0,
+      [{<<"foo">>,1},{<<"bam">>,3},{<<"baz">>,0},{<<"bar">>,4}]}]}
+```
 
 ### Recap
 
@@ -211,5 +227,5 @@ counting the number of instances of the word.
 
 ## Advanced MapReduce Queries
 
-For more detailed information on MapReduce queries in Riak, we recommend
-checking out our [Advanced MapReduce](../../developing/app-guide/advanced-mapreduce.md) guide.
+For more detailed information on MapReduce queries in Riak KV, we recommend
+checking out our [Advanced MapReduce][guide mapreduce] guide.

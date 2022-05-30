@@ -5,6 +5,9 @@ slug: bitcask
 sidebar_position: 0
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [github bitcask]: https://github.com/basho/bitcask
 [bitcask design pdf]: http://basho.com/assets/bitcask-intro.pdf
 [use admin riak cli]: ../../../using/admin/riak-cli.md
@@ -102,9 +105,17 @@ the following section for instructions on switching the backend to Bitcask.
 You can set Bitcask as the storage engine using each node's
 [configuration files][config reference]:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 storage_backend = bitcask
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -113,6 +124,10 @@ storage_backend = bitcask
 
     ]},
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## Configuring Bitcask
 
@@ -129,10 +144,18 @@ largely be contained in the code tabs.
 
 The default configuration values for Bitcask are as follows:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.data_root = ./data/bitcask
 bitcask.io_mode = erlang
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {bitcask, [
@@ -142,6 +165,10 @@ bitcask.io_mode = erlang
     %% Other Bitcask-specific settings
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 All of the other available settings listed below can be added to your
 configuration files.
@@ -160,9 +187,17 @@ Open timeout is specified using the `bitcask.sync.open_timeout`
 parameter, and can be set in terms of seconds, minutes, hours, etc.
 The following example sets the parameter to 10 seconds:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.sync.open_timeout = 10s
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {bitcask, [
@@ -171,6 +206,10 @@ bitcask.sync.open_timeout = 10s
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### Sync Strategy
 
@@ -205,6 +244,9 @@ The following sync strategies are available:
 
 The following are possible configurations:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 bitcask.sync.strategy = none
@@ -213,6 +255,10 @@ bitcask.sync.strategy = o_sync
 bitcask.sync.strategy = interval
 bitcask.sync.interval = 65s
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {bitcask, [
@@ -223,6 +269,10 @@ bitcask.sync.interval = 65s
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 > **Sync strategy interval limitations**
 >
@@ -253,9 +303,17 @@ sizes that are larger than the working set.
 The `max_file_size` setting can be specified using kilobytes, megabytes,
 etc. The following example sets the max file size to 1 GB:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.max_file_size = 1GB
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% The max_file_size setting must be expressed in bytes, as in the
@@ -267,6 +325,10 @@ bitcask.max_file_size = 1GB
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### Hint File CRC Check
 
@@ -286,9 +348,17 @@ default). To use Bitcask in a backward-compatible mode that allows for
 
 The following example sets the parameter to `strict`:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.hintfile_checksums = strict
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, substitute "require_hint_crc" for
@@ -302,6 +372,10 @@ bitcask.hintfile_checksums = strict
     ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 ### I/O Mode
 
 The `io_mode` setting specifies which code module Bitcask should use for 
@@ -312,9 +386,17 @@ file access. The available settings are:
 
 The following example sets `io_mode` to `erlang`:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.io_mode = erlang
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {bitcask, [
@@ -323,6 +405,10 @@ bitcask.io_mode = erlang
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 In general, the `nif` IO mode provides higher throughput for certain
 workloads, but it has the potential to negatively impact the Erlang VM,
@@ -396,9 +482,17 @@ If you are using the newer, `riak.conf`-based configuration system, you
 can select a merge policy using the `merge.policy` setting. The
 following example sets the merge policy to `never`:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.merge.policy = never
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {bitcask, [
@@ -407,6 +501,10 @@ bitcask.merge.policy = never
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 If you opt to specify start and end hours for merge operations, you can
 do so with the `merge.window.start` and `merge.window.end`
@@ -417,11 +515,19 @@ The merge window runs from the first minute of the `merge.window.start` hour
 to the last minute of the `merge.window.end` hour.
 The following example enables merging between 3 am and 4:59 pm:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.merge.policy = window
 bitcask.merge.window.start = 3
 bitcask.merge.window.end = 17
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, you specify the merge window using
@@ -433,6 +539,10 @@ bitcask.merge.window.end = 17
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 > **`merge_window` and the Multi backend**
 >
@@ -483,10 +593,18 @@ whereas the latter can be expressed in terms of kilobytes, megabytes,
 gigabytes, etc. The following example sets the dead bytes threshold to
 55% and the fragmentation threshold to 1 GB:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.merge.triggers.fragmentation = 55
 bitcask.merge.triggers.dead_bytes = 1GB
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% The equivalent settings in the app.config-based system are
@@ -500,6 +618,10 @@ bitcask.merge.triggers.dead_bytes = 1GB
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### Merge Thresholds
 
@@ -536,11 +658,19 @@ expressed in terms of kilobytes, megabytes, gigabytes, etc. The
 following example sets the fragmentation threshold to 45%, the
 dead bytes threshold to 200 MB, and the small file threshold to 25 MB:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.merge.thresholds.fragmentation = 45
 bitcask.merge.thresholds.dead_bytes = 200MB
 bitcask.merge.thresholds.small_file = 25MB
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, the settings corresponding to those
@@ -556,6 +686,11 @@ bitcask.merge.thresholds.small_file = 25MB
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
+
 > **Note on choosing threshold values**
 >
 > The values for the fragmentation and dead bytes thresholds _must be
@@ -570,9 +705,17 @@ Bitcask periodically runs checks to determine whether merges are
 necessary. You can determine how often those checks take place using
 the `bitcask.merge_check_interval` parameter. The default is 3 minutes.
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.merge_check_interval = 3m
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, this setting is expressed in
@@ -588,6 +731,10 @@ bitcask.merge_check_interval = 3m
     ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 If merge check operations happen at the same time on different
 [vnodes][glossary vnode] on the same node, this can produce spikes
 in I/O usage and undue latency. Bitcask makes it less likely that merge
@@ -597,9 +744,17 @@ variation applied to merge times that you can alter using the
 `bitcask.merge_check_jitter` parameter. This parameter is expressed as a
 percentage of `bitcask.merge_check_interval`. The default is 30%.
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.merge_check_jitter = 30%
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, this setting is expressed as a float
@@ -613,6 +768,10 @@ bitcask.merge_check_jitter = 30%
     %% Other configs
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 For example, if you set the merge check interval to 4 minutes and the
 jitter to 25%, merge checks will occur at intervals between 3 and 5
@@ -656,10 +815,18 @@ integer. Each threshold can be disabled by setting the value to
 `unlimited`. The following example sets the `max_age` to 1/2 second and
 the `max_puts` to 1000:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.max_age = 0.5s
 bitcask.max_puts = 1000
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, the corresponding parameters are
@@ -676,7 +843,10 @@ bitcask.max_puts = 1000
 %% Each of these thresholds can be disabled by setting the value to -1
 ```
 
-<a name="Automatic-Expiration"></a>
+</TabItem>
+
+</Tabs>
+
 ### Automatic Expiration
 
 By default, Bitcask keeps all of your data. But if your data has limited
@@ -689,9 +859,17 @@ and either specifying a time interval in seconds, minutes, hours, etc.,
 or turning expiry off (`off`). The following example configures objects
 to expire after 1 day:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.expiry = 1d
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, expiry is expressed in terms of
@@ -705,6 +883,10 @@ bitcask.expiry = 1d
 
 %% Expiry can be turned off by setting this value to -1
 ```
+
+</TabItem>
+
+</Tabs>
 
 > **Note on stale data**
 >
@@ -724,9 +906,17 @@ can set an expiry grace time using the `expiry.grace_time` setting and
 in terms of minutes, hours, days, etc. The following example sets the
 grace period to 1 hour:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 bitcask.expiry.grace_time = 1h
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% The equivalent setting in the app.config-based system is
@@ -738,6 +928,10 @@ bitcask.expiry.grace_time = 1h
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 #### Automatic expiration and Riak Search
 

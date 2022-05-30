@@ -6,25 +6,15 @@ sidebar_position: 4
 ---
 
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
-
 [concept clusters]: ../../learn/concepts/clusters.md
-
 [glossary vnode]: ../../learn/glossary.md#vnode
-
 [usage delete objects]: ../../developing/usage/deleting-objects.md
-
 [developing keylist]: ../../developing/api/http/list-keys.md
-
 [developing mapreduce]: ../../developing/usage/mapreduce.md
-
 [cluster mdc]: ../cluster-operations/v3-multi-datacenter.md
-
 [config advanced]: ../../configuring/reference.md#advanced-configuration
-
 [glossary sloppy quorum]: ../../learn/glossary.md#sloppy-quorum
-
 [bitcask merging]: ../../setup/planning/backend/bitcask.md#disk-usage-and-merging-settings
-
 [leveldb compaction]: ../../setup/planning/backend/leveldb.md#compaction
 
 In single-server, non-clustered data storage systems, object deletion

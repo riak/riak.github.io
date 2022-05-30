@@ -5,6 +5,9 @@ slug: changing-cluster-info
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config reference]: ../../configuring/reference.md
 
 ## Change the Node Name
@@ -18,24 +21,48 @@ with each other.
 In your configuration files, the node name defaults to `riak@127.0.0.1`.
 To change the node name, change the following line:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 nodename = riak@127.0.0.1
 ```
+
+</TabItem>
+
+<TabItem label="vm.args" value="vm.args">
 
 ```vmargs
 -name riak@127.0.0.1
 ```
 
+</TabItem>
+
+</Tabs>
+
 Change it to something that corresponds to either the IP address or a
 resolvable host name for this particular node, like so:
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 nodename = riak@192.168.1.10
 ```
 
+</TabItem>
+
+<TabItem label="vm.args" value="vm.args">
+
 ```vmargs
 -name riak@192.168.1.10
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## Change the HTTP and Protocol Buffers binding address
 
@@ -44,6 +71,10 @@ local interface, i.e. 127.0.0.1, and are therefore unable to serve
 requests from the outside network. The relevant setting is in your
 [configuration files][config reference]:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 # For HTTP
 listener.http.internal = 127.0.0.1:8098
@@ -51,6 +82,10 @@ listener.http.internal = 127.0.0.1:8098
 # For Protocol Buffers
 listener.protobuf.internal = 127.0.0.1:8087
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 % In the riak_api section
@@ -62,31 +97,59 @@ listener.protobuf.internal = 127.0.0.1:8087
 {pb, [ {"127.0.0.1", 8087} ] },
 ```
 
+</TabItem>
+
+</Tabs>
+
 Either change it to use an IP address that corresponds to one of the
 server's network interfaces, or 0.0.0.0 to allow access from all
 interfaces and networks, e.g.:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 listener.http.internal = 0.0.0.0:8098
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 % In the riak_core section
 {http, [ {"0.0.0.0", 8098 } ]},
 ```
 
+</TabItem>
+
+</Tabs>
+
 The same configuration should be changed for the Protocol Buffers
 interface if you intend on using it (which we recommend). Change the
 following line:
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 listener.protobuf.internal = 0.0.0.0:8087
 ```
 
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
+
 ```erlang
 % In the riak_core section
 {pb, [ {"0.0.0.0", 8087} ] },
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## Rename Single Node Clusters
 

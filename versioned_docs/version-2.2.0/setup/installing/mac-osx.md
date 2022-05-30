@@ -28,8 +28,8 @@ appropriate platform:
 ### 64-bit
 
 ```bash
-curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.3/osx/10.8/riak-2.2.3-OSX-x86_64.tar.gz
-tar xzvf riak-2.2.3-osx-x86_64.tar.gz
+curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.0/osx/10.8/riak-2.2.0-OSX-x86_64.tar.gz
+tar xzvf riak-2.2.0-osx-x86_64.tar.gz
 ```
 
 After the release is untarred, you will be able to `cd` into the `riak`
@@ -42,7 +42,7 @@ Homebrew's Riak recipe is community supported, and thus is not always up to
 date with the latest Riak package. Please ensure that the current recipe is
 using the latest supported code (and don't be afraid to update it if it's
 not).
-:::note
+:::
 
 Installing Riak 2.0 with [Homebrew](http://brew.sh/) is easy:
 
@@ -50,7 +50,7 @@ Installing Riak 2.0 with [Homebrew](http://brew.sh/) is easy:
 brew install --devrel riak
 ```
 
-By default, this will place a `2.2.3` folder in
+By default, this will place a `2.2.0` folder in
 `/usr/local/Cellar/riak`.
 
 Be aware that you will most likely see the following message after
@@ -88,9 +88,9 @@ If you do not have Erlang already installed, see [Installing Erlang][install sou
 Next, download and unpack the source distribution.
 
 ```bash
-curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.3/riak-2.2.3.tar.gz
-tar zxvf riak-2.2.3.tar.gz
-cd riak-2.2.3
+curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.0/riak-2.2.0.tar.gz
+tar zxvf riak-2.2.0.tar.gz
+cd riak-2.2.0
 make rel
 ```
 

@@ -40,7 +40,7 @@ graphing of realtime replication statistics:
 * Have any errors occurred on either the source or sink cluster?
 * Have any objects been dropped from the realtime queue?
 
-* * *
+---
 
 #### Is the realtime replication queue backed up?
 
@@ -88,7 +88,7 @@ increases to the maximum size of the queue (displayed in the
 `max_bytes`) can be made to accommodate a usage pattern of expected high
 load.
 
-* * *
+---
 
 Although the above statistics have been highlighted to answer specific
 questions, other statistics can also be helpful in diagnosing issues
@@ -132,10 +132,10 @@ Building on the final step of the general process, we can determine if
 our objects are being replicated from the source cluster to the sink
 cluster within a certain SLA time period by adding the following steps:
 
-* If the state of the object on the source cluster is not equal to the
+- If the state of the object on the source cluster is not equal to the
   state of the object on the sink cluster, repeat step 3 until an SLA
   time threshold is exceeded.
-* If the SLA time threshold is exceeded, alert that replication is not
+- If the SLA time threshold is exceeded, alert that replication is not
   meeting the necessary SLA.
 
 #### How long is it taking for objects to be replicated from the source cluster to the sink cluster?

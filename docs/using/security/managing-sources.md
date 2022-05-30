@@ -20,7 +20,7 @@ security has been [enabled](../../using/security/basics.md).
 :::note Note on SSL connections
 If you use _any_ of the aforementioned security sources, even `trust`, you
 will need to do so via a secure SSL connection.
-:::note
+:::
 
 ## Trust-based Authentication
 

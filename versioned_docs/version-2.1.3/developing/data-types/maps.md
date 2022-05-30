@@ -1,15 +1,14 @@
 ---
 title: "Maps"
 id: data_types_maps
-slug: maps
+slug: maps 
 sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-Maps are the most versatile of the Riak data types because all other data types can be embedded within them, *including maps themselves*. This enables the creation of complex, custom data types from a few basic building blocks.
+Maps are the most versatile of the Riak data types because all other data types can be embedded within them, _including maps themselves_. This enables the creation of complex, custom data types from a few basic building blocks.
 
 Using counters, sets, and maps within maps are similar to working with those types at the bucket level.
 
@@ -64,7 +63,6 @@ The syntax for creating a map is analogous to the
 syntax for creating other data types:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -73,12 +71,10 @@ syntax for creating other data types:
 // use a Location object that incorporates the Namespace object, as is
 // done below.
 
-Location map =
-  new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
+Location map = new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -87,7 +83,6 @@ map = Riak::Crdt::Map.new(bucket, key)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -95,7 +90,6 @@ $location = new \Basho\Riak\Location('key', 'bucket', 'bucket_type');
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -109,7 +103,6 @@ map = Map(bucket, key)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -122,7 +115,6 @@ var builder = new UpdateMap.Builder()
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -135,7 +127,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -145,7 +136,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -156,7 +146,6 @@ curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Create a Map
@@ -166,19 +155,16 @@ For this example, say we want to use Riak KV to store information about our comp
 We can create a map for the user Ahmed (`ahmed_info`) using the `maps` bucket type:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
 // In the Java client, you specify the location of data types
 // before you perform operations on them:
 
-Location ahmedMap =
-  new Location(new Namespace("maps", "customers"), "ahmed_info");
+Location ahmedMap = new Location(new Namespace("maps", "customers"), "ahmed_info");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -198,7 +184,6 @@ map = Riak::Crdt::Map.new(customers, 'ahmed_info')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -206,7 +191,6 @@ $location = new \Basho\Riak\Location('ahmed_info', 'customers', 'maps');
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -215,7 +199,6 @@ map = customers.net('ahmed_info')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -228,7 +211,6 @@ var builder = new UpdateMap.Builder()
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -240,7 +222,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -252,7 +233,6 @@ Map = riakc_map:new().
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -261,7 +241,6 @@ Map = riakc_map:new().
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Registers
@@ -278,7 +257,6 @@ The first piece of information we want to store in our map is Ahmed's name and
 phone number, both of which are best stored as registers:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -295,7 +273,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -313,7 +290,6 @@ map.registers['phone_number'] = 5551234567.to_s
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -326,7 +302,6 @@ map.registers['phone_number'] = 5551234567.to_s
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -341,7 +316,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -371,7 +345,6 @@ PrintMap(response.Value);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -394,7 +367,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -407,7 +379,6 @@ Map2 = riakc_map:update({<<"phone_number">>, register},
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -427,7 +398,6 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 If a register did not previously exist, Riak KV will create that register for you.
@@ -448,7 +418,6 @@ create an `enterprise_customer` flag to track whether Ahmed has signed
 up for the new plan. He hasn't yet, so we'll set it to `false`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -462,7 +431,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -470,7 +438,6 @@ map.flags['enterprise_customer'] = false
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -482,7 +449,6 @@ map.flags['enterprise_customer'] = false
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -491,7 +457,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -515,7 +480,6 @@ response = cmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -537,7 +501,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -547,10 +510,11 @@ Map4 = riakc_map:update({<<"enterprise_customer">>, flag},
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
+curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
+
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '
@@ -562,13 +526,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 We can retrieve the value of that flag at any time:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -581,7 +543,6 @@ System.out.println(map.getFlag("enterprise_customer").view());
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -591,7 +552,6 @@ map.flags['enterprise_customer']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -605,7 +565,6 @@ echo $map->getFlag('enterprise_customer'); // false
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -613,7 +572,6 @@ map.reload().flags['enterprise_customer'].value
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -624,7 +582,6 @@ ahmedMap.Flags["enterprise_customer"]
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -644,7 +601,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -656,7 +612,6 @@ riakc_map:dirty_value(Map4).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -664,7 +619,6 @@ curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Counters Within Maps
@@ -674,7 +628,6 @@ use a `page_visits` counter for that and run the following operation
 when Ahmed visits our page for the first time:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -688,7 +641,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -698,7 +650,6 @@ map.counters['page_visits'].increment
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -713,7 +664,6 @@ $updateCounter = (new \Basho\Riak\Command\Builder\IncrementCounter($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -722,7 +672,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -744,7 +693,6 @@ MapResponse response = cmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -766,7 +714,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -776,7 +723,6 @@ Map3 = riakc_map:update({<<"page_visits">>, counter},
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -793,7 +739,6 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 Even though the `page_visits` counter did not exist previously, the
@@ -808,7 +753,6 @@ find out that Ahmed likes robots, opera, and motorcycles. We'll store
 that information in a set inside of our map:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -826,7 +770,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -838,7 +781,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -855,7 +797,6 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -865,7 +806,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -889,7 +829,6 @@ MapResponse response = cmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -913,7 +852,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -928,7 +866,6 @@ Map6 = riakc_map:update({<<"interests">>, set},
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -949,14 +886,12 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 We can then verify that the `interests` set includes these three
 interests:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -974,7 +909,6 @@ System.out.println(interests.contains(BinaryValue.create("robots")));
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -988,7 +922,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1003,7 +936,6 @@ var_dump($sets->getData());
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1013,7 +945,6 @@ for interest in ['robots', 'opera', 'motorcycles']:
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1028,7 +959,6 @@ ahmedMap.Sets.GetValue("interests").Contains("motorcycles");
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1048,7 +978,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1056,7 +985,6 @@ riakc_map:dirty_value(Map6).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1064,7 +992,6 @@ curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info?inc
 ```
 
 </TabItem>
-
 </Tabs>
 
 We learn from a recent purchasing decision that Ahmed actually doesn't
@@ -1072,7 +999,6 @@ seem to like opera. He's much more keen on indie pop. Let's change the
 `interests` set to reflect that:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1089,7 +1015,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1100,7 +1025,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1117,7 +1041,6 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1127,7 +1050,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1157,7 +1079,6 @@ ahmedMap.Sets.GetValue("interests").Contains("motorcycles");
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1188,7 +1109,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1200,7 +1120,6 @@ Map8 = riakc_map:update({<<"interests">>, set},
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1219,7 +1138,6 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Maps Within Maps
@@ -1238,7 +1156,6 @@ First, we'll store Annika's first name, last name, and phone number in
 registers:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1260,7 +1177,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1272,7 +1188,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1290,7 +1205,6 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1301,7 +1215,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1320,7 +1233,6 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1346,7 +1258,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1371,7 +1282,6 @@ Map14 = riakc_map:update(
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1393,14 +1303,12 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 The value of a register in a map can be obtained without a special
 method:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1416,7 +1324,6 @@ String annikaFirstName = response.getDatatype()
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1426,7 +1333,6 @@ map.maps['annika_info'].registers['first_name']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1437,7 +1343,6 @@ echo $map->getMap('annika_info')->getRegister('first_name'); // Annika
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1445,7 +1350,6 @@ map.reload().maps['annika_info'].registers['first_name'].value
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1456,7 +1360,6 @@ ahmedMap.Maps["annika_info"].Registers.GetValue("first_name");
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1477,7 +1380,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1485,7 +1387,6 @@ riakc_map:dirty_value(Map14).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1494,13 +1395,11 @@ riakc_map:dirty_value(Map14).
 ```
 
 </TabItem>
-
 </Tabs>
 
 Registers can also be removed:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1523,7 +1422,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1531,7 +1429,6 @@ map.maps['annika_info'].registers.remove('first_name')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1547,7 +1444,6 @@ $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1556,7 +1452,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1575,7 +1470,6 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1609,7 +1503,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1619,7 +1512,6 @@ Map15 = riakc_map:update({<<"annika_info">>, map},
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1629,7 +1521,7 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   {
     "update": {
       "annika_info_map": {
-        "remove": "phone_number_register"
+        "remove": ["phone_number_register"]
       }
     }
   }
@@ -1637,14 +1529,12 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, we'll store whether Annika is subscribed to a variety of plans
 within the company as well:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1666,7 +1556,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1678,7 +1567,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1696,7 +1584,6 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1707,7 +1594,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1726,7 +1612,6 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1764,7 +1649,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1792,7 +1676,6 @@ Map18 = riakc_map:update(
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1802,11 +1685,9 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
   {
     "update": {
       "annika_info_map": {
-        "update": {
-          "enterprise_plan_flag": "disable",
-          "family_plan_flag": "disable",
-          "free_plan_flag": "enable"
-        }
+        "enterprise_plan_flag": "disable",
+        "family_plan_flag": "disable",
+        "free_plan_flag": "enable"
       }
     }
   }
@@ -1814,13 +1695,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 The value of a flag can be retrieved at any time:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1835,7 +1714,6 @@ boolean enterprisePlan = response.getDatatype()
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1845,7 +1723,6 @@ map.maps['annika_info'].flags['enterprise_plan']
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1856,7 +1733,6 @@ echo $map->getMap('annika_info')->getFlag('enterprise_plan'); // false
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1864,7 +1740,6 @@ map.reload().maps['annika_info'].flags['enterprise_plan'].value
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1875,7 +1750,6 @@ ahmedMap.Maps["annika_info"].Flags["enterprise_plan"];
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1896,7 +1770,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1904,7 +1777,6 @@ riakc_map:dirty_value(Map18).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1913,14 +1785,12 @@ riakc_map:dirty_value(Map18).
 ```
 
 </TabItem>
-
 </Tabs>
 
 It's also important to track the number of purchases that Annika has
 made with our company. Annika just made her first widget purchase:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1936,7 +1806,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1944,7 +1813,6 @@ map.maps['annika_info'].counters['widget_purchases'].increment
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1962,7 +1830,6 @@ $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1971,7 +1838,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1987,7 +1853,6 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2009,7 +1874,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -2023,7 +1887,6 @@ Map19 = riakc_map:update(
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -2043,13 +1906,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now let's store Annika's interests in a set:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2066,7 +1927,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2074,7 +1934,6 @@ map.maps['annika_info'].sets['interests'].add('tango dancing')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2093,7 +1952,6 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2102,7 +1960,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2116,7 +1973,6 @@ client.Execute(builder.Build());
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2139,7 +1995,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -2153,7 +2008,6 @@ Map20 = riakc_map:update(
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -2175,13 +2029,11 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>
 
 We can remove that interest in just the way that we would expect:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2199,7 +2051,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2207,7 +2058,6 @@ map.maps['annika_info'].sets['interests'].remove('tango dancing')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2226,7 +2076,6 @@ $annikaMap = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2235,7 +2084,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2252,7 +2100,6 @@ client.Execute(builder.Build());
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2284,7 +2131,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -2298,34 +2144,39 @@ Map21 = riakc_map:update(
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
+curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
+
+# Response
+{"type":"map","value":{"annika_info_map":{"enterprise_plan_flag":false,"family_plan_flag":false,"first_name_register":"Annika","free_plan_flag":true,"interests_set":["tango dancing"],"last_name_register":"Weiss","widget_purchases_counter":1},"enterprise_customer_flag":false,"first_name_register":"Ahmed","interests_set":["indie pop","motorcycles","robots"],"page_visits_counter":1,"phone_number_register":"5551234567"},"context":"g2wAAAABaAJtAAAADCMJ/vn2jOEXAAAAAWEKag=="}
+
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '
   {
     "update": {
       "annika_info_map": {
-        "interests_set": {
-          "remove": "tango dancing"
+        "update": {
+          "interests_set": {
+            "remove": "tango dancing"
+          }
         }
       }
-    }
+    },
+    "context" : "g2wAAAABaAJtAAAADCMJ/vn2jOEXAAAAAWEKag=="
   }
   '
 ```
 
 </TabItem>
-
 </Tabs>
 
 If we wanted to add store information about one of Annika's specific
 purchases, we could do so within a map:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2346,7 +2197,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2358,7 +2208,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2382,7 +2231,6 @@ $response = (new \Basho\Riak\Command\Builder\UpdateMap($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2394,7 +2242,6 @@ map.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2411,7 +2258,6 @@ client.Execute(builder.Build());
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2437,7 +2283,6 @@ client.updateMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -2455,7 +2300,6 @@ Map22 = riakc_map:update(
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -2483,5 +2327,4 @@ curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_i
 ```
 
 </TabItem>
-
 </Tabs>

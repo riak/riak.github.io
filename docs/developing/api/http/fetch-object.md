@@ -86,7 +86,7 @@ down to the 'manually requesting siblings' example below for more information.
 
 To resolve the conflict, store the resolved version with the `X-Riak-Vclock`
 given in the response.
-:::note
+:::
 
 ## Simple Example
 

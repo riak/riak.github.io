@@ -1,7 +1,7 @@
 ---
 title: "Adding / Removing Nodes"
 id: cluster_operations_add_remove_nodes
-slug: adding-removing-nodes
+slug: adding-removing-nodes 
 sidebar_position: 0
 ---
 
@@ -48,7 +48,7 @@ To join the node to an existing cluster, use the `cluster join` command:
 bin/riak-admin cluster join <node_in_cluster>
 ```
 
-The `<node_in_cluster>` in the example above can be *any* node in the
+The `<node_in_cluster>` in the example above can be _any_ node in the
 cluster you want to join to. So if the existing cluster consists of
 nodes `A`, `B`, and `C`, any of the following commands would join the
 new node:
@@ -70,7 +70,9 @@ bin/riak-admin cluster join riak@192.168.2.2
 
 If the join request is successful, you should see the following:
 
-    Success: staged join request for 'riak@192.168.2.5' to 'riak@192.168.2.2'
+```
+Success: staged join request for 'riak@192.168.2.5' to 'riak@192.168.2.2'
+```
 
 If you have multiple nodes that you would like to join to an existing
 cluster, repeat this process for each of them.
@@ -86,38 +88,40 @@ commands, as in the section above, the next step in forming a cluster is
 to review the proposed plan of changes. This can be done with the
 `riak-admin cluster plan` command, which is shown in the example below.
 
-    =============================== Staged Changes ================================
-    Action         Nodes(s)
-    -------------------------------------------------------------------------------
-    join           'riak@192.168.2.2'
-    join           'riak@192.168.2.2'
-    join           'riak@192.168.2.2'
-    join           'riak@192.168.2.2'
-    -------------------------------------------------------------------------------
+```
+=============================== Staged Changes ================================
+Action         Nodes(s)
+-------------------------------------------------------------------------------
+join           'riak@192.168.2.2'
+join           'riak@192.168.2.2'
+join           'riak@192.168.2.2'
+join           'riak@192.168.2.2'
+-------------------------------------------------------------------------------
 
 
-    NOTE: Applying these changes will result in 1 cluster transition
+NOTE: Applying these changes will result in 1 cluster transition
 
-    ###############################################################################
-                             After cluster transition 1/1
-    ###############################################################################
+###############################################################################
+                         After cluster transition 1/1
+###############################################################################
 
-    ================================= Membership ==================================
-    Status     Ring    Pending    Node
-    -------------------------------------------------------------------------------
-    valid     100.0%     20.3%    'riak@192.168.2.2'
-    valid       0.0%     20.3%    'riak@192.168.2.3'
-    valid       0.0%     20.3%    'riak@192.168.2.4'
-    valid       0.0%     20.3%    'riak@192.168.2.5'
-    valid       0.0%     18.8%    'riak@192.168.2.6'
-    -------------------------------------------------------------------------------
-    Valid:5 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
+================================= Membership ==================================
+Status     Ring    Pending    Node
+-------------------------------------------------------------------------------
+valid     100.0%     20.3%    'riak@192.168.2.2'
+valid       0.0%     20.3%    'riak@192.168.2.3'
+valid       0.0%     20.3%    'riak@192.168.2.4'
+valid       0.0%     20.3%    'riak@192.168.2.5'
+valid       0.0%     18.8%    'riak@192.168.2.6'
+-------------------------------------------------------------------------------
+Valid:5 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 
-    Transfers resulting from cluster changes: 51
-      12 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.3'
-      13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.4'
-      13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.5'
-      13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.6'
+Transfers resulting from cluster changes: 51
+  12 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.3'
+  13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.4'
+  13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.5'
+  13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.6'
+```
 
 If the plan is to your liking, submit the changes by running `riak-admin
 cluster commit`.
@@ -165,6 +169,7 @@ As with `riak-admin cluster leave`, the plan to have a node leave the
 cluster must be first reviewed with `riak-admin cluster plan` and
 committed with `riak-admin cluster commit` before any changes will
 actually take place.
+
 
 ## Pausing a `join` or `leave`
 

@@ -72,9 +72,7 @@ happens at that point? There are essentially three possible outcomes:
    operations happen at roughly the same time, i.e. two **concurrent
    updates** have been completed, and Riak is unable to determine which
    value "wins." In this scenario, one of two things can happen:
-
        a. Riak creates sibling values, aka **siblings**, for the object
-
        b. Riak chooses a single value for you on the basis of timestamps
 
 In the case of outcome 1 above, Riak uses **causal context** metadata to
@@ -102,74 +100,12 @@ means of tracking the history of object updates. In Riak versions 2.0
 and later, we recommend using [dotted version vectors](#dotted-version-vectors) instead, for reasons that are explained
 in that section.
 
-Like dotted version vectors, vector clocks are a means of tracking
-events in distributed systems. Unlike normal clocks, vector clocks have
-no sense of chronological time, i.e. they don't care if something
-happened at 6 pm today or back in 1972. They care only about sequences
-of events. More specifically, they keep track of who---i.e. which actor
-in the system---has modified an object and how many times they've done
-so.
-
-In a distributed system like Riak, multiple replicas of each object are
-active in the cluster all the time. Because it's inevitable that objects
-will have conflicting values due to events like concurrent updates and
-healed network partitions, Riak needs a mechanism to keep track of which
-replica of an object is more current than another. In versions of Riak
-prior to 2.0, vector clocks were the means employed by Riak to do
-precisely that.
-
-A number of important aspects of the relationship between object
-replicas can be determined using vector clocks:
-
-* Whether one object is a direct descendant of the other
-* Whether the objects are direct descendants of a common parent
-* Whether the objects are unrelated in recent heritage
-
-Behind the scenes, Riak uses vector clocks as an essential element of
-its [active anti-entropy][concept aae] subsystem and of its automatic read
-repair capabilities.
-
-Vector clocks are non-human-readable metadata attached to all Riak
-objects. They look something like this:
-
-    a85hYGBgzGDKBVIcR4M2cgczH7HPYEpkzGNlsP/VfYYvCwA=
-
-While vector clocks quite often resolve object conflicts without
-trouble, there are times when they can't, i.e. when it's unclear which
-value of an object is most current. When that happens, Riak, if
-configured to do so, will create **siblings**.
-
 ## Siblings
 
 It is possible, though not recommendable, to [configure Riak][usage conflict resolution] to ensure that only one copy of an object ever exists in a
 specific location. This will ensure that *at most* one value is returned
 when a read is performed on a bucket type/bucket/key location (and no
 value if Riak returns `not found`).
-
-It's also possible, however, to configure Riak to store multiple objects
-in a single key if necessary, i.e. for an object to have different
-values on different nodes. Objects stored this way have what are called
-sibling values. You can instruct Riak to allow for sibling creation by
-setting the the `allow_mult` bucket property to `true` for a specific
-bucket, preferably [using bucket types][usage bucket types].
-
-From the standpoint of application development, the difficulty with
-siblings is that they *by definition* conflict with one another. When an
-application attempts to read an object that has siblings, multiple
-replicas will be stored in the location where the application is
-looking. This means that the application will need to develop a
-strategy for [conflict resolution][usage conflict resolution], i.e. the application will need to
-decide which value is more correct depending on the use case.
-
-## More Information on Vector Clocks
-
-Additional information on vector clocks:
-
-* [Conflict Resolution][usage conflict resolution] in Riak KV
-* [Vector Clocks on Wikipedia]
-* [Why Vector Clocks are Easy]
-* [Why Vector Clocks are Hard]
-* The vector clocks used in Riak are based on the [work of Leslie Lamport].
 
 ## Dotted Version Vectors
 

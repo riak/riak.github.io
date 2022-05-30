@@ -5,6 +5,8 @@ slug: benchmarking
 sidebar_position: 0
 ---
 
+[install erlang]: ../../setup/installing/source/erlang.md
+
 Basho Bench is a benchmarking tool created to conduct accurate and
 repeatable performance tests and stress tests, and to produce
 performance graphs.
@@ -19,16 +21,16 @@ of code.
 You will need:
 
 1. One or more load-generating machines on which to install
-   `basho_bench`.  Especially when testing larger clusters, a
-   single machine cannot generate enough load to properly exercise
-   the cluster.  Do not run the `basho_bench` instances on the
-   Riak nodes themselves, since the load generation will compete with
-   Riak for resources.
+    ```basho_bench```.  Especially when testing larger clusters, a
+    single machine cannot generate enough load to properly exercise
+    the cluster.  Do not run the ```basho_bench``` instances on the
+    Riak nodes themselves, since the load generation will compete with
+    Riak for resources.
 2. The [R statistics language](http://www.r-project.org/) must be
-   installed (somewhere available to you) if you wish to generate
-   graphs (see the [Generating Benchmark Graphs](#generating-benchmark-graphs) section, below).
+    installed (somewhere available to you) if you wish to generate
+    graphs (see the [Generating Benchmark Graphs](#generating-benchmark-graphs) section, below).
 
-### Download `basho_bench`
+### Download ```basho_bench```
 
 You can download the pre-built packages below, or build it from source.
 
@@ -41,14 +43,14 @@ You can download the pre-built packages below, or build it from source.
 
 #### Prerequisites
 
-* Erlang must be installed. See [Installing Erlang](../../setup/installing/source/erlang.md) for instructions
+* Erlang must be installed. See [Installing Erlang][install erlang] for instructions
     and versioning requirements. Note: Unless you're an experienced
     Erlang developer, we recommend that you use Ubuntu 14.04 LTS (and
-    not CentOS), when building `basho_bench` from source.  Later
+    not CentOS), when building ```basho_bench``` from source.  Later
     versions of CentOS (6 and 7) have difficulty with installing and
-    enabling certain parts of the `erlang-crypto` package, which
-    is required by `basho_bench`.
-* Install `git` (to check out the `basho_bench` code)
+    enabling certain parts of the ```erlang-crypto``` package, which
+    is required by ```basho_bench```.
+* Install ```git``` (to check out the ```basho_bench``` code)
 
 #### Compiling
 
@@ -67,9 +69,9 @@ directory to generate the results into:
 basho_bench --results-dir <results dir> <config file>
 ```
 
-If you've installed `basho_bench` from a pre-built package, you
+If you've installed ```basho_bench``` from a pre-built package, you
 must specify full paths for the test results directory and config
-file. (Also, don't use the common `~/` shell notation, specify the
+file. (Also, don't use the common ```~/``` shell notation, specify the
 user's home directory explicitly)
 
 ```bash
@@ -77,9 +79,9 @@ basho_bench --results-dir /home/username/bench_results/ /etc/basho_bench/riakc_p
 ```
 
 The example above will generate results in
-`/home/username/bench_results/current/`.
+```/home/username/bench_results/current/```.
 
-If you built `basho_bench` from source, you can get away with
+If you built ```basho_bench``` from source, you can get away with
 relative paths (and the results directory will be created in the
 current directory):
 
@@ -114,18 +116,20 @@ be generating and viewing the graphs (such as a desktop).
 
 #### Installing R on Ubuntu
 
-    sudo apt-get install r-base
+```
+sudo apt-get install r-base
+```
 
 #### Installing R on Other Platforms
 
-* [More information](http://www.r-project.org/)
-* [Download R](http://cran.r-project.org/mirrors.html)
+-   [More information](http://www.r-project.org/)
+-   [Download R](http://cran.r-project.org/mirrors.html)
 
 Follow the instructions for your platform to install R.
 
 ### Generating Graphs
 
-If you have installed `basho_bench` from a pre-built package, and
+If you have installed ```basho_bench``` from a pre-built package, and
 you also have R installed on the same machine, you can generate the
 current result graph with the following:
 
@@ -134,10 +138,10 @@ Rscript --vanilla /usr/lib/basho_bench/lib/basho_bench*/priv/summary.r -i /home/
 ```
 
 This will create a results file in
-`/home/username/bench_results/summary.png`.
+```/home/username/bench_results/summary.png```.
 
-If you have built `basho_bench` from source, you can just use
-`make`.  To generate a benchmark graph against the current
+If you have built ```basho_bench``` from source, you can just use
+```make```.  To generate a benchmark graph against the current
 results, run:
 
 ```bash
@@ -155,7 +159,7 @@ priv/summary.r -i tests/current
 ### Troubleshooting Graph Generation
 
 For additional help, see the [Troubleshooting Graph Generation](https://github.com/basho/basho_bench#troubleshooting-graph-generation)
-section of the `basho_bench/README`.
+section of the ```basho_bench/README```.
 
 ## How does it work?
 
@@ -214,7 +218,7 @@ values:
 
 Note that this setting is applied to each driver independently. For
 example, if `{rate, 5}` is used with 3 concurrent workers, Basho Bench
-will be generating 15 (i.e. 5 \* 3) operations per second.
+will be generating 15 (i.e. 5 * 3) operations per second.
 
 ```erlang
 % Run at max, i.e.: as quickly as possible
@@ -331,10 +335,10 @@ in `basho_bench_keygen.erl`. Available generators include:
 * `{pareto_int, MaxKey}` --- selects an integer from a Pareto
     distribution, such that 20% of the available keys get selected 80%
     of the time. Note that the current implementation of this
-    generator *may* yield values larger than `MaxKey` due to the
+    generator _may_ yield values larger than `MaxKey` due to the
     mathematical properties of the Pareto distribution.
 * `{truncated_pareto_int, MaxKey}` --- the same as `{pareto_int}`, but
-    will \_not> yield values above `MaxKey`.
+    will _not> yield values above `MaxKey`.
 * `{function, Module, Function, Args}` --- specifies an external
     function that should return a key generator function. The worker
     `Id` will be prepended to `Args` when the function is called.
@@ -412,12 +416,12 @@ to the console and to disk.
 
 The default level is `debug`.
 
-| Valid levels
-\|:------------
-\| `debug`
-\| `info`
-\| `warning`
-\| `error`
+| Valid levels |
+|:-------------|
+| `debug`      |
+| `info`       |
+| `warning`    |
+| `error`      |
 
 #### report_interval
 
@@ -581,6 +585,4 @@ new(ID) -> {ok, State} or {error, Reason}.
 run(Op, KeyGen, ValueGen, State) -> {ok, NewState} or {error, Reason, NewState}.
 ```
 
-See the [existing
-drivers](https://github.com/basho/basho_bench/tree/master/src) for
-more details.
+See the [existing drivers](https://github.com/basho/basho_bench/tree/master/src) for more details.

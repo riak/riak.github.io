@@ -6,45 +6,52 @@ sidebar_position: 5
 ---
 
 [usage search]: ../developing/usage/search.md
+
 [usage search schema]: ../developing/usage/search-schemas.md
+
 [usage search data types]: ../developing/usage/searching-data-types.md
+
 [usage custom extractors]: ../developing/usage/custom-extractors.md
-[cluster-ops aae throttle]: ../using/cluster-operations/active-anti-entropy.md#throttling
+
 [config reference]: ../configuring/reference.md
+
 [config reference#search]: ../configuring/reference.md#search
+
 [glossary aae]: ../learn/glossary.md#active-anti-entropy-aae
+
 [security index]: ../using/security/index.md
 
-[java se downloads]: http://www.oracle.com/technetwork/java/javase/downloads
-[java se docs]: http://www.oracle.com/technetwork/java/javase/documentation
+This document covers how to use the Riak Search (with
+[Solr](http://lucene.apache.org/solr/) integration) subsystem from an
+operational perspective.
 
-This page covers how to use Riak Search (with
-[Solr](http://lucene.apache.org/solr/) integration).
+For a simple reference of the available configs & their defaults, go [here][config reference#search].
 
-For a simple reference of the available configs and their defaults, see the [configuration reference][config reference#search].
-
-If you are looking to develop on or with Riak Search, take a look at:
+If you are looking developer-focused docs, we recommend the following:
 
 * [Using Search][usage search]
 * [Search Schema][usage search schema]
 * [Custom Search Extractors][usage custom extractors]
 * [Riak KV Data Types and Search][usage search data types]
 
-## Overview
+##Overview
 
 We'll be walking through:
 
-1. [Prequisites](#prerequisites)
-2. [Enable Riak Search](#enabling-riak-search)
-3. [Search Configuration Settings](#search-config-settings)
-4. [Additional Solr Information](#more-on-solr)
+1. [Prequisites][#prerequisites]
+2. [Enable Riak Search][#enabling-riak-search]
+3. [Riak.conf Configuration Settings][#riak-config-settings]
+4. [Additional Solr Information][#more-on-solr]
 
 ## Prerequisites
 
-Because Solr is a Java application, you will need to install **Java 7
-or later** on every node. Installation packages can be found on the [Java SE Downloads
-page][java se downloads] and instructions in the [Java SE documentation site][java se docs].
-
+Because Solr is a Java application, you will need to install **Java 1.6
+or later** on every node. We recommend installing Oracle's [JDK
+7u25](http://www.oracle.com/technetwork/java/javase/7u25-relnotes-1955741.html).
+Installation packages can be found on the [Java SE 7 Downloads
+page](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jre-7u25-oth-JPR)
+and instructions on the [documentation
+page](http://www.oracle.com/technetwork/java/javase/documentation/index.html).
 
 ## Enabling Riak Search
 
@@ -55,7 +62,7 @@ node's [configuration file][config reference] as follows:
 search = on
 ```
 
-## Search Config Settings
+## Riak Config Settings
 
 Setting `search` to `on` is required, but other search settings are
 optional. A list of these parameters can also be found in our
@@ -82,6 +89,7 @@ optional. A list of these parameters can also be found in our
 | `search.queue.high_watermark.purge_strategy`    | `purge_one`                                                     | `purge_one`, `purge_index`, `purge_all`, or `off` | The strategy for how we handle purging when we hit the `search.queue.high_watermark`. The options: * `purge_one` removes the oldest item on the queue from an erroring (references to fuses blown in the code) index in order to get below the `search.queue.high_watermark`, * `purge_index` removes all items associated with one random erroring (references to fuses blown in the code) index in order to get below the `search.queue.high_watermark`, * `purge_all` removes all items associated with all erroring (references to fuses blown in the code) indices in order to get below the `search.queue.high_watermark`, and *`off` disables purging. |
 
 ## More on Solr
+
 ### Solr JVM and Ports
 
 Riak Search runs one Solr process per node to manage its indexing and
@@ -98,8 +106,11 @@ For further information on Solr monitoring, tuning, and performance, we
 recommend the following documents for getting started:
 
 * [Solr Monitoring](https://wiki.apache.org/solr/SolrMonitoring)
-* [Solr Performance Factors](https://wiki.apache.org/solr/SolrPerformanceFactors)
-* [Solr Performance Problems](https://wiki.apache.org/solr/SolrPerformanceProblems)
+* [Solr Performance
+  Factors](https://wiki.apache.org/solr/SolrPerformanceFactors)
+* [Solr Performance
+  Problems](https://wiki.apache.org/solr/SolrPerformanceProblems)
 * [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html)
 
-A wide variety of other documentation is available from the Solr OSS community.
+A wide variety of other documentation is available from the Solr OSS
+community.

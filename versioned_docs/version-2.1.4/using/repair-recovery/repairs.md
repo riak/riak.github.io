@@ -4,18 +4,14 @@ id: repair_recover_repairs
 ---
 
 [cluster ops aae]: ../../using/cluster-operations/active-anti-entropy.md
-
 [config ref]: ../../configuring/reference.md
-
 [Erlang shell]: http://learnyousomeerlang.com/starting-out
-
 [glossary AAE]: ../../learn/glossary.md#active-anti-entropy-aae
-
 [glossary readrep]: ../../learn/glossary.md#read-repair
-
 [search config]: ../../configuring/search.md#search-config-settings
-
 [tiered storage]: ../../setup/planning/backend/leveldb.md#tiered-storage
+
+
 
 ## Repairing Search Indexes
 
@@ -71,7 +67,9 @@ Any time there is a compaction error, it will be noted in the LevelDB logs. Thos
 
 Compaction error messages take the following form:
 
-    <timestamp> Compaction Error: Corruption: corrupted compressed block contents
+```
+<timestamp> Compaction Error: Corruption: corrupted compressed block contents
+```
 
 To check whether your node has experienced such errors, you will need to run a script that searches for `Compaction Error` in each `LOG` file. Here is an example script:
 
@@ -81,11 +79,15 @@ find . -name "LOG" -exec grep -l 'Compaction error' {} \;
 
 If there are compaction errors in any of your vnodes, those will be listed in the console. If any vnode has experienced such errors, you would see output like this:
 
-    ./442446784738847563128068650529343492278651453440/LOG 
+```
+./442446784738847563128068650529343492278651453440/LOG 
+```
 
-:::note 
+
+:::note
 While corruption on one vnode is not uncommon, corruption in several vnodes very likely means that there is a deeper problem that needs to be address, perhaps on the OS or hardware level.
 :::
+
 
 ## Healing Corrupted LevelDBs
 
@@ -96,17 +98,18 @@ Choose your setup below:
 1. [Just LevelDB](#leveldb)
 2. [LevelDB with tiered storage](#leveldb-with-tiered-storage)
 
+
 ### LevelDB
 
 Follow the steps below to heal your corrupted LevelDB.
 
-1. Stop the node:
+1\. Stop the node:
 
 ```bash
 riak stop
 ```
 
-2. To repair the corrupted LevelDB through the [Erlang shell],  you will run the the `riak ertspath` command to output the path to Riak's internal Erlang runtime, and the `erl` command to start the Erlang shell. You can run them in a single command: 
+2\. To repair the corrupted LevelDB through the [Erlang shell],  you will run the the `riak ertspath` command to output the path to Riak's internal Erlang runtime, and the `erl` command to start the Erlang shell. You can run them in a single command: 
 
 ```bash
 `riak ertspath`/erl
@@ -116,19 +119,19 @@ riak stop
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
 :::
 
-3. Once in the shell, run the following command:
+3\. Once in the shell, run the following command:
 
 ```erlang
 application:set_env(eleveldb, data_root, "").
 ```
 
-4. Then set `Options` equal to an empty list:
+4\. Then set `Options` equal to an empty list:
 
 ```erlang
 Options = [].
 ```
 
-5. Set some supportive variables for the repair process.  These will be custom to your environment and specific repair needs.
+5\. Set some supportive variables for the repair process.  These will be custom to your environment and specific repair needs.
 VNodeList should be a list of each corrupted LevelDB that you found using the [`find` command above](#checking-for-compaction-errors).
 
 ```erlang
@@ -136,14 +139,14 @@ DataRoot = "»path to your data root«".
 VNodeList = ["»vnode id you want to repair«", ...].
 ```
 
-6. Run the following commands, which will parse the information you provided and run eleveldb:repair over all of the VNode IDs that you listed in VNodeList.
+6\. Run the following commands, which will parse the information you provided and run eleveldb:repair over all of the VNode IDs that you listed in VNodeList.
 
 ```erlang
 RepairPath = fun(DataRoot, VNodeNumber) -> Path = lists:flatten(DataRoot ++ "/" ++ VNodeNumber), io:format("Repairing ~s.~n",[Path]), Path end.
 [eleveldb:repair(RepairPath(DataRoot, VNodeList), Options) || VNodeNumber <- VNodeList].
 ```
 
-7. This process may take several minutes. When it has completed successfully, you can restart the node and continue as usual.
+7\. This process may take several minutes. When it has completed successfully, you can restart the node and continue as usual.
 
 ```bash
 riak start
@@ -153,19 +156,19 @@ riak start
 
 Follow the steps below to heal your corrupted LevelDB.
 
-1. Stop the node:
+1\. Stop the node:
 
 ```bash
 riak stop
 ```
 
-2. Check your riak.conf file and make note of the following values:
+2\. Check your riak.conf file and make note of the following values:
 
 * leveldb.tiered (integer)
 * leveldb.tiered.path.fast
 * leveldb.tiered.path.slow
 
-3. To repair the corrupted LevelDB through the [Erlang shell],  you will run the the `riak ertspath` command to output the path to Riak's internal Erlang runtime, and the `erl` command to start the Erlang shell. You can run them in a single command: 
+3\. To repair the corrupted LevelDB through the [Erlang shell],  you will run the the `riak ertspath` command to output the path to Riak's internal Erlang runtime, and the `erl` command to start the Erlang shell. You can run them in a single command: 
 
 ```bash
 `riak ertspath`/erl
@@ -175,13 +178,13 @@ riak stop
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
 :::
 
-4. Once in the shell, run the following command:
+4\. Once in the shell, run the following command:
 
 ```erlang
 application:set_env(eleveldb, data_root, "").
 ```
 
-5. Then supply the information you noted in Step 2:
+5\. Then supply the information you noted in Step 2:
 
 ```erlang
 Options = [
@@ -191,7 +194,7 @@ Options = [
 ].
 ```
 
-6. Set some supportive variables for the repair process.  These will be custom to your environment and specific repair needs.
+6\. Set some supportive variables for the repair process.  These will be custom to your environment and specific repair needs.
 VNodeList should be a list of each corrupted LevelDB partitions that you found using the [`find` command above](#checking-for-compaction-errors) provided in double quotes.
 
 ```erlang
@@ -199,18 +202,18 @@ DataRoot = "»path to your data root«".
 VNodeList = ["»vnode id you want to repair«", ...].
 ```
 
-7. Run the following commands, which will parse the information you provided and run eleveldb:repair over all of the VNode IDs that you listed in VNodeList.
+7\. Run the following commands, which will parse the information you provided and run eleveldb:repair over all of the VNode IDs that you listed in VNodeList.
 
 ```erlang
 RepairPath = fun(DataRoot, VNodeNumber) -> Path = lists:flatten(DataRoot ++ "/" ++ VNodeNumber), io:format("Repairing ~s.~n",[Path]), Path end.
 [eleveldb:repair(RepairPath(DataRoot, VNodeList), Options) || VNodeNumber <- VNodeList].
 ```
-
-8. This process may take several minutes. When it has completed successfully, you can restart the node and continue as usual.
+8\. This process may take several minutes. When it has completed successfully, you can restart the node and continue as usual.
 
 ```bash
 riak start
 ```
+
 
 ## Repairing Partitions
 
@@ -229,7 +232,7 @@ You will need to run a repair if the following are both true:
   frequently (which means that they are not likely to be subject to
   [read repair](../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy))
 
-You will most likely not need to run a repair operation if *any* of the
+You will most likely not need to run a repair operation if _any_ of the
 following is true:
 
 * Active anti-entropy is [enabled](../../learn/concepts/active-anti-entropy.md)
@@ -262,27 +265,27 @@ be repaired.
 
 1. From any node in the cluster, attach to Riak's Erlang shell:
 
-   ```bash
-   riak attach
-   ```
+    ```bash
+    riak attach
+    ```
 
-   You may have to hit **Enter** again to get a console prompt.
+    You may have to hit **Enter** again to get a console prompt.
 
 2. Execute the repair for a single partition using the below command:
 
-   ```erlang
-   riak_kv_vnode:repair(»Partition ID«).
-   ```
+    ```erlang
+    riak_kv_vnode:repair(»Partition ID«).
+    ```
 
-   where `»Partition_ID«` is replaced by the ID of the partition to
-   repair. For example:
+    where `»Partition_ID«` is replaced by the ID of the partition to
+    repair. For example:
 
-   ```erlang
-   riak_kv_vnode:repair(251195593916248939066258330623111144003363405824).
-   ```
+    ```erlang
+    riak_kv_vnode:repair(251195593916248939066258330623111144003363405824).
+    ```
 
 3. Once the command has been executed, detach from Riak using
-   `Control-C`.
+`Control-C`.
 
 ### Repairing All Partitions on a Node
 
@@ -291,48 +294,48 @@ repaired.
 
 1. From any node in the cluster, attach to Riak's Erlang shell:
 
-   ```bash
-   riak attach
-   ```
+    ```bash
+    riak attach
+    ```
 
 2. Get a copy of the current Ring:
 
-   ```erlang
-   {ok, Ring} = riak_core_ring_manager:get_my_ring().
-   ```
+    ```erlang
+    {ok, Ring} = riak_core_ring_manager:get_my_ring().
+    ```
 
-   You will get a lot of output with ring record information.
-   You can safely ignore it.
+    You will get a lot of output with ring record information.
+    You can safely ignore it.
 
 3. Get a list of partitions owned by the node that needs to be repaired.
-   Replace `dev1@127.0.0.1` with the name of the node to be repaired.  The
-   name can be found in each node's `vm.args` file, specified as the
-   `-name` parameter, if you are using the older configuration system; if
-   you are using the newer, `riak-conf`-based system, the name is given by
-   the `nodename` parameter.
+Replace `dev1@127.0.0.1` with the name of the node to be repaired.  The
+name can be found in each node's `vm.args` file, specified as the
+`-name` parameter, if you are using the older configuration system; if
+you are using the newer, `riak-conf`-based system, the name is given by
+the `nodename` parameter.
 
-       ```erlang
-       Partitions = [P || {P, 'dev1@127.0.0.1'} <- riak_core_ring:all_owners(Ring)].
-       ```
+    ```erlang
+    Partitions = [P || {P, 'dev1@127.0.0.1'} <- riak_core_ring:all_owners(Ring)].
+    ```
 
-       **Note**: The above is an [Erlang list
-       comprehension](http://www.erlang.org/doc/programming_examples/list_comprehensions.html)
-       that loops over each `{Partition, Node}` tuple in the ring and
-       extracts only the partitions that match the given node name, as a
-       list.
+    **Note**: The above is an [Erlang list
+    comprehension](http://www.erlang.org/doc/programming_examples/list_comprehensions.html)
+    that loops over each `{Partition, Node}` tuple in the ring and
+    extracts only the partitions that match the given node name, as a
+    list.
 
 
 4. Execute the repair on all the partitions. Executing the repairs all
-   at once will cause a lot of `{shutdown, max_concurrency}` messages in
-   the logs. These can be safely ingored, as it is just the transfers
-   mechanism enforcing an upper limit on the number of concurrent
-   transfers.
+at once will cause a lot of `{shutdown, max_concurrency}` messages in
+the logs. These can be safely ingored, as it is just the transfers
+mechanism enforcing an upper limit on the number of concurrent
+transfers.
 
-       ```erlang
-       [riak_kv_vnode:repair(P) || P <- Partitions].
-       ```
+    ```erlang
+    [riak_kv_vnode:repair(P) || P <- Partitions].
+    ```
 5. Once the command has been executed, detach from Riak using
-   `Control-C`.
+`Control-C`.
 
 ### Monitoring Repairs
 
@@ -354,7 +357,9 @@ riak_core_vnode_manager:kill_repairs(killed_by_user).
 Log entries will reflect that repairs were killed manually, and will
 look similar to:
 
-    2012-08-10 10:14:50.529 [warning] <0.154.0>@riak_core_vnode_manager:handle_cast:395 Killing all repairs: killed_by_user
+```
+2012-08-10 10:14:50.529 [warning] <0.154.0>@riak_core_vnode_manager:handle_cast:395 Killing all repairs: killed_by_user
+```
 
 Repairs on a node can also be killed remotely from another node in the
 cluster. From a `riak attach` session the below command can be used:

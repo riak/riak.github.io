@@ -72,7 +72,7 @@ var id = new RiakObjectId("animals", "dogs", "rufus");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, function (err, rslt) {
@@ -104,7 +104,7 @@ if err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
@@ -183,7 +183,7 @@ Debug.WriteLine(Encoding.UTF8.GetString(rslt.Value.Value));
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var fetchOptions = {
@@ -233,7 +233,7 @@ rsp := svc.Response
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus?r=3
@@ -256,7 +256,7 @@ The most common error code:
 :::note Note
 If you're using a Riak client instead of HTTP, these responses will vary a
 great deal, so make sure to check the documentation for your specific client.
-:::note
+:::
 
 ## Not Found
 
@@ -300,7 +300,7 @@ result.ResultCode == ResultCode.NotFound
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 rslt.isNotFound === true;
@@ -323,7 +323,7 @@ rsp.IsNotFound // Will be true
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 not found

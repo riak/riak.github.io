@@ -5,26 +5,15 @@ sidebar_position: 3
 ---
 
 [upgrade checklist]: ./checklist.md
-
 [upgrade version]: ./version.md
 
-[upgrade cluster]: ./cluster.md
-
-[upgrade search]: ./search.md
-
-## In This Section
-
-### [Production Checklist][upgrade checklist]
+## [Production Checklist][upgrade checklist]
 
 An overview of what to consider before upgrading Riak KV in a production environment.
 
-[Learn More >>][upgrade checklist]
-
-### [Upgrading to Riak KV 2.0][upgrade version]
+## [Upgrading to Riak KV 2.0][upgrade version]
 
 A tutorial on updating to Riak KV 2.0+
-
-[Learn More >>][upgrade version]
 
 ### [Upgrading a Cluster][upgrade cluster]
 

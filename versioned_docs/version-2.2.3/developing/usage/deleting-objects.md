@@ -71,7 +71,7 @@ var del_rslt = client.Delete(id);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // continuing from above example
@@ -116,7 +116,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XDELETE http://localhost:8098/types/quotes/buckets/oscar_wilde/keys/genius

@@ -148,13 +148,13 @@ function will be the annotation, if any is included, with the
 bucket-key, and the static data for the phase, as specified in the
 query.
 
-> **Tombstones**
->
-> Be aware that most Riak KV clusters will retain deleted objects for some
-> period of time (3 seconds by default), and the MapReduce framework does
-> not conceal these from submitted jobs. These tombstones can be
-> recognized and filtered out by looking for `X-Riak-Deleted`
-> in the object metadata with a value of `true`.
+:::note Tombstones
+Be aware that most Riak KV clusters will retain deleted objects for some
+period of time (3 seconds by default), and the MapReduce framework does
+not conceal these from submitted jobs. These tombstones can be
+recognized and filtered out by looking for `X-Riak-Deleted`
+in the object metadata with a value of `true`.
+:::
 
 ### Reduce Phase
 
@@ -166,7 +166,7 @@ The most important thing to understand is that the function defining the
 reduce phase may be evaluated multiple times, and the input of later
 evaluations will include the output of earlier evaluations.
 
-For example, a reduce phase may implement the [set-union](http://en.wikipedia.org/wiki/Union_(set_theory)#Definition)
+For example, a reduce phase may implement the [`set-union`](http://en.wikipedia.org/wiki/Union_(set_theory)#Definition)
 function. In that case, the first set of inputs might be `[1,2,2,3]`,
 and the output would be `[1,2,3]`. When the phase receives more inputs,
 say `[3,4,5]`, the function will be called with the concatenation of the
@@ -218,9 +218,8 @@ get_keys(Value,_Keydata,_Arg) ->
 Save this file as `mr_example.erl` and proceed to compiling the module.
 
 :::note Note on the Erlang Compiler
-
 You must use the Erlang compiler (`erlc`) associated with the
-Riak installation or the version of Erlang used when compiling Riak from
+Riak KV installation or the version of Erlang used when compiling Riak KV from
 source.
 :::
 
@@ -246,7 +245,7 @@ curl -XPOST localhost:8098/mapred \
 
 The result should be a JSON map of bucket and key names expressed as key/value pairs.
 
-:::note 
+:::note
 Be sure to install the MapReduce function as described above on all of the
 nodes in your cluster to ensure proper operation.
 :::
@@ -265,7 +264,6 @@ Those arguments are:
    in Erlang is defined and manipulated by the `riak_object` module.
    In Javascript, a Riak object looks like this:
 
-```javascript
        {
         "bucket":BucketAsString,
         "key":KeyAsString,
@@ -283,8 +281,6 @@ Those arguments are:
                   ...other metadata/data values (siblings)...
                  ]
        }
- ```
-
 2. *KeyData* : key data that was submitted with the inputs to the query or phase.
 3. *Arg* : a static argument for the entire phase that was submitted with the query.
 
@@ -362,14 +358,14 @@ Riak supports describing MapReduce queries in Erlang syntax through the
 Protocol Buffers API. This section demonstrates how to do so using the
 Erlang client.
 
-:::note Distributing Erlang MapReduce Code
-Any modules and functions you use in your Erlang MapReduce calls must be
-available on all nodes in the cluster. You can add them in Erlang
-applications by specifying the `-pz` option in
-[vm.args][config reference] or by adding the path to the
-`add_paths` setting in your `app.config`
-configuration file.
-:::
+> **Distributing Erlang MapReduce Code**
+>
+> Any modules and functions you use in your Erlang MapReduce calls must be
+> available on all nodes in the cluster. You can add them in Erlang
+> applications by specifying the `-pz` option in
+> [vm.args][config reference] or by adding the path to the
+> `add_paths` setting in your `app.config`
+> configuration file.
 
 ### Erlang Example
 
@@ -415,12 +411,12 @@ many occurrences of groceries.
 9> L = dict:to_list(R).
 ```
 
-:::note **Riak Object Representations**
-Note how the `riak_object` module is used in the MapReduce
-function but the `riakc_obj` module is used on the client.
-Riak objects are represented differently internally to the cluster than
-they are externally.
-:::
+> **Riak Object Representations**
+>
+> Note how the `riak_object` module is used in the MapReduce
+> function but the `riakc_obj` module is used on the client.
+> Riak objects are represented differently internally to the cluster than
+> they are externally.
 
 Given the lists of groceries we created, the sequence of commands above
 would result in L being bound to `[{"bread",1},{"eggs",1},{"bacon",2}]`.
@@ -705,12 +701,6 @@ may end in the middle of a string representing a JSON object, so you
 will need to decode and parse your responses appropriately in the
 client.
 
-### Streaming via the Erlang API
-
-You can use streaming with Erlang via the Riak local client or the
-Erlang Protocol Buffers API.  In either case, you will provide the call
-to `mapred_stream` with a `Pid` that will receive the streaming results.
-
 #### Example
 
 ```erlang
@@ -766,7 +756,6 @@ loop() ->
       io:format("Something bad happened! ~p~n", [Reason])
   end.
 ```
-
 ## Troubleshooting MapReduce, illustrated
 
 The most important advice: when developing Erlang MapReduce against

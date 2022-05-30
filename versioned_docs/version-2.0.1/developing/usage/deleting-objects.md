@@ -8,10 +8,11 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 The delete command follows a predictable pattern and looks like this:
 
-    DELETE /types/TYPE/buckets/BUCKET/keys/KEY
+```
+DELETE /types/TYPE/buckets/BUCKET/keys/KEY
+```
 
 The normal HTTP response codes for `DELETE` operations are `204 No
 Content` and `404 Not Found`. 404 responses are *normal*, in the sense
@@ -22,7 +23,6 @@ Let's try to delete the `genius` key from the `oscar_wilde` bucket
 (which bears the type `quotes`):
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -32,7 +32,6 @@ client.execute(delete);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -41,7 +40,6 @@ bucket.delete('genius')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -52,7 +50,6 @@ bucket.delete('genius')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -61,7 +58,6 @@ bucket.delete('genius')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -75,7 +71,6 @@ var del_rslt = client.Delete(id);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -92,7 +87,6 @@ client.deleteValue(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -100,10 +94,9 @@ riakc_pb_socket:delete(Pid, {<<"quotes">>, <<"oscar_wilde">>}, <<"genius">>)
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 // Continuing from above example
 cmd, err = riak.NewDeleteValueCommandBuilder().
     WithBucketType("users").
@@ -123,7 +116,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -131,7 +123,6 @@ curl -XDELETE http://localhost:8098/types/quotes/buckets/oscar_wilde/keys/genius
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Client Library Examples
@@ -145,7 +136,6 @@ with the official Riak clients for Ruby, Java, and Erlang, as in the
 example below:
 
 <Tabs>
-
 <TabItem label="Ruby" value="ruby" default>
 
 ```ruby
@@ -155,7 +145,6 @@ deleted_object.vclock
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -164,7 +153,6 @@ deleted_object.vclock
 ```
 
 </TabItem>
-
 <TabItem label="Java" value="java">
 
 ```java
@@ -179,7 +167,6 @@ System.out.println(response.getVclock().asString());
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -193,7 +180,6 @@ System.out.println(response.getVclock().asString());
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -206,5 +192,4 @@ echo $response->getVclock(); // a85hYGBgzGDKBVI8m9WOeb835ZRhYCg1zGBKZM5jZdhnceAc
 ```
 
 </TabItem>
-
 </Tabs>

@@ -7,24 +7,21 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [wiki crdt]: https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type#Others
-
 [concept crdt]: ../../learn/concepts/crdts.md
-
 [ops bucket type]: ../../using/cluster-operations/bucket-types.md
 
 Riak KV has Riak-specific data types based on [convergent replicated data types (CRDTs)][wiki crdt]. While Riak KV was built as a data-agnostic key/value store, Riak data types enable you to use Riak KV as a data-aware system and perform transactions on 5 CRDT-inspired data types:
 
-* [Flags](./maps.md#flags)
-* [Registers](./maps.md#registers)
-* [Counters](./counters.md)
-* [Sets](./sets.md)
-* [Maps](./maps.md)
+- [Flags](./maps.md#flags)
+- [Registers](./maps.md#registers)
+- [Counters](./counters.md)
+- [Sets](./sets.md)
+- [Maps](./maps.md)
 
 Riak KV also has 1 context-free data type, that has similar usage but does not require contexts.
 
-* [HyperLogLogs](./hyperloglogs) (abbreviated `hll` in many places)
+- [HyperLogLogs](./hyperloglogs.md) (abbreviated `hll` in many places)
 
 Counters, sets, maps, and hyperloglogs can be used as bucket-level data types or types that you interact with directly. Flags and registers must be [embedded in maps](./maps.md).
 
@@ -40,10 +37,9 @@ The following section explains how to set up a bucket that uses Riak data types.
 
 ### Creating a Bucket with a Riak Data Type
 
-First create a [bucket type][ops bucket type] that sets the `datatype` bucket parameter to either `counter`, `map`, or `set`.
+First create a [bucket type][ops bucket type] that sets the `datatype` bucket parameter to either `counter`, `map`, `set`, or `hll`.
 
-The following would create a separate bucket type for each of the three
-bucket-level data types:
+The following would create a separate bucket type for each of the four bucket-level data types:
 
 ```bash
 riak-admin bucket-type create maps '{"props":{"datatype":"map"}}'
@@ -52,11 +48,11 @@ riak-admin bucket-type create counters '{"props":{"datatype":"counter"}}'
 riak-admin bucket-type create hlls  '{"props":{"datatype":"hll"}}'
 ```
 
-> **Note**
->
-> The names `maps`, `sets`, `counters`, and `hlls' are not reserved
-> terms. You are free to name bucket types whatever you like, with
-> the exception of `default`.
+:::note
+The names `maps`, `sets`, `counters`, and `hlls` are not reserved
+terms. You are free to name bucket types whatever you like, with
+the exception of `default`.
+:::
 
 ### Confirm Bucket configuration
 
@@ -72,7 +68,9 @@ This will return a list of bucket properties and their associated values
 in the form of `property: value`. If our `maps` bucket type has been set
 properly, we should see the following pair in our console output:
 
-    datatype: map
+```
+datatype: map
+```
 
 ### Activate Bucket type
 
@@ -93,8 +91,8 @@ See the [Usage Examples](#usage-examples) section for further information on usi
 
 In order for Riak data types to work the bucket should have the following bucket properties:
 
-* `allow_mult = true`
-* `last_write_wins = false`
+- `allow_mult = true`
+- `last_write_wins = false`
 
 These settings are set by default and should not be changed.
 
@@ -104,14 +102,13 @@ Data type context is similar to [causal context](../../learn/concepts/causal-con
 
 If no context is given when attempting a remove or remove-like operation, the operation may fail (removing a field that is not present) or succeed and remove more than intended (removing updates unseen by the client).
 
-> **Note**
->
-> The counter data type does not use context; Riak KV will return an empty value when the context is requested from a counter.
+:::note
+The counter data type does not use context; Riak KV will return an empty value when the context is requested from a counter.
+:::
 
 In the example below we'll fetch the context [from a user data map created for Ahmed](./maps.md#create-a-map):
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -126,7 +123,6 @@ System.out.prinntln(ctx.getValue().toString())
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -138,7 +134,6 @@ ahmed_map.instance_variable_get(:@context)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -152,7 +147,6 @@ echo $map->getContext(); // g2wAAAACaAJtAAAACLQFHUkv4m2IYQdoAm0AAAAIxVKxCy5pjMdh
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -164,7 +158,6 @@ ahmed_map.context
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -178,7 +171,6 @@ Console.WriteLine(format: "Context: {0}", args: Convert.ToBase64String(result.Co
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -201,7 +193,6 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -211,16 +202,15 @@ client.fetchMap(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 </Tabs>
 
 > **Context with the Ruby, Python, and Erlang clients**
 >
 > In the Ruby, Python, and Erlang clients, you will not need to manually
-> handle context when making data type updates. The clients will do it all
-> for you. The one exception amongst the official clients is the Java
-> client. We'll explain how to use data type contexts with the Java client
-> directly below.
+handle context when making data type updates. The clients will do it all
+for you. The one exception amongst the official clients is the Java
+client. We'll explain how to use data type contexts with the Java client
+directly below.
 
 ### Context with the Java and PHP Clients
 
@@ -237,7 +227,6 @@ how to fetch a data type's context and then pass it back to Riak. More
 specifically, we'll remove the `paid_account` flag from the map:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -256,7 +245,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -278,17 +266,16 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Usage Examples
 
-* [Flags](./maps.md#flags)
-* [Registers](./maps.md#registers)
-* [Counters](./counters.md)
-* [Sets](./sets.md)
-* [Maps](./maps.md)
-* [Hyperloglogs](./hyperloglogs.md) 
+- [Flags](./maps.md#flags)
+- [Registers](./maps.md#registers)
+- [Counters](./counters.md)
+- [Sets](./sets.md)
+- [Maps](./maps.md)
+- [Hyperloglogs](./hyperloglogs.md)
 
 The pages listed above detail using Riak data types at the application level using Basho's [officially supported Riak KV clients](../client-libraries.md). For more on getting started with client libraries check out the [Developing with Riak KV: Getting Started](../getting-started/index.md) section.
 

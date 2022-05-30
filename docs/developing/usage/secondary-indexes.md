@@ -195,7 +195,7 @@ var rslt = client.Put(obj);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -267,7 +267,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST localhost:8098/types/default/buckets/users/keys/john_smith \
@@ -360,7 +360,7 @@ foreach (var keyTerm in idxRslt.IndexKeyTerms)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var query_keys = [];
@@ -423,7 +423,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/buckets/users/index/twitter_bin/jsmith123
@@ -470,7 +470,7 @@ john_smith
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 john_smith
@@ -492,7 +492,7 @@ john_smith
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 {
@@ -734,7 +734,7 @@ client.Put(veronica);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function store_cb(err, rslt, async_cb) {
@@ -936,7 +936,7 @@ wg.Wait()
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -v -XPUT localhost:8098/types/indexes/buckets/people/keys/larry \
@@ -1045,7 +1045,7 @@ riak.RiakError: "Riak 2i fields must end with either '_bin' or '_int'."
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var cmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1124,7 +1124,7 @@ error: query_cb err: 'Error processing incoming message: error:function_clause:[
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT 127.0.0.1:8098/types/indexes/buckets/people/keys/larry \
@@ -1218,7 +1218,7 @@ The value could not be parsed.
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -1295,7 +1295,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT 127.0.0.1:8098/types/indexes/buckets/people/keys/larry \
@@ -1374,7 +1374,7 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1415,7 +1415,7 @@ if err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/people/index/field1_bin/val1
@@ -1476,7 +1476,7 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var intIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1517,7 +1517,7 @@ if err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/people/index/field2_int/1001
@@ -1608,7 +1608,7 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1649,7 +1649,7 @@ if err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/people/index/field1_bin/val2/val4
@@ -1709,7 +1709,7 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var intIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1747,7 +1747,7 @@ cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/people/index/field2_int/1002/1004
@@ -1843,7 +1843,7 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -1889,7 +1889,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/rock/rocl?return_terms=true
@@ -1981,7 +1981,7 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function do_query(continuation) {
@@ -2088,7 +2088,7 @@ func queryingPagination(cluster *riak.Cluster) error {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/ri/ru?max_results=5&return_terms=true
@@ -2184,7 +2184,7 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // See above example
@@ -2215,7 +2215,7 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/ri/ru?continuation=g2gCbQAAAAdyaXBqYWtlbQAAABIzNDkyMjA2ODcwNTcxMjk0NzM=&max_results=5&return_terms=true
@@ -2323,7 +2323,7 @@ foreach (var key in indexResult.IndexKeyTerms)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var binIdxCmd = new Riak.Commands.KV.SecondaryIndexQuery.Builder()
@@ -2372,7 +2372,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl localhost:8098/types/indexes/buckets/people/index/myindex_bin/foo?stream=true

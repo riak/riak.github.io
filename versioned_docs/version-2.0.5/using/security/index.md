@@ -6,28 +6,20 @@ id: managing_security
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [config reference search]: ../../configuring/reference.md#search
-
 [config search enabling]: ../../configuring/search.md#enabling-riak-search
-
 [config v3 ssl]: ../../configuring/v3-multi-datacenter/ssl.md
-
 [JMX]: http://www.oracle.com/technetwork/java/javase/tech/javamanagement-140525.html
-
 [security basics]: ../../using/security/basics.md
-
 [security managing]: ../../using/security/managing-sources.md
-
 [Solr]: http://lucene.apache.org/solr/
-
 [usage search]: ../../developing/usage/search.md
 
 > **Internal security**
 >
 > This document covers network-level security. For documentation on the
-> authentication and authorization features introduced in Riak 2.0, see
-> [Authentication and Authorization][security basics] and [Managing Security Sources][security managing]
+authentication and authorization features introduced in Riak 2.0, see
+[Authentication and Authorization][security basics] and [Managing Security Sources][security managing]
 
 This article discusses standard configurations and port settings to use
 when providing network security for a Riak Cluster. There are two
@@ -82,7 +74,7 @@ erlang.distribution.port_range.maximum = 7999
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 { kernel, [
             {inet_dist_listen_min, 6000},
             {inet_dist_listen_max, 7999}
@@ -112,10 +104,10 @@ another on the following ports:
 Riak clients must be able to contact at least one machine in a Riak
 cluster on the following TCP ports:
 
-| Protocol                                                           | Port          |
-|:-------------------------------------------------------------------|:--------------|
-| [HTTP](../../developing/api/http/index.md)                         | TCP port 8098 |
-| [Protocol Buffers](../../developing/api/protocol-buffers/index.md) | TCP port 8087 |
+| Protocol                                                             | Port          |
+|:---------------------------------------------------------------------|:--------------|
+| <a href="../../developing/api/http">HTTP</a>                         | TCP port 8098 |
+| <a href="../../developing/api/protocol-buffers">Protocol Buffers</a> | TCP port 8087 |
 
 ### Riak Search Ports
 

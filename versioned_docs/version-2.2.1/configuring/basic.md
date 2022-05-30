@@ -5,6 +5,9 @@ slug: basic
 sidebar_position: 0
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config reference]: ../configuring/reference.md
 [use running cluster]: ../using/running-a-cluster.md
 [use admin riak-admin#member-status]: ../using/admin/riak-admin.md#member-status
@@ -182,10 +185,17 @@ configured dynamically [using bucket types][usage bucket types], but default val
 
 Below is an example of setting `last_write_wins` to `true` and `r` to 3.
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 ```riakconf
 buckets.default.last_write_wins = true
 buckets.default.r = 3
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {default_bucket_props, [
@@ -194,6 +204,10 @@ buckets.default.r = 3
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 For more on bucket properties, we recommend reviewing our docs on
 [buckets][concept buckets], [bucket types][usage bucket types], [replication properties][apps replication properties], and [eventual consistency][concept eventual consistency], as well as Basho's five-part blog series, "Understanding Riak's Configurable Behaviors."

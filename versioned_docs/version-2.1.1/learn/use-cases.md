@@ -5,32 +5,11 @@ slug: use-cases
 sidebar_position: 1
 ---
 
-[dev data model articles etc]: ../learn/use-cases.md#articles-blog-posts-and-other-content
-
-[dev data model log data]: ../learn/use-cases.md#log-data
-
-[dev data model sensor data]: ../learn/use-cases.md#sensor-data
-
-[dev data model serve advertisements]: ../learn/use-cases.md#serving-advertisements
-
-[dev data model sess storage]: ../learn/use-cases.md#session-storage
-
-[dev data model user acct]: ../learn/use-cases.md#user-accounts
-
-[dev data model user events]: ../learn/use-cases.md#user-events-and-timelines
-
-[dev data model user settings]: ../learn/use-cases.md#user-settings-and-preferences
-
 [dev data types]: ../developing/data-types/index.md
-
 [plan backend bitcask]: ../setup/planning/backend/bitcask.md
-
 [replication properties]: ../developing/app-guide/replication-properties.md
-
 [usage mapreduce]: ../developing/usage/mapreduce.md
-
 [usage search]: ../developing/usage/search.md
-
 [usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 
 Riak is a flexible data storage technology capable of addressing a wide variety
@@ -49,23 +28,20 @@ more. This guide is intended to be illustrative only.
 
 ## High Read/Write, Simple Applications
 
-The following are examples of Riak use cases that require high read/write
-performance without necessarily utilizing complex data structures:
-
-* [Session Storage][dev data model sess storage]
-* [Serving Advertisements][dev data model serve advertisements]
-* [Log Data][dev data model log data]
-* [Sensor Data][dev data model sensor data]
+* Session Storage
+* Serving Advertisements
+* Log Data
+* Sensor Data
 
 ## Content Management, Social Applications
 
 The following application types require more subtle relationships between
 objects, e.g. one-to-many and many-to-many relationships.
 
-* [User Accounts][dev data model user acct]
-* [User Settings and Preferences][dev data model user settings]
-* [User Events and Timelines][dev data model user events]
-* [Articles, Blog Posts, and Other Content][dev data model articles etc]
+* User Accounts
+* User Settings and Preferences
+* User Events and Timelines
+* Articles, Blog Posts, and Other Content
 
 ## Session Storage
 
@@ -90,9 +66,9 @@ using multiple keys (e.g. a UUID or email address),
 
 ### Session Storage Community Examples
 
-[Riak at OpenX](https://player.vimeo.com/video/42744689")
+#### Scaling Riak at Kiip
 
-In this talk, recorded at the May 2012 San Francisco Riak Meetup, Armon
+In this [talk](https://player.vimeo.com/video/42744689), recorded at the May 2012 San Francisco Riak Meetup, Armon
 Dadgar and Mitchell Hashimoto of Kiip give an overview of how and why they
 are using Riak in production, and the road they took to get there. One of
 the first subsystems they switched over to Riak was Sessions. You can also
@@ -117,6 +93,14 @@ than an R value equal to the number of replicas (i.e. R=N). This is ideal for
 advertising traffic, which primarily involves serving reads.
 
 ### Serving Advertisements Community Examples
+
+#### Riak at OpenX
+
+Los Angeles-based OpenX will serves trillions of ads a year. In this [talk](http://player.vimeo.com/video/49775483),
+Anthony Molinaro, Engineer at OpenX, goes in depth on their architecture,
+how they've built their system, and why/how they're switching to Riak for
+data storage after using databases like CouchDB and Cassandra in
+production.
 
 ## Log Data
 
@@ -209,6 +193,11 @@ ahead and either set up additional secondary indexes or consider using
 
 [Riak at Braintree](https://player.vimeo.com/video/47535803)
 
+Ben Mills, a developer at Braintree, discusses how their backend team came
+to find and begin to integrate Riak into their production environment.
+They also cover their model and repository framework for Ruby, Curator.
+Check out more details and slides on the [Riak blog](http://basho.com/posts/business/riak-at-braintree/)
+
 ## User Settings and Preferences
 
 For user account-related data that is simple and frequently read but rarely
@@ -272,21 +261,6 @@ won't "know" about the object unless it is indexed
 [using Riak Search][usage search] or
 [using secondary indexes][usage secondary-indexes].
 
-## Articles, Blog Posts, and Other Content
-
-The simplest way to model blog posts, articles, or similar content is to use a
-bucket in Riak with some unique attribute for logical division of content, such
-as `blogs` or `articles`. Keys could be constructed out of unique identifiers
-for posts, perhaps the title of each article, a combination of the title and
-data/time, an integer that can be used as part of a URL string, etc.
-
-In Riak, you can store content of any kind, from HTML files to plain text to
-JSON or XML or another document type entirely. Keep in mind that data in Riak is
-opaque, with the exception of [Riak Data Types][dev data types], and so Riak
-won't "know" about the object unless it is indexed
-[using Riak Search][usage search] or
-[using secondary indexes][usage secondary-indexes].
-
 ### Articles et al Complex Case
 
 Setting up a data model for content becomes more complex based on the querying
@@ -305,7 +279,7 @@ to call from the posts and comments buckets to assemble the view.
 Other possible cases may involve performing operations on content beyond
 key/value pairs. [Riak Search][usage search] is recommended for use cases
 involving full-text search. For lighter-weight querying,
-[using secondary indexes][usage secondary-indexes] (2i) enables you to add
+[using secondary indexes][usage secondary-indexes] \(2i) enables you to add
 metadata to objects to either query for exact matches or to perform range
 queries. 2i also enables you to tag posts with dates, timestamps, topic areas,
 or other pieces of information useful for later retrieval.

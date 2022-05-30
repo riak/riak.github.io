@@ -36,17 +36,19 @@ modifying the connection info directly within the `setUpCluster()` method.
 If you execute the `TasteOfRiak.java` file within your IDE, you should
 see the following:
 
-    Basic object created
-    Location object created for quote object
-    StoreValue operation created
-    Client object successfully created
-    Object storage operation successfully completed
-    Success! The object we created and the object we fetched have the same value
-    Quote object successfully deleted
-    Book object created
-    Moby Dick information now stored in Riak
-    Book object successfully fetched
-    Success! All of our tests check out
+```
+Basic object created
+Location object created for quote object
+StoreValue operation created
+Client object successfully created
+Object storage operation successfully completed
+Success! The object we created and the object we fetched have the same value
+Quote object successfully deleted
+Book object created
+Moby Dick information now stored in Riak
+Book object successfully fetched
+Success! All of our tests check out
+```
 
 Since Java doesn’t have a REPL environment, let's walk through the code
 to see what it actually did at each step.

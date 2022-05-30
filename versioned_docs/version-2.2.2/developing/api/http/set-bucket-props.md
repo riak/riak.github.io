@@ -45,7 +45,7 @@ Make sure you use the proper types for attributes like **n_val** and
 **allow_mult**. If you use strings instead of integers and booleans
 respectively, you may see some odd errors in your logs, saying something like
 `"{badarith,[{riak_kv_util,normalize_rw_value,2},]}"`.
-:::note
+:::
 
 ## Response
 

@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_go_object
-slug: object-modeling
+slug: object-modeling 
 sidebar_position: 2
 ---
 
@@ -12,7 +12,7 @@ You can download the code for this chapter at
 
 To get started, let's create the models that we'll be using:
 
-```model.go
+```go
 package models
 
 type Model interface {
@@ -31,7 +31,7 @@ func (m *modelImpl) SetId(id string) {
 
 Our user model:
 
-```user.go
+```go
 package models
 
 type User struct {
@@ -58,7 +58,7 @@ func (u *User) GetId() string {
 
 And our message model:
 
-```msg.go
+```go
 package models
 
 import (
@@ -94,7 +94,7 @@ func (m *Msg) GetId() string {
 
 Our timeline model:
 
-```timeline.go
+```go
 package models
 
 type Timeline struct {
@@ -147,8 +147,9 @@ Natural keys are a great fit for key/value systems because both humans
 and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
+
 | Bucket      | Key Pattern                | Example Key                                                          |
-| :---------- | :------------------------- | :------------------------------------------------------------------- |
+|:------------|:---------------------------|:---------------------------------------------------------------------|
 | `Users`     | `<user_name>`              | `joeuser`                                                            |
 | `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13.223556Z`                                |
 | `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
@@ -182,7 +183,7 @@ Now that we've figured out our object model, let's write some modules to
 act as repositories that will help us create and work with these records
 in Riak:
 
-```repository.go
+```go
 package repositories
 
 import (
@@ -310,7 +311,7 @@ func buildModel(m models.Model, obj *riak.Object) (models.Model, error) {
 
 <br/>
 
-```user-repository.go
+```go
 package repositories
 
 import (
@@ -347,7 +348,7 @@ func (u *UserRepository) getModel() models.Model {
 
 <br/>
 
-```msg-repository.go
+```go
 package repositories
 
 import (
@@ -384,7 +385,7 @@ func (m *MsgRepository) getModel() models.Model {
 
 <br/>
 
-```timeline-repository.go
+```go
 package repositories
 
 import (
@@ -421,7 +422,7 @@ func (t *TimelineRepository) getModel() models.Model {
 
 Finally, let's test them:
 
-```golang
+```go
 package main
 
 import (
@@ -532,3 +533,5 @@ So to recap, in this chapter we learned:
 
 * How to choose bucket names.
 * How to choose natural keys based on how we want to partition our data.
+
+

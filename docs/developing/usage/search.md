@@ -31,7 +31,7 @@ of divergence between the data in the Riak backends and the Solr indexes
 and how that can impact your application. More information about how 
 Riak search uses AAE is in the 
 [Riak search reference](../../using/reference/search.md#active-anti-entropy-aae).
-:::note
+:::
 
 Riak Search must first be configured with a Solr schema so that Solr
 knows how to index value fields. If you don't define one, you're
@@ -56,7 +56,7 @@ Note that index names may only be
 standard punctuation, digits, and word characters). This may change in
 the future to allow full [Unicode](http://en.wikipedia.org/wiki/Unicode)
 support.
-:::note
+:::
 
 All `curl` examples in this document assume that you have set an
 environment variable named `RIAK_HOST`, which points to a Riak base URL,
@@ -111,7 +111,7 @@ var rslt = client.PutSearchIndex(idx);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var storeIndex_cb = function (err, rslt) {
@@ -154,7 +154,7 @@ err = cluster.Execute(cmd)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 export RIAK_HOST="http://localhost:8098"
@@ -214,7 +214,7 @@ var rslt = client.PutSearchIndex(idx);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var store = new Riak.Commands.YZ.StoreIndex.Builder()
@@ -250,7 +250,7 @@ err = cluster.Execute(cmd)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/famous \
@@ -366,7 +366,7 @@ var rslt = client.SetBucketProperties("cats", properties);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var bucketProps_cb = function (err, rslt) {
@@ -409,7 +409,7 @@ err = cluster.Execute(cmd)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/buckets/cats/props \
@@ -595,7 +595,7 @@ var rslts = client.Put(new[] {
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function store_cb(err, rslt, async_cb) {
@@ -714,7 +714,7 @@ wg.Wait()
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/types/animals/buckets/cats/keys/liono \
@@ -909,7 +909,7 @@ foreach (RiakSearchResultDocument doc in searchResult.Documents)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -966,7 +966,7 @@ if json, jerr := json.MarshalIndent(sc.Response.Docs, "", "  "); jerr != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=name_s:Lion*" | jsonpp
@@ -1097,7 +1097,7 @@ Debug.WriteLine(Encoding.UTF8.GetString(obj.Value));
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var doc = rslt.docs.pop();
@@ -1151,7 +1151,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl $RIAK_HOST/types/animals/buckets/cats/keys/liono
@@ -1239,7 +1239,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var search = new Riak.Commands.YZ.Search.Builder()
@@ -1275,7 +1275,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=age_i:%5B30%20TO%20*%5D" | jsonpp
@@ -1341,7 +1341,7 @@ var search = new RiakSearchRequest
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var search = new Riak.Commands.YZ.Search.Builder()
@@ -1377,7 +1377,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/famous?wt=json&q=leader_b:true%20AND%20age_i:%5B25%20TO%20*%5D" | jsonpp
@@ -1432,7 +1432,7 @@ var rslt = client.DeleteSearchIndex("famous");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function delete_cb(err, rslt) {
@@ -1491,7 +1491,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XDELETE $RIAK_HOST/search/index/famous
@@ -1600,7 +1600,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var rowsPerPage = 2;
@@ -1653,7 +1653,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 ROWS_PER_PAGE=2

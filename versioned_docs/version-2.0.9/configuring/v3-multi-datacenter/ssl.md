@@ -1,7 +1,7 @@
 ---
 title: "SSL"
 id: configuring_v3_replication_ssl
-slug: ssl
+slug: ssl 
 sidebar_position: 2
 ---
 
@@ -12,22 +12,22 @@ sidebar_position: 2
 Riak Multi-Datacenter (MDC) Replication SSL consists of the following
 items:
 
-* Encryption of replication data
-* SSL certificate chain validation
-* SSL common name whitelisting support
+  * Encryption of replication data
+  * SSL certificate chain validation
+  * SSL common name whitelisting support
 
 > **Note on cross-internet traffic**
 >
 > As an alternative to Riak Enterprise's built-in SSL capabilities, we
-> recommend using [stunnel](https://www.stunnel.org/index.html) or a
-> virtual private network (VPM) for inter-datacenter connections.
+recommend using [stunnel](https://www.stunnel.org/index.html) or a
+virtual private network (VPM) for inter-datacenter connections.
 
 ## SSL Configuration
 
 To configure SSL, you will need to include the following 4 settings in
 the `riak-core` section of [`advanced.confg`][config reference#advanced.config]:
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {ssl_enabled, true},
@@ -36,6 +36,7 @@ the `riak-core` section of [`advanced.confg`][config reference#advanced.config]:
              {cacertdir, "/full/path/to/cacertsdir"}
              % ...
             ]}
+
 ```
 
 The `cacertsdir` is a directory containing all the CA certificates
@@ -72,6 +73,16 @@ domain name that uniquely identifies a single network device, if the CNs of
 the local and peer certificates are the same, the nodes will *NOT* be allowed
 to connect.
 
+An exception is made when the CN begins with `*`, on the assumption that a
+pool of nodes might all legitimately use a certificate with a CN like
+`*.dc5.example.com`. In this specific case, peers with matching CNs are
+allowed to connect, so long as an explicit or implicit ACL allows it.
+
+An exception is made when the CN begins with `*`, on the assumption that a
+pool of nodes might all legitimately use a certificate with a CN like
+`*.dc5.example.com`. In this specific case, peers with matching CNs are
+allowed to connect, so long as an explicit or implicit ACL allows it.
+
 This evaluation supercedes ACL checks, so it cannot be overridden with any
 setting of the `peer_common_name_acl` property.
 :::
@@ -81,34 +92,37 @@ setting of the `peer_common_name_acl` property.
 The following example will only allow connections from peer certificate
 names like `db.bashosamplecorp.com` and `security.bashosamplecorp.com`:
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {peer_common_name_acl, ["db.bashosamplecorp.com", "security.bashosamplecorp.com"]}
              % ...
             ]}
+
 ```
 
 The following example will allow connections from peer certificate names
 like `foo.bashosamplecorp.com` or `db.bashosamplecorp.com`, but not a
 peer certificate name like `db.backup.bashosamplecorp.com`.
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {peer_common_name_acl, ["*.bashosamplecorp.com"]}
              % ...
             ]}
+
 ```
 
 This example will match any peer certificate name (and is the default):
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {peer_common_name_acl, "*"}
              % ...
             ]}
+
 ```
 
 ## SSL CA Validation
@@ -116,12 +130,13 @@ This example will match any peer certificate name (and is the default):
 You can adjust the way CA certificates are validated by adding the
 following to the `riak_repl` section of `advanced.config`:
 
-```advancedconfig
+```erlang
 {riak_core, [
              % ...
              {ssl_depth, 3} % Sets the depth to 3
              % ...
             ]}
+
 ```
 
 **Note**: `ssl_depth` takes an integer parameter.
@@ -132,12 +147,12 @@ intermediate certificates must not be self signed.
 
 The following example depths illustrate this:
 
-* a depth of `0` indicates that the certificate must be signed
-  directly by a root certificate authority (CA)
-* a depth of `1` indicates that the certificate may be signed by at
-  most 1 intermediate CA's, followed by a root CA
-* a depth of `2` indicates that the certificate may be signed by at
-  most 2 intermediate CA's, followed by a root CA
+  * a depth of `0` indicates that the certificate must be signed
+    directly by a root certificate authority (CA)
+  * a depth of `1` indicates that the certificate may be signed by at
+    most 1 intermediate CA's, followed by a root CA
+  * a depth of `2` indicates that the certificate may be signed by at
+    most 2 intermediate CA's, followed by a root CA
 
 ## Compatibility
 
@@ -148,6 +163,5 @@ If SSL is enabled and a connection is made to a Riak Enterprise 1.0 or
 
 ### Self-Signed Certificates
 
-Read how to [generate your own CA and
-keys](http://www.debian-administration.org/articles/618). Ensure that
-you remove the password protection from the keys you generate.
+Read how to [generate your own CA and keys](http://www.debian-administration.org/articles/618). 
+Ensure that you remove the password protection from the keys you generate.

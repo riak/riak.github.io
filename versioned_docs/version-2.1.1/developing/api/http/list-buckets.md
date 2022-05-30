@@ -26,11 +26,11 @@ Required query parameter:
 
 Normal status codes:
 
-* 200 OK
+* `200 OK`
 
 Important headers:
 
-* Content-Type - application/json
+* `Content-Type - application/json`
 
 The JSON object in the response will contain a single entry, "buckets", which
 will be an array of bucket names.

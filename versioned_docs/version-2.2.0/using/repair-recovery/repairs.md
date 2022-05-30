@@ -86,7 +86,7 @@ If there are compaction errors in any of your vnodes, those will be listed in th
 
 :::note
 While corruption on one vnode is not uncommon, corruption in several vnodes very likely means that there is a deeper problem that needs to be address, perhaps on the OS or hardware level.
-:::note
+:::
 
 
 ## Healing Corrupted LevelDBs
@@ -117,7 +117,7 @@ riak stop
 
 :::note Erlang version
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
-:::note
+:::
 
 3\. Once in the shell, run the following command:
 
@@ -176,7 +176,7 @@ riak stop
 
 :::note Erlang version
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
-:::note
+:::
 
 4\. Once in the shell, run the following command:
 
@@ -227,7 +227,7 @@ repair data will depend mainly on your use case and on whether [active anti-entr
 
 You will need to run a repair if the following are both true:
 
-* Active anti-entropy is [disabled](../../learn/concepts/active-anti-entropy.md#disabling-active-anti-entropy)
+* Active anti-entropy is [disabled](../../learn/concepts/active-anti-entropy.md)
 * You have both non-expiring data and keys that are not accessed
   frequently (which means that they are not likely to be subject to
   [read repair](../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy))
@@ -235,7 +235,7 @@ You will need to run a repair if the following are both true:
 You will most likely not need to run a repair operation if _any_ of the
 following is true:
 
-* Active anti-entropy is [enabled](../../learn/concepts/active-anti-entropy.md#enabling-active-anti-entropy)
+* Active anti-entropy is [enabled](../../learn/concepts/active-anti-entropy.md)
 * Your entire key set is accessed frequently, allowing passive read
   repair to repair the partitions
 * Your data expires frequently

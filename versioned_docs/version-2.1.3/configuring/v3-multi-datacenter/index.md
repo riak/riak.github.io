@@ -14,7 +14,7 @@ sidebar_position: 9
 
 The configuration for Multi-Datacenter (MDC) Replication is kept in
 both the `riak_core` and `riak_repl` sections of the `app.config`
-configuration file. 
+configuration file.
 
 If you are using Riak Enterprise version 2.0, configuration is managed
 using the `advanced.config` files on
@@ -119,7 +119,7 @@ the connection really has been compromised.
    ROOT-CA directly; if `1` the path can be PEER, CA, ROOT-CA; if depth is `2`
    then PEER, CA, CA, ROOT-CA and so on.
 
-[^2] If the ACL is specified and not the special value `*`,
+[^2] <a name="f2"></a>If the ACL is specified and not the special value `*`,
    peers presenting certificates not matching any of the patterns will not be
    allowed to connect.
    If no ACLs are configured, no checks on the common name are done, except

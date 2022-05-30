@@ -1,7 +1,7 @@
 ---
 title: "Auth Request"
 id: pbc_auth_request
-slug: auth-req
+slug: auth-req 
 sidebar_position: 26
 ---
 

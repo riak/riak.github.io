@@ -4,6 +4,9 @@ id: cluster_operations_aae
 sidebar_position: 9
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config search#throttledelay]: ../../configuring/search.md#searchanti_entropythrottletierdelay
 [config search#throttle]: ../../configuring/search.md#searchanti_entropythrottle
 
@@ -16,9 +19,17 @@ the `anti_entropy` parameter in the node's [configuration files](../../configuri
 
 In Riak versions 2.0 and later, AAE is turned on by default.
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 anti_entropy = active
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -29,12 +40,24 @@ anti_entropy = active
 ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 For monitoring purposes, you can also activate AAE debugging, which
 provides verbose debugging message output:
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 anti_entropy = active-debug
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -46,6 +69,10 @@ anti_entropy = active-debug
 ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 Remember that you will need to restart the node for any configuration-related changes to take effect.
 
 ## Disabling Active Anti-Entropy
@@ -53,9 +80,17 @@ Remember that you will need to restart the node for any configuration-related ch
 Alternatively, AAE can be switched off if you would like to repair
 object inconsistencies using [read repair](../../learn/concepts/active-anti-entropy.md) alone:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 anti_entropy = passive
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -66,6 +101,10 @@ anti_entropy = passive
     %% More riak_kv settings...
 ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 If you would like to reclaim the disk space used by AAE operations, you
 must manually delete the directory in which AAE-related data is stored

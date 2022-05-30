@@ -13,7 +13,7 @@ If you are installing Riak Enterprise anew, you should use version 3
 replication. Under no circumstances should you mix version 2 and version 3
 replication. This comparison is meant only to list improvements introduced in
 version 3.
-:::note
+:::
 
 ## Version 2
 

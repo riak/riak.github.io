@@ -5,75 +5,43 @@ slug: glossary
 sidebar_position: 2
 ---
 
+
 [apps replication properties]: ../developing/app-guide/replication-properties.md
-
 [basho bench GH]: http://github.com/basho/basho_bench.md
-
 [cluster ops add remove node]: ../using/cluster-operations/adding-removing-nodes.md
-
 [cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
-
 [concept buckets]: ../learn/concepts/buckets.md
-
 [concept causal context vc]: ../learn/concepts/causal-context.md#vector-clocks
-
 [concept clusters]: ../learn/concepts/clusters.md
-
 [concept crdts]: ../learn/concepts/crdts.md
-
 [concept eventual consistency]: ../learn/concepts/eventual-consistency.md
-
 [concept keys objects]: ../learn/concepts/keys-and-objects.md
-
 [concept replication]: ../learn/concepts/replication.md
-
 [concept strong consistency]: ../learn/concepts/strong-consistency.md
-
 [dev kv model]: ../developing/key-value-modeling.md
-
 [concept replication aae]: ../learn/concepts/replication.md#active-anti-entropy
-
 [dev api http]: ../developing/api/http/index.md
-
 [dev data model]: ../learn/use-cases.md
-
 [dev data types]: ../developing/data-types/index.md
-
 [glossary read rep]: ../learn/glossary.md#read-repair
-
 [glossary vnode]: #vnode
-
 [Lager]: https://github.com/basho/lager
-
 [learn dynamo]: ../learn/dynamo.md
-
 [plan cluster capacity]: ../setup/planning/cluster-capacity.md
-
 [repair recover failure recovery]: ../using/repair-recovery/failure-recovery.md
-
 [repair recover repairs]: ../using/repair-recovery/repairs.md
-
 [Riak Core]: https://github.com/basho/riak_core
-
 [Riak KV]: https://github.com/basho/riak_kv
-
 [Riak Pipe]: https://github.com/basho/riak_pipe
-
 [Riak Pipe - the New MapReduce Power]: http://basho.com/riak-pipe-the-new-mapreduce-power/
-
 [Riak Pipe - Riak's Distributed Processing Framework]: http://vimeo.com/53910999
-
 [Understanding Riak's Configurable Behaviors]: http://basho.com/riaks-config-behaviors-part-2/
-
 [usage mapreduce]: ../developing/usage/mapreduce.md
-
 [usage search]: ../developing/usage/search.md
-
 [usage secondary-indexes]: ../developing/usage/secondary-indexes.md
-
 [Where To Start With Riak Core]: http://basho.com/where-to-start-with-riak-core/
-
 [Wikipedia:Consistent Hashing]: http://en.wikipedia.org/wiki/Consistent_hashing
+
 
 Below is a list of terms that you may run into frequently in the
 documentation for Riak, along with links to more in-depth treatments.
@@ -242,19 +210,16 @@ Quorum in Riak has two meanings:
   before it is considered successful. This is defined as a bucket
   property or as one of the relevant parameters to a single request
   (R,W,DW,RW).
-
 * A symbolic quantity for the above, `quorum`, which is equivalent to
   `n_val` / 2 + 1. The default setting is `2`.
 
 * [Eventual Consistency][concept eventual consistency]
-
 * [Replication properties][apps replication properties]
-
 * [Understanding Riak's Configurable Behaviors]
 
 ## Sloppy Quorum
 
-During failure scenarios, in which available nodes &lt; total nodes, sloppy
+During failure scenarios, in which available nodes < total nodes, sloppy
 quorum is used to ensure that Riak is still available to take writes.
 When a primary node is unavailable, another node will accept its write
 requests. When the node returns, data is transferred to the primary node
@@ -356,9 +321,10 @@ operations.
 * [Key/Value Development][dev kv model]
 * [Data Types][dev data types]
 
+
 ## Vector Clock
 
-Riak utilizes vector clocks (or *vclocks*) to handle version control.
+Riak utilizes vector clocks (or _vclocks_) to handle version control.
 Since any node in a Riak cluster is able to handle a request, and not
 all nodes need to participate, data versioning is required to keep track
 of a current value. When a value is stored in Riak, it is tagged with a

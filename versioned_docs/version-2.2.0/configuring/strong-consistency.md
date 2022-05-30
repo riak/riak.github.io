@@ -5,6 +5,9 @@ slug: strong-consistency
 sidebar_position: 8
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [apps strong consistency]: ../developing/app-guide/strong-consistency.md
 [concept strong consistency]: ../using/reference/strong-consistency.md
 [cluster ops add remove node]: ../using/cluster-operations/adding-removing-nodes.md
@@ -64,9 +67,17 @@ variety of recommendations regarding cluster size, which can be found in
 Strong consistency in Riak is disabled by default. You can enable it in
 each node's [configuration files][config reference#strong-cons].
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 strong_consistency = on
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the older, app.config-based system, the strong consistency
@@ -78,6 +89,10 @@ strong_consistency = on
     % ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 Remember that you must [restart your node][use admin riak cli] for
 configuration changes to take effect.

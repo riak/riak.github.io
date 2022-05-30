@@ -1,7 +1,7 @@
 ---
 title: "CRUD Operations"
 id: getting_started_java_crud
-slug: crud-operations
+slug: crud-operations 
 sidebar_position: 0
 ---
 
@@ -59,7 +59,7 @@ StoreValue.Response updateOpResp = client.execute(updateOp);
 ```
 
 For more in depth information on updating objects and sibling resolution in
-Riak, see [Updating Objects](../../usage/updating-objects)
+Riak, see [Updating Objects](../../usage/updating-objects.md)
 and [Conflict Resolution](../../usage/conflict-resolution)
 documentation.
 
@@ -172,4 +172,4 @@ UpdateValue.Response response = client.execute(updateValue);
 For more in depth information on updating objects and sibling resolution in
 Riak, see [Updating Objects](../../usage/updating-objects)
 and [Conflict Resolution](../../usage/conflict-resolution)
-documention.
+documentation.

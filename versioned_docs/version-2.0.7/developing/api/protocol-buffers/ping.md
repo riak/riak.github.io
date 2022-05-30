@@ -1,7 +1,7 @@
 ---
 title: "Ping"
 id: pbc_ping
-slug: ping
+slug: ping 
 sidebar_position: 11
 ---
 

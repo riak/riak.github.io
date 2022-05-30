@@ -27,11 +27,11 @@ Basho has Riak KV packages on the [packagecloud.io](https://packagecloud.io/bash
 
 Platform-specific pages are linked below:
 
-* [Ubuntu 16.04 (Xenial)](https://packagecloud.io/basho/riak/packages/ubuntu/xenial/riak_2.2.3-1_amd64.deb)
-* [Ubuntu 14.04 (Trusty)](https://packagecloud.io/basho/riak/packages/ubuntu/trusty/riak_2.2.3-1_amd64.deb)
-* [Ubuntu 12.04 (Precise)](https://packagecloud.io/basho/riak/packages/ubuntu/precise/riak_2.2.3-1_amd64.deb)
-* [Debian 8 (Jessie)](https://packagecloud.io/basho/riak/packages/debian/jessie/riak_2.2.3-1_amd64.deb)
-* [Debian 7 (Wheezy)](https://packagecloud.io/basho/riak/packages/debian/wheezy/riak_2.2.3-1_amd64.deb)
+* [Ubuntu 16.04 (Xenial)](https://packagecloud.io/basho/riak/packages/ubuntu/xenial/riak_2.2.0-1_amd64.deb)
+* [Ubuntu 14.04 (Trusty)](https://packagecloud.io/basho/riak/packages/ubuntu/trusty/riak_2.2.0-1_amd64.deb)
+* [Ubuntu 12.04 (Precise)](https://packagecloud.io/basho/riak/packages/ubuntu/precise/riak_2.2.0-1_amd64.deb)
+* [Debian 8 (Jessie)](https://packagecloud.io/basho/riak/packages/debian/jessie/riak_2.2.0-1_amd64.deb)
+* [Debian 7 (Wheezy)](https://packagecloud.io/basho/riak/packages/debian/wheezy/riak_2.2.0-1_amd64.deb)
 
 Our documentation also includes instructions regarding signing keys and
 sources lists, which can be found in the Advanced apt Installation section below.
@@ -169,22 +169,22 @@ for the target platform:
 #### Ubuntu Lucid Lynx (10.04)
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.3/ubuntu/lucid/riak_2.2.3-1_amd64.deb
-sudo dpkg -i riak_2.2.3-1_amd64.deb
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.0/ubuntu/lucid/riak_2.2.0-1_amd64.deb
+sudo dpkg -i riak_2.2.0-1_amd64.deb
 ```
 
 #### Ubuntu Natty Narwhal (11.04)
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.3/ubuntu/natty/riak_2.2.3-1_amd64.deb
-sudo dpkg -i riak_2.2.3-1_amd64.deb
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.0/ubuntu/natty/riak_2.2.0-1_amd64.deb
+sudo dpkg -i riak_2.2.0-1_amd64.deb
 ```
 
 #### Ubuntu Precise Pangolin (12.04)
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.3/ubuntu/precise/riak_2.2.3-1_amd64.deb
-sudo dpkg -i riak_2.2.3-1_amd64.deb
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.0/ubuntu/precise/riak_2.2.0-1_amd64.deb
+sudo dpkg -i riak_2.2.0-1_amd64.deb
 ```
 
 ## Installing From Source
@@ -199,9 +199,9 @@ Riak requires an [Erlang](http://www.erlang.org/) installation.
 Instructions can be found in [Installing Erlang][install source erlang].
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.3/riak-2.2.3.tar.gz
-tar zxvf riak-2.2.3.tar.gz
-cd riak-2.2.3
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.0/riak-2.2.0.tar.gz
+tar zxvf riak-2.2.0.tar.gz
+cd riak-2.2.0
 make rel
 ```
 

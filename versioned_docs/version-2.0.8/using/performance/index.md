@@ -46,9 +46,7 @@ Owing to the way that THP handles memory usage, disproportionately large amounts
 
 In Red Hat 6, you can disable THP by editing `grub.conf` and adding the following line:
 
-```
-transparent_hugepage=never
-```
+    transparent_hugepage=never
 
 For the change to become effective, a server reboot is required.
 
@@ -64,6 +62,7 @@ storage with the `noatime` flag, meaning that filesystem
 [inodes](http://en.wikipedia.org/wiki/Inode) on the volume will not be
 touched when read. This flag can be set temporarily using the following
 command:
+
 
 ```bash
 mount -o remount,noatime <riak_data_volume>

@@ -1,7 +1,7 @@
 ---
 title: "Scheduling Fullsync"
 id: managing_ref_v3_fullsync
-slug: scheduling-fullsync
+slug: scheduling-fullsync 
 sidebar_position: 3
 ---
 
@@ -11,7 +11,7 @@ The `fullsync_interval` parameter can be configured in the `riak-repl`
 section of [`advanced.config`][config reference#advanced] with either:
 
 * a single integer value representing the duration to wait, in minutes,
-  between fullsyncs, *or*
+  between fullsyncs, _or_
 * a list of pairs of the form `[{"clustername", time_in_minutes},
   {"clustername", time_in_minutes}, ...]` pairs for each sink
   participating in fullsync replication. Note the commas separating each
@@ -21,7 +21,7 @@ section of [`advanced.config`][config reference#advanced] with either:
 
 Sharing a fullsync time (in minutes) for all sinks:
 
-```advancedconfig
+```erlang
 {riak_repl, [
     % ...
     {data_root, "/configured/repl/data/root"},
@@ -32,7 +32,7 @@ Sharing a fullsync time (in minutes) for all sinks:
 
 List of multiple sinks with separate times in minutes:
 
-```advancedconfig
+```erlang
 {riak_repl, [
     % ...
     {data_root, "/configured/repl/data/root"},
@@ -48,9 +48,9 @@ List of multiple sinks with separate times in minutes:
 
 Additional fullsync stats per sink have been added in Riak Enterprise.
 
-* `fullsyncs_completed` — The number of fullsyncs that have been
+* `fullsyncs_completed` &mdash; The number of fullsyncs that have been
   completed to the specified sink cluster.
-* `fullsync_start_time` — The time the current fullsink to the
+* `fullsync_start_time` &mdash; The time the current fullsink to the
   specified cluster began.
-* `last_fullsync_duration` — The duration (in seconds) of the last
+* `last_fullsync_duration` &mdash; The duration (in seconds) of the last
   completed fullsync.

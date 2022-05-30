@@ -9,7 +9,9 @@ Retrieves information about a Riak Search [index](../../../developing/usage/sear
 
 ## Request
 
-    GET /search/index/<index_name>
+```
+GET /search/index/<index_name>
+```
 
 ## Normal Response Codes
 

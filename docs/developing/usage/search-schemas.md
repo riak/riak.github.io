@@ -94,7 +94,7 @@ var rslt = client.PutSearchSchema(schema);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var fs = require('fs');
@@ -128,7 +128,7 @@ riakc_pb_socket:create_search_schema(Pid, <<"cartoons">>, SchemaData).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT http://localhost:8098/search/schema/cartoons \

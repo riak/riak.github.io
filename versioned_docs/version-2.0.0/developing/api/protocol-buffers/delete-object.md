@@ -40,11 +40,11 @@ message RpbDelReq {
 All of the optional parameters below have default values determined on a
 per-bucket basis. Please refer to the documentation on [setting bucket properties](./set-bucket-props.md) for more information.
 
-Furthermore, you can assign an integer value to the `w`, `dw`, `pr` and,
-`pw`, provided that that integer value is less than or equal to N,
-*or* a special value denoting `one` (`4294967295-1`), `quorum`
+Furthermore, you can assign an integer value to the `w`, `dw`, `pr` and
+`pw`, and `dw`, provided that that integer value is less than or equal to N, _or_
+a special value denoting `one` (`4294967295-1`), `quorum`
 (`4294967295-2`), `all` (`4294967295-3`), or `default` (`4294967295-4`).
-:::
+:::note
 
 | Parameter       | Description                                                                                                                                                                                                                |
 |:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -68,18 +68,23 @@ Only the message code is returned.
 
 #### Request
 
-    Hex      00 00 00 12 0D 0A 0A 6E 6F 74 61 62 75 63 6B 65
-             74 12 01 6B 18 01
-    Erlang <<0,0,0,18,13,10,10,110,111,116,97,98,117,99,107,101,116,18,1,107,24,1>>
+```
+Hex      00 00 00 12 0D 0A 0A 6E 6F 74 61 62 75 63 6B 65
+         74 12 01 6B 18 01
+Erlang <<0,0,0,18,13,10,10,110,111,116,97,98,117,99,107,101,116,18,1,107,24,1>>
 
-    RpbDelReq protoc decode:
-    bucket: "notabucket"
-    key: "k"
-    rw: 1
+RpbDelReq protoc decode:
+bucket: "notabucket"
+key: "k"
+rw: 1
+
+```
 
 #### Response
 
-    Hex      00 00 00 01 0E
-    Erlang <<0,0,0,1,14>>
+```
+Hex      00 00 00 01 0E
+Erlang <<0,0,0,1,14>>
 
-    RpbDelResp - only message code defined
+RpbDelResp - only message code defined
+```

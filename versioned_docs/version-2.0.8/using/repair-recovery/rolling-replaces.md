@@ -3,10 +3,10 @@ title: "Rolling Replaces"
 id: repair_recover_replace
 ---
 
-[rolling restarts]: rolling-restart.md
-[add node]: ../cluster-operations/adding-removing-nodes.md
+[rolling restarts]: ../../using/repair-recovery/rolling-restart.md
+[add node]: ../../using/cluster-operations/adding-removing-nodes.md
 
-Riak KV functions as a multi-node system, so cluster-level [version upgrades] and [restarts][rolling restarts] can be performed on a node-by-node or *rolling* basis.
+Riak KV functions as a multi-node system, so cluster-level version upgrades and [restarts][rolling restarts] can be performed on a node-by-node or *rolling* basis.
 
 The following steps should be undertaken on each Riak KV node that you wish to replace:
 

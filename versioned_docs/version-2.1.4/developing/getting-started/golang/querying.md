@@ -1,7 +1,7 @@
 ---
 title: "Querying"
 id: getting_started_go_query
-slug: querying
+slug: querying 
 sidebar_position: 1
 ---
 
@@ -9,9 +9,9 @@ sidebar_position: 1
 
 For the Go version, please download the source from GitHub by either [cloning](https://github.com/basho/taste-of-riak) the source code repository or downloading the [current zip of the master branch](https://github.com/basho/taste-of-riak/archive/master.zip). Ensure that the source is located in your `GOPATH`. The code for this chapter is in `go/ch02/ch02.go`. You may import this code into your favorite editor, or just run it from the command line using the `Makefile` if you are running on a *nix* OS.
 
-> A Quick Note on Querying and Schemas:
+>A Quick Note on Querying and Schemas:
 >
-> Even with a key/value store, you will still have a logical database schema of how all the data relates to one another. This can be as simple as using the same key across multiple buckets for different types of data, to having fields in your data that are related by name. These querying methods will introduce you to some ways of laying out your data in Riak, along with how to query it back.
+>Even with a key/value store, you will still have a logical database schema of how all the data relates to one another. This can be as simple as using the same key across multiple buckets for different types of data, to having fields in your data that are related by name. These querying methods will introduce you to some ways of laying out your data in Riak, along with how to query it back.
 
 ### Denormalization
 
@@ -27,7 +27,7 @@ At one of these points we will have to split the model.
 
 The simplest way to split up data would be to use the same identity key across different buckets. A good example of this would be a `Customer` object, an `Order` object, and an `OrderSummaries` object that keeps rolled up info about orders such as Total, etc. Let's put some data into Riak KV so we can play with it.
 
-```golang
+```go
 package main
 
 import (
@@ -331,7 +331,7 @@ func createOrderSummary(customerId string, orders []*Order) *OrderSummary {
 
 While individual `Customer` and `Order` objects don't change much (or shouldn't change), the `Order Summaries` object will likely change often. It will do double duty by acting as an index for all a customer's orders and also holding some relevant data, such as the order total, etc. If we showed this information in our application often, it's only one extra request to get all the info.
 
-```golang
+```go
 util.Log.Println("Fetching related data by shared key")
 
 cmds = cmds[:0]
@@ -401,9 +401,10 @@ Which returns our amalgamated objects:
 
 While this pattern is very easy and extremely fast with respect to queries and complexity, it's up to the application to know about these intrinsic relationships.  
 
+
 ### Secondary Indexes
 
-:::note 
+:::note
 Secondary indexes in Riak KV require a sorted backend: [Memory](../../../setup/planning/backend/memory.md) or [LevelDB](../../../setup/planning/backend/leveldb.md). [Bitcask](../../../setup/planning/backend/bitcask.md) does not support secondary indexes.
 
 See [Using Secondary Indexes (2i)](../../../developing/usage/secondary-indexes.md) for more information on developing with secondary indexes.
@@ -411,7 +412,7 @@ See [Using Secondary Indexes (2i)](../../../developing/usage/secondary-indexes.m
 
 If you're coming from a SQL world, Secondary Indexes (2i) are a lot like SQL indexes. They are a way to quickly look up objects based on a secondary key, without scanning through the whole dataset. This makes it very easy to find groups of related data by values or ranges of values. To properly show this off, we will add some more data to our application, and add some secondary index entries at the same time:
 
-```golang
+```go
 util.Log.Println("Adding Index Data")
 
 // fetch orders to add index data
@@ -494,7 +495,7 @@ As you may have noticed, ordinary key/value data is opaque to 2i, so we have to 
 
 Now let's find all of Jane Appleseed's processed orders. We'll lookup the orders by searching the `saleperson_id_int` index for Jane's id of `9000`:
 
-```golang
+```go
 util.Log.Println("Index Queries")
 
 cmd, err = riak.NewSecondaryIndexQueryCommandBuilder().
@@ -527,7 +528,7 @@ Jane processed orders 1 and 3.  We used an *integer* index to reference Jane's i
 
 Let's say that the VP of Sales wants to know how many orders came in during October 2013. In this case, we can exploit 2i's range queries. Let's search the `order_date_bin` index for entries between `20131001` and `20131031`:  
 
-```golang
+```go
 cmd, err = riak.NewSecondaryIndexQueryCommandBuilder().
   WithBucket(ordersBucket).
   WithIndexName("OrderDate_bin").

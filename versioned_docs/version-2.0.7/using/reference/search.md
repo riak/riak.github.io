@@ -6,17 +6,18 @@ sidebar_position: 9
 ---
 
 [concept clusters]: ../../learn/concepts/clusters.md
+[configuring search]: ../../configuring/search.md
 
-> **Note on Search 2.0 vs. Legacy Search**
+> **Note on search 2.0 vs. legacy search**
 >
-> This document refers to the new Riak Search 2.0 with
-> [Solr](http://lucene.apache.org/solr/) integration (codenamed
-> Yokozuna). For information about the deprecated Riak Search, visit [the old Using Riak Search docs](http://docs.basho.com/riak/1.4.10/dev/using/search/).
+> This document refers to Riak search 2.0 with
+[Solr](http://lucene.apache.org/solr/) integration (codenamed
+Yokozuna). For information about the deprecated Riak search, visit [the old Using Riak search docs](http://docs.basho.com/riak/1.4.10/dev/using/search/).
 
-The project that implements Riak Search is codenamed Yokozuna. This is a
+The project that implements Riak search is codenamed Yokozuna. This is a
 more detailed overview of the concepts and reasons behind the design of
 Yokozuna, for those interested. If you're simply looking to use Riak
-Search, you should check out the [Using Search](../../developing/usage/search.md) document.
+search, you should check out the [Using Search](../../developing/usage/search.md) document.
 
 ![Yokozuna](/images/yokozuna.png)
 
@@ -113,7 +114,7 @@ logically partitioning data into different KV buckets which are of the
 same type of data, for example if a user wanted to store event objects
 but logically partition them in KV by using a date as the bucket name.
 
-A bucket *cannot* be associated with many indexes---the `search_index`
+A bucket _cannot_ be associated with many indexes---the `search_index`
 property must be a single name, not a list.
 
 See the [main Search documentation](../../developing/usage/search.md#setup) for details on creating an index.
@@ -150,7 +151,7 @@ This call happens inside `yz_doc:make_doc`.
    nested objects. This must somehow be transformed into a flat
    structure.
 
-The first question is answered by the *extractor mapping*. By default
+The first question is answered by the _extractor mapping_. By default
 Yokozuna ships with extractors for several common data types. Below is a
 table of this default mapping:
 
@@ -248,6 +249,7 @@ Currently, Yokozuna makes no attempts to hide any details of the Solr
 schema: a user creates a schema for Yokozuna just as she would for Solr.
 Here is the general structure of a schema.
 
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema name="my-schema" version="1.5">
@@ -287,7 +289,7 @@ indexed.
 
 ## Active Anti-Entropy (AAE)
 
-[Active Anti-Entropy](../../learn/concepts/active-anti-entropy.md) (AAE) is the process of discovering and
+[Active Anti-Entropy](../../learn/concepts/active-anti-entropy.md) \(AAE) is the process of discovering and
 correcting entropy (divergence) between the data stored in Riak's
 key-value backend and the indexes stored in Solr. The impetus for AAE is
 that failures come in all shapes and sizes---disk failure, dropped
@@ -304,26 +306,27 @@ another for Yokozuna. As data is written the hashtrees are updated in
 real-time.
 
 Each tree stores the hash of the object. Periodically a partition is
-selected and the pair of hashtrees is *exchanged*. First the root hashes
+selected and the pair of hashtrees is _exchanged_. First the root hashes
 are compared. If equal then there is no more work to do. You could have
 millions of keys in one partition and verifying they **all** agree takes
 the same time as comparing two hashes. If they don't match then the
 root's children are checked and this process continues until the
 individual discrepancies are found. If either side is missing a key or
-the hashes for a key do not match then *repair* is invoked on that key.
+the hashes for a key do not match then _repair_ is invoked on that key.
 Repair converges the KV data and its indexes, removing the entropy.
 
 Since failure is inevitable, and absolute prevention impossible, the
 hashtrees themselves may contain some entropy. For example, what if the
 root hashes agree but a divergence exists in the actual data?  Simple,
 you assume you can never fully trust the hashtrees so periodically you
-*expire* them. When expired, a tree is completely destroyed and the
+_expire_ them. When expired, a tree is completely destroyed and the
 re-built from scratch. This requires folding all data for a partition,
 which can be expensive and take some time. For this reason, by default,
 expiration occurs after one week.
 
 For an in-depth look at Riak's AAE process, watch Joseph Blomstedt's
 [screencast](http://coffee.jtuple.com/video/AAE.html).
+
 
 ## Analysis & Analyzers
 
@@ -336,7 +339,7 @@ analyzed at all. For text like product summaries, or a blog post,
 you want to split the value into individual words so that they may be
 queried individually. You may also want to remove common words,
 lowercase words, or perform stemming. This is the process of
-*analysis*.
+_analysis_.
 
 Solr provides many different field types which analyze data in different
 ways, and custom analyzer chains may be built by stringing together XML
@@ -353,7 +356,7 @@ Riak object metadata. It is useful in two scenarios.
    location or category metadata.
 
 2. The object being stored is not opaque, but additional indexes must
-   be added *without* modifying the object's value.
+   be added _without_ modifying the object's value.
 
 See
 [Tagging](https://github.com/basho/yokozuna/blob/develop/docs/TAGGING.md)
@@ -361,13 +364,13 @@ for more information.
 
 ## Coverage
 
-Yokozuna uses *doc-based partitioning*. This means that all index
+Yokozuna uses _doc-based partitioning_. This means that all index
 entries for a given Riak Object are co-located on the same physical
 machine. To query the entire index all partitions must be contacted.
 Adjacent partitions keep replicas of the same object. Replication allows
 the entire index to be considered by only contacting a subset of the
 partitions. The process of finding a covering set of partitions is known
-as *coverage*.
+as _coverage_.
 
 Each partition in the coverage plan has an owning node. Thus a plan can
 be thought of as a unique set of nodes along with a covering set of
@@ -375,7 +378,7 @@ partitions. Yokozuna treats the node list as physical hostnames and
 passes them to Solr's distributed search via the `shards` parameter.
 Partitions, on the other hand, are treated logically in Yokozuna. All
 partitions for a given node are stored in the same index; unlike KV
-which uses *partition* as a physical separation. To properly filter out
+which uses _partition_ as a physical separation. To properly filter out
 overlapping replicas the partition data from the cover plan is passed to
 Solr via the filter query (`fq`) parameter.
 
@@ -394,39 +397,22 @@ one with a smaller window.
 
 The Riak Search batching subsystem provides statistics on run-time characteristics of search system components. These statistics are accessible via the standard Riak KV stats interfaces and can be monitored through standard enterprise management tools.
 
-
 * `search_index_throughput_(count|one)` - The total count of objects that have been indexed, per Riak node, and the count of objects that have been indexed within the metric measurement window.
-
 * `search_index_latency_(min|mean|max|median|95|99|999)` - The minimum, mean, maximum, median, 95th percentile, 99th percentile, and 99.9th percentile measurements of indexing latency, as measured from the time it takes to send a batch to Solr to the time the response is received from Solr, divided by the batch size.
-
 * `search_queue_batch_latency_(min|mean|max|median|95|99|999)` - The minimum, mean, maximum, median, 95th percentile, 99th percentile, and 99.9th percentile measurements of batch latency, as measured from the time it takes to send a batch to Solr to the time the response is received from Solr.
-
 * `search_queue_batch_throughput_(count|one)` - The total number of batches delivered into Solr, per Riak node, and the number of batches that have been indexed within the metric measurement window.
-
 * `search_queue_batchsize_(min|mean|max|median)` - The minimum, mean, maximum, and median measurements of the batch size across all indices and Solrq worker processes.
-
 * `search_queue_hwm_purged_(count|one)` - The total number of purged objects, and the number of purged objects within the metric measurement window.
-
 * `search_queue_capacity` - The capacity of the existing queues, expressed as a integral percentage value between 0 and 100. This measurement is based on the ratio of equeued objects and the configured high water mark.
-
 * `search_queue_drain_(count|one)` - The total number of drain operations, and the number of drain operations within the metric measurement window.
-
 * `search_queue_drain_fail_(count|one)` - The total number of drain failures, and the number of drain failures within the metric measurement window.
-
 * `search_queue_drain_timeout_(count|one)` - The total number of drain timeouts, and the number of drain timeouts within the metric measurement window.
-
 * `search_queue_drain_latency_(min|mean|max|median|95|99|999)` - The minimum, mean, maximum, median, 95th percentile, 99th percentile, and 99.9th percentile measurements of drain latency, as measured from the time it takes to initiate a drain to the time the drain is completed.
-
 * `search_detected_repairs_count` - The total number of AAE repairs that have been detected when comparing YZ and Riak/KV AAE trees. Note that this statistic is a measurement of the differences found in the AAE trees; there may be some latency between the time the trees are compared and the time that the repair is written to Solr.
-
 * `search_blockedvnode_(count|one)` - The total count of vnodes that have been blocked, per Riak node, and the count of blocked vnodes within the metric measurement window. Vnodes are blocked when a Solrq worker exceeds its high water mark, as defined by the [`search.queue.high_watermark`][configuring search] configuration setting.
-
 * `search_index_fail_(count|one)` - The total count of failed attempts to index, per Riak node, and the count of index failures within the metric measurement window.
-
 * `search_query_throughput_(count|one)` - The total count of queries, per Riak node, and the count of queries within the metric measurement window.
-
 * `search_query_latency_(min|mean|max|median|95|99|999)` - The minimum, mean, maximum, median, 95th percentile, 99th percentile, and 99.9th percentile measurements of querying latency, as measured from the time it takes to send a request to Solr to the time the response is received from Solr.
-
 * `search_query_fail_(count|one)` - The total count of failed queries, per Riak node, and the count of query failures within the metric measurement window.
 
 While most of the default values are sufficient, you may have to

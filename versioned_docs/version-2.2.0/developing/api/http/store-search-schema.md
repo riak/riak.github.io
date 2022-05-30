@@ -10,7 +10,7 @@ Creates a new Riak [Search schema](../../../developing/usage/search-schemas.md).
 ## Request
 
 ```
-PUT /search/index/<schema_name>
+PUT /search/schema/<schema_name>
 ```
 
 ## Required Form Data

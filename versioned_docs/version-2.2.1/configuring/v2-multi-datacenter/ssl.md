@@ -7,7 +7,7 @@ sidebar_position: 2
 
 :::note Deprecation Warning
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../configuring/v3-multi-datacenter/ssl.md) instead.
-:::note
+:::
 
 ## Features
 
@@ -64,7 +64,7 @@ to connect.
 
 This evaluation supercedes ACL checks, so it cannot be overridden with any
 setting of the `peer_common_name_acl` property.
-:::note
+:::
 
 ### Examples
 

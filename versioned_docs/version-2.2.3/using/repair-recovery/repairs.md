@@ -86,7 +86,7 @@ If there are compaction errors in any of your vnodes, those will be listed in th
 
 :::note
 While corruption on one vnode is not uncommon, corruption in several vnodes very likely means that there is a deeper problem that needs to be address, perhaps on the OS or hardware level.
-:::note
+:::
 
 
 ## Healing Corrupted LevelDBs
@@ -117,7 +117,7 @@ riak stop
 
 :::note Erlang version
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
-:::note
+:::
 
 3\. Once in the shell, run the following command:
 
@@ -176,7 +176,7 @@ riak stop
 
 :::note Erlang version
 Note, you must start up the Erlang shell using the same version of Erlang packaged with Riak. The above command will make sure you do so. If you choose not to use the above command please pay close attention to the version and location you use with the `erl` command.
-:::note
+:::
 
 4\. Once in the shell, run the following command:
 

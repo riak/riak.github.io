@@ -31,7 +31,7 @@ source code for this tutorial, and save it to your working directory.
 The `TasteOfRiak.java` file that you downloaded is set up to communicate with
 a 1-node Riak cluster listening on `localhost` port 10017. We recommend
 modifying the connection info directly within the `setUpCluster()` method.
-:::note
+:::
 
 If you execute the `TasteOfRiak.java` file within your IDE, you should
 see the following:

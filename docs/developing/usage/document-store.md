@@ -134,7 +134,7 @@ var rslt = client.PutSearchSchema(schema);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 /*
@@ -162,7 +162,7 @@ riakc_pb_socket:create_search_schema(Pid, <<"blog_post_schema">>, SchemaData).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/schema/blog_post_schema \
@@ -218,7 +218,7 @@ var rslt = client.PutSearchIndex(idx);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -240,7 +240,7 @@ riakc_pb_socket:create_search_index(Pid, <<"blog_posts">>, <<"blog_post_schema">
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/blog_posts \
@@ -462,7 +462,7 @@ class BlogPost:
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 /*
@@ -569,7 +569,7 @@ string id = repo.Save(post);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var post = new BlogPost(
@@ -646,7 +646,7 @@ var rslt = client.Search(searchRequest);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -659,7 +659,7 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=keywords_set:funny"
@@ -718,7 +718,7 @@ var rslt = client.Search(searchRequest);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -731,7 +731,7 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=content_register:furry"

@@ -5,6 +5,9 @@ slug: erlang
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Riak was written almost exclusively in [Erlang](http://www.erlang.org)
 and runs on an Erlang virtual machine (VM), which makes proper Erlang VM
 tuning an important part of optimizing Riak performance. The Erlang VM
@@ -42,7 +45,7 @@ upgrading to 2.0 from an earlier version, you can still use your old `vm.args`
 if you wish.  Please note, however, that if you set one or more parameters in
 both `vm.args` and in `riak.conf`, the settings in `vm.args` will override
 those in `riak.conf`.
-:::note
+:::
 
 ## SMP
 
@@ -188,10 +191,18 @@ minimum and maximum can be set using the
 `erlang.distribution.port.maximum` parameters, respectively. The
 following would set the range to ports between 3000 and 5000:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 erlang.distribution.port_range.minimum = 3000
 erlang.distribution.port_range.maximum = 5000
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% The older, app.config-based system uses different parameter names
@@ -205,13 +216,25 @@ erlang.distribution.port_range.maximum = 5000
          ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 You can set the Erlang VM to use a single port by setting the minimum to
 the desired port while setting no maximum. The following would set the
 port to 5000:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 erlang.distribution.port_range.minimum = 5000
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {kernel, [
@@ -220,6 +243,10 @@ erlang.distribution.port_range.minimum = 5000
           % ...
          ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 If the minimum port is unset, the Erlang VM will listen on a random
 high-numbered port.
@@ -239,13 +266,25 @@ using `erlang.async_threads` (`+A` in `vm.args`).  The valid range is 0
 to 1024. If thread support is available on your OS, the default is 64.
 Below is an example setting the number of async threads to 600:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 erlang.async_threads = 600
 ```
 
+</TabItem>
+
+<TabItem label="vm.args" value="vm.args">
+
 ```vmargs
 +A 600
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### Stack Size
 

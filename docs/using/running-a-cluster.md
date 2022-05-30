@@ -3,6 +3,9 @@ title: "Running a Cluster"
 id: managing_running_a_cluster
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Configuring a Riak cluster involves instructing each node to listen on a
 non-local interface, i.e. not `127.0.0.1`, and then joining all of the
 nodes together to participate in the cluster.
@@ -51,9 +54,17 @@ you'll be using the default port (8087). If you're using the [Protocol Buffers i
 interface due to performance gains), you should change your
 configuration file:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 listener.protobuf.internal = 127.0.0.1:8087
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the pb section of riak_core:
@@ -61,17 +72,34 @@ listener.protobuf.internal = 127.0.0.1:8087
 {"127.0.0.1", 8087 },
 ```
 
+</TabItem>
+
+</Tabs>
+
 becomes
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 listener.protobuf.internal = 192.168.1.10:8087
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
+
 
 ```erlang
 %% In the pb section of riak_core:
 
 {"192.168.1.10", 8087 },
 ```
+
+</TabItem>
+
+</Tabs>
 
 :::note Note on upgrading to 2.0
 If you are upgrading to Riak version 2.0 or later from an pre-2.0
@@ -84,14 +112,22 @@ systems. Bear in mind that you need to use either the older or the newer
 but never both simultaneously.
 
 More on configuring Riak can be found in the [Configuration documentation](../configuring/reference.md).
-:::note
+:::
 
 If you're using the HTTP interface, you will need to alter your
 configuration in an analogous way:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 listener.http.internal = 127.0.0.1:8098
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the riak_core section:
@@ -99,15 +135,31 @@ listener.http.internal = 127.0.0.1:8098
 {http, [ {"127.0.0.1", 8098 } ]},
 ```
 
+</TabItem>
+
+</Tabs>
+
 becomes
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 listener.http.internal = 192.168.1.10:8098
 ```
 
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
+
 ```erlang
 {http, [ {"192.168.1.10", 8098 } ]},
 ```
+
+</TabItem>
+
+</Tabs>
 
 #### Name your node
 
@@ -115,23 +167,47 @@ Every node in Riak has a name associated with it. The default name is
 `riak@127.0.0.1`. Let's say that you want to change the name to
 `riak@192.168.1.10`:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 nodename = riak@127.0.0.1
 ```
+
+</TabItem>
+
+<TabItem label="vm.args" value="vm.args">
 
 ```vmargs
 -name riak@127.0.0.1
 ```
 
+</TabItem>
+
+</Tabs>
+
 becomes
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 nodename = riak@192.168.1.10
 ```
 
+</TabItem>
+
+<TabItem label="vm.args" value="vm.args">
+
 ```vmargs
 -name riak@192.168.1.10
 ```
+
+</TabItem>
+
+</Tabs>
 
 > **Node Names**
 >
@@ -165,7 +241,7 @@ are building your first test environment, you will need to remove the ring
 files from the data directory after you edit your configuration files.
 `riak-admin cluster replace` will not work since the node has not been joined
 to a cluster.
-:::note
+:::
 
 As with all cluster changes, you need to view the planned changes by
 running `riak-admin cluster plan` and then running `riak-admin cluster

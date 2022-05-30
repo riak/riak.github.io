@@ -1,11 +1,11 @@
 ---
 title: "Querying"
 id: getting_started_csharp_query
-slug: querying
+slug: querying 
 sidebar_position: 1
 ---
 
-## C Sharp Version Setup
+## C# Version Setup
 
 For the C# version, please download the source from GitHub by either
 [cloning][taste_of_riak] the source code repository or downloading the
@@ -15,7 +15,7 @@ your IDE of choice.
 
 ## A Quick Note on Querying and Schemas
 
-*Schemas*? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
+_Schemas_? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
 word. Even in a key/value store, you will still have a logical database
 schema of how all the data relates to other data. This can be as simple
 as using the same key across multiple buckets for different types of
@@ -113,7 +113,7 @@ intrinsic relationships.
 
 ## Secondary Indexes
 
-:::note 
+:::note
 Secondary indexes in Riak KV require a sorted backend: [Memory](../../../setup/planning/backend/memory.md) or [LevelDB](../../../setup/planning/backend/leveldb.md). [Bitcask](../../../setup/planning/backend/bitcask.md) does not support secondary indexes.
 
 See [Using Secondary Indexes (2i)](../../../developing/usage/secondary-indexes.md) for more information on developing with secondary indexes.
@@ -194,6 +194,6 @@ So to recap:
 * You can search for specific values, or a range of values
 * Riak will return a list of keys that match the index query
 
-[taste_of_riak]: https://github.com/basho/taste-of-riak
 
+[taste_of_riak]: https://github.com/basho/taste-of-riak
 [master_zip]: https://github.com/basho/taste-of-riak/archive/master.zip

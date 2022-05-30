@@ -14,7 +14,7 @@ To accomodate this you should increase the open files limit on your system. We r
 
 :::note
 Superuser or root access may be required to perform these steps.
-:::note
+:::
 
 ## Changing Limit For Current Session
 
@@ -92,7 +92,7 @@ ulimit -a
 :::note
 In the above examples, the open files limit is raised for all users of the system. The limit can be specified for the `riak` user only by substituting the
 two asterisks (`*`) in the examples with `riak`.
-:::note
+:::
 
 
 ## CentOS & Red Hat

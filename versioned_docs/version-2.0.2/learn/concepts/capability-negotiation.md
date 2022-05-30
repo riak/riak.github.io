@@ -1,6 +1,3 @@
----
-title: "Capability Negotiation"
-id: learn_concepts_cap_negotiation
 slug: capability-negotiation
 sidebar_position: 2
 ---
@@ -15,9 +12,13 @@ In versions of Riak prior to 1.2.0, [rolling upgrades][upgrade cluster] from an 
 
 This process has been simplified in versions 1.2.0. Rolling upgrades no longer require you to disable and then re-enable features, as Riak versions 1.2.0 and later now feature a **capability negotiation** subsystem that automatically manages the addition of new features. Using this subsystem, nodes negotiate with each other to automatically determine which versions are supported on which nodes, which allows clusters to maintain normal operations even when divergent versions of Riak are present in the cluster.
 
-> **Note on mixed versions:**
->
-> The capability negotiation subsystem is used to manage mixed versions of Riak within a cluster *solely* during rolling upgrades. We strongly recommend not running mixed versions during normal operations.
+In early version of Riak [rolling upgrades][upgrade cluster] from an older version of Riak to a newer involved (a) disabling all new features associated with the newer version, and then (b) re-enabling those features once all nodes in the cluster were upgraded.
+
+Rolling upgrades no longer require you to disable and then re-enable features due to the *capability negotiation* subsystem that automatically manages the addition of new features. Using this subsystem, nodes negotiate with each other to automatically determine which versions are supported on which nodes, which allows clusters to maintain normal operations even when divergent versions of Riak KV are present in the cluster.
+
+:::note Note on mixed versions
+The capability negotiation subsystem is used to manage mixed versions of Riak within a cluster *solely* during rolling upgrades. We strongly recommend not running mixed versions during normal operations.
+:::
 
 ## Configuration Changes
 
@@ -33,7 +34,7 @@ With the addition of automatic capability negotiation, there are some configurat
 
 Although is not recommended, you can override capability negotiation if you wish. This must be done on a per-component basis in each node's `app.config`. You can either instruct Riak not to use capability negotiation for a specific component by setting `use` to `false` as in this example, which turns off capability negotiation for the `listkeys_backpressure` setting:
 
-```appconfig
+```erlang
 [{override_capability,
     [{listkeys_backpressure, [{use, false}]
 }]
@@ -41,7 +42,7 @@ Although is not recommended, you can override capability negotiation if you wish
 
 The following setting would both override the `listkeys_backpressure` setting, as in the example above, *and* override the `mapreduce_system` setting to use `legacy` if all nodes in the cluster support `legacy`. Otherwise, the built-in default setting will be used:
 
-```appconfig
+```erlang
 [{override_capability,
     [{listkeys_backpressure, [{use, false}]},
      {mapred_system,         [{prefer, legacy}]}]

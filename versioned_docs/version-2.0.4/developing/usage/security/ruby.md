@@ -1,7 +1,7 @@
 ---
 title: "Ruby"
 id: usage_security_ruby
-slug: ruby
+slug: ruby 
 sidebar_position: 1
 ---
 
@@ -29,7 +29,7 @@ application if you wish). All authentication-related information that
 needs to be used can be passed to the object upon instantiation in an
 `authentication` hash.
 
-If you are using Riak Security, *all* connecting clients should have
+If you are using Riak Security, _all_ connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
 regardless of which [security source](../../../using/security/managing-sources.md) you choose. All clients should also provide a username. The example below sets up a client object (we'll simply call it `client`) that connects
 to Riak on `localhost` and on port 8087, specifies `riakuser` as a
@@ -79,6 +79,7 @@ If you have specified that a specific client be authenticated using
 need to provide a CA as well as the username and password that you
 specified when creating the user in Riak. For more, see our
 documentation on [User Management](../../../using/security/basics.md#user-management).
+
 
 ## Certificate-based Authentication
 

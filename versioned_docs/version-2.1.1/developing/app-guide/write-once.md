@@ -1,16 +1,13 @@
 ---
 title: "Write Once"
 id: app_guide_write_once
-slug: write-once
+slug: write-once 
 sidebar_position: 2
 ---
 
 [glossary vnode]: ../../learn/glossary.md#vnode
-
 [bucket type]: ../../developing/usage/bucket-types.md
-
 [Riak data types]: ../../developing/data-types/index.md
-
 [strong consistency]: ../../developing/app-guide/strong-consistency.md
 
 Riak 2.1.0 introduces the concept of write-once buckets, buckets whose entries
@@ -20,7 +17,7 @@ otherwise result in a read on the coordinating vnode before the write. Avoiding
 coordinated PUTs results in higher throughput and lower PUT latency, though at
 the cost of different semantics in the degenerate case of sibling resolution.
 
-:::note 
+:::note
 Write-once buckets do not support Riak commit hooks.  Because Riak objects are
 inserted into the realtime queue using a postcommit hook, realtime replication
 is unavailable for write-once buckets.  Fullsync replication will, however,
@@ -93,7 +90,9 @@ local dictionary.
 The relationship between the `riak_client`, write-once workers, and vnode
 proxies is illustrated in the following diagram:
 
+<br />
 ![Write Once](/images/write_once.png)
+<br />
 
 ## Client Impacts
 
@@ -103,6 +102,7 @@ client features might not work as expected.  For example, PUT requests asking
 for the object to be returned will behave like requests that do not
 request the object to be returned when they are performed against write-once
 buckets.
+
 
 ## Siblings
 
@@ -118,10 +118,11 @@ SHA-1 hash of the objects. While this algorithm is repeatable and deterministic
 at the database level, it will have the appearance to the user of "random write
 wins."
 
-:::note 
+:::note
 As mentioned in [Configuration](#configuration), write-once buckets and Riak
 Data Types are incompatible because of this.
 :::
+
 
 ## Handoff
 
@@ -140,7 +141,7 @@ At the time of writing, the only backend that supports asynchronous writes is
 LevelDB. Riak will automatically fall back to synchronous writes with all other
 backends.
 
-:::note Note on the \`multi\` backend
+:::note Note on the `multi` backend
 The [Multi](../../setup/planning/backend/multi.md) backend does not
 support asynchronous writes. Therefore, if LevelDB is used with the Multi
 backend, it will be used in synchronous mode.

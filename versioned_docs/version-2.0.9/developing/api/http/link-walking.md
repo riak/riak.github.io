@@ -1,9 +1,13 @@
 ---
 title: "Link Walking"
 id: http_link_walking
-slug: link-walking
+slug: link-walking 
 sidebar_position: 21
 ---
+
+:::note Deprecation Warning
+This feature is deprecated and will be removed in a future version.
+:::
 
 Link walking (traversal) finds and returns objects by following links attached
 to them, starting from the object specified by the bucket and key portion.  It
@@ -48,14 +52,14 @@ Important headers:
 > **Understanding the response body**
 >
 > The response body will always be `multipart/mixed`, with each
-> chunk representing a single phase of the link-walking query. Each phase will
-> also be encoded in `multipart/mixed`, with each chunk representing a
-> single object that was found. If no objects were found or "keep" was not set on
-> the phase, no chunks will be present in that phase.  Objects inside phase
-> results will include `Location` headers that can be used to determine
-> bucket and key. In fact, you can treat each object-chunk similarly to a complete
-> response from [fetching the object](../../../developing/api/http/fetch-object.md), without the status
-> code.
+chunk representing a single phase of the link-walking query. Each phase will
+also be encoded in `multipart/mixed`, with each chunk representing a
+single object that was found. If no objects were found or "keep" was not set on
+the phase, no chunks will be present in that phase.  Objects inside phase
+results will include `Location` headers that can be used to determine
+bucket and key. In fact, you can treat each object-chunk similarly to a complete
+response from [fetching the object](../../../developing/api/http/fetch-object.md), without the status
+code.
 
 ## Example
 

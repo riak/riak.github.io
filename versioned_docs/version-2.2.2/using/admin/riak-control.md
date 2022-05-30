@@ -5,6 +5,9 @@ slug: riak-control
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config reference]: ../../configuring/reference.md
 
 Riak Control is a web-based administrative console for inspecting and
@@ -18,6 +21,10 @@ Before getting started, you should know the address and port of the HTTP (or
 HTTPS) listeners for the cluster member(s) running Riak Control.  You can obtain
 this information from the configuration files as indicated here:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 listener.http.<name> = 127.0.0.1:8098
 
@@ -30,6 +37,10 @@ listener.https.<name> = 127.0.0.1:8096
 ##     `listener.http.internal` in your configuration.
 
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
  {riak_api,
@@ -47,20 +58,32 @@ listener.https.<name> = 127.0.0.1:8096
 %%     the `riak_api` tuple's value list.
 ```
 
+</TabItem>
+
+</Tabs>
+
 :::note Note on SSL
 We strongly recommend that you enable SSL for Riak Control. It is disabled by
 default, and if you wish to enable it you must do so explicitly. More
 information can be found in the document below.
-:::note
+:::
 
 ## Enabling and Disabling Riak Control
 
 Riak Control is disabled by default, meaning that you should see the
 following in your [configuration files][config reference]:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 riak_control = off
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_control, [
@@ -70,11 +93,23 @@ riak_control = off
                ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 Enabling Riak Control is simple:
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 riak_control = on
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_control, [
@@ -83,6 +118,10 @@ riak_control = on
                 %% Other configs
                ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 Make sure to restart the node once you have enabled Riak Control for the
 change to take effect.
@@ -110,9 +149,17 @@ Riak Control provides you the option of requiring authentication (via
 HTTP basic auth) for users of the web interface. It is disabled by
 default. To enable authentication:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 riak_control.auth.mode = userlist
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_control, [
@@ -122,6 +169,10 @@ riak_control.auth.mode = userlist
                ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 When authentication is enabled, you can specify as many
 username/password pairs as you wish. The default pair is the username
 
@@ -129,11 +180,19 @@ username/password pairs as you wish. The default pair is the username
 different credentials. The example below would set up three user-defined
 pairs:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 riak_control.auth.user.bob.password = bob_is_the_coolest
 riak_control.auth.user.polly.password = h4x0r123
 riak_control.auth.user.riakrocks.password = cap_theorem_4_life
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_control, [
@@ -146,6 +205,10 @@ riak_control.auth.user.riakrocks.password = cap_theorem_4_life
                 %% Other configs
 ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## User Interface
 
@@ -165,7 +228,7 @@ TLS v1.2 may be disabled by default on your browser, for example if you are
 using Firefox versions earlier than 27, Safari versions earlier than 7, Chrome
 versions earlier than 30, or Internet Explorer versions earlier than 11.  To
 enable it, follow browser-specific instructions.
-:::note
+:::
 
 ### Snapshot View
 

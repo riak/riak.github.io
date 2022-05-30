@@ -8,10 +8,10 @@ sidebar_position: 8
 Riak exposes monitoring data via JMX.  To enable JMX monitoring, edit the [`app.config`](../../configuring/reference.md#advanced-configuration) associated with your Riak installation and set the `enabled` property of the `riak_jmx` section to `true` as shown below.  The TCP port on which the JMX provider listens is also configurable in this section (the default JMX port is `41110`).
 
 ```erlang
-    {riak_jmx, [
-        {enabled, true},
-        {port, 41110}
-      ]}
+{riak_jmx, [
+    {enabled, true},
+    {port, 41110}
+  ]}
 ```
 
 To view JMX data---assuming that you have the Sun JDK installed---launch JConsole as follows:
@@ -25,8 +25,8 @@ Once connected, click on the **MBeans** tab, expand the **com.basho.riak** tree 
 Riak JMX has been tested with the Sun JRE 1.6.0_12 and 1.6.0_20. Some older/non-Sun JREs do not work (e.g. the default java-gcj JRE installed on Debian lenny). If you have problems with JMX or see the message below, please try upgrading to the Sun JRE:
 
 ```log
-   =INFO REPORT==== 9-Jun-2010::08:14:57 ===
-   JMX server monitor <pid> exited with code <non-zero>.
+ =INFO REPORT==== 9-Jun-2010::08:14:57 ===
+ JMX server monitor <pid> exited with code <non-zero>.
 ```
 
 ## Exported JMX Attributes

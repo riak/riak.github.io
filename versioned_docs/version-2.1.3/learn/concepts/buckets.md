@@ -1,51 +1,33 @@
 ---
 title: "Buckets"
 id: learn_concepts_buckets
-slug: buckets
+slug: buckets 
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [apps cluster metadata]: ../../developing/app-guide/cluster-metadata.md
-
 [cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
-
 [cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
-
 [concept causal context]: ../../learn/concepts/causal-context.md
-
 [concept causal context sib]: ../../learn/concepts/causal-context.md#siblings
-
 [concept replication]: ../../learn/concepts/replication.md
-
 [concept strong consistency]: ../../using/reference/strong-consistency.md
-
 [config basic]: ../../configuring/basic.md
-
 [dev api http]: ../../developing/api/http/index.md
-
 [dev data types]: ../../developing/data-types/index.md
-
 [glossary ring]: ../../learn/glossary.md#ring
-
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
-
 [plan backend bitcask]: ../../setup/planning/backend/bitcask.md
-
 [plan backend memory]: ../../setup/planning/backend/memory.md
-
 [plan backend multi]: ../../setup/planning/backend/multi.md
-
 [usage bucket types]: ../../developing/usage/bucket-types.md
-
 [usage commit hooks]: ../../developing/usage/commit-hooks.md
-
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
-
 [usage replication]: ../../developing/usage/replication.md
+
 
 Buckets are used to define a virtual keyspace for storing Riak objects.
 They enable you to define non-default configurations over that keyspace
@@ -110,7 +92,7 @@ These settings enable you to manage [vector clock pruning][concept causal contex
 
 If you are using the [Multi][plan backend multi] backend, this property enables you to
 determine which of Riak's available backends---[Bitcask][plan backend bitcask], [LevelDB][plan backend leveldb], or [Memory][plan backend memory]---will be used in buckets of this type. If you are using
-LevelDB, Bitcask, or the Memory backend at a cluster-wide level, *all*
+LevelDB, Bitcask, or the Memory backend at a cluster-wide level, _all_
 buckets of all types will use the assigned backend.
 
 #### consistent
@@ -146,7 +128,6 @@ API][dev api http]. The following would fetch the properties for the bucket
 bucket type:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -158,7 +139,6 @@ BucketProperties props = response.getProperties();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -167,7 +147,6 @@ bucket.properties
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -180,7 +159,6 @@ $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -189,7 +167,6 @@ bucket.get_properties()
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -197,7 +174,6 @@ bucket.get_properties()
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -207,7 +183,6 @@ curl http://localhost:8087/types/default/buckets/animals/props
 ```
 
 </TabItem>
-
 </Tabs>
 
 If the bucket `animals` had a different type that you had created and
@@ -215,7 +190,6 @@ activated, e.g. `my_custom_type`, you could fetch the bucket properties
 like so:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -227,7 +201,6 @@ BucketProperties props = response.getProperties();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -236,7 +209,6 @@ bucket.properties
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -249,7 +221,6 @@ $bucketProperties = (new \Basho\Riak\Command\Builder\FetchBucketProperties($riak
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -258,7 +229,6 @@ bucket.get_properties()
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -266,7 +236,6 @@ bucket.get_properties()
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -274,5 +243,4 @@ curl http://localhost:8087/types/my_custom_type/buckets/animals/props
 ```
 
 </TabItem>
-
 </Tabs>

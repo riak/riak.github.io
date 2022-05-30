@@ -8,21 +8,18 @@ sidebar_position: 0
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [usage content types]: ../../developing/usage/content-types.md
 
 Writes in Riak KV (storing or modifying objects) are like HTTP `PUT`
 requests. Here is the basic form of writes:
 
-    PUT /types/<type>/buckets/<bucket>/keys/<key>
+```
+PUT /types/<type>/buckets/<bucket>/keys/<key>
 
-    # If you're using HTTP to interact with Riak, you can also use POST
+# If you're using HTTP to interact with Riak, you can also use POST
+```
 
-In the example above, our read was unsuccessful because our Riak cluster
-is currently empty. Let's change that by storing an object containing
-information about a dog named Rufus. We'll store that object in the
-location described above, i.e. in the key `rufus` in the bucket `dogs`,
-which bears the `animals` [bucket type](../../using/cluster-operations/bucket-types.md).
+As an example, let's store an object containing information about a dog named Rufus. We'll store that object in the key `rufus` in the bucket `dogs`, which bears the `animals` [bucket type](../../using/cluster-operations/bucket-types.md).
 
 The object we're storing will be very simple, just a basic text snippet
 of something that Rufus might say. Let's build the object and then store
@@ -58,7 +55,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -70,7 +66,6 @@ $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -82,7 +77,6 @@ obj.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -92,7 +86,6 @@ var result = client.Put(obj);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -110,10 +103,9 @@ client.storeValue({
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -143,7 +135,6 @@ rsp := svc.Response
 ```
 
 </TabItem>
-
 </Tabs>
 
 Notice that we specified both a value for the object, i.e. `WOOF!`, and
@@ -158,12 +149,14 @@ Your application will often have its own method of generating the keys
 for its data, e.g. on the basis of timestamps. If so, storing that data
 is easy. The basic request looks like this.
 
-    PUT /types/TYPE/buckets/BUCKET/keys/KEY
+```
+PUT /types/TYPE/buckets/BUCKET/keys/KEY
 
-    # If you're using HTTP, POST can be used instead of PUT. The only
-    # difference between POST and PUT is that you should POST in cases where
-    # you want Riak to auto-generate a key. More on this can be found in the
-    # examples below.
+# If you're using HTTP, POST can be used instead of PUT. The only
+# difference between POST and PUT is that you should POST in cases where
+# you want Riak to auto-generate a key. More on this can be found in the
+# examples below.
+```
 
 There is no need to intentionally create buckets in Riak. They pop into
 existence when keys are added to them, and disappear when all keys have
@@ -172,8 +165,7 @@ been removed from them. If you don't specify a bucket's type, the type
 
 #### Write Parameters
 
-Similar to how read requests support the `r` query parameter, write
-requests also support the following parameters:
+Write requests support the following parameters:
 
 | Parameter    | Default  | Description                                                                           |
 |:-------------|:---------|:--------------------------------------------------------------------------------------|
@@ -187,7 +179,6 @@ under the key `viper` in the bucket `dodge`, which bears the type
 `cars`, with `w` set to `3`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -203,7 +194,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -215,7 +205,6 @@ obj.store(w: 3)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -228,7 +217,6 @@ obj.store(w: 3)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -240,7 +228,6 @@ obj.store(w=3)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -252,7 +239,6 @@ var result = client.Put(obj, options);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -272,7 +258,6 @@ client.storeValue(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -285,10 +270,9 @@ riakc_pb_socket:put(Pid, Object).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -316,7 +300,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -327,10 +310,9 @@ curl -XPUT \
 ```
 
 </TabItem>
-
 </Tabs>
 
-Normal HTTP status codes (responses will vary for client libraries):
+Again, the above will only work if the `cars` bucket type has been created and activated.
 
 * `200 OK`
 * `204 No Content`
@@ -346,7 +328,6 @@ the operation, and the response can be dealt with similarly.
 Let's give it a shot, using the same object from above:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -363,7 +344,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -375,7 +355,6 @@ obj.store(w: 3, returnbody: true)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -389,7 +368,6 @@ obj.store(w: 3, returnbody: true)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -401,7 +379,6 @@ obj.store(w=3, return_body=True)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -414,7 +391,6 @@ var result = client.Put(obj, options);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -437,7 +413,6 @@ client.storeValue(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -449,10 +424,9 @@ riakc_pb_socket:put(Pid, Object, [return_body]).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -481,7 +455,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -492,7 +465,6 @@ curl -XPUT \
 ```
 
 </TabItem>
-
 </Tabs>
 
 ### Store a New Object and Assign a Random Key
@@ -501,7 +473,9 @@ If your application would rather leave key-generation up to Riak, issue
 a `POST` request to the bucket URL instead of a PUT to a bucket/key
 pair:
 
-    POST /types/TYPE/buckets/BUCKET/keys
+```
+POST /types/TYPE/buckets/BUCKET/keys
+```
 
 If you don't pass Riak a `key` name after the bucket, it will know to
 create one for you.
@@ -519,7 +493,6 @@ This command will store an object in the bucket `random_user_keys`,
 which bears the bucket type `users`.
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -537,7 +510,6 @@ String key = client.execute(store).getLocation().getKeyAsString();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -554,7 +526,6 @@ obj.key
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -568,7 +539,6 @@ echo $response->getLocation()->getKey(); // GB8fW6DDZtXogK19OLmaJf247DN
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -585,7 +555,6 @@ obj.key
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -600,7 +569,6 @@ Debug.WriteLine(format: "Generated key: {0}", args: rslt.Value.Key);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -625,7 +593,6 @@ client.storeValue(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -641,10 +608,9 @@ riakc_pb_socket:put(Pid, Object).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "application/json",
     Charset:         "utf-8",
@@ -677,7 +643,6 @@ fmt.Printf("Generated key: %v\n", rsp.GeneratedKey)
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -693,5 +658,4 @@ Location: /buckets/test/keys/G7FYUXtTsEdru4NP32eijMIRK3o
 ```
 
 </TabItem>
-
 </Tabs>

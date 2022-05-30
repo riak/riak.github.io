@@ -160,7 +160,7 @@ nodes in your cluster to get all the benefits of replication. We advise
 against modifying the `n_val` of a bucket after its initial creation as this
 may result in failed reads because the new value may not be replicated to all
 the appropriate partitions.
-:::note
+:::
 
 ## R Value and Read Failure Tolerance
 
@@ -236,7 +236,7 @@ bucket.get('chimpanzee')
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/r_equals_1/buckets/animal_facts/keys/chimpanzee
@@ -332,7 +332,7 @@ riakc_pb_socket:put(Pid, Obj).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \
@@ -377,7 +377,7 @@ necessarily mean that the write has failed completely. If there are reachable
 primary vnodes, those vnodes will still write the new data to Riak. When the
 failed vnode returns to service, it will receive the new copy of the data via
 either read repair or active anti-entropy.
-:::note
+:::
 
 ## Durable Writes with DW
 
@@ -399,7 +399,7 @@ It is no longer necessary to specify an RW value when making delete requests.
 We explain its meaning here, however, because RW still shows up as a property
 of Riak buckets (as `rw`) for the sake of backwards compatibility. Feel free
 to skip this explanation unless you are curious about the meaning of RW.
-:::note
+:::
 
 Deleting an object requires successfully reading an object and then
 writing a tombstone to the object's key that specifies that an object
@@ -525,7 +525,7 @@ obj = bucket.get('john_stockton', r=2, notfound_ok=True)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/buckets/nba_stats/keys/john_stockton?r=2&notfound_ok=true
@@ -592,7 +592,7 @@ riakc_pb_socket:put(Pid, Obj).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \

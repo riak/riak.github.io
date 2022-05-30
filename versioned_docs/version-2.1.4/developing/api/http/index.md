@@ -12,7 +12,7 @@ values where applicable. All examples use `curl` to interact with Riak.
 > **URL Escaping**
 >
 > Buckets, keys, and link specifications may not contain unescaped
-> slashes. Use a URL-escaping library or replace slashes with `%2F`.
+slashes. Use a URL-escaping library or replace slashes with `%2F`.
 
 ## Bucket-related Operations
 
@@ -29,14 +29,18 @@ values where applicable. All examples use `curl` to interact with Riak.
 | Method   | URL                                         | Doc                                                                 |
 |:---------|:--------------------------------------------|:--------------------------------------------------------------------|
 | `GET`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Fetch Object](../../../developing/api/http/fetch-object.md)   |
-| `POST`   | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
+| `POST`   | `/types/<type>/buckets/<bucket>/<key>`      | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
 | `PUT`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
 | `DELETE` | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Delete Object](../../../developing/api/http/delete-object.md) |
 
 ## Riak-Data-Type-related Operations
 
 For documentation on the HTTP API for [Riak Data Types](../../../learn/concepts/crdts.md),
-see the `curl` examples in [Using Data Types](../../../developing/data-types/index.md#usage-examples) and subpages e.g. [sets](../../../developing/data-types/sets.md).
+see the `curl` examples in [Using Data Types](../../../developing/data-types/index.md#usage-examples)
+and subpages e.g. [sets](../../../developing/data-types/sets.md).
+
+Advanced users may consult the technical documentation inside the Riak
+KV internal module `riak_kv_wm_crdt`.
 
 ## Query-related Operations
 

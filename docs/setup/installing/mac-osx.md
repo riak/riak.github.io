@@ -42,7 +42,7 @@ Homebrew's Riak recipe is community supported, and thus is not always up to
 date with the latest Riak package. Please ensure that the current recipe is
 using the latest supported code (and don't be afraid to update it if it's
 not).
-:::note
+:::
 
 Installing Riak 2.0 with [Homebrew](http://brew.sh/) is easy:
 

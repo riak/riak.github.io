@@ -3,6 +3,7 @@ const { readdir, readFile, writeFile } = require('fs').promises;
 const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
 const visit = require('unist-util-visit');
+const versions = require('../../versions.json');
 
 // Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
 async function* getMarkdownFiles(dir) {
@@ -42,20 +43,30 @@ function gatherDefinitions({ file_path, metadata }) {
   };
 }
 
-(async () => {
-  const metadata = {};
+async function gatherMetadata(metadata, version) {
+  //metadata[version] ??= {};
 
-  for await (const { f, parsed } of getMarkdownFiles(resolve('../../docs'))) {
+  const path = `versioned_docs/version-${version}`;
+
+  for await (const { f, parsed } of getMarkdownFiles(resolve(`../../${path}`))) {
     const title = parsed.title;
     const id = parsed.id;
     const slug = parsed.slug;
     const sidebar_position = parsed.sidebar_position;
-    const [, file_path] = f.split('riak_docs/docs');
+    const [, file_path] = f.split(`riak_docs/versioned_docs/version-`);
 
     metadata[file_path] = { title, id, slug, sidebar_position };
 
     await remark().use(gatherDefinitions, { file_path, metadata }).process(parsed.__content); 
   }
+}
+
+(async () => {
+  const metadata = {};
+
+  await Promise.allSettled(versions.map(async version => await gatherMetadata(metadata, version)));
 
   writeFile('docs_metadata.json', JSON.stringify(metadata)); 
+
+  console.log(metadata);
 })();

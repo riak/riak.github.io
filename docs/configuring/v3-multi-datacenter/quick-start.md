@@ -128,7 +128,7 @@ Cluster1          Cluster1            <0.4456.0>      ["10.60.67.149:9080"] (via
 At this point, if you do not have connections, replication will not work.
 Check your IP bindings by running `netstat -a` on all nodes. You should see
 `*:9080 LISTENING`. If not, you have configuration problems.
-:::note
+:::
 
 ### Enable Realtime Replication
 

@@ -112,7 +112,7 @@ operations related to bulk loading, you should consider LWW.
 :::note Undefined behavior warning
 Setting both `allow_mult` and `last_write_wins` to `true` necessarily leads to
 unpredictable behavior and should always be avoided.
-:::note
+:::
 
 ### Resolve Conflicts on the Application Side
 
@@ -303,7 +303,7 @@ var stimpyResult = client.Put(stimpyObj);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var obj1 = new Riak.Commands.KV.RiakObject();
@@ -355,7 +355,7 @@ riakc_pb_socket:put(Pid, Obj2).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/keys/best_character \
@@ -427,7 +427,7 @@ foreach (var sibling in obj.Siblings)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 client.fetchValue({
@@ -443,7 +443,7 @@ client.fetchValue({
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
@@ -485,14 +485,14 @@ Sibling count: 2
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 info: nickolodeon/best_character has '2' siblings
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 Siblings:
@@ -632,7 +632,7 @@ Debug.Assert(obj.Siblings.Count == 0);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 client.fetchValue({
@@ -660,7 +660,7 @@ client.fetchValue({
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -i http://localhost:8098/types/siblings_allowed/buckets/nickolodeon/keys/best_character
@@ -682,7 +682,7 @@ It should be noted that it is possible to have two clients that are
 simultaneously engaging in conflict resolution. To avoid a pathological
 divergence, you should be sure to limit the number of reconciliations and fail
 once that limit has been exceeded.
-:::note
+:::
 
 ### Sibling Explosion
 
@@ -727,7 +727,7 @@ better performance. Some use cases where you might want to use
 :::note Note on combining `allow_mult` and `last_write_wins`
 The combination of setting both the `allow_mult` and `last_write_wins`
 properties to `true` leads to undefined behavior and should not be used.
-:::note
+:::
 
 ## Vector Clock Pruning
 

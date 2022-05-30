@@ -6,17 +6,7 @@ sidebar_position: 12
 ---
 
 [usage bucket types]: ../../developing/usage/bucket-types.md
-
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
-
-:::note Please Note:
-Riak KV's strong consistency is an experimental feature and may be removed
-from the product in the future. Strong consistency is not commercially
-supported or production-ready. Strong consistency is incompatible with
-Multi-Datacenter Replication, Riak Search, Bitcask Expiration, LevelDB
-Secondary Indexes, Riak Data Types and Commit Hooks. We do not recommend its
-usage in any production environment.
-:::
 
 Riak was originally designed as an [eventually consistent](../../learn/concepts/eventual-consistency.md) system, fundamentally geared toward providing partition
 (i.e. fault) tolerance and high read and write availability.

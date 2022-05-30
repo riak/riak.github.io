@@ -8,15 +8,14 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 Bucket types allow groups of buckets to share configuration details and
 for Riak users to manage bucket properties more efficiently than in the
 older configuration system based on [bucket properties](../../developing/usage/bucket-types.md#bucket-properties).
 
 :::note Important note on cluster downgrades
 If you upgrade a Riak to version 2.0 or later, you can still downgrade the
-cluster to a pre-2.0 version *as long as you have not created and activated a
-bucket type in the cluster*. Once any bucket type has been created and
+cluster to a pre-2.0 version _as long as you have not created and activated a
+bucket type in the cluster_. Once any bucket type has been created and
 activated, you can no longer downgrade the cluster to a pre-2.0 version.
 :::
 
@@ -35,9 +34,8 @@ with a few crucial differences:
   those configurations to as many buckets as you wish, whereas the
   previous system required configuration to be set on a per-bucket basis
 * Nearly all bucket properties can be updated using bucket types, except the
-  `datatype`, `consistent`, and `write_once` properties, related to
-  [Riak data types](../../developing/data-types/index.md), [strong consistency](../../developing/app-guide/strong-consistency.md), and
-  [write-once buckets](../../developing/app-guide/write-once.md) respectively
+  `datatype`, `consistent`, `write_once` properties, related to
+  [Riak data types](../../developing/data-types/index.md), [strong consistency](../../developing/app-guide/strong-consistency.md), [write_once](../../developing/app-guide/write-once.md) respectively
 * Bucket types are more performant than bucket properties because
   divergence from Riak's defaults doesn't have to be gossiped around the
   cluster for every bucket, which means less computational overhead
@@ -49,15 +47,19 @@ set `allow_mult` to `false` or `n_val` to `5`, because there is no
 `type` parameter contained within the bucket's properties (i.e.
 `props`).
 
-Instead, bucket types are applied to buckets *on the basis of how those
-buckets are queried*. Queries involving bucket types take the following
+Instead, bucket types are applied to buckets _on the basis of how those
+buckets are queried_. Queries involving bucket types take the following
 form:
 
-    GET/PUT/DELETE /types/<type>/buckets/<bucket>/keys/<key>
+```
+GET/PUT/DELETE /types/<type>/buckets/<bucket>/keys/<key>
+```
 
 In the older system, only bucket and key are specified in queries:
 
-    GET/PUT/DELETE /buckets/<bucket>/keys/<key>
+```
+GET/PUT/DELETE /buckets/<bucket>/keys/<key>
+```
 
 ## When to Use Bucket Types
 
@@ -76,10 +78,10 @@ system of bucket configuration, including the following:
   you to manage bucket configurations on the operations side, without
   recourse to Riak clients.
 * Some special usecases -- [strong consistency](../../developing/app-guide/strong-consistency.md),
-  [data types](../../developing/data-types/index.md), and [write-once buckets](../../developing/app-guide/write-once.md) -- are only
-  available through bucket properties or bucket types.
+    [data types](../../developing/data-types/index.md), and [write-once buckets](../../developing/app-guide/write-once.md) -- are only
+    available through bucket properties or bucket types.
 
-For these reasons, we recommend *always* using bucket types in versions
+For these reasons, we recommend _always_ using bucket types in versions
 of Riak 2.0 and later.
 
 ## Managing Bucket Types Through the Command Line
@@ -113,21 +115,24 @@ object of the following form:
 }
 ```
 
+
 > **Getting started with Riak clients**
 >
 > If you are connecting to Riak using one of Basho's official [client libraries](../../developing/client-libraries.md), you can find more information about getting started with your client in our [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
 
 If creation is successful, you should see the following output:
 
-    type_using_defaults created
+```
+type_using_defaults created
+```
 
-:::note 
+:::note
 The `create` command can be run multiple times prior to a bucket type being
 activated. Riak will persist only those properties contained in the final call
 of the command.
 :::
 
-Creating bucket types that assign properties *always* involves passing
+Creating bucket types that assign properties _always_ involves passing
 stringified JSON to the `create` command. One way to do that is to pass
 a JSON string directly. The following creates a bucket type
 `n_equals_1`, which sets `n_val` to 1:
@@ -157,7 +162,9 @@ riak-admin bucket-type activate my_bucket_type
 
 When activation has succeeded, you should see the following output:
 
-    my_bucket_type has been activated
+```
+my_bucket_type has been activated
+```
 
 A bucket type can be activated only when the type has been propagated to
 all running nodes. You can check on the type's readiness by running
@@ -186,9 +193,11 @@ riak-admin bucket-type list
 
 An example response:
 
-    type1 (active)
-    type2 (not active)
-    type3 (active)
+```
+type1 (active)
+type2 (not active)
+type3 (active)
+```
 
 ### Checking a Type's Status
 
@@ -254,7 +263,6 @@ In versions of Riak prior to 2.0, all queries are made to a bucket/key
 pair, as in the following example read request:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -264,7 +272,6 @@ client.execute(fetch);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -273,7 +280,6 @@ bucket.get('my_key')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -285,7 +291,6 @@ $location = new Location('my_key', new Bucket('my_bucket'));
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -294,7 +299,6 @@ bucket.get('my_key')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -303,7 +307,6 @@ client.Get(id);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -312,7 +315,6 @@ client.fetchValue({ bucket: 'my_bucket', key: 'my_key' }, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -322,7 +324,6 @@ client.fetchValue({ bucket: 'my_bucket', key: 'my_key' }, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -330,18 +331,16 @@ curl http://localhost:8098/buckets/my_bucket/keys/my_key
 ```
 
 </TabItem>
-
 </Tabs>
 
 With the addition of bucket types in Riak 2.0, bucket types can be used
-as *an additional namespace* on top of buckets and keys. The same bucket
+as _an additional namespace_ on top of buckets and keys. The same bucket
 name can be associated with completely different data if it used in
 accordance with a different type. Thus, the following two requests will
-be made to *completely different objects*, even though the bucket and key
+be made to _completely different objects_, even though the bucket and key
 names are the same:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -356,7 +355,6 @@ client.execute(fetch2);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -367,7 +365,6 @@ bucket2.get('my_key')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -383,7 +380,6 @@ $builder->atLocation($location2)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -394,7 +390,6 @@ bucket2.get('my_key')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -405,7 +400,6 @@ var rslt2 = client.Get(id2);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -421,7 +415,6 @@ client.fetchValue({
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -434,7 +427,6 @@ client.fetchValue({
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -443,11 +435,10 @@ curl http://localhost:8098/types/type2/buckets/my_bucket/keys/my_key
 ```
 
 </TabItem>
-
 </Tabs>
 
 :::note Note on object location
-In Riak 2.x, *all requests* must be made to a location specified by a bucket
+In Riak 2.x, _all requests_ must be made to a location specified by a bucket
 type, bucket, and key rather than to a bucket/key pair, as in previous
 versions.
 :::
@@ -457,7 +448,6 @@ type, `default` will be used in place of a bucket type. The following
 queries are thus identical:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -472,7 +462,6 @@ client.execute(fetch2);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -483,7 +472,6 @@ bucket2.get('my_key')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -499,7 +487,6 @@ $builder->atLocation($location2)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -510,7 +497,6 @@ bucket2.get('my_key')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -526,7 +512,6 @@ RiakObject obj2 = getRslt.Value;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -554,7 +539,6 @@ client.storeValue({ value: obj1 }, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -567,7 +551,6 @@ client.storeValue({ value: obj1 }, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -576,7 +559,6 @@ curl http://localhost:8098/types/default/my_bucket/keys/my_key
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Default Bucket Properties
@@ -643,7 +625,9 @@ riak-admin bucket-type status default | grep allow_mult
 
 The output:
 
-    allow_mult: false
+```
+allow_mult: false
+```
 
 Now, let's create a new bucket type called `n_val_of_2`, which sets the
 `n_val` to 2 but doesn't explicitly set `allow_mult`:
@@ -663,7 +647,9 @@ riak-admin bucket-type status n_val_of_2 | grep allow_mult
 
 The output:
 
-    allow_mult: true
+```
+allow_mult: true
+```
 
 This is important to bear in mind when using versions of Riak 2.0 and
 later any time that you create, activate, and use your own bucket types.
@@ -685,49 +671,49 @@ hooks](../../developing/usage/commit-hooks.md) called `welcome_email` and `updat
 1. Creating a JavaScript object containing the appropriate `props`
    settings:
 
-   ```json
-   {
-     "props": {
-       "precommit": ["syntax_check"],
-       "postcommit": ["welcome_email", "update_registry"]
-     }
-   }
-   ```
+    ```json
+    {
+      "props": {
+        "precommit": ["syntax_check"],
+        "postcommit": ["welcome_email", "update_registry"]
+      }
+    }
+    ```
 
 2. Passing that JSON to the `bucket-type create` command:
 
-   ```bash
-   riak-admin bucket-type create user_account_bucket '{"props":{"precommit": ["syntax_check"], ... }}'
-   ```
+    ```bash
+    riak-admin bucket-type create user_account_bucket '{"props":{"precommit": ["syntax_check"], ... }}'
+    ```
 
-   If creation is successful, the console will return
-   `user_account_bucket created`.
+    If creation is successful, the console will return
+    `user_account_bucket created`.
 
 3. Verifying that the type is ready to be activated:
 
-   Once the type is created, you can check whether your new type is
-   ready to be activated by running:
+    Once the type is created, you can check whether your new type is
+    ready to be activated by running:
 
-   ```bash
-   riak-admin bucket-type status user_account_bucket
-   ```
+    ```bash
+    riak-admin bucket-type status user_account_bucket
+    ```
 
-   If the first line reads `user_account_bucket has been created and
-   may be activated`, then you can proceed to the next step. If it
-   reads `user_account_bucket has been created and is not ready to
-   activate`, then wait a moment and try again. If it still does not
-   work, then there may be network partition or other issues that need
-   to be addressed in your cluster.
+    If the first line reads `user_account_bucket has been created and
+    may be activated`, then you can proceed to the next step. If it
+    reads `user_account_bucket has been created and is not ready to
+    activate`, then wait a moment and try again. If it still does not
+    work, then there may be network partition or other issues that need
+    to be addressed in your cluster.
 
 4. Activating the new bucket type:
 
-   ```bash
-   riak-admin bucket-type activate user_account_bucket
-   ```
+    ```bash
+    riak-admin bucket-type activate user_account_bucket
+    ```
 
-   If activation is successful, the console will return
-   `user_account_bucket has been activated`. The bucket type is now
-   ready to be used.
+    If activation is successful, the console will return
+    `user_account_bucket has been activated`. The bucket type is now
+    ready to be used.
 
 ## Client Usage Example
 
@@ -738,7 +724,6 @@ that bucket in accordance with the format above. Here is an example
 write:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -753,7 +738,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -765,7 +749,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -777,7 +760,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -789,7 +771,6 @@ obj.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -799,7 +780,6 @@ var rslt = client.Put(obj);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -815,7 +795,6 @@ client.storeValue({
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -827,7 +806,6 @@ riakc_pb_socket:put(Pid, Object).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -838,12 +816,11 @@ curl -XPUT \
 ```
 
 </TabItem>
-
 </Tabs>
 
 In this example, the bucket `sensitive_user_data` bears the
 configuration established by the `no_siblings` bucket type, and it bears
-that configuration *on the basis of the query's structure*. This is
+that configuration _on the basis of the query's structure_. This is
 because buckets act as a [separate namespace](#buckets-as-namespaces) in Riak, in addition to [buckets](../../learn/concepts/buckets.md) and [keys](../../learn/concepts/keys-and-objects.md).
 
 Let's say that we're using Riak to store internet memes. We've been
@@ -859,7 +836,6 @@ created and activated, the request will ensure that the `old_memes`
 bucket inherits all of the properties from the type `no_siblings`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -873,7 +849,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -885,7 +860,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -897,7 +871,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -909,7 +882,6 @@ obj.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -920,7 +892,6 @@ var rslt = client.Put(obj);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -938,7 +909,6 @@ client.storeValue({ value: obj }, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -950,7 +920,6 @@ riakc_pb_socket:put(Pid, Object).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -961,7 +930,6 @@ curl -XPUT \
 ```
 
 </TabItem>
-
 </Tabs>
 
 This query would both create the bucket `old_memes` and ensure that the

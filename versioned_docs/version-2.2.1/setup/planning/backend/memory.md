@@ -5,6 +5,9 @@ slug: memory
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config reference]: ../../../configuring/reference.md
 [plan backend multi]: ../../../setup/planning/backend/multi.md
 [glossary vnode]: ../../../learn/glossary.md#vnode
@@ -25,9 +28,17 @@ To enable the memory backend, edit your [configuration files][config reference]
 for each Riak node and specify the Memory backend as shown in the following
 example:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 storage_backend = memory
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -36,6 +47,10 @@ storage_backend = memory
     ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 **Note**: If you *replace* the existing specified backend by removing it
 or commenting it out as shown in the above example, data belonging to
@@ -73,11 +88,19 @@ or even gigabytes.
 
 The following are all possible settings:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 memory_backend.max_memory_per_vnode = 500KB
 memory_backend.max_memory_per_vnode = 10MB
 memory_backend.max_memory_per_vnode = 2GB
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, the equivalent setting is max_memory,
@@ -95,6 +118,10 @@ memory_backend.max_memory_per_vnode = 2GB
     ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 To determine an optimal max memory setting, we recommend consulting the
 documentation on [LevelDB cache size][plan backend leveldb].
 
@@ -107,11 +134,19 @@ In the newer, `riak.conf`-based configuration system, you can specify
 `ttl` in seconds, minutes, hours, days, etc. The following are all
 possible settings:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 memory_backend.ttl = 1s
 memory_backend.ttl = 10m
 memory_backend.ttl = 3h
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% In the app.config-based system, the ttl setting must be expressed in
@@ -123,6 +158,10 @@ memory_backend.ttl = 3h
     %% other settings
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 > **Dynamically Changing `ttl`**
 >

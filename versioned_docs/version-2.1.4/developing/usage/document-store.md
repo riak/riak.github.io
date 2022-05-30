@@ -1,13 +1,12 @@
 ---
 title: "Implementing a Document Store"
 id: usage_document_store
-slug: document-store
+slug: document-store 
 sidebar_position: 12
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 
 Although Riak wasn't explicitly created as a document store, two
 features recently added to Riak---[Riak Search](../../developing/usage/search.md) and [Riak Data Types](../../developing/data-types/index.md)---make it possible to use Riak as a
@@ -50,7 +49,7 @@ table below shows which Riak Data Type and Solr type we'll be using for
 each field in our Riak maps.
 
 | Info                                        | Riak Data Type | Solr type           |
-| :------------------------------------------ | :------------- | :------------------ |
+|:--------------------------------------------|:---------------|:--------------------|
 | Post title                                  | Register       | String              |
 | Post author                                 | Register       | String              |
 | Post content                                | Register       | Text                |
@@ -83,7 +82,6 @@ Let's store that schema in a file called `blog_post_schema.xml` and
 upload that schema to Riak:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -97,7 +95,6 @@ client.execute(storeSchemaOp);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -106,7 +103,6 @@ client.create_search_schema('blog_post_schema', schema_data)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -119,7 +115,6 @@ $schema_string = file_get_contents('blog_post_schema.xml');
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -130,7 +125,6 @@ xml_file.close()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -140,7 +134,6 @@ var rslt = client.PutSearchSchema(schema);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -161,7 +154,6 @@ client.storeSchema(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -170,7 +162,6 @@ riakc_pb_socket:create_search_schema(Pid, <<"blog_post_schema">>, SchemaData).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -180,14 +171,11 @@ curl -XPUT $RIAK_HOST/search/schema/blog_post_schema \
 ```
 
 </TabItem>
-
 </Tabs>
 
-With our schema uploaded, we can create an index called `blog_posts` and
-associate that index with our schema:
+With our schema uploaded, we can create an index called `blog_posts` and associate that index with our schema:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -197,7 +185,6 @@ client.execute(storeIndex);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -205,7 +192,6 @@ client.create_search_index('blog_posts', 'blog_post_schema')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -217,7 +203,6 @@ client.create_search_index('blog_posts', 'blog_post_schema')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -225,7 +210,6 @@ client.create_search_index('blog_posts', 'blog_post_schema')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -234,7 +218,6 @@ var rslt = client.PutSearchIndex(idx);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -250,7 +233,6 @@ client.storeIndex(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -258,7 +240,6 @@ riakc_pb_socket:create_search_index(Pid, <<"blog_posts">>, <<"blog_post_schema">
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -268,7 +249,6 @@ curl -XPUT $RIAK_HOST/search/index/blog_posts \
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## How Collections will Work
@@ -283,7 +263,7 @@ of that one index. For this tutorial, we'll create a bucket type called
 as a queryable collection, but we will not do that in this tutorial.
 
 The advantage of the bucket-type-based approach is that we could store
-blog posts from different blogs in different buckets and query them
+blog posts from different blogs in different blog posts and query them
 all at once as part of the same index. It depends on the use case at
 hand. In this tutorial, we'll only be storing posts from one blog, which
 is called "Cat Pics Quarterly" and provides in-depth theoretical
@@ -312,7 +292,6 @@ described in [Data Modeling with Riak Data Types](../../learn/use-cases.md), we 
 class that looks like this:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -378,7 +357,6 @@ public class BlogPost {
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -402,7 +380,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -454,7 +431,6 @@ class BlogPost {
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -476,7 +452,6 @@ class BlogPost:
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -487,7 +462,6 @@ class BlogPost:
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -498,13 +472,11 @@ class BlogPost:
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, we can store some blog posts. We'll start with just one:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -528,7 +500,6 @@ try {
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -544,7 +515,6 @@ blog_post1 = BlogPost.new('cat_pics_quarterly',
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -564,7 +534,6 @@ $post1 = new BlogPost(
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -582,7 +551,6 @@ blog_post1 = BlogPost('cat_pics_quarterly',
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -601,7 +569,6 @@ string id = repo.Save(post);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -622,7 +589,6 @@ repo.save(post, function (err, rslt) {
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Querying
@@ -633,7 +599,6 @@ all blog posts with the keyword `funny` (after all, some cat pics are
 quite serious, and we may not want those).
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -648,7 +613,6 @@ List<Map<String, List<String>>> results = searchOp.get().getAllResults();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -656,7 +620,6 @@ results = client.search('blog_posts', 'keywords_set:funny')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -668,7 +631,6 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -676,7 +638,6 @@ results = client.fulltext_search('blog_posts', 'keywords_set:funny')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -685,7 +646,6 @@ var rslt = client.Search(searchRequest);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -699,7 +659,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -707,13 +666,11 @@ curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=keywords_set:funny"
 ```
 
 </TabItem>
-
 </Tabs>
 
 Or we can find posts that contain the word `furry`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -728,7 +685,6 @@ List<Map<String, List<String>>> results = searchOp.get().getAllResults();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -736,7 +692,6 @@ results = client.search('blog_posts', 'content_register:furry')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -748,7 +703,6 @@ $response = (new \Basho\Riak\Command\Builder\Search\FetchObjects($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -756,7 +710,6 @@ results = client.fulltext_search('blog_posts', 'content_register:furry')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -765,7 +718,6 @@ var rslt = client.Search(searchRequest);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -779,7 +731,6 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -787,13 +738,12 @@ curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=content_register:furry"
 ```
 
 </TabItem>
-
 </Tabs>
 
 Here are some more possible queries:
 
 | Info                                                   | Query                                  |
-| :----------------------------------------------------- | :------------------------------------- |
+|:-------------------------------------------------------|:---------------------------------------|
 | Unpublished posts                                      | `published_flag:false`                 |
 | Titles that begin with `Loving*`                       | `title_register:Loving*`               |
 | Post bodies containing the words `furry` and `jumping` | `content_register:[furry AND jumping]` |

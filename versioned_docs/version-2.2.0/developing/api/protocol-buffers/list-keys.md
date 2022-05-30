@@ -11,7 +11,7 @@ multiple response messages sent for each request.
 :::note Not for production use
 This operation requires traversing all keys stored in the cluster and should
 not be used in production.
-:::note
+:::
 
 ## Request
 

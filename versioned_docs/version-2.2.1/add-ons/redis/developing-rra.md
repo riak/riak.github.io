@@ -125,7 +125,7 @@ To request a value at a bucket/key in Riak KV, issue the following:
 ```
 
 </TabItem>
-<TabItem label="Javascript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var redis = require("redis"),
@@ -216,7 +216,7 @@ To set a value at a bucket/key in Riak KV, issue the following:
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var redis = require("redis"),
@@ -282,7 +282,7 @@ RRA configuration file `/etc/cache_proxy/cache_proxy_22122.yml`:
 ### Sibling Explosion
 
 As noted in the section "Sibling Resolution" above, Riak KV provides for a line of
-descendency (known as the [causal context][[concept causal context]]) for a value stored at a key. Clients
+descendency (known as the [causal context][concept causal context]) for a value stored at a key. Clients
 performing write operations provide this causal context by setting the vector
 clock (VClock) that they last read.
 
@@ -316,7 +316,7 @@ To delete a value at a bucket/key in Riak KV, issue the following:
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var redis = require("redis"),

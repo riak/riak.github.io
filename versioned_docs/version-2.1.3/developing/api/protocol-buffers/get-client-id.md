@@ -34,13 +34,18 @@ message RpbGetClientIdResp {
 
 Request
 
-    Hex     00 00 00 01 03
-    Erlang  <<0,0,0,1,3>>
+```
+Hex     00 00 00 01 03
+Erlang  <<0,0,0,1,3>>
+```
+
 
 Response
 
-    Hex     00 00 00 07 04 0A 04 01 65 01 B5
-    Erlang <<0,0,0,7,4,10,4,1,101,1,181>>
+```
+Hex     00 00 00 07 04 0A 04 01 65 01 B5
+Erlang <<0,0,0,7,4,10,4,1,101,1,181>>
 
-    RpbGetClientIdResp protoc decode:
-    client_id: "001e001265"
+RpbGetClientIdResp protoc decode:
+client_id: "001e001265"
+```

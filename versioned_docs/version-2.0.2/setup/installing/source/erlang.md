@@ -6,7 +6,6 @@ sidebar_position: 0
 ---
 
 [install index]: ../../../setup/installing/index.md
-
 [security basics]: ../../../using/security/basics.md
 
 Pre-packaged versions of Riak include an Erlang installation. If you are building Riak from source, you will need to install [Basho's patched version of Erlang](http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz). **If you do not use this version of Erlang, you will not be able to use Riak's [security features][security basics].**
@@ -19,7 +18,7 @@ Pre-packaged versions of Riak include an Erlang installation. If you are buildin
 
 #### Contents
 
-* [kerl](https://github.com/yrashk/kerl)
+* [kerl](#kerl-prerequisites)
 * [Debian/Ubuntu](#debianubuntu-prerequisites)
 * [FreeBSD/Solaris](#freebsdsolaris-prerequisites)
 * [Mac OS X](#mac-os-x-prerequisites)
@@ -34,12 +33,13 @@ To build and install Erlang you must have a GNU-compatible build system and thes
 
 **Building**
 
-* [autoconf](https://www.gnu.org/software/autoconf/): generates configure scripts.
+* [autoconf](http://www.gnu.org/software/autoconf/autoconf.html): generates configure scripts.
 * [make](http://www.gnu.org/software/make/): generates executables and other non-source files of a program.
 * [gcc](https://gcc.gnu.org/): for compiling C.
 * [ncurses](http://www.gnu.org/software/ncurses/): for terminal-based interfaces.
 * [OpenSSL](https://www.openssl.org/): toolkit that implements SSL and TSL protocols.
 * [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html): platform for deploying Java.
+
 
 ## kerl Prerequisites
 
@@ -66,25 +66,25 @@ touch ~/.kerlrc
 
 Next add the following contents to your `~/.kerlrc` file:
 
-```shell
+```bash
 KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads
                         --enable-kernel-poll --without-odbc --enable-darwin-64bit"
 ```
 
 Then check for the presence of autoconf by running:
 
-```shell
+```bash
 which autoconf
 ```
-
 If this returns `autoconf not found`, install autoconf by running:
 
-```shell
+```bash
 sudo pkg update
 sudo pkg install autoconf
 ```
 
 Once you've configured kerl and installed autoconf continue with [Installing with kerl](#installing-with-kerl).
+
 
 ### Configuring kerl on Mac OS X
 
@@ -98,7 +98,7 @@ touch ~/.kerlrc
 
 Next add the following contents to your `~/.kerlrc` file:
 
-```shell
+```bash
 KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads
                         --enable-kernel-poll --without-odbc --enable-darwin-64bit"
 ```
@@ -107,7 +107,7 @@ On OS X 10.9 (Mavericks) or later, you may need to install [autoconf](https://ww
 
 Check for the presence of autoconf by running:
 
-```shell
+```bash
 which autoconf
 ```
 
@@ -115,13 +115,13 @@ If this returns `autoconf not found`, install autoconf with:
 
 With Homebrew:
 
-```shell
+```bash
 brew install autoconf
 ```
 
 Or with curl:
 
-```shell
+```bash
 curl -O http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
 tar zxvf autoconf-2.69.tar.gz
 cd autoconf-2.69
@@ -129,6 +129,8 @@ cd autoconf-2.69
 ```
 
 Once you've configured kerl and installed autoconf continue with [Installing with kerl](#installing-with-kerl).
+
+
 
 ## Debian/Ubuntu Prerequisites
 
@@ -147,10 +149,10 @@ If you're using a graphical environment and want to use Erlang's GUI utilities, 
 
 > **Note on build output**
 >
-> These packages are not required for operation of a Riak node.
-> Notes in the build output about missing support for wxWidgets can be
-> safely ignored when installing Riak in a typical non-graphical server
-> environment.
+>These packages are not required for operation of a Riak node.
+Notes in the build output about missing support for wxWidgets can be
+safely ignored when installing Riak in a typical non-graphical server
+environment.
 
 To install packages for graphics support use the following `apt-get` command:
 
@@ -161,6 +163,8 @@ sudo apt-get install libwxbase2.8 libwxgtk2.8-dev libqt4-opengl-dev
 ### Next Steps
 
 Once you've installed the prerequisites, continue with [Installing on Debian/Ubuntu](#installing-on-debianubuntu).
+
+
 
 ## FreeBSD/Solaris Prerequisites
 
@@ -187,14 +191,16 @@ sudo pkg install wx28-gtk2-2.8.12_4
 
 Once you've installed the prerequisites, continue with [Installing on FreeBSD/Solaris](#installing-on-freebsdsolaris).
 
+
+
 ## Mac OS X Prerequisites
 
 * [XCode Developer Tools](http://developer.apple.com/) - Apple Software Development Tools.
-* [Homebrew](#installing-on-mac-os-x-with-homebrew) (*optional*) - Package Manager.
+* [Homebrew](http://brew.sh/) (*optional*) - Package Manager.
 
 First install [XCode Developer Tools](http://developer.apple.com/). XCode is a set software development tools for developing on OS X.
 
-We also recommend installing [Homebrew](#installing-on-mac-os-x-with-homebrew), a package manager for OS X. Homebrew is not required to install Erlang and is optional.
+We also recommend installing [Homebrew](http://brew.sh/), a package manager for OS X. Homebrew is not required to install Erlang and is optional.
 
 Next, if you are running OS X 10.9 (Mavericks) or later, you may need to
 install [autoconf](https://www.gnu.org/software/autoconf/). To check for
@@ -247,6 +253,8 @@ sudo yum install wxBase.x86_64
 
 Once you've installed the prerequisites, continue with [Installing on RHEL/CentOS](#installing-on-rhelcentos).
 
+
+
 ## Installation
 
 * [Installing with kerl](#installing-with-kerl)
@@ -264,7 +272,7 @@ Erlang [from Github](https://github.com/basho/otp) using the following
 command:
 
 ```bash
-./kerl build git git://github.com/basho/otp.git OTP_R16B02_basho8 R16B02-basho8
+./kerl build git git://github.com/basho/otp.git OTP_R16B02_basho10 R16B02-basho10
 ```
 
 This builds the Erlang distribution and performs all of the steps
@@ -273,12 +281,12 @@ required to manually install Erlang for you.
 After Erlang is successfully built, you can install the build as follows:
 
 ```bash
-./kerl install R16B02-basho8 ~/erlang/R16B02-basho8
-. ~/erlang/R16B02-basho8/activate
+./kerl install R16B02-basho10 ~/erlang/R16B02-basho10
+. ~/erlang/R16B02-basho10/activate
 ```
 
 The last line activates the Erlang build that was just installed into
-`~/erlang/R16B02-basho8`.
+`~/erlang/R16B02-basho10`.
 
 > See the kerl [README](https://github.com/yrashk/kerl) for more details on the available commands.
 
@@ -294,6 +302,7 @@ And start Erlang from your terminal with:
 erl
 ```
 
+
 ## Installing on Debian/Ubuntu
 
 First make sure you have installed the necessary dependencies found in [Debian/Ubuntu Prerequisites](#debianubuntu-prerequisites).
@@ -303,19 +312,19 @@ Next download [Basho's patched version of Erlang](http://s3.amazonaws.com/downlo
 Using `wget`:
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho8.tar.gz
+wget http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz
 ```
 
 Then unpack the download with:
 
 ```bash
-tar zxvf otp_src_R16B02-basho8.tar.gz
+tar zxvf otp_src_R16B02-basho10.tar.gz
 ```
 
 Next `cd` into the unpacked directory, build and install Erlang with:
 
 ```bash
-cd OTP_R16B02_basho8
+cd OTP_R16B02_basho10
 ./otp_build autoconf
 ./configure && make && sudo make install
 ```
@@ -339,19 +348,19 @@ First make sure you installed the necessary dependencies in [FreeBSD/Solaris Pre
 Next download [Basho's patched version of Erlang](http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz):
 
 ```bash
-ftp http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho8.tar.gz
+ftp http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz
 ```
 
 Then unpack the download with:
 
 ```bash
-tar zxvf otp_src_R16B02-basho8.tar.gz
+tar zxvf otp_src_R16B02-basho10.tar.gz
 ```
 
 Next `cd` into the unpacked directory, build and install Erlang with:
 
 ```bash
-cd OTP_R16B02_basho8
+cd OTP_R16B02_basho10
 ./otp_build autoconf
 ./configure && gmake && sudo gmake install
 ```
@@ -368,6 +377,7 @@ And start Erlang from your terminal with:
 erl
 ```
 
+
 ## Installing on Mac OS X
 
 First make sure you have installed the necessary dependencies found in [Mac OS X Prerequisites](#mac-os-x-prerequisites).
@@ -383,13 +393,13 @@ You can install Erlang in several ways on OS X:
 Next download [Basho's patched version of Erlang](http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz):
 
 ```bash
-curl -O http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho8.tar.gz
+curl -O http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz
 ```
 
 Then unpack the download with:
 
 ```bash
-tar zxvf otp_src_R16B02-basho8.tar.gz
+tar zxvf otp_src_R16B02-basho10.tar.gz
 ```
 
 Follow the steps below to configure Erlang for your operating system.
@@ -436,7 +446,7 @@ If you're on a non-Intel processor or older version of OS X:
 After you've configured your system `cd` into the unpacked directory, build and install Erlang with:
 
 ```bash
-cd OTP_R16B02_basho8
+cd OTP_R16B02_basho10
 ./otp_build autoconf
 ./configure && make && sudo make install
 ```
@@ -500,19 +510,19 @@ First make sure you have installed the necessary dependencies and prerequisites 
 Using `wget`:
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho8.tar.gz
+wget http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz
 ```
 
 Then unpack the download with:
 
 ```bash
-tar zxvf otp_src_R16B02-basho8.tar.gz
+tar zxvf otp_src_R16B02-basho10.tar.gz
 ```
 
 Next `cd` into the unpacked directory, build and install Erlang with:
 
 ```bash
-cd OTP_R16B02_basho8
+cd OTP_R16B02_basho10
 ./otp_build autoconf
 ./configure && make && sudo make install
 ```
@@ -520,16 +530,16 @@ cd OTP_R16B02_basho8
 > **Note for RHEL6/CentOS6**
 >
 > In certain versions of RHEL6 and CentO6 the `openSSL-devel` package
-> ships with Elliptical Curve Cryptography partially disabled. To
-> communicate this to Erlang and prevent compile- and run-time errors, the
-> environment variable `CFLAGS="-DOPENSSL_NO_EC=1"` needs to be added to
-> Erlang's `./configure` call.
+ships with Elliptical Curve Cryptography partially disabled. To
+communicate this to Erlang and prevent compile- and run-time errors, the
+environment variable `CFLAGS="-DOPENSSL_NO_EC=1"` needs to be added to
+Erlang's `./configure` call.
 >
 > The full `make` invocation then becomes
 >
 > ```bash
-> CFLAGS="-DOPENSSL_NO_EC=1" ./configure && make && sudo make install
-> ```
+CFLAGS="-DOPENSSL_NO_EC=1" ./configure && make && sudo make install
+```
 
 Confirm Erlang installed to the correct location:
 

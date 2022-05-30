@@ -1,7 +1,7 @@
 ---
 title: "Search Query"
 id: http_search_query
-slug: search-query
+slug: search-query 
 sidebar_position: 13
 ---
 
@@ -9,7 +9,9 @@ Performs a [Riak KV Search](../../../developing/usage/search.md) query.
 
 ## Request
 
-    GET /search/query/<index_name>
+```
+GET /search/query/<index_name>
+```
 
 ## Optional Query Parameters
 

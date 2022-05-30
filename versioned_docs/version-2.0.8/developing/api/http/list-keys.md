@@ -27,8 +27,8 @@ GET /types/<type>/buckets/bucket/keys?keys=stream
 Required query parameters:
 
 * `keys` - defaults to `false`. When set to `true` all keys will be returned in
-  a single payload.  When set to `stream`, keys will be returned in
-  chunked-encoding.
+a single payload.  When set to `stream`, keys will be returned in
+chunked-encoding.
 
 ## Response
 
@@ -40,7 +40,7 @@ Important headers:
 
 * `Content-Type` - `application/json`
 * `Transfer-Encoding` - `chunked` when the `keys` query parameter is set to
-  `stream`.
+`stream`.
 
 The JSON object in the response will contain up to two entries,
 `"props"` and `"keys"` which are present or missing according to the

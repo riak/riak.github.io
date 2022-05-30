@@ -8,7 +8,6 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [cluster ops handoff]: ../../using/cluster-operations/handoff.md
 
 Riak is a distributed system built with two essential goals in mind:
@@ -72,7 +71,7 @@ handoff.ssl.keyfile = /ssl_dir/key.pem
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {handoff_ssl_options, [
@@ -105,7 +104,7 @@ handoff.port = 9000
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {handoff_port, 9000},
@@ -137,7 +136,7 @@ handoff.use_background_manager = on
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
     %% Other configs
     {handoff_use_background_manager, on},
@@ -177,7 +176,7 @@ handoff.max_rejects = 10
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
     %% Other configs
     {handoff_rejected_max, 10},
@@ -188,6 +187,7 @@ handoff.max_rejects = 10
 </TabItem>
 
 </Tabs>
+
 
 ### Transfer Limit
 
@@ -208,7 +208,7 @@ transfer_limit = 5
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {handoff_concurrency, 5},
@@ -245,7 +245,7 @@ handoff.inbound = off
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
     {disable_outbound_handoff, true},

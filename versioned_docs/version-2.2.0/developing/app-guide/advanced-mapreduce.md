@@ -41,7 +41,7 @@ run MapReduce jobs using Erlang or JavaScript.
 
 :::note Deprecation Warning
 Javascript MapReduce is deprecated and will be removed in a future version.
-:::note
+:::
 
 
 ### Why Do We Use MapReduce for Querying Riak KV?
@@ -159,7 +159,7 @@ period of time (3 seconds by default), and the MapReduce framework does
 not conceal these from submitted jobs. These tombstones can be
 recognized and filtered out by looking for `X-Riak-Deleted`
 in the object metadata with a value of `true`.
-:::note
+:::
 
 ### Reduce Phase
 
@@ -171,8 +171,8 @@ The most important thing to understand is that the function defining the
 reduce phase may be evaluated multiple times, and the input of later
 evaluations will include the output of earlier evaluations.
 
-For example, a reduce phase may implement the
-[`set-union`] function. In that case, the first set of inputs might be `[1,2,2,3]`,
+For example, a reduce phase may implement the [`set-union`](http://en.wikipedia.org/wiki/Union_(set_theory)#Definition)
+function. In that case, the first set of inputs might be `[1,2,2,3]`,
 and the output would be `[1,2,3]`. When the phase receives more inputs,
 say `[3,4,5]`, the function will be called with the concatenation of the
 two lists: `[1,2,3,3,4,5]`.
@@ -226,7 +226,7 @@ Save this file as `mr_example.erl` and proceed to compiling the module.
 You must use the Erlang compiler (`erlc`) associated with the
 Riak KV installation or the version of Erlang used when compiling Riak KV from
 source.
-:::note
+:::
 
 Compiling the module is a straightforward process:
 
@@ -253,8 +253,7 @@ The result should be a JSON map of bucket and key names expressed as key/value p
 :::note
 Be sure to install the MapReduce function as described above on all of
 the nodes in your cluster to ensure proper operation.
-:::note
-
+:::
 
 ## Phase functions
 
@@ -372,7 +371,7 @@ Erlang client.
 Any modules and functions you use in your Erlang MapReduce calls must be
 available on all nodes in the cluster. Please read about
 [installing custom code](../../using/reference/custom-code.md).
-:::note
+:::
 
 ### Erlang Example
 
@@ -421,7 +420,7 @@ Note how the `riak_object` module is used in the MapReduce
 function but the `riakc_obj` module is used on the client.
 Riak objects are represented differently internally to the cluster than
 they are externally.
-:::note
+:::
 
 Given the lists of groceries we created, the sequence of commands above
 would result in L being bound to `[{"bread",1},{"eggs",1},{"bacon",2}]`.
@@ -491,7 +490,7 @@ difficult to diagnose without expecting the issue and knowing of
 When using the Erlang shell, anonymous MapReduce functions can be
 defined and sent to Riak KV instead of deploying them to all servers in
 advance, but condition #2 above still holds.
-:::note
+:::
 
 Link phases are expressed in the following form:
 

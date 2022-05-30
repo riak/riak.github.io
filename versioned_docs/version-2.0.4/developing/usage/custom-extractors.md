@@ -1,20 +1,19 @@
 ---
 title: "Custom Extractors"
 id: usage_custom_extractors
-slug: custom-extractors
+slug: custom-extractors 
 sidebar_position: 13
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 Solr, and by extension Riak Search, has default extractors for a wide
 variety of data types, including JSON, XML, and plaintext. Riak Search
 ships with the following extractors:
 
 | Content Type       | Erlang Module       |
-| :----------------- | :------------------ |
+|:-------------------|:--------------------|
 | `application/json` | `yz_json_extractor` |
 | `application/xml`  | `yz_xml_extractor`  |
 | `text/plain`       | `yz_text_extractor` |
@@ -83,12 +82,14 @@ Solr query `text:Fourscore*`, to give just one example.
 Let's say that we're storing HTTP header packet data in Riak. Here's an
 example of such a packet:
 
-    GET http://www.google.com HTTP/1.1
+```
+GET http://www.google.com HTTP/1.1
+```
 
 We want to register the following information in Solr:
 
 | Field name | Value                                   | Extracted value in this example |
-| :--------- | :-------------------------------------- | :------------------------------ |
+|:-----------|:----------------------------------------|:--------------------------------|
 | `method`   | The HTTP method                         | `GET`                           |
 | `host`     | The URL's host                          | `www.google.com`                |
 | `uri`      | The URI, i.e. what comes after the host | `/`                             |
@@ -140,7 +141,7 @@ To instruct Riak where to find the resulting
 can be found in our documentation on [advanced](../../configuring/reference.md#advanced-configuration)). Here's an
 example:
 
-```advancedconfig
+```erlang
 [
   %% Other configs
   {vm_args, [
@@ -240,7 +241,6 @@ store in a `http_header_schema.xml` file:
 Now, we can store the schema:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -254,7 +254,6 @@ client.execute(storeSchemaOp);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -263,7 +262,6 @@ client.create_search_schema('http_header_schema', schema_xml)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -276,7 +274,6 @@ $schema_string = file_get_contents('http_header_schema.xml');
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -287,7 +284,6 @@ client.create_search_schema('http_header_schema', schema_xml)
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -297,14 +293,12 @@ curl -XPUT $RIAK_HOST/search/schema/http_header_schema \
 ```
 
 </TabItem>
-
 </Tabs>
 
 Riak now has our schema stored and ready for use. Let's create a search
 index called `header_data` that's associated with our new schema:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -315,7 +309,6 @@ client.execute(storeIndex);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -323,7 +316,6 @@ client.create_search_index('header_data', 'http_header_schema')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -335,7 +327,6 @@ client.create_search_index('header_data', 'http_header_schema')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -343,7 +334,6 @@ client.create_search_index('header_data', 'http_header_schema')
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -353,7 +343,6 @@ curl -XPUT $RIAK_HOST/search/index/header_data \
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, we can create and activate a [bucket type](../../developing/usage/bucket-types.md)
@@ -371,7 +360,6 @@ store it in a bucket with the `http_data_store` bucket type, making sure
 to use our custom `application/httpheader` MIME type:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -390,7 +378,6 @@ client.execute(storeOp);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -403,7 +390,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -417,7 +403,6 @@ $object = new Object(file_get_contents("google_packet.bin"), ['Content-Type' => 
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -430,7 +415,6 @@ obj.store()
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -440,7 +424,6 @@ curl -XPUT $RIAK_HOST/types/http_data_store/buckets/packets/keys/google \
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now that we have some header packet data stored, we can query our
@@ -449,7 +432,6 @@ that we'll get one result if we query for objects that have the HTTP
 method `GET`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -461,7 +443,6 @@ int numberFound = results.numResults(); // 1
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -470,7 +451,6 @@ results['num_found'] # 1
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -484,7 +464,6 @@ $response->getNumFound();
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -493,7 +472,6 @@ results['num_found'] # 1
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -504,5 +482,4 @@ curl "$RIAK_HOST/search/query/header_data?wt=json&q=method:GET"
 ```
 
 </TabItem>
-
 </Tabs>

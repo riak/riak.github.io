@@ -1,7 +1,7 @@
 ---
 title: "Secondary Indexes"
 id: http_2i
-slug: secondary-indexes
+slug: secondary-indexes 
 sidebar_position: 9
 ---
 
@@ -17,36 +17,44 @@ GET /buckets/mybucket/index/myindex_bin/value
 
 ### Range Query
 
-    GET /buckets/mybucket/index/myindex_bin/start/end
+```
+GET /buckets/mybucket/index/myindex_bin/start/end
+```
 
 #### Range query with terms
 
 To see the index values matched by the range, use `return_terms=true`.
 
-    GET /buckets/mybucket/index/myindex_bin/start/end?return_terms=true
+```
+GET /buckets/mybucket/index/myindex_bin/start/end?return_terms=true
+```
 
 ### Pagination
 
 Add the parameter `max_results` for pagination. This will limit the results and provide for the next request a `continuation` value.
 
-    GET /buckets/mybucket/index/myindex_bin/start/end?return_terms=true&max_results=500
-    GET /buckets/mybucket/index/myindex_bin/start/end?return_terms=true&max_results=500&continuation=g2gCbQAAAAdyaXBqYWtlbQAAABIzNDkyMjA2ODcwNTcxMjk0NzM=
+```
+GET /buckets/mybucket/index/myindex_bin/start/end?return_terms=true&max_results=500
+GET /buckets/mybucket/index/myindex_bin/start/end?return_terms=true&max_results=500&continuation=g2gCbQAAAAdyaXBqYWtlbQAAABIzNDkyMjA2ODcwNTcxMjk0NzM=
+```
 
 ### Streaming
 
-    GET /buckets/mybucket/index/myindex_bin/start/end?stream=true
+```
+GET /buckets/mybucket/index/myindex_bin/start/end?stream=true
+```
 
 ## Response
 
 Normal status codes:
 
-* `200 OK`
++ `200 OK`
 
 Typical error codes:
 
-* `400 Bad Request` - if the index name or index value is invalid.
-* `500 Internal Server Error` - if there was an error in processing a map or reduce function, or if indexing is not supported by the system.
-* `503 Service Unavailable` - if the job timed out before it could complete
++ `400 Bad Request` - if the index name or index value is invalid.
++ `500 Internal Server Error` - if there was an error in processing a map or reduce function, or if indexing is not supported by the system.
++ `503 Service Unavailable` - if the job timed out before it could complete
 
 ## Example
 

@@ -12,7 +12,7 @@ supported or production-ready. Strong consistency is incompatible with
 Multi-Datacenter Replication, Riak Search, Bitcask Expiration, LevelDB
 Secondary Indexes, Riak Data Types and Commit Hooks. We do not recommend its
 usage in any production environment.
-:::note
+:::
 
 ## Monitoring Strong Consistency
 

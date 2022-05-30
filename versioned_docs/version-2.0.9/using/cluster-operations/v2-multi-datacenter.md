@@ -2,12 +2,8 @@
 title: "v2 Replication Operations"
 id: cluster_operations_v2
 slug: v2-multi-datacenter
-sidebar_position: 10
+sidebar_position: 10 
 ---
-
-:::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../using/cluster-operations/v3-multi-datacenter.md) instead.
-:::note
 
 Riak Enterprise's Multi-Datacenter Replication system is largely
 controlled by the `riak-repl` command. The sections below detail the
@@ -151,7 +147,7 @@ restarting Riak Enterprise.
 
 | Field                   | Description                                                                                                                                                                       |
 |:------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `client_stats`          | See  [Client Statistics](../../using/reference/multi-datacenter/statistics.md#client-statistics)                                                                                  |
+| `client_stats`          | See [Client Statistics](../reference/multi-datacenter/statistics.md#client-statistics)                                                                                            |
 | `client_bytes_recv`     | The total number of bytes the client has received since the server has been started                                                                                               |
 | `client_bytes_sent`     | The total number of bytes sent to all connected sites                                                                                                                             |
 | `client_connect_errors` | The number of TCP/IP connection errors                                                                                                                                            |
@@ -171,7 +167,7 @@ restarting Riak Enterprise.
 | `server_fullsyncs`      | The number of fullsync operations that have occurred since the server was started                                                                                                     |
 | `server_rx_kbps`        | A snapshot of the server (listener) received kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list. |
 | `server_tx_kbps`        | A snapshot of the server (listener) sent kilobits/second taken once a minute. The past 8 snapshots are stored in this list. Newest snapshots appear on the left side of the list.     |
-| `server_stats`          | See [Server Statistics](../../using/reference/multi-datacenter/statistics.md#server-statistics)                                                                                       |
+| `server_stats`          | See [Server Statistics](../reference/multi-datacenter/statistics.md#server-statistics)                                                                                                |
 
 ### Elections and Objects
 
@@ -192,7 +188,7 @@ restarting Riak Enterprise.
 | `[sitename]_ips`                 | Defines a replication site                                        |
 | `leader`                         | Which node is the current leader of the cluster                   |
 | `local_leader_message_queue_len` | The length of the object queue on the leader                      |
-| `local_leader_heap_size`         | The amount of memory the leader is using                          |
+| `local_leader_heap_size `        | The amount of memory the leader is using                          |
 
 ## Client Statistics
 
@@ -224,15 +220,13 @@ participate in realtime replication. Please see the [Riak Enterprise MDC Replica
 
 ## Server Statistics
 
-
-
 | Field               | Description                                                                                                                                                                                                                                                                                                                                                       |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `node`              | A unique ID for the Riak node on which the server (listener) is running                                                                                                                                                                                                                                                                                           |
 | `site`              | The connected site name configured with `riak-repl add-site`                                                                                                                                                                                                                                                                                                      |
 | `strategy`          | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist` or `syncv1`.                                                                                                                                                                                                                                           |
 | `fullsync_worker`   | The Erlang process ID of the fullsync worker                                                                                                                                                                                                                                                                                                                      |
-| `bounded_queue`     | See the  [Bounded Queue](#bounded-queue) section above                                                                                                                                                                                                                                                                                                            |
+| `bounded_queue`     | See the [Bounded Queue](../cluster-operations/v2-multi-datacenter.md#bounded-queue) section above                                                                                                                                                                                                                                                                 |
 | `state`             | State shows what the current replication strategy is processing. The following definitions appear in the status output if the keylist strategy is being used. They can be used by Basho support to identify replication issues.<ul><li>`wait_for_partition`</li><li>`build_keylist`</li><li>`wait_keylist`</li><li>`diff_bloom`</li><li>`diff_keylist`</li></ul>s |
 | `message_queue_len` | The number of Erlang messages that are waiting to be processed by the server                                                                                                                                                                                                                                                                                      |
 

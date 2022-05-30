@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_ruby_object
-slug: object-modeling
+slug: object-modeling 
 sidebar_position: 2
 ---
 
@@ -61,7 +61,7 @@ and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
 | Bucket      | Key Pattern                | Example Key                                                          |
-| :---------- | :------------------------- | :------------------------------------------------------------------- |
+|:------------|:---------------------------|:---------------------------------------------------------------------|
 | `Users`     | `<user_name>`              | `joeuser`                                                            |
 | `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13.223556Z`                                |
 | `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
@@ -277,3 +277,4 @@ So to recap, in this chapter we learned:
 
 * How to choose bucket names
 * How to choose natural keys based on how we want to partition our data.
+

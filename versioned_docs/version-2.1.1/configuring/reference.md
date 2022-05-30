@@ -6,26 +6,48 @@ sidebar_position: 3
 ---
 
 [concept clusters]: ../learn/concepts/clusters.md
+
 [plan backend bitcask]: ../setup/planning/backend/bitcask.md
+
 [config backend bitcask]: ../setup/planning/backend/bitcask.md#configuring-bitcask
+
 [plan backend leveldb]: ../setup/planning/backend/leveldb.md
+
 [config backend leveldb]: ../setup/planning/backend/leveldb.md#configuring-eleveldb
+
 [plan backend memory]: ../setup/planning/backend/memory.md
+
 [config backend memory]: ../setup/planning/backend/memory.md#configuring-the-memory-backend
+
 [plan backend multi]: ../setup/planning/backend/multi.md
+
 [config backend multi]: ../setup/planning/backend/multi.md#configuring-multiple-backends
+
 [use admin riak cli]: ../using/admin/riak-cli.md
+
 [use admin riak-admin]: ../using/admin/riak-admin.md
+
 [glossary aae]: ../learn/glossary.md#active-anti-entropy-aae
+
 [use ref search 2i]: ../using/reference/secondary-indexes.md
+
 [cluster ops bucket types]: ../using/cluster-operations/bucket-types.md
+
 [usage conflict resolution]: ../developing/usage/conflict-resolution/index.md
+
 [concept causal context]: ../learn/concepts/causal-context.md
+
 [usage mapreduce]: ../developing/usage/mapreduce.md
+
 [security index]: ../using/security/index.md
+
 [cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
+
 [glossary vnode]: ../learn/glossary.md#vnode
+
 [cluster ops handoff]: ../using/cluster-operations/handoff.md
+
+[Search Settings]: ./search.md
 
 Riak has a `riak.conf` configuration file located in `/etc` if you are
 using a source install or in `/etc/riak` or `/usr/local/etc` if you used
@@ -39,10 +61,10 @@ beyond.
 > **Note on upgrades to 2.0**
 >
 > If your cluster is currently running a version of Riak prior to 2.0 and
-you'd like to upgrade to version 2.0 or later, you may continue to use
-your old `app.config` and `vm.args` files. You may also use the newer
-`riak.conf` alongside them, but please be aware that any settings in
-`app.config` or `vm.args` will override settings in `riak.conf`.
+> you'd like to upgrade to version 2.0 or later, you may continue to use
+> your old `app.config` and `vm.args` files. You may also use the newer
+> `riak.conf` alongside them, but please be aware that any settings in
+> `app.config` or `vm.args` will override settings in `riak.conf`.
 
 ## The advanced.config file
 
@@ -75,7 +97,6 @@ Configurable parameters for your cluster's [ring][concept clusters].
 | ring_size      | Number of partitions in the cluster (only valid when first creating the cluster). Must be a power of 2. The minimum is 8 and the maximum is 1024. | 64          |
 | transfer_limit | Number of concurrent node-to-node transfers allowed.                                                                                              | 2           |
 
-
 ## Storage Backend
 
 Riak enables you to choose from the following storage backends:
@@ -85,10 +106,9 @@ Riak enables you to choose from the following storage backends:
 * [Memory][plan backend memory] --- [configuration][config backend memory]
 * [Multi][plan backend multi] --- [configuration][config backend multi]
 
-| Config          | Description                                                                                                                                                                   | Default |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| storage_backend | Specifies the storage engine used for Riak's key-value data and secondary indexes (if supported).The available options are bitcask (the default), leveldb, memory, and multi. | bitcask |
-
+| Config          | Description                                                                                                                                                                    | Default |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| storage_backend | Specifies the storage engine used for Riak's key-value data and secondary indexes (if supported). The available options are bitcask (the default), leveldb, memory, and multi. | bitcask |
 
 ## Directories
 
@@ -96,13 +116,13 @@ The directories in which Riak stores data, logs, dependencies,
 executables, and configuration files can be configured using the
 parameters below.
 
-| Config            | Description                                                                                                                                                             | Default |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| platform_data_dir | The directory in which Riak stores its storage backend data, as well as [active anti-entropy](../learn/glossary.md#active-anti-entropy-aae) data, and cluster metadata. | ./data  |
-| platform_etc_dir  | The directory in which Riak's configuration files are stored.                                                                                                           | ./etc   |
-| platform_lib_dir  | The directory in which Riak's dependencies are housed.                                                                                                                  | ./lib   |
-| platform_log_dir  | The directory in which Riak's log files are stored, e.g. console.log, erlang.log, and crash.log files.                                                                  | ./log   |
-
+| Config            | Description                                                                                                             | Default |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------|---------|
+| platform_bin_dir  | The directory in which the riak-admin, riak-debug, and now-deprecated search-cmd executables are stored.                | ./bin   |
+| platform_data_dir | The directory in which Riak stores its storage backend data, as well as active anti-entropy data, and cluster metadata. | ./data  |
+| platform_etc_dir  | The directory in which Riak's configuration files are stored.                                                           | ./etc   |
+| platform_lib_dir  | The directory in which Riak's dependencies are housed.                                                                  | ./lib   |
+| platform_log_dir  | The directory in which Riak's log files are stored, e.g. console.log, erlang.log, and crash.log files.                  | ./log   |
 
 Each of these directory parameters can be used to construct values for
 other parameters by placing it within a `$(...)`. Thus,
@@ -143,11 +163,11 @@ manipulating Riak clusters. The configurable parameters below enable you
 to turn the Riak Control subsystem on and off and to configure console
 authorization.
 
-| Config                                    | Description                                                                                                                                                   | Default |
-|-------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| riak_control                              | Set to off to disable the admin panel.                                                                                                                        | off     |
-| riak_control.auth.mode                    | Authentication mode used for access to the admin panel. Options are off (which is the default) or userlist.                                                   | off     |
-| riak_control.auth.user.$username.password | If Riak Control's authentication mode (riak_control.auth.mode) is set to userlist, this is the list of usernames and passwords for access to the admin panel. | -       |
+| Config                                    | Description                                                                                                                                                    | Default |
+|-------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| riak_control                              | Set to off to disable the admin panel.                                                                                                                         | off     |
+| riak_control.auth.mode                    | Authentication mode used for access to the admin panel. Options are off (which is the default) or userlist.                                                    | off     |
+| riak_control.auth.user.$username.password | If Riak Control's authentication mode ( riak_control.auth.mode) is set to userlist, this is the list of usernames and passwords for access to the admin panel. ||
 
 ## Runtime Health
 
@@ -158,12 +178,11 @@ operating system.
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
 | runtime_health.triggers.distribution_port          | Whether distribution ports with full input buffers will be counted as busy. Distribution ports connect Riak nodes within a single cluster.                                                                                                                             | on        |
 | runtime_health.triggers.port                       | Whether ports with full input buffers will be counted as busy. Ports can represent open files or network sockets.                                                                                                                                                      | on        |
-| runtime_health.triggers.process.heap_size          | A process will become busy when its heap exceeds this size(in bytes).                                                                                                                                                                                                  | 160444000 |
+| runtime_health.triggers.process.heap_size          | A process will become busy when its heap exceeds this size (in bytes).                                                                                                                                                                                                 | 160444000 |
 | runtime_health.triggers.process.garbage_collection | A process will become busy when it exceeds this amount of time doing garbage collection. Set as an integer plus time unit, e.g. `50ms` for 50 milliseconds, `5s` for 5 seconds, etc. Note: Enabling this setting can cause performance problems on multi-core systems. | off       |
-| runtime_health.triggers.process.long_schedule      | A process will become busy when it exceeds this amount of time during a single process scheduling and execution cycle. Set as an integerplus time unit, e.g. `50ms` for 50 milliseconds, `5s` for 5 seconds, etc.                                                      | off       |
+| runtime_health.triggers.process.long_schedule      | A process will become busy when it exceeds this amount of time during a single process scheduling and execution cycle. Set as an integer plus time unit, e.g. `50ms` for 50 milliseconds, `5s` for 5 seconds, etc.                                                     | off       |
 | runtime_health.thresholds.busy_ports               | The threshold at which a warning will be triggered about the number of ports that are overly busy. Ports with full input buffers count toward this threshold.                                                                                                          | 2         |
 | runtime_health.thresholds.busy_processes           | The threshold at which to warn a warning will be triggered about the number of processes that are overly busy. Processes with large heaps or that take a long time to garbage collect will count toward this threshold.                                                | 30        |
-
 
 ## Default Bucket Properties
 
@@ -176,7 +195,7 @@ When configuring buckets [using bucket types][cluster ops bucket types], the tab
 | buckets.default.dw              | The number of replicas which must reply to a write request indicating that the write was committed to durable storage for the write to be deemed successful.                                                                                                                                                                                                                                           | quorum  |
 | buckets.default.last_write_wins | Whether conflicting writes resolve via timestamp.                                                                                                                                                                                                                                                                                                                                                      | false   |
 | buckets.default.merge_strategy  | The strategy used when merging objects that potentially have conflicts. The default is 2 in Riak 2.0 for typed buckets and 1 for non-typed buckets. This setting reduces sibling creation through additional metadata on each sibling (also known as Dotted Version Vectors). Setting this to 1 is the default for Riak 1.4 and earlier, and may duplicate siblings that originated in the same write. | 1       |
-| buckets.default.n_val           | The number of replicas stored.                                                                                                                                                                                                                                                                                                                                                                         | 3       |
+| buckets.default.n_val           | The number of replicas stored in **non-typed** buckets. For typed buckets, the default is 3 unless changed explicitly for that bucket type. Note: See Replication Properties for further discussion.                                                                                                                                                                                                   | 3       |
 | buckets.default.notfound_ok     | Whether not-founds will count toward a quorum of reads.                                                                                                                                                                                                                                                                                                                                                | true    |
 | buckets.default.postcommit      | A space-delimited list of functions that will be run after a value is stored. Only Erlang functions are allowed, using the module:function format.                                                                                                                                                                                                                                                     ||
 | buckets.default.precommit       | A space-delimited list of functions that will be run before a value is stored, and that can abort the write. Only Erlang functions are allowed, using the module:function format.                                                                                                                                                                                                                      ||
@@ -242,7 +261,6 @@ Configurable parameters for Riak's now-deprecated JavaScript
 | javascript.reduce_pool_size   | The number of JavaScript virtual machines available for executing reduce functions.                                 | 6       |
 | javascript.map_pool_size      | The number of JavaScript virtual machines available for executing map functions.                                    | 8       |
 
-
 ## Security
 
 Configurable parameters for [Riak KV Security][security index].
@@ -273,6 +291,7 @@ Riak's Protocol Buffers or HTTP API.
 | listener.http.$name     | This is the IP address and TCP port to which the Riak HTTP interface will bind.                                                                                                                                                  | {"127.0.0.1",8098} |
 | listener.https.$name    | This is the IP address and TCP port to which the Riak HTTPS interface will bind.                                                                                                                                                 ||
 
+
 ## Logging
 
 Configurable parameters for [lager](https://github.com/basho/lager),
@@ -293,9 +312,9 @@ Riak's logging system.
 | log.error.messages_per_second  | Maximum number of error_logger messages to handle per second                                                                                                                                                                                                                                                                                                                                                                   | 100               |
 | log.error.redirect             | Whether to redirect error_logger messages into lager                                                                                                                                                                                                                                                                                                                                                                           | on                |
 | log.syslog                     | When set to on, enables log output to syslog                                                                                                                                                                                                                                                                                                                                                                                   | off               |
-| log.syslog.facility            | Sets the facility level of syslog output if log.syslog is set to on. Possible values: auth authpriv clock cron daemon ftp kern lpr mail news syslog user uucpIn addition to these settings, you may also select local0 through local7.                                                                                                                                                                                         | daemon            |
+| log.syslog.facility            | Sets the facility level of syslog output if log.syslog is set to on. Possible values: auth authpriv clock cron daemon ftp kern lpr mail news syslog user uucp In addition to these settings, you may also select local0 through local7.                                                                                                                                                                                        | daemon            |
 | log.syslog.ident               | If log.syslog is set to on, this setting determines the prefix appended to each syslog message.                                                                                                                                                                                                                                                                                                                                | riak              |
-| log.syslog.level               | If log.syslog is set to on, this setting determines the log level of syslog output. Possible values: alert critical  debug emergency error info none notice warning                                                                                                                                                                                                                                                            | info              |
+| log.syslog.level               | If log.syslog is set to on, this setting determines the log level of syslog output. Possible values: alert critical debug emergency error info none notice warning                                                                                                                                                                                                                                                             | info              |
 | sasl                           | Whether to enable sasl, Erlang's built-in error logger                                                                                                                                                                                                                                                                                                                                                                         | off               |
 
 ## Active Anti-Entropy
@@ -304,7 +323,7 @@ Configurable parameters for Riak's active anti-entropy subsystem.
 
 | Config                                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Default             |
 |--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| anti_entropy                               | How Riak will repair out-of-sync keys. If set to active, out-of-sync keys will be repaired in the background; if set to passive, out-of-sync keys are only repaired on read; and if set to active debug, verbose debugging information will be output.                                                                                                                                                                                                                                                    | active              |
+| anti_entropy                               | How Riak will repair out-of-sync keys. If set to active, out-of-sync keys will be repaired in the background; if set to passive, out-of-sync keys are only repaired on read; and if set to active-debug, verbose debugging information will be output.                                                                                                                                                                                                                                                    | active              |
 | anti_entropy.throttle                      | Whether the distributed throttle for Active Anti-Entropy is enabled.                                                                                                                                                                                                                                                                                                                                                                                                                                      | on                  |
 | anti_entropy.throttle.$tier.mailbox_size   | Sets the throttling tiers for Active Anti-Entropy. Each tier is a minimum vnode mailbox size and a time-delay that the throttle should observe at that size and above. For example, anti_entropy.throttle.tier1.mailbox_size = 0 , anti_entropy.throttle.tier1.delay = 0ms, anti_entropy.throttle.tier2.mailbox_size = 40, anti_entropy.throttle.tier2.delay = 5ms, etc. If configured, there must be a tier which includes a mailbox size of 0. Both .mailbox_size and .delay must be set for each tier. ||
 | anti_entropy.throttle.$tier.delay          | See the description for anti_entropy.throttle.$tier.mailbox_size above.                                                                                                                                                                                                                                                                                                                                                                                                                                   ||
@@ -335,47 +354,44 @@ Configurable parameters for intra-cluster, i.e. inter-node, [handoff][cluster op
 
 ## Riak Data Types
 
-| Config                      | Description                                                                                                                                                                                                                                                                                        | Default |
-|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| datatypes.compression_level | Whether serialized Data Types will use compression and at whatlevel. When set to an integer, the parameter refers to theaggressiveness of compression, on a scale from 0 to 9. on is equivalent to 6, whereas off is equivalent to 0. Higher values for compression tend to be more CPU intensive. | 1       |
+| Config                      | Description                                                                                                                                                                                                                                                                                          | Default |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| datatypes.compression_level | Whether serialized Data Types will use compression and at what level. When set to an integer, the parameter refers to the aggressiveness of compression, on a scale from 0 to 9. on is equivalent to 6, whereas off is equivalent to 0. Higher values for compression tend to be more CPU intensive. | 1       |
 
 
 ## SNMP
 
-Configurable parameters for the [Simple Network Management Protocol][use ref snmp]\(SNMP) server built into
-[Riak SNMP](https://github.com/basho/riak_snmp).
+Configurable parameters for the [Simple Network Management Protocol][use ref snmp](#snmp) server built into
+[Riak Enterprise](http://basho.com/riak-enterprise/).
 
-| Config                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default              |
-|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
-| snmp.nodePutTime100Threshold    | Maximum PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | off                  |
-| snmp.nodePutTime99Threshold     | 99th percentile PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | off                  |
-| snmp.nodePutTime95Threshold     | 95th percentile PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | off                  |
-| snmp.nodePutTimeMedianThreshold | Median PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | off                  |
-| snmp.nodePutTimeMeanThreshold   | Mean PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | off                  |
-| snmp.nodeGetTime100Threshold    | Maximum GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | off                  |
-| snmp.nodeGetTime99Threshold     | 99th percentile GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | off                  |
-| snmp.nodeGetTime95Threshold     | 95th percentile GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | off                  |
-| snmp.nodeGetTimeMedianThreshold | Median GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | off                  |
-| snmp.nodeGetTimeMeanThreshold   | The threshold for the SNMP gauge at which traps are sent. Set to off to disable traps for this gauge. When set to a positive integer in microseconds, the rising trap will be sent when the gauge crosses above the threshold, and the falling trap will be sent when thegauge crosses below the threshold. In the case of the nodeGetTimeMean gauge, the threshold is nodeGetTimeMeanThreshold, the rising trap is nodeGetTimeMeanAlarmRising, and the falling trap is nodeGetTimeMeanFalling. Other gauge thresholds follow this naming pattern. | off                  |
-| snmp.traps.replication          | Enable or disable traps for Multi-Datacenter Replication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | off                  |
-| snmp.refresh_frequency          | How often SNMP will refresh its counters out of Riak's internal stats.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 1m                   |
-| snmp.database_dir               | The directory in which SNMP will store its internal database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | ./data/snmp/agent/db |
-| snmp.force_reload               | Whether to force SNMP information to be repopulated on startup                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | on                   |
-
+| Config                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Default              |
+|---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| snmp.nodePutTime100Threshold    | Maximum PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | off                  |
+| snmp.nodePutTime99Threshold     | 99th percentile PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | off                  |
+| snmp.nodePutTime95Threshold     | 95th percentile PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | off                  |
+| snmp.nodePutTimeMedianThreshold | Median PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | off                  |
+| snmp.nodePutTimeMeanThreshold   | Mean PUT time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | off                  |
+| snmp.nodeGetTime100Threshold    | Maximum GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | off                  |
+| snmp.nodeGetTime99Threshold     | 99th percentile GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | off                  |
+| snmp.nodeGetTime95Threshold     | 95th percentile GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | off                  |
+| snmp.nodeGetTimeMedianThreshold | Median GET time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | off                  |
+| snmp.nodeGetTimeMeanThreshold   | The threshold for the SNMP gauge at which traps are sent. Set to off to disable traps for this gauge. When set to a positive integer in microseconds, the rising trap will be sent when the gauge crosses above the threshold, and the falling trap will be sent when the gauge crosses below the threshold. In the case of the nodeGetTimeMean gauge, the threshold is nodeGetTimeMeanThreshold, the rising trap is nodeGetTimeMeanAlarmRising, and the falling trap is nodeGetTimeMeanFalling. Other gauge thresholds follow this naming pattern. | off                  |
+| snmp.traps.replication          | Enable or disable traps for Multi-Datacenter Replication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | off                  |
+| snmp.refresh_frequency          | How often SNMP will refresh its counters out of Riak's internal stats.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 1m                   |
+| snmp.database_dir               | The directory in which SNMP will store its internal database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | ./data/snmp/agent/db |
+| snmp.force_reload               | Whether to force SNMP information to be repopulated on startup                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | on                   |
 
 ## JMX
 
 Configuration parameters for the [JMX Monitoring][use ref jmx] system built into
-[Riak JMX](https://github.com/basho/riak_jmx).
+[Riak Enterprise](http://basho.com/riak-enterprise/).
 
-| Config                     | Description                                                         | Default |
-|----------------------------|---------------------------------------------------------------------|---------|
-| jmx                        | Turns on Java Management Extensions for Riak                        | off     |
-| jmx.refresh_rate           | How often to refresh stats                                          | 30s     |
-| jmx.restart_check          | Time to wait between restarts of JMX. This is only for retrying JMX |         |
-| if the JMX server crashes. | 10m                                                                 |         |
-| jmx.port                   | The port on which JMX will listen                                   | 41110   |
-
+| Config            | Description                                                                                    | Default |
+|-------------------|------------------------------------------------------------------------------------------------|---------|
+| jmx               | Turns on Java Management Extensions for Riak                                                   | off     |
+| jmx.refresh_rate  | How often to refresh stats                                                                     | 30s     |
+| jmx.restart_check | Time to wait between restarts of JMX. This is only for retrying JMX if the JMX server crashes. | 10m     |
+| jmx.port          | The port on which JMX will listen                                                              | 41110   |
 
 ## Strong Consistency
 
@@ -401,7 +417,7 @@ Unlike the `strong_consistency` setting, the settings listed below are
 available only in `advanced.config`, in the `riak_ensemble` section of
 that file. That section looks like this:
 
-```erlang
+```advancedconfig
 {riak_ensemble, [
     {parameter1, value},
     {parameter2, value},
@@ -436,12 +452,13 @@ strong consistency before changing the defaults on these parameters.
 
 | Config                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Default          |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| metadata_cache_size           | This setting controls the size of the metadata cache for each vnode. The cache can be disabled by setting it to off (this is the default). Enabling the cache should not be necessary in disk based backends (i.e. LevelDB and Bitcask) but it can help performance in the Memory backend. Note that this setting adjusts the size of the ETS table rather than the actual data. Thus, more space may be used than the simple size * number-of-vnodes calculation would imply. Caution: This setting should not be changed without extensive benchmarking. | off              |
+| metadata_cache_size           | This setting controls the size of the metadata cache for each vnode. The cache can be disabled by setting it to off (this is the default). Enabling the cache should not be necessary in disk-based backends (i.e. LevelDB and Bitcask) but it can help performance in the Memory backend. Note that this setting adjusts the size of the ETS table rather than the actual data. Thus, more space may be used than the simple size * number-of-vnodes calculation would imply. Caution: This setting should not be changed without extensive benchmarking. | off              |
 | max_concurrent_requests       | The maximum number of concurrent requests of each type (GET or PUT) that is allowed. Setting this value to infinite disables overload protection. The erlang.process_limit should be at least 3 times this setting.                                                                                                                                                                                                                                                                                                                                        | 50000            |
 | dtrace                        | Whether DTrace is enabled. Do not enable unless your Erlang/OTP runtime is compiled to support DTrace, which is available in R15B01 (supported by the official source package) and in R14B04 via a custom repository and branch.                                                                                                                                                                                                                                                                                                                           | off              |
 | vnode_management_timer        | Sets the frequency with which vnodes attempt to trigger handoff between this node and other nodes in the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                          | 10s (10 seconds) |
 | retry_put_coordinator_failure | When a PUT (i.e. write) request fails, Riak will retry the operation if this setting is set to on, which is the default. Setting it to off will speed response times on PUT requests in general, but at the risk of potentially increasing the likelihood of write failure.                                                                                                                                                                                                                                                                                | on               |
 | background_manager            | Riak's background manager is a subsystem that coordinates access to shared resources from other Riak subsystems. The background manager can help to prevent system response degradation under times of heavy load caused by multiple background tasks.                                                                                                                                                                                                                                                                                                     | on               |
+
 
 ## Advanced Configuration
 
@@ -449,7 +466,7 @@ The `advanced.config` file takes the same format as the `app.config`
 file familiar to users of versions of Riak prior to 2.0. Here is an
 example:
 
-```erlang
+```advancedconfig
 [
   {riak_core,
     [
@@ -489,11 +506,11 @@ related to Riak's `riak_repl` subsystem.
 
 #### Upgrading Riak Search with `advanced.config`
 
-If you are upgrading to Riak 2.x and wish to upgrade to the new [Riak Search][use ref search]\(codename Yokozuna), you will need to enable
+If you are upgrading to Riak 2.x and wish to upgrade to the new [Riak Search][use ref search] (codename Yokozuna), you will need to enable
 legacy Search while the upgrade is underway. You can add the following
 snippet to your `advanced.config` configuration to do so:
 
-```erlang
+```advancedconfig
 [
     %% Other configs
 
@@ -510,7 +527,8 @@ snippet to your `advanced.config` configuration to do so:
 
 #### Other settings
 
-There are three non-`riak_repl` settings available in `advanced.config`.
+There are three non-`riak_repl` settings available in
+`advanced.config`.
 
 | Config       | Section   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Default             |
 |--------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|

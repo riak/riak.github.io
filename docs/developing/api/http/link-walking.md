@@ -32,7 +32,7 @@ Any of the three parts may be replaced with `_` (underscore), signifying that
 any value is valid. Multiple phases of links can be followed by adding
 additional path segments to the URL, separating the link filters by slashes.
 The final phase in the link-walking query implicitly returns its results.
-:::note
+:::
 
 ## Response
 

@@ -115,7 +115,7 @@ FetchCounter cmd = new FetchCounter.Builder()
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // The following can be passed as options to FetchCounter
@@ -135,7 +135,7 @@ var options = {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/counters/buckets/counters/datatypes/<key>
@@ -214,7 +214,7 @@ CounterResponse response = cmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // The following can be passed as options to the *Counter methods on the
@@ -235,7 +235,7 @@ var options = {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # This will create a counter with an initial value of 0
@@ -309,7 +309,7 @@ CounterResult = cmd.Result;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // Using the options from above:
@@ -333,7 +333,7 @@ Counter = riakc_counter:new().
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
@@ -412,7 +412,7 @@ CounterResponse response = updateCmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // Using the options from above:
@@ -439,7 +439,7 @@ Counter1 = riakc_counter:increment(Counter).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
@@ -524,7 +524,7 @@ response = updateCmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -549,7 +549,7 @@ Counter2 = riakc_counter:increment(5, Counter1).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \
@@ -631,7 +631,7 @@ CounterResponse response = cmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -679,7 +679,7 @@ riakc_counter:value(Counter2).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets
@@ -757,7 +757,7 @@ response = updateCmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -797,7 +797,7 @@ riakc_pb_socket:update_type(Pid, {<<"counters">>,<<"counters">>},
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tickets \

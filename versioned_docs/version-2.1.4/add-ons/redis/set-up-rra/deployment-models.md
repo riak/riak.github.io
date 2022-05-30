@@ -5,14 +5,10 @@ slug: deployment-models
 ---
 
 [Local-deployment]: /images/redis/rra_deployment_local.png
-
 [Colocated-deployment]: /images/redis/rra_deployment_colocated.png
-
 [Distributed-deployment]: /images/redis/rra_deployment_distributed.png
 
-## Deployment Models
-
-### Local Cache Deployment
+## Local Cache Deployment
 
 In a local cache deployment, the RRA and Redis are deployed to the application
 server.
@@ -26,7 +22,7 @@ Connections:
 * Redis: The connection between the RRA Service instance and Redis Service
   instance is local.
 * Riak: The connections between Application Servers to Riak Nodes is distributed
-  and bounded to equal the number of Riak nodes *multiplied* by the number of
+  and bounded to equal the number of Riak nodes _multiplied_ by the number of
   Application Servers since they are aggregated at the RRA Service instance.
 
 Advantages:
@@ -40,7 +36,7 @@ Disadvantages:
   routing to the application server exists within the solution.
 * Redis competing for RAM with the application service may be problematic
 
-### Colocated Cache Deployment
+## Colocated Cache Deployment
 
 In a colocated cache deployment, the RRA may be deployed either to the
 application server (suggested) or to the Riak servers and Redis is deployed to
@@ -64,11 +60,11 @@ Connections:
 
 * RRA: The connections between Application Service instances to RRA Service
   instance are distributed and bounded to equal the number of Riak nodes
-  *multiplied* by the number of Application Service instances.
+  _multiplied_ by the number of Application Service instances.
 * Redis: The connection between the RRA Service instance and Redis Service
   instance is local.
 * Riak: The connections between RRA to Riak Nodes is distributed and bounded to
-  equal the number of Riak nodes *squared*.
+  equal the number of Riak nodes _squared_.
 
 Advantages:
 
@@ -82,7 +78,7 @@ Disadvantages:
 * Redis competing for RAM with Riak will likely be problematic. Redis should
   be configured to ensure `maxmemory` and `maxmemory-policy` constrain Redis
   to ensure Riak is allotted sufficient RAM to serve the more important
-  persistent data storage and retrieval services. See <http://redis.io/topics/config>
+  persistent data storage and retrieval services. See http://redis.io/topics/config
 * This model may seem to provide data locality, but in the case of faults in
   either Redis or Riak services, the fault tolerance mechanisms of RRA and
   Riak will not match exactly as communicating the necessary information to
@@ -90,7 +86,8 @@ Disadvantages:
   and Riak provides superior 99th percentile latency performance in the face
   of faults.
 
-### Distributed Cache Deployment
+
+## Distributed Cache Deployment
 
 In a distributed cache deployment, the RRA is deployed to the application server
 and Redis is deployed to standalone servers, separate from Riak cluster nodes.
@@ -103,9 +100,9 @@ Connections:
   instance are local.
 * Redis: The connection between the RRA Service instance and Redis Service
   instance are distributed and bounded to equal the number of Application
-  Servers *multipled* by the number of Redis Servers.
+  Servers _multipled_ by the number of Redis Servers.
 * Riak: The connections between RRA to Riak Nodes is distributed and bounded to
-  equal the number of Riak nodes *multiplied* by the number of Application
+  equal the number of Riak nodes _multiplied_ by the number of Application
   Servers since they are aggregated at the RRA Service instance.
 
 Advantages:
@@ -121,7 +118,7 @@ Disadvantages:
 * Typically increased distance between the application service and Redis and
   Riak services, so increased latency compared to local.
 
-### Recommendation
+## Recommendation
 
 The relative advantages and disadvantages of the Distributed Cache Deployment,
 most notably the increased cache hit rate and reduced connection overhead,

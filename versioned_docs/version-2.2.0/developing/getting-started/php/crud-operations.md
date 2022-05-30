@@ -5,6 +5,9 @@ slug: crud-operations
 sidebar_position: 0
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Creating Objects In Riak
 First, let’s create a few objects and a bucket to keep them in.
 
@@ -143,6 +146,10 @@ $storeCommand1->execute();
 
 Some of you may be thinking “But how does the Riak client encode/decode my object”?  If we fetch the binary version of our book back and print it as a string, we shall know:
 
+<Tabs>
+
+<TabItem label="PHP" value="php" default>
+
 ```php
 $fetchBookResponse = (new Command\Builder\FetchObject($riak))
                         ->atLocation($bookLocation)
@@ -153,10 +160,18 @@ print('Serialized Object:' . PHP_EOL);
 print($fetchBookResponse->getBody() . PHP_EOL);
 ```
 
+</TabItem>
+
+<TabItem label="JSON" value="json" default>
+
 ```json
 Serialized Object:
 {"title":"Moby Dick","author":"Herman Melville","body":"Call me Ishmael. Some years ago...","isbn":"1111979723","copiesOwned":3}
 ```
+
+</TabItem>
+
+</Tabs>
 
 JSON!  The library encodes PHP objects as JSON strings when you use the [`buildJsonObject()`](http://basho.github.io/riak-php-client/class-Basho.Riak.Command.Builder.ObjectTrait.html#_buildJsonObject) method on the StoreObject builder.  
 

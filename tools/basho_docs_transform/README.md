@@ -1,3 +1,5 @@
+# YOU PROBABLY DON'T WANT TO RUN THIS!
+
 # Why?
 
 This is used to transform markdown documents from [basho/basho_docs](https://github.com/basho/basho_docs). This script is specifically designed for the KV doc. As such, they have only been tested with the KV markdown files. Other markdown files may incidentally work. 

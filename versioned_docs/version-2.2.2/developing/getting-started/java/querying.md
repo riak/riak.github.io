@@ -186,7 +186,7 @@ intrinsic relationships.
 Secondary indexes in Riak KV require a sorted backend: [Memory](../../../setup/planning/backend/memory.md) or [LevelDB](../../../setup/planning/backend/leveldb.md). [Bitcask](../../../setup/planning/backend/bitcask.md) does not support secondary indexes.
 
 See [Using Secondary Indexes (2i)](../../../developing/usage/secondary-indexes.md) for more information on developing with secondary indexes.
-:::note
+:::
 
 If you're coming from an SQL world, Secondary Indexes (2i) are a lot
 like SQL indexes. They are a way to quickly look up objects based on a

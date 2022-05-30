@@ -1,25 +1,20 @@
 ---
 title: "Replication"
 id: learn_concepts_replication
-slug: replication
+slug: replication 
 sidebar_position: 8
 ---
 
+
 [cluster ops v3 mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
-
 [concept aae]: ../../learn/concepts/active-anti-entropy.md
-
 [concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
-
 [concept clusters]: ../../learn/concepts/clusters.md
-
 [concept vnodes]: ../../learn/concepts/vnodes.md
-
 [glossary node]: ../../learn/glossary.md#node
-
 [glossary ring]: ../../learn/glossary.md#ring
-
 [usage replication]: ../../developing/usage/replication.md
+
 
 Data replication is a core feature of Riak's basic architecture. Riak
 was designed to operate as a [clustered][concept clusters] system containing
@@ -32,11 +27,11 @@ down. All data stored in Riak will be replicated to a number of nodes in
 the cluster according to the N value (`n_val`) property set in a
 bucket's [bucket type](../../developing/usage/bucket-types.md).
 
-> **Note: Replication across clusters**
+>**Note: Replication across clusters**
 >
-> If you're interested in replication not just within a cluster but across
-> multiple clusters, we recommend checking out our documentation on Riak's
-> [Multi-Datacenter Replications](../../setup/planning/backend/multi.md) capabilities.
+>If you're interested in replication not just within a cluster but across
+multiple clusters, we recommend checking out our documentation on Riak's
+[Multi-Datacenter Replications](../../setup/planning/backend/multi.md) capabilities.
 
 ## Selecting an N value (`n_val`)
 
@@ -77,13 +72,13 @@ riak-admin bucket-type activate n_val_of_2
 Now, any bucket that bears the type `n_val_of_2` will propagate objects
 to 2 nodes.
 
-> **Note on changing the value of N**
+>**Note on changing the value of N**
 >
-> Changing the N value after a bucket has data in it is *not
-> recommended*. If you do change the value, especially if you
-> increase it, you might need to force read repair (more on that below).
-> Overwritten objects and newly stored objects will automatically be
-> replicated to the correct number of nodes.
+>Changing the N value after a bucket has data in it is *not
+recommended*. If you do change the value, especially if you
+increase it, you might need to force read repair (more on that below).
+Overwritten objects and newly stored objects will automatically be
+replicated to the correct number of nodes.
 
 ## Changing the N value (`n_val`)
 
@@ -107,6 +102,7 @@ replicas. For more information on AAE, see the following documents:
 
 * [Active Anti-Entropy][concept aae]
 * [Managing Active Anti-Entropy][cluster ops v3 mdc]
+
 
 ## Read Repair
 
@@ -167,9 +163,9 @@ partitions and storing an object on a partition.
 
 ### Routing an object to a set of partitions
 
-* Assume we have 3 nodes
-* Assume we store 3 replicas per object (N=3)
-* Assume we have 8 partitions in our [ring][glossary ring] (ring_creation_size=8)
+  * Assume we have 3 nodes
+  * Assume we store 3 replicas per object (N=3)
+  * Assume we have 8 partitions in our [ring][glossary ring] \(ring_creation_size=8)
 
 **Note**: It is not recommended that you use such a small ring size.
 This is for demonstration purposes only.
@@ -207,7 +203,7 @@ The DocIdx hash is a 160-bit integer:
 ```
 
 The node looks up the hashed key in the ring, which returns a list of
-*preferred* partitions for the given key.
+_preferred_ partitions for the given key.
 
 ```erlang
 (node1@127.0.0.1)> Preflist = riak_core_ring:preflist(DocIdx, Ring).
@@ -308,3 +304,4 @@ respond, the process will continue to manage that partition and check
 the parent node again after a delay. The hometest is also run by
 partition processes to account for changes in the ring, such as the
 addition or removal of nodes to the cluster.
+

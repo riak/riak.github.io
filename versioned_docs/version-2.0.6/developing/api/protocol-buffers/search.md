@@ -1,14 +1,15 @@
 ---
 title: "Search"
 id: pbc_search
-slug: search
-sidebar_position: 10
+slug: search 
+sidebar_position: 10 
 ---
 
 Send a Search request to retrieve a list of documents, along with a few
 stats.
 
 ## Request
+
 
 ```protobuf
 message RpbSearchQueryReq {
@@ -44,6 +45,7 @@ Optional Parameters
 * `fl` --- Return the fields limit
 * `presort` --- Presort. The options are `key` or `score`
 
+
 ## Response
 
 The results of a search query are returned as a repeating list of 0 or
@@ -51,6 +53,7 @@ more `RpbSearchDoc`s. `RpbSearchDoc`s themselves are composed of 0 or
 more key/value pairs (`RpbPair`) that match the given request
 parameters. It also returns the maximum search score and the number of
 results.
+
 
 ```protobuf
 // RbpPair is a generic key/value pair datatype used for
@@ -77,6 +80,7 @@ Values
 * `max_score` --- The top score returned
 * `num_found` --- Returns the total number of values matched by this
   search
+
 
 ## Example
 

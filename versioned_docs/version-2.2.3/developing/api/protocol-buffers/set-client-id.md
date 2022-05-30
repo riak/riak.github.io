@@ -9,7 +9,7 @@ sidebar_position: 27
 The use of client IDs in conflict resolution is now deprecated in Riak. If you
 are building or maintaining a Riak client that is intended to be compatible
 with Riak 1.4 or later, you can safely ignore client IDs.
-:::note
+:::
 
 Set the client ID for this connection. A library may want to set the
 client ID if it has a good way to uniquely identify actors across

@@ -5,6 +5,9 @@ slug: downgrading
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config ref]: ../configuring/reference.md
 [concept aae]: ../learn/concepts/active-anti-entropy.md
 [aae status]: ../using/admin/riak-admin.md
@@ -67,13 +70,25 @@ sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak
     
 3\. Downgrade Riak KV:
 
+<Tabs>
+
+<TabItem label="RHEL/CentOS" value="rhel/centos" default>
+
 ```RHEL/CentOS
 sudo rpm -Uvh »riak_package_name«.rpm
 ```
-    
+
+</TabItem>
+
+<TabItem label="Ubuntu" value="ubuntu">
+
 ```Ubuntu
 sudo dpkg -i »riak_package_name«.deb
 ```
+
+</TabItem>
+
+</Tabs>
 
 4\. Remove the Riak search index data and AAE data:
 
@@ -106,7 +121,7 @@ anti_entropy.tree.build_limit.per_timespan = 5m
 6\. Start Riak KV:
 :::note
 Search results will be inconsistent until **Step 8.1** is complete.
-:::note
+:::
 
 ```bash
 riak start

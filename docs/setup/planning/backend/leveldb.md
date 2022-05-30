@@ -5,6 +5,9 @@ slug: leveldb
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [upgrade 2.0#upgrading-leveldB]: /
 [glossary vnode]: ../../../learn/glossary.md#vnode
 [config reference]: ../../../configuring/reference.md
@@ -88,9 +91,18 @@ the Bitcask storage engine by default. To switch to eLevelDB, set the
 `storage_backend` variable in [`riak.conf`][config reference] to
 `leveldb`:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
+
 ```riakconf
 storage_backend = leveldb
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -99,6 +111,10 @@ storage_backend = leveldb
     %% ...
     ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## Configuring eLevelDB
 
@@ -425,11 +441,19 @@ The following example LevelDB tiered storage
 switching storage arrays to 4 and the file path prefix to `fast_raid`
 for the faster array and `slow_raid` for the slower array:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 leveldb.tiered = 4
 leveldb.tiered.path.fast = /mnt/fast_raid
 leveldb.tiered.path.slow = /mnt/slow_raid
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {eleveldb, [
@@ -438,6 +462,10 @@ leveldb.tiered.path.slow = /mnt/slow_raid
     {tiered_slow_prefix, "/mnt/slow_raid"}
 ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 With this configuration, level directories `sst_0` through `sst_3` will
 be stored in `/mnt/fast_raid`, while directories `sst_4` and `sst_6`

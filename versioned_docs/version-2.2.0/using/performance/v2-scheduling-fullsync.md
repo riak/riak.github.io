@@ -7,7 +7,7 @@ sidebar_position: 2
 
 :::note Deprecation Warning
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../using/cluster-operations/v3-multi-datacenter.md#fullsync-replication-commands) instead.
-:::note
+:::
 
 
 With the `pause` and `resume` commands it is possible to limit the

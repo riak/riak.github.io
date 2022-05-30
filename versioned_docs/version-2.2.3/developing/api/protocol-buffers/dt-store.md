@@ -64,7 +64,7 @@ Furthermore, you can assign an integer value to the `w`, `dw`, `pr`, and
 `pw`, provided that that integer value is less than or equal to N, _or_
 a special value denoting `one` (`4294967295-1`), `quorum`
 (`4294967295-2`), `all` (`4294967295-3`), or `default` (`4294967295-4`).
-:::note
+:::
 
 | Parameter         | Description                                                                                                                                                           |
 |:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|

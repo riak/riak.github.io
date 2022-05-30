@@ -5,18 +5,12 @@ slug: get-bucket-props
 sidebar_position: 0
 ---
 
-Reads the bucket or bucket type properties.
+Reads the bucket properties.
 
 ## Request
 
 ```bash
 GET /buckets/bucket/props
-```
-
-Or, to read bucket properties from a bucket in a bucket type:
-
-```bash
-GET /types/type/buckets/bucket/props
 ```
 
 Optional query parameters (only valid for the old format):
@@ -40,7 +34,7 @@ The JSON object in the response will contain up to two entries, `"props"` and
 parameters.  The default is for only `"props"` to be present.
 
 See [HTTP Set Bucket Properties](../../../developing/api/http/set-bucket-props.md) for more information about the available
-bucket properties. See [Managing Bucket Types Through the Command Line](http://docs.basho.com/riak/kv/2.2.0/using/reference/bucket-types/#managing-bucket-types-through-the-command-line) for more details about reading bucket types using  the `riak-admin bucket-type` interface.
+bucket properties.
 
 ## Example
 

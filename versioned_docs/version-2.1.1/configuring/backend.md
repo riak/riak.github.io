@@ -1,16 +1,13 @@
 ---
 title: "Backend Configuration"
 id: configuring_backend
-slug: backend
+slug: backend 
 sidebar_position: 1
 ---
 
 [plan backend leveldb]: ../setup/planning/backend/leveldb.md
-
 [plan backend bitcask]: ../setup/planning/backend/bitcask.md
-
 [plan backend memory]: ../setup/planning/backend/memory.md
-
 [plan backend multi]: ../setup/planning/backend/multi.md
 
 ## LevelDB
@@ -20,11 +17,11 @@ Configurable parameters for Riak's [LevelDB][plan backend leveldb] storage backe
 > **Note on upgrading to 2.0**
 >
 > If you are upgrading to Riak 2.0+ from a 1.x version, using LevelDB, and
-> wish to use your old configuration files, i.e. `app.config` and
-> `vm.args`, please note that you must set the `total_leveldb_mem_percent`
-> setting in the `eleveldb` section of `app.config`. We recommend setting
-> it to `70`. If you do not set this parameter, it will default to 15,
-> which can lead to problems in some clusters.
+wish to use your old configuration files, i.e. `app.config` and
+`vm.args`, please note that you must set the `total_leveldb_mem_percent`
+setting in the `eleveldb` section of `app.config`. We recommend setting
+it to `70`. If you do not set this parameter, it will default to 15,
+which can lead to problems in some clusters.
 
 | Config                                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                  | Default                                             |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|

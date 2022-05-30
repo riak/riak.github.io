@@ -172,7 +172,7 @@ Console.WriteLine(format: "Context: {0}", args: Convert.ToBase64String(result.Co
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {

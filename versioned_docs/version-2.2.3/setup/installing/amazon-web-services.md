@@ -52,7 +52,7 @@ You can find more information on connecting to an instance on the official [Amaz
 :::note Note
 The following clustering setup will _not_ be resilient to instance restarts
 unless deployed in Amazon VPC.
-:::note
+:::
 
 1. On the first node, obtain the internal IP address:
 

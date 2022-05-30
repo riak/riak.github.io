@@ -70,7 +70,7 @@ merge index directories to reclaim disk space.
    search = on
    ```
 
-   ```appconfig
+   ```erlang
    {yokozuna, [
                %% Other configs
                {enabled, true},
@@ -259,3 +259,5 @@ merge index directories to reclaim disk space.
         restart of the cluster.
 
 11. Finally, delete the merge index directories to reclaim disk space.
+
+For any questions reach out to the Riak community. Preferably, ask your questions up front rather than during the middle of a migration.

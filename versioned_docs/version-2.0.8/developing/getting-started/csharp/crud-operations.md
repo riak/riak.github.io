@@ -65,7 +65,7 @@ foreach (var person in people)
 }
 ```
 
-In this sample, we create a collection of `Person` objects and then save each `Person` to Riak. 
+In this sample, we create a collection of `Person` objects and then save each `Person` to Riak.
 
 Before saving, we need to create a `RiakObject` that encapsulates the bucket, key, and object to be saved. Once we've created a `RiakObject` from our `Person` object, we can save it to Riak using `Client.Put()`.
 
@@ -91,7 +91,7 @@ else
 
 We use `RiakClient.Get` to retrieve an object from Riak. This returns a `RiakResult<RiakObject>` which, like other RiakResults, helpfully encapsulates the communication with Riak.
 
-After verifying that we've been able to communicate with Riak *and* that we have a successful result, we use `GetObject<T>` to deserialize our object. 
+After verifying that we've been able to communicate with Riak *and* that we have a successful result, we use `GetObject<T>` to deserialize our object.
 
 ### Modifying Existing Data
 
@@ -113,7 +113,7 @@ else
 }
 ```
 
-Updating an object involves creating a new `RiakObject` then using `RiakClient.Put` to save the existing object. 
+Updating an object involves creating a new `RiakObject` then using `RiakClient.Put` to save the existing object.
 
 ### Deleting Data
 

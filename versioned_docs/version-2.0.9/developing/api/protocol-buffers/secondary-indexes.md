@@ -1,7 +1,7 @@
 ---
 title: "Secondary Indexes"
 id: pbc_secondary_indexes
-slug: secondary-indexes
+slug: secondary-indexes 
 sidebar_position: 9
 ---
 

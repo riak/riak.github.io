@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_java_object
-slug: object-modeling
+slug: object-modeling 
 sidebar_position: 2
 ---
 
@@ -116,8 +116,9 @@ Natural keys are a great fit for key/value systems because both humans
 and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
+
 | Bucket      | Key Pattern                | Example Key                                                          |
-| :---------- | :------------------------- | :------------------------------------------------------------------- |
+|:------------|:---------------------------|:---------------------------------------------------------------------|
 | `Users`     | `<user_name>`              | `joeuser`                                                            |
 | `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13.223556Z`                                |
 | `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
@@ -326,6 +327,7 @@ public class UserRepository {
         return bucket.fetch(UserName, User.class).execute();
     }
 }
+
 ```
 
 Finally, let's test them:
@@ -393,9 +395,9 @@ public class MsgyMain {
 
 As you can see, the repository pattern helps us with a few things:
 
-* It helps us to see if an object exists before creating a new one
-* It keeps our buckets and key names consistent
-* It provides us with a consistent interface to work with.
+ - It helps us to see if an object exists before creating a new one
+ - It keeps our buckets and key names consistent
+ - It provides us with a consistent interface to work with.
 
 While this set of repositories solves many of our problems, it is very
 minimal and doesn't cover all the edge cases. For instance, what happens

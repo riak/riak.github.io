@@ -97,4 +97,4 @@ message RpbCommitHook {
 
 :::note Note on `RpbReplMode`
 The `RpbReplMode` is of use only to users of Riak CS's [Multi-Datacenter Replication capabilities](http://docs.basho.com/riak/cs/2.1.1/cookbooks/multi-datacenter-overview/)
-:::note
+:::

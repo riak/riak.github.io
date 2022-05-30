@@ -1,28 +1,28 @@
 ---
 title: "SSL"
 id: configuring_v2_replication_ssl
-slug: ssl
+slug: ssl 
 sidebar_position: 2
 ---
 
 :::note Deprecation Warning
-v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../v3-multi-datacenter/ssl.md) instead.
+v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../v3-multi-datacenter/index.md) instead.
 :::
 
 ## Features
 
 Riak REPL SSL support consists of the following items:
 
-* Encryption of replication data
-* SSL certificate chain validation
-* SSL common name whitelisting support
+  * Encryption of replication data
+  * SSL certificate chain validation
+  * SSL common name whitelisting support
 
 ## SSL Configuration
 
 To configure SSL, you will need to include the following four settings
 in the `riak-repl` section of your `advanced.config`:
 
-```advancedconfig
+```erlang
 {riak-repl, [
              % ...
              {ssl_enabled, true},
@@ -31,6 +31,7 @@ in the `riak-repl` section of your `advanced.config`:
              {cacertdir, "/full/path/to/cacertsdir"}
              % ...
             ]}
+
 ```
 
 The `cacertdir` is a directory containing all of the CA certificates
@@ -70,7 +71,7 @@ setting of the `peer_common_name_acl` property.
 The following example will only allow connections from peer certificate
 names like `db.bashosamplecorp.com` and `security.bashosamplecorp.com`:
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {peer_common_name_acl, ["db.bashosamplecorp.com", "security.bashosamplecorp.com"]}
@@ -82,17 +83,18 @@ The following example will allow connections from peer certificate names
 like `foo.bashosamplecorp.com` or `db.bashosamplecorp.com`, but not a
 peer certificate name like `db.backup.bashosamplecorp.com`:
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {peer_common_name_acl, ["*.bashosamplecorp.com"]}
              % ...
             ]}
+
 ```
 
 This example will match any peer certificate name (and is the default):
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {peer_common_name_acl, "*"}
@@ -105,7 +107,7 @@ This example will match any peer certificate name (and is the default):
 You can adjust the way CA certificates are validated by adding the
 following to the `riak_repl` section of your `advanced.config`:
 
-```advancedconfig
+```erlang
 {riak_repl, [
              % ...
              {ssl_depth, ...}
@@ -123,12 +125,12 @@ be self signed.
 
 For example:
 
-* A depth of 0 indicates that the certificate must be signed directly
-  by a root certificate authority (CA)
-* A depth of 1 indicates that the certificate may be signed by at most
-  1 intermediate CA's, followed by a root CA
-* A depth of 2 indicates that the certificate may be signed by at most
-  2 intermediate CA's, followed by a root CA
+  * A depth of 0 indicates that the certificate must be signed directly
+    by a root certificate authority (CA)
+  * A depth of 1 indicates that the certificate may be signed by at most
+    1 intermediate CA's, followed by a root CA
+  * A depth of 2 indicates that the certificate may be signed by at most
+    2 intermediate CA's, followed by a root CA
 
 ## Compatibility
 

@@ -1,34 +1,29 @@
 ---
 title: "LevelDB"
 id: planning_backend_leveldb
-slug: leveldb
+slug: leveldb 
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [upgrade 2.0#upgrading-leveldB]: /
-
 [glossary vnode]: ../../../learn/glossary.md#vnode
-
 [config reference]: ../../../configuring/reference.md
-
 [perf index]: ../../../using/performance/index.md
-
 [config reference#aae]: ../../../configuring/reference.md#active-anti-entropy
 
 > **Note on upgrading to 2.0**
 >
 > If you are using LevelDB in a 1.x version of Riak, are upgrading to 2.0,
-> and wish to keep using your old `app.config` file for configuration,
-> make sure to follow the steps for setting the
-> `total_leveldb_mem_percent` parameter in the
-> [2.0 upgrade guide][upgrade 2.0#upgrading-leveldB].
+and wish to keep using your old `app.config` file for configuration,
+make sure to follow the steps for setting the
+`total_leveldb_mem_percent` parameter in the
+[2.0 upgrade guide][upgrade 2.0#upgrading-leveldB].
 
 [eLevelDB](https://github.com/basho/eleveldb) is an Erlang application
-that encapsulates [LevelDB](http://leveldb.googlecode.com/svn/trunk/doc/impl.html), an
+that encapsulates [LevelDB](http://code.google.com/p/leveldb/), an
 open-source, on-disk key/value store created by Google Fellows Jeffrey
 Dean and Sanjay Ghemawat.
 
@@ -41,12 +36,12 @@ model than it is like Bitcask. This design and implementation provide
 the possibility of a storage engine without Bitcask's RAM limitation.
 
 > **Note:** Riak uses a fork of LevelDB. The code can be found
-> [on Github](https://github.com/basho/leveldb).
+[on Github](https://github.com/basho/leveldb).
 
 A number of changes have been introduced in the LevelDB backend in Riak
 2.0:
 
-* There is now only *one* performance-related setting that Riak users
+* There is now only _one_ performance-related setting that Riak users
   need to define---`leveldb.total_mem_percent`---as LevelDB now
   dynamically sizes the file cache and block sizes based upon active
   [vnodes][glossary vnode] assigned to the node.
@@ -76,6 +71,10 @@ A number of changes have been introduced in the LevelDB backend in Riak
    compression efficiency is especially good for text data, including
    raw text, Base64, JSON, etc.
 
+:::note LZ4 and Downgrading
+If you utilize LZ4 compression, you **will not** be able to downgrade Riak KV. Please keep this in mind before choosing to use LZ4 compression.
+::: 
+
 ## Weaknesses
 
 1. Read access can be slow when there are many levels to search
@@ -97,6 +96,7 @@ the Bitcask storage engine by default. To switch to eLevelDB, set the
 
 <TabItem label="riak.conf" value="riak.conf" default>
 
+
 ```riakconf
 storage_backend = leveldb
 ```
@@ -105,7 +105,7 @@ storage_backend = leveldb
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {storage_backend, riak_kv_eleveldb_backend},
@@ -134,7 +134,7 @@ If you are using the older, `app.config`-based system, the equivalent to
 the `leveldb.data_root` is the `data_root` setting, as in the following
 example:
 
-```appconfig
+```erlang
 {eleveldb, [
     {data_root, "/path/to/leveldb"},
 
@@ -267,7 +267,7 @@ approximately 0.5 second.
 If we throttle the background writing to a reasonably slow rate, for
 instance 10% of the full 100MB/s speed, a compaction may take up to 5
 seconds. If the user is writing at 10MB/s, LevelDB might build up lots
-of level-0 files (~50 to hold the 5\*10MB). This may significantly
+of level-0 files (~50 to hold the 5*10MB). This may significantly
 increase the cost of reads due to the overhead of merging more files
 together on every read.
 
@@ -361,34 +361,36 @@ tree leveldb
 
 The result should look something like this:
 
-    ├── 0
-    │   ├── 000003.log
-    │   ├── CURRENT
-    │   ├── LOCK
-    │   ├── LOG
-    │   ├── MANIFEST-000002
-    │   ├── sst_0
-    │   ├── sst_1
-    │   ├── sst_2
-    │   ├── sst_3
-    │   ├── sst_4
-    │   ├── sst_5
-    │   └── sst_6
-    ├── 1004782375664995756265033322492444576013453623296
-    │   ├── 000003.log
-    │   ├── CURRENT
-    │   ├── LOCK
-    │   ├── LOG
-    │   ├── MANIFEST-000002
-    │   ├── sst_0
-    │   ├── sst_1
-    │   ├── sst_2
-    │   ├── sst_3
-    │   ├── sst_4
-    │   ├── sst_5
-    │   └── sst_6
+```
+├── 0
+│   ├── 000003.log
+│   ├── CURRENT
+│   ├── LOCK
+│   ├── LOG
+│   ├── MANIFEST-000002
+│   ├── sst_0
+│   ├── sst_1
+│   ├── sst_2
+│   ├── sst_3
+│   ├── sst_4
+│   ├── sst_5
+│   └── sst_6
+├── 1004782375664995756265033322492444576013453623296
+│   ├── 000003.log
+│   ├── CURRENT
+│   ├── LOCK
+│   ├── LOG
+│   ├── MANIFEST-000002
+│   ├── sst_0
+│   ├── sst_1
+│   ├── sst_2
+│   ├── sst_3
+│   ├── sst_4
+│   ├── sst_5
+│   └── sst_6
 
-    ... etc ...
+... etc ...
+```
 
 ## Tiered Storage
 
@@ -414,10 +416,10 @@ to a slower array.
 > **Note on write throttling**
 >
 > High-volume, sustained write operations can occasionally fill the
-> higher-speed storage arrays before LevelDB has had the opportunity to
-> move data to the low-speed arrays. LevelDB's write throttle will slow
-> incoming write operations to allow compactions to catch up, as would be
-> the case when using a single storage array.
+higher-speed storage arrays before LevelDB has had the opportunity to
+move data to the low-speed arrays. LevelDB's write throttle will slow
+incoming write operations to allow compactions to catch up, as would be
+the case when using a single storage array.
 
 ### Configuring Tiered Storage
 
@@ -454,7 +456,7 @@ leveldb.tiered.path.slow = /mnt/slow_raid
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {eleveldb, [
     {tiered_slow_level, 4},
     {tiered_fast_prefix, "/mnt/fast_raid"},

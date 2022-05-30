@@ -6,11 +6,8 @@ sidebar_position: 1
 ---
 
 [addon redis develop]: ../redis/developing-rra.md
-
 [addon redis setup]: set-up-rra/index.md
-
-[dev api http]: ../../developing/api/http/index.md
-
+[dev api http]: ../../developing/api/http/index.md 
 [ee]: http://basho.com/contact/
 
 Now that you’ve [set up Riak Redis Add-on (RRA)][addon redis setup], you're ready to use RRA with any Redis client which supports `GET`, `PUT` and `DEL` operations.
@@ -219,9 +216,9 @@ Using the above results, you should be able to determine metrics changes that wo
 
 While we do not endorse a specific monitoring solution, the open interface to statistics allows you to use the monitoring solution of your choice. The following is a brief listing of compatible monitoring solutions:
 
-* Custom - <https://github.com/gfranxman/NutcrackerMonitor>
-* NewRelic - <http://newrelic.com/plugins/schoology/245>
-* Nagios - <https://github.com/schoology/twemproxy_nagios>
+* Custom - https://github.com/gfranxman/NutcrackerMonitor
+* NewRelic - http://newrelic.com/plugins/schoology/245
+* Nagios - https://github.com/schoology/twemproxy_nagios
 
 #### Redis
 
@@ -229,6 +226,6 @@ Various Redis monitoring solutions exist in the market and, like monitoring RRA,
 
 As with RRA, Redis statistics available on the Redis client port allow for monitoring via solutions such as the following:
 
-* Custom - <http://volumelabs.net/redis_monitoring/>
-* NewRelic - <http://newrelic.com/plugins/poison-pen-llc/28>
-* Nagios - <https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details>
+* Custom - http://volumelabs.net/redis_monitoring/
+* NewRelic - http://newrelic.com/plugins/poison-pen-llc/28
+* Nagios - https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details

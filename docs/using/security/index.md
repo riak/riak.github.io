@@ -3,6 +3,9 @@ title: "Security & Firewalls"
 id: managing_security
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config reference search]: ../../configuring/reference.md#search
 [config search enabling]: ../../configuring/search.md#enabling-riak-search
 [config v3 ssl]: ../../configuring/v3-multi-datacenter/ssl.md
@@ -58,10 +61,18 @@ of ports. For example, to restrict the range of ports that Erlang will
 use for inter-Erlang node communication to 6000-7999, add the following
 lines to the configuration file on each Riak node:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 erlang.distribution.port_range.minimum = 6000
 erlang.distribution.port_range.maximum = 7999
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 { kernel, [
@@ -69,6 +80,10 @@ erlang.distribution.port_range.maximum = 7999
             {inet_dist_listen_max, 7999}
           ]},
 ```
+
+</TabItem>
+
+</Tabs>
 
 The above lines should be added into the top level list in app.config,
 at the same level as all the other applications (e.g. `riak_core`).
@@ -91,8 +106,8 @@ cluster on the following TCP ports:
 
 | Protocol                                                             | Port          |
 |:---------------------------------------------------------------------|:--------------|
-| <a href="../../developing/api/http">HTTP</a>                         | TCP port 8098 |
-| <a href="../../developing/api/protocol-buffers">Protocol Buffers</a> | TCP port 8087 |
+| [HTTP](../../developing/api/http/index.md)                           | TCP port 8098 |
+| [Protocol Buffers](../../developing/api/protocol-buffers/index.md)   | TCP port 8087 |
 
 ### Riak Search Ports
 

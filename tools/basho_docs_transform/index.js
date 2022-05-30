@@ -2,7 +2,7 @@ const { resolve, extname, basename, dirname, parse, join } = require('path');
 const { readdir, writeFile } = require('fs').promises;
 const { copySync, ensureDir, remove } = require('fs-extra');
 const util = require('util');
-const args = require('minimist')(process.argv.slice(2), { boolean: 'keep_drafts' });
+const args = require('minimist')(process.argv.slice(2), { boolean: ['keep_drafts', 'full_logs'] });
 const mv = require('mv');
 const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
@@ -22,8 +22,8 @@ async function getDirEnts(dir) {
 }
 
 function getDocMetadata(output_docs_dir, f) {
-  // Split on the output path and an option version number (MAJOR.MINOR.PATH)
-  const path_match_regex = new RegExp(`${output_docs_dir}(?:\\d\\.\\d\\.\\d)?`);
+  // Split on the output path and an option version number (MAJOR.MINOR.PATH) with a trailing slash
+  const path_match_regex = new RegExp(`${output_docs_dir}(?:\\d\\.\\d\\.\\d)?/`);
   const [, file_path] = f.split(path_match_regex);
 
   return docs_metadata[file_path]; 
@@ -32,7 +32,9 @@ function getDocMetadata(output_docs_dir, f) {
 function generateMetadata(output_docs_dir, f, parsed) {
   const doc_metadata = getDocMetadata(output_docs_dir, f);
 
-  console.log(`Generating matadata for ${f}`);
+  if (args.full_logs) {
+    console.log(`Generating matadata for ${f}`);
+  }
 
   if (doc_metadata !== undefined) {
     const title = `"${doc_metadata.title}"`;
@@ -69,7 +71,9 @@ async function createIndexFiles(dirents) {
 
       const moved_file_name = join(dir, 'index.md');
 
-      console.log(`Moving ${file} to ${basename(dir)} (${moved_file_name})`);
+      if (args.full_logs) {
+        console.log(`Moving ${file} to ${basename(dir)} (${moved_file_name})`);
+      }
 
       mv(file, moved_file_name, { mkdirp: true }, () => {});
     }
@@ -81,13 +85,17 @@ async function configFileTreeChanges(dir) {
     const from_path = join(dir, from);
     const to_path = join(dir, to);
 
-    console.log(`Renaming ${from_path} to ${to_path}`);
+    if (args.full_logs) {
+      console.log(`Renaming ${from_path} to ${to_path}`);
+    }
 
     mv(from_path, to_path, { mkdirp: true }, () => {});
   });
 
   return Promise.all(config.to_delete.map(async file_path => { 
-    console.log(`Deleting ${file_path}`);
+    if (args.full_logs) {
+      console.log(`Deleting ${file_path}`);
+    }
 
     await remove(join(dir, file_path));
   }));
@@ -101,11 +109,16 @@ function fixLink(f, node, name, doc_metadata) {
   const found_definition = doc_metadata.links[name];
 
   if (found_definition !== undefined) {
-    console.log(`Link ${f}[${name}]: ${node.url} -> ${found_definition}`);
+    if (args.full_logs) {
+      console.log(`Link ${f}[${name}]: ${node.url} -> ${found_definition}`);
+    }
 
     node.url = found_definition;
 
-  } else {
+    return;
+  }
+
+  if (args.full_logs) {
     console.log(`Unknown changd link ${f}[${name}]: ${node.url}`);
   }
 }
@@ -200,7 +213,9 @@ function transformNodeLang({ f }) {
       const new_block_lang = config.languages.to_rename?.[node.lang];
 
       if (new_block_lang !== undefined) {
-        console.log(`Renaming language (${f}) ${node.lang} -> ${new_block_lang}`);
+        if (args.full_logs) {
+          console.log(`Renaming language (${f}) ${node.lang} -> ${new_block_lang}`);
+        }
 
         node.lang = new_block_lang;
       }

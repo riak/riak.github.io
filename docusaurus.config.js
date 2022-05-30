@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Riak',
-  tagline: 'Documentation for Riak KV 2.2.3+',
+  tagline: 'Documentation for Riak KV 2.0.0+',
   url: 'https://www.riak.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',

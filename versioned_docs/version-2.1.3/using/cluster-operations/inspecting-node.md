@@ -336,9 +336,9 @@ The `riak-debug` command is used to identify and diagnose common problems with y
 
 `riak-debug` also runs `riak-admin diag`, which runs a small suite of diagnostic checks against a Riak KV node to discover common problems. It often offers recommendations about how to resolve those problems as well. 
 
-:::note Warning about \`riak-debug\` and \`riak-admin diag\` usage
+:::note Warning about `riak-debug` and `riak-admin diag` usage
 The `riak-debug` and `riak-admin diag` commands should only be used after a new installation or configuration change. It should not be used as part of regular monitoring. Overuse of `riak-debug` or `riak-admin diag` can eventually cause the node to crash from atom table exhaustion.
-:::
+:::note
 
 ## Strong Consistency Stats
 
@@ -384,16 +384,20 @@ Running `riak-admin diag` by itself will perform a check of all of the
 data partitions in your cluster. It will return a listing of partitions
 that have been checked, each of which looks something like this:
 
-    {1392993748081016843912887106182707253109560705024, % the partition checked
-     'dev-rel@127.0.0.1'},                              % that partition's nodename
+```
+{1392993748081016843912887106182707253109560705024, % the partition checked
+ 'dev-rel@127.0.0.1'},                              % that partition's nodename
+```
 
 At the end of that (potentially very long) listing of checked
 partitions, it will print notices, warnings, and other pieces of
 information about issues that it has found, including date/time, message
 type, and a detailed description. Here's an example:
 
-    15:34:52.736 [warning] Riak crashed at Wed, 07 Dec 2011 21:47:50 GMT, leaving crash dump in /srv/riak/log/erl_crash.dump. Please inspect or remove the file.
-    15:34:52.736 [notice] Data directory /srv/riak/data/bitcask is not mounted with 'noatime'. Please remount its disk with the 'noatime' flag to improve performance.
+```
+15:34:52.736 [warning] Riak crashed at Wed, 07 Dec 2011 21:47:50 GMT, leaving crash dump in /srv/riak/log/erl_crash.dump. Please inspect or remove the file.
+15:34:52.736 [notice] Data directory /srv/riak/data/bitcask is not mounted with 'noatime'. Please remount its disk with the 'noatime' flag to improve performance.
+```
 
 Messages bear the following types (derived from
 [syslog](http://en.wikipedia.org/wiki/Syslog) security levels):
@@ -412,13 +416,15 @@ Messages bear the following types (derived from
 Attaching the `--help` flag will return a list of flags and commands
 that can be used with Riaknostic:
 
-    Usage: riak-admin diag [-d <level>] [-l] [-h] [--export] [check_name ...]
+```
+Usage: riak-admin diag [-d <level>] [-l] [-h] [--export] [check_name ...]
 
-    -h, --help            Display help/usage dialogue
-    -d, --level           Minimum message severity level (default: notice)
-    -l, --list            Describe available diagnostic tasks
-    --export              Package system info in '/export.zip'
-    check_name            A specific check to run
+-h, --help            Display help/usage dialogue
+-d, --level           Minimum message severity level (default: notice)
+-l, --list            Describe available diagnostic tasks
+--export              Package system info in '/export.zip'
+check_name            A specific check to run
+```
 
 Running `riak-admin diag`  with the `--list` flag will return a list of
 available diagnostic checks. The following checks are available:
@@ -467,4 +473,5 @@ you, but here's how to set them:
 ## Related Resources
 
 * [The riak-admin configuration management tool](../admin/riak-admin.md)
+* [Riaknostic](http://riaknostic.basho.com/)
 * [HTTP API Status](../../developing/api/http/status.md)

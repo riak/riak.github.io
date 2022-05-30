@@ -133,7 +133,7 @@ event that a plan results in a slightly uneven distribution of partitions, the
 plan can be cleared. Clearing a cluster plan with `riak-admin cluster clear`
 and running `riak-admin cluster plan` again will produce a slightly different
 ring.
-:::note
+:::
 
 ## Removing a Node From a Cluster
 
@@ -175,7 +175,7 @@ actually take place.
 
 :::note Warning
 Pausing may impact cluster health and is not recommended for more than a short period of time.
-:::note
+:::
 
 To pause during `riak-admin cluster join` or `riak-admin cluster leave`, set the node's transfer-limit to 0:
 

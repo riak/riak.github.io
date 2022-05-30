@@ -1,20 +1,16 @@
 ---
 title: "Memory"
 id: planning_backend_memory
-slug: memory
+slug: memory 
 sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [config reference]: ../../../configuring/reference.md
-
 [plan backend multi]: ../../../setup/planning/backend/multi.md
-
 [glossary vnode]: ../../../learn/glossary.md#vnode
-
 [plan backend leveldb]: ../../../setup/planning/backend/leveldb.md
 
 The Memory storage backend uses in-memory tables to store all data.
@@ -44,7 +40,7 @@ storage_backend = memory
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
     ...,
     {storage_backend, riak_kv_memory_backend},
@@ -106,7 +102,7 @@ memory_backend.max_memory_per_vnode = 2GB
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, the equivalent setting is max_memory,
 %% which must be expressed in megabytes:
 
@@ -152,7 +148,7 @@ memory_backend.ttl = 3h
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, the ttl setting must be expressed in
 %% seconds:
 
@@ -170,7 +166,7 @@ memory_backend.ttl = 3h
 > **Dynamically Changing `ttl`**
 >
 > There is currently no way to dynamically change the `ttl` setting for a
-> bucket or bucket type. The current workaround would be to define
-> multiple Memory backends using the Multi backend, each with different
-> `ttl` values. For more information, consult the documentation on the
-> [Multi][plan backend multi] backend.
+bucket or bucket type. The current workaround would be to define
+multiple Memory backends using the Multi backend, each with different
+`ttl` values. For more information, consult the documentation on the
+[Multi][plan backend multi] backend.

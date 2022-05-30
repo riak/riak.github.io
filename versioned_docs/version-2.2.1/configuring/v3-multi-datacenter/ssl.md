@@ -46,7 +46,7 @@ needed to verify the CA chain back to the root.
 In Version 3 replication, the SSL settings need to be placed in the
 `riak-core` section of `advanced.config` as opposed to the `riak-repl` section
 used by Version 2 replication.
-:::note
+:::
 
 ## Verifying Peer Certificates
 
@@ -75,7 +75,7 @@ to connect.
 
 This evaluation supercedes ACL checks, so it cannot be overridden with any
 setting of the `peer_common_name_acl` property.
-:::note
+:::
 
 ### Examples
 

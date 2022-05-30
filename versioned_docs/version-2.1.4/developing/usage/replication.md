@@ -1,24 +1,18 @@
 ---
 title: "Replication"
 id: usage_replication
-slug: replication
+slug: replication 
 sidebar_position: 15
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [usage bucket types]: ../../developing/usage/bucket-types.md
-
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
-
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
-
 [plan backend bitcask]: ../../setup/planning/backend/bitcask.md
-
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
-
 [concept clusters]: ../../learn/concepts/clusters.md
 
 Riak was built to act as a multi-node [cluster][concept clusters].  It
@@ -46,19 +40,21 @@ replication levels to match your application and business needs.
 
 :::note Note on strong consistency
 An option introduced in Riak version 2.0 is to use Riak as a
-[strongly consistent](../../using/reference/strong-consistency.md) system for data in specified buckets. Using Riak in this way is
+[strongly consistent](../../using/reference/strong-consistency.md)
+system for data in specified buckets. Using Riak in this way is
 fundamentally different from adjusting replication properties and fine-tuning
-the availability/consistency trade-off, as it sacrifices *all* availability
+the availability/consistency trade-off, as it sacrifices _all_ availability
 guarantees when necessary. Therefore, you should consult the
-[Using Strong Consistency](../../developing/app-guide/strong-consistency.md) documentation, as this option will not be covered in
+[Strong Consistency](../../developing/app-guide/strong-consistency.md) documentation, as this option will not be covered in
 this tutorial.
-:::
+:::note
 
 ## How Replication Properties Work
 
 When using Riak, there are two ways of choosing replication properties:
-1\. On a per-request basis
-2\. In a more programmatic fashion, [using bucket types][usage bucket types]
+
+1. On a per-request basis
+2. In a more programmatic fashion, [using bucket types][usage bucket types]
 
 ### Per-request Replication Properties
 
@@ -191,7 +187,6 @@ riak-admin bucket-type activate r_equals_1
 Here's an example read request using the `r_equals_1` bucket type:
 
 <Tabs>
-
 <TabItem label="Ruby" value="ruby" default>
 
 ```ruby
@@ -200,7 +195,6 @@ obj = bucket.get('chimpanzee')
 ```
 
 </TabItem>
-
 <TabItem label="Java" value="java">
 
 ```java
@@ -213,7 +207,6 @@ System.out.println(obj.getValue().toString());
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -226,7 +219,6 @@ echo $response->getObject()->getData();
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -235,7 +227,6 @@ bucket.get('chimpanzee')
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -245,7 +236,6 @@ bucket.get('chimpanzee')
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -253,7 +243,6 @@ curl http://localhost:8098/types/r_equals_1/buckets/animal_facts/keys/chimpanzee
 ```
 
 </TabItem>
-
 </Tabs>
 
 As explained above, reads to buckets with the `r_equals_1` type will
@@ -285,7 +274,6 @@ riak-admin activate w_equals_3
 Now, we can attempt a write to a bucket bearing the type `w_equals_3`:
 
 <Tabs>
-
 <TabItem label="Ruby" value="ruby" default>
 
 ```ruby
@@ -297,7 +285,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="Java" value="java">
 
 ```java
@@ -313,7 +300,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -324,7 +310,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -336,7 +321,6 @@ obj.store()
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -348,7 +332,6 @@ riakc_pb_socket:put(Pid, Obj).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -359,7 +342,6 @@ curl -XPUT \
 ```
 
 </TabItem>
-
 </Tabs>
 
 Writing our `story.txt` will return a success response from Riak only if
@@ -371,19 +353,19 @@ seeks to write the object to is unavailable.
 ## Primary Reads and Writes with PR and PW
 
 In Riak's replication model, there are N [vnodes](../../learn/glossary.md#vnode),
-called *primary vnodes*, that hold primary responsibility for any given
+called _primary vnodes_, that hold primary responsibility for any given
 key. Riak will attempt reads and writes to primary vnodes first, but in
 case of failure, those operations will go to failover nodes in order to
 comply with the R and W values that you have set. This failover option
-is called *sloppy quorum*.
+is called _sloppy quorum_.
 
 In addition to R and W, you can also set integer values for the *primary
-read* (PR) and *primary write* (PW) parameters that specify how many
+read* (PR) and _primary write_ (PW) parameters that specify how many
 primary nodes must respond to a request in order to report success to
 the client. The default for both values is zero.
 
 Setting PR and/or PW to non-zero values produces a mode of operation
-called *strict quorum*. This mode has the advantage that the client is
+called _strict quorum_. This mode has the advantage that the client is
 more likely to receive the most up-to-date values, but at the cost of a
 higher probability that reads or writes will fail because primary vnodes
 are unavailable.
@@ -399,7 +381,7 @@ either read repair or active anti-entropy.
 
 ## Durable Writes with DW
 
-The W and PW parameters specify how many vnodes must *respond* to a
+The W and PW parameters specify how many vnodes must _respond_ to a
 write in order for it to be deemed successful. What they do not specify
 is whether data has actually been written to disk in the storage backend.
 The DW parameters enables you to specify a number of vnodes between 1
@@ -482,7 +464,7 @@ Not submitting a value for R, W, PR, RW, or DW is the same as using
 ## Client-level Replication Settings
 
 Adjusting replication properties at the bucket level by [using bucket types][usage bucket types]
-is how you set default properties for *all* of a bucket's reads and
+is how you set default properties for _all_ of a bucket's reads and
 writes. But you can also set replication properties for specific reads
 and writes without setting those properties at the bucket level, instead
 specifying them on a per-operation basis.
@@ -492,7 +474,6 @@ just one read. We'll fetch [John Stockton](http://en.wikipedia.org/wiki/John_Sto
 statistics from the `nba_stats` bucket.
 
 <Tabs>
-
 <TabItem label="Ruby" value="ruby" default>
 
 ```ruby
@@ -501,7 +482,6 @@ obj = bucket.get('john_stockton', r: 2, notfound_ok: true)
 ```
 
 </TabItem>
-
 <TabItem label="Java" value="java">
 
 ```java
@@ -515,7 +495,6 @@ client.execute(fetch);
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -528,7 +507,6 @@ client.execute(fetch);
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -537,7 +515,6 @@ obj = bucket.get('john_stockton', r=2, notfound_ok=True)
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -548,7 +525,6 @@ obj = bucket.get('john_stockton', r=2, notfound_ok=True)
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -556,7 +532,6 @@ curl http://localhost:8098/buckets/nba_stats/keys/john_stockton?r=2&notfound_ok=
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, let's say that you want to attempt a write with `w` set to 3 and
@@ -565,7 +540,6 @@ bucket type, which enables us to not specify a bucket type upon write.
 Here's what that would look like:
 
 <Tabs>
-
 <TabItem label="Ruby" value="ruby" default>
 
 ```ruby
@@ -577,7 +551,6 @@ obj.store(w: 3, dw: 2)
 ```
 
 </TabItem>
-
 <TabItem label="Java" value="java">
 
 ```java
@@ -595,7 +568,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -609,7 +581,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -621,7 +592,6 @@ riakc_pb_socket:put(Pid, Obj).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -632,7 +602,6 @@ curl -XPUT \
 ```
 
 </TabItem>
-
 </Tabs>
 
 All of Basho's [official Riak clients](../../developing/client-libraries.md) enable you to
@@ -658,13 +627,13 @@ and siblings, so we recommend reading the [Vector Clocks](../../learn/concepts/c
 These scenarios assume that a read request is sent to all 3 primary
 vnodes responsible for an object.
 
-| Scenario                                                                                                                                             | What happens in Riak                                                                                                                                                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| All 3 vnodes agree on the value                                                                                                                      | Once the first 2 vnodes return the value, that value is returned to the client                                                                                                                                                   |
-| 2 of 3 vnodes agree on the value, and those 2 are the first to reach the coordinating node                                                           | The value is returned to the client. Read repair will deal with the conflict per the later scenarios, which means that a future read may return a different value or [siblings](../../learn/concepts/causal-context.md#siblings) |
-| 2 conflicting values reach the coordinating node and [vector clocks](../../learn/concepts/causal-context.md#vector-clocks)  allow for resolution     | The vector clocks are used to resolve the conflict and return a single value, which is propagated via read repair to the relevant vnodes                                                                                         |
-| 2 conflicting values reach the coordinating node, vector clocks indicate a fork in the object history, and `allow_mult` is set to `false`            | The object with the most recent timestamp is returned and propagated via read repair to the relevant vnodes                                                                                                                      |
-| 2 siblings or conflicting values reach the coordinating node, vector clocks indicate a fork in the object history, and `allow_mult` is set to `true` | All keys are returned as siblings, optionally with associated values (depending on how the request is made)                                                                                                                      |
+| Scenario                                                                                                                                             | What happens in Riak                                                                                                                                                                                                    |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| All 3 vnodes agree on the value                                                                                                                      | Once the first 2 vnodes return the value, that value is returned to the client                                                                                                                                          |
+| 2 of 3 vnodes agree on the value, and those 2 are the first to reach the coordinating node                                                           | The value is returned to the client. Read repair will deal with the conflict per the later scenarios, which means that a future read may return a different value or [siblings](../../learn/concepts/causal-context.md) |
+| 2 conflicting values reach the coordinating node and [vector clocks](../../learn/concepts/causal-context.md#vector-clocks) allow for resolution      | The vector clocks are used to resolve the conflict and return a single value, which is propagated via read repair to the relevant vnodes                                                                                |
+| 2 conflicting values reach the coordinating node, vector clocks indicate a fork in the object history, and `allow_mult` is set to `false`            | The object with the most recent timestamp is returned and propagated via read repair to the relevant vnodes                                                                                                             |
+| 2 siblings or conflicting values reach the coordinating node, vector clocks indicate a fork in the object history, and `allow_mult` is set to `true` | All keys are returned as siblings, optionally with associated values (depending on how the request is made)                                                                                                             |
 
 #### Write Scenarios
 
@@ -681,6 +650,7 @@ vnodes responsible for an object.
 
 ## Screencast
 
-Here is a brief screencast that shows just how the N, R, and W values function in our running 3-node Riak cluster:
+Here is a brief screencast that shows just how the N, R, and W values
+function in our running 3-node Riak cluster:
 
 * [Tuning CAP Controls in Riak](http://player.vimeo.com/video/11172656) from [Basho Technologies](http://vimeo.com/bashotech) on [Vimeo](http://vimeo.com)

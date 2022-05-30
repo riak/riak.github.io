@@ -1,26 +1,19 @@
 ---
 title: "Multi-backend"
 id: planning_backend_multi
-slug: multi
+slug: multi 
 sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [concept buckets]: ../../../learn/concepts/buckets.md
-
 [plan backend bitcask]: ../../../setup/planning/backend/bitcask.md
-
 [plan backend leveldb]: ../../../setup/planning/backend/leveldb.md
-
 [plan backend memory]: ../../../setup/planning/backend/memory.md
-
 [config reference]: ../../../configuring/reference.md
-
 [usage bucket types]: ../../../developing/usage/bucket-types.md
-
 [use admin riak-admin cli]: ../../../using/admin/riak-admin.md
 
 Riak allows you to run multiple backends within a single Riak cluster.
@@ -37,6 +30,7 @@ You can set up your cluster to use the Multi backend using Riak's
 
 <TabItem label="riak.conf" value="riak.conf" default>
 
+
 ```riakconf
 storage_backend = multi
 ```
@@ -45,7 +39,7 @@ storage_backend = multi
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {storage_backend, riak_kv_multi_backend},
@@ -134,7 +128,7 @@ the `storage_backend` setting to `riak_kv_multi_backend`, as shown
 above).
 
 > **Note**: If you are defining multiple file-based backends of the same
-> type, each of these must have a separate `data_root` directory defined.
+type, each of these must have a separate `data_root` directory defined.
 
 While all configuration parameters can be placed anywhere within the
 `riak_kv` section of `app.config`, in general we recommend that you
@@ -143,7 +137,7 @@ keep the settings organized.
 
 Below is the general form for your `app.config` file:
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {multi_backend_default, <<"bitcask_mult">>},
@@ -219,7 +213,7 @@ multi_backend.default = bitcask_mult
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
     %% ...
     {multi_backend_default, <<"bitcask_mult">>},

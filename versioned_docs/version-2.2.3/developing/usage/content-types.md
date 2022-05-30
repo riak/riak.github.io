@@ -67,7 +67,7 @@ ArgumentError: content_type is not defined!
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // In the Node.js client, the default content type is "application/json".
@@ -164,7 +164,7 @@ var rslt = client.Put(obj);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -224,7 +224,7 @@ rsp := svc.Response
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \

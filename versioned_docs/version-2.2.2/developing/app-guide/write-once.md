@@ -17,7 +17,7 @@ Write-once buckets do not support Riak commit hooks.  Because Riak objects are
 inserted into the realtime queue using a postcommit hook, realtime replication
 is unavailable for write-once buckets.  Fullsync replication will, however,
 replicate the data.
-:::note
+:::
 
 ## Configuration
 
@@ -116,7 +116,7 @@ wins."
 :::note
 As mentioned in [Configuration](#configuration), write-once buckets and Riak
 Data Types are incompatible because of this.
-:::note
+:::
 
 
 ## Handoff
@@ -140,4 +140,4 @@ backends.
 The [Multi](../../setup/planning/backend/multi.md) backend does not
 support asynchronous writes. Therefore, if LevelDB is used with the Multi
 backend, it will be used in synchronous mode.
-:::note
+:::

@@ -10,7 +10,7 @@ in the Amazon Web Services (AWS) Elastic Compute Cloud (EC2) environment.
 
 :::note
 The following guide is supplementary. Be sure to check out [Improving Performance](./index.md) for general performance and tuning recommendations before continuing with this guide.
-:::note
+:::
 
 ## EC2 Instances
 

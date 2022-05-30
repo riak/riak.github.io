@@ -284,7 +284,7 @@ client.create_search_schema('http_header_schema', schema_xml)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/schema/http_header_schema \
@@ -299,7 +299,7 @@ Riak now has our schema stored and ready for use. Let's create a search
 index called `header_data` that's associated with our new schema:
 
 <Tabs>
-<TabItem label="Java" value="java">
+<TabItem label="Java" value="java" default>
 
 ```java
 YokozunaIndex headerDataIndex = new YokozunaIndex("header_data", "http_header_schema");
@@ -334,7 +334,7 @@ client.create_search_index('header_data', 'http_header_schema')
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/header_data \
@@ -415,7 +415,7 @@ obj.store()
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/types/http_data_store/buckets/packets/keys/google \
@@ -472,7 +472,7 @@ results['num_found'] # 1
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/header_data?wt=json&q=method:GET"

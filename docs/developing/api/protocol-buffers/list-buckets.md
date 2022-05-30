@@ -10,7 +10,7 @@ List all of the bucket names available.
 :::note Caution
 This call can be expensive for the server. Do not use in performance-sensitive
 code.
-:::note
+:::
 
 
 ## Request

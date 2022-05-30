@@ -49,6 +49,7 @@ Erlang <<0,0,0,11,17,10,8,108,105,115,116,107,101,121,115>>
 
 RpbListKeysReq protoc decode:
 bucket: "listkeys"
+
 ```
 
 #### Response Packet 1
@@ -59,6 +60,7 @@ Erlang <<0,0,0,4,18,10,1,52>>
 
 RpbListKeysResp protoc decode:
 keys: "4"
+
 ```
 
 #### Response Packet 2
@@ -72,6 +74,7 @@ keys: "10"
 keys: "3"
 ```
 
+
 #### Response Packet 3
 
 ```bash
@@ -80,4 +83,5 @@ Erlang <<0,0,0,3,18,16,1>>
 
 RpbListKeysResp protoc decode:
 done: true
+
 ```

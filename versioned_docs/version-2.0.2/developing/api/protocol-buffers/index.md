@@ -24,21 +24,23 @@ Each operation consists of a [request message](https://developers.google.com/pro
 
 ### Example
 
-    00 00 00 07 09 0A 01 62 12 01 6B
-    |----Len---|MC|----Message-----|
+```
+00 00 00 07 09 0A 01 62 12 01 6B
+|----Len---|MC|----Message-----|
 
-    Len = 0x07
-    Message Code (MC) = 0x09 = RpbGetReq
-    RpbGetReq Message = 0x0A 0x01 0x62 0x12 0x01 0x6B
+Len = 0x07
+Message Code (MC) = 0x09 = RpbGetReq
+RpbGetReq Message = 0x0A 0x01 0x62 0x12 0x01 0x6B
 
-    Decoded Message:
-    bucket: "b"
-    key: "k"
+Decoded Message:
+bucket: "b"
+key: "k"
+```
 
 ## Message Codes
 
 | Code | Message                    |
-| :--- | :------------------------- |
+|:-----|:---------------------------|
 | 0    | `RpbErrorResp`             |
 | 1    | `RpbPingReq`               |
 | 2    | `RpbPingResp`              |
@@ -95,8 +97,7 @@ Each operation consists of a [request message](https://developers.google.com/pro
 
 :::note Message Definitions
 All Protocol Buffers messages are defined in the `riak.proto` and other
-`.proto` files in the `/src` directory of the
-<a href="https://github.com/basho/riak_pb">RiakPB</a> project.
+`.proto` files in the `/src` directory of the [RiakPB](http://www.github.com/basho/riak_pb) project.
 :::
 
 ### Error Response

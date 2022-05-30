@@ -86,7 +86,7 @@ var result = client.Put(obj);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -238,7 +238,7 @@ var result = client.Put(obj, options);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -299,7 +299,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \
@@ -392,7 +392,7 @@ var result = client.Put(obj, options);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -456,7 +456,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \
@@ -570,7 +570,7 @@ Debug.WriteLine(format: "Generated key: {0}", args: rslt.Value.Key);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var user = {
@@ -644,7 +644,7 @@ fmt.Printf("Generated key: %v\n", rsp.GeneratedKey)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -i -XPOST \

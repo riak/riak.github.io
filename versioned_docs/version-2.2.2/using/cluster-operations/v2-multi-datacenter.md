@@ -7,7 +7,7 @@ sidebar_position: 10
 
 :::note Deprecation Warning
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../using/cluster-operations/v3-multi-datacenter.md) instead.
-:::note
+:::
 
 Riak Enterprise's Multi-Datacenter Replication system is largely
 controlled by the `riak-repl` command. The sections below detail the

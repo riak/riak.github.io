@@ -10,68 +10,64 @@ your Riak cluster (which is different from [recovering a failed node](../../usin
 about replacing a node.
 
 1. Back up your data directory on the node in question. In this example
-   scenario, we'll call the node `riak4`:
+scenario, we'll call the node `riak4`:
 
-       ```bash
-       sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak
-       ```
+ ```bash
+ sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak
+ ```
 
-       If you have any unforeseen issues at any point in the node
-       replacement process, you can restore the node's data from this
-       backup.
+ If you have any unforeseen issues at any point in the node
+ replacement process, you can restore the node's data from this
+ backup.
 
 2. Download and install Riak on the new node you wish to bring into the
-   cluster and have it replace the `riak4` node. We'll call the new node
-   `riak7` for the purpose of this example.
+cluster and have it replace the `riak4` node. We'll call the new node
+`riak7` for the purpose of this example.
 
 3. Start the new `riak7` node with [`riak start`](../../using/admin/riak-cli.md#start):
 
-   ```bash
-   riak start
-   ```
+ ```bash
+ riak start
+ ```
 
 4. Plan the join of the new `riak7` node to an existing node already
-   participating in the cluster; for example `riak0` with the [`riak-admin cluster join`](../../using/admin/riak-admin.md#cluster) command executed on the new `riak7` node:
+participating in the cluster; for example `riak0` with the [`riak-admin cluster join`](../../using/admin/riak-admin.md#cluster) command executed on the new `riak7` node:
 
-       ```bash
-       riak-admin cluster join riak0
-       ```
+ ```bash
+ riak-admin cluster join riak0
+ ```
 
 5. Plan the replacement of the existing `riak4` node with the new
-   `riak7` node using the [`riak-admin cluster replace`](../../using/admin/riak-admin.md#cluster) command:
+`riak7` node using the [`riak-admin cluster replace`](../../using/admin/riak-admin.md#cluster).
+If a node is started singly using default settings (as, for example,
+you might do when you are building your first test environment), you
+will need to remove the ring files from the data directory after you
+edit `/etc/vm.args`. `riak-admin cluster replace` will not work as
+the node has not been joined to a cluster.
 
-       ```bash
-       riak-admin cluster replace riak4 riak7
-       ```
-
-       <div class=info>
-       <div class=title>Single Nodes</div>
-       If a node is started singly using default settings (as, for example,
-       you might do when you are building your first test environment), you
-       will need to remove the ring files from the data directory after you
-       edit `/etc/vm.args`. `riak-admin cluster replace` will not work as
-       the node has not been joined to a cluster.
-       </div>
-
+   ```bash
+   riak-admin cluster replace riak4 riak7
+   ```
+   
 6. Examine the proposed cluster changes with the [`riak-admin cluster plan`](../../using/admin/riak-admin.md#cluster) command executed on the new
-   `riak7` node:
+`riak7` node:
 
-       ```bash
-       riak-admin cluster plan
-       ```
+ ```bash
+ riak-admin cluster plan
+ ```
 
 7. If the changes are correct, you can commit them with the
-   [`riak-admin cluster commit`](../../using/admin/riak-admin.md#cluster) command:
+[`riak-admin cluster commit`](../../using/admin/riak-admin.md#cluster) command:
 
-       ```bash
-       riak-admin cluster commit
-       ```
+ ```bash
+ riak-admin cluster commit
+ ```
 
-       If you need to clear the proposed plan and start over, use [`riak-admin cluster clear`](/riak/kv/2.1.4/using/admin/riak-admin/#cluster):
+ If you need to clear the proposed plan and start over, use [`riak-admin cluster clear`](../../using/admin/riak-admin.md#cluster):
 
-       ```bash
-       riak-admin cluster clear
-       ```
+ ```bash
+ riak-admin cluster clear
+ ```
 
 Once you have successfully replaced the node, it should begin leaving
 the cluster. You can check on ring readiness after replacing the node
@@ -85,4 +81,4 @@ when you start the new node and the ring settles with the new IP info.
 
 The ring is considered settled when the new node reports `true` when you run
 the `riak-admin ringready` command.
-:::
+:::note

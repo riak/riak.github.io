@@ -115,7 +115,7 @@ var builder = new UpdateMap.Builder()
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // Options to pass to the various map methods
@@ -136,7 +136,7 @@ var options = {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
@@ -211,7 +211,7 @@ var builder = new UpdateMap.Builder()
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -233,7 +233,7 @@ Map = riakc_map:new().
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # You cannot create an empty map through the HTTP interface. Maps can only
@@ -345,7 +345,7 @@ PrintMap(response.Value);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -379,7 +379,7 @@ Map2 = riakc_map:update({<<"phone_number">>, register},
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # Updates can be performed all at once. The following will create two new
@@ -480,7 +480,7 @@ response = cmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -510,7 +510,7 @@ Map4 = riakc_map:update({<<"enterprise_customer">>, flag},
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -586,7 +586,7 @@ ahmedMap.Flags["enterprise_customer"]
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -616,7 +616,7 @@ riakc_map:dirty_value(Map4).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -697,7 +697,7 @@ MapResponse response = cmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -727,7 +727,7 @@ Map3 = riakc_map:update({<<"page_visits">>, counter},
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # The following will create a new counter and increment it by 1
@@ -833,7 +833,7 @@ MapResponse response = cmd.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -870,7 +870,7 @@ Map6 = riakc_map:update({<<"interests">>, set},
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -963,7 +963,7 @@ ahmedMap.Sets.GetValue("interests").Contains("motorcycles");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -989,7 +989,7 @@ riakc_map:dirty_value(Map6).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info?include_context=false
@@ -1083,7 +1083,7 @@ ahmedMap.Sets.GetValue("interests").Contains("motorcycles");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -1124,7 +1124,7 @@ Map8 = riakc_map:update({<<"interests">>, set},
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -1243,7 +1243,7 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -1292,7 +1292,7 @@ Map14 = riakc_map:update(
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -1370,7 +1370,7 @@ ahmedMap.Maps["annika_info"].Registers.GetValue("first_name");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -1397,7 +1397,7 @@ riakc_map:dirty_value(Map14).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # Specific values for fields inside of maps (or maps within maps, for that
@@ -1480,7 +1480,7 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -1522,7 +1522,7 @@ Map15 = riakc_map:update({<<"annika_info">>, map},
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -1628,7 +1628,7 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -1692,7 +1692,7 @@ Map18 = riakc_map:update(
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -1774,7 +1774,7 @@ ahmedMap.Maps["annika_info"].Flags["enterprise_plan"];
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -1801,7 +1801,7 @@ riakc_map:dirty_value(Map18).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # Specific values for fields inside of maps (or maps within maps, for that
@@ -1877,7 +1877,7 @@ client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -1911,7 +1911,7 @@ Map19 = riakc_map:update(
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -1997,7 +1997,7 @@ client.Execute(builder.Build());
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -2032,7 +2032,7 @@ Map20 = riakc_map:update(
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
@@ -2124,7 +2124,7 @@ client.Execute(builder.Build());
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -2168,7 +2168,7 @@ Map21 = riakc_map:update(
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info
@@ -2282,7 +2282,7 @@ client.Execute(builder.Build());
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var mapOp = new Riak.Commands.CRDT.UpdateMap.MapOperation();
@@ -2324,7 +2324,7 @@ Map22 = riakc_map:update(
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \

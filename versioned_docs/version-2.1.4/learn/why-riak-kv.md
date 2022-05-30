@@ -5,21 +5,16 @@ slug: why-riak-kv
 sidebar_position: 0
 ---
 
+
 [apps replication properties]: ../developing/app-guide/replication-properties.md
-
 [Basho Bench]: ../using/performance/benchmarking.md
-
 [cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
-
 [concept eventual consistency]: ../learn/concepts/eventual-consistency.md
-
 [convergent replicated data types]: http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf
-
 [Datomic]: http://www.datomic.com/overview.html
-
 [dev data types]: ../developing/data-types/index.md
-
 [glossary read rep]: ../learn/glossary.md#read-repair
+
 
 ## What is Riak?
 
@@ -28,9 +23,8 @@ availability by distributing data across multiple servers. As long as
 your Riak client can reach *one* Riak server, it should be able to write
 data.
 
-Riak is used as an **eventually consistent** system in that the data
-you want to read should remain available in most failure scenarios,
-although it may not be the most up-to-date version of that data.
+Riak is used as an **eventually consistent** system in that the data you want to read should remain available in most failure scenarios, although it may not be the most up-to-date version of that data.
+
 
 ### Basho's goals for Riak
 

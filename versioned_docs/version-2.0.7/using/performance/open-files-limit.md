@@ -39,8 +39,7 @@ done
 
 ## Changing the limit
 
-Most operating systems can change the open-files limit using the `ulimit
--n` command. Example:
+Most operating systems can change the open-files limit using the `ulimit -n` command. Example:
 
 ```bash
 ulimit -n 200000
@@ -93,7 +92,7 @@ you’re usually logging in with to do any kind of work on the machine,
 including managing Riak. On CentOS, `sudo` properly inherits the values
 from the executing user.
 
-[Reference](http://www.cyberciti.biz/faq/linux-increase-the-maximum-number-of-open-files/)
+[Reference](http://blogs.oracle.com/elving/entry/too_many_open_files)
 
 ### Enable PAM-Based Limits for Debian & Ubuntu
 
@@ -248,7 +247,8 @@ contents:
 
 Both plist files must be owned by `root:wheel` and have permissions
 `-rw-r--r--`. This permissions *should* be in place by default, but you
-can ensure that they are in place by running `sudo chmod 644 <filename>`. While the steps explained above will cause system-wide open
+can ensure that they are in place by running `sudo chmod 644 <filename>`. 
+While the steps explained above will cause system-wide open
 file limits to be correctly set upon restart, you can apply them
 manually by running `launchctl limit`.
 

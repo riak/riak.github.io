@@ -6,11 +6,10 @@ id: security_basics
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 > **Note on Network security**
 >
 > This document covers only the 2.0 authentication and authorization
-> features. For a look at network security in Riak, see [Security and Firewalls](../../using/security/managing-sources.md).
+features. For a look at network security in Riak, see [Security and Firewalls](../../using/security/managing-sources.md).
 
 As of version 2.0, Riak administrators can selectively apportion
 access to a wide variety of Riak's functionality, including accessing,
@@ -40,27 +39,27 @@ of the following **before** enabling security:
    walking are not required. Enabling security will break this
    functionality. If you wish to use security and Search together, you
    will need to use the [new Search feature](../../developing/usage/search.md).
-2. Because Riak security requires a secure SSL connection, you will need
+1. Because Riak security requires a secure SSL connection, you will need
    to generate appropriate SSL certs, [enable SSL](#enabling-ssl) and establish a [certificate configuration](#certificate-configuration) on each node. **If you
    enable security without having established a functioning SSL
    connection, all requests to Riak will fail**.
-3. Define [users](#user-management)
+1. Define [users](#user-management)
    and, optionally, [groups](#add-group)
-4. Define an [authentication source](#managing-sources) for each user
-5. Grant the necessary [permissions](#managing-permissions) to each user (and/or group)
-6. Check any Erlang MapReduce code for invocations of Riak modules other
+1. Define an [authentication source](#managing-sources) for each user
+1. Grant the necessary [permissions](#managing-permissions) to each user (and/or group)
+1. Check any Erlang MapReduce code for invocations of Riak modules other
    than `riak_kv_mapreduce`. Enabling security will prevent those from
    succeeding unless those modules are available via the `add_path`
    mechanism documented in [Installing Custom Code](../../using/reference/custom-code.md).
-7. Make sure that your client software will work properly:
-   * It must pass authentication information with each request
-   * It must support HTTPS or encrypted [Protocol Buffers](../../developing/api/protocol-buffers/index.md)
-     traffic
-   * If using HTTPS, the proper port (presumably 443) is open from
-     client to server
-   * Code that uses Riak's deprecated Link Walking feature **will
-     not work** with security enabled
-8. If you have applications that rely on an already existing Riak
+1. Make sure that your client software will work properly:
+    * It must pass authentication information with each request
+    * It must support HTTPS or encrypted [Protocol Buffers](../../developing/api/protocol-buffers/index.md)
+      traffic
+    * If using HTTPS, the proper port (presumably 443) is open from
+      client to server
+    * Code that uses Riak's deprecated link walking feature **will
+      not work** with security enabled
+1. If you have applications that rely on an already existing Riak
    cluster, make sure that those applications are prepared to gracefully
    transition into using Riak security once security is enabled.
 
@@ -88,7 +87,7 @@ those commands through the Protocol Buffers and HTTP interfaces.
 > **Warning: Enable security with caution**
 >
 > Enabling security will change the way your client libraries and
-> your applications interact with Riak.
+your applications interact with Riak.
 >
 > Once security is enabled, all client connections must be encrypted and all permissions will be denied by default. Do not enable this in production until you have worked through the [security checklist](#security-checklist) above and tested everything in a non-production environment.
 
@@ -138,7 +137,7 @@ but not yet available.
 
 ## User Management
 
-Riak security enables you to control *authorization* by creating,
+Riak security enables you to control _authorization_ by creating,
 modifying, and deleting user characteristics and granting users
 selective access to Riak functionality (and also to revoke access).
 Users can be assigned one or more of the following characteristics:
@@ -171,11 +170,13 @@ riak-admin security print-groups
 Example output, assuming user named `riakuser` with an assigned
 password:
 
-    +----------+--------+----------------------+------------------------------+
-    | username | groups |       password       |           options            |
-    +----------+--------+----------------------+------------------------------+
-    | riakuser |        |983e8ae1421574b8733824|              []              |
-    +----------+--------+----------------------+------------------------------+
+```
++----------+--------+----------------------+------------------------------+
+| username | groups |       password       |           options            |
++----------+--------+----------------------+------------------------------+
+| riakuser |        |983e8ae1421574b8733824|              []              |
++----------+--------+----------------------+------------------------------+
+```
 
 **Note**: All passwords are displayed in encrypted form in console
 output.
@@ -265,7 +266,7 @@ command:
 riak-admin security add-user riakuser
 ```
 
-Using the command this way will create the user `riakuser` without *any*
+Using the command this way will create the user `riakuser` without _any_
 characteristics beyond a username, which is the only attribute that you
 must assign upon user creation.
 
@@ -281,7 +282,7 @@ riak-admin security add-user riakuser password=Test1234
 While passwords and other characteristics can be set upon user creation,
 it often makes sense to change user characteristics after the user has
 already been created. Let's say that the user `riakuser` was created
-without a password (or created *with* a password that we'd like to
+without a password (or created _with_ a password that we'd like to
 change). The `alter-user` command can be used to modify our `riakuser`
 user:
 
@@ -300,13 +301,15 @@ riak-admin security alter-user riakuser name=bill age=47 fav_color=red
 
 Now, the `print-users` command should return this:
 
-    +----------+--------+----------+--------------------------------------------------+
-    | username | groups | password |                     options                      |
-    +----------+--------+----------+--------------------------------------------------+
-    | riakuser |        |          |[{"fav_color","red"},{"age","47"},{"name","bill"}]|
-    +----------+--------+----------+--------------------------------------------------+
+```
++----------+--------+----------+--------------------------------------------------+
+| username | groups | password |                     options                      |
++----------+--------+----------+--------------------------------------------------+
+| riakuser |        |          |[{"fav_color","red"},{"age","47"},{"name","bill"}]|
++----------+--------+----------+--------------------------------------------------+
+```
 
-**Note**: Usernames *cannot* be changed using the `alter-user` command.
+**Note**: Usernames _cannot_ be changed using the `alter-user` command.
 For example, running `riak-admin security alter-user riakuser
 username=other-name`, will instead add the
 `{"username","other-name"}` tuple to `riakuser`'s options.
@@ -351,11 +354,15 @@ riak-admin security alter-group admin groups=dev
 
 If you'd like to remove a user, use the `del-user` command:
 
-    riak-admin security del-user riakuser
+```
+riak-admin security del-user riakuser
+```
 
 For groups, use the `del-group` command:
 
-    riak-admin security del-group admin
+```
+riak-admin security del-group admin
+```
 
 ### Adding or Deleting Multiple Users
 
@@ -391,7 +398,7 @@ riak-admin security revoke <permissions> on <bucket-type> <bucket> from all|{<us
 If you select `any`, this means that the permission (or set of
 permissions) is granted/revoked for all buckets and [bucket types](../../developing/usage/bucket-types.md). If you specify a bucket type only, then the permission
 is granted/revoked for all buckets of that type. If you specify a bucket
-type *and* a bucket, the permission is granted/revoked only for that
+type _and_ a bucket, the permission is granted/revoked only for that
 bucket type/bucket combination.
 
 **Note**: You cannot grant/revoke permissions with respect to a bucket
@@ -432,7 +439,7 @@ functionality:
 `riak_kv.list_keys` and `riak_kv.list_buckets` are both very expensive
 operations that should be performed very rarely and never in production.
 Access to this functionality should be granted very carefully.
-:::
+:::note
 
 If you'd like to create, for example, a `client` account that is
 allowed only to run `GET` and `PUT` requests on all buckets:
@@ -485,13 +492,13 @@ search-related permissions can be granted/revoked:
 > **Note on Search Permissions**
 >
 > Search must be enabled in order to successfully grant/revoke Search
-> permissions. If you attempt to grant/revoke permissions while Search is
-> disabled, you will get the following error:
+permissions. If you attempt to grant/revoke permissions while Search is
+disabled, you will get the following error:
 >
 > `{error,{unknown_permission,"search.query"}}`
 >
 > More information on Riak Search and how to enable it can be found in the
-> [Riak Search Settings](../../configuring/search.md) document.
+[Riak Search Settings](../../configuring/search.md) document.
 
 #### Usage Examples
 
@@ -535,9 +542,9 @@ riak-admin security grant search.query,search.admin on index riakusers_index to 
 
 ## Managing Sources
 
-While user management enables you to control *authorization* with regard
+While user management enables you to control _authorization_ with regard
 to users, security **sources** provide you with an interface for
-managing means of *authentication*. If you create users and grant them
+managing means of _authentication_. If you create users and grant them
 access to some or all of Riak's functionality as described in the [User Management](#user-management) section,
 you will then need to define security sources required for
 authentication.
@@ -584,11 +591,13 @@ riak-admin security add-source all 127.0.0.1/32 trust
 At that point, the `riak-admin security print-sources` command would
 print the following:
 
-    +--------------------+------------+----------+----------+
-    |       users        |    cidr    |  source  | options  |
-    +--------------------+------------+----------+----------+
-    |        all         |127.0.0.1/32|  trust   |    []    |
-    +--------------------+------------+----------+----------+
+```
++--------------------+------------+----------+----------+
+|       users        |    cidr    |  source  | options  |
++--------------------+------------+----------+----------+
+|        all         |127.0.0.1/32|  trust   |    []    |
++--------------------+------------+----------+----------+
+```
 
 ### Deleting Sources
 
@@ -624,7 +633,6 @@ process would be required to fully remove the source:
 riak-admin security del-source all 127.0.0.1/32 password
 riak-admin security del-source riakuser 127.0.0.1/32 password
 ```
-
 :::
 
 ### More Usage Examples
@@ -644,17 +652,19 @@ riak-admin security ciphers
 
 That command by itself will return a large list of available ciphers:
 
-    Configured ciphers
+```
+Configured ciphers
 
-    ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256: ...
+ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256: ...
 
-    Valid ciphers(35)
+Valid ciphers(35)
 
-    ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256: ...
+ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256: ...
 
-    Unknown/Unsupported ciphers(32)
+Unknown/Unsupported ciphers(32)
 
-    ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256: ...
+ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256: ...
+```
 
 To alter the list, i.e. to constrain it and/or to set preferred ciphers
 higher in the list:
@@ -665,17 +675,19 @@ riak-admin security ciphers DHE-RSA-AES256-SHA:AES128-GCM-SHA256
 
 The list of configured ciphers should now look like this:
 
-    Configured ciphers
+```
+Configured ciphers
 
-    DHE-RSA-AES256-SHA:AES128-GCM-SHA256
+DHE-RSA-AES256-SHA:AES128-GCM-SHA256
 
-    Valid ciphers(1)
+Valid ciphers(1)
 
-    DHE-RSA-AES256-SHA
+DHE-RSA-AES256-SHA
 
-    Unknown/Unsupported ciphers(1)
+Unknown/Unsupported ciphers(1)
 
-    AES128-GCM-SHA256
+AES128-GCM-SHA256
+```
 
 A list of available ciphers on a server can be obtained using the
 `openssl` command:
@@ -686,7 +698,9 @@ openssl ciphers
 
 That should return a list structured like this:
 
-    DHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:AES256-SHA:EDH-RSA-DES-CBC3-SHA: # and so on
+```
+DHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:AES256-SHA:EDH-RSA-DES-CBC3-SHA: # and so on
+```
 
 Riak's cipher preferences were taken from [Mozilla's Server-Side TLS
 documentation](https://wiki.mozilla.org/Security/Server_Side_TLS).
@@ -700,10 +714,10 @@ order dictate which cipher is chosen, set `honor_cipher_order` to `off`.
 > **Note on Erlang versions**
 >
 > Riak's default cipher order behavior has the potential to crash Erlang
-> VMs that do not support it. Erlang VMs that are known to support it
-> include Basho's patched version of Erlang R16. Instructions on
-> installing it can be found in [Installing Erlang](../../setup/installing/source/erlang.md). This issue should
-> not affect Erlang 17.0 and later.
+VMs that do not support it. Erlang VMs that are known to support it
+include Basho's patched version of Erlang R16. Instructions on
+installing it can be found in [Installing Erlang](../../setup/installing/source/erlang.md). This issue should
+not affect Erlang 17.0 and later.
 
 ## Enabling SSL
 
@@ -731,7 +745,7 @@ listener.https.$name = 127.0.0.1:8088
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_core, [
              %% Other configs
              {https, [{"127.0.0.1", 8088}]},
@@ -759,7 +773,7 @@ Three things to note:
 * Among the four available options, only TLS version 1.2 is enabled by
   default
 * You can enable more than one protocol at a time
-* We strongly recommend that you do *not* use SSL version 3 unless
+* We strongly recommend that you do _not_ use SSL version 3 unless
   absolutely necessary
 
 ## Certificate Configuration
@@ -806,7 +820,7 @@ If you are using the older, `app.config`-based configuration system,
 these paths can be set in the `ssl` subsection of the `riak_core`
 section. The corresponding parameters are shown in the example below:
 
-```appconfig
+```erlang
 {riak_core, [
     %% Other configs
 

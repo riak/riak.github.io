@@ -10,8 +10,8 @@ key name to exist in multiple buckets and enable you to apply
 configurations across keys.
 
 :::note How Many Buckets Can I Have?
-Buckets come with virtually no cost *except for when you modify the default
-bucket properties*. Modified bucket properties are gossiped around the cluster
+Buckets come with virtually no cost _except for when you modify the default
+bucket properties_. Modified bucket properties are gossiped around the cluster
 and therefore add to the amount of data sent around the network. In other
 words, buckets using the `default` bucket type are free. More on that in the
 next section.
@@ -42,7 +42,7 @@ curl -XPUT $RIAK_HOST/types/animals/buckets/cats/props \
 ```
 
 Another possibility is to set the `search_index` as a default property
-of the bucket type. This means *any* bucket under that type will
+of the bucket type. This means _any_ bucket under that type will
 inherit that setting and have its values indexed.
 
 ```bash

@@ -88,7 +88,7 @@ traverse the GET or PUT Finite State Machine code, offering a picture of
 general node health. From your application's perspective, FSM Time effectively
 represents experienced latency. Mean, Median, and 95th-, 99th-, and
 100th-percentile (Max) counters are displayed. These are one-minute stats.
-:::note
+:::
 
 | Metric                               | Also                                                     | Relevance          | Latency (in microseconds)                                                        |
 |:-------------------------------------|:---------------------------------------------------------|:-------------------|:---------------------------------------------------------------------------------|
@@ -205,7 +205,7 @@ maintainer.
 
 Look for banners calling out the tools we've verified that support the latest
 Riak 2.x statistics!
-:::note
+:::
 
 ### Self-Hosted Monitoring Tools
 
@@ -254,7 +254,7 @@ the Riak HTTP [`/stats`](../../developing/api/http/status.md) endpoint is also a
 
 :::note
 **Tested and Verified Support for Riak 2.x.**
-:::note
+:::
 
 [Nagios](http://www.nagios.org) is a monitoring and alerting solution
 that can provide information on the status of Riak cluster nodes, in
@@ -290,7 +290,7 @@ module specifically designed to read Riak statistics.
 
 :::note
 **Tested and Verified Support for Riak 2.x Stats.**
-:::note
+:::
 
 [Zabbix](http://www.zabbix.com) is an open-source performance monitoring,
 alerting, and graphing solution that can provide information on the state of
@@ -316,7 +316,7 @@ capacity planning in a Riak cluster environment.
 
 :::note
 **Tested and Verified Support for Riak 2.x Stats.**
-:::note
+:::
 
 [New Relic](http://newrelic.com) is a data analytics and visualization platform
 that can provide information on the current and past states of Riak nodes and

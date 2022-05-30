@@ -8,7 +8,6 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 While Riak enables you to take advantage of a wide variety of features
 that can be useful in application development, such as [Search](../developing/usage/search.md), [secondary indexes (2i)](../developing/usage/secondary-indexes.md), and [Riak Data Types](../developing/data-types/index.md), Riak almost always performs best when you
 build your application around basic CRUD operations (create, read,
@@ -75,7 +74,9 @@ Simpsons. We could store each season in its own bucket and each episode
 in its own key within that bucket. Here's what the URL structure would
 look like (for the [HTTP API](../developing/api/http/index.md)):
 
-    GET/PUT/DELETE /bucket/<season>/keys/<episode number>
+```
+GET/PUT/DELETE /bucket/<season>/keys/<episode number>
+```
 
 The most important benefit of sorting Riak objects this way is that
 these types of lookup operations are extremely fast. Riak doesn't need
@@ -94,7 +95,7 @@ table`, and so it needs to know where to look for objects in advance.
 One of the best ways to enable applications to discover objects in Riak
 more easily is to provide **structured bucket and key names** for
 objects. This approach often involves wrapping information about the
-object *in the object's location data itself*.
+object _in the object's location data itself_.
 
 Here are some example sources for bucket or key names:
 
@@ -130,7 +131,7 @@ username acting as the key. The problem at this point is this: how can
 Riak know which user records actually exist?
 
 One way to determine this is to [list all keys](../developing/api/protocol-buffers/list-keys.md) in the
-bucket `users`. This approach, however, is *not* recommended, because
+bucket `users`. This approach, however, is _not_ recommended, because
 listing all keys in a bucket is a very expensive operation that should
 not be used in production. And so another strategy must be employed.
 
@@ -150,7 +151,6 @@ the bucket `user_info_sets` (we'll keep it simple) and in the key
 We can interact with that set on the basis of its location:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -161,7 +161,6 @@ FetchSet fetchUserIdSet = new FetchSet.Builder(userIdSet).build();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -176,7 +175,6 @@ $user_id_set = Riak::Crdt::Set.new(set_bucket, 'usernames', 'sets')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -186,7 +184,6 @@ $command = (new \Basho\Riak\Command\Builder\FetchSet($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -197,7 +194,6 @@ user_id_set = Set(bucket, 'usernames')
 ```
 
 </TabItem>
-
 </Tabs>
 
 > **Getting started with Riak clients**
@@ -208,7 +204,6 @@ Then, we can create a function that stores a user record's key in that
 set every time a record is created:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -247,7 +242,6 @@ public void storeUserRecord(User user) throws Exception {
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -270,7 +264,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -303,7 +296,6 @@ function store_user(User $user)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -328,7 +320,6 @@ def store_record(user):
 ```
 
 </TabItem>
-
 </Tabs>
 
 Now, let's say that we want to be able to pull up all user records in
@@ -337,7 +328,6 @@ stored in our set and then fetching the object corresponding to each
 username:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -367,7 +357,6 @@ public Set<User> fetchAllUserRecords() {
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -385,7 +374,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -413,7 +401,6 @@ function fetch_users()
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -429,7 +416,6 @@ list(fetch_all_user_records())
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Naming and Object Verification
@@ -444,7 +430,6 @@ be seen by your application because it will only ever query keys that
 begin with `user_`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -462,7 +447,6 @@ public User getUserByUsername(String username) {
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -474,7 +458,6 @@ end
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -490,7 +473,6 @@ function fetchUser($user_name)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -501,7 +483,6 @@ def get_user_by_username(username):
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Bucket Types as Additional Namespaces
@@ -551,11 +532,15 @@ system and preface each bucket name with `good` or `bad`, but a more
 elegant way would be to use bucket types instead. So instead of this URL
 structure...
 
-    GET/PUT/DELETE /bucket/<season>/keys/<episode number>
+```
+GET/PUT/DELETE /bucket/<season>/keys/<episode number>
+```
 
 ...we can use this structure:
 
-    GET/PUT/DELETE /types/<good or bad>/buckets/<season>/keys/<episode number>
+```
+GET/PUT/DELETE /types/<good or bad>/buckets/<season>/keys/<episode number>
+```
 
 That adds an additional layer of namespacing and enables us to think
 about our data in terms of a deeper hash than in the example above:

@@ -5,7 +5,7 @@ slug: open-files-limit
 sidebar_position: 1
 ---
 
-[plan backend bitcask]: ../../setup/planning/backend/bitcask.md 
+[plan backend bitcask]: ../../setup/planning/backend/bitcask.md
 
 Riak can consume a large number of open file handles during normal
 operation. The [Bitcask][plan backend bitcask] backend in particular may accumulate a high
@@ -92,7 +92,7 @@ you’re usually logging in with to do any kind of work on the machine,
 including managing Riak. On CentOS, `sudo` properly inherits the values
 from the executing user.
 
-[Reference](http://www.cyberciti.biz/faq/linux-increase-the-maximum-number-of-open-files/)
+[Reference](http://blogs.oracle.com/elving/entry/too_many_open_files)
 
 ### Enable PAM-Based Limits for Debian & Ubuntu
 
@@ -111,7 +111,7 @@ session    required   pam_limits.so
 2. Save and close the file.  If `/etc/pam.d/common-session-noninteractive` exists, append the same line as above.
 
 3. Edit `/etc/security/limits.conf` and append the following lines to the
-file:
+   file:
 
 ```bash
 soft     nofile          65536
@@ -121,8 +121,8 @@ hard     nofile          65536
 4. Save and close the file.
 
 5. (optional) If you will be accessing the Riak nodes via secure shell
-(ssh), you should also edit `/etc/ssh/sshd_config` and uncomment the
-following line:
+   (ssh), you should also edit `/etc/ssh/sshd_config` and uncomment the
+   following line:
 
 ```config
 #UseLogin no
@@ -135,7 +135,7 @@ UseLogin yes
 ```
 
 6. Restart the machine so that the limits to take effect and verify that
-the new limits are set with the following command:
+   the new limits are set with the following command:
 
 ```bash
 ulimit -a
@@ -144,7 +144,7 @@ ulimit -a
 ### Enable PAM-Based Limits for CentOS and Red Hat
 
 1. Edit `/etc/security/limits.conf` and append the following lines to
-the file:
+   the file:
 
 ```bash
 soft     nofile          200000
@@ -154,13 +154,13 @@ hard     nofile          200000
 2. Save and close the file.
 
 3. Restart the machine so that the limits to take effect and verify that
-the new limits are set with the following command:
+   the new limits are set with the following command:
 
 ```bash
 ulimit -a
 ```
 
-:::note 
+:::note
 In the above examples, the open files limit is raised for all users of the system. If you prefer, the limit can be specified for the riak user only by substituting the two asterisks (`*`) in the examples with `riak`.
 :::
 

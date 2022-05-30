@@ -6,24 +6,11 @@ id: managing_running_a_cluster
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-[cluster ops add remove node]: ./cluster-operations/adding-removing-nodes.md
-
-[config reference]: ../configuring/reference.md
-
-[dev api pbc]: ../developing/api/protocol-buffers/index.md
-
-[FQDNs]: http://en.wikipedia.org/wiki/Fully_qualified_domain_name
-
-[use admin riak-admin cluster replace]: ../using/admin/riak-admin.md#cluster
-
-[use admin riak-admin force replace]: ../using/admin/riak-admin.md#cluster
-
 Configuring a Riak cluster involves instructing each node to listen on a
 non-local interface, i.e. not `127.0.0.1`, and then joining all of the
 nodes together to participate in the cluster.
 
-Most configuration changes will be applied to the [configuration file][config reference] located in your `rel/riak/etc` directory (if
+Most configuration changes will be applied to the [configuration file](../configuring/reference.md) located in your `rel/riak/etc` directory (if
 you compiled from source) or `/etc` (if you used a binary install of
 Riak).
 
@@ -36,21 +23,21 @@ are located in the `/bin` directory of your installation.
 > **Note on changing the `name` value**
 >
 > If possible, you should avoid starting Riak prior to editing the name of
-> a node. This setting corresponds to the `nodename` parameter in the
-> `riak.conf` file if you are using the newer configuration system, and to
-> the `-name` parameter in `vm.args` (as described below) if you are using
-> the older configuration system. If you have already started Riak with
-> the default settings, you cannot change the `-name` setting and then
-> successfully restart the node.
+a node. This setting corresponds to the `nodename` parameter in the
+`riak.conf` file if you are using the newer configuration system, and to
+the `-name` parameter in `vm.args` (as described below) if you are using
+the older configuration system. If you have already started Riak with
+the default settings, you cannot change the `-name` setting and then
+successfully restart the node.
 >
 > If you cannot restart after changing the `-name` value you have two
-> options:
+options:
 >
 > * Discard the existing ring metadata by removing the contents of the
->   `ring` directory. This will require rejoining all nodes into a
->   cluster again.
+`ring` directory. This will require rejoining all nodes into a
+cluster again.
 >
-> \*Rename the node using the [`riak-admin cluster replace`][use admin riak-admin cluster replace] command. This will not work if you have previously only started Riak with a single node.
+> *Rename the node using the [`riak-admin cluster replace`](../using/admin/riak-admin.md#cluster) command. This will not work if you have previously only started Riak with a single node.
 
 ## Configure the First Node
 
@@ -63,7 +50,7 @@ riak stop
 #### Select an IP address and port
 
 Let's say that the IP address for your cluster is 192.168.1.10 and that
-you'll be using the default port (8087). If you're using the [Protocol Buffers interface][dev api pbc] to Riak (which we recommend over the HTTP
+you'll be using the default port (8087). If you're using the [Protocol Buffers interface](../developing/api/protocol-buffers/index.md) to Riak (which we recommend over the HTTP
 interface due to performance gains), you should change your
 configuration file:
 
@@ -79,7 +66,7 @@ listener.protobuf.internal = 127.0.0.1:8087
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the pb section of riak_core:
 
 {"127.0.0.1", 8087 },
@@ -103,7 +90,8 @@ listener.protobuf.internal = 192.168.1.10:8087
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+
+```erlang
 %% In the pb section of riak_core:
 
 {"192.168.1.10", 8087 },
@@ -114,6 +102,18 @@ listener.protobuf.internal = 192.168.1.10:8087
 </Tabs>
 
 :::note Note on upgrading to 2.0
+If you are upgrading to Riak version 2.0 or later from an pre-2.0
+release, you can use either your old `app.config`/ `vm.args`
+configuration files or the newer `riak.conf` if you wish. If you have
+installed Riak 2.0 directly, you should use only `riak.conf`.
+
+Below, examples will be provided for both the old and new configuration
+systems. Bear in mind that you need to use either the older or the newer
+but never both simultaneously.
+
+More on configuring Riak can be found in the [Configuration documentation](../configuring/reference.md).
+:::
+
 If you are upgrading to Riak version 2.0 or later from an pre-2.0 release, you
 can use either your old `app.config`/ `vm.args` configuration files or the
 newer `riak.conf` if you wish. If you have installed Riak 2.0 directly, you
@@ -123,8 +123,7 @@ Below, examples will be provided for both the old and new configuration
 systems. Bear in mind that you need to use either the older or the newer but
 never both simultaneously.
 
-More on configuring Riak can be found in the [Configuration Files](../configuring/index.md) documentation.
-:::
+More on configuring Riak can be found in the [Configuration Files](http://docs.basho.com/riak/kv/2.1.4/configuring/) documentation.
 
 If you're using the HTTP interface, you will need to alter your
 configuration in an analogous way:
@@ -141,7 +140,7 @@ listener.http.internal = 127.0.0.1:8098
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the riak_core section:
 
 {http, [ {"127.0.0.1", 8098 } ]},
@@ -165,7 +164,7 @@ listener.http.internal = 192.168.1.10:8098
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {http, [ {"192.168.1.10", 8098 } ]},
 ```
 
@@ -223,13 +222,13 @@ nodename = riak@192.168.1.10
 
 > **Node Names**
 >
-> Use fully qualified domain names ([FQDNs][FQDNs]) rather than IP addresses for the cluster member node names. For example, `riak@cluster.example.com` and `riak@192.168.1.10`
-> are both acceptable node naming schemes, but using the FQDN style is
-> preferred.
+> Use fully qualified domain names ([FQDNs](http://en.wikipedia.org/wiki/Fully_qualified_domain_name)) rather than IP addresses for the cluster member node names. For example, `riak@cluster.example.com` and `riak@192.168.1.10`
+are both acceptable node naming schemes, but using the FQDN style is
+preferred.
 >
 > Once a node has been started, in order to change the name you must
-> either remove ring files from the `/data/ring` directory or
-> [`riak-admin cluster force-replace`][use admin riak-admin force replace] the node.
+either remove ring files from the `/data/ring` directory or
+[`riak-admin cluster force-replace`](../using/admin/riak-admin.md#cluster) the node.
 
 #### Start the node
 
@@ -277,7 +276,9 @@ riak-admin cluster join riak@192.168.1.10
 
 Output from the above should resemble:
 
-    Success: staged join request for `riak@192.168.1.11` to `riak@192.168.1.10`
+```
+Success: staged join request for `riak@192.168.1.11` to `riak@192.168.1.10`
+```
 
 Next, plan and commit the changes:
 
@@ -288,7 +289,9 @@ riak-admin cluster commit
 
 After the last command, you should see:
 
-    Cluster changes committed
+```
+Cluster changes committed
+```
 
 If your output was similar, then the second Riak node is now part of the
 cluster and has begun syncing with the first node. Riak provides several
@@ -297,39 +300,39 @@ examine your Riak cluster's ring:
 
 1. Using the `riak-admin` command:
 
-   ```bash
-   bin/riak-admin status | grep ring_members
-   ```
+    ```bash
+    bin/riak-admin status | grep ring_members
+    ```
 
-   With output resembling the following:
+    With output resembling the following:
 
-   ```bash
-   ring_members : ['riak@192.168.1.10','riak@192.168.1.11']
-   ```
+    ```bash
+    ring_members : ['riak@192.168.1.10','riak@192.168.1.11']
+    ```
 
 2. Running the `riak attach` command. This will open up an Erlang shell,
-   into which you can type the following command:
+into which you can type the following command:
 
-       ```erlang
-       1> {ok, R} = riak_core_ring_manager:get_my_ring().
+    ```erlang
+    1> {ok, R} = riak_core_ring_manager:get_my_ring().
 
-       %% Response:
+    %% Response:
 
-       {ok,{chstate,'riak@192.168.1.10',.........
-       (riak@192.168.52.129)2> riak_core_ring:all_members(R).
-       ['riak@192.168.1.10','riak@192.168.1.11']
-       ```
+    {ok,{chstate,'riak@192.168.1.10',.........
+    (riak@192.168.52.129)2> riak_core_ring:all_members(R).
+    ['riak@192.168.1.10','riak@192.168.1.11']
+    ```
 
 To join additional nodes to your cluster, repeat the above steps.  You
-can also find more detailed instructions about [adding and removing nodes][cluster ops add remove node] from a cluster.
+can also find more detailed instructions about [adding and removing nodes](../using/cluster-operations/adding-removing-nodes.md) from a cluster.
 
 > **Ring Creation Size**
 >
 > All nodes in the cluster
-> must have the same initial ring size setting in order to join, and
-> participate in cluster activity. This setting can be adjusted in your
-> configuration file using the `ring_creation_size` parameter if you're
-> using the older configuration system or `ring_size` in the new system.
+must have the same initial ring size setting in order to join, and
+participate in cluster activity. This setting can be adjusted in your
+configuration file using the `ring_creation_size` parameter if you're
+using the older configuration system or `ring_size` in the new system.
 >
 > Check the value of all nodes if you receive a message like this:
 > `Failed: riak@10.0.1.156 has a different ring_creation_size`
@@ -347,39 +350,39 @@ directions below.
 
 To run multiple nodes, make copies of the `riak` directory.
 
-* If you ran `make all rel`, then this can be found in `./rel/riak`
-  under the Riak source root directory.
-* If you are running Mac OS X, then this is the directory where you
-  unzipped the `.tar.gz` file.
+-   If you ran `make all rel`, then this can be found in `./rel/riak`
+    under the Riak source root directory.
+-   If you are running Mac OS X, then this is the directory where you
+    unzipped the `.tar.gz` file.
 
 Presuming that you copied `./rel/riak` into `./rel/riak1`, `./rel/riak2`,
 `./rel/riak3`, and so on, you need to make two changes:
 
 1. Set your handoff port and your Protocol Buffers or HTTP port
-   (depending on which interface you are using) to different values on each
-   node. For example:
+(depending on which interface you are using) to different values on each
+node. For example:
 
-       ```riakconf
-       # For Protocol Buffers:
-       listener.protobuf.internal = 127.0.0.1:8187
+    ```riakconf
+    # For Protocol Buffers:
+    listener.protobuf.internal = 127.0.0.1:8187
 
-       # For HTTP:
-       listener.http.internal = 127.0.0.1:8198
+    # For HTTP:
+    listener.http.internal = 127.0.0.1:8198
 
-       # For either interface:
-       handoff.port = 8199
-       ```
+    # For either interface:
+    handoff.port = 8199
+    ```
 
-       ```appconfig
-       %% In the pb section of riak_core:
-       {"127.0.0.1", 8187 }
+    ```erlang
+    %% In the pb section of riak_core:
+    {"127.0.0.1", 8187 }
 
-       %% In the http section of riak_core:
-       {"127.0.0.1", 8198}
-       ```
+    %% In the http section of riak_core:
+    {"127.0.0.1", 8198}
+    ```
 
 2. Change the name of each node to a unique name. Now, start the nodes,
-   changing path names and nodes as appropriate:
+changing path names and nodes as appropriate:
 
 ```bash
 ./rel/riak1/bin/riak start

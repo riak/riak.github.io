@@ -40,7 +40,6 @@ More information can be found [here][sysctl_vm_txt] and in our
 documentation on [system tuning](../../using/performance/index.md#storage-and-file-system-tuning).
 
 ## Riak Metrics to Graph
-
 Riak metrics fall into several general categories:
 
 1. Throughput metrics
@@ -61,21 +60,21 @@ investigate unexpected spikes or dips in the throughput.  The
 following stats are recorded for operations that happened *during the
 last minute*.
 
-| Metric                         | Relevance          | Operations (for the last minute)                                              |
-|:-------------------------------|:-------------------|:------------------------------------------------------------------------------|
-| `node_gets`                    | K/V                | Reads coordinated by this node                                                |
-| `node_puts`                    | K/V                | Writes coordinated by this node                                               |
-| `vnode_counter_update`         | Data Types         | Update [Counters][data_types_counters] operations coordinated by local vnodes |
-| `vnode_set_update`             | Data Types         | Update [Sets][data_types_sets] operations coordinated by local vnodes         |
-| `vnode_map_update`             | Data Types         | Update [Maps][data_types_maps] operations coordinated by local vnodes         |
-| `search_query_throughput_one`  | Search             | Search queries on the node                                                    |
-| `search_index_throughtput_one` | Search             | Documents indexed by Search                                                   |
-| `consistent_gets`              | Strong Consistency | Consistent reads on this node                                                 |
-| `consistent_puts`              | Strong Consistency | Consistent writes on this node                                                |
-| `vnode_index_reads`            | Secondary Indexes  | Number of local replicas participating in secondary index reads               |
+| Metric                             | Relevance          | Operations (for the last minute)                                              |
+|:-----------------------------------|:-------------------|:------------------------------------------------------------------------------|
+| ```node_gets```                    | K/V                | Reads coordinated by this node                                                |
+| ```node_puts```                    | K/V                | Writes coordinated by this node                                               |
+| ```vnode_counter_update```         | Data Types         | Update [Counters][data_types_counters] operations coordinated by local vnodes |
+| ```vnode_set_update```             | Data Types         | Update [Sets][data_types_sets] operations coordinated by local vnodes         |
+| ```vnode_map_update```             | Data Types         | Update [Maps][data_types_maps] operations coordinated by local vnodes         |
+| ```search_query_throughput_one```  | Search             | Search queries on the node                                                    |
+| ```search_index_throughtput_one``` | Search             | Documents indexed by Search                                                   |
+| ```consistent_gets```              | Strong Consistency | Consistent reads on this node                                                 |
+| ```consistent_puts```              | Strong Consistency | Consistent writes on this node                                                |
+| ```vnode_index_reads```            | Secondary Indexes  | Number of local replicas participating in secondary index reads               |
 
 Note that there are no separate stats for updates to Flags or
-Registers, as these are included in `vnode_map_update`.
+Registers, as these are included in ```vnode_map_update```.
 
 ### Latency Metrics
 
@@ -91,42 +90,30 @@ represents experienced latency. Mean, Median, and 95th-, 99th-, and
 100th-percentile (Max) counters are displayed. These are one-minute stats.
 :::
 
-| Metric                           | Also                                 | Relevance          | Latency (in microseconds)                                                        |
-|:---------------------------------|:-------------------------------------|:-------------------|:---------------------------------------------------------------------------------|
-| `node_get_fsm_time_mean`         | `_median`, `_95`, `_99`, `_100`      | K/V                | Time between reception of client read request and subsequent response to client  |
-| `node_put_fsm_time_mean`         | `_median`, `_95`, `_99`, `_100`      | K/V                | Time between reception of client write request and subsequent response to client |
-| `object_counter_merge_time_mean` | `_median`, `_95`, `_99`, `_100`      | Data Types         | Time it takes to perform an Update Counter operation                             |
-| `object_set_merge_time_mean`     | `_median`, `_95`, `_99`, `_100`      | Data Types         | Time it takes to perform an Update Set operation                                 |
-| `object_map_merge_time_mean`     | `_median`, `_95`, `_99`, `_100`      | Data Types         | Time it takes to perform an Update Map operation                                 |
-| `search_query_latency_median`    | `_min`, `_95`, `_99`, `_999`, `_max` | Search             | Search query latency                                                             |
-| `search_index_latency_median`    | `_min`, `_95`, `_99`, `_999`, `_max` | Search             | Time it takes Search to index a new document                                     |
-| `consistent_get_time_mean`       | `_median`, `_95`, `_99`, `_100`      | Strong Consistency | Strongly consistent read latency                                                 |
-| `consistent_put_time_mean`       | `_median`, `_95`, `_99`, `_100`      | Strong Consistency | Strongly consistent write latency                                                |
-
-### General Riak Search Load/Health Metrics
-
-These various stats give a picture of the general level of activity or
-load on the Riak node at any given moment.
-
-| Metric                            | Description                                                                                                                                                 |
-|:----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `search_index_bad_entry_count`    | Number of writes to Solr that have resulted in an error due to the format of the data (e.g., non-unicode data) since the last restart of Riak.              |
-| `search_index_bad_entry_one	`     | Number of writes to Solr that have resulted in an error due to the format of the data (e.g., non-unicode data) in the past minute.                          |
-| `search_index_extract_fail_count` | Number of failures that have occurred extracting data into a format suitable to insert into Solr (e.g., badly formatted JSON) since the last start of Riak. |
-| `search_index_extract_fail_one`   | Number of failures that have occurred extracting data into a format suitable to insert into Solr (e.g., badly formatted JSON) in the past minute.           |
+| Metric                               | Also                                                     | Relevance          | Latency (in microseconds)                                                        |
+|:-------------------------------------|:---------------------------------------------------------|:-------------------|:---------------------------------------------------------------------------------|
+| ```node_get_fsm_time_mean```         | ```_median```, ```_95```, ```_99```, ```_100```          | K/V                | Time between reception of client read request and subsequent response to client  |
+| ```node_put_fsm_time_mean```         | ```_median```, ```_95```, ```_99```, ```_100```          | K/V                | Time between reception of client write request and subsequent response to client |
+| ```object_counter_merge_time_mean``` | ```_median```, ```_95```, ```_99```, ```_100```          | Data Types         | Time it takes to perform an Update Counter operation                             |
+| ```object_set_merge_time_mean```     | ```_median```, ```_95```, ```_99```, ```_100```          | Data Types         | Time it takes to perform an Update Set operation                                 |
+| ```object_map_merge_time_mean```     | ```_median```, ```_95```, ```_99```, ```_100```          | Data Types         | Time it takes to perform an Update Map operation                                 |
+| ```search_query_latency_median```    | ```_min```, ```_95```, ```_99```, ```_999```, ```_max``` | Search             | Search query latency                                                             |
+| ```search_index_latency_median```    | ```_min```, ```_95```, ```_99```, ```_999```, ```_max``` | Search             | Time it takes Search to index a new document                                     |
+| ```consistent_get_time_mean```       | ```_median```, ```_95```, ```_99```, ```_100```          | Strong Consistency | Strongly consistent read latency                                                 |
+| ```consistent_put_time_mean```       | ```_median```, ```_95```, ```_99```, ```_100```          | Strong Consistency | Strongly consistent write latency                                                |
 
 ### Erlang Resource Usage Metrics
 
 These are system metrics from the perspective of the Erlang VM,
 measuring resources allocated and used by Erlang.
 
-| Metric                  | Notes                                                            |
-|:------------------------|:-----------------------------------------------------------------|
-| `sys_process_count`     | Number of processes currently running in the Erlang VM           |
-| `memory_processes`      | Total amount of memory allocated for Erlang processes (in bytes) |
-| `memory_processes_used` | Total amount of memory used by Erlang processes (in bytes)       |
+| Metric                      | Notes                                                            |
+|:----------------------------|:-----------------------------------------------------------------|
+| ```sys_process_count```     | Number of processes currently running in the Erlang VM           |
+| ```memory_processes```      | Total amount of memory allocated for Erlang processes (in bytes) |
+| ```memory_processes_used``` | Total amount of memory used by Erlang processes (in bytes)       |
 
-### General Riak Load/Health Metrics
+### General Riak Search Load/Health Metrics
 
 These various stats give a picture of the general level of activity or
 load on the Riak node at any given moment.
@@ -143,6 +130,18 @@ load on the Riak node at any given moment.
 | `list_fsm_active`            |                                 | Number of List Keys FSMs currently active (should be 0)                                                                                                                                |
 | `node_get_fsm_rejected`      |                                 | Number of GET FSMs actively being rejected by Sidejob's overload protection                                                                                                            |
 | `node_put_fsm_rejected`      |                                 | Number of PUT FSMs actively being rejected by Sidejob's overload protection                                                                                                            |
+
+### General Riak Search Load/Health Metrics
+
+These various stats give a picture of the general level of activity or
+load on the Riak node at any given moment.
+
+| Metric                            | Description                                                                                                                                                 |
+|:----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `search_index_bad_entry_count`    | Number of writes to Solr that have resulted in an error due to the format of the data (e.g., non-unicode data) since the last restart of Riak.              |
+| `search_index_bad_entry_one`      | Number of writes to Solr that have resulted in an error due to the format of the data (e.g., non-unicode data) in the past minute.                          |
+| `search_index_extract_fail_count` | Number of failures that have occurred extracting data into a format suitable to insert into Solr (e.g., badly formatted JSON) since the last start of Riak. |
+| `search_index_extract_fail_one`   | Number of failures that have occurred extracting data into a format suitable to insert into Solr (e.g., badly formatted JSON) in the past minute.           |
 
 ## Command-line Interface
 
@@ -161,22 +160,24 @@ riak-admin status
 
 This will return a list of over 300 key/value pairs, like this:
 
-    1-minute stats for 'dev1@127.0.0.1'
-    -------------------------------------------
-    connected_nodes : ['dev2@127.0.0.1','dev3@127.0.0.1']
-    consistent_get_objsize_100 : 0
-    consistent_get_objsize_195 : 0
-    ... etc ...
+```
+1-minute stats for 'dev1@127.0.0.1'
+-------------------------------------------
+connected_nodes : ['dev2@127.0.0.1','dev3@127.0.0.1']
+consistent_get_objsize_100 : 0
+consistent_get_objsize_195 : 0
+... etc ...
+```
 
 A comprehensive list of available stats can be found in the
-[Inspecting a Node](../../using/cluster-operations/inspecting-node.md) document.
+[Inspecting a Node](../../using/cluster-operations/inspecting-node.md#riak-admin-status) document.
 
 ### stat
 
 The `riak-admin stat` command is related to the `riak-admin status`
 command but provides a more fine-grained interface for interacting with
 stats and information. Full documentation of this command can be found
-in the [Inspecting a Node](../../using/cluster-operations/inspecting-node.md) document.
+in the [Inspecting a Node](../../using/cluster-operations/inspecting-node.md#riak-admin-status) document.
 
 ## Statistics and Monitoring Tools
 
@@ -210,7 +211,7 @@ Riak 2.x statistics!
 
 #### Riaknostic
 
-Riaknostic is a growing suite of
+[Riaknostic](http://riaknostic.basho.com) is a growing suite of
 diagnostic checks that can be run against your Riak node to discover
 common problems and recommend how to resolve them. These checks are
 derived from the experience of the Basho Client Services Team as well as
@@ -251,7 +252,7 @@ the Riak HTTP [`/stats`](../../developing/api/http/status.md) endpoint is also a
 
 #### Nagios
 
-:::note 
+:::note
 **Tested and Verified Support for Riak 2.x.**
 :::
 
@@ -287,7 +288,7 @@ module specifically designed to read Riak statistics.
 
 #### Zabbix
 
-:::note 
+:::note
 **Tested and Verified Support for Riak 2.x Stats.**
 :::
 
@@ -298,6 +299,7 @@ Riak cluster nodes.
 A [Zabbix plugin for Riak][riak_zabbix] is available to get you started
 monitoring Riak using Zabbix.
 
+
 ### Hosted Service Monitoring Tools
 
 The following are some commercial tools which Basho customers have
@@ -305,7 +307,6 @@ reported successfully using for statistics gathering and monitoring
 within their Riak clusters.
 
 #### Circonus
-
 [Circonus](http://circonus.com) provides organization-wide monitoring,
 trend analysis, alerting, notifications, and dashboards. It can been
 used to provide trend analysis and help with troubleshooting and
@@ -313,7 +314,7 @@ capacity planning in a Riak cluster environment.
 
 #### New Relic
 
-:::note 
+:::note
 **Tested and Verified Support for Riak 2.x Stats.**
 :::
 
@@ -351,6 +352,7 @@ Docs](https://github.com/basho/basho_docs).
 ## References
 
 * [Inspecting a Node](../../using/cluster-operations/inspecting-node.md)
+* [Riaknostic](http://riaknostic.basho.com)
 * [Riak Control](../../using/admin/riak-control.md)
 * [collectd](http://collectd.org)
 * [Ganglia](http://ganglia.info)
@@ -364,23 +366,16 @@ Docs](https://github.com/basho/basho_docs).
 * [New Relic](http://newrelic.com)
 * [Splunk](http://www.splunk.com)
 * [Riak Docs on Github](https://github.com/riak/riak.github.io)
+* [Old Riak Docs on Github](https://github.com/basho/basho_docs)
+
 
 [sysctl_vm_txt]: https://www.kernel.org/doc/Documentation/sysctl/vm.txt
-
 [data_types_counters]: http://docs.basho.com/riak/latest/dev/using/data-types/#Counters
-
 [data_types_sets]: http://docs.basho.com/riak/latest/dev/using/data-types/#Sets
-
 [data_types_maps]: http://docs.basho.com/riak/latest/dev/using/data-types/#Maps
-
 [riak_nagios]: https://github.com/basho/riak_nagios
-
 [tcollector]: https://github.com/stumbleupon/tcollector
-
 [tcollector_riak_plugin]: https://github.com/stumbleupon/tcollector/blob/master/collectors/0/riak.py
-
 [riak_zabbix]: https://github.com/basho/riak-zabbix
-
 [riak_new_relic]: https://github.com/basho/riak_newrelic
-
 [riak_ganglia]: https://github.com/jnewland/gmond_python_modules/tree/master/riak/

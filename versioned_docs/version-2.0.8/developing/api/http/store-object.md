@@ -12,8 +12,8 @@ Riak assign a key to a new object.
 ## Request
 
 ```bash
-POST /buckets/bucket/keys       # Riak-defined key
-PUT /buckets/bucket/keys/key    # User-defined key
+POST /buckets/bucket/keys                  # Riak-defined key
+PUT /buckets/bucket/keys/key               # User-defined key
 ```
 
 For the sake of compatibility with older clients, `POST` is also acceptable in
@@ -22,33 +22,33 @@ the form where the key is specified.
 Important headers:
 
 * `Content-Type` must be set for the stored object. Set what you expect to
-  receive back when next requesting it.
+receive back when next requesting it.
 * `X-Riak-Vclock` if the object already exists, the vector clock attached to the
-  object when read.
+object when read.
 * `X-Riak-Meta-*` - any additional metadata headers that should be stored with
-  the object.
+the object.
 * `X-Riak-Index-*` - index entries under which this object should be indexed.
-  [Read more about Secondary Indexing](../../../developing/api/http/secondary-indexes.md)
+[Read more about Secondary Indexing](../../../developing/api/http/secondary-indexes.md)
 * `Link` - user and system-defined links to other resources. [Read more about Links.](../../../developing/api/http/link-walking.md)
 
 Optional headers (only valid on `PUT`):
 
 * `If-None-Match`, `If-Match`, `If-Modified-Since`, and `If-Unmodified-Since`
-  invoke conditional request semantics, matching on the `ETag` and `Last-Modified`
-  of the existing object.  These can be used to prevent overwriting a modified
-  object.  If the test fails, you will receive a `412 Precondition Failed`
-  response. This does not prevent concurrent writes; it is possible for the
-  condition to evaluate to true for multiple requests if the requests occur at the
-  same time.
+invoke conditional request semantics, matching on the `ETag` and `Last-Modified`
+of the existing object.  These can be used to prevent overwriting a modified
+object.  If the test fails, you will receive a `412 Precondition Failed`
+response. This does not prevent concurrent writes; it is possible for the
+condition to evaluate to true for multiple requests if the requests occur at the
+same time.
 
 Optional query parameters:
 
 * `w` (write quorum) how many replicas to write to before returning a successful
-  response (default is defined by the bucket level)
+response (default is defined by the bucket level)
 * `dw` (durable write quorum) how many replicas to commit to durable storage
-  before returning a successful response (default is defined at the bucket level)
+before returning a successful response (default is defined at the bucket level)
 * `pw` how many primary replicas must be online to attempt a write (default is
-  defined at the bucket level)
+defined at the bucket level)
 * `returnbody=[true|false]` whether to return the contents of the stored object.
 
 *<ins>This request must include a body (entity).</ins>*
@@ -66,12 +66,12 @@ Typical error codes:
 
 * `400 Bad Request` - e.g. when r, w, or dw parameters are invalid (> N)
 * `412 Precondition Failed` if one of the conditional request headers failed to
-  match (see above)
+match (see above)
 
 Important headers:
 
 * `Location` a relative URL to the newly-created object (when submitting without
-  a key)
+a key)
 
 If `returnbody=true`, any of the response headers expected from [HTTP Fetch Object](../../../developing/api/http/fetch-object.md) may be present. Like when fetching the object, `300 Multiple Choices`
 may be returned if siblings existed or were created as part of the operation,

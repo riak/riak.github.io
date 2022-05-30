@@ -8,7 +8,7 @@ If you haven't set up a Riak Node and started it, please visit [Running A Cluste
 
 To try this flavor of Riak, a working installation of the .NET Framework or Mono is required. 
 
-### Client Setup
+## Client Setup
 
 Install [the Riak .NET Client](https://github.com/basho/riak-dotnet-client/wiki/Installation) through [NuGet](http://nuget.org/packages/RiakClient) or the Visual Studio NuGet package manager.
 
@@ -19,7 +19,7 @@ for a four node local cluster. If you are using a remote cluster, open up
 remote cluster.
 :::
 
-### Connecting to Riak
+## Connecting to Riak
 
 Connecting to Riak with the Riak .NET Client requires creating a cluster object and then creating a new client object.
 

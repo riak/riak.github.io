@@ -8,21 +8,13 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [redis-clients]: http://redis.io/clients
-
 [usage bucket types]: ../../developing/usage/bucket-types.md
-
 [dev api http]: ../../developing/api/http/index.md
-
 [config-behaviors]: http://basho.com/posts/technical/riaks-config-behaviors-part-4/
-
 [apps replication properties]: ../../developing/app-guide/replication-properties.md
-
 [usage commit hooks]: ../../developing/usage/commit-hooks.md
-
 [concept causal context]: ../../learn/concepts/causal-context.md
-
 [ee]: http://basho.com/contact/
 
 This page will walk you through setting up your environment for development with Riak Redis Add-on (RRA), as well as present examples and configuration parameters for basic development operations.
@@ -39,13 +31,13 @@ RRA.
 
 The set of clients (including recommendations) for Redis are listed at
 [Redis clients][redis-clients]. For brevity sake, examples provided here are
-in:
+in: 
 
 * Erlang (Eredis)
 * Javascript (node_redis)
 * Python (redis-py)
 * Ruby (redis-rb)
-* Scala (lettuce)
+* Scala (lettuce) 
 * Java, see the Scala examples. The code intentionally uses as few Scala tricks as possible to focus on the use of the Redis client.
 
 ## Riak KV Setup
@@ -64,7 +56,7 @@ The following is an example, using Riak KV's default HTTP port, of setting `allo
 ```bash
 curl -XPUT -H 'Content-Type: application/json' \
          -d '{"props": {"allow_mult": true, "last_write_wins": false}}' \
-         'http://127.0.0.1:8098/buckets/test/props'
+         'http://127.0.0.1:8098//buckets/test/props'
 ```
 
 For additional configuration options see [bucket properties][dev api http].
@@ -73,7 +65,7 @@ For additional configuration options see [bucket properties][dev api http].
 
 Riak KV organizes data into buckets, keys, and values, with
 [bucket types][usage bucket types] acting as an additional namespace in Riak KV
-versions 2.0 and greater. Values, which we'll refer to as objects, are identifiable by a unique key, and each key/value pair is stored in a bucket.
+versions 2.0 and greater. Values, which we'll refer to as objects, are identifiable by a unique key, and each key/value pair is stored in a bucket. 
 
 Objects accessed via the cache proxy service in Riak Redis Add-on are restricted to plaintext format. This plaintext format may be a simple string, JSON, XML, or other plaintext representations that can be parsed in the client application (e.g. YAML).
 
@@ -83,7 +75,7 @@ service, Redis bucket_type:bucket:key is mapped to Riak KV
 bucket_type/bucket/key, so bucket type and bucket names should not contain
 colon (`:`). When not specified, bucket type defaults to "default".
 
-Outside of the above restriction, bucket names have no intrinsic significance beyond allowing you to store objects with the same key in different buckets.
+Outside of the above restriction, bucket names have no intrinsic significance beyond allowing you to store objects with the same key in different buckets. 
 
 The same goes for naming keys: many objects can have the same key as long as they're in different buckets. There is no restriction on key containing colon (`:`), and this practice of representing a nested namespace is common in applications using Redis.
 
@@ -93,6 +85,7 @@ easily enable buckets to share common configurations, i.e. identical
 [replication properties][apps replication properties] or
 [commit hooks][usage commit hooks].
 
+
 ## Reading Objects
 
 Reads via the cache proxy service are analogous to a Redis `GET`, with the added benefit of reading-through to Riak KV which results in greater resilience through node outages and network partitions.
@@ -100,7 +93,6 @@ Reads via the cache proxy service are analogous to a Redis `GET`, with the added
 To request a value at a bucket/key in Riak KV, issue the following:
 
 <Tabs>
-
 <TabItem label="Erlang" value="erlang" default>
 
 ```erlang
@@ -109,18 +101,17 @@ To request a value at a bucket/key in Riak KV, issue the following:
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
 var redis = require("redis"),
-    client = redis.createClient();
+
+client = redis.createClient();
 
 client.get("test:food", redis.print);
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -132,19 +123,17 @@ r.get("test:food")
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
 require "redis"
 
-redis = Redis.new
+redis = Redis.new()
 
 redis.get("test:food")
 ```
 
 </TabItem>
-
 <TabItem label="Scala" value="scala">
 
 ```scala
@@ -157,13 +146,12 @@ var value = connection.get("test:food")
 ```
 
 </TabItem>
-
 </Tabs>
 
 ### Get Configuration Parameters
 
-> **Note:** The cache proxy service read option (related to replication factor and
-> consistency concern) may optionally be set within the nutcracker.conf. This will  result in an override of the setting value at the bucket-level in Riak KV.
+>**Note:** The cache proxy service read option (related to replication factor and
+consistency concern) may optionally be set within the nutcracker.conf. This will  result in an override of the setting value at the bucket-level in Riak KV.
 
 | Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default                |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
@@ -175,11 +163,13 @@ var value = connection.get("test:food")
 | `notfound_ok`   | Whether to treat notfounds as successful reads for the purpose of `r`.                                                                                                                                                                                                                                                                                            | 1 (true)               |
 | `timeout`       | The number of milliseconds to await a response.                                                                                                                                                                                                                                                                                                                   | `0` (server specified) |
 
+
 ### Sibling Resolution
 
 As the Redis protocol does not provide a means to return multiple siblings,
 the cache proxy service must provide server-side sibling resolution. At present, only last-write-wins sibling resolution is available. The result is an effective
 last-write-wins configuration for access through the cache proxy service.
+
 
 ## Writing Objects
 
@@ -191,51 +181,47 @@ operations.
 To set a value at a bucket/key in Riak KV, issue the following:
 
 <Tabs>
-
 <TabItem label="Erlang" value="erlang" default>
 
 ```erlang
 {ok, RedisClientPid} = eredis:start_link("127.0.0.1", 22122).
-{ok, KeysAffected} = eredis:q(RedisClientPid, ["SET", "rra:test:food", "apple"]).
+{ok, KeysAffected} = eredis:q(RedisClientPid, ["SET", "est:food", "apple"]).
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
 var redis = require("redis"),
-    client = redis.createClient();
+
+client = redis.createClient();
 
 client.set("test:food", "apple", redis.print);
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
 import redis
 
-r = redis.StrictRedis
+r = redis.StrictRedis(host="127.0.0.1", port=22122)
 
 r.set("test:food", "apple")
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
 require "redis"
 
-redis = Redis.new(host: "127.0.0.1", port: 22122)
+redis = Redis.new
 
-redis.set("rra:test:food', 'apple")
+redis.set("test:food', 'apple")
 ```
 
 </TabItem>
-
 <TabItem label="Scala" value="scala">
 
 ```scala
@@ -248,14 +234,13 @@ connection.set("test:food", "apple")
 ```
 
 </TabItem>
-
 </Tabs>
 
 ### Set Configuration Parameters
 
-> **Note:** The cache proxy service write option (related to replication factor and
-> consistency concern) may optionally be set within the nutcracker.conf, resulting
-> in an override of the setting value at the bucket-level in Riak KV.
+>**Note:** The cache proxy service write option (related to replication factor and
+consistency concern) may optionally be set within the nutcracker.conf, resulting
+in an override of the setting value at the bucket-level in Riak KV.
 
 | Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default     |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
@@ -267,7 +252,7 @@ connection.set("test:food", "apple")
 ### Sibling Explosion
 
 As noted in the section "Sibling Resolution" above, Riak KV provides for a line of
-descendency (known as the [causal context][concept causal context]]) for a value stored at a key. Clients
+descendency (known as the [causal context][concept causal context]) for a value stored at a key. Clients
 performing write operations provide this causal context by setting the vector
 clock (VClock) that they last read.
 
@@ -293,7 +278,6 @@ cache.
 To delete a value at a bucket/key in Riak KV, issue the following:
 
 <Tabs>
-
 <TabItem label="Erlang" value="erlang" default>
 
 ```erlang
@@ -302,18 +286,17 @@ To delete a value at a bucket/key in Riak KV, issue the following:
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
 var redis = require("redis"),
-    client = redis.createClient(22122, "127.0.0.1");
+
+client = redis.createClient();
 
 client.del("test:food", redis.print);
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -325,7 +308,6 @@ r.del("test:food")
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -337,7 +319,6 @@ redis.del("test:food")
 ```
 
 </TabItem>
-
 <TabItem label="Scala" value="scala">
 
 ```scala
@@ -346,11 +327,10 @@ import com.lambdaworks.redis._
 var client = RedisClient.create("redis://127.0.0.1:22122")
 var connection = client.connect()
 
-connection.del("rra:test:food")
+connection.del("test:food")
 ```
 
 </TabItem>
-
 </Tabs>
 
 ### Delete Configuration Parameters

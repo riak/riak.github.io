@@ -45,6 +45,7 @@ bucket: "friends"
 props {
   allow_mult: true
 }
+
 ```
 
 #### Response

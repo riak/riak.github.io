@@ -37,7 +37,7 @@ Downtime of a node can be significantly reduced by using an OS feature or filesy
 Due to Riak KV's eventually consistent nature, backups can become slightly inconsistent from node to node.
 
 Data could exist on some nodes and not others at the exact time a backup is made. Any inconsistency will be corrected once a backup is restored, either by Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) processes or when the object is read, via [read repair](../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy).
-:::note
+:::
 
 ## OS-Specific Directory Locations
 
@@ -123,7 +123,7 @@ was extracted.
 :::note Deprecation notice
 In previous versions of Riak KV, there was a [`riak-admin backup`](../../using/admin/riak-admin.md#backup) command commonly used for
 backups. This functionality is now deprecated. We strongly recommend using the backup procedure documented below instead.
-:::note
+:::
 
 Backups can be accomplished through a variety of common methods. Standard utilities such `cp`, `rsync`, and `tar` can be used, as well as any backup system already in place in your environment.
 
@@ -134,7 +134,7 @@ The following examples use `tar`:
 
 :::note
 Backups must be performed on while Riak KV is stopped to prevent data loss.
-:::note
+:::
 
 ### Bitcask
 
@@ -202,7 +202,7 @@ additionally:
 
 :::note
 For more information on the `riak-admin cluster` commands, refer to our documentation on [cluster administration](../../using/admin/index.md).
-:::note
+:::
 
 For example, if there are five nodes in the cluster with the original node names `riak1.example.com` through `riak5.example.com` and you wish to restore `riak1.example.com` as `riak6.example.com`, you would execute the following commands on `riak6.example.com`.
 

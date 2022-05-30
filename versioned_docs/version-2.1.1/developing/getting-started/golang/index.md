@@ -24,7 +24,7 @@ go get github.com/basho/taste-of-riak/go/util
 If you are using a single local Riak node, use the following to create a
 new client instance:
 
-```golang
+```go
 package main
 
 import (

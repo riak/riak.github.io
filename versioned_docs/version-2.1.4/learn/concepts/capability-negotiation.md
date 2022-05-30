@@ -1,13 +1,10 @@
----
-title: "Capability Negotiation"
-id: learn_concepts_cap_negotiation
 slug: capability-negotiation
 sidebar_position: 2
 ---
 
 [glossary vnode]: ../../learn/glossary.md#vnode
 
-[upgrade cluster]: ../../setup/upgrading/cluster.md 
+[upgrade cluster]: ../../setup/upgrading/cluster.md
 
 [usage mapreduce]: ../../developing/usage/mapreduce.md
 
@@ -26,14 +23,14 @@ With the addition of automatic capability negotiation, there are some configurat
 | Setting                          | Description                                                                                                                                  |
 |:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
 | `riak_core/legacy_vnode_routing` | Uses the newer [vnode][glossary vnode] routing layer when supported; otherwise defaults to the legacy routing protocol                       |
-| `riak_kv/legacy_keylisting`      | Uses coverage-based key-listing (introduced in Riak 1.0) when supported; otherwise defaults to the legacy keylisting behavior                |
+| `riak_kv/legacy_keylisting`      | Uses coverage-based keylisting (introduced in Riak 1.0) when supported; otherwise defaults to the legacy keylisting behavior                 |
 | `riak_kv/listkeys_backpressure`  | Enables listkeys backpressure (introduced in Riak 1.1) when supported                                                                        |
 | `riak_kv/mapred_2i_pipe`         | Use parallel secondary-index input to [MapReduce][usage mapreduce] jobs (introduced in Riak 1.1) when supported                              |
 | `riak_kv/mapred_system`          | Use `riak_pipe` for [MapReduce][usage mapreduce] jobs (introduced in Riak 1.0) when supported; otherwise default to the legacy `luke` system |
 
 Although is not recommended, you can override capability negotiation if you wish. This must be done on a per-component basis in each node's `app.config`. You can either instruct Riak not to use capability negotiation for a specific component by setting `use` to `false` as in this example, which turns off capability negotiation for the `listkeys_backpressure` setting:
 
-```appconfig
+```erlang
 [{override_capability,
     [{listkeys_backpressure, [{use, false}]
 }]
@@ -41,7 +38,7 @@ Although is not recommended, you can override capability negotiation if you wish
 
 The following setting would both override the `listkeys_backpressure` setting, as in the example above, *and* override the `mapreduce_system` setting to use `legacy` if all nodes in the cluster support `legacy`. Otherwise, the built-in default setting will be used:
 
-```appconfig
+```erlang
 [{override_capability,
     [{listkeys_backpressure, [{use, false}]},
      {mapred_system,         [{prefer, legacy}]}]

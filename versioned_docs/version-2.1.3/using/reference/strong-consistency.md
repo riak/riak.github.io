@@ -6,7 +6,6 @@ sidebar_position: 12
 ---
 
 [usage bucket types]: ../../developing/usage/bucket-types.md
-
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
 
 :::note Please Note:

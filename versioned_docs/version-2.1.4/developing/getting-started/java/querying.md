@@ -1,7 +1,7 @@
 ---
 title: "Querying"
 id: getting_started_java_query
-slug: querying
+slug: querying 
 sidebar_position: 1
 ---
 
@@ -18,7 +18,7 @@ on a *nix* OS.
 
 ## A Quick Note on Querying and Schemas
 
-*Schemas*? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
+_Schemas_? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
 word. Even in a key/value store, you will still have a logical database
 schema of how all the data relates to other data. This can be as simple
 as using the same key across multiple buckets for different types of
@@ -182,7 +182,7 @@ intrinsic relationships.
 
 ## Secondary Indexes
 
-:::note 
+:::note
 Secondary indexes in Riak KV require a sorted backend: [Memory](../../../setup/planning/backend/memory.md) or [LevelDB](../../../setup/planning/backend/leveldb.md). [Bitcask](../../../setup/planning/backend/bitcask.md) does not support secondary indexes.
 
 See [Using Secondary Indexes (2i)](../../../developing/usage/secondary-indexes.md) for more information on developing with secondary indexes.

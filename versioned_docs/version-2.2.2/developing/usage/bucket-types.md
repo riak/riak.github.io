@@ -66,7 +66,7 @@ var rslt = client.SetBucketProperties("cats", properties);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var bucketProps_cb = function (err, rslt) {
@@ -109,7 +109,7 @@ err = cluster.Execute(cmd)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/buckets/cats/props \

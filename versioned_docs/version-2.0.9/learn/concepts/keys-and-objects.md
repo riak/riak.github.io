@@ -1,12 +1,11 @@
 ---
 title: "Keys and Objects"
 id: learn_concepts_keys_objects
-slug: keys-and-objects
+slug: keys-and-objects 
 sidebar_position: 7
 ---
 
 [concept buckets]: ../../learn/concepts/buckets.md
-
 [concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
 
 In an RDBMS, data is organized by tables that are individually

@@ -27,7 +27,7 @@ installation or the version of Erlang used when compiling Riak from source.
 For packaged Riak installations, you can consult Table 1 below for the default
 location of Riak's `erlc` for each supported platform. If you compiled from
 source, use the `erlc` from the Erlang version you used to compile Riak.
-:::note
+:::
 
 | OS                    | Path                                    |
 |-----------------------|-----------------------------------------|
@@ -91,4 +91,4 @@ in the [Commands documentation](../../using/admin/riak-admin.md#wait-for-service
 :::note
 It is important that you ensure riak_kv is active before restarting the next
 node.
-:::note
+:::

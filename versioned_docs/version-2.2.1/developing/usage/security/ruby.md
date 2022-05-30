@@ -18,7 +18,7 @@ is covered [further down](#certificate-based-authentication).
 This tutorial does not cover certificate generation. It assumes that all
 necessary certificates have already been created and are stored in a directory
 called `/ssl_dir`. This directory name is used only for example purposes.
-:::note
+:::
 
 ## Ruby Client Basics
 

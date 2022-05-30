@@ -1,23 +1,27 @@
 ---
 title: "Debian and Ubuntu"
 id: installing_debian_ubuntu
-slug: debian-ubuntu
+slug: debian-ubuntu 
 sidebar_position: 1
 ---
 
 [install source index]: ../../setup/installing/source/index.md
-
 [security index]: ../../using/security/index.md
-
 [install source erlang]: ../../setup/installing/source/erlang.md
-
 [install verify]: ../../setup/installing/verify.md
 
 Riak KV can be installed on Debian or Ubuntu-based systems using a binary
 package or by compiling from source code.
 
-The following steps have been tested to work with Riak KV on
-Debian versions 6.05 and 7.6 and Ubuntu version 14.04.
+The following steps have been tested to work with Riak KV on:
+
+- Ubuntu 16.04
+- Ubuntu 14.04
+- Ubuntu 12.04
+- Debian 8.6
+- Debian 7.6
+
+## Installing with apt
 
 For versions of Riak prior to 2.0, Basho used a self-hosted
 [apt](http://en.wikipedia.org/wiki/Advanced_Packaging_Tool) repository
@@ -30,32 +34,33 @@ installation, Chef, and Puppet can be found in packagecloud's
 
 Platform-specific pages are linked below:
 
-* [Lucid](https://packagecloud.io/basho/riak/packages/ubuntu/lucid/riak_2.1.4-1_amd64.deb)
-* [Precise](https://packagecloud.io/basho/riak/packages/ubuntu/precise/riak_2.1.4-2_amd64.deb)
-* [Squeeze](https://packagecloud.io/basho/riak/packages/debian/squeeze/riak_2.1.4-1_amd64.deb)
-* [Trusty](https://packagecloud.io/basho/riak/packages/ubuntu/trusty/riak_2.1.4-1_amd64.deb)
-* [Wheezy](https://packagecloud.io/basho/riak/packages/debian/wheezy/riak_2.1.4-1_amd64.deb)
+* [Ubuntu 16.04 (Xenial)](https://packagecloud.io/basho/riak/packages/ubuntu/xenial/riak_2.0.6-1_amd64.deb)
+* [Ubuntu 14.04 (Trusty)](https://packagecloud.io/basho/riak/packages/ubuntu/trusty/riak_2.0.6-1_amd64.deb)
+* [Ubuntu 12.04 (Precise)](https://packagecloud.io/basho/riak/packages/ubuntu/precise/riak_2.0.6-1_amd64.deb)
+* [Debian 8 (Jessie)](https://packagecloud.io/basho/riak/packages/debian/jessie/riak_2.0.6-1_amd64.deb)
+* [Debian 7 (Wheezy)](https://packagecloud.io/basho/riak/packages/debian/wheezy/riak_2.0.6-1_amd64.deb)
 
 Our documentation also includes instructions regarding signing keys and
-sources lists, which can be found in the section below.
+sources lists, which can be found in the Advanced apt Installation section below.
 
-## Installing with apt and Packagecloud
+## Advanced apt Installation
 
 > **Note on Debian 7**
 >
 > If you wish to install Riak on Debian 7, you may need to install
-> [libc6](https://packages.debian.org/search?keywords=libc6) version 2.15 or
-> later, which in turn requires upgrading your system to
-> [sid](https://www.debian.org/releases/sid/). Installation instructions
-> can be found
-> [here](https://wiki.debian.org/DebianUnstable#How_do_I_install_Sid.3F).
+[libc6](https://packages.debian.org/search?keywords=libc6) version 2.15 or
+later, which in turn requires upgrading your system to
+[sid](https://www.debian.org/releases/sid/). Installation instructions
+can be found
+[here](https://wiki.debian.org/DebianUnstable#How_do_I_install_Sid.3F).
 >
 > Once sid has been installed, you can install libc6 with the following
-> command:
+command:
 >
-> ```bash
-> apt-get -t sid install libc6 libc6-dev libc6-dbg
-> ```
+>```bash
+apt-get -t sid install libc6 libc6-dev libc6-dbg
+```
+
 
 For the simplest installation process on LTS (Long-Term Support)
 releases, use `apt-get`. First, you must retrieve the signing key:
@@ -65,18 +70,59 @@ curl https://packagecloud.io/gpg.key | sudo apt-key add -
 ```
 
 Second, you must install the `apt-transport-https` package in order to
-be able to fetch packages over HTTPS&#x3A;
+be able to fetch packages over HTTPS:
 
 ```bash
 sudo apt-get install -y apt-transport-https
 ```
 
-Next download & install Riak KV:
+With HTTPS enabled, we recommend adding the desired Riak package to your
+`.list` file. packagecloud can autogenerate such a file on the basis of
+a name that you specify, e.g. a hostname, and the desired operating
+system and distribution. The following example script would store your
+hostname in the variable `HOSTNAME`, send that information to
+packagecloud to autogenerate a `.list` file, and then store the return
+value in a file called `basho.list`, which is stored in the
+`/etc/apt/sources.list.d` directory. This example script is specific to
+the Precise Ubuntu distribution:
 
 ```bash
-curl -s https://packagecloud.io/install/repositories/basho/riak/script.deb.sh | sudo bash
-sudo apt-get install riak=2.1.4-1
+#!/bin/bash
+
+HOSTNAME=`hostname -f`
+FILENAME=/etc/apt/sources.list.d/basho.list
+OS=ubuntu
+DIST=precise
+PACKAGE_CLOUD_RIAK_DIR=https://packagecloud.io/install/repositories/basho/riak
+curl "${PACKAGE_CLOUD_RIAK_DIR}/config_file.list?os=${OS}&dist=${DIST}&name=${HOSTNAME}" > $FILENAME
 ```
+
+The `name` that you submit to packagecloud can be anything you like. The
+`HOSTNAME` used above was for example purposes. The resulting file
+should hold contents like the following:
+
+```
+# this file was generated by packagecloud.io for
+# the repository at https://packagecloud.io/basho/riak
+
+deb https://packagecloud.io/basho/riak/ubuntu/ precise main
+deb-src https://packagecloud.io/basho/riak/ubuntu/ precise main
+```
+
+With your `basho.list` file populated, you can update your apt sources
+list:
+
+```bash
+sudo apt-get update
+```
+
+Now install the `riak` package.
+
+```bash
+sudo apt-get install riak
+```
+
+That should be all.
 
 ## Installing From Package
 
@@ -130,22 +176,22 @@ for the target platform:
 #### Ubuntu Lucid Lynx (10.04)
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.1/2.1.4/ubuntu/lucid/riak_2.1.4-1_amd64.deb
-sudo dpkg -i riak_2.1.4-1_amd64.deb
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.0.6/ubuntu/lucid/riak_2.0.6-1_amd64.deb
+sudo dpkg -i riak_2.0.6-1_amd64.deb
 ```
 
 #### Ubuntu Natty Narwhal (11.04)
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.1/2.1.4/ubuntu/natty/riak_2.1.4-1_amd64.deb
-sudo dpkg -i riak_2.1.4-1_amd64.deb
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.0.6/ubuntu/natty/riak_2.0.6-1_amd64.deb
+sudo dpkg -i riak_2.0.6-1_amd64.deb
 ```
 
 #### Ubuntu Precise Pangolin (12.04)
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.1/2.1.4/ubuntu/precise/riak_2.1.4-1_amd64.deb
-sudo dpkg -i riak_2.1.4-1_amd64.deb
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.0.6/ubuntu/precise/riak_2.0.6-1_amd64.deb
+sudo dpkg -i riak_2.0.6-1_amd64.deb
 ```
 
 ## Installing From Source
@@ -160,9 +206,9 @@ Riak requires an [Erlang](http://www.erlang.org/) installation.
 Instructions can be found in [Installing Erlang][install source erlang].
 
 ```bash
-wget http://s3.amazonaws.com/downloads.basho.com/riak/2.1/2.1.4/riak-2.1.4.tar.gz
-tar zxvf riak-2.1.4.tar.gz
-cd riak-2.1.4
+wget http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.0.6/riak-2.0.6.tar.gz
+tar zxvf riak-2.0.6.tar.gz
+cd riak-2.0.6
 make rel
 ```
 

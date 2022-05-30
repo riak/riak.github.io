@@ -8,7 +8,6 @@ sidebar_position: 0
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 Counters are a bucket-level Riak data type that can be used by themselves, associated with a bucket/key pair, or used [within a map](./maps.md#counters-within-maps). A counter's value can only be a positive integer, negative integer, or zero.
 
 The examples in this section will show you how to use counters on their own.
@@ -64,7 +63,6 @@ location that contains our counter.
 For this example we'll use the `counters` bucket type created and activated above and a bucket called `counters`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -77,7 +75,6 @@ Location location = new Location(countersBucket, "<insert_key_here>");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -85,7 +82,6 @@ bucket = client.bucket_type('counters').bucket('counters')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -93,7 +89,6 @@ $bucket = new \Basho\Riak\Bucket('counters', 'counters');
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -101,7 +96,6 @@ bucket = client.bucket_type('counters').bucket('counters')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -121,7 +115,6 @@ FetchCounter cmd = new FetchCounter.Builder()
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -134,7 +127,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -143,7 +135,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -154,7 +145,6 @@ curl http://localhost:8098/types/counters/buckets/counters/datatypes/<key>
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Create a Counter
@@ -163,7 +153,6 @@ To create a counter, you need to specify a bucket/key pair to hold that
 counter. Here is the general syntax for doing so:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -179,7 +168,6 @@ Location counter = new Location(new Namespace("counters", "counters"), "<key>");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -192,7 +180,6 @@ counter = Riak::Crdt::Counter.new(bucket, key)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -201,7 +188,6 @@ $location = new \Basho\Riak\Location('key', $bucket);
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -216,7 +202,6 @@ counter = Counter(bucket, key)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -229,7 +214,6 @@ CounterResponse response = cmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -243,7 +227,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -252,7 +235,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -264,7 +246,6 @@ curl -XPOST http://localhost:8098/types/counters/buckets/<bucket>/datatypes/<key
 ```
 
 </TabItem>
-
 </Tabs>
 
 Let's say that we want to create a counter called `traffic_tickets` in
@@ -273,7 +254,6 @@ create this counter and ensure that the `counters` bucket will use our
 `counters` bucket type like this:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -283,7 +263,6 @@ Location trafficTickets = new Location(countersBucket, "traffic_tickets");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -302,7 +281,6 @@ counter = Riak::Crdt::Counter.new(bucket, 'traffic_tickets')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -311,7 +289,6 @@ $location = new \Basho\Riak\Location('traffic_tickets', $bucket);
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -320,7 +297,6 @@ counter = bucket.new('traffic_tickets')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -333,7 +309,6 @@ CounterResult = cmd.Result;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -347,7 +322,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -359,7 +333,6 @@ Counter = riakc_counter:new().
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -369,7 +342,6 @@ curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traf
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Increment a Counter
@@ -379,7 +351,6 @@ counter, `traffic_tickets` will start out at 0 by default. If we happen
 to get a ticket that afternoon, we can increment the counter:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -392,18 +363,15 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
 counter.increment
 
-# This will increment the counter both on the application side and in
-Riak
+# This will increment the counter both on the application side and in Riak
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -415,7 +383,6 @@ Riak
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -427,7 +394,6 @@ counter.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -446,7 +412,6 @@ CounterResponse response = updateCmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -467,7 +432,6 @@ client.updateCounter(options,
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -475,7 +439,6 @@ Counter1 = riakc_counter:increment(Counter).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -485,7 +448,6 @@ curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traf
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Increment a Counter by More Than 1
@@ -496,7 +458,6 @@ by more than 1 (but always by an integer).
 Continuing with our `traffic_tickets` example, let's say we receive 5 tickets in a single day:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -508,7 +469,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -516,7 +476,6 @@ counter.increment(5)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -528,7 +487,6 @@ counter.increment(5)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -536,7 +494,6 @@ counter.increment(5)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -567,7 +524,6 @@ response = updateCmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -586,7 +542,6 @@ client.updateCounter(options,
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -594,7 +549,6 @@ Counter2 = riakc_counter:increment(5, Counter1).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -604,7 +558,6 @@ curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traf
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Retrieve Counter Value
@@ -612,7 +565,6 @@ curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traf
 We can retrieve the value of the counter and view how many tickets have accumulated:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -625,7 +577,6 @@ Long ticketsCount = counter.view();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -634,7 +585,6 @@ counter.value
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -648,7 +598,6 @@ $trafficTickets->getData(); # returns an integer
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -669,7 +618,6 @@ counter.reload()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -683,7 +631,6 @@ CounterResponse response = cmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -711,7 +658,6 @@ client.fetchCounter(options,
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -733,7 +679,6 @@ riakc_counter:value(Counter2).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -744,7 +689,6 @@ curl http://localhost:8098/types/counters/buckets/counters/datatypes/traffic_tic
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Decrement a Counter
@@ -754,7 +698,6 @@ Counters enable you to decrement values in addition to incrementing them as seen
 For example, let's say we hire an expert lawyer who gets one of the traffic tickets stricken from our record:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -766,7 +709,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -777,7 +719,6 @@ counter.decrement(3)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -789,7 +730,6 @@ counter.decrement(3)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -800,7 +740,6 @@ counter.decrement(3)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -818,7 +757,6 @@ response = updateCmd.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -839,7 +777,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -860,7 +797,6 @@ riakc_pb_socket:update_type(Pid, {<<"counters">>,<<"counters">>},
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -870,5 +806,4 @@ curl -XPOST http://localhost:8098/types/counters/buckets/counters/datatypes/traf
 ```
 
 </TabItem>
-
 </Tabs>

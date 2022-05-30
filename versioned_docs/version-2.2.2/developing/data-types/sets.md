@@ -141,7 +141,7 @@ Assert.AreEqual(options, builder.Options);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // As with counters, with the Riak Node.js Client you interact with sets on the
@@ -164,7 +164,7 @@ var options = {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
@@ -248,7 +248,7 @@ var builder = new FetchSet.Builder()
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // Now we'll create a options object for the set with which we want to
@@ -272,7 +272,7 @@ CitiesSet = riakc_set:new().
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # You cannot create an empty set through the HTTP interface. Sets can
@@ -345,7 +345,7 @@ SetResponse response = fetchSetCommand.Response;
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -377,7 +377,7 @@ riakc_set:size(CitiesSet) == 0.
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
@@ -461,7 +461,7 @@ Assert.Contains("Montreal", response.AsStrings.ToArray());
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -494,7 +494,7 @@ CitiesSet2 = riakc_set:add_element(<<"Montreal">>, CitiesSet1).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/sets/buckets/travel/datatypes/cities \
@@ -611,7 +611,7 @@ Assert.Contains("Ottawa", responseStrings);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -648,7 +648,7 @@ CitiesSet5 = riakc_set:add_element(<<"Ottawa">>, CitiesSet4).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
@@ -743,7 +743,7 @@ foreach (var value in setResponse.AsStrings)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -786,7 +786,7 @@ riakc_set:value(CitiesSet5).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
@@ -862,7 +862,7 @@ bool includesOttawa = response.AsStrings.Any(v => v == "Ottawa");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // Use standard javascript array method indexOf()
@@ -884,7 +884,7 @@ riakc_set:is_element(<<"Ottawa">>, CitiesSet5).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # With the HTTP interface, this can be determined from the output of
@@ -941,7 +941,7 @@ setResponse.Values.Count();
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // Use standard javascript array property length
@@ -957,7 +957,7 @@ riakc_set:size(CitiesSet5).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # With the HTTP interface, this can be determined from the output of

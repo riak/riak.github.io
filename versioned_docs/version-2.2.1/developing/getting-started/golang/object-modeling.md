@@ -8,7 +8,7 @@ sidebar_position: 2
 :::note Code Download
 You can download the code for this chapter at
 [Github](https://github.com/basho/taste-of-riak/tree/master/go/ch03/models).
-:::note
+:::
 
 To get started, let's create the models that we'll be using:
 
@@ -175,7 +175,7 @@ respectively.
 Riak performs best with objects under 1-2 MB. Objects larger than that can
 hurt performance, especially if many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-:::note
+:::
 
 #### Keeping our story straight with repositories
 

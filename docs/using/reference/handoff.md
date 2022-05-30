@@ -5,6 +5,9 @@ slug: handoff
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [cluster ops handoff]: ../../using/cluster-operations/handoff.md
 
 Riak is a distributed system built with two essential goals in mind:
@@ -55,10 +58,18 @@ to provide each node with appropriate paths for an SSL certfile (and
 potentially a keyfile). The configuration below would designate a
 certfile at `/ssl_dir/cert.pem` and a keyfile at `/ssl_dir/key.pem`:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 handoff.ssl.certfile = /ssl_dir/cert.pem
 handoff.ssl.keyfile = /ssl_dir/key.pem
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_core, [
@@ -71,15 +82,27 @@ handoff.ssl.keyfile = /ssl_dir/key.pem
 ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 ### Port
 
 You can set the port used by Riak for handoff-related interactions using
 the `handoff.port` parameter. The default is 8099. This would change the
 port to 9000:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 handoff.port = 9000
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_core, [
@@ -89,6 +112,10 @@ handoff.port = 9000
 ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 ### Background Manager
 
 Riak has an optional background manager that limits handoff activity in
@@ -97,9 +124,17 @@ response degradation during times of heavy load, when multiple
 background tasks may contend for the same system resources. The
 background manager is disabled by default. The following will enable it:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 handoff.use_background_manager = on
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -108,6 +143,10 @@ handoff.use_background_manager = on
     %% Other configs
 ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### Maximum Rejects
 
@@ -125,9 +164,17 @@ can block K/V handoff for a maximum of 50 seconds. The default for
 `handoff.max_rejects` is 6, while the default for
 `vnode_management_timer` is `10s`. This would set `max_rejects` to 10:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 handoff.max_rejects = 10
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -137,6 +184,11 @@ handoff.max_rejects = 10
 ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
+
 ### Transfer Limit
 
 You can adjust the number of node-to-node transfers (which includes
@@ -144,9 +196,17 @@ handoff) using the `transfer_limit` parameter. The default is 2. Setting
 this higher will increase node-to-node communication but at the expense
 of higher resource intensity. This would set `transfer_limit` to 5:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 transfer_limit = 5
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_core, [
@@ -155,6 +215,10 @@ transfer_limit = 5
     %% Other configs
 ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## Enabling and Disabling Handoff
 
@@ -168,10 +232,18 @@ using the `handoff.outbound` and `handoff.inbound` settings,
 respectively. Both are enabled by default. The following would disable
 both:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 handoff.outbound = off
 handoff.inbound = off
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_core, [
@@ -181,6 +253,10 @@ handoff.inbound = off
     %% Other configs
 ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### Enabling and Disabling Through the Command Line
 

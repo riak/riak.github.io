@@ -13,7 +13,7 @@ You can also download the code for this chapter at
 
 The Github version includes Erlang type specifications which have been omitted
 here for brevity.
-:::note
+:::
 
 
 ```erlang
@@ -83,7 +83,7 @@ respectively.
 Riak performs best with objects under 1-2 MB. Objects larger than that can
 hurt performance, especially if many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-:::note
+:::
 
 #### Keeping our story straight with repositories
 

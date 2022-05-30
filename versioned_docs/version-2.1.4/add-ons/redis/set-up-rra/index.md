@@ -5,15 +5,10 @@ sidebar_position: 0
 ---
 
 [addon redis develop]: ../developing-rra.md
-
 [addon redis use]: ../using-rra.md
-
 [ee]: http://basho.com/contact/
-
 [install index]: ../../../setup/installing/index.md
-
 [perf open files]: ../../../using/performance/open-files-limit.md#changing-limit-for-current-session
-
 [lab ansible]: https://github.com/paegun/ansible-cache-proxy
 
 This page will walk you through the process of installing Riak Redis Add-on (RRA) and configuring it to run in your environment. Check the [prerequisites](#prerequisites) before you get started to make sure you have everything you need in order to successfully install and use RRA.
@@ -37,7 +32,7 @@ configure RRA manually.
 ## Installing
 
 1. On all Redis and Riak Redis Add-on hosts, change the [open-files limit][perf open files].
-2. On all Redis hosts, install Redis. \**Skip ahead* if you already have Redis installed.
+2. On all Redis hosts, install Redis. **Skip ahead* if you already have Redis installed.
 3. Install Riak Redis Add-on.
 
 ### Change the open-files limit
@@ -76,11 +71,12 @@ root hard nofile 65536
 root soft nofile 65536
 ```
 
-> **Note:** You may need to log out of your shell and then log back in for these changes to take effect.
+>**Note:** You may need to log out of your shell and then log back in for these changes to take effect.
+
 
 ### Install Redis
 
-> **Note:** If you already have Redis installed, *skip ahead* to "Install Riak Redis Add-on".
+>**Note:** If you already have Redis installed, *skip ahead* to "Install Riak Redis Add-on".
 
 #### Install on Ubuntu
 
@@ -173,12 +169,12 @@ that Redis is running on the expected port:
 ss -nlp |grep [r]edis
 ```
 
-> **Notes:** ss is used here to support a minimal installed system, but netstat may be used as well.
+>**Notes:** ss is used here to support a minimal installed system, but netstat may be used as well.
 
 ### Install Riak Redis Add-on (RRA)
 
-> **Note:**
-> Riak Redis Add-on (RRA) is available to Enterprise customers for download in the usual Zendesk forums.
+>**Note:**
+>Riak Redis Add-on (RRA) is available to Enterprise customers for download in the usual Zendesk forums.
 
 If you are on CentOS, run the following to install RRA:
 
@@ -268,7 +264,7 @@ to verify that RRA is running on the expected port:
 ss -nlp |grep [n]utcracker
 ```
 
-> **Note:** ss is used here to support a minimal installed system, but netstat may be used as well.
+>**Note:** ss is used here to support a minimal installed system, but netstat may be used as well.
 
 ## Next Steps
 

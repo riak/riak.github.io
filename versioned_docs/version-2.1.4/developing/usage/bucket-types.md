@@ -1,13 +1,12 @@
 ---
 title: "Bucket Types"
 id: usage_bucket_types
-slug: bucket-types
+slug: bucket-types 
 sidebar_position: 8
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 
 If you ever need to turn off indexing for a bucket, set the
 `search_index` property to the `_dont_index_` sentinel value.
@@ -20,7 +19,6 @@ if you have existing data with a type-free bucket (i.e. under the
 specific bucket.
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -32,7 +30,6 @@ client.execute(storePropsOp);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -41,7 +38,6 @@ bucket.properties = {'search_index' => 'famous'}
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -53,7 +49,6 @@ bucket.properties = {'search_index' => 'famous'}
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -62,7 +57,6 @@ bucket.set_properties({'search_index': 'famous'})
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -72,7 +66,6 @@ var rslt = client.SetBucketProperties("cats", properties);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -93,7 +86,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -101,10 +93,9 @@ riakc_pb_socket:set_search_index(Pid, <<"cats">>, <<"famous">>).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewStoreBucketPropsCommandBuilder().
     WithBucketType("animals").
     WithBucket("cats").
@@ -118,7 +109,6 @@ err = cluster.Execute(cmd)
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -128,5 +118,4 @@ curl -XPUT $RIAK_HOST/buckets/cats/props \
 ```
 
 </TabItem>
-
 </Tabs>

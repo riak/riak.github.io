@@ -99,6 +99,12 @@ riak-admin transfers
 
 8. Repeat the process for the remaining nodes in the cluster.
 
+:::note Note for secondary index (2i) users
+If you use Riak KV's [secondary indexes](../../developing/usage/secondary-indexes.md) and are
+upgrading from a version prior to Riak KV version 1.3.1, you need to
+reformat the indexes using the [`riak-admin reformat-indexes`](../../using/admin/riak-admin.md) command. More details about reformatting indexes are available in the [release notes](https://github.com/basho/riak/blob/master/RELEASE-NOTES.md).
+:::
+
 ## RHEL/CentOS
 
 The following example demonstrates upgrading a Riak KV node that has been
@@ -153,6 +159,12 @@ riak-admin transfers
   behalf. This data is transferred to the node when it becomes available.
 
 8. Repeat the process for the remaining nodes in the cluster.
+
+:::note Note for secondary index (2i) users
+If you use Riak KV's [secondary indexes](../../developing/usage/secondary-indexes.md) and are
+upgrading from a version prior to Riak KV version 1.3.1, you need to
+reformat the indexes using the [`riak-admin reformat-indexes`](../../using/admin/riak-admin.md) command. More details about reformatting indexes are available in the [release notes](https://github.com/basho/riak/blob/master/RELEASE-NOTES.md).
+:::
 
 ## Solaris/OpenSolaris
 
@@ -234,6 +246,12 @@ While the node was offline, other nodes may have accepted writes on its
 behalf. This data is transferred to the node when it becomes available.
 
 8. Repeat the process for the remaining nodes in the cluster.
+
+:::note Note for secondary index (2i) users
+If you use Riak KV's [secondary indexes](../../developing/usage/secondary-indexes.md) and are
+upgrading from a version prior to Riak KV version 1.3.1, you need to
+reformat the indexes using the [`riak-admin reformat-indexes`](../../using/admin/riak-admin.md) command. More details about reformatting indexes are available in the [release notes](https://github.com/basho/riak/blob/master/RELEASE-NOTES.md).
+:::
 
 ## Rolling Upgrade to Enterprise
 

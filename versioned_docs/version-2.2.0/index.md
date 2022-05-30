@@ -29,11 +29,11 @@ Riak KV is a distributed NoSQL database designed to deliver maximum data availab
 - Debian 8.0 ("Jessie")
 - Red Hat Enterprise Linux 6
 - Red Hat Enterprise Linux 7
+- Solaris 10
 - SUSE Linux Enterprise Server 11
 - Ubuntu 12.04 ("Precise Pangolin")
 - Ubuntu 14.04 ("Trusty Tahr")
 - Ubuntu 16.04 ("Xenial Xerus")
-- FreeBSD 10
 - Mac OSX 10.8+ (development only)
 
 ## Getting Started
@@ -46,7 +46,7 @@ Are you brand new to Riak KV? Start by [downloading][downloads] Riak KV, and the
 
 :::note Developing with Riak KV
 If you are looking to integrate Riak KV with your existing tools, check out the [Developing with Riak KV](developing/index.md) docs. They provide instructions and examples for languages such as: Java, Ruby, Python, Go, Haskell, NodeJS, Erlang, and more.
-:::note
+:::
 
 ## Popular Docs
 

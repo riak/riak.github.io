@@ -8,7 +8,6 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 Sets are a bucket-level Riak data type that can be used by themselves, associated with a bucket/key pair, or used [within a map](./maps.md#sets-within-maps).
 
 Sets are collections of unique binary values (such as strings). All of
@@ -41,7 +40,9 @@ in the form of `property: value`.
 
 If our `sets` bucket type has been set properly we should see the following pair in our console output:
 
-    datatype: set
+```
+datatype: set
+```
 
 Once we have confirmed the bucket type is properly configured, we can activate the bucket type to be used in Riak KV:
 
@@ -65,7 +66,6 @@ Here is the general syntax for creating a bucket type/bucket/key
 combination to handle a set:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -74,12 +74,10 @@ combination to handle a set:
 // use a Location object that incorporates the Namespace object, as is
 // done below.
 
-Location set =
-  new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
+Location set = new Location(new Namespace("<bucket_type>", "<bucket>"), "<key>");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -92,7 +90,6 @@ set = Riak::Crdt::Set.new(bucket, key)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -100,7 +97,6 @@ $location = new \Basho\Riak\Location('key', new \Basho\Riak\Bucket('bucket_name'
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -123,7 +119,6 @@ set = Set(bucket, key)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -146,7 +141,6 @@ Assert.AreEqual(options, builder.Options);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -161,7 +155,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -171,7 +164,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -182,7 +174,6 @@ curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Create a Set
@@ -191,19 +182,16 @@ For the following example, we will use a set to store a list of cities that we
 want to visit. Let's create a Riak set stored in the key `cities` in the bucket `travel` using the `sets` bucket type created previously:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
 // In the Java client, you specify the location of Data Types
 // before you perform operations on them:
 
-Location citiesSet =
-  new Location(new Namespace("sets", "travel"), "cities");
+Location citiesSet = new Location(new Namespace("sets", "travel"), "cities");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -223,7 +211,6 @@ cities_set = Riak::Crdt::Set.new(travel, 'cities')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -231,7 +218,6 @@ $location = new \Basho\Riak\Location('cities', 'travel', 'sets');
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -248,7 +234,6 @@ cities_set = Set(travel, 'cities')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -263,7 +248,6 @@ var builder = new FetchSet.Builder()
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -277,7 +261,6 @@ var options = {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -289,7 +272,6 @@ CitiesSet = riakc_set:new().
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -299,14 +281,12 @@ CitiesSet = riakc_set:new().
 ```
 
 </TabItem>
-
 </Tabs>
 
 Upon creation, our set is empty. We can verify that it is empty at any
 time:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -320,7 +300,6 @@ boolean isEmpty = set.viewAsSet().isEmpty();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -328,7 +307,6 @@ cities_set.empty?
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -343,7 +321,6 @@ count($set->getData());
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -351,7 +328,6 @@ len(cities_set) == 0
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -369,7 +345,6 @@ SetResponse response = fetchSetCommand.Response;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -390,7 +365,6 @@ client.fetchSet(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -403,7 +377,6 @@ riakc_set:size(CitiesSet) == 0.
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -414,7 +387,6 @@ not found
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Add to a Set
@@ -423,7 +395,6 @@ But let's say that we read a travel brochure saying that Toronto and
 Montreal are nice places to go. Let's add them to our `cities` set:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -438,7 +409,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -447,7 +417,6 @@ cities_set.add('Montreal')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -462,7 +431,6 @@ $response = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -471,7 +439,6 @@ cities_set.add('Montreal')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -494,7 +461,6 @@ Assert.Contains("Montreal", response.AsStrings.ToArray());
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -520,7 +486,6 @@ client.execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -529,7 +494,6 @@ CitiesSet2 = riakc_set:add_element(<<"Montreal">>, CitiesSet1).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -539,7 +503,6 @@ curl -XPOST http://localhost:8098/types/sets/buckets/travel/datatypes/cities \
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Remove from a Set
@@ -556,7 +519,6 @@ Once we've fetched the set, we can remove the element `Montreal` and
 store the set:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -586,7 +548,6 @@ client.execute(update);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -596,7 +557,6 @@ cities_set.add('Ottawa')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -612,7 +572,6 @@ cities_set.add('Ottawa')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -623,7 +582,6 @@ cities_set.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -653,7 +611,6 @@ Assert.Contains("Ottawa", responseStrings);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -682,7 +639,6 @@ client.fetchSet(options, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -692,17 +648,15 @@ CitiesSet5 = riakc_set:add_element(<<"Ottawa">>, CitiesSet4).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/sets/buckets/travel/datatypes/cities \
   -H "Content-Type: application/json" \
-  -d '{"remove": "Montreal","add_all":["Hamilton", "Ottawa"], "context":""SwGDUAAAAER4ActgymFgYGDMYMoFUhxHgzZyBzMfsU9kykISZg/JL8rPK8lHEkKoZMzKAgDwJA+e"}'
+  -d '{"remove": "Montreal","add_all":["Hamilton", "Ottawa"]}'
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Retrieve a Set
@@ -710,7 +664,6 @@ curl -XPOST http://localhost:8098/types/sets/buckets/travel/datatypes/cities \
 Now, we can check on which cities are currently in our set:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -726,7 +679,6 @@ for (BinaryValue city : binarySet) {
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -736,7 +688,6 @@ cities_set.members
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -751,7 +702,6 @@ var_dump($set->getData());
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -771,7 +721,6 @@ cities_set.reload()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -789,7 +738,6 @@ foreach (var value in setResponse.AsStrings)
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -812,7 +760,6 @@ client.fetchSet(options, function(err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -834,15 +781,13 @@ riakc_set:value(CitiesSet5).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities
 
 # Response
-
-{"type":"set","value":["Hamilton", "Ottawa", "Toronto"],"context":"SwGDUAAAAER4ActgymFgYGDMYMoFUhxHgzZyBzMfsU9kykISZg/JL8rPK8lHEkKoZMzKAgDwJA+e"}
+{"type":"set","value":["Hamilton","Ottawa","Toronto"],"context":"SwGDUAAAAER4ActgymFgYGDMYMoFUhxHgzZyBzMfsU9kykISZg/JL8rPK8lHEkKoZMzKAgDwJA+e"}
 
 # You can also fetch the value of the set without the context included:
 curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities?include_context=false
@@ -852,7 +797,6 @@ curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities?include_co
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Find Set Member
@@ -860,7 +804,6 @@ curl http://localhost:8098/types/sets/buckets/travel/datatypes/cities?include_co
 Or we can see whether our set includes a specific member:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -871,7 +814,6 @@ System.out.println(citiesSet.contains("Ottawa"));
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -883,7 +825,6 @@ cities_set.include? 'Ottawa'
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -893,7 +834,6 @@ in_array('Ottawa', $set->getData()); # true
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -905,7 +845,6 @@ in_array('Ottawa', $set->getData()); # true
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -918,7 +857,6 @@ bool includesOttawa = response.AsStrings.Any(v => v == "Ottawa");
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -930,7 +868,6 @@ cities_set.indexOf('Ottawa'); // if present, index is >= 0
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -942,7 +879,6 @@ riakc_set:is_element(<<"Ottawa">>, CitiesSet5).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -951,7 +887,6 @@ riakc_set:is_element(<<"Ottawa">>, CitiesSet5).
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Size of Set
@@ -959,7 +894,6 @@ riakc_set:is_element(<<"Ottawa">>, CitiesSet5).
 We can also determine the size of the set:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -969,7 +903,6 @@ int numberOfCities = citiesSet.size();
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -977,7 +910,6 @@ cities_set.members.length
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -985,7 +917,6 @@ count($set->getData());
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -993,7 +924,6 @@ len(cities_set)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1006,7 +936,6 @@ setResponse.Values.Count();
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1016,7 +945,6 @@ var cities_set_size = result.values.length;
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1024,7 +952,6 @@ riakc_set:size(CitiesSet5).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1033,5 +960,4 @@ riakc_set:size(CitiesSet5).
 ```
 
 </TabItem>
-
 </Tabs>

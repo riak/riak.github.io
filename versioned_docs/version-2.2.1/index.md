@@ -46,7 +46,7 @@ Are you brand new to Riak KV? Start by [downloading][downloads] Riak KV, and the
 
 :::note Developing with Riak KV
 If you are looking to integrate Riak KV with your existing tools, check out the [Developing with Riak KV](developing/index.md) docs. They provide instructions and examples for languages such as: Java, Ruby, Python, Go, Haskell, NodeJS, Erlang, and more.
-:::note
+:::
 
 ## Popular Docs
 

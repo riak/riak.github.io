@@ -8,29 +8,19 @@ sidebar_position: 0
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [github bitcask]: https://github.com/basho/bitcask
-
 [bitcask design pdf]: http://basho.com/assets/bitcask-intro.pdf
-
 [use admin riak cli]: ../../../using/admin/riak-cli.md
-
 [config reference]: ../../../configuring/reference.md
-
 [glossary vnode]: ../../../learn/glossary.md#vnode
-
 [learn clusters]: ../../../learn/concepts/clusters.md
-
 [plan backend multi]: ../../../setup/planning/backend/multi.md
-
 [usage search]: ../../../developing/usage/search.md
 
 [glossary aae]: ../../../learn/glossary.md#active-anti-entropy-aae
-
 [perf open files]: ../../../using/performance/open-files-limit.md
 
-[plan bitcask capacity]: /bitcask-calculator 
-
+[plan bitcask capacity]: /bitcask-calculator
 [usage delete objects]: ../../../developing/usage/deleting-objects.md
 
 [Bitcask][github bitcask] is an Erlang application that provides an API for storing and retrieving key/value data using log-structured hash tables that provide very fast access. The [design][bitcask design pdf] of Bitcask was inspired, in part, by log-structured filesystems and log file merging.
@@ -65,7 +55,7 @@ import TabItem from '@theme/TabItem';
     seek to read a value and sometimes even that isn't necessary due to
     filesystem caching done by the operating system.
 
-* **Predictable lookup *and* insert performance**
+* **Predictable lookup _and_ insert performance**
 
     For the reasons listed above, read operations from Bitcask have
     fixed, predictable behavior. This is also true of writes to Bitcask
@@ -127,7 +117,7 @@ storage_backend = bitcask
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
   {storage_backend, riak_kv_bitcask_backend},
   %% Other riak_kv settings...
@@ -148,9 +138,9 @@ filesystem sync strategy to merge settings and more.
 >
 > Riak 2.0 enables you to use either the newer [configuration system][config reference] based on a single `riak.conf` file or the older system, based on an `app.config` configuration file.
 > Instructions for both systems will be included below. Narrative
-> descriptions of the various settings will be tailored to the newer
-> configuration system, whereas instructions for the older system will
-> largely be contained in the code tabs.
+descriptions of the various settings will be tailored to the newer
+configuration system, whereas instructions for the older system will
+largely be contained in the code tabs.
 
 The default configuration values for Bitcask are as follows:
 
@@ -167,7 +157,7 @@ bitcask.io_mode = erlang
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {bitcask, [
     {data_root, "/var/lib/riak/bitcask"},
     {io_mode, erlang},
@@ -209,7 +199,7 @@ bitcask.sync.open_timeout = 10s
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {open_timeout, 10} %% This value must be expressed in seconds
@@ -245,12 +235,12 @@ complete.
 
 The following sync strategies are available:
 
-* `none` --- lets the operating system manage syncing writes
-  (default)
-* `o_sync` --- uses the `O_SYNC` flag, which forces syncs on every
-  write
-* Time interval --- Riak will force Bitcask to sync at specified
-  intervals
+  * `none` --- lets the operating system manage syncing writes
+    (default)
+  * `o_sync` --- uses the `O_SYNC` flag, which forces syncs on every
+    write
+  * Time interval --- Riak will force Bitcask to sync at specified
+    intervals
 
 The following are possible configurations:
 
@@ -270,7 +260,7 @@ bitcask.sync.interval = 65s
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
         {sync_strategy, none},
@@ -287,8 +277,8 @@ bitcask.sync.interval = 65s
 > **Sync strategy interval limitations**
 >
 > Setting the sync interval to a value lower or equal to
->   `riak_core.vnode_inactivity_timeout` (default: 60 seconds), will
->   prevent Riak from performing handoffs.
+  `riak_core.vnode_inactivity_timeout` (default: 60 seconds), will
+  prevent Riak from performing handoffs.
 >
 > A vnode must be inactive (not receive any messages) for a certain amount of time before the handoff process can start. The sync mechanism causes a message to be sent to the vnode for every sync, thus preventing the vnode from ever becoming inactive.
 
@@ -325,7 +315,7 @@ bitcask.max_file_size = 1GB
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% The max_file_size setting must be expressed in bytes, as in the
 %% example below
 
@@ -370,7 +360,7 @@ bitcask.hintfile_checksums = strict
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, substitute "require_hint_crc" for
 %% "hintfile_checksums", "true" for "strict", and "false" for
 %% "allow_missing"
@@ -408,7 +398,7 @@ bitcask.io_mode = erlang
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {io_mode, erlang},
@@ -442,7 +432,7 @@ If you are using the older, `app.config`-based configuration system, you
 can disable the check that generates this warning by adding the
 following to the `riak_kv` section of your `app.config`:
 
-```appconfig
+```erlang
 {riak_kv, [
     ...,
     {o_sync_warning_logged, false},
@@ -504,7 +494,7 @@ bitcask.merge.policy = never
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {merge_window, never},
@@ -539,7 +529,7 @@ bitcask.merge.window.end = 17
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, you specify the merge window using
 %% a tuple, as in the following example:
 
@@ -556,11 +546,11 @@ bitcask.merge.window.end = 17
 
 > **`merge_window` and the Multi backend**
 >
-> If you are using the older configuration system and using Bitcask with
-> the [Multi][plan backend multi] backend, please note that if you
-> wish to use a merge window, you *must* set it in the global `bitcask`
-> section of your configuration file. `merge_window` settings
-> in per-backend sections are ignored.
+>If you are using the older configuration system and using Bitcask with
+the [Multi][plan backend multi] backend, please note that if you
+wish to use a merge window, you _must_ set it in the global `bitcask`
+section of your configuration file. `merge_window` settings
+in per-backend sections are ignored.
 
 If merging has a significant impact on performance of your cluster, or
 if your cluster has quiet periods in which little storage activity
@@ -616,7 +606,7 @@ bitcask.merge.triggers.dead_bytes = 1GB
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% The equivalent settings in the app.config-based system are
 %% frag_merge_trigger and dead_bytes_merge_trigger, respectively. The
 %% latter must be expressed in bytes.
@@ -653,7 +643,7 @@ a merge operation.
   merged. The default is 128 MB.
 
 * **Small File** --- This setting describes the minimum size a file must
-  be to be *excluded* from the merge. Files smaller than the threshold
+  be to be _excluded_ from the merge. Files smaller than the threshold
   will be included. Increasing the value will cause more files to be
   merged, while decreasing the value will case fewer files to be merged.
   The default is 10 MB.
@@ -682,7 +672,7 @@ bitcask.merge.thresholds.small_file = 25MB
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, the settings corresponding to those
 %% listed above are frag_threshold, dead_bytes_threshold, and
 %% small_files threshold, respectively. The latter two settings must be
@@ -703,11 +693,11 @@ bitcask.merge.thresholds.small_file = 25MB
 
 > **Note on choosing threshold values**
 >
-> The values for the fragmentation and dead bytes thresholds *must be
-> equal to or less than their corresponding trigger values*. If they are
-> set higher, Bitcask will trigger merges in cases where no files meet the
-> threshold, which means that Bitcask will never resolve the conditions
-> that triggered merging in the first place.
+> The values for the fragmentation and dead bytes thresholds _must be
+equal to or less than their corresponding trigger values_. If they are
+set higher, Bitcask will trigger merges in cases where no files meet the
+threshold, which means that Bitcask will never resolve the conditions
+that triggered merging in the first place.
 
 ### Merge Interval
 
@@ -727,7 +717,7 @@ bitcask.merge_check_interval = 3m
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, this setting is expressed in
 %% milliseconds and found in the riak_kv section rather than the bitcask
 %% section:
@@ -766,7 +756,7 @@ bitcask.merge_check_jitter = 30%
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, this setting is expressed as a float
 %% and found in the riak_kv section rather than the bitcask section:
 
@@ -796,7 +786,7 @@ merge settings. When set to `true` (as in the example below), each time
 a merge trigger is met, the partition/vnode ID and mergeable files will
 be logged.
 
-```appconfig
+```erlang
 {bitcask, [
     ...,
     {log_needs_merge, true},
@@ -806,8 +796,8 @@ be logged.
 
 > **Note on `log_needs_merge` and the Multi backend**
 >
-> If you are using Bitcask with the [Multi][plan backend multi] backend in conjunction with the older, `app.config`-based configuration system, please
-> note that `log_needs_merge` *must* be set in the global `bitcask` section of your `app.config`. All `log_needs_merge` settings in per-backend sections are ignored.
+>If you are using Bitcask with the [Multi][plan backend multi] backend in conjunction with the older, `app.config`-based configuration system, please
+note that `log_needs_merge` _must_ be set in the global `bitcask` section of your `app.config`. All `log_needs_merge` settings in per-backend sections are ignored.
 
 ### Fold Keys Threshold
 
@@ -838,7 +828,7 @@ bitcask.max_puts = 1000
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, the corresponding parameters are
 %% max_fold_age and max_fold_puts, respectively. The former must be
 %% expressed in milliseconds, while the latter must be an integer:
@@ -856,8 +846,6 @@ bitcask.max_puts = 1000
 </TabItem>
 
 </Tabs>
-
-<a name="Automatic-Expiration"></a>
 
 ### Automatic Expiration
 
@@ -883,7 +871,7 @@ bitcask.expiry = 1d
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% In the app.config-based system, expiry is expressed in terms of
 %% seconds:
 
@@ -902,10 +890,10 @@ bitcask.expiry = 1d
 
 > **Note on stale data**
 >
-> Space occupied by stale data *may not be reclaimed immediately*,
-> but the data will become immediately inaccessible to client requests.
-> Writing to a key will set a new modification timestamp on the value
-> and prevent it from being expired.
+> Space occupied by stale data _may not be reclaimed immediately_,
+but the data will become immediately inaccessible to client requests.
+Writing to a key will set a new modification timestamp on the value
+and prevent it from being expired.
 
 By default, Bitcask will trigger a merge whenever a data file contains
 an expired key. This may result in excessive merging under some usage
@@ -930,7 +918,7 @@ bitcask.expiry.grace_time = 1h
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 %% The equivalent setting in the app.config-based system is
 %% expiry_grace_time. This must be expressed in seconds:
 
@@ -965,83 +953,85 @@ possible and to minimize latency and maximize throughput.
 
 ### Tips & Tricks
 
-* **Bitcask depends on filesystem caches**
+  * **Bitcask depends on filesystem caches**
 
-  Some data storage layers implement their own page/block buffer cache
-  in-memory, but Bitcask does not. Instead, it depends on the
-  filesystem's cache. Adjusting the caching characteristics of your
-  filesystem can impact performance.
+    Some data storage layers implement their own page/block buffer cache
+    in-memory, but Bitcask does not. Instead, it depends on the
+    filesystem's cache. Adjusting the caching characteristics of your
+    filesystem can impact performance.
 
-* **Be aware of file handle limits**
+  * **Be aware of file handle limits**
 
-  Review the documentation on [open files limit][perf open files].
+    Review the documentation on [open files limit][perf open files].
 
-* **Avoid the overhead of updating file metadata (such as last access
-  time) on every read or write operation**
+  * **Avoid the overhead of updating file metadata (such as last access
+    time) on every read or write operation**
 
-  You can achieve a substantial speed boost by adding the `noatime`
-  mounting option to Linux's `/etc/fstab`. This will disable the
-  recording of the last accessed time for all files, which results
-  in fewer disk head seeks. If you need last access times but you'd
-  like some of the benefits of this optimization, you can try
-  `relatime`.
+    You can achieve a substantial speed boost by adding the `noatime`
+    mounting option to Linux's `/etc/fstab`. This will disable the
+    recording of the last accessed time for all files, which results
+    in fewer disk head seeks. If you need last access times but you'd
+    like some of the benefits of this optimization, you can try
+    `relatime`.
 
-      /dev/sda5    /data           ext3    noatime  1 1
-      /dev/sdb1    /data/inno-log  ext3    noatime  1 2
+    ```
+    /dev/sda5    /data           ext3    noatime  1 1
+    /dev/sdb1    /data/inno-log  ext3    noatime  1 2
+    ```
 
-* **Small number of frequently changed keys**
+  * **Small number of frequently changed keys**
 
-  When keys are changed frequently, fragmentation rapidly increases.
-  To counteract this, you should lower the fragmentation trigger and
-  threshold.
+    When keys are changed frequently, fragmentation rapidly increases.
+    To counteract this, you should lower the fragmentation trigger and
+    threshold.
 
-* **Limited disk space**
+  * **Limited disk space**
 
-  When disk space is limited, limiting the space occupied by dead keys
-  is of paramount importance. Lower the dead bytes threshold and
-  trigger to counteract wasted space.
+    When disk space is limited, limiting the space occupied by dead keys
+    is of paramount importance. Lower the dead bytes threshold and
+    trigger to counteract wasted space.
 
-* **Purging stale entries after a fixed period**
+  * **Purging stale entries after a fixed period**
 
-  To automatically purge stale values, set the object expiry value to
-  the desired cutoff time. Keys that are not modified for a period
-  equal to or greater than this time interval will become
-  inaccessible.
+    To automatically purge stale values, set the object expiry value to
+    the desired cutoff time. Keys that are not modified for a period
+    equal to or greater than this time interval will become
+    inaccessible.
 
-* **High number of partitions per node**
+  * **High number of partitions per node**
 
-  Because each cluster has many partitions running, Bitcask will have
-  many [open files][perf open files]. To reduce the number of open
-  files, we suggest increasing the max file size so that larger files
-  will be written. You could also decrease the fragmentation and
-  dead-bytes settings and increase the small file threshold so that
-  merging will keep the number of open files small in number.
+    Because each cluster has many partitions running, Bitcask will have
+    many [open files][perf open files]. To reduce the number of open
+    files, we suggest increasing the max file size so that larger files
+    will be written. You could also decrease the fragmentation and
+    dead-bytes settings and increase the small file threshold so that
+    merging will keep the number of open files small in number.
 
-* **High daytime traffic, low nighttime traffic**
+  * **High daytime traffic, low nighttime traffic**
 
-  In order to cope with a high volume of writes without performance
-  degradation during the day, you might want to limit merging to
-  in non-peak periods. Setting the merge window to hours of the day
-  when traffic is low will help.
+    In order to cope with a high volume of writes without performance
+    degradation during the day, you might want to limit merging to
+    in non-peak periods. Setting the merge window to hours of the day
+    when traffic is low will help.
 
-* **Multi-cluster replication (Riak Enterprise)**
+  * **Multi-cluster replication (Riak Enterprise)**
 
-  If you are using [Riak Enterprise](http://basho.com/riak-enterprise/)
-  with the replication feature enabled, your clusters might experience
-  higher production of fragmentation and dead bytes. Additionally,
-  because the fullsync feature operates across entire partitions, it
-  will be made more efficient by accessing data as sequentially as
-  possible (across fewer files). Lowering both the fragmentation and
-  dead-bytes settings will improve performance.
+    If you are using [Riak Replication](https://github.com/basho/riak_kv)
+    with the replication feature enabled, your clusters might experience
+    higher production of fragmentation and dead bytes. Additionally,
+    because the fullsync feature operates across entire partitions, it
+    will be made more efficient by accessing data as sequentially as
+    possible (across fewer files). Lowering both the fragmentation and
+    dead-bytes settings will improve performance.
 
 ## FAQ
 
-* \[[Why does it seem that Bitcask merging is only triggered when a
-  Riak node is restarted?|Developing on Riak
-  FAQs#why-does-it-seem-that-bitc]]
-* \[[If the size of key index exceeds the amount of memory, how does
-  Bitcask handle it?|Operating Riak FAQs#if-the-size-of-key-index-e]]
-* [Bitcask Capacity Planning][plan bitcask capacity]
+  * [[Why does it seem that Bitcask merging is only triggered when a
+    Riak node is restarted?|Developing on Riak
+    FAQs#why-does-it-seem-that-bitc]]
+  * [[If the size of key index exceeds the amount of memory, how does
+    Bitcask handle it?|Operating Riak FAQs#if-the-size-of-key-index-e]]
+  * [Bitcask Capacity Planning][plan bitcask capacity]
 
 ## Bitcask Implementation Details
 
@@ -1057,7 +1047,7 @@ The file currently open for writes is only written by appending, which
 means that sequential writes do not require disk seeking, which can
 dramatically speed up disk I/O. Note that this effect can be hampered if
 you have `atime` enabled on your filesystem, because the disk head will
-have to move to update both the data blocks *and* the file and directory
+have to move to update both the data blocks _and_ the file and directory
 metadata blocks. The primary speed advantage from a log-based database
 stems of its ability to minimize disk head seeks.
 
@@ -1090,13 +1080,15 @@ ls ./data/bitcask
 
 The result:
 
-    0
-    1004782375664995756265033322492444576013453623296
-    1027618338748291114361965898003636498195577569280
+```
+0
+1004782375664995756265033322492444576013453623296
+1027618338748291114361965898003636498195577569280
 
-    ... etc ...
+... etc ...
 
-    981946412581700398168100746981252653831329677312
+981946412581700398168100746981252653831329677312
+```
 
 Note that when starting up the directories are created for each
 [vnode][glossary vnode] partition's data. At this point, however, there are not
@@ -1114,64 +1106,70 @@ The "N" value for this cluster is 3 (the default), so you'll see that
 the three vnode partitions responsible for this data now have Bitcask
 database files:
 
-    bitcask/
+```
+bitcask/
 
-    ... etc ...
+... etc ...
 
-    |-- 1118962191081472546749696200048404186924073353216-1316787078245894
-    |   |-- 1316787252.bitcask.data
-    |   |-- 1316787252.bitcask.hint
-    |   `-- bitcask.write.lock
+|-- 1118962191081472546749696200048404186924073353216-1316787078245894
+|   |-- 1316787252.bitcask.data
+|   |-- 1316787252.bitcask.hint
+|   `-- bitcask.write.lock
 
-    ... etc ...
-
-
-    |-- 1141798154164767904846628775559596109106197299200-1316787078249065
-    |   |-- 1316787252.bitcask.data
-    |   |-- 1316787252.bitcask.hint
-    |   `-- bitcask.write.lock
-
-    ... etc ...
+... etc ...
 
 
-    |-- 1164634117248063262943561351070788031288321245184-1316787078254833
-    |   |-- 1316787252.bitcask.data
-    |   |-- 1316787252.bitcask.hint
-    |   `-- bitcask.write.lock
+|-- 1141798154164767904846628775559596109106197299200-1316787078249065
+|   |-- 1316787252.bitcask.data
+|   |-- 1316787252.bitcask.hint
+|   `-- bitcask.write.lock
 
-    ... etc ...
+... etc ...
+
+
+|-- 1164634117248063262943561351070788031288321245184-1316787078254833
+|   |-- 1316787252.bitcask.data
+|   |-- 1316787252.bitcask.hint
+|   `-- bitcask.write.lock
+
+... etc ...
+
+```
 
 As more data is written to the cluster, more Bitcask files are created
 until merges are triggered.
 
-    bitcask/
-    |-- 0-1317147619996589
-    |   |-- 1317147974.bitcask.data
-    |   |-- 1317147974.bitcask.hint
-    |   |-- 1317221578.bitcask.data
-    |   |-- 1317221578.bitcask.hint
-    |   |-- 1317221869.bitcask.data
-    |   |-- 1317221869.bitcask.hint
-    |   |-- 1317222847.bitcask.data
-    |   |-- 1317222847.bitcask.hint
-    |   |-- 1317222868.bitcask.data
-    |   |-- 1317222868.bitcask.hint
-    |   |-- 1317223014.bitcask.data
-    |   `-- 1317223014.bitcask.hint
-    |-- 1004782375664995756265033322492444576013453623296-1317147628760580
-    |   |-- 1317147693.bitcask.data
-    |   |-- 1317147693.bitcask.hint
-    |   |-- 1317222035.bitcask.data
-    |   |-- 1317222035.bitcask.hint
-    |   |-- 1317222514.bitcask.data
-    |   |-- 1317222514.bitcask.hint
-    |   |-- 1317223035.bitcask.data
-    |   |-- 1317223035.bitcask.hint
-    |   |-- 1317223411.bitcask.data
-    |   `-- 1317223411.bitcask.hint
-    |-- 1027618338748291114361965898003636498195577569280-1317223690337865
-    |-- 1050454301831586472458898473514828420377701515264-1317223690151365
+```
+bitcask/
+|-- 0-1317147619996589
+|   |-- 1317147974.bitcask.data
+|   |-- 1317147974.bitcask.hint
+|   |-- 1317221578.bitcask.data
+|   |-- 1317221578.bitcask.hint
+|   |-- 1317221869.bitcask.data
+|   |-- 1317221869.bitcask.hint
+|   |-- 1317222847.bitcask.data
+|   |-- 1317222847.bitcask.hint
+|   |-- 1317222868.bitcask.data
+|   |-- 1317222868.bitcask.hint
+|   |-- 1317223014.bitcask.data
+|   `-- 1317223014.bitcask.hint
+|-- 1004782375664995756265033322492444576013453623296-1317147628760580
+|   |-- 1317147693.bitcask.data
+|   |-- 1317147693.bitcask.hint
+|   |-- 1317222035.bitcask.data
+|   |-- 1317222035.bitcask.hint
+|   |-- 1317222514.bitcask.data
+|   |-- 1317222514.bitcask.hint
+|   |-- 1317223035.bitcask.data
+|   |-- 1317223035.bitcask.hint
+|   |-- 1317223411.bitcask.data
+|   `-- 1317223411.bitcask.hint
+|-- 1027618338748291114361965898003636498195577569280-1317223690337865
+|-- 1050454301831586472458898473514828420377701515264-1317223690151365
 
-    ... etc ...
+... etc ...
+
+```
 
 This is normal operational behavior for Bitcask.

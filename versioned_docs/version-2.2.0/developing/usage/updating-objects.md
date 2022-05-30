@@ -113,7 +113,7 @@ rslt = client.Put(obj);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -221,7 +221,7 @@ fmt.Printf("champion: %v", string(obj.Value))
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # When using curl, the context object is attached to the X-Riak-Vclock header
@@ -304,7 +304,7 @@ Console.WriteLine(Convert.ToBase64String(vclock));
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // Using the RiakObject fetchedObj from above:
@@ -477,7 +477,7 @@ var rslt = client.Put(obj);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -625,7 +625,7 @@ private void UpdateCoach(string team, string newCoach)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function update_coach(team, newCoach) {

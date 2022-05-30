@@ -6,7 +6,6 @@ sidebar_position: 0
 ---
 
 [glossary vnode]: ../../../learn/glossary.md#vnode
-
 [concept clusters]: ../../../learn/concepts/clusters.md
 
 ## How Version 3 Replication Works
@@ -89,71 +88,45 @@ Before a source cluster can begin pushing realtime updates to a sink,
 the following commands must be issued:
 
 1. `riak-repl realtime enable <sink_cluster>`
-
-   After this command, the realtime queues (one for each Riak node) are
-   populated with updates to the source cluster, ready to be pushed to
-   the sink.
+    
+    After this command, the realtime queues (one for each Riak node) are
+    populated with updates to the source cluster, ready to be pushed to
+    the sink.
 
 2. `riak-repl realtime start <sink_cluster>`
+    
+    This instructs the Riak connection manager to contact the sink
+    cluster.
 
-   This instructs the Riak connection manager to contact the sink
-   cluster.
+    ![MDC fullsync](/images/MDC-v3-realtime1.png)
 
-   <br />
-   ![MDC fullsync](/images/MDC-v3-realtime1.png)
-   <br />
+    At this point realtime replication commences.
+3. Nodes with queued updates establish connections to the sink cluster and replication begins.
 
-   At this point realtime replication commences.
-
-<ol start="3">
-<li>Nodes with queued updates establish connections to the sink cluster
-and replication begins.</li>
-</ol>
-
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime2.png)
-<br />
 
 ### Realtime queueing and synchronization
 
 Once initialized, realtime replication continues to use the queues to
 store data updates for synchronization.
 
-<ol start="4">
-<li>The client sends an object to store on the source cluster.</li>
-<li>Riak writes N replicas on the source cluster.</li>
-</ol>
+4. The client sends an object to store on the source cluster.
+5. Riak writes N replicas on the source cluster.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime3.png)
-<br />
 
-<ol start="6">
-<li>The new object is stored in the realtime queue.</li>
-<li>The object is copied to the sink cluster.</li>
-</ol>
+6. The new object is stored in the realtime queue.
+7. Riak writes N replicas on the source cluster.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime4.png)
-<br />
 
-<ol start="8">
-<li>The destination node on the sink cluster writes the object to N
-nodes.</li>
-</ol>
+8. The destination node on the sink cluster writes the object to N nodes.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime5.png)
-<br />
 
-<ol start="9">
-<li>The successful write of the object to the sink cluster is
-acknowledged and the object removed from the realtime queue.</li>
-</ol>
+9. The successful write of the object to the sink cluster is acknowledged and the object removed from the realtime queue.
 
-<br />
 ![MDC fullsync](/images/MDC-v3-realtime6.png)
-<br />
 
 ## Restrictions
 

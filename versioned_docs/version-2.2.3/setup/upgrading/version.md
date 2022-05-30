@@ -5,6 +5,8 @@ slug: version
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem'
 
 [production checklist]: ../../setup/upgrading/checklist.md
 [use admin riak control]: ../../using/admin/riak-control.md
@@ -25,25 +27,24 @@ You can upgrade one node or your whole cluster to Riak KV 2.2.3 by following the
 
 :::tip 
 KV nodes negotiate with each other to determine supported operating modes. This allows clusters containing mixed-versions of Riak KV to interoperate without special configuration, and simplifies rolling upgrades.
-:::tip
-
+:::
 
 ### General Process
 
 For every node in the cluster:
 
 1.  Stop Riak KV.
-1.  Back up the Riak /etc, /data, and /basho-patches directories.
-1.  Remove your /basho-patches directory.
-1.  Upgrade Riak KV.
+2.  Back up the Riak /etc, /data, and /basho-patches directories.
+3.  Remove your /basho-patches directory.
+4.  Upgrade Riak KV.
     * If you are upgrading from OSS to EE, uninstall your OSS KV package before upgrading.
-1. (Optional) If you would like to potentially downgrade at some point, update your advanced.config file to opt-out of the AAE updates.
-1.  If you're upgrading from OSS to EE, apply your customized settings to vm.args and app.config
-1.  If you're using MDC replication to clusters with versions less than 2.2.0, update your advanced.config file to over-ride the default bucket properties for compatibility.
-1.  Start Riak KV.
-1.  Verify Riak KV is running the upgraded version.
-1.  Wait for the `riak_kv` service to start.
-1.  Wait for any hinted handoffs to complete.
+5. (Optional) If you would like to potentially downgrade at some point, update your advanced.config file to opt-out of the AAE updates.
+6.  If you're upgrading from OSS to EE, apply your customized settings to vm.args and app.config
+7.  If you're using MDC replication to clusters with versions less than 2.2.0, update your advanced.config file to over-ride the default bucket properties for compatibility.
+8.  Start Riak KV.
+9.  Verify Riak KV is running the upgraded version.
+10.  Wait for the `riak_kv` service to start.
+11.  Wait for any hinted handoffs to complete.
 
 Before starting the rolling upgrade process on your cluster, check out the [Upgrading Riak KV: Production Checklist][production checklist], which covers details and questions to consider before upgrading.
 
@@ -57,7 +58,7 @@ Before starting the rolling upgrade process on your cluster, check out the [Upgr
 
 :::note
 You must have [Java version 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html) in order to upgrade to Riak KV 2.2.3.
-:::note
+:::
 
 
 ### Components That Complicate Downgrades
@@ -97,39 +98,73 @@ riak stop
 
 2\. Back up your /etc (app.config and vm.args), /data, and /basho-patches directories.
 
+<Tabs>
+
+<TabItem label="RHEL/CentOS" value="rhel/centos" default>
+
 ```RHEL/CentOS
 sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak /usr/lib64/riak/lib/basho-patches
 ```
+
+</TabItem>
+
+<TabItem label="Ubuntu" value="ubuntu">
 
 ```Ubuntu
 sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak /usr/lib/riak/lib/basho-patches
 ```
 
+</TabItem>
+
+</Tabs>
+
 3\. Remove your /basho-patches directory:
+
+<Tabs>
+
+<TabItem label="RHEL/CentOS" value="rhel/centos" default>
 
 ```RHEL/CentOS
 sudo rm -rf /usr/lib64/riak/lib/basho-patches/*
 ```
 
+</TabItem>
+
+<TabItem label="Ubuntu" value="ubuntu">
+
 ```Ubuntu
 sudo rm -rf /usr/lib/riak/lib/basho-patches*
 ```
+
+</TabItem>
+
+</Tabs>
 
 4\. Upgrade Riak KV:
 
 :::note Upgrading to KV Enterprise Edition
 If you are upgrading from Riak KV OSS to Riak KV EE, you must uninstall your Riak KV package right now, before you can install the EE version.
-:::note
+:::
 
+<Tabs>
 
+<TabItem label="RHEL/CentOS" value="rhel/centos" default>
 
 ```RHEL/CentOS
 sudo rpm -Uvh »riak_package_name«.rpm
 ```
 
+</TabItem>
+
+<TabItem label="Ubuntu" value="ubuntu">
+
 ```Ubuntu
 sudo dpkg -i »riak_package_name«.deb
 ```
+
+</TabItem>
+
+</Tabs>
 
 5.a\. (**Optional**) If you would like to keep your AAE trees in a format that will facilitate downgrading, the capability override should be in the `riak_kv` proplist of the advanced.config file:
 
@@ -166,7 +201,7 @@ Once all of the clusters have been upgraded to version 2.2.0 or greater, this ov
 
 :::note
 You must have [Java version 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html) in order to upgrade to Riak KV 2.2.3. If you do not have it installed, please install it now.
-:::note
+:::
 
 
 

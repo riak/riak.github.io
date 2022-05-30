@@ -1,14 +1,17 @@
 ---
-title: "Upgrading to Riak KV 2.2.3"
+title: "Upgrading to Riak KV 2.0"
 id: upgrading_version
-slug: version
+slug: version 
 sidebar_position: 1
 ---
 
 When upgrading to Riak 2.0 from an earlier version, we strongly
 recommend reading each section of the following guide. This guide
-explains which default Riak behaviors have changed and specific steps 
+explains which default Riak behaviors have changed and specific steps
 to take for a successful upgrade.
+
+For an overview of the new features and functionality
+included in version 2.0, check out our guide to Riak 2.0.
 
 ## New Clients
 
@@ -24,14 +27,14 @@ was built with those features in mind. There are official
 
 While we strongly recommend using the newest versions of these clients,
 older versions will still work with Riak 2.0, with the drawback that
-those older clients will not able to take advantage of new features like data types or the new Riak Search.
+those older clients will not able to take advantage of new features like [data types](../../developing/data-types/index.md) or the new [Riak Search](../../using/reference/search.md).
 
 ## Bucket Types
 
 In versions of Riak prior to 2.0, the location of objects was
 determined by objects' [bucket](../../learn/concepts/buckets.md) and [key](../../learn/concepts/keys-and-objects.md), while all bucket-level configurations were managed by setting [bucket properties](../../developing/usage/bucket-types.md).
 
-In Riak 2.0, [bucket types](../../using/cluster-operations/bucket-types.md) are both an additional namespace for locating objects *and* a new way of configuring bucket properties in a systematic fashion. More comprehensive details on usage can be found in the documentation on [using bucket types](../../using/reference/bucket-types.md).
+In Riak 2.0, [bucket types](../../using/reference/bucket-types.md) are both an additional namespace for locating objects *and* a new way of configuring bucket properties in a systematic fashion. More comprehensive details on usage can be found in the documentation on [using bucket types](../../using/reference/bucket-types.md).
 Here, we'll list some of the things to be aware of when upgrading.
 
 #### Bucket types and object location
@@ -62,7 +65,7 @@ If you use object locations that don't specify a bucket type, you have
 three options:
 
 * Accept Riak's [default bucket configurations](../../using/reference/bucket-types.md#buckets-as-namespaces)
-* Change Riak's defaults using your [configuration files](../../configuring/reference.md#default-bucket-properties)
+* Change Riak's defaults using your [configuration files](../../configuring/reference.md)
 * Manage multiple sets of bucket properties by specifying those
   properties for all operations (not recommended)
 
@@ -72,7 +75,7 @@ One reason we recommend using bucket types for Riak 2.0
 and later is because many newer Riak features were built with
 bucket types as a precondition:
 
-* [Strong consistency](../../using/reference/index.md#strong-consistency-referenceref-strong-consistency) --- Using Riak's strong consistency subsystem
+* [Strong consistency](../../using/reference/strong-consistency.md) --- Using Riak's strong consistency subsystem
   requires you to set the `consistent` parameter on a bucket type to
   `true`
 * [Riak Data Types](../../developing/data-types/index.md) --- In order to use Riak Data
@@ -100,7 +103,7 @@ own; relieving connecting clients of the need to resolve those
 conflicts.
 
 **In 2.0, `allow_mult` is set to `true` for any bucket type that you
-create and activate.** 
+create and activate.**
 
 This means that the default when [using bucket types](../../using/reference/bucket-types.md) is to handle [conflict resolution](../../developing/usage/conflict-resolution/index.md) on the client side using
 either traditional [vector clocks](../../learn/concepts/causal-context.md#vector-clocks) or the newer [dotted version vectors](../../learn/concepts/causal-context.md#dotted-version-vectors).
@@ -162,7 +165,7 @@ For a listing of those parameters, see our documentation on [advanced configurat
 If you choose to keep the existing `app.config` files, you *must* add the
 following additional settings in the `riak_core` section:
 
-```appconfig
+```erlang
 {riak_core,
      [{default_bucket_props,
           [{allow_mult,false}, %% or the same as an existing setting
@@ -182,7 +185,7 @@ configuration. If so, make sure that you set the
 `total_leveldb_mem_percent` parameter in the `eleveldb` section of the
 file to 70.
 
-```appconfig
+```erlang
 {eleveldb, [
     %% ...
     {total_leveldb_mem_percent, 70},

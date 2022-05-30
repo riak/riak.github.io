@@ -41,35 +41,35 @@ Riak needs to be restarted for configuration changes to take affect.
 
 To force Riak to reload SNMP configuration files on startup:
 
-1. Open `app.config` (most package installs place this file in `/etc/riak/`; Solaris package installs place this file in `/opt/riak/etc/`).
+  1. Open `app.config` (most package installs place this file in `/etc/riak/`; Solaris package installs place this file in `/opt/riak/etc/`).
 
-2. Locate the SNMP term:
+  2. Locate the SNMP term:
 
-   ```erlang
-   {snmp,
-     [{agent,
-       [{config, [{dir, "/etc/riak/snmp/agent/conf/"},
-                  {force_load, true}]},
-        {db_dir, "/var/lib/riak/snmp/agent/db/"}]}]}
-   {snmp,
-     [{agent,
-       [{config, [{dir, "/etc/riak/snmp/agent/conf/"}]},
-        {db_dir, "/var/lib/riak/snmp/agent/db/"}]}]}
-   ```
+    ```erlang
+    {snmp,
+      [{agent,
+        [{config, [{dir, "/etc/riak/snmp/agent/conf/"},
+                   {force_load, true}]},
+         {db_dir, "/var/lib/riak/snmp/agent/db/"}]}]}
+    {snmp,
+      [{agent,
+        [{config, [{dir, "/etc/riak/snmp/agent/conf/"}]},
+         {db_dir, "/var/lib/riak/snmp/agent/db/"}]}]}
+    ```
 
-3. Add `{force_load, true}` to the `config` term:
+  3. Add `{force_load, true}` to the `config` term:
 
-   ```erlang
-     {snmp,
-       [{agent,
-         [{config, [{dir, "/etc/riak/snmp/agent/conf/"},
-          {force_load, true}]},
-          {db_dir, "/var/lib/riak/snmp/agent/db/"}]}]}
-   ```
+    ```erlang
+      {snmp,
+        [{agent,
+          [{config, [{dir, "/etc/riak/snmp/agent/conf/"},
+           {force_load, true}]},
+           {db_dir, "/var/lib/riak/snmp/agent/db/"}]}]}
+    ```
 
-4. Save `app.config`
+  4. Save `app.config`
 
-5. Restart Riak
+  5. Restart Riak
 
 Once you have configured the SNMP settings you can start your Riak node and will be able to snmpwalk the node to verify that the setup is working:
 

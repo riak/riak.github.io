@@ -8,7 +8,6 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [config reference]: ../../configuring/reference.md
 
 Riak Control is a web-based administrative console for inspecting and
@@ -36,13 +35,14 @@ listener.https.<name> = 127.0.0.1:8096
 ## *** The default listeners in the riak.conf file are
 ##     named `internal`, so you would consult the value of
 ##     `listener.http.internal` in your configuration.
+
 ```
 
 </TabItem>
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
  {riak_api,
      [
         %% Other configs
@@ -85,7 +85,7 @@ riak_control = off
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {enabled, false},
@@ -111,7 +111,7 @@ riak_control = on
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {enabled, true},
@@ -133,7 +133,7 @@ cluster using the default configuration, you would access Riak Control at
 
 If you enabled authentication for Riak Control while performing the above
 configuration, you will be unable to access Riak Control until you have enabled
-and configured SSL and HTTPS.  
+and configured SSL and HTTPS.
 
 ## Enabling SSL and HTTPS
 
@@ -161,7 +161,7 @@ riak_control.auth.mode = userlist
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {auth, userlist}, %% The only other available option is "none"
@@ -194,7 +194,7 @@ riak_control.auth.user.riakrocks.password = cap_theorem_4_life
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_control, [
                 %% Other configs
                 {userlist, [
@@ -212,7 +212,7 @@ riak_control.auth.user.riakrocks.password = cap_theorem_4_life
 
 ## User Interface
 
-To begin using Riak Control, navigate to <https://ip_address_of_https_listener:https_port/admin>
+To begin using Riak Control, navigate to https://ip_address_of_https_listener:https_port/admin
 For a default configuration, this will be <https://localhost:8069/admin>.
 
 If your browser warns you that it cannot authenticate the page, this may
@@ -235,7 +235,7 @@ enable it, follow browser-specific instructions.
 When you first navigate to Riak Control, you will land on the Snapshot
 view:
 
-[ ![Snapshot View](/images/control_current_snapshot.png) ](/images/control_current_ring.png)
+[ ![Snapshot View](/images/control_current_snapshot.png) ] (/images/control_current_snapshot.png)
 
 In this interface, the health of your cluster is made immediately
 obvious. In the event that something isn't quite right (or has the
@@ -257,29 +257,29 @@ as adding, removing, and marking nodes as down.
 
 Staged changes to the cluster:
 
-[ ![Cluster Management Staged](/images/control_cluster_management_staged.png) ](/images/control_current_ring.png)
+[ ![Cluster Management Staged](/images/control_cluster_management_staged.png) ] (/images/control_cluster_management_staged.png)
 
 Changes committed; transfers active:
 
-[ ![Cluster Management Transfers](/images/control_cluster_management_transfers.png) ](/images/control_current_ring.png)
+[ ![Cluster Management Transfers](/images/control_cluster_management_transfers.png) ] (/images/control_cluster_management_transfers.png)
 
 Cluster stabilizes after changes:
 
-[ ![Cluster Management Stable](/images/control_cluster_management_stable.png) ](/images/control_current_ring.png)
+[ ![Cluster Management Stable](/images/control_cluster_management_stable.png) ] (/images/control_cluster_management_stable.png)
 
 ### Node Management View
 
 The node management view allows you to operate against the individual
 nodes in the cluster.
 
-[ ![Node Management](/images/control_node_management.png) ](/images/control_current_ring.png)
+[ ![Node Management](/images/control_node_management.png) ] (/images/control_node_management.png)
 
 ### Ring View
 
 One level deeper than the cluster view is the ring view. This is where you can
 see the health of each [vnode](../../learn/glossary.md#vnode).
 
-[ ![Ring View](/images/control_current_ring.png) ](/images/control_current_ring.png)
+[ ![Ring View](/images/control_current_ring.png) ] (/images/control_current_ring.png)
 
 Most of the time, your ring will be too large to effectively manage from
 the ring view. That said, with filters you can easily identify partition

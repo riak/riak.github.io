@@ -1,14 +1,12 @@
 ---
 title: "Mac OS X"
 id: installing_macosx
-slug: mac-osx
+slug: mac-osx 
 sidebar_position: 3
 ---
 
 [perf open files]: ../../using/performance/open-files-limit.md
-
 [install source erlang]: ../../setup/installing/source/erlang.md
-
 [install verify]: ../../setup/installing/verify.md
 
 The following steps are known to work with Mac OS X 10.8, 10.9
@@ -18,8 +16,9 @@ precompiled tarball.
 > **`ulimit` on OS X**
 >
 > OS X gives you a very small limit on open file handles, so even with a
-> backend that uses very few file handles, it's possible to run out. See
-> [Open Files Limit][perf open files] for more information about changing the limit.
+backend that uses very few file handles, it's possible to run out. See
+[Open Files Limit][perf open files] for more information about changing the limit.
+
 
 ## From Precompiled Tarballs
 
@@ -29,8 +28,8 @@ appropriate platform:
 ### 64-bit
 
 ```bash
-curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.1/2.1.4/osx/10.8/riak-2.1.4-OSX-x86_64.tar.gz
-tar xzvf riak-2.1.4-osx-x86_64.tar.gz
+curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.0.8/osx/10.8/riak-2.0.8-OSX-x86_64.tar.gz
+tar xzvf riak-2.0.8-osx-x86_64.tar.gz
 ```
 
 After the release is untarred, you will be able to `cd` into the `riak`
@@ -51,17 +50,19 @@ Installing Riak 2.0 with [Homebrew](http://brew.sh/) is easy:
 brew install --devrel riak
 ```
 
-By default, this will place a `2.1.4` folder in
+By default, this will place a `2.0.8` folder in
 `/usr/local/Cellar/riak`.
 
 Be aware that you will most likely see the following message after
 running `brew install`:
 
-    Error: The `brew link` step did not complete successfully
-    The formula built, but is not symlinked into /usr/local
+```
+Error: The `brew link` step did not complete successfully
+The formula built, but is not symlinked into /usr/local
 
-    You can try again using:
-      brew link riak
+You can try again using:
+  brew link riak
+```
 
 We do not recommend using `brew link` with Riak. Instead, we recommend
 either copying that directory to a desired location on your machine,
@@ -72,12 +73,13 @@ the Riak installation directory via environment variables.
 
 ## Installing From Source
 
-You must have Xcode tools installed from [Apple's Developer website](https://developer.apple.com/).
+You must have Xcode tools installed from [Apple's Developer
+website](http://developer.apple.com/).
 
 :::note Note on Clang
 Riak will not compile with Clang. Please make sure that your default C/C++
 compiler is [GCC](https://gcc.gnu.org/).
-:::
+:::note
 
 Riak requires [Erlang](http://www.erlang.org/) R16B02+.
 
@@ -86,9 +88,9 @@ If you do not have Erlang already installed, see [Installing Erlang][install sou
 Next, download and unpack the source distribution.
 
 ```bash
-curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.1/2.1.4/riak-2.1.4.tar.gz
-tar zxvf riak-2.1.4.tar.gz
-cd riak-2.1.4
+curl -O http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.0.8/riak-2.0.8.tar.gz
+tar zxvf riak-2.0.8.tar.gz
+cd riak-2.0.8
 make rel
 ```
 

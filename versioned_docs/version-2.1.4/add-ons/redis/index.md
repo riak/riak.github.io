@@ -5,11 +5,8 @@ sidebar_position: 0
 ---
 
 [addon redis develop]: ./developing-rra.md
-
 [addon redis features]: ./redis-add-on-features.md
-
 [addon redis setup]: ./set-up-rra/index.md
-
 [ee]: http://basho.com/contact/
 
 Riak Redis Add-on (RRA) is a distributed cache service that joins the power of Redis caching with the eventual consistency guarantees of Riak KV. 
@@ -36,10 +33,11 @@ RRA is compatible with the following services:
 * Redis 2.x and 3.x (in 3.x, not supporting Redis Cluster)
   * Redis Cluster and RRA's consistent hash are at odds, which surface as errors
     such as MOVED, ASK, and CROSSSLOT messages from Redis, see (WIP):
-    <https://github.com/antirez/redis-rb-cluster>
+    https://github.com/antirez/redis-rb-cluster
 
 ## Get Started
 
 * [Set up RRA.][addon redis setup]
 * [Develop with RRA.][addon redis develop]
 * [Learn about RRA's features.][addon redis features]
+

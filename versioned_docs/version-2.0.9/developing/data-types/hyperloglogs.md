@@ -1,7 +1,7 @@
 ---
 title: "HyperLogLogs"
 id: data_types_hyperloglogs
-slug: hyperloglogs
+slug: hyperloglogs 
 sidebar_position: 1
 ---
 
@@ -124,7 +124,7 @@ import (
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // In the Node.js client, buckets are just string parameters to operations.
@@ -148,7 +148,7 @@ bucket = client.bucket_type('hlls').bucket('my_hlls')
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/<bucket_type>/buckets/<bucket>/datatypes/<key>
@@ -221,7 +221,7 @@ hll = Hll(bucket, key)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // In the Node.js client, there is no intermediate "empty" hyperloglog data type.
@@ -254,7 +254,7 @@ hll = Riak::Crdt::HyperLogLog.new(bucket, key)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # You cannot create an empty hyperloglog data structure through the HTTP
@@ -325,7 +325,7 @@ return nil
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -387,7 +387,7 @@ puts hll.cardinality
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
@@ -460,7 +460,7 @@ myhll.store()
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 // We will add values in the next example
@@ -490,7 +490,7 @@ $response = $command->execute();
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPOST http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness \
@@ -577,7 +577,7 @@ return cluster.Execute(cmd)
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -715,7 +715,7 @@ return nil
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -794,7 +794,7 @@ puts hll.cardinality
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness

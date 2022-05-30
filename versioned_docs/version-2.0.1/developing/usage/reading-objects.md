@@ -8,24 +8,24 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [glossary vnode]: ../../learn/glossary.md#vnode
 
 You can think of reads in Riak as analogous to HTTP `GET` requests. You
 specify a bucket type, bucket, and key, and Riak either returns the
-object that's stored there---including its [siblings](../../developing/usage/conflict-resolution/index.md#siblings) (more on that later)---or it returns `not found` (the
+object that's stored there---including its [siblings](../../developing/usage/conflict-resolution/index.md#siblings) \(more on that later)---or it returns `not found` (the
 equivalent of an HTTP `404 Object Not Found`).
 
 Here is the basic command form for retrieving a specific key from a
 bucket:
 
-    GET /types/<type>/buckets/<bucket>/keys/<key>
+```
+GET /types/<type>/buckets/<bucket>/keys/<key>
+```
 
 Here is an example of a read performed on the key `rufus` in the bucket
-type `animals`. Please note that for this example to work, you must have first created the bucket-type `animals` as per the instructions on the [bucket type](../../using/cluster-operations/bucket-types.md) page.
+`dogs`, which bears the [bucket type](../../using/cluster-operations/bucket-types.md) `animals`: 
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -36,7 +36,6 @@ Location myKey = new Location(new Namespace("animals", "dogs"), "rufus");
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -45,7 +44,6 @@ obj = bucket.get('rufus')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -56,7 +54,6 @@ $response = (new \Basho\Riak\Command\Builder\FetchObject($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -65,7 +62,6 @@ obj = bucket.get('rufus')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -76,7 +72,6 @@ var id = new RiakObjectId("animals", "dogs", "rufus");
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -86,7 +81,6 @@ client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, funct
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -96,10 +90,9 @@ client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, funct
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err = riak.NewFetchValueCommandBuilder().
   WithBucketType("animals").
   WithBucket("dogs").
@@ -111,7 +104,6 @@ if err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -119,7 +111,6 @@ curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Read Parameters
@@ -127,7 +118,7 @@ curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
 | Parameter     | Default  | Description                                                                                                                                                                         |
 |:--------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `r`           | `quorum` | How many replicas need to agree when retrieving an existing object before the write                                                                                                 |
-| `pr`          | `0`      | How many [vnodes][glossary node] must respond for a read to be deemed successful                                                                                                    |
+| `pr`          | `0`      | How many [vnodes][glossary vnode] must respond for a read to be deemed successful                                                                                                   |
 | `notfound_ok` | `true`   | If set to `true`, if the first vnode to respond doesn't have a copy of the object, Riak will deem the failure authoritative and immediately return a `notfound` error to the client |
 
 Riak also accepts many query parameters, including `r` for setting the
@@ -138,13 +129,12 @@ response).
 Here is an example of attempting a read with `r` set to `3`:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
 // Using the "myKey" location specified above:
 FetchValue fetch = new FetchValue.Builder(myKey)
-        .withOption(FetchOption.R, new Quorum(3))
+        .withOption(FetchValue.Option.R, new Quorum(3))
         .build();
 FetchValue.Response response = client.execute(fetch);
 RiakObject obj = response.getValue(RiakObject.class);
@@ -152,7 +142,6 @@ System.out.println(obj.getValue());
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -162,7 +151,6 @@ p obj.data
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -175,7 +163,6 @@ var_dump($response->getObject()->getData());
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -185,7 +172,6 @@ print obj.data
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -197,7 +183,6 @@ Debug.WriteLine(Encoding.UTF8.GetString(rslt.Value.Value));
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -213,7 +198,6 @@ client.fetchValue(fetchOptions, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -224,10 +208,9 @@ client.fetchValue(fetchOptions, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewFetchValueCommandBuilder().
     WithBucketType("animals").
     WithBucket("dogs").
@@ -250,7 +233,6 @@ rsp := svc.Response
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -258,7 +240,6 @@ curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus?r=3
 ```
 
 </TabItem>
-
 </Tabs>
 
 If you're using HTTP, you will most often see the following response
@@ -277,12 +258,12 @@ If you're using a Riak client instead of HTTP, these responses will vary a
 great deal, so make sure to check the documentation for your specific client.
 :::
 
-## Not Object Stored 
+## No Object Stored 
 
-At the moment, there's no object stored in the location where we just attempted a read, which means that we'll get the following response:
+At the moment, there's no object stored in the location where we just
+attempted a read, which means that we'll get the following response:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -290,7 +271,6 @@ java.lang.NullPointerException
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -298,7 +278,6 @@ Riak::ProtobuffsFailedRequest: Expected success from Riak but received not_found
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -307,7 +286,6 @@ $response->isSuccess(); // false
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -315,7 +293,6 @@ riak.RiakError: 'no_type'
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -324,7 +301,6 @@ result.ResultCode == ResultCode.NotFound
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -332,7 +308,6 @@ rslt.isNotFound === true;
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -340,17 +315,15 @@ rslt.isNotFound === true;
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 fvc := cmd.(*riak.FetchValueCommand)
 rsp := fvc.Response
 rsp.IsNotFound // Will be true
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -358,5 +331,4 @@ not found
 ```
 
 </TabItem>
-
 </Tabs>

@@ -7,7 +7,7 @@ sidebar_position: 4
 
 Downgrades of Riak are tested and supported for two feature release
 versions, with the general procedure being similar to that of a
-[rolling upgrade](upgrading/cluster.md).
+[rolling upgrade](./upgrading/cluster.md).
 
 You should perform the following actions on each node:
 

@@ -126,7 +126,7 @@ encounters an invalid input:
 :::note Note on inputs
 Inputs must be a binary bucket, a tuple of bucket and key-filters, a list of
 target tuples, a search index, or modfun tuple: `INPUT`.
-:::note
+:::
 
 For the remaining common error codes, they are often marked by Erlang
 atoms (and quite often wrapped within an `{error,{badmatch,{...` tuple,

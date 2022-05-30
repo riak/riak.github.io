@@ -8,65 +8,45 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [config reference]: ../../configuring/reference.md
-
 [use admin commands]: ../../using/admin/commands.md
-
 [use admin commands#join]: ../../using/admin/commands.md#join
-
 [use admin commands#leave]: ../../using/admin/commands.md#leave
-
 [cluster ops backup]: ../../using/cluster-operations/backing-up.md
-
 [config reference#node-metadata]: ../../configuring/reference.md#node-metadata
-
 [cluster ops change info]: ../../using/cluster-operations/changing-cluster-info.md
-
 [usage mapreduce]: ../../developing/usage/mapreduce.md
-
 [usage commit hooks]: ../../developing/usage/commit-hooks.md
-
 [config reference#ring]: ../../configuring/reference.md#ring
-
 [cluster ops inspect node]: ../../using/cluster-operations/inspecting-node.md
-
 [use ref monitoring]: ../../using/reference/statistics-monitoring.md
-
 [downgrade]: ../../setup/downgrade.md
-
 [security index]: ../../using/security/index.md
-
 [security managing]: ../../using/security/managing-sources.md
-
 [cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
-
 [cluster ops 2i]: ../../using/reference/secondary-indexes.md
-
 [repair recover index]: ../../using/repair-recovery/index.md
-
 [cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
-
 [cluster ops handoff]: ../../using/cluster-operations/handoff.md
-
 [use admin riak-admin#stats]: ../../using/admin/riak-admin.md#status
 
-## riak-admin
+## `riak-admin`
 
-This script performs operations unrelated to node liveness, including
+The riak-admin command performs operations unrelated to node liveness, including:
 node membership, backup, and basic status reporting. The node must be
-running for most of these commands to work. Running the `riak-admin`
-command by itself will output a list of available commands:
+running for most of these commands to work. Running `riak-admin` by itself will output a list of available commands:
 
-    Usage: riak-admin { cluster | join | leave | backup | restore | test |
-                        reip | js-reload | erl-reload | wait-for-service |
-                        ringready | transfers | force-remove | down |
-                        cluster-info | member-status | ring-status | vnode-status |
-                        aae-status | diag | stat | status | transfer-limit | reformat-indexes |
-                        top [-interval N] [-sort reductions|memory|msg_q] [-lines N] |
-                        downgrade-objects | security | bucket-type | repair-2i |
-                        search | services | ensemble-status | handoff | set |
-                        show | describe }
+```
+Usage: riak-admin { cluster | join | leave | backup | restore | test |
+                    reip | js-reload | erl-reload | wait-for-service |
+                    ringready | transfers | force-remove | down |
+                    cluster-info | member-status | ring-status | vnode-status |
+                    aae-status | diag | stat | status | transfer-limit | reformat-indexes |
+                    top [-interval N] [-sort reductions|memory|msg_q] [-lines N] |
+                    downgrade-objects | security | bucket-type | repair-2i |
+                    search | services | ensemble-status | handoff | set |
+                    show | describe }
+```
 
 ## Node Naming
 
@@ -77,6 +57,7 @@ The name for each node can be set and changed in each node's
 `riak_node_1@199.99.99.01` in the `riak.conf` file if you are using the
 newer configuration system and in `vm.args` if you are using the older
 system:
+
 
 <Tabs>
 
@@ -114,9 +95,9 @@ found in [Cluster Administration][use admin commands].
 
 > **Deprecation Notice**
 >
-> As of Riak version 1.2, the `riak-admin join` command has
-> been deprecated in favor of the [`riak-admin cluster join`][use admin commands#join] command. However, this command can still be
-> used by providing a `-f` option (which forces the command).
+>As of Riak version 1.2, the `riak-admin join` command has
+been deprecated in favor of the [`riak-admin cluster join`][use admin commands#join] command. However, this command can still be
+used by providing a `-f` option (which forces the command).
 
 Joins the running node to another running node so that they participate
 in the same cluster. `<node>` is the other node to connect to.
@@ -130,9 +111,9 @@ riak-admin join -f <node>
 > **Deprecation Notice**
 >
 > As of Riak version 1.2, the `riak-admin leave` command has
-> been deprecated in favor of the new [`riak-admin cluster leave`][use admin commands#leave] command. However, this
-> command can still be used by providing a `-f` option (which
-> forces the command).
+been deprecated in favor of the new [`riak-admin cluster leave`][use admin commands#leave] command. However, this
+command can still be used by providing a `-f` option (which
+forces the command).
 
 Causes the node to leave the cluster in which it participates. After
 this is run, the node in question will hand-off all its replicas to
@@ -145,9 +126,9 @@ riak-admin leave -f
 ## backup
 
 > **Deprecation notice**
-> The `riak-admin backup` command has been deprecated. We recommend using
-> backend-specific backup procedures instead. Documentation can be found
-> in [Backing up Riak KV][cluster ops backup].
+The `riak-admin backup` command has been deprecated. We recommend using
+backend-specific backup procedures instead. Documentation can be found
+in [Backing up Riak KV][cluster ops backup].
 
 Backs up the data from the node or entire cluster into a file.
 
@@ -158,8 +139,8 @@ riak-admin backup <node> <cookie> <filename> [node|all]
 * `<node>` is the node from which to perform the backup.
 * `<cookie>` is the Erlang cookie/shared secret used to connect to the
   node. This is `riak` in the [default configuration][config reference#node-metadata].
-* `<filename>` is the file where the backup will be stored. *This should
-  be the full path to the file*.
+* `<filename>` is the file where the backup will be stored. _This should
+  be the full path to the file_.
 * `[node|all]` specifies whether the data on this node or the entire
 
 ## restore
@@ -167,9 +148,9 @@ riak-admin backup <node> <cookie> <filename> [node|all]
 > **Deprecation notice**
 >
 > The `riak-admin restore` command has been deprecated. It was originally
-> intended to be used in conjunction with backups performed using the
-> `riak-admin backup` command, which is also deprecated. We recommend
-> using the backup and restore methods described in [Backing up Riak KV][cluster ops backup].
+intended to be used in conjunction with backups performed using the
+`riak-admin backup` command, which is also deprecated. We recommend
+using the backup and restore methods described in [Backing up Riak KV][cluster ops backup].
 
 Restores data to the node or cluster from a previous backup.
 
@@ -180,8 +161,8 @@ riak-admin restore <node> <cookie> <filename>
 * `<node>` is the node which will perform the restore.
 * `<cookie>` is the Erlang cookie/shared secret used to connect to the
   node. This is `riak` in the [default configuration][config reference#node-metadata].
-* `<filename>` is the file where the backup is stored. *This should be
-  the full path to the file*.
+* `<filename>` is the file where the backup is stored. _This should be
+  the full path to the file_.
 
 ## test
 
@@ -193,7 +174,9 @@ riak-admin test
 
 If the test is successful, you should see output like the following:
 
-    Successfully completed 1 read/write cycle to 'dev1@127.0.0.1'
+```
+Successfully completed 1 read/write cycle to 'dev1@127.0.0.1'
+```
 
 ## reip
 
@@ -210,7 +193,8 @@ riak-admin reip <old nodename> <new nodename>
 :::note Note about reip prior to Riak 2.0
 Several bugs have been fixed related to reip in Riak 2.0. We recommend against
 using reip prior to 2.0, if possible.
-:::
+:::note
+
 
 ## js-reload
 
@@ -218,7 +202,7 @@ Forces the embedded Javascript virtual machines to be restarted. This is
 useful when deploying custom built-in [MapReduce][usage mapreduce]
 functions.
 
-**Note**: This needs to be run on *all nodes* in the cluster.
+**Note**: This needs to be run on _all nodes_ in the cluster.
 
 ```bash
 riak-admin js-reload
@@ -230,7 +214,7 @@ Reloads the Erlang `.beam` files used for [MapReduce][usage mapreduce]
 jobs, [pre- and post-commit hooks][usage commit hooks], and other
 purposes.
 
-> **Note**: This needs to be run on *all nodes* in the cluster.
+> **Note**: This needs to be run on _all nodes_ in the cluster.
 
 ```bash
 riak-admin erl-reload
@@ -302,32 +286,32 @@ riak-admin cluster-info <output file> [<node list>]
 
 The following information is collected:
 
-* Current time and date
-* VM statistics
-* `erlang:memory()` summary
-* Top 50 process memory hogs
-* Registered process names
-* Registered process name via `regs()`
-* Non-zero mailbox sizes
-* Ports
-* Applications
-* Timer status
-* ETS summary
-* Nodes summary
-* `net_kernel` summary
-* `inet_db` summary
-* Alarm summary
-* Global summary
-* `erlang:system_info()` summary
-* Loaded modules
-* Riak Core config files
-* Riak Core vnode modules
-* Riak Core ring
-* Riak Core latest ring file
-* Riak Core active partitions
-* Riak KV status
-* Riak KV ringready
-* Riak KV transfers
+ * Current time and date
+ * VM statistics
+ * `erlang:memory()` summary
+ * Top 50 process memory hogs
+ * Registered process names
+ * Registered process name via `regs()`
+ * Non-zero mailbox sizes
+ * Ports
+ * Applications
+ * Timer status
+ * ETS summary
+ * Nodes summary
+ * `net_kernel` summary
+ * `inet_db` summary
+ * Alarm summary
+ * Global summary
+ * `erlang:system_info()` summary
+ * Loaded modules
+ * Riak Core config files
+ * Riak Core vnode modules
+ * Riak Core ring
+ * Riak Core latest ring file
+ * Riak Core active partitions
+ * Riak KV status
+ * Riak KV ringready
+ * Riak KV transfers
 
 #### Examples
 
@@ -375,7 +359,7 @@ Outputs the status of all vnodes the are running on the local node.
 riak-admin vnode-status
 ```
 
-:::note Frequent use of \`riak-admin vnode-status\`
+:::note Frequent use of `riak-admin vnode-status`
 The `riak-admin vnode-status` command should not be used more frequently than every 5 minutes. Running it more often will result in handoffs being stalled.
 :::
 
@@ -392,28 +376,22 @@ The output contains information on AAE key/value partition exchanges,
 entropy tree building, and key repairs which were triggered by AAE.
 
 * **Exchanges**
-
-* The *Last* column lists when the most recent exchange between a
-  partition and one of its sibling replicas was performed.
-
-* The *All* column shows how long it has been since a partition
-  exchanged with all of its sibling replicas.
+ * The *Last* column lists when the most recent exchange between a
+   partition and one of its sibling replicas was performed.
+ * The *All* column shows how long it has been since a partition
+   exchanged with all of its sibling replicas.
 
 * **Entropy Trees**
-
-* The *Built* column shows when the hash trees for a given partition
-  were created.
+ * The *Built* column shows when the hash trees for a given partition
+   were created.
 
 * **Keys Repaired**
-
-* The *Last* column shows the number of keys repaired during the most
-  recent key exchange.
-
-* The *Mean* column shows the mean number of keys repaired during all
-  key exchanges since the last node restart.
-
-* The *Max* column shows the maximum number of keys repaired during all
-  key exchanges since the last node restart.
+ * The *Last* column shows the number of keys repaired during the most
+   recent key exchange.
+ * The *Mean* column shows the mean number of keys repaired during all
+   key exchanges since the last node restart.
+ * The *Max* column shows the maximum number of keys repaired during all
+   key exchanges since the last node restart.
 
 :::note Note in AAE status information
 All AAE status information is in-memory and is reset across a node restart.
@@ -425,7 +403,7 @@ version 1.3 release notes](https://github.com/basho/riak/blob/1.3/RELEASE-NOTES.
 
 ## diag
 
-The `diag` command invokes the Riaknostic
+The `diag` command invokes the [Riaknostic](http://riaknostic.basho.com/)
 diagnostic system.
 
 ```bash
@@ -464,7 +442,9 @@ This command reformats integer indexes in Secondary Index data for
 versions of Riak prior to 1.3.1 so that range queries over the indexes
 will return correct results.
 
-    riak-admin reformat-indexes [<concurrency>] [<batch size>] --downgrade
+```
+riak-admin reformat-indexes [<concurrency>] [<batch size>] --downgrade
+```
 
 The `concurrency` option defaults to `2` and controls how many
 partitions are concurrently reformatted.
@@ -481,8 +461,7 @@ Information is written to `console.log` upon completion of the process.
 A `--downgrade` switch can be specified when downgrading a node to a version
 of Riak prior to version 1.3.1.
 
-Additional details are available in the [Riak 1.3.1 release
-notes](https://github.com/basho/riak/blob/1.3/RELEASE-NOTES.md).
+Additional details are available in the [Riak 1.3.1 release notes](https://github.com/basho/riak/blob/riak-1.3.1/RELEASE-NOTES.md).
 
 ## top
 
@@ -561,8 +540,10 @@ This will initiate the repair process. When you run this command, you
 should see something like the following (where `<ring_size>` is the
 number of partitions in your Riak cluster):
 
-    Will repair 2i data on <ring_size> partitions
-    Watch the logs for 2i repair progress reports
+```
+Will repair 2i data on <ring_size> partitions
+Watch the logs for 2i repair progress reports
+```
 
 To repair secondary indexes in a specific partition, provide the ID of
 the partition along with the `repair-2i` command:
@@ -581,13 +562,15 @@ If the repair is already finished, the console will return `2i repair is
 not running`. If the repair is still in progress, the console will
 return a series of statistics like this:
 
-    2i repair status is running:
-            Total partitions: 64
-            Finished partitions: 44
-            Speed: 100
-            Total 2i items scanned: 0
-            Total tree objects: 0
-            Total objects fixed: 0
+```
+2i repair status is running:
+        Total partitions: 64
+        Finished partitions: 44
+        Speed: 100
+        Total 2i items scanned: 0
+        Total tree objects: 0
+        Total objects fixed: 0
+```
 
 If you're concerned about the computational resources required to repair
 secondary indexes, you can set the speed of the process to an integer
@@ -649,7 +632,7 @@ repaired for a given exchange round since the node has started.
 :::note Only For Legacy Migration
 This is only needed when migrating from legacy riak search to the new Search
 (Yokozuna).
-:::
+:::note
 
 ```bash
 riak-admin search switch-to-new-search
@@ -731,5 +714,7 @@ riak-admin describe nodename
 
 That will produce the following output:
 
-    nodename:
-      Name of the Erlang node
+```
+nodename:
+  Name of the Erlang node
+```

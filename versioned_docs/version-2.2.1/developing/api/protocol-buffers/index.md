@@ -97,9 +97,8 @@ key: "k"
 
 :::note Message Definitions
 All Protocol Buffers messages are defined in the `riak.proto` and other
-`.proto` files in the `/src` directory of the
-<a href="https://github.com/basho/riak_pb">RiakPB</a> project.
-:::note
+`.proto` files in the `/src` directory of the [RiakPB](http://www.github.com/basho/riak_pb) project.
+:::
 
 ### Error Response
 

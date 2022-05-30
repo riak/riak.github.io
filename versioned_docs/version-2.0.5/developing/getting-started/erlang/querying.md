@@ -1,13 +1,13 @@
 ---
 title: "Querying"
 id: getting_started_erlang_query
-slug: querying
+slug: querying 
 sidebar_position: 1
 ---
 
 ## A Quick Note on Querying and Schemas
 
-*Schemas*? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
+_Schemas_? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
 word. Even in a key/value store, you will still have a logical database
 schema of how all the data relates to other data. This can be as simple
 as using the same key across multiple buckets for different types of
@@ -159,6 +159,7 @@ OrderSummaryObj = riakc_obj:new(OrderSummariesBucket,
                                 OrderSummary).
 
 riakc_pb_socket:put(Pid, OrderSummaryObj).
+
 ```
 
 While individual `Customer` and `Order` objects don't change much (or
@@ -202,7 +203,7 @@ intrinsic relationships.
 
 ## Secondary Indexes
 
-:::note 
+:::note
 Secondary indexes in Riak KV require a sorted backend: [Memory](../../../setup/planning/backend/memory.md) or [LevelDB](../../../setup/planning/backend/leveldb.md). [Bitcask](../../../setup/planning/backend/bitcask.md) does not support secondary indexes.
 
 See [Using Secondary Indexes (2i)](../../../developing/usage/secondary-indexes.md) for more information on developing with secondary indexes.
@@ -241,6 +242,7 @@ AddIndicesToOrder = fun(OrderKey) ->
 end.
 
 lists:foreach(AddIndicesToOrder, [1,2,3]).
+
 ```
 
 As you may have noticed, ordinary Key/Value data is opaque to 2i, so we

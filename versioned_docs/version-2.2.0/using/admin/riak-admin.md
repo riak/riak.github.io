@@ -5,6 +5,9 @@ slug: riak-admin
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config reference]: ../../configuring/reference.md
 [use admin commands]: ../../using/admin/commands.md
 [use admin commands#join]: ../../using/admin/commands.md#join
@@ -55,13 +58,26 @@ The name for each node can be set and changed in each node's
 newer configuration system and in `vm.args` if you are using the older
 system:
 
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 nodename = riak_node_1@199.99.99.01
 ```
 
+</TabItem>
+
+<TabItem label="vm.args" value="vm.args">
+
 ```vmargs
 -name riak_node_1@199.99.99.01
 ```
+
+</TabItem>
+
+</Tabs>
 
 The name prior to the `@` symbol can be whatever you'd like, e.g.
 `riak1`, `dev`, `cluster1_node1`, or `spaghetti`. After the `@` you must
@@ -376,7 +392,7 @@ entropy tree building, and key repairs which were triggered by AAE.
 :::note Note in AAE status information
 All AAE status information is in-memory and is reset across a node restart.
 Only tree build times are persistent (since trees themselves are persistent)
-:::note
+:::
 
 More details on the `aae-status` command are available in the [Riak
 version 1.3 release notes](https://github.com/basho/riak/blob/1.3/RELEASE-NOTES.md#active-anti-entropy).

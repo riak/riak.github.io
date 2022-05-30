@@ -1,28 +1,25 @@
 ---
 title: "Using Secondary Indexes"
 id: usage_2i
-slug: secondary-indexes
+slug: secondary-indexes 
 sidebar_position: 7
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
-
 [plan backend memory]: ../../setup/planning/backend/memory.md
-
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
 
 > **Note: Riak Search preferred for querying**
 >
 > If you're interested in non-primary-key-based querying in Riak, i.e. if
-> you're looking to go beyond straightforward K/V operations, we now
-> recommend [Riak Search](../../developing/usage/search.md) rather than secondary indexes for
-> a variety of reasons. Most importantly, Riak Search has a far more
-> capacious querying API and can be used with all of Riak's storage
-> backends.
+you're looking to go beyond straightforward K/V operations, we now
+recommend [Riak Search](../../developing/usage/search.md) rather than secondary indexes for
+a variety of reasons. Most importantly, Riak Search has a far more
+capacious querying API and can be used with all of Riak's storage
+backends.
 
 Secondary indexes (2i) in Riak enable you to tag objects stored in Riak,
 at write time, with one or more queryable values. Those values can then
@@ -51,12 +48,12 @@ backends.
   query
 
 > **Note on 2i and strong consistency**
-> Secondary indexes do not currently work with the [strong consistency][use ref strong consistency]
-> feature introduced in Riak version 2.0. If you store objects in
-> [strongly consistent buckets](../../developing/app-guide/strong-consistency.md#creating-consistent-bucket-types) and attach
-> secondary index metadata to those objects, you can still perform
-> strongly consistent operations on those objects but the secondary
-> indexes will be ignored.
+Secondary indexes do not currently work with the [strong consistency][use ref strong consistency]
+feature introduced in Riak version 2.0. If you store objects in
+[strongly consistent buckets](../../developing/app-guide/strong-consistency.md#creating-consistent-bucket-types) and attach
+secondary index metadata to those objects, you can still perform
+strongly consistent operations on those objects but the secondary
+indexes will be ignored.
 
 ## When to Use Secondary Indexes
 
@@ -71,7 +68,7 @@ you to discover them later. Indexing enables you to tag those objects
 and find all objects with the same tag in a specified bucket later on.
 
 2i is thus recommended when your use case requires an easy-to-use search
-mechanism that does not require a schema (as does [Riak Search](../../developing/usage/search.md)) and a basic query interface, i.e. an interface that
+mechanism that does not require a schema (as does [Riak Search](../../using/reference/search.md#schemas)) and a basic query interface, i.e. an interface that
 enables an application to tell Riak things like "fetch all objects
 tagged with the string `Milwaukee_Bucks`" or "fetch all objects tagged
 with numbers between 1500 and 1509."
@@ -106,7 +103,6 @@ application would like add a Twitter handle and an email address to this
 object as secondary indexes.
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -131,7 +127,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -155,7 +150,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -171,7 +165,6 @@ $object = (new \Basho\Riak\Object('{"user_data":{ ... }}', ['Content-type' => 'a
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -190,7 +183,6 @@ obj.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -203,7 +195,6 @@ var rslt = client.Put(obj);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -222,7 +213,6 @@ client.storeValue({ value: riakObj }, function (err, rslt) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -248,10 +238,9 @@ riakc_pb_socket:put(Pid, Obj2).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -278,7 +267,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -290,13 +278,12 @@ curl -XPOST localhost:8098/types/default/buckets/users/keys/john_smith \
 ```
 
 </TabItem>
-
 </Tabs>
 
 > **Getting started with Riak clients**
 >
 > If you are connecting to Riak using one of Basho's official [client libraries](../../developing/client-libraries.md), you can find more information about getting started with
-> your client in the [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
+your client in the [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
 
 This has accomplished the following:
 
@@ -313,7 +300,6 @@ Let's query the `users` bucket on the basis of Twitter handle to make
 sure that we can find our stored object:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -328,7 +314,6 @@ for (BinIndexQuery.Response.Entry entry : entries) {
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -341,7 +326,6 @@ bucket.get_index('twitter_bin', 'jsmith123')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -355,7 +339,6 @@ $response = (new \Basho\Riak\Command\Builder\QueryIndex($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -364,7 +347,6 @@ bucket.get_index('twitter_bin', 'jsmith123').results
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -378,7 +360,6 @@ foreach (var keyTerm in idxRslt.IndexKeyTerms)
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -412,7 +393,6 @@ client.execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -424,10 +404,9 @@ client.execute(cmd);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("users").
@@ -444,7 +423,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -452,13 +430,11 @@ curl localhost:8098/buckets/users/index/twitter_bin/jsmith123
 ```
 
 </TabItem>
-
 </Tabs>
 
 The response:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -466,7 +442,6 @@ john_smith
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -474,7 +449,6 @@ john_smith
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -482,7 +456,6 @@ john_smith
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -490,7 +463,6 @@ john_smith
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -498,7 +470,6 @@ john_smith
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -506,7 +477,6 @@ john_smith
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -515,15 +485,13 @@ john_smith
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 john_smith
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -535,7 +503,6 @@ john_smith
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Examples
@@ -552,7 +519,6 @@ duplicate fields are automatically de-duplicated, as in the following
 example:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -598,7 +564,6 @@ client.execute(storeVeronica);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -640,7 +605,6 @@ obj4.store
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -696,7 +660,6 @@ $object = (new \Basho\Riak\Object'My name is Veronica', ['Content-type' => 'text
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -728,7 +691,6 @@ obj4.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -772,7 +734,6 @@ client.Put(veronica);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -853,7 +814,6 @@ async.parallel(storeFuncs, function (err, rslts) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -907,10 +867,9 @@ VeronicaWithIndexes = riakc_obj:update_metadata(Veronica, VeronicaIndexes).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 o1 := &riak.Object{
     Key:   "larry",
     Value: []byte("My name is Larry"),
@@ -977,7 +936,6 @@ wg.Wait()
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1007,7 +965,6 @@ curl -v -XPUT 127.0.0.1:8098/types/indexes/buckets/people/keys/veronica \
 ```
 
 </TabItem>
-
 </Tabs>
 
 The above objects will end up having the following secondary indexes,
@@ -1034,7 +991,6 @@ specified with an invalid field name or type. The system responds with
 Invalid field name:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1044,7 +1000,6 @@ Invalid field name:
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1060,7 +1015,6 @@ NoMethodError: undefined method 'map' for 1001:Fixnum
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1070,7 +1024,6 @@ $object = (new \Basho\Riak\Object('{"user_data":{ ... }}', ['Content-type' => 'a
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1083,7 +1036,6 @@ riak.RiakError: "Riak 2i fields must end with either '_bin' or '_int'."
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1093,7 +1045,6 @@ riak.RiakError: "Riak 2i fields must end with either '_bin' or '_int'."
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1121,7 +1072,6 @@ error: query_cb err: 'Error processing incoming message: error:function_clause:[
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1140,10 +1090,9 @@ MD2 = riakc_obj:set_secondary_index(MD1, [{{foo_index, "field2"}, [1001]}]).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("users").
@@ -1175,7 +1124,6 @@ error: query_cb err: 'Error processing incoming message: error:function_clause:[
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1188,13 +1136,9 @@ Unknown field type for field: 'field2_foo'.
 ```
 
 </TabItem>
-
 </Tabs>
 
-Incorrect data type:
-
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1213,7 +1157,6 @@ Error:(46, 68) java: no suitable method found for add(java.lang.String)
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1229,7 +1172,6 @@ NoMethodError: undefined method 'map' for 1001:Fixnum
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1248,7 +1190,6 @@ $object = (new \Basho\Riak\Object('{"user_data":{ ... }}', ['Content-type' => 'a
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1262,7 +1203,6 @@ riak.RiakError: '{precommit_fail,[{field_parsing_failed,{<<"field2_int">>,<<"bar
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1278,7 +1218,6 @@ The value could not be parsed.
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1305,7 +1244,6 @@ TypeError: must start with number, buffer, array or string
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1325,10 +1263,9 @@ MD2 = riakc_obj:set_secondary_index(MD1, [{{integer_index, "field2"}, [<<"bar">>
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     BucketType:      "indexes",
     Bucket:          "people",
@@ -1358,7 +1295,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1373,7 +1309,6 @@ Could not parse field 'field2_int', value 'bar'.
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Querying
@@ -1381,8 +1316,8 @@ Could not parse field 'field2_int', value 'bar'.
 > **Note on 2i queries and the R parameter**
 >
 > For all 2i queries, the [R](../../developing/app-guide/replication-properties.md#r-value-and-read-failure-tolerance) parameter is set to 1,
-> which means that queries that are run while [handoffs](../../learn/glossary.md#hinted-handoff) and related operations are underway may not
-> return all keys as expected.
+which means that queries that are run while [handoffs](../../learn/glossary.md#hinted-handoff) and related operations are underway may not
+return all keys as expected.
 
 ### Exact Match
 
@@ -1391,7 +1326,6 @@ The following examples perform an exact match index query.
 Query a binary index:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1401,7 +1335,6 @@ BinIndexQuery.Response response = client.execute(biq);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1410,7 +1343,6 @@ bucket.get_index('field1_bin', 'val1')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1424,7 +1356,6 @@ bucket.get_index('field1_bin', 'val1')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1433,7 +1364,6 @@ bucket.get_index('field1_bin', 'val1')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1444,7 +1374,6 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1459,7 +1388,6 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1472,10 +1400,9 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 c1, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1488,7 +1415,6 @@ if err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1496,13 +1422,11 @@ curl localhost:8098/types/indexes/buckets/people/index/field1_bin/val1
 ```
 
 </TabItem>
-
 </Tabs>
 
 Query an integer index:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1513,7 +1437,6 @@ IntIndexQuery.Response response = client.execute(iiq);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1522,7 +1445,6 @@ bucket.get_index('field2_int', 1001)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1536,7 +1458,6 @@ bucket.get_index('field2_int', 1001)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1545,7 +1466,6 @@ bucket.get_index('field2_int', 1001)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1556,7 +1476,6 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1571,7 +1490,6 @@ client.execute(intIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1584,10 +1502,9 @@ client.execute(intIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1600,7 +1517,6 @@ if err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1608,7 +1524,6 @@ curl localhost:8098/types/indexes/buckets/people/index/field2_int/1001
 ```
 
 </TabItem>
-
 </Tabs>
 
 The following example performs an exact match query and pipes the
@@ -1645,7 +1560,6 @@ The following examples perform a range query.
 Query a binary index...
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1656,7 +1570,6 @@ BinIndexQuery.Response response = client.execute(biq);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1665,7 +1578,6 @@ bucket.get_index('field1_bin', 'val2'..'val4')
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1679,7 +1591,6 @@ bucket.get_index('field1_bin', 'val2'..'val4')
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1688,7 +1599,6 @@ bucket.get_index('field1_bin', 'val2', 'val4')
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1698,7 +1608,6 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1713,7 +1622,6 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1726,10 +1634,9 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 c1, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1742,7 +1649,6 @@ if err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1750,13 +1656,11 @@ curl localhost:8098/types/indexes/buckets/people/index/field1_bin/val2/val4
 ```
 
 </TabItem>
-
 </Tabs>
 
 Or query an integer index...
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1767,7 +1671,6 @@ IntIndexQuery.Response response = client.execute(iiq);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1776,7 +1679,6 @@ bucket.get_index('field2_int', 1002..1004)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1790,7 +1692,6 @@ bucket.get_index('field2_int', 1002..1004)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1799,7 +1700,6 @@ bucket.get_index('field2_int', 1002, 1004)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1809,7 +1709,6 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1824,7 +1723,6 @@ client.execute(intIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1837,10 +1735,9 @@ client.execute(intIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("people").
@@ -1850,7 +1747,6 @@ cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -1858,7 +1754,6 @@ curl localhost:8098/types/indexes/buckets/people/index/field2_int/1002/1004
 ```
 
 </TabItem>
-
 </Tabs>
 
 The following example performs a range query and pipes the results into
@@ -1896,7 +1791,6 @@ index values alongside the Riak keys using `return_terms=true`. An
 example from a small sampling of Twitter data with indexed hash tags:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -1908,7 +1802,6 @@ BinIndexQuery.Response response = client.execute(biq);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -1917,7 +1810,6 @@ bucket.get_index('hashtags_bin', 'rock'..'rocl', return_terms: true)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -1932,7 +1824,6 @@ bucket.get_index('hashtags_bin', 'rock'..'rocl', return_terms: true)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -1941,7 +1832,6 @@ bucket.get_index('hashtags_bin', 'rock', 'rocl', return_terms=True)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -1953,7 +1843,6 @@ var indexResult = indexRiakResult.Value;
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -1969,7 +1858,6 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -1982,10 +1870,9 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("tweets").
@@ -2002,7 +1889,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -2010,7 +1896,6 @@ curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/rock/rocl?re
 ```
 
 </TabItem>
-
 </Tabs>
 
 Response:
@@ -2042,7 +1927,6 @@ Here is an example of a range query with both `return_terms` and
 pagination against the same Twitter data set.
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2054,7 +1938,6 @@ BinIndexQuery.Response response = client.execute(biq);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2063,7 +1946,6 @@ bucket.get_index('hashtags_bin', 'ri'..'ru', max_results: 5)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2078,7 +1960,6 @@ bucket.get_index('hashtags_bin', 'ri'..'ru', max_results: 5)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2087,7 +1968,6 @@ bucket.get_index('hashtags_bin', 'ri', 'ru', max_results=5)
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2101,7 +1981,6 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2151,7 +2030,6 @@ do_query();
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -2165,10 +2043,9 @@ do_query();
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 func doPaginatedQuery(cluster *riak.Cluster, continuation []byte) error {
   builder := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
@@ -2197,7 +2074,7 @@ func doPaginatedQuery(cluster *riak.Cluster, continuation []byte) error {
     return errors.New("[DevUsing2i] expected response but did not get one")
   }
 
-  rc := sciq.Response.Continuation 
+  rc := sciq.Response.Continuation
   if rc != nil && len(rc) > 0 {
     return doPaginatedQuery(cluster, sciq.Response.Continuation)
   }
@@ -2211,7 +2088,6 @@ func queryingPagination(cluster *riak.Cluster) error {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -2219,7 +2095,6 @@ curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/ri/ru?max_re
 ```
 
 </TabItem>
-
 </Tabs>
 
 Here is an example JSON response (your client-specific response may differ):
@@ -2241,7 +2116,6 @@ Take the continuation value from the previous result set and feed it
 back into the query.
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2255,7 +2129,6 @@ BinIndexQuery.Response response = client.execute(biq);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2270,7 +2143,6 @@ bucket.get_index(
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2286,7 +2158,6 @@ bucket.get_index(
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2301,7 +2172,6 @@ bucket.get_index(
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2314,7 +2184,6 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2322,7 +2191,6 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -2340,15 +2208,13 @@ rslt = client.GetSecondaryIndex(idxId, "ri", "ru", options);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 // See above example
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -2356,7 +2222,6 @@ curl localhost:8098/types/indexes/buckets/tweets/index/hashtags_bin/ri/ru?contin
 ```
 
 </TabItem>
-
 </Tabs>
 
 The result:
@@ -2389,7 +2254,6 @@ The result:
 It is also possible to stream results:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -2419,7 +2283,6 @@ Assert.assertTrue(streamingFuture.isDone());
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -2428,7 +2291,6 @@ bucket.get_index('myindex_bin', 'foo', stream: true)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -2438,7 +2300,6 @@ bucket.get_index('myindex_bin', 'foo', stream: true)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -2449,7 +2310,6 @@ for key in bucket.stream_index('myindex_bin', 'foo'):
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -2463,7 +2323,6 @@ foreach (var key in indexResult.IndexKeyTerms)
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -2479,7 +2338,6 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -2493,10 +2351,9 @@ client.execute(binIdxCmd);
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 cmd, err := riak.NewSecondaryIndexQueryCommandBuilder().
     WithBucketType("indexes").
     WithBucket("tweets").
@@ -2515,7 +2372,6 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -2523,7 +2379,6 @@ curl localhost:8098/types/indexes/buckets/people/index/myindex_bin/foo?stream=tr
 ```
 
 </TabItem>
-
 </Tabs>
 
 Streaming can also be combined with `pagination` and `return_terms`.

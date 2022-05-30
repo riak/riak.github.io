@@ -7,8 +7,10 @@ sidebar_position: 9
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+[config search#throttledelay]: ../../configuring/search.md#searchanti_entropythrottletierdelay
+[config search#throttle]: ../../configuring/search.md#searchanti_entropythrottle
 
-Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) (AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
+Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) \(AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
 
 ## Enabling Active Anti-Entropy
 
@@ -29,7 +31,7 @@ anti_entropy = active
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
 
   {anti_entropy, {on, []}},
@@ -57,7 +59,7 @@ anti_entropy = active-debug
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
 
     %% With debugging
@@ -71,7 +73,7 @@ anti_entropy = active-debug
 
 </Tabs>
 
-Remember that you will need to [restart the node](../admin/riak-admin.md) for any configuration-related changes to take effect.
+Remember that you will need to restart the node for any configuration-related changes to take effect.
 
 ## Disabling Active Anti-Entropy
 
@@ -90,7 +92,7 @@ anti_entropy = passive
 
 <TabItem label="app.config" value="app.config">
 
-```appconfig
+```erlang
 {riak_kv, [
 
     %% AAE turned off
@@ -116,7 +118,7 @@ The default directory for AAE data is `./data/anti_entropy`, as in the
 example above, but this can be changed. See the section below titled
 **Data Directory**.
 
-Remember that you will need to [restart the node](../admin/riak-admin.md) for any configuration-related changes to take effect.
+Remember that you will need to restart the node for any configuration-related changes to take effect.
 
 The directory deletion method above can also be used to force a
 rebuilding of hash trees.
@@ -133,33 +135,36 @@ riak-admin aae-status
 When you run this command in a node, the output will look like this
 (shortened for the sake of brevity):
 
-    ================================== Exchanges ==================================
-    Index                                              Last (ago)    All (ago)
-    -------------------------------------------------------------------------------
-    0                                                  19.0 min      20.3 min
-    22835963083295358096932575511191922182123945984    18.0 min      20.3 min
-    45671926166590716193865151022383844364247891968    17.3 min      19.8 min
-    68507889249886074290797726533575766546371837952    16.5 min      18.3 min
-    91343852333181432387730302044767688728495783936    15.8 min      17.3 min
-    ...
+```
+================================== Exchanges ==================================
+Index                                              Last (ago)    All (ago)
+-------------------------------------------------------------------------------
+0                                                  19.0 min      20.3 min
+22835963083295358096932575511191922182123945984    18.0 min      20.3 min
+45671926166590716193865151022383844364247891968    17.3 min      19.8 min
+68507889249886074290797726533575766546371837952    16.5 min      18.3 min
+91343852333181432387730302044767688728495783936    15.8 min      17.3 min
+...
 
-    ================================ Entropy Trees ================================
-    Index                                              Built (ago)
-    -------------------------------------------------------------------------------
-    0                                                  5.7 d
-    22835963083295358096932575511191922182123945984    5.6 d
-    45671926166590716193865151022383844364247891968    5.5 d
-    68507889249886074290797726533575766546371837952    4.3 d
-    91343852333181432387730302044767688728495783936    4.8 d
+================================ Entropy Trees ================================
+Index                                              Built (ago)
+-------------------------------------------------------------------------------
+0                                                  5.7 d
+22835963083295358096932575511191922182123945984    5.6 d
+45671926166590716193865151022383844364247891968    5.5 d
+68507889249886074290797726533575766546371837952    4.3 d
+91343852333181432387730302044767688728495783936    4.8 d
 
-    ================================ Keys Repaired ================================
-    Index                                                Last      Mean      Max
-    -------------------------------------------------------------------------------
-    0                                                     0         0         0
-    22835963083295358096932575511191922182123945984       0         0         0
-    45671926166590716193865151022383844364247891968       0         0         0
-    68507889249886074290797726533575766546371837952       0         0         0
-    91343852333181432387730302044767688728495783936       0         0         0
+================================ Keys Repaired ================================
+Index                                                Last      Mean      Max
+-------------------------------------------------------------------------------
+0                                                     0         0         0
+22835963083295358096932575511191922182123945984       0         0         0
+45671926166590716193865151022383844364247891968       0         0         0
+68507889249886074290797726533575766546371837952       0         0         0
+91343852333181432387730302044767688728495783936       0         0         0
+
+```
 
 Each of these three tables contains information for each
 [vnode](../../learn/concepts/vnodes.md) in your cluster in these three categories:
@@ -195,13 +200,13 @@ by setting the `anti_entropy.data_dir` parameter to a different value.
 
 AAE has a built-in throttling mechanism that can insert delays between
 AAE repair operations when [vnode](../../learn/concepts/vnodes.md) mailboxes reach the length
-specified by the `anti_entropy.throttle.$tier.delay` parameter (more on
+specified by the [`anti_entropy.throttle.$tier.delay`][config search#throttledelay] parameter (more on
 that in the section below). Throttling can be switched on and off using
-the `anti_entropy.throttle` parameter. The default is `on`.
+the [`anti_entropy.throttle`][config search#throttle] parameter. The default is `on`.
 
 #### Throttling Tiers
 
-If you activate AAE throttling, you can use **tiered throttling** to
+If you activate AAE throttling, you can use *tiered throttling* to
 establish a series of vnode mailbox-size thresholds past which a
 user-specified time delay should be observed. This enables you to
 establish, for example, that a delay of 10 milliseconds should be
@@ -215,7 +220,7 @@ anti_entropy.throttle.$tier.delay
 ```
 
 In the above example, `$tier` should be replaced with the desired
-name for that tier, e.g. `tier1`, `large_mailbox_tier`, etc. If you
+name for that tier (e.g. `tier1`, `large_mailbox_tier`, etc). If you
 choose to set throttling tiers, you will need to set the mailbox size
 for one of the tiers to 0. Both the `.mailbox_size` and `.delay`
 parameters must be set for each tier.

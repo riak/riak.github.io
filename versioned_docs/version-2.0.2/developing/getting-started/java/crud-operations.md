@@ -1,7 +1,7 @@
 ---
 title: "CRUD Operations"
 id: getting_started_java_crud
-slug: crud-operations
+slug: crud-operations 
 sidebar_position: 0
 ---
 
@@ -44,24 +44,6 @@ assert(fetchedObject.getValue.equals(quoteObject.getValue()));
 If the values are equal, as they should be, the Java client will say
 `Success!  The object we created and the object we fetched have the same
 value`. If not, then the client will throw an exception.
-
-## Updating Objects
-
-Once we've read the object back in from Riak, we can update the object
-and store it back as we did before with the `StoreValue` object:
-
-```java
-fetchedObject.setValue(BinaryValue.create("You can be my wingman any time."));
-StoreValue updateOp = new StoreValue.Builder(fetchedObject)
-        .withLocation(quoteObjectLocation)
-        .build();
-StoreValue.Response updateOpResp = client.execute(updateOp);
-```
-
-For more in depth information on updating objects and sibling resolution in
-Riak, see [Updating Objects](../../usage/updating-objects)
-and [Conflict Resolution](../../usage/conflict-resolution)
-documentation.
 
 ## Deleting Objects
 
@@ -172,4 +154,4 @@ UpdateValue.Response response = client.execute(updateValue);
 For more in depth information on updating objects and sibling resolution in
 Riak, see [Updating Objects](../../usage/updating-objects)
 and [Conflict Resolution](../../usage/conflict-resolution)
-documention.
+documentation.

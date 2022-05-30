@@ -1,14 +1,12 @@
 ---
 title: "MapReduce Settings"
 id: configuring_mapreduce
-slug: mapreduce
+slug: mapreduce 
 sidebar_position: 6
 ---
 
 [usage mapreduce]: ../developing/usage/mapreduce.md
-
 [config reference#appconfig]: ../configuring/reference.md#advanced-configuration
-
 [usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 
 ## Configuring MapReduce
@@ -26,7 +24,7 @@ By default `mapred`, making the command path, for example:
 `http://localhost:8098/mapred`
 
 ```erlang
-    {mapred_name, "mapred"},
+{mapred_name, "mapred"},
 ```
 
 `mapred_2i_pipe` indicates whether [2i][usage secondary-indexes]
@@ -36,7 +34,7 @@ serially through a helper process (`false` or undefined).
 > **Note**: Set to `false` or leave undefined during an upgrade from 1.0.
 
 ```erlang
-    {mapred_2i_pipe, true},
+{mapred_2i_pipe, true},
 ```
 
 Each of these entries control how many Javascript virtual machines are
@@ -46,9 +44,9 @@ functions.
 This is largely relevant only if you are writing JavaScript M/R jobs.
 
 ```erlang
-    {map_js_vm_count, 8 },
-    {reduce_js_vm_count, 6 },
-    {hook_js_vm_count, 2 },
+{map_js_vm_count, 8 },
+{reduce_js_vm_count, 6 },
+{hook_js_vm_count, 2 },
 ```
 
 `js_max_vm_mem` is the maximum amount of memory, in megabytes, allocated
@@ -57,7 +55,7 @@ to the Javascript VMs. If unset, the default is 8MB.
 This is largely relevant only if you are writing JavaScript M/R jobs.
 
 ```erlang
-    {js_max_vm_mem, 8},
+{js_max_vm_mem, 8},
 ```
 
 `js_thread_stack` is the maximum amount of thread stack, in megabytes,
@@ -66,17 +64,15 @@ allocated to the Javascript VMs. If unset, the default is 16MB.
 > **Note**: This is not the same as the C thread stack.
 
 ```erlang
-    {js_thread_stack, 16},
+{js_thread_stack, 16},
 ```
 
 `js_source_dir` should point to a directory containing Javascript source
 files which will be loaded when Riak initializes Javascript VMs.
 
 ```erlang
-    %{js_source_dir, "/tmp/js_source"},
+%{js_source_dir, "/tmp/js_source"},
 ```
-
-<!-- TODO: Pulled from MapReduce-Implementation.md -->
 
 ## Configuration Tuning for Javascript
 
@@ -184,4 +180,4 @@ Pre-reduce may also be enabled or disabled on a per-phase basis via the Erlang A
 
 > **Warning:**
 >
-> A known bug in Riak 1.0.0 prevents per-phase pre-reduce from being enabled over HTTP.  This bug also prevents per-phase pre-reduce from being enabled for Javascript phases.  Use the global app.config flag for these cases. This bug was fixed in 1.0.1.
+>A known bug in Riak 1.0.0 prevents per-phase pre-reduce from being enabled over HTTP.  This bug also prevents per-phase pre-reduce from being enabled for Javascript phases.  Use the global app.config flag for these cases. This bug was fixed in 1.0.1.

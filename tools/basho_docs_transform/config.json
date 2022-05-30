@@ -33,7 +33,11 @@
     },
     "to_rename": {
       "curl": "bash",
-      "sh": "bash"
+      "sh": "bash",
+      "shell": "bash",
+      "bashell": "bash",
+      "golang": "go",
+      "appconfig": "erlang"
     }
   }
 }

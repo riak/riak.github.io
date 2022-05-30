@@ -17,7 +17,7 @@ By default, the Riak .NET Client will add a section to your `app.config` file
 for a four node local cluster. If you are using a remote cluster, open up
 `app.config` and change the `hostAddress` values to point to nodes in your
 remote cluster.
-:::note
+:::
 
 ## Connecting to Riak
 

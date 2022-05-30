@@ -1,7 +1,7 @@
 ---
 title: "Load Balancing and Proxy Configuration"
 id: configuring_load_balance
-slug: load-balancing-proxy
+slug: load-balancing-proxy 
 sidebar_position: 4
 ---
 
@@ -49,7 +49,7 @@ interfaces.
 > **Note on open files limits**
 >
 > The operating system's open files limits need to be greater than 256000
-> for the example configuration that follows. Consult the [Open Files Limit][perf open files] documentation for details on configuring the value for different operating systems.
+for the example configuration that follows. Consult the [Open Files Limit][perf open files] documentation for details on configuring the value for different operating systems.
 
 ```config
 global
@@ -180,11 +180,11 @@ aware that earlier versions of Nginx did not support any HTTP 1.1 semantics
 for upstream communication to backends. You should carefully examine this
 configuration and make changes appropriate to your specific environment before
 attempting to use it
-:::
+:::note
 
 Here is an example `nginx.conf` file:
 
-```config
+```nginx
 upstream riak_hosts {
   # server  10.0.1.10:8098;
   # server  10.0.1.11:8098;
@@ -243,7 +243,7 @@ Even when filtering and limiting requests to GETs only as done in the example,
 you should strongly consider additional access controls beyond what Nginx can
 provide directly, such as specific firewall rules to limit inbound connections
 to trusted sources.
-:::
+:::note
 
 ### Querying Secondary Indexes Over HTTP
 
@@ -256,4 +256,6 @@ instruct Nginx to handle such header names when doing Secondary Index
 queries over HTTP by adding the following directive to the appropriate
 `server` section of `nginx.conf`:
 
-    underscores_in_headers on;
+```nginx
+underscores_in_headers on;
+```

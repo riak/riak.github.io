@@ -6,21 +6,13 @@ sidebar_position: 4
 ---
 
 [concept buckets]: ../../learn/concepts/buckets.md
-
 [concept keys objects]: ../../learn/concepts/keys-and-objects.md
-
 [concept replication]: ../../learn/concepts/replication.md
-
 [glossary node]: ../../learn/glossary.md#node
-
 [glossary vnode]: ../../learn/glossary.md#vnode
-
 [learn dynamo]: ../../learn/dynamo.md
-
 [usage bucket types]: ../../developing/usage/bucket-types.md
-
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
-
 [usage replication]: ../../developing/usage/replication.md
 
 Riak's default mode of operation is to work as a cluster consisting of
@@ -32,7 +24,7 @@ a Riak node. Each Riak node manages a set of virtual nodes, or
 [vnodes][glossary vnode], that are responsible for storing a
 separate portion of the keys stored in the cluster.
 
-In contrast to some high-availability systems, Riak nodes are *not*
+In contrast to some high-availability systems, Riak nodes are _not_
 clones of one another, and they do not all participate in fulfilling
 every request. Instead, you can configure, at runtime or at request
 time, the number of nodes on which data is to be replicated, as well as
@@ -53,7 +45,7 @@ Internally, Riak computes a 160-bit binary hash of each bucket/key pair
 and maps this value to a position on an ordered **ring** of all such
 values. This ring is divided into partitions, with each Riak vnode
 responsible for one of these partitions (we say that each vnode
-*claims* that partition).
+_claims_ that partition).
 
 Below is a visual representation of a Riak ring:
 
@@ -78,13 +70,13 @@ consults the ring state to determine which vnode owns the partition in
 which the value's key belongs, then sends the write request to that
 vnode as well as to the vnodes responsible for the next N-1 partitions
 in the ring (where N is a [configurable parameter][usage replication] that describes how many copies of the value to store). The
-write request may also specify that at least W (=&lt; N) of those vnodes
-reply with success, and that DW (=&lt; W) reply with success only after
+write request may also specify that at least W (=< N) of those vnodes
+reply with success, and that DW (=< W) reply with success only after
 durably storing the value.
 
 A read, or GET, request operates similarly, sending requests to the
 vnode  that "claims" the partition in which the key resides, as well as
-to the next N-1 partitions. The request also specifies R (=&lt; N), the
+to the next N-1 partitions. The request also specifies R (=< N), the
 number of vnodes that must reply before a response is returned.
 
 Here is an illustration of this process:

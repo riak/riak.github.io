@@ -9,7 +9,7 @@ sidebar_position: 15
 
 :::note Deprecation Warning
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../../using/reference/v3-multi-datacenter/index.md) instead.
-:::note
+:::
 
 ## [Architecture][v2 mdc arch]
 

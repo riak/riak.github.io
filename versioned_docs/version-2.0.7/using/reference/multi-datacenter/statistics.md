@@ -72,14 +72,14 @@ These values are under `realtime_queue_stats`.
 
 ## Fullsync Replication Statistics
 
-| Field                    | Description                                                                       |
-|--------------------------|-----------------------------------------------------------------------------------|
-| `fullsync_enabled`       | A list of all sinks that are enabled                                              |
-| `fullsync_running`       | A list of all sinks that are running                                              |
-| `server_fullsyncs`       | The number of fullsync operations that have occurred since the server was started |
-| `fullsyncs_completed`    | The number of fullsyncs that have been completed to the specified sink cluster.   |
-| `fullsync_start_time`    | The time the current fullsink to the specified cluster began.                     |
-| `last_fullsync_duration` | The duration (in seconds) of the last completed fullsync.                         |
+| Field                     | Description                                                                       |
+|---------------------------|-----------------------------------------------------------------------------------|
+| `fullsync_enabled`        | A list of all sinks that are enabled                                              |
+| `fullsync_running`        | A list of all sinks that are running                                              |
+| `server_fullsyncs`        | The number of fullsync operations that have occurred since the server was started |
+| `fullsyncs_completed`     | The number of fullsyncs that have been completed to the specified sink cluster.   |
+| `fullsync_start_time`     | The time the current fullsink to the specified cluster began.                     |
+| `last_fullsync_duration ` | The duration (in seconds) of the last completed fullsync.                         |
 
 If this cluster is acting as a **source**, the `fullsync_coordinator` field returns a list of `{<sink_clustername>:<fullsync_stats>}`. If this cluster is acting as a **sink**, the `fullsync_coordinator_srv` field returns a list of `{<LocalIP:Port>:<fullsync_coordinator_srv_stats>}`.
 
@@ -204,7 +204,7 @@ more information.
 | `dropped_count`     | The number of objects that failed to be enqueued in the bounded queue due to the queue being full. *These objects will be replicated during the next fullsync operation*. |
 | `queue_length`      | The number of Riak objects currently in the bounded queue                                                                                                                 |
 | `queue_byte_size`   | The size of all objects currently in the queue                                                                                                                            |
-| `queue_max_size`    | The number of bytes the queue can hold before objects are dropped. *These objects will be replicated during the next fullsync operation*.                                 |
+| `queue_max_size `   | The number of bytes the queue can hold before objects are dropped. *These objects will be replicated during the next fullsync operation*.                                 |
 | `queue_percentage`  | The percentage of the queue that is full                                                                                                                                  |
 | `queue_pending`     | The current count of "in-flight" objects we've sent that the client has not acknowledged                                                                                  |
 | `queue_max_pending` | The maximum number of objects that can be "in flight" before we refuse to send any more.                                                                                  |

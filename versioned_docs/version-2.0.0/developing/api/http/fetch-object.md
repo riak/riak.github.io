@@ -1,7 +1,7 @@
 ---
 title: "Fetch Object"
 id: http_fetch_object
-slug: fetch-object
+slug: fetch-object 
 sidebar_position: 5
 ---
 
@@ -16,30 +16,30 @@ GET /buckets/bucket/keys/key
 Important headers:
 
 * `Accept` - When `multipart/mixed` is the preferred content-type, objects with
-  siblings will return all siblings in single request. See [Siblings examples](#siblings-examples). See
-  also RFC 2616 - [Accept header definition](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1).
+siblings will return all siblings in single request. See [Siblings examples](#siblings-examples). See
+also RFC 2616 - [Accept header definition](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1).
 
 Optional headers:
 
 * `If-None-Match` and `If-Modified-Since` invoke conditional request semantics,
-  matching on the `ETag` and `Last-Modified` of the object, respectively.  If the
-  object fails one of the tests (that is, if the ETag is equal or the object is
-  unmodified since the supplied timestamp), Riak will return a `304 Not Modified`
-  response. See also RFC 2616 - [304 Not Modified](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5).
+matching on the `ETag` and `Last-Modified` of the object, respectively.  If the
+object fails one of the tests (that is, if the ETag is equal or the object is
+unmodified since the supplied timestamp), Riak will return a `304 Not Modified`
+response. See also RFC 2616 - [304 Not Modified](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5).
 
 Optional query parameters:
 
 * `r` - (read quorum) how many replicas need to agree when retrieving the
-  object ([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
+object ([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
 * `pr` - how many primary replicas need to be online when doing the read
-  ([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
+([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
 * `basic_quorum` - whether to return early in some failure cases (eg. when r=1
-  and you get 2 errors and a success `basic_quorum=true` would return an error)
-  ([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
+and you get 2 errors and a success `basic_quorum=true` would return an error)
+([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
 * `notfound_ok` - whether to treat notfounds as successful reads for the
-  purposes of R ([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
+purposes of R ([default is defined by the bucket](../../../developing/api/http/set-bucket-props.md))
 * `vtag` - when accessing an object with siblings, which sibling to retrieve.
-  Scroll down to the [Manually requesting siblings](#manually-requesting-siblings) example for more information.
+Scroll down to the [Manually requesting siblings](#manually-requesting-siblings) example for more information.
 
 ## Response
 
@@ -61,9 +61,9 @@ Important headers:
 * `X-Riak-Vclock` - the opaque vector clock for the object
 * `X-Riak-Meta-*` - any user-defined metadata defined when storing the object
 * `ETag` - the entity tag for the object, useful for conditional GET operations
-  and validation-based caching
+and validation-based caching
 * `Last-Modified` - a timestamp for when the object was last written, in HTTP
-  datetime format
+datetime format
 * `Link` - user- and system-defined links to other resources. [Read more about Links.](../../../learn/glossary.md)
 
 The body of the response will be the contents of the object except when siblings

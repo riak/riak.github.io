@@ -18,7 +18,7 @@ The examples below will assume that the network in question is
 security has been [enabled](../../using/security/basics.md).
 
 :::note Note on SSL connections
-If you use *any* of the aforementioned security sources, even `trust`, you
+If you use _any_ of the aforementioned security sources, even `trust`, you
 will need to do so via a secure SSL connection.
 :::
 
@@ -76,7 +76,7 @@ that user's characteristics:
 riak-admin security alter-user riakuser password=captheorem4life
 ```
 
-You can specify that *all* users must authenticate themselves via
+You can specify that _all_ users must authenticate themselves via
 password when connecting to Riak from `localhost`:
 
 ```bash
@@ -110,7 +110,7 @@ Authority](http://en.wikipedia.org/wiki/Root_certificate).
 > **Note**
 >
 > At this time, client certificates are not supported in Riak's HTTP
-> interface, and can be used only through the [protocol buffers interface](../../developing/api/protocol-buffers/index.md).
+interface, and can be used only through the [protocol buffers interface](../../developing/api/protocol-buffers/index.md).
 
 Let's specify that our user `riakuser` is going to be authenticated
 using a certificate on `localhost`:
@@ -142,8 +142,8 @@ ssl.cacertfile = /path/to/cacert.pem
 ```
 
 In the client-side example above, the client's `CN` and Riak username
-needed to match. On the server (i.e. Riak) side, the `CN` specified *on
-each node* must match the node's name as registered by Riak. You can
+needed to match. On the server (i.e. Riak) side, the `CN` specified _on
+each node_ must match the node's name as registered by Riak. You can
 find the node's name in [`riak.conf`](../../configuring/reference.md) under the parameter `nodename`. And so if the `nodename` for a cluster is
 `riak-node-1`, you would need to generate your certificate with that in
 mind, as in this OpenSSL example:
@@ -189,11 +189,13 @@ riak-admin security print-sources
 
 That command should output the following:
 
-    +--------------------+------------+----------+------------------------+
-    |       users        |    cidr    |  source  |        options         |
-    +--------------------+------------+----------+------------------------+
-    |      riakuser      |127.0.0.1/32|   pam    |[{"service","riak_pam"}]|
-    +--------------------+------------+----------+------------------------+
+```
++--------------------+------------+----------+------------------------+
+|       users        |    cidr    |  source  |        options         |
++--------------------+------------+----------+------------------------+
+|      riakuser      |127.0.0.1/32|   pam    |[{"service","riak_pam"}]|
++--------------------+------------+----------+------------------------+
+```
 
 You can test that setup most easily by using `curl`. A normal request to
 Riak without specifying a user will return an `Unauthorized` message:
@@ -205,7 +207,9 @@ curl -u riakuser: \
 
 Response:
 
-    <html><head><title>401 Unauthorized</title></head><body><h1>Unauthorized</h1>Unauthorized<p><hr><address>mochiweb+webmachine web server</address></body></html>
+```
+<html><head><title>401 Unauthorized</title></head><body><h1>Unauthorized</h1>Unauthorized<p><hr><address>mochiweb+webmachine web server</address></body></html>
+```
 
 If you identify yourself as `riakuser` and are successfully
 authenticated by your PAM service, you should get either `not found` or
@@ -239,13 +243,15 @@ riak-admin security add-source riakuser 127.0.0.1/32 password
 If we run `riak-admin security print-sources`, we'll get the following
 output:
 
-    +--------------------+------------+-----------+----------+
-    |       users        |    cidr    |  source   | options  |
-    +--------------------+------------+-----------+----------+
-    |      riakuser      |127.0.0.1/32| password  |    []    |
-    |                    |127.0.0.1/32|certificate|    []    |
-    |        all         |127.0.0.1/32|certificate|    []    |
-    +--------------------+------------+-----------+----------+
+```
++--------------------+------------+-----------+----------+
+|       users        |    cidr    |  source   | options  |
++--------------------+------------+-----------+----------+
+|      riakuser      |127.0.0.1/32| password  |    []    |
+|                    |127.0.0.1/32|certificate|    []    |
+|        all         |127.0.0.1/32|certificate|    []    |
++--------------------+------------+-----------+----------+
+```
 
 As we can see, `password` is set as the security source for `riakuser`,
 whereas everyone else will authenticate using `certificate`.

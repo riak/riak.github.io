@@ -171,7 +171,7 @@ the following in the Erlang shell.
 Do not use this in a production
 environment; listing all keys to identify those in the `training` bucket 
 is a very expensive process.
-:::note
+:::
 
 ```erlang
 {ok, Re} = re:compile("caremad").

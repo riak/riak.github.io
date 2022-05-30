@@ -3,6 +3,9 @@ title: "Security Basics"
 id: security_basics
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 > **Note on Network security**
 >
 > This document covers only the 2.0 authentication and authorization
@@ -630,7 +633,7 @@ process would be required to fully remove the source:
 riak-admin security del-source all 127.0.0.1/32 password
 riak-admin security del-source riakuser 127.0.0.1/32 password
 ```
-:::note
+:::
 
 ### More Usage Examples
 
@@ -728,11 +731,19 @@ configure HTTPS, you will need to not only establish a [certificate configuratio
 and port. The following configuration would establish port 8088 on
 `localhost` as the HTTPS port:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 listener.https.$name = 127.0.0.1:8088
 
 # By default, "internal" is used as the "name" setting
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_core, [
@@ -741,6 +752,10 @@ listener.https.$name = 127.0.0.1:8088
              %% Other configs
             ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## TLS Settings
 

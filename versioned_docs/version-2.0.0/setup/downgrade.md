@@ -5,13 +5,13 @@ slug: downgrading
 sidebar_position: 4
 ---
 
-Downgrades of Riak are tested and supported for two feature release
-versions, with the general procedure being similar to that of a
-[rolling upgrade](upgrading/cluster.md).
-
 :::note End Of Life Warning
 We test downgrading for two feature release versions. However, all versions below KV 2.0 are End Of Life (EOL) and unsupported. Please be aware of that if you choose to downgrade.
 :::
+
+Downgrades of Riak are tested and supported for two feature release
+versions, with the general procedure being similar to that of a
+[rolling upgrade](./upgrading/cluster.md).
 
 You should perform the following actions on each node:
 

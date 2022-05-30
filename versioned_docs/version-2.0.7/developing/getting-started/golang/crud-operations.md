@@ -9,7 +9,7 @@ sidebar_position: 0
 
 First let’s create a few objects and a bucket to keep them in:
 
-```golang
+```go
   val1 := uint32(1)
   val1buf := make([]byte, 4)
   binary.LittleEndian.PutUint32(val1buf, val1)
@@ -74,7 +74,7 @@ First let’s create a few objects and a bucket to keep them in:
 In our first object, we have stored the integer 1 with the lookup key
 of `one`:
 
-```golang
+```go
 {
   Bucket:      bucket,
   Key:         "one",
@@ -86,7 +86,7 @@ of `one`:
 For our second object, we stored a simple string value of `two` with a
 matching key:
 
-```golang
+```go
 {
   Bucket:      bucket,
   Key:         "two",
@@ -97,7 +97,7 @@ matching key:
 
 Finally, the third object we stored was a bit of JSON:
 
-```golang
+```go
 {
   Bucket:      bucket,
   Key:         "three",
@@ -113,7 +113,7 @@ they contain the values we expect.
 
 Requesting the objects by key:
 
-```golang
+```go
 var cmd riak.Command
 wg := &sync.WaitGroup{}
 
@@ -166,7 +166,7 @@ close(d)
 Converting to JSON to compare a string key to a symbol
 key:
 
-```golang
+```go
 for done := range d {
   f := done.(*riak.FetchValueCommand)
   /* un-comment to dump fetched object as JSON
@@ -209,7 +209,7 @@ updated.
 
 Let’s update some values:
 
-```golang
+```go
 util.Log.Println("Updating Object Three In Riak...")
 
 val3.MyValue = 42
@@ -251,7 +251,7 @@ As a last step, we’ll demonstrate how to delete data. You’ll see that
 the delete message can be called against either the bucket or the
 object.
 
-```golang
+```go
 for _, o := range objs {
   cmd, err = riak.NewDeleteValueCommandBuilder().
     WithBucket(o.Bucket).
@@ -281,7 +281,7 @@ bits of strings, let’s see how we can work with more complex objects.
 For example, this `struct` that represents some information about
 a book:
 
-```golang
+```go
 type Book struct {
   ISBN        string
   Title       string
@@ -302,7 +302,7 @@ book := &Book{
 We now have some information about our Moby Dick collection
 that we want to save. Storing this to Riak should look familiar by now:
 
-```golang
+```go
 var jbook []byte
 jbook, err = json.Marshal(book)
 if err != nil {
@@ -331,7 +331,7 @@ if err != nil {
 
 If we fetch our book back and print the data:
 
-```golang
+```go
 cmd, err = riak.NewFetchValueCommandBuilder().
   WithBucket("books").
   WithKey(book.ISBN).
@@ -357,6 +357,6 @@ The result is:
 
 Now, let’s delete the book:
 
-```golang
+```go
 ...
 ```

@@ -5,6 +5,9 @@ slug: multi
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [concept buckets]: ../../../learn/concepts/buckets.md
 [plan backend bitcask]: ../../../setup/planning/backend/bitcask.md
 [plan backend leveldb]: ../../../setup/planning/backend/leveldb.md
@@ -23,9 +26,18 @@ available backends---[Bitcask][plan backend bitcask], [LevelDB][plan backend lev
 You can set up your cluster to use the Multi backend using Riak's
 [configuration files][config reference].
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
+
 ```riakconf
 storage_backend = multi
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -34,6 +46,10 @@ storage_backend = multi
     %% ...
 ]},
 ```
+
+</TabItem>
+
+</Tabs>
 
 Remember that you must stop and then re-start each node when you change
 storage backends or modify any other configuration.
@@ -177,6 +193,10 @@ configuration would create two backend configurations, named
 data directory for each backend and specifying that `bitcask_mult` is
 the default.
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 storage_backend = multi
 
@@ -188,6 +208,10 @@ multi_backend.leveldb_mult.leveldb.data_root = /var/lib/riak/leveldb_mult
 
 multi_backend.default = bitcask_mult
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {riak_kv, [
@@ -204,6 +228,10 @@ multi_backend.default = bitcask_mult
     %% ...
 ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## Multi Backend Memory Use
 

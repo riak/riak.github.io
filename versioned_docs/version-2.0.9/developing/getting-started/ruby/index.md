@@ -34,7 +34,7 @@ client = Riak::Client.new(:protocol => "pbc", :pb_port => 8087)
 client = Riak::Client.new(:pb_port => 8087)
 ```
 
-If you set up a local Riak cluster using the \[[five-minute install]]
+If you set up a local Riak cluster using the [[five-minute install]]
 method, use this code snippet instead:
 
 ```ruby

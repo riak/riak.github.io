@@ -15,7 +15,11 @@ in the cluster and should not be used in production.
 ## Request
 
 ```bash
+# Using the default bucket type
 GET /buckets?buckets=true
+
+# Using a non-default bucket type
+GET /types/<type>/buckets?buckets=true
 ```
 
 Required query parameter:
@@ -26,11 +30,11 @@ Required query parameter:
 
 Normal status codes:
 
-* 200 OK
+* `200 OK`
 
 Important headers:
 
-* Content-Type - application/json
+* `Content-Type - application/json`
 
 The JSON object in the response will contain a single entry, "buckets", which
 will be an array of bucket names.

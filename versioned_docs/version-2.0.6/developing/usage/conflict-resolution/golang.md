@@ -1,7 +1,7 @@
 ---
 title: "Go"
 id: usage_conflict_resolution_golang
-slug: golang
+slug: golang 
 sidebar_position: 6
 ---
 
@@ -16,7 +16,7 @@ In the Riak Go client, it is possible that the result of a fetch will return an 
 of sibling objects. If there are no siblings, that property will return an
 array with one value in it.
 
-[*Example:* creating object with siblings](https://github.com/basho/riak-go-client/blob/master/examples/dev/using/conflict-resolution/main.go#L169-L210)
+[*Example:* creating object with siblings](https://github.com/basho/riak-go-client/blob/master/examples/dev/using/conflict-resolution/main.go#L68-L70)
 
 So what happens if the length of `Values` is greater than 1, as in the case
 above?
@@ -30,14 +30,14 @@ the canonical value.
 In this example, you will ignore the contents of the `Values` slice and will
 fetch, update and store the definitive value.
 
-[*Example:* resolving siblings via store](https://github.com/basho/riak-go-client/blob/master/examples/dev/using/conflict-resolution/main.go#L169-L210)
+[*Example:* resolving siblings via store](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L125-L146)
 
 ### Choosing a value from `Values`
 
 This example shows a basic sibling resolution strategy in which the first
 sibling is chosen as the canonical value.
 
-[*Example:* resolving siblings using the first value](https://github.com/basho/riak-go-client/blob/master/examples/dev/using/conflict-resolution/main.go#L169-L210)
+[*Example:* resolving siblings using the first value](https://github.com/basho/riak-go-client/blob/master/examples/dev/using/conflict-resolution/main.go#L148-L167)
 
 ### Using `ConflictResolver`
 

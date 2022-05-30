@@ -1,7 +1,7 @@
 ---
 title: "Server Info"
 id: pbc_server_info
-slug: server-info
+slug: server-info 
 sidebar_position: 12
 ---
 

@@ -19,7 +19,7 @@ Unless otherwise specified, the tunings recommended below are for Linux
 distributions. Users implementing Riak on BSD and Solaris distributions can
 use these tuning recommendations to make analogous changes in those operating
 systems.
-:::note
+:::
 
 ## Storage and File System Tuning
 
@@ -54,7 +54,7 @@ For the change to become effective, a server reboot is required.
 
 :::note Note on Kernel Tuning Tools
 Some Kernel tuning tools such as ktune specify that THP should be enabled. This can cause THP to seem to be enabled even though `transparent_hugepage=never` has already been added to `grub.conf` and the system rebooted. Should this occur, please refer to the documentation for the Kernel tuning tool you are using as to how to disable THP.
-:::note
+:::
 
 ### Mounts
 
@@ -178,7 +178,7 @@ net.ipv4.tcp_moderate_rcvbuf = 1
 In general, these recommended values should be compared with the system
 defaults and only changed if benchmarks or other performance metrics indicate
 that networking is the bottleneck.
-:::note
+:::
 
 The following settings are optional, but may improve performance on a
 10Gb network:
@@ -216,7 +216,7 @@ command to the `/etc/rc.local` script.
 :::note Pro tip
 Tuning these values will be required if they are changed, as they affect all
 network operations.
-:::note
+:::
 
 ## Optional I/O Settings
 

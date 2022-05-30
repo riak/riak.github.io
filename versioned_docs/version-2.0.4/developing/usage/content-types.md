@@ -1,22 +1,20 @@
 ---
 title: "Content Types"
 id: usage_content_types
-slug: content-types
+slug: content-types 
 sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 Riak KV is a fundamentally content-agnostic database. You can use it to
 store anything you want, from JSON to XML to HTML to binaries to images
-and beyond. It's important to note that *all* objects stored in
+and beyond. It's important to note that _all_ objects stored in
 Riak need a specified content type. If you don't specify a
 content type, the reaction will vary based on your client library:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -29,7 +27,6 @@ content type, the reaction will vary based on your client library:
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -39,7 +36,6 @@ ArgumentError: content_type is not defined!
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -51,7 +47,6 @@ ArgumentError: content_type is not defined!
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -61,7 +56,6 @@ ArgumentError: content_type is not defined!
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -73,7 +67,6 @@ ArgumentError: content_type is not defined!
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -83,7 +76,6 @@ ArgumentError: content_type is not defined!
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -96,15 +88,13 @@ ArgumentError: content_type is not defined!
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 // In the Go client, you must always specify a content type.
 ```
 
 </TabItem>
-
 </Tabs>
 
 Because content type negotiation varies so widely from client to client,
@@ -117,7 +107,6 @@ For all writes to Riak, you will need to specify a content type, for
 example `text/plain` or `application/json`.
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -132,7 +121,6 @@ client.execute(store);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -144,7 +132,6 @@ obj.store
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -156,7 +143,6 @@ $response = (new \Basho\Riak\Command\Builder\StoreObject($riak))
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -168,7 +154,6 @@ obj.store()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -179,7 +164,6 @@ var rslt = client.Put(obj);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -197,7 +181,6 @@ client.storeValue({
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -209,10 +192,9 @@ riakc_pb_socket:put(Pid, Object).
 ```
 
 </TabItem>
-
 <TabItem label="Go" value="go">
 
-```golang
+```go
 obj := &riak.Object{
     ContentType:     "text/plain",
     Charset:         "utf-8",
@@ -242,7 +224,6 @@ rsp := svc.Response
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -256,5 +237,4 @@ curl -XPUT \
 ```
 
 </TabItem>
-
 </Tabs>

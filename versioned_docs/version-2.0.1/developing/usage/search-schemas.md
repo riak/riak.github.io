@@ -1,21 +1,20 @@
 ---
 title: "Creating Search Schemas"
 id: usage_search_schemas
-slug: search-schemas
-sidebar_position: 10
+slug: search-schemas 
+sidebar_position: 10 
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 
 [concept clusters]: ../../learn/concepts/clusters.md
 
 > **Note on Search 2.0 vs. Legacy Search**
 >
 > This document refers to the new Riak Search 2.0 with
-> [Solr](http://lucene.apache.org/solr/) integration (codenamed
-> Yokozuna). For information about the deprecated Riak Search, visit [the old Using Riak Search docs](http://docs.basho.com/riak/1.4.10/dev/using/search/).
+[Solr](http://lucene.apache.org/solr/) integration (codenamed
+Yokozuna). For information about the deprecated Riak Search, visit [the old Using Riak Search docs](http://docs.basho.com/riak/1.4.10/dev/using/search/).
 
 Riak Search is built for ease of use, allowing you to write values into
 Riak and query for values using Solr. Riak Search does a lot of work
@@ -29,8 +28,7 @@ defining a Solr **schema**.
 
 Riak Search comes bundled with a default schema named `_yz_default`. The
 default schema covers a wide range of possible field types. You can find
-the default schema [on
-GitHub](https://raw.github.com/basho/yokozuna/develop/priv/default_schema.xml).
+the default schema [on GitHub](https://raw.github.com/basho/yokozuna/develop/priv/default_schema.xml).
 While using the default schema provides an easy path to starting
 development, we recommend that you define your own schema in production.
 Take note of `dynamicField name="*"`, which is a catch-all index for any
@@ -45,7 +43,6 @@ file named `cartoons.xml`. This would register the custom schema in Riak
 Search:
 
 <Tabs>
-
 <TabItem label="Java" value="java" default>
 
 ```java
@@ -59,7 +56,6 @@ client.execute(storeSchemaOp);
 ```
 
 </TabItem>
-
 <TabItem label="Ruby" value="ruby">
 
 ```ruby
@@ -68,7 +64,6 @@ client.create_search_schema("cartoons", schema_data)
 ```
 
 </TabItem>
-
 <TabItem label="PHP" value="php">
 
 ```php
@@ -80,7 +75,6 @@ client.create_search_schema("cartoons", schema_data)
 ```
 
 </TabItem>
-
 <TabItem label="Python" value="python">
 
 ```python
@@ -91,7 +85,6 @@ xml_file.close()
 ```
 
 </TabItem>
-
 <TabItem label="C#" value="c#">
 
 ```csharp
@@ -101,7 +94,6 @@ var rslt = client.PutSearchSchema(schema);
 ```
 
 </TabItem>
-
 <TabItem label="JS" value="js">
 
 ```javascript
@@ -128,7 +120,6 @@ fs.readFile('cartoons.xml', function (err, data) {
 ```
 
 </TabItem>
-
 <TabItem label="Erlang" value="erlang">
 
 ```erlang
@@ -137,7 +128,6 @@ riakc_pb_socket:create_search_schema(Pid, <<"cartoons">>, SchemaData).
 ```
 
 </TabItem>
-
 <TabItem label="CURL" value="curl">
 
 ```bash
@@ -147,7 +137,6 @@ curl -XPUT http://localhost:8098/search/schema/cartoons \
 ```
 
 </TabItem>
-
 </Tabs>
 
 ## Creating a Custom Schema
@@ -185,13 +174,15 @@ pairs. Nested objects will be separated with a dot (`.`) and arrays will
 simply repeat the fields. The above object will be extracted to the
 following list of Solr document fields.
 
-    name=Lion-o
-    age=30
-    leader=true
-    aliases.name=León-O
-    aliases.desc_es=Señor de los ThunderCats
-    aliases.name=Starlion
-    aliases.desc_fr=Le jeune seigneur des Cosmocats
+```
+name=Lion-o
+age=30
+leader=true
+aliases.name=León-O
+aliases.desc_es=Señor de los ThunderCats
+aliases.name=Starlion
+aliases.desc_fr=Le jeune seigneur des Cosmocats
+```
 
 This means that our schema should handle `name`, `age`, `leader`,
 `aliases.name` (a `dot` is a valid field character), and
@@ -215,7 +206,7 @@ other than allow Riak Search to properly manage your stored objects.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema name="schedule" version="1.5">
+<schema name="schedule" version="1.0">
  <fields>
 
    <!-- All of these fields are required by Riak Search -->
@@ -240,7 +231,7 @@ other than allow Riak Search to properly manage your stored objects.
 ```
 
 If you're missing any of the above fields, Riak Search will reject your
-custom schema. The value for `<uniqueKey>` *must* be `_yz_id`.
+custom schema. The value for `<uniqueKey>` _must_ be `_yz_id`.
 
 In the table below, you'll find a description of the various required
 fields. You'll rarely need to use any fields other than `_yz_rt` (bucket
@@ -250,7 +241,7 @@ Malformed JSON or XML will cause Riak Search to index a key and set
 `_yz_err` to 1, allowing you to reindex with proper values later.
 
 | Field      | Name                   | Description                                                                                      |
-| :--------- | :--------------------- | :----------------------------------------------------------------------------------------------- |
+|:-----------|:-----------------------|:-------------------------------------------------------------------------------------------------|
 | `_yz_id`   | ID                     | Unique identifier of this Solr document                                                          |
 | `_yz_ed`   | Entropy Data           | Data related to [active anti-entropy](../../learn/concepts/active-anti-entropy.md)               |
 | `_yz_pn`   | Partition Number       | Used as a filter query parameter to remove duplicate replicas across nodes                       |

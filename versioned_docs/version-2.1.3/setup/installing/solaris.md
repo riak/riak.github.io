@@ -1,7 +1,7 @@
 ---
 title: "Solaris"
 id: installing_solaris
-slug: solaris
+slug: solaris 
 sidebar_position: 6
 ---
 
@@ -27,8 +27,10 @@ ulimit -n 65536
 
 To increase this value in a persistent manner that will be enforced after restarting the system, add the following to the `/etc/system` file:
 
-    set rlim_fd_max=65536
-    set rlim_fd_cur=65536
+```
+set rlim_fd_max=65536
+set rlim_fd_cur=65536
+```
 
 Note that you must restart to have the above settings take effect.
 
@@ -37,14 +39,14 @@ Note that you must restart to have the above settings take effect.
 Download your version of the Riak binary package for Solaris 10:
 
 ```bash
-curl -o /tmp/BASHOriak-2.1.4-Solaris10-i386.pkg.gz http://s3.amazonaws.com/downloads.basho.com/riak/2.1/2.1.4/solaris/10/BASHOriak-2.1.4-Solaris10-x86_64.pkg.gz
+curl -o /tmp/BASHOriak-2.1.3-Solaris10-i386.pkg.gz http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.1.3/solaris/10/BASHOriak-2.1.3-Solaris10-x86_64.pkg.gz
 ```
 
 Next, install the package:
 
 ```bash
-gunzip /tmp/BASHOriak-2.1.4-Solaris10-i386.pkg.gz
-pkgadd /tmp/BASHOriak-2.1.4-Solaris10-i386.pkg
+gunzip /tmp/BASHOriak-2.1.3-Solaris10-i386.pkg.gz
+pkgadd /tmp/BASHOriak-2.1.3-Solaris10-i386.pkg
 ```
 
 After installing the package, be sure to include `/opt/riak/bin` in the
