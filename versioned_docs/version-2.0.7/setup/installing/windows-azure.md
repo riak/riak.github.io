@@ -1,7 +1,7 @@
 ---
 title: "Windows Azure"
 id: installing_windows_azure
-slug: windwows-azue 
+slug: windows-azure 
 sidebar_position: 8
 ---
 
