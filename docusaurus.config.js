@@ -26,7 +26,13 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/riak/riak.github.io/',
           remarkPlugins: [require('mdx-mermaid')],
-          includeCurrentVersion: process.env.NODE_ENV === 'development',
+          // Disable versioning if in dev mode and using the start:fast task.
+          disableVersioning: process.env.NODE_ENV === 'development' && !!process.env.START_FAST,
+          versions: {
+            current: {
+              label: require('./dev_version.json'),
+            },
+          },
         },
         blog: {
           showReadingTime: true,
