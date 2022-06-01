@@ -67,6 +67,4 @@ async function gatherMetadata(metadata, version) {
   await Promise.allSettled(versions.map(async version => await gatherMetadata(metadata, version)));
 
   writeFile('docs_metadata.json', JSON.stringify(metadata)); 
-
-  console.log(metadata);
 })();

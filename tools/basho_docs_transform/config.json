@@ -1,5 +1,5 @@
 {
-  "to_delete": ["downloads.md", "release-notes.md", "setup/planning/bitcask-capacity-calc.md"],
+  "to_delete": ["downloads.md", "release-notes.md", "introduction.md", "setup/planning/bitcask-capacity-calc.md"],
   "to_rename": [
     {
       "from": "/setup/planning/bitcask-capacity-calc.md",
@@ -37,7 +37,8 @@
       "shell": "bash",
       "bashell": "bash",
       "golang": "go",
-      "appconfig": "erlang"
+      "appconfig": "erlang",
+      "advancedconfig": "erlang"
     }
   }
 }

@@ -11,6 +11,7 @@ const { shortcodes } = require('remark-hugo-shortcodes');
 const { transformCodeBlock } = require('./code_blocks.js');
 const docs_metadata = require('./docs_metadata.json');
 const config = require('./config.json');
+const versions = require('../../versions.json');
 
 const drafts = [];
 const redirects = [];
@@ -81,23 +82,35 @@ async function createIndexFiles(dirents) {
 }
 
 async function configFileTreeChanges(dir) {
-  const renames = config.to_rename.map(async ({ from, to }) => { 
-    const from_path = join(dir, from);
-    const to_path = join(dir, to);
+  const versioned_renames = config.to_rename
+    .map(({ from, to }) => 
+      versions.map(version => {
+        const version_dir = `${dir}/${version}`;
+        const from_path = join(version_dir, from);
+        const to_path = join(dir, to);
 
+        return { from_path, to_path };
+    }))
+    .flat();
+  
+  const versioned_deletes = config.to_delete
+    .map(file_path => versions.map(version => join(`${dir}/${version}`, file_path)))
+    .flat();
+
+  await Promise.all(versioned_renames.map(async ({ from_path, to_path }) => {
     if (args.full_logs) {
       console.log(`Renaming ${from_path} to ${to_path}`);
     }
 
     mv(from_path, to_path, { mkdirp: true }, () => {});
-  });
+  }));
 
-  return Promise.all(config.to_delete.map(async file_path => { 
+  return Promise.all(versioned_deletes.map(async file_path => { 
     if (args.full_logs) {
       console.log(`Deleting ${file_path}`);
     }
 
-    await remove(join(dir, file_path));
+    await remove(file_path);
   }));
 }
 
@@ -223,6 +236,33 @@ function transformNodeLang({ f }) {
   };
 }
 
+function transformBlockQuoteNotes() {
+  return tree => {
+    visit(tree, 'blockquote', node => {
+      visit(node?.children[0], 'strong', strong_node =>
+        visit(strong_node, 'text', text_node => {
+          const lower = text_node.value.toLowerCase();
+
+          if (lower.includes('note')) {
+            const node_index = tree.children.indexOf(node);
+            const children = node.children;
+            
+            // Don't include the value if is is just 'note'
+            const value = lower.trim() === 'note' ? '' : text_node.value;
+
+            strong_node.type = 'paragraph';
+
+            text_node.value = `:::note ${value}`;
+
+            children.push({ type: 'text', value: ':::' });
+
+            tree.children.splice(node_index, 1, ...children);
+          }
+        }));
+    });
+  };
+}
+
 (async () => {
   const output_docs_dir = args.output_docs_dir;
   const shortcodeOptions = {
@@ -249,6 +289,7 @@ function transformNodeLang({ f }) {
         .use(transformCodeBlock)
         .use(transformLinks, { output_docs_dir, f })
         .use(transformNodeLang, { f })
+        .use(transformBlockQuoteNotes)
         .process(content);
     const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 
