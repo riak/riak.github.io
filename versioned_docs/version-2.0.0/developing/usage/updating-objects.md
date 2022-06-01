@@ -19,7 +19,7 @@ being written should be deemed correct? These kinds of scenarios can
 arise quite frequently in distributed, [eventually consistent](../../learn/concepts/eventual-consistency.md) systems.
 
 Riak decides which object to choose in case of conflict using [causal context](../../learn/concepts/causal-context.md). These objects track the causal history of objects.
-They are attached to _all_ Riak objects as metadata, and they are not
+They are attached to *all* Riak objects as metadata, and they are not
 readable by humans. They may sound complex---and they are fairly complex
 behind the scenes---but using them in your application is very simple.
 
@@ -356,40 +356,44 @@ recommend that you:
 That cycle looks something like this:
 
 1. **Read** the object from Riak. This step is important for updates
-because this enables you to fetch the object's [causal context](../../learn/concepts/causal-context.md), which
-is the information that Riak uses to make decisions about which object
-values are most recent (this is especially useful for objects that are
-frequently updated). This context object needs to be passed back to Riak
-when you update the object. This step is handled for you by Basho's
-client libraries as long as you perform a read prior to an update. In
-addition, if you have chosen to allow Riak to generate
-[siblings](../../developing/usage/conflict-resolution/index.md#siblings) \(which we recommend), you
-should **resolve sibling conflicts** upon read if they exist. For more
-on this, please see our documentation on [conflict resolution](../../developing/usage/conflict-resolution/index.md), along
-with examples from our official client libraries:
-  * [Java](../../developing/usage/conflict-resolution/java.md)
-  * [Ruby](../../developing/usage/conflict-resolution/ruby.md)
-  * [Python](../../developing/usage/conflict-resolution/python.md)
-  * [C#](../../developing/usage/conflict-resolution/csharp.md)
-  * [Go](../../developing/usage/conflict-resolution/golang.md)
+   because this enables you to fetch the object's [causal context](../../learn/concepts/causal-context.md), which
+   is the information that Riak uses to make decisions about which object
+   values are most recent (this is especially useful for objects that are
+   frequently updated). This context object needs to be passed back to Riak
+   when you update the object. This step is handled for you by Basho's
+   client libraries as long as you perform a read prior to an update. In
+   addition, if you have chosen to allow Riak to generate
+   [siblings](../../developing/usage/conflict-resolution/index.md#siblings) (which we recommend), you
+   should **resolve sibling conflicts** upon read if they exist. For more
+   on this, please see our documentation on [conflict resolution](../../developing/usage/conflict-resolution/index.md), along
+   with examples from our official client libraries:
+
+* [Java](../../developing/usage/conflict-resolution/java.md)
+* [Ruby](../../developing/usage/conflict-resolution/ruby.md)
+* [Python](../../developing/usage/conflict-resolution/python.md)
+* [C#](../../developing/usage/conflict-resolution/csharp.md)
+* [Go](../../developing/usage/conflict-resolution/golang.md)
+
 2. **Modify the object** on the application side.
 3. **Write** the new, modified object to Riak. Because you read the
-object first, Riak will receive the object's causal context metadata.
-Remember that this happens automatically.
+   object first, Riak will receive the object's causal context metadata.
+   Remember that this happens automatically.
 
 In general, you should read an object before modifying it. Think of it
 as performing a `GET` prior to any `PUT` when interacting with a REST
 API.
 
-> **Note on strong consistency**
->
-> If you are using Riak's [strong consistency](../../developing/app-guide/strong-consistency.md) feature, it is not only desirable but also necessary to use the read/modify/write cycle explained in the section above. If you attempt to update an object without fetching the object first, your update operation will necessarily fail. More information can be found in the
+:::note Note on strong consistency
+
+If you are using Riak's [strong consistency](../../developing/app-guide/strong-consistency.md) feature, it is not only desirable but also necessary to use the read/modify/write cycle explained in the section above. If you attempt to update an object without fetching the object first, your update operation will necessarily fail. More information can be found in the
 [strong consistency documentation](../../developing/app-guide/strong-consistency.md#strongly-consistent-writes).
+
+:::
 
 ### Updating Deleted Objects
 
 You should use the read-modify-write cycle explained above at all times,
-_even if you're updating deleted objects_. The reasons for that can be
+*even if you're updating deleted objects*. The reasons for that can be
 found in our documentation on [tombstones](../../using/reference/object-deletion.md#tombstones).
 
 There are some modifications that you may need to make if you are
@@ -718,7 +722,7 @@ of the new coach; and finally the object is written back to Riak.
 ## Object Update Anti-patterns
 
 The most important thing to bear in mind when updating objects is this:
-you should always read an object prior to updating it _unless_ you are
+you should always read an object prior to updating it *unless* you are
 certain that no object is stored there. If you are storing [sensor data](../../learn/use-cases.md#sensor-data) in Riak and using timestamps as keys, for example, then you can be sure that keys are not repeated. In that case, making writes to Riak without first reading the object is fine. If
 you're not certain, however, then we recommend always reading the object
 first.
@@ -798,7 +802,7 @@ client.execute(updateOp);
 You may notice that a fetch option was added to our `UpdateValue`
 operation: `FetchValue.Option.DELETED_VCLOCK` was set to `true`.
 Remember from the section above that you should always read an object
-before modifying and writing it, _even if the object has been deleted_.
+before modifying and writing it, *even if the object has been deleted*.
 Setting this option to `true` ensures that the causal context is fetched
 from Riak if the object has been deleted. We recommend always setting
 this option to `true` when constructing `UpdateValue` operations.
@@ -833,8 +837,8 @@ that don't actually modify the object and simply write the original
 value back to Riak. What is the use of that, given that it isn't
 changing the value of the object at all? No-operation updates can be
 useful because they can help Riak resolve [sibling conflicts](../../developing/usage/conflict-resolution/index.md#siblings). If you have an object---or many objects, for that
-matter---with siblings, a no-operation update will fetch the object _and
-its causal context_ and write the object back to Riak with the same,
+matter---with siblings, a no-operation update will fetch the object *and
+its causal context* and write the object back to Riak with the same,
 fetched context. This has the effect of telling Riak that you deem this
 value to be most current. Riak can then use this information in internal
 sibling resolution operations.
@@ -850,7 +854,7 @@ client.execute(updateOp);
 ```
 
 The example above would update the object without fetching it. You
-could, however, use a no-operation update to _read_ an object as well if
+could, however, use a no-operation update to *read* an object as well if
 you set `return_body` to `true` in your request:
 
 ```java

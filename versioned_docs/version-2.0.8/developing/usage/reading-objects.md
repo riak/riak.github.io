@@ -12,15 +12,13 @@ import TabItem from '@theme/TabItem';
 
 You can think of reads in Riak as analogous to HTTP `GET` requests. You
 specify a bucket type, bucket, and key, and Riak either returns the
-object that's stored there---including its [siblings](../../developing/usage/conflict-resolution/index.md#siblings) \(more on that later)---or it returns `not found` (the
+object that's stored there---including its [siblings](../../developing/usage/conflict-resolution/index.md#siblings) (more on that later)---or it returns `not found` (the
 equivalent of an HTTP `404 Object Not Found`).
 
 Here is the basic command form for retrieving a specific key from a
 bucket:
 
-```
-GET /types/<type>/buckets/<bucket>/keys/<key>
-```
+    GET /types/<type>/buckets/<bucket>/keys/<key>
 
 Here is an example of a read performed on the key `rufus` in the bucket
 `dogs`, which bears the  bucket type `animals`. Please note that for this example to work, you must have first created the bucket-type `animals` as per the instructions on the [bucket type](../../using/cluster-operations/bucket-types.md) page.
@@ -116,7 +114,7 @@ curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
 ## Read Parameters
 
 | Parameter     | Default  | Description                                                                                                                                                                         |
-|:--------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :------------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `r`           | `quorum` | How many replicas need to agree when retrieving an existing object before the write                                                                                                 |
 | `pr`          | `0`      | How many [vnodes][glossary vnode] must respond for a read to be deemed successful                                                                                                   |
 | `notfound_ok` | `true`   | If set to `true`, if the first vnode to respond doesn't have a copy of the object, Riak will deem the failure authoritative and immediately return a `notfound` error to the client |
@@ -258,7 +256,7 @@ If you're using a Riak client instead of HTTP, these responses will vary a
 great deal, so make sure to check the documentation for your specific client.
 :::
 
-## Not Found 
+## Not Found
 
 If there's no object stored in the location where you attempt a read, you'll get the following response:
 

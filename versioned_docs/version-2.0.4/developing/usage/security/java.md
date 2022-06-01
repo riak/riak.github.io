@@ -26,7 +26,7 @@ cluster, a `RiakCluster` object registering those `RiakNode` objects,
 and finally a `RiakClient` object that registers the general cluster
 configuration. In this document, we will be working with only one node.
 
-If you are using Riak security, _all_ connecting clients should have
+If you are using Riak security, *all* connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
 regardless of which [security source](../../../using/security/managing-sources.md) you
 choose. All clients should also provide a username, regardless of

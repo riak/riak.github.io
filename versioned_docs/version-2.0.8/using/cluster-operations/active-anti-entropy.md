@@ -8,9 +8,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [config search#throttledelay]: ../../configuring/search.md#searchanti_entropythrottletierdelay
+
 [config search#throttle]: ../../configuring/search.md#searchanti_entropythrottle
 
-Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) \(AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
+Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) (AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
 
 ## Enabling Active Anti-Entropy
 
@@ -135,42 +136,39 @@ riak-admin aae-status
 When you run this command in a node, the output will look like this
 (shortened for the sake of brevity):
 
-```
-================================== Exchanges ==================================
-Index                                              Last (ago)    All (ago)
--------------------------------------------------------------------------------
-0                                                  19.0 min      20.3 min
-22835963083295358096932575511191922182123945984    18.0 min      20.3 min
-45671926166590716193865151022383844364247891968    17.3 min      19.8 min
-68507889249886074290797726533575766546371837952    16.5 min      18.3 min
-91343852333181432387730302044767688728495783936    15.8 min      17.3 min
-...
+    ================================== Exchanges ==================================
+    Index                                              Last (ago)    All (ago)
+    -------------------------------------------------------------------------------
+    0                                                  19.0 min      20.3 min
+    22835963083295358096932575511191922182123945984    18.0 min      20.3 min
+    45671926166590716193865151022383844364247891968    17.3 min      19.8 min
+    68507889249886074290797726533575766546371837952    16.5 min      18.3 min
+    91343852333181432387730302044767688728495783936    15.8 min      17.3 min
+    ...
 
-================================ Entropy Trees ================================
-Index                                              Built (ago)
--------------------------------------------------------------------------------
-0                                                  5.7 d
-22835963083295358096932575511191922182123945984    5.6 d
-45671926166590716193865151022383844364247891968    5.5 d
-68507889249886074290797726533575766546371837952    4.3 d
-91343852333181432387730302044767688728495783936    4.8 d
+    ================================ Entropy Trees ================================
+    Index                                              Built (ago)
+    -------------------------------------------------------------------------------
+    0                                                  5.7 d
+    22835963083295358096932575511191922182123945984    5.6 d
+    45671926166590716193865151022383844364247891968    5.5 d
+    68507889249886074290797726533575766546371837952    4.3 d
+    91343852333181432387730302044767688728495783936    4.8 d
 
-================================ Keys Repaired ================================
-Index                                                Last      Mean      Max
--------------------------------------------------------------------------------
-0                                                     0         0         0
-22835963083295358096932575511191922182123945984       0         0         0
-45671926166590716193865151022383844364247891968       0         0         0
-68507889249886074290797726533575766546371837952       0         0         0
-91343852333181432387730302044767688728495783936       0         0         0
-
-```
+    ================================ Keys Repaired ================================
+    Index                                                Last      Mean      Max
+    -------------------------------------------------------------------------------
+    0                                                     0         0         0
+    22835963083295358096932575511191922182123945984       0         0         0
+    45671926166590716193865151022383844364247891968       0         0         0
+    68507889249886074290797726533575766546371837952       0         0         0
+    91343852333181432387730302044767688728495783936       0         0         0
 
 Each of these three tables contains information for each
 [vnode](../../learn/concepts/vnodes.md) in your cluster in these three categories:
 
 | Category          | Measures                                                                                 | Description                                                                                  |
-|:------------------|:-----------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|
+| :---------------- | :--------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
 | **Exchanges**     | `Last`                                                                                   | When the most recent exchange between a data partition and one of its replicas was performed |
 | `All`             | How long it has been since a partition exchanged with all of its replicas                |                                                                                              |
 | **Entropy Trees** | `Built`                                                                                  | When the hash trees for a given partition were created                                       |

@@ -1,7 +1,7 @@
 ---
 title: "With NAT"
 id: configuring_v3_replication_nat
-slug: nat 
+slug: nat
 sidebar_position: 1
 ---
 
@@ -41,15 +41,14 @@ NAT rules can be configured at runtime, from the command line.
 * Realtime NAT replication changes will be applied once realtime is
   stopped and started using the following command:
 
-    * `riak-repl realtime stop <clustername>`
-    * `riak-repl realtime start <clustername>`
+  * `riak-repl realtime stop <clustername>`
+  * `riak-repl realtime start <clustername>`
 
 * Fullsync NAT replication changes will be applied on the next run of a
   fullsync, or you can stop and start the current fullsync.
 
-    * `riak-repl fullsync stop <clustername>`
-    * `riak-repl fullsync start <clustername>`
-
+  * `riak-repl fullsync stop <clustername>`
+  * `riak-repl fullsync start <clustername>`
 
 ## Example
 
@@ -62,7 +61,7 @@ Cluster_A is set up with nodes using the following **internal** IP
 addresses:
 
 | Internal IP    | Public IP |
-|----------------|-----------|
+| -------------- | --------- |
 | `192.168.1.20` | -         |
 | `192.168.1.21` | -         |
 | `192.168.1.22` | -         |
@@ -74,7 +73,7 @@ addresses:
 A node from Cluster_B will be configured as follows:
 
 | Internal IP    | Public IP            |
-|----------------|----------------------|
+| -------------- | -------------------- |
 | `192.168.2.40` | `50.16.238.120:5555` |
 | `192.168.2.41` | `50.16.238.121:5555` |
 | `192.168.2.42` | `50.16.238.122:5555` |
@@ -90,7 +89,7 @@ A node from Cluster_C is set up with **static NAT**, configured with the
 following IP addresses:
 
 | Internal IP    | Public IP            |
-|----------------|----------------------|
+| -------------- | -------------------- |
 | `192.168.3.60` | `50.16.238.200:5550` |
 | `192.168.3.61` | `50.16.238.200:5551` |
 | `192.168.3.62` | `50.16.238.200:5552` |

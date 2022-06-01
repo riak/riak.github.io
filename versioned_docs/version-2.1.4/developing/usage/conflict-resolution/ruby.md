@@ -1,7 +1,7 @@
 ---
 title: "Ruby"
 id: usage_conflict_resolution_ruby
-slug: ruby 
+slug: ruby
 sidebar_position: 1
 ---
 
@@ -48,8 +48,8 @@ following: if a given user has conflicting lists, which list should be
 deemed more "correct?" What criteria should be applied? Should the lists
 be merged? Should we pick a list at random and deem that list correct?
 We'll keep it simple here and say that the following criterion will
-hold: if multiple conflict lists exist, _the longer list will be the one
-that our application deems correct_. While this might not make sense in
+hold: if multiple conflict lists exist, *the longer list will be the one
+that our application deems correct*. While this might not make sense in
 real-world applications, it's a good jumping-off point.
 
 ### Creating Our Data Class
@@ -144,7 +144,7 @@ instead of having to deal with multiple values.
 In the above example, we created a conflict resolver that resolves a
 list of discrepant `User` objects and returns a single `User`. It's
 important to note, however, that this resolver will only provide the
-application with a single "correct" value; it will _not_ write that
+application with a single "correct" value; it will *not* write that
 value back to Riak. That requires a separate step. When this step should
 be undertaken depends on your application. In general, though, we
 recommend writing objects to Riak only when the application is ready to
@@ -157,11 +157,11 @@ these steps:
 
 1. **Read** the object from Riak
 2. **Resolving sibling conflicts** if they exist, allowing the
-application to reason about one "correct" value for the object (this
-step is the subject of this tutorial)
+   application to reason about one "correct" value for the object (this
+   step is the subject of this tutorial)
 3. **Modify** the object
 4. **Write** the object to Riak once the necessary changes have been
-made
+   made
 
 You can find more on writing objects to Riak, including examples from
 the official Ruby client library, in the [Developing with Riak KV: Usage](../../../developing/usage/index.md) section.

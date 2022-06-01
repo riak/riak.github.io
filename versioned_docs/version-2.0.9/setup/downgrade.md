@@ -8,7 +8,6 @@ sidebar_position: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [rolling upgrade]: ./upgrading/cluster.md
 
 [config ref]: ../configuring/reference.md
@@ -43,7 +42,7 @@ For every node in the cluster:
 ### Components That Complicate Downgrades
 
 | Feature                                 | automatic | required | Notes                                                       |
-|:----------------------------------------|:---------:|:--------:|:------------------------------------------------------------|
+| :-------------------------------------- | :-------: | :------: | :---------------------------------------------------------- |
 | Active Anti-Entropy file format changes |     ✔     |          | Can be opted out using a [capability](#aae_tree_capability) |
 
 If you enabled LZ4 compression in LevelDB and/or enabled global expiration in LevelDB when you installed KV 2.0.9, you cannot downgrade

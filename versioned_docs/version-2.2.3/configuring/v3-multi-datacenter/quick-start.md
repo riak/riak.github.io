@@ -6,7 +6,9 @@ sidebar_position: 0
 ---
 
 [perf index]: ../../using/performance/index.md
+
 [config v3 mdc]: ../../configuring/v3-multi-datacenter/index.md
+
 [cluster ops v3 mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
 
 This guide will walk you through the process of configuring Riak's v3
@@ -46,7 +48,7 @@ Riak Enterprise Clusters, each of which consists of three nodes:
 ### Cluster 1
 
 | Name    | IP             | Node name           |
-|:--------|:---------------|---------------------|
+| :------ | :------------- | ------------------- |
 | `node1` | `10.60.67.149` | `riak@10.60.67.149` |
 | `node2` | `10.60.83.39`  | `riak@10.60.83.39`  |
 | `node3` | `10.60.90.252` | `riak@10.60.90.252` |
@@ -54,12 +56,12 @@ Riak Enterprise Clusters, each of which consists of three nodes:
 ### Cluster 2
 
 | Name    | IP            | Node name          |
-|:--------|:--------------|:-------------------|
+| :------ | :------------ | :----------------- |
 | `node4` | `10.60.77.10` | `riak@10.60.77.10` |
 | `node5` | `10.60.84.41` | `riak@10.60.84.41` |
 | `node6` | `10.60.92.44` | `riak@10.60.92.44` |
 
-### Set up Cluster1 &rarr; Cluster2 Connection
+### Set up Cluster1 → Cluster2 Connection
 
 #### Set up the Source on Cluster1
 
@@ -69,7 +71,7 @@ cluster with `riak-repl clustername <name>`:
 ```bash
 riak-repl clustername Cluster1
 ```
-  
+
 #### Setup the Sink on Cluster2
 
 On a node in Cluster2, `node4` for example, initiation and name this
@@ -78,7 +80,7 @@ cluster with `riak-repl clustername <name>`:
 ```bash
 riak-repl clustername Cluster2
 ```
-  
+
 #### Connect the Source to the Sink
 
 From Cluster1, connect to the IP and port of Cluster2 with `riak-repl
@@ -96,13 +98,11 @@ riak-repl connect 10.60.77.10:9080
 From Cluster1, view your active connections with `riak-repl
 connections`:
 
-```
-Sink             Cluster Name         <Ctrl-Pid>      [Members]
-----             ------------         ----------      ---------
-Cluster2          Cluster2            <0.7985.0>      ["10.60.77.10:9080"] (via 10.60.77.10:9080)
-```
+    Sink             Cluster Name         <Ctrl-Pid>      [Members]
+    ----             ------------         ----------      ---------
+    Cluster2          Cluster2            <0.7985.0>      ["10.60.77.10:9080"] (via 10.60.77.10:9080)
 
-### Set up Cluster2 &rarr; Cluster1 Connection (if bidirectional replication is desired)
+### Set up Cluster2 → Cluster1 Connection (if bidirectional replication is desired)
 
 #### Connect the Source to the Sink
 
@@ -112,17 +112,15 @@ connect <sink_ip>:<port>`:
 ```bash
 riak-repl connect 10.60.67.149:9080
 ```
-  
+
 #### View Your Active Connections
 
 From Cluster2, view your active connections with `riak-repl
 connections`:
 
-```
-Sink             Cluster Name         <Ctrl-Pid>      [Members]
-----             ------------         ----------      ---------
-Cluster1          Cluster1            <0.4456.0>      ["10.60.67.149:9080"] (via 10.60.67.149:9080)
-```
+    Sink             Cluster Name         <Ctrl-Pid>      [Members]
+    ----             ------------         ----------      ---------
+    Cluster1          Cluster1            <0.4456.0>      ["10.60.67.149:9080"] (via 10.60.67.149:9080)
 
 :::note Note on connections
 At this point, if you do not have connections, replication will not work.
@@ -138,17 +136,17 @@ queuing updates on Cluster1 for replication:
 ```bash
 riak-repl realtime enable Cluster2
 ```
-  
+
 Also on Cluster1, run `riak-repl realtime start <clustername>` to
 establish connectivity from Cluster1 to Cluster2 to push queued updates:
 
 ```bash
 riak-repl realtime start Cluster2
 ```
-  
+
 To enable bidirectional replication, do the reverse from Cluster2.
 Once this is done, bidirectional replication should be operating.
-  
+
 ## More information
 
 For a full list of commands, you may enter `riak-repl` to see full

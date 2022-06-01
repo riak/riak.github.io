@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_csharp_object
-slug: object-modeling 
+slug: object-modeling
 sidebar_position: 2
 ---
 
@@ -30,7 +30,7 @@ and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
 | Bucket      | Key Pattern                | Example Key                                                        |
-|:------------|:---------------------------|:-------------------------------------------------------------------|
+| :---------- | :------------------------- | :----------------------------------------------------------------- |
 | `Users`     | `<user_name>`              | `joeuser`                                                          |
 | `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13`                                      |
 | `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06`<br /> `marketing_group_Inbox_2014-03-06` |
@@ -68,9 +68,9 @@ Now that we've figured out our object model, please refer to
 
 The repository pattern and `TimelineManager` help with a few things:
 
- - It helps us to see if an object exists before creating a new one
- - It keeps our buckets and key names consistent
- - It provides us with a consistent interface to work with.
+* It helps us to see if an object exists before creating a new one
+* It keeps our buckets and key names consistent
+* It provides us with a consistent interface to work with.
 
 While this set of repositories solves many of our problems, it is very
 minimal and doesn't cover all the edge cases. For instance, what happens
@@ -90,7 +90,9 @@ So to recap, in this chapter we learned:
 * How to choose natural keys based on how we want to partition our data
 
 [1]: https://github.com/basho/taste-of-riak/tree/master/csharp/Ch03-Msgy-Schema/Models
-[2]: https://github.com/basho/taste-of-riak/tree/master/csharp/Ch03-Msgy-Schema/Repositories
-[3]: https://github.com/basho/taste-of-riak/blob/master/csharp/Ch03-Msgy-Schema/Program.cs
-[iso_8601]: http://en.wikipedia.org/wiki/ISO_8601
 
+[2]: https://github.com/basho/taste-of-riak/tree/master/csharp/Ch03-Msgy-Schema/Repositories
+
+[3]: https://github.com/basho/taste-of-riak/blob/master/csharp/Ch03-Msgy-Schema/Program.cs
+
+[iso_8601]: http://en.wikipedia.org/wiki/ISO_8601

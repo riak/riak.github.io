@@ -1,7 +1,7 @@
 ---
 title: "Installing the JVM"
 id: installing_source_jvm
-slug: jvm 
+slug: jvm
 sidebar_position: 1
 ---
 

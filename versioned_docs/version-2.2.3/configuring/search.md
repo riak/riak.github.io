@@ -1,21 +1,30 @@
 ---
 title: "Riak Search Settings"
 id: configuring_search
-slug: search 
+slug: search
 sidebar_position: 5
 ---
 
 [usage search]: ../developing/usage/search.md
+
 [usage search schema]: ../developing/usage/search-schemas.md
+
 [usage search data types]: ../developing/usage/searching-data-types.md
+
 [usage custom extractors]: ../developing/usage/custom-extractors.md
+
 [cluster-ops aae throttle]: ../using/cluster-operations/active-anti-entropy.md#throttling
+
 [config reference]: ../configuring/reference.md
+
 [config reference#search]: ../configuring/reference.md#search
+
 [glossary aae]: ../learn/glossary.md#active-anti-entropy-aae
+
 [security index]: ../using/security/index.md
 
 [java se downloads]: http://www.oracle.com/technetwork/java/javase/downloads
+
 [java se docs]: http://www.oracle.com/technetwork/java/javase/documentation
 
 This page covers how to use Riak Search (with
@@ -39,12 +48,11 @@ We'll be walking through:
 3. [Search Configuration Settings](#search-config-settings)
 4. [Additional Solr Information](#more-on-solr)
 
-## Prerequisites 
+## Prerequisites
 
 Because Solr is a Java application, you will need to install **Java 7
 or later** on every node. Installation packages can be found on the [Java SE Downloads
 page][java se downloads] and instructions in the [Java SE documentation site][java se docs].
-
 
 ## Enabling Riak Search
 
@@ -87,13 +95,12 @@ Each tier is a [minimum Solrq queue size](#searchanti_entropythrottletiersolrq_q
 
 For example:
 
-```
-search.anti_entropy.throttle.tier1.solrq_queue_length = 0
-search.anti_entropy.throttle.tier1.delay = 0ms
-search.anti_entropy.throttle.tier2.solrq_queue_length = 40
-search.anti_entropy.throttle.tier2.delay = 5ms
-```
-will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both [`.solrq_queue_length`](#searchanti_entropythrottletiersolrq_queue_length) and `.delay` must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#searchanti_entropythrottle).
+    search.anti_entropy.throttle.tier1.solrq_queue_length = 0
+    search.anti_entropy.throttle.tier1.delay = 0ms
+    search.anti_entropy.throttle.tier2.solrq_queue_length = 40
+    search.anti_entropy.throttle.tier2.delay = 5ms
+
+will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both [`.solrq_queue_length`](#searchanti_entropythrottletiersolrq_queue_length) and `.delay` must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#searchanti_entropythrottletierdelay).
 
 Valid values: Non-negative integer
 
@@ -106,12 +113,10 @@ should observe at that size and above.
 
 For example:
 
-```
-search.anti_entropy.throttle.tier1.solrq_queue_length = 0
-search.anti_entropy.throttle.tier1.delay = 0ms
-search.anti_entropy.throttle.tier2.solrq_queue_length = 40
-search.anti_entropy.throttle.tier2.delay = 5ms
-```
+    search.anti_entropy.throttle.tier1.solrq_queue_length = 0
+    search.anti_entropy.throttle.tier1.delay = 0ms
+    search.anti_entropy.throttle.tier2.solrq_queue_length = 40
+    search.anti_entropy.throttle.tier2.delay = 5ms
 
 will introduce a 5 millisecond sleep for any queues of length 40 or higher. If configured, there must be a tier which includes a mailbox size of 0. Both `.solrq_queue_length` and [`.delay`](#searchanti_entropythrottletierdelay) must be set for each tier. There is no limit to the number of tiers that may be specified. See [`search.anti_entropy.throttle`](#searchanti_entropythrottletierdelay).
 
@@ -125,14 +130,11 @@ If enabled, this node will participate in distributed Solr queries.  If disabled
 
 This setting can also be changed via `riak-admin` by issuing one of the following commands:
 
-```
-riak-admin set search.dist_query=off
-```
+    riak-admin set search.dist_query=off
+
  or 
 
-``` 
-riak-admin set search.dist_query=on
-```
+    riak-admin set search.dist_query=on
 
 Setting this value in riak.conf is useful when you are restarting a node which was removed from search queries with the `riak-admin` feature. Setting `search.dis_query` in riak.conf will prevent the node from being included in search queries until it is fully spun up.
 
@@ -234,8 +236,8 @@ Values lower than 1s will be rounded up to 1s.
 
 Valid values: Integer with time units (e.g. 2m)
 
-
 ## More on Solr
+
 ### Solr JVM and Ports
 
 Riak Search runs one Solr process per node to manage its indexing and

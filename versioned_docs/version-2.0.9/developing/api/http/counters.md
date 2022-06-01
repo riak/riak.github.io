@@ -1,8 +1,8 @@
 ---
 title: "Counters"
 id: http_counters
-slug: counters 
-sidebar_position: 20 
+slug: counters
+sidebar_position: 20
 ---
 
 Riak counters are a CRDT (convergent replicated data type) that (eventually)
@@ -23,24 +23,18 @@ curl -XPUT localhost:8098/buckets/BUCKET/props \
 If you attempt to use counters without setting the above, you'll get this
 message:
 
-```
-Counters require bucket property 'allow_mult=true'
-```
+    Counters require bucket property 'allow_mult=true'
 
 ## Request
 
 To insert just POST an integer value using the `/counters` resource. This will
 increment that keyed value by the given amount.
 
-```
-POST /buckets/BUCKET/counters/KEY
-```
+    POST /buckets/BUCKET/counters/KEY
 
 To receive the current value is a GET using `/counters`
 
-```
-GET /buckets/BUCKET/counters/KEY
-```
+    GET /buckets/BUCKET/counters/KEY
 
 ## Response
 
@@ -52,17 +46,15 @@ Caveats: Counters have no support for Secondary Indexes (2i), Links or Custom HT
 
 The body must be an integer (positive or negative).
 
-```
-curl -XPOST http://localhost:8098/buckets/my_bucket/counters/my_key -d "1"
+    curl -XPOST http://localhost:8098/buckets/my_bucket/counters/my_key -d "1"
 
-curl http://localhost:8098/buckets/my_bucket/counters/my_key
-1
+    curl http://localhost:8098/buckets/my_bucket/counters/my_key
+    1
 
-curl -XPOST http://localhost:8098/buckets/my_bucket/counters/my_key -d "100"
+    curl -XPOST http://localhost:8098/buckets/my_bucket/counters/my_key -d "100"
 
-curl http://localhost:8098/buckets/my_bucket/counters/my_key
-101
+    curl http://localhost:8098/buckets/my_bucket/counters/my_key
+    101
 
-curl -XPOST http://localhost:8098/buckets/my_bucket/counters/my_key -d "-1"
-100
-```
+    curl -XPOST http://localhost:8098/buckets/my_bucket/counters/my_key -d "-1"
+    100

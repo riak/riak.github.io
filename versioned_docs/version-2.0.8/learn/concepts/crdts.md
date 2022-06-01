@@ -241,7 +241,7 @@ direction. All five of Riak's Data Types have their own internal
 weights that dictate what happens in case of conflict.
 
 | Data Type | Convergence rule                                                                                                                                                                         |
-|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Flags     | `enable` wins over `disable`                                                                                                                                                             |
 | Registers | The most chronologically recent value wins, based on timestamps                                                                                                                          |
 | Counters  | Implemented as a PN-Counter ([paper](http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf)), so all increments and decrements by all actors are eventually applied.  Every actor wins. |

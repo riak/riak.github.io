@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [usage bucket types]: ../../../developing/usage/bucket-types.md
+
 [use ref strong consistency]: ../../../using/reference/strong-consistency.md
 
 One of Riak's [central goals](../../../learn/why-riak-kv) is high availability. It was built as a [clustered](../../../learn/concepts/clusters.md) system in which any [node](../../../learn/glossary.md#node) is capable of receiving requests without requiring that
@@ -31,13 +32,13 @@ But even when you use causal context, Riak cannot always decide which
 value is most causally recent, especially in cases involving concurrent
 updates to an object. So how does Riak behave when it can't decide on a
 single most-up-to-date value? **That is your choice**. A full listing of
-available options can be found in the [section below](#client--and-server-side-conflict-resolution). For now,
+available options can be found in the [section below](#vector-clock-pruning). For now,
 though, please bear in mind that we strongly recommend one of the
 following two options:
 
 1. If your data can be modeled as one of the currently available [Riak
    Data Types](../../../developing/data-types/index.md), we recommend using one of these types,
-   because all of them have conflict resolution _built in_, completely
+   because all of them have conflict resolution *built in*, completely
    relieving applications of the need to engage in conflict resolution.
 2. If your data cannot be modeled as one of the available Data Types,
    we recommend allowing Riak to generate [siblings](#siblings) and to design your application to resolve
@@ -48,23 +49,25 @@ following two options:
 Because Riak allows for a mixed approach when storing and managing data,
 you can apply multiple conflict resolution strategies within a cluster.
 
-> **Note on strong consistency**
->
-> In versions of Riak 2.0 and later, you have the option of using Riak in
+:::note Note on strong consistency
+
+In versions of Riak 2.0 and later, you have the option of using Riak in
 a strongly consistent fashion. This document pertains to usage of Riak
-as an _eventually_ consistent system. If you'd like to use Riak's
+as an *eventually* consistent system. If you'd like to use Riak's
 strong consistency feature, please refer to the following documents:
->
-> * [Using Strong Consistency](../../../developing/app-guide/strong-consistency.md) --- A guide for developers
-> * [Managing Strong Consistency](../../../configuring/strong-consistency.md) --- A guide for operators
-> * [strong consistency][use ref strong consistency] --- A more theoretical explication of strong
+
+* [Using Strong Consistency](../../../developing/app-guide/strong-consistency.md) --- A guide for developers
+* [Managing Strong Consistency](../../../configuring/strong-consistency.md) --- A guide for operators
+* [strong consistency][use ref strong consistency] --- A more theoretical explication of strong
   consistency
+
+:::
 
 ## Client- and Server-side Conflict Resolution
 
 Riak's eventual consistency model is powerful because Riak is
 fundamentally non-opinionated about how data resolution takes place.
-While Riak _does_ have a set of [defaults](../../../developing/app-guide/replication-properties.md#available-parameters), there are a variety of general
+While Riak *does* have a set of [defaults](../../../developing/app-guide/replication-properties.md#available-parameters), there are a variety of general
 approaches to conflict resolution that are available. In Riak, you can
 mix and match conflict resolution strategies at the bucket level,
 [using bucket types][usage bucket types]. The most important [bucket properties](../../../learn/concepts/buckets.md)
@@ -162,9 +165,9 @@ Causal context essentially enables Riak to compare the different values
 of objects stored in Riak and to determine a number of important things
 about those values:
 
- * Whether one value is a direct descendant of the other
- * Whether the values are direct descendants of a common parent
- * Whether the values are unrelated in recent heritage
+* Whether one value is a direct descendant of the other
+* Whether the values are direct descendants of a common parent
+* Whether the values are unrelated in recent heritage
 
 Using the information provided by causal context, Riak is frequently,
 though not always, able to resolve conflicts between values without
@@ -173,13 +176,11 @@ producing siblings.
 Both vector clocks and dotted version vectors are non human readable and
 look something like this:
 
-```
-a85hYGBgzGDKBVIcR4M2cgczH7HPYEpkzGNlsP/VfYYvCwA=
-```
+    a85hYGBgzGDKBVIcR4M2cgczH7HPYEpkzGNlsP/VfYYvCwA=
 
-If `allow_mult` is set to `true`, you should _always_ use causal context
-when updating objects, _unless you are certain that no object exists
-under that key_. Failing to use causal context with mutable data,
+If `allow_mult` is set to `true`, you should *always* use causal context
+when updating objects, *unless you are certain that no object exists
+under that key*. Failing to use causal context with mutable data,
 especially for objects that are frequently updated, can lead to
 [sibling explosion](../../../using/performance/latency-reduction.md#siblings), which can
 produce a variety of problems in your cluster. Fortunately, much of the
@@ -196,26 +197,26 @@ most causally recent. The following scenarios can create sibling values
 inside of a single object:
 
 1. **Concurrent writes** --- If two writes occur simultaneously from
-clients, Riak may not be able to choose a single value to store, in
-which case the object will be given a sibling. These writes could happen
-on the same node or on different nodes.
+   clients, Riak may not be able to choose a single value to store, in
+   which case the object will be given a sibling. These writes could happen
+   on the same node or on different nodes.
 2. **Stale causal context** --- Writes from any client using a stale
-[causal context](../../../learn/concepts/causal-context.md). This is a less likely scenario if a client updates
-the object by reading the object first, fetching the causal context
-currently attached to the object, and then returning that causal context
-to Riak when performing the update (fortunately, our client libraries
-handle much of this automatically). However, even if a client follows
-this protocol when performing updates, a situation may occur in which an
-update happens from a different client while the read/write cycle is
-taking place. This may cause the first client to issue the write with an
-old causal context value and for a sibling to be created. A client is
-"misbehaved" if it habitually updates objects with a stale or no context
-object.
+   [causal context](../../../learn/concepts/causal-context.md). This is a less likely scenario if a client updates
+   the object by reading the object first, fetching the causal context
+   currently attached to the object, and then returning that causal context
+   to Riak when performing the update (fortunately, our client libraries
+   handle much of this automatically). However, even if a client follows
+   this protocol when performing updates, a situation may occur in which an
+   update happens from a different client while the read/write cycle is
+   taking place. This may cause the first client to issue the write with an
+   old causal context value and for a sibling to be created. A client is
+   "misbehaved" if it habitually updates objects with a stale or no context
+   object.
 3. **Missing causal context** --- If an object is updated with no causal
-context attached, siblings are very likely to be created. This is an
-unlikely scenario if you're using a Basho client library, but it _can_
-happen if you are manipulating objects using a client like `curl` and
-forgetting to set the `X-Riak-Vclock` header.
+   context attached, siblings are very likely to be created. This is an
+   unlikely scenario if you're using a Basho client library, but it *can*
+   happen if you are manipulating objects using a client like `curl` and
+   forgetting to set the `X-Riak-Vclock` header.
 
 ## Siblings in Action
 
@@ -373,7 +374,7 @@ curl -XPUT http://localhost:8098/types/siblings_allowed/nickolodeon/whatever/key
 > **Getting started with Riak KV clients**
 >
 > If you are connecting to Riak using one of Basho's official
-[client libraries](../../../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../../../developing/getting-started/index.md) section.
+> [client libraries](../../../developing/client-libraries.md), you can find more information about getting started with your client in [Developing with Riak KV: Getting Started](../../../developing/getting-started/index.md) section.
 
 At this point, multiple objects have been stored in the same key without
 passing any causal context to Riak. Let's see what happens if we try to
@@ -516,13 +517,11 @@ curl -H "Accept: multipart/mixed" \
 
 Response (without headers):
 
-```
-ren
---WUnzXITIPJFwucNwfdaofMkEG7H
+    ren
+    --WUnzXITIPJFwucNwfdaofMkEG7H
 
-stimpy
---WUnzXITIPJFwucNwfdaofMkEG7H--
-```
+    stimpy
+    --WUnzXITIPJFwucNwfdaofMkEG7H--
 
 If you select the first of the two siblings and retrieve its value, you
 should see `Ren` and not `Stimpy`.
@@ -557,8 +556,8 @@ case. In order to resolve the conflict, we need to do three things:
 What happens when we fetch the object first, prior to the update, is
 that the object handled by the client has a causal context attached. At
 that point, we can modify the object's value, and when we write the
-object back to Riak, _the causal context will automatically be attached
-to it_. Let's see what that looks like in practice:
+object back to Riak, *the causal context will automatically be attached
+to it*. Let's see what that looks like in practice:
 
 <Tabs>
 <TabItem label="Java" value="java" default>
@@ -697,7 +696,7 @@ the entire node. Other issues include [increased cluster latency](../../../using
 Besides sibling explosion, the vector clock itself can grow extremely
 large when a significant volume of updates are performed on a single
 object in a small period of time. While updating a single object
-_extremely_ frequently is not recommended, you can tune Riak's vector
+*extremely* frequently is not recommended, you can tune Riak's vector
 clock pruning to prevent vector clocks from growing too large too
 quickly. More on pruning in the [section below](#vector-clock-pruning).
 
@@ -736,7 +735,7 @@ Riak regularly prunes vector clocks to prevent overgrowth based on four
 parameters which can be set for any bucket type that you create:
 
 | Parameter      | Default value     | Description                                                                                              |
-|:---------------|:------------------|:---------------------------------------------------------------------------------------------------------|
+| :------------- | :---------------- | :------------------------------------------------------------------------------------------------------- |
 | `small_vclock` | `50`              | If the length of the vector clock list is smaller than this value, the list's entries will not be pruned |
 | `big_vclock`   | `50`              | If the length of the vector clock list is larger than this value, the list will be pruned                |
 | `young_vclock` | `20`              | If a vector clock entry is younger than this value (in milliseconds), it will not be pruned              |

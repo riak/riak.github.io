@@ -1,13 +1,16 @@
 ---
 title: "Write Once"
 id: app_guide_write_once
-slug: write-once 
+slug: write-once
 sidebar_position: 2
 ---
 
 [glossary vnode]: ../../learn/glossary.md#vnode
+
 [bucket type]: ../../developing/usage/bucket-types.md
+
 [Riak data types]: ../../developing/data-types/index.md
+
 [strong consistency]: ../../developing/app-guide/strong-consistency.md
 
 Riak 2.1.0 introduces the concept of write-once buckets, buckets whose entries
@@ -103,7 +106,6 @@ for the object to be returned will behave like requests that do not
 request the object to be returned when they are performed against write-once
 buckets.
 
-
 ## Siblings
 
 As mentioned, entries in write-once buckets are intended to be written only
@@ -122,7 +124,6 @@ wins."
 As mentioned in [Configuration](#configuration), write-once buckets and Riak
 Data Types are incompatible because of this.
 :::
-
 
 ## Handoff
 

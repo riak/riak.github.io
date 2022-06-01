@@ -1,7 +1,7 @@
 ---
 title: "Implementing Strong Consistency"
 id: configuring_strong_consistency
-slug: strong-consistency 
+slug: strong-consistency
 sidebar_position: 8
 ---
 
@@ -9,33 +9,58 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [apps strong consistency]: ../developing/app-guide/strong-consistency.md
+
 [concept strong consistency]: ../using/reference/strong-consistency.md
+
 [cluster ops add remove node]: ../using/cluster-operations/adding-removing-nodes.md
+
 [config reference#strong-cons]: ../configuring/reference.md#strong-consistency
+
 [use admin riak cli]: ../using/admin/riak-cli.md
+
 [concept eventual consistency]: ../learn/concepts/eventual-consistency.md
+
 [plan backend bitcask]: ../setup/planning/backend/bitcask.md
+
 [glossary vnode]: ../learn/glossary.md#vnode
+
 [ring]: ../learn/concepts/clusters.md#the-ring
+
 [concept buckets]: ../learn/concepts/buckets.md
+
 [cluster ops bucket types]: ../using/cluster-operations/bucket-types.md
+
 [use admin riak-admin#ensemble]: ../using/admin/riak-admin.md#ensemble-status
+
 [use admin riak-admin]: ../using/admin/riak-admin.md
+
 [config reference#advanced]: ../configuring/reference.md#advanced-configuration
+
 [plan cluster capacity]: ../setup/planning/cluster-capacity.md
+
 [cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
+
 [apps replication properties]: ../developing/app-guide/replication-properties.md
+
 [concept causal context]: ../learn/concepts/causal-context.md
+
 [dev data types]: ../developing/data-types/index.md
+
 [glossary aae]: ../learn/glossary.md#active-anti-entropy-aae
+
 [cluster ops 2i]: ../using/reference/secondary-indexes.md
+
 [usage commit hooks]: ../developing/usage/commit-hooks.md
+
 [cluster ops obj del]: ../using/reference/object-deletion.md
+
 [dev client libraries]: ../developing/client-libraries.md
 
-> **Please Note:**
->
-> Riak KV's strong consistency is an experimental feature and may be removed from the product in the future. Strong consistency is not commercially supported or production-ready. Strong consistency is incompatible with Multi-Datacenter Replication, Riak Search, Bitcask Expiration, LevelDB Secondary Indexes, Riak Data Types and Commit Hooks. We do not recommend its usage in any production environment.
+:::note Please Note:
+
+Riak KV's strong consistency is an experimental feature and may be removed from the product in the future. Strong consistency is not commercially supported or production-ready. Strong consistency is incompatible with Multi-Datacenter Replication, Riak Search, Bitcask Expiration, LevelDB Secondary Indexes, Riak Data Types and Commit Hooks. We do not recommend its usage in any production environment.
+
+:::
 
 This document provides information on configuring and monitoring a Riak
 cluster's optional strong consistency subsystem. Documentation for
@@ -126,7 +151,7 @@ will allow for more fault tolerance**. The table below shows the number
 of allowable missing replicas for assorted values of N:
 
 | Replicas | Allowable missing replicas |
-|:---------|:---------------------------|
+| :------- | :------------------------- |
 | 3        | 1                          |
 | 5        | 2                          |
 | 7        | 3                          |
@@ -139,7 +164,7 @@ strongly consistent operations. More on `n_val` in the section below.
 ### n_val Recommendations
 
 Due to the quorum requirements explained above, we recommend that you
-use _at least_ N=5 for strongly consistent data. You can set the value
+use *at least* N=5 for strongly consistent data. You can set the value
 of N, i.e. `n_val`, for buckets
 [using bucket types][cluster ops bucket types]. For example, you
 can create and activate a bucket type with N set to 5 and strong
@@ -170,7 +195,7 @@ more than once on the same physical node. This can happen when:
 A problem to be aware of if you're using strong consistency is that the
 default for `target_n_val` is 4, while our suggested minimum `n_val` for
 strongly consistent bucket types is 5. This means that you will need to
-raise `target_n_val` if you intend to use an `n_val` over 4 for _any_
+raise `target_n_val` if you intend to use an `n_val` over 4 for *any*
 bucket type in your cluster. If you anticipate using an `n_val` of 7 as
 the largest `n_val` within your cluster, for example, you will need to
 set `target_n_val` to 7.
@@ -194,10 +219,8 @@ Furthermore, if `consistent` is set to `true` for a bucket type, you
 cannot change the `n_val` for the bucket type once it's been created. If
 you attempt to do so, you'll see the following error:
 
-```
-Error updating bucket <bucket_type_name>:
-n_val cannot be modified for existing consistent type
-```
+    Error updating bucket <bucket_type_name>:
+    n_val cannot be modified for existing consistent type
 
 If you've created a bucket type with a specific `n_val` and wish to
 change it, you will need to create a new bucket type with the
@@ -209,7 +232,7 @@ From the standpoint of strongly consistent operations, larger clusters
 tend to be more fault-tolerant. Spreading ensembles across more nodes will decrease the number of ensembles active on each node and thus decrease the number of quorums affected when a node goes down.
 
 Imagine a 3-node cluster in which all ensembles are N=3 ensembles. If
-two nodes go down, _all_ ensembles will lose quorum and will be unable
+two nodes go down, *all* ensembles will lose quorum and will be unable
 to function. Strongly consistent operations on the entire keyspace will
 fail until at least one node is brought back online. And even when that
 one node is brought back online, a significant portion of the keyspace
@@ -220,8 +243,8 @@ ensembles are N=5 (i.e. all objects are replicated to five nodes).  In
 this cluster, each node is involved in only 10% of the total ensembles;
 if a single node fails, that failure will thus impact only 10% of
 ensembles. In addition, because N is set to 5, that will not impact
-quorum for _any_ ensemble in the cluster; two additional node failures
-would need to occur for quorum to be lost for _any_ ensemble.  And even
+quorum for *any* ensemble in the cluster; two additional node failures
+would need to occur for quorum to be lost for *any* ensemble.  And even
 in the case of three nodes failing, it is highly unlikely that that
 failure would impact the same ensembles; if it did, only those ensembles
 would become unavailable, affecting only 10% of the key space, as
@@ -290,33 +313,31 @@ If strong consistency is not currently enabled, you will see `Note: The
 consensus subsystem is not enabled.` in the output of the command; if
 strong consistency is enabled, you will see output like this:
 
-```
-============================== Consensus System ===============================
-Enabled:     true
-Active:      true
-Ring Ready:  true
-Validation:  strong (trusted majority required)
-Metadata:    best-effort replication (asynchronous)
+    ============================== Consensus System ===============================
+    Enabled:     true
+    Active:      true
+    Ring Ready:  true
+    Validation:  strong (trusted majority required)
+    Metadata:    best-effort replication (asynchronous)
 
-================================== Ensembles ==================================
- Ensemble     Quorum        Nodes      Leader
--------------------------------------------------------------------------------
-   root       4 / 4         4 / 4      riak@riak1
-    2         3 / 3         3 / 3      riak@riak2
-    3         3 / 3         3 / 3      riak@riak4
-    4         3 / 3         3 / 3      riak@riak1
-    5         3 / 3         3 / 3      riak@riak2
-    6         3 / 3         3 / 3      riak@riak2
-    7         3 / 3         3 / 3      riak@riak4
-    8         3 / 3         3 / 3      riak@riak4
-```
+    ================================== Ensembles ==================================
+     Ensemble     Quorum        Nodes      Leader
+    -------------------------------------------------------------------------------
+       root       4 / 4         4 / 4      riak@riak1
+        2         3 / 3         3 / 3      riak@riak2
+        3         3 / 3         3 / 3      riak@riak4
+        4         3 / 3         3 / 3      riak@riak1
+        5         3 / 3         3 / 3      riak@riak2
+        6         3 / 3         3 / 3      riak@riak2
+        7         3 / 3         3 / 3      riak@riak4
+        8         3 / 3         3 / 3      riak@riak4
 
 ### Interpreting ensemble-status Output
 
 The following table provides a guide to `ensemble-status` output:
 
 | Item         | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Enabled`    | Whether the consensus subsystem is enabled on the current node, i.e. whether the `strong_consistency` parameter in [`riak.conf`][config reference#strong-cons] has been set to `on`. If this reads `off` and you wish to enable strong consistency, see our documentation on [enabling strong consistency][config reference#strong-cons].                                                                                     |
 | `Active`     | Whether the consensus subsystem is active, i.e. whether there are enough nodes in the cluster to use strong consistency, which requires at least three nodes.                                                                                                                                                                                                                                                                 |
 | `Ring Ready` | If `true`, then all of the [vnodes][glossary vnode] in the cluster have seen the current [ring][ring], which means that the strong consistency subsystem can be used; if `false`, then the system is not yet ready. If you have recently added or removed one or more nodes to/from the cluster, it may take some time for `Ring Ready` to change.                                                                            |
@@ -329,7 +350,7 @@ output above, is a special ensemble that stores a list of nodes and
 ensembles in the cluster.
 
 More in-depth information on ensembles can be found in our [internal
-documentation](https://github.com/basho/riak_ensemble/blob/develop/doc/Readme.md).
+documentation](https://github.com/basho/riak_ensemble/tree/develop/doc).
 
 ### Inspecting Specific Ensembles
 
@@ -352,24 +373,22 @@ riak-admin ensemble-status 2
 
 Below is sample output for a single ensemble:
 
-```
-================================= Ensemble #2 =================================
-Id:           {kv,0,3}
-Leader:       riak@riak2 (2)
-Leader ready: true
+    ================================= Ensemble #2 =================================
+    Id:           {kv,0,3}
+    Leader:       riak@riak2 (2)
+    Leader ready: true
 
-==================================== Peers ====================================
- Peer  Status     Trusted          Epoch         Node
--------------------------------------------------------------------------------
-  1    following    yes             1            riak@riak1
-  2     leading     yes             1            riak@riak2
-  3    following    yes             1            riak@riak3
-```
+    ==================================== Peers ====================================
+     Peer  Status     Trusted          Epoch         Node
+    -------------------------------------------------------------------------------
+      1    following    yes             1            riak@riak1
+      2     leading     yes             1            riak@riak2
+      3    following    yes             1            riak@riak3
 
 The table below provides a guide to the output:
 
 | Item           | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Id`           | The ID for the ensemble used internally by Riak, expressed as a 3-tuple. All ensembles are `kv`; the second element names the ring partition for which the ensemble is responsible; and the third element is the `n_val` for the keys for which the ensemble is responsible.                                                                                                                                                                                                                                              |
 | `Leader`       | Identifies the ensemble's leader. In this case, the leader is on node `riak@riak2` and is identified as peer `2` in the ensemble.                                                                                                                                                                                                                                                                                                                                                                                         |
 | `Leader ready` | States whether the ensemble's leader is ready to respond to requests. If not, requests to the ensemble will fail.                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -490,7 +509,7 @@ The `riak_ensemble` subsystem provides a wide variety of tunable
 parameters that you can adjust to fit the needs of your Riak cluster.
 All `riak_ensemble`-specific parameters, with the exception of the
 `strong_consistency` parameter used to [enable strong consistency](#enabling-strong-consistency),
-must be set in each node's `advanced.config` file, _not_ in `riak.conf`
+must be set in each node's `advanced.config` file, *not* in `riak.conf`
 or `app.config`.
 
 Information on the syntax and usage of `advanced.config` can be found in
@@ -531,9 +550,9 @@ If you set `trust_lease` to `true`, you can also specify how long a
 leader lease remains valid without being refreshed using the
 `lease_duration` setting, which is specified in milliseconds. This
 setting should be higher than `ensemble_tick` to ensure that leaders
-have to time to refresh their leases before they time out, and it _must_
+have to time to refresh their leases before they time out, and it *must*
 be lower than `follower_timeout`, explained in the section below. The
-default is `ensemble_tick` * 3/2, i.e. if `ensemble_tick` is 400,
+default is `ensemble_tick` \* 3/2, i.e. if `ensemble_tick` is 400,
 `lease_duration` will default to 600.
 
 #### Worker Settings
@@ -592,10 +611,10 @@ to `true`, Riak requires two quorum roundtrips to occur before replying
 back to the client, which can increase per-request latency.
 
 Please note that this setting applies only to Merkle tree updates sent
-to followers. Leaders _always_ update their local Merkle trees before
+to followers. Leaders *always* update their local Merkle trees before
 responding to the client. Asynchronous updates can be unsafe in certain
 scenarios. For example, if a leader crashes before sending metadata
-updates to followers _and_ all followers that had acknowledged the write
+updates to followers *and* all followers that had acknowledged the write
 somehow revert the object value immediately prior to the write request,
 a future read could hypothetically return the immediately preceding
 value without realizing that the value was incorrect. Setting
@@ -604,7 +623,7 @@ is highly unlikely.
 
 ## Strong Consistency and Active Anti-Entropy
 
-Riak's [active anti-entropy][glossary aae] \(AAE) feature _can_ repair strongly
+Riak's [active anti-entropy][glossary aae] (AAE) feature *can* repair strongly
 consistent data. Although it is not necessary to use active anti-entropy
 if you are using strong consistency, we nonetheless recommend doing so.
 
@@ -659,12 +678,12 @@ latest version of strong consistency.
   non-strongly-consistent keys, it does present an issue for strong
   consistency due to the tombstone issues mentioned above.
 * **Secondary indexes not supported** --- Strongly consistent
-  operations do not support [secondary indexes][cluster ops 2i] \(2i) at this time. Furthermore, any other metadata
+  operations do not support [secondary indexes][cluster ops 2i] (2i) at this time. Furthermore, any other metadata
   attached to objects, even if not related to 2i, will be silently
   ignored by Riak in strongly consistent buckets.
 * **Multi-Datacenter Replication not supported** --- At this time,
   consistent keys are *not* replicated across clusters using Multi-
-  Datacenter Replication \(MDC). This is because MDC Replication currently supports only eventually consistent replication across clusters. Mixing strongly
+  Datacenter Replication (MDC). This is because MDC Replication currently supports only eventually consistent replication across clusters. Mixing strongly
   consistent data within a cluster with eventually consistent data
   between clusters is difficult to reason about from the perspective of
   applications. In a future version of Riak, we will add support for

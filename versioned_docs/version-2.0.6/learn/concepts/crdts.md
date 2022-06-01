@@ -226,7 +226,7 @@ In general, convergence involves the following stages:
 Convergence means that data type conflicts are weighted in a certain direction. Riak's Data Types have their own internal weights that dictate what happens in case of conflict:
 
 | Data Type | Convergence rule                                                                                                                            |
-|:----------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
 | Flags     | `enable` wins over `disable`                                                                                                                |
 | Registers | The most chronologically recent value wins, based on timestamps                                                                             |
 | Counters  | Implemented as a PN-Counter ([paper][crdts pdf]), so all increments and decrements by all actors are eventually applied.  Every actor wins. |

@@ -1,7 +1,7 @@
 ---
 title: "Bucket Types"
 id: usage_bucket_types
-slug: bucket-types 
+slug: bucket-types
 sidebar_position: 8
 ---
 

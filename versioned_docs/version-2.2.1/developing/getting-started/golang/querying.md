@@ -1,7 +1,7 @@
 ---
 title: "Querying"
 id: getting_started_go_query
-slug: querying 
+slug: querying
 sidebar_position: 1
 ---
 
@@ -9,9 +9,9 @@ sidebar_position: 1
 
 For the Go version, please download the source from GitHub by either [cloning](https://github.com/basho/taste-of-riak) the source code repository or downloading the [current zip of the master branch](https://github.com/basho/taste-of-riak/archive/master.zip). Ensure that the source is located in your `GOPATH`. The code for this chapter is in `go/ch02/ch02.go`. You may import this code into your favorite editor, or just run it from the command line using the `Makefile` if you are running on a *nix* OS.
 
->A Quick Note on Querying and Schemas:
+> A Quick Note on Querying and Schemas:
 >
->Even with a key/value store, you will still have a logical database schema of how all the data relates to one another. This can be as simple as using the same key across multiple buckets for different types of data, to having fields in your data that are related by name. These querying methods will introduce you to some ways of laying out your data in Riak, along with how to query it back.
+> Even with a key/value store, you will still have a logical database schema of how all the data relates to one another. This can be as simple as using the same key across multiple buckets for different types of data, to having fields in your data that are related by name. These querying methods will introduce you to some ways of laying out your data in Riak, along with how to query it back.
 
 ### Denormalization
 
@@ -400,7 +400,6 @@ Which returns our amalgamated objects:
 ```
 
 While this pattern is very easy and extremely fast with respect to queries and complexity, it's up to the application to know about these intrinsic relationships.  
-
 
 ### Secondary Indexes
 

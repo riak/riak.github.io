@@ -5,7 +5,9 @@ sidebar_position: 6
 ---
 
 [dev api http]: ./http/index.md
+
 [dev api backend]: ./backend.md
+
 [dev api pbc]: ./protocol-buffers/index.md
 
 ## [HTTP APIs][dev api http]

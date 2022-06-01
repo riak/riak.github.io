@@ -63,8 +63,8 @@ to 555-1212 in another window and saves it?
 
 This means that two different values are sent into Riak. So what
 happens at that point? There are essentially several possible outcomes:
-1. Riak is able to discern that one object is more causally recent than the other (in this case 555-1212) and chooses to store that value as the "correct" value.
-2. The two operations hit the database at roughly the same time, i.e. two **concurrent
+1\. Riak is able to discern that one object is more causally recent than the other (in this case 555-1212) and chooses to store that value as the "correct" value.
+2\. The two operations hit the database at roughly the same time, i.e. two **concurrent
    updates** have been completed, and Riak is unable to determine which
    value "wins." In this scenario, one of three things can happen:
        a. The object is a CRDT, so Riak is able to resolve conflicting values by type-specific rules
@@ -132,12 +132,14 @@ object update causality in terms of **logical time** rather than
 chronological time (as with timestamps), enabling Riak to make decisions
 about which objects are more current than others in cases of conflict.
 
-> **Note: DVVs Recommended Over Vector Clocks**
->
-> If you are using Riak version 2.0 or later, we strongly recommend using
-> dotted version vectors instead of vector clocks, as DVVs are far better
-> at limiting the number of siblings produced in a cluster, which can
-> prevent a wide variety of potential issues.
+:::note Note: DVVs Recommended Over Vector Clocks
+
+If you are using Riak version 2.0 or later, we strongly recommend using
+dotted version vectors instead of vector clocks, as DVVs are far better
+at limiting the number of siblings produced in a cluster, which can
+prevent a wide variety of potential issues.
+
+:::
 
 ## DVVs Versus Vector Clocks
 
@@ -199,21 +201,23 @@ still labeled `X-Riak-Vclock` if you're using the [HTTP API][dev api http] and
 More on using vector clocks and DVVs on the application side can be
 found in our documentation on [conflict resolution][usage conflict resolution].
 
-> **Note on DVVs and bucket types**
->
-> The choice between vector clocks and DVVs can be made at the bucket
-> level, [using bucket types][usage bucket types]. This enables you to employ a mixed
-> conflict resolution strategy in your Riak cluster, using DVVs in some
-> buckets and vector clocks in others if you wish. DVVs can be enabled by
-> setting the `dvv_enabled` bucket property to
-> `true` for one or more bucket types.
->
-> Vector clocks remain the default if you are not using bucket types.
-> However, any bucket type that you create and activate will have
-> `dvv_enabled` set to `true`. And so if you wish to
-> create a bucket type that uses traditional vector clocks, you will need
-> to explicitly set `dvv_enabled` to `false` for
-> that bucket type.
+:::note Note on DVVs and bucket types
+
+The choice between vector clocks and DVVs can be made at the bucket
+level, [using bucket types][usage bucket types]. This enables you to employ a mixed
+conflict resolution strategy in your Riak cluster, using DVVs in some
+buckets and vector clocks in others if you wish. DVVs can be enabled by
+setting the `dvv_enabled` bucket property to
+`true` for one or more bucket types.
+
+Vector clocks remain the default if you are not using bucket types.
+However, any bucket type that you create and activate will have
+`dvv_enabled` set to `true`. And so if you wish to
+create a bucket type that uses traditional vector clocks, you will need
+to explicitly set `dvv_enabled` to `false` for
+that bucket type.
+
+:::
 
 ## Sibling Explosion
 

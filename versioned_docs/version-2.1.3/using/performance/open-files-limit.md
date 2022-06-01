@@ -102,7 +102,7 @@ For example, follow these steps to enable PAM user limits and set the
 soft and hard values *for all users of the system* to allow for up to
 *65536* open files.
 
-1.  Edit `/etc/pam.d/common-session` and append the following line:
+1. Edit `/etc/pam.d/common-session` and append the following line:
 
 ```config
 session    required   pam_limits.so

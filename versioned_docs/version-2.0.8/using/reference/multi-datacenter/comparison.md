@@ -79,7 +79,7 @@ version 3.
   of workers that will run on a source node, a sink node, and across the
   entire source cluster. This allows for limiting impact on the cluster
   and dialing in fullsync performance.
-* Version 3 is able to take advantage of [Active Anti-Entropy](../../../learn/concepts/active-anti-entropy.md) \(AAE)
+* Version 3 is able to take advantage of [Active Anti-Entropy](../../../learn/concepts/active-anti-entropy.md) (AAE)
   technology, which can greatly improve fullsync performance.
 * Riak CS MDC `proxy_get` connections will be distributed across the
   source cluster (as CS blocks are requested from the sink cluster in

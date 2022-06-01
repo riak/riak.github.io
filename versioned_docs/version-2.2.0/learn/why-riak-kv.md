@@ -5,16 +5,21 @@ slug: why-riak-kv
 sidebar_position: 0
 ---
 
-
 [apps replication properties]: ../developing/app-guide/replication-properties.md
-[Basho Bench]: ../using/performance/benchmarking.md
-[cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
-[concept eventual consistency]: ../learn/concepts/eventual-consistency.md
-[convergent replicated data types]: http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf
-[Datomic]: http://www.datomic.com/overview.html
-[dev data types]: ../developing/data-types/index.md
-[glossary read rep]: ../learn/glossary.md#read-repair
 
+[Basho Bench]: ../using/performance/benchmarking.md
+
+[cluster ops strong consistency]: ../using/cluster-operations/strong-consistency.md
+
+[concept eventual consistency]: ../learn/concepts/eventual-consistency.md
+
+[convergent replicated data types]: http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf
+
+[Datomic]: http://www.datomic.com/overview.html
+
+[dev data types]: ../developing/data-types/index.md
+
+[glossary read rep]: ../learn/glossary.md#read-repair
 
 ## What is Riak?
 
@@ -25,11 +30,10 @@ data.
 
 Riak is used as an **eventually consistent** system in that the data you want to read should remain available in most failure scenarios, although it may not be the most up-to-date version of that data.
 
-
 ### Basho's goals for Riak
 
 | Goal                       | Description                                                                                                                                            |
-|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Availability**           | Riak writes to and reads from multiple servers to offer data availability even when hardware or the network itself are experiencing failure conditions |
 | **Operational simplicity** | Easily add new machines to your Riak cluster without incurring a larger operational burden                                                             |
 | **Scalability**            | Riak automatically distributes data around the cluster and yields a near-linear performance increase as you add capacity                               |

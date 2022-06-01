@@ -23,7 +23,7 @@ Optional query parameters (only valid for the old format):
 
 * `props` - whether to return the bucket properties (`true` is the default)
 * `keys` - whether to return the keys stored in the bucket. (`false` is the
-default). See also [HTTP List Keys](../../../developing/api/http/list-keys.md).
+  default). See also [HTTP List Keys](../../../developing/api/http/list-keys.md).
 
 ## Response
 

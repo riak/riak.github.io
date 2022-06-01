@@ -6,8 +6,11 @@ sidebar_position: 3
 ---
 
 [ee]: http://basho.com/contact/
+
 [Object-lifetime]: /images/redis/Object_lifetime.msc.png
+
 [redis docs]: http://redis.io/commands
+
 [twemproxy docs]: https://github.com/twitter/twemproxy/blob/master/notes/redis.md
 
 ## Overview
@@ -15,7 +18,7 @@ sidebar_position: 3
 The cache proxy service in Riak Redis Add-on (RRA) provides pre-sharding and connection aggregation as a service, which reduces latency and increases addressable cache memory space with lower-cost hardware.
 
 On this page, you will find detailed descriptions of cache proxy service components, including what each component does and how you implement it. The following components are available:
- 
+
 * [Pre-sharding](#pre-sharding)
 * [Connection Aggregation](#connection-aggregation)
 * [Command Pipelining](#command-pipelining)
@@ -59,7 +62,6 @@ The read-through cache strategy of the GET command is represented by the
 following sequence diagram:
 
 ![GET command sequence diagram](/images/redis/GET_seq.msc.png)
-
 
 The `CACHE_TTL` configuration option establishes how long the cache takes to
 become consistent with the backend server during a write (DELETE or PUT) to the
@@ -109,7 +111,7 @@ The cache proxy service supports the following augmented Redis commands fully:
 
 The cache proxy service also supports the set of Redis commands supported by Twemproxy, but only to the point of pre-sharding and command pipelining, issued only to Redis. Refer to the Twemproxy [documentation][twemproxy docs].
 
->**Important:** While the cache proxy service does support issuing DEL commands, PEXPIRE, with a small TTL, is suggested instead when the semantic intent is to remove an item from cache.  With write-around, the DEL command will issue a delete to the Riak backend.
+> **Important:** While the cache proxy service does support issuing DEL commands, PEXPIRE, with a small TTL, is suggested instead when the semantic intent is to remove an item from cache.  With write-around, the DEL command will issue a delete to the Riak backend.
 
 ## Object Lifetime
 

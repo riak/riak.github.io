@@ -32,7 +32,7 @@ Riak JMX has been tested with the Sun JRE 1.6.0_12 and 1.6.0_20. Some older/non-
 ## Exported JMX Attributes
 
 | Attribute            | Type   | Description                                             |
-|----------------------|--------|---------------------------------------------------------|
+| -------------------- | ------ | ------------------------------------------------------- |
 | CPUNProcs            | int    | Number of running processes                             |
 | CpuAvg1              | int    | 1 minute load average                                   |
 | CpuAvg5              | int    | 5 minute load average                                   |

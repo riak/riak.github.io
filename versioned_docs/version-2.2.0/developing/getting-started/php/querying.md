@@ -1,12 +1,13 @@
 ---
 title: "Querying"
 id: getting_started_php_query
-slug: querying 
+slug: querying
 sidebar_position: 1
 ---
 
 ## A Quick Note on Querying and Schemas
-_Schemas_? Yes we said that correctly, S-C-H-E-M-A-S. It's not a dirty word.  
+
+*Schemas*? Yes we said that correctly, S-C-H-E-M-A-S. It's not a dirty word.  
 Even with a Key/Value store, you will still have a logical database schema of how all the data relates to one another. This can be as simple as using the same key across multiple buckets for different types of data, to having fields in your data that are related by name.  These querying methods will introduce you to some ways of laying out your data in Riak, along with how to query it back.
 
 ## Denormalization
@@ -283,7 +284,6 @@ stdClass Object
 
 While this pattern is very easy and extremely fast with respect to queries and complexity, it's up to the application to know about these intrinsic relationships.  
 
-
 ## Secondary Indexes
 
 :::note
@@ -315,7 +315,6 @@ foreach ($keys as $key) {
     $storeOrder->execute();
 }
 unset($key);
-
 ```
 
 As you may have noticed, ordinary Key/Value data is opaque to 2i, so we have to add entries to the indexes at the application level.
@@ -342,7 +341,6 @@ Array
     [0] => 3
     [1] => 1
 )
-
 ```
 
 Jane processed orders 1 and 3.  We used an "integer" index to reference Jane's id, next let's use a "binary" index.

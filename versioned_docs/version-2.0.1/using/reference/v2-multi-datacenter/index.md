@@ -5,6 +5,7 @@ sidebar_position: 15
 ---
 
 [v2 mdc arch]: ./architecture.md
+
 [v2 mdc fullsync]: ./scheduling-fullsync.md
 
 ## [Architecture][v2 mdc arch]

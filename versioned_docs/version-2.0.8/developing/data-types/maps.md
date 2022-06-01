@@ -1,14 +1,14 @@
 ---
 title: "Maps"
 id: data_types_maps
-slug: maps 
+slug: maps
 sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Maps are the most versatile of the Riak data types because all other data types can be embedded within them, _including maps themselves_. This enables the creation of complex, custom data types from a few basic building blocks.
+Maps are the most versatile of the Riak data types because all other data types can be embedded within them, *including maps themselves*. This enables the creation of complex, custom data types from a few basic building blocks.
 
 Using counters, sets, and maps within maps are similar to working with those types at the bucket level.
 
@@ -22,9 +22,11 @@ Start by creating a bucket type with the `datatype` parameter set to `map`:
 riak-admin bucket-type create maps '{"props":{"datatype":"map"}}'
 ```
 
-> **Note**
->
-> The `maps` bucket type name provided above is an example and is not required to be `maps`. You are free to name bucket types whatever you like, with the exception of `default`.
+:::note 
+
+The `maps` bucket type name provided above is an example and is not required to be `maps`. You are free to name bucket types whatever you like, with the exception of `default`.
+
+:::
 
 After creating a bucket with a Riak data type, confirm the bucket property configuration associated with that type is correct:
 
@@ -2308,7 +2310,6 @@ Map22 = riakc_map:update(
 <TabItem label="CURL" value="curl">
 
 ```bash
-
 curl -XPOST http://localhost:8098/types/maps/buckets/customers/datatypes/ahmed_info \
   -H "Content-Type: application/json" \
   -d '

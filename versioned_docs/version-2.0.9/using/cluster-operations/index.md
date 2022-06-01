@@ -4,17 +4,26 @@ id: managing_cluster_operations
 ---
 
 [ops add remove node]: ./adding-removing-nodes.md
-[ops change info]: ./changing-cluster-info.md
-[ops replace node]: ./replacing-node.md
-[ops inspect node]: ./inspecting-node.md
-[ops bucket types]: ./bucket-types.md
-[ops log]: ./logging.md
-[ops backup]: ./backing-up.md
-[ops handoff]: ./handoff.md
-[ops strong consistency]: ./strong-consistency.md
-[ops v3 mdc]: ./v3-multi-datacenter.md
-[ops v2 mdc]: ./v2-multi-datacenter.md
 
+[ops change info]: ./changing-cluster-info.md
+
+[ops replace node]: ./replacing-node.md
+
+[ops inspect node]: ./inspecting-node.md
+
+[ops bucket types]: ./bucket-types.md
+
+[ops log]: ./logging.md
+
+[ops backup]: ./backing-up.md
+
+[ops handoff]: ./handoff.md
+
+[ops strong consistency]: ./strong-consistency.md
+
+[ops v3 mdc]: ./v3-multi-datacenter.md
+
+[ops v2 mdc]: ./v2-multi-datacenter.md
 
 ## [Adding / Removing Nodes][ops add remove node]
 

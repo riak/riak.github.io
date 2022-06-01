@@ -1,7 +1,7 @@
 ---
 title: "MapReduce"
 id: pbc_mapreduce
-slug: mapreduce 
+slug: mapreduce
 sidebar_position: 8
 ---
 
@@ -9,14 +9,12 @@ Execute a MapReduce job.
 
 ## Request
 
-
 ```protobuf
 message RpbMapRedReq {
     required bytes request = 1;
     required bytes content_type = 2;
 }
 ```
-
 
 Required Parameters
 
@@ -45,7 +43,6 @@ message RpbMapRedResp {
     optional bool done = 3;
 }
 ```
-
 
 Values
 
@@ -110,9 +107,7 @@ request: "{"inputs": "bucket_501653", "query": [{"map": {"arg": null,
  {"reduce": {"arg": null, "name": "Riak.reduceSum", "language":
 "javascript", "keep": true}}]}"
 content_type: "application/json"
-
 ```
-
 
 Response 1 - result from phase 1
 
@@ -123,9 +118,7 @@ Erlang <<0,0,0,8,24,8,1,18,3,91,57,93>>
 RpbMapRedResp protoc decode:
 phase: 1
 response: "[[9]]"
-
 ```
-
 
 Response 2 - end of MapReduce job
 
@@ -135,5 +128,4 @@ Erlang <<0,0,0,3,24,24,1>>
 
 RpbMapRedResp protoc decode:
 done: true
-
 ```

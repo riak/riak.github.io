@@ -1,12 +1,14 @@
 ---
 title: "MapReduce Settings"
 id: configuring_mapreduce
-slug: mapreduce 
+slug: mapreduce
 sidebar_position: 6
 ---
 
 [usage mapreduce]: ../developing/usage/mapreduce.md
+
 [config reference#appconfig]: ../configuring/reference.md#advanced-configuration
+
 [usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 
 ## Configuring MapReduce
@@ -31,7 +33,9 @@ By default `mapred`, making the command path, for example:
 MapReduce inputs are queued in parallel in their own pipe (`true`), or
 serially through a helper process (`false` or undefined).
 
-> **Note**: Set to `false` or leave undefined during an upgrade from 1.0.
+:::note : Set to `false` or leave undefined during an upgrade from 1.0.
+
+:::
 
 ```erlang
 {mapred_2i_pipe, true},
@@ -61,7 +65,9 @@ This is largely relevant only if you are writing JavaScript M/R jobs.
 `js_thread_stack` is the maximum amount of thread stack, in megabytes,
 allocated to the Javascript VMs. If unset, the default is 16MB.
 
-> **Note**: This is not the same as the C thread stack.
+:::note : This is not the same as the C thread stack.
+
+:::
 
 ```erlang
 {js_thread_stack, 16},
@@ -180,4 +186,4 @@ Pre-reduce may also be enabled or disabled on a per-phase basis via the Erlang A
 
 > **Warning:**
 >
->A known bug in Riak 1.0.0 prevents per-phase pre-reduce from being enabled over HTTP.  This bug also prevents per-phase pre-reduce from being enabled for Javascript phases.  Use the global app.config flag for these cases. This bug was fixed in 1.0.1.
+> A known bug in Riak 1.0.0 prevents per-phase pre-reduce from being enabled over HTTP.  This bug also prevents per-phase pre-reduce from being enabled for Javascript phases.  Use the global app.config flag for these cases. This bug was fixed in 1.0.1.

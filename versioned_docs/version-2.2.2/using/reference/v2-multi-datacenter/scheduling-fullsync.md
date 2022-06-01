@@ -1,14 +1,13 @@
 ---
 title: "Scheduling Fullsync"
 id: managing_ref_v2_fullsync
-slug: scheduling-fullsync 
+slug: scheduling-fullsync
 sidebar_position: 1
 ---
 
 :::note Deprecation Warning
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../../using/reference/v3-multi-datacenter/scheduling-fullsync.md) instead.
 :::
-
 
 ## Scheduling Fullsync Operation
 

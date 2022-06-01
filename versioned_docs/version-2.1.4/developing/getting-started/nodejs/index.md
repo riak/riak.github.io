@@ -2,14 +2,15 @@
 title: "NodeJS"
 id: getting_started_nodejs
 sidebar_position: 4
-
 ---
 
 [introduction.js]: https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/taste-of-riak/introduction.js
-[npm]: https://www.npmjs.com/package/basho-riak-client
-[node_js_installation]: https://github.com/basho/riak-nodejs-client/wiki/Installation
-[nodejs_wiki]: https://github.com/basho/riak-nodejs-client/wiki
 
+[npm]: https://www.npmjs.com/package/basho-riak-client
+
+[node_js_installation]: https://github.com/basho/riak-nodejs-client/wiki/Installation
+
+[nodejs_wiki]: https://github.com/basho/riak-nodejs-client/wiki
 
 If you haven't set up a Riak Node and started it, please visit [Running A Cluster](../../../using/running-a-cluster.md) first.
 

@@ -1,13 +1,16 @@
 ---
 title: "Riak Best Practices"
 id: planning_best_practices
-slug: best-practices 
+slug: best-practices
 sidebar_position: 5
 ---
 
 [use ref handoff]: ../../using/reference/handoff.md
+
 [config mapreduce]: ../../configuring/mapreduce.md
+
 [glossary aae]: ../../learn/glossary.md#active-anti-entropy-aae
+
 [cluster ops add remove node]: ../../using/cluster-operations/adding-removing-nodes.md
 
 Riak KV is a database designed for easy operation and scaling. Below are some best practices that will enable you to improve performance and reliability at all stages in the life of your Riak cluster.
@@ -41,7 +44,7 @@ Riak provides resilience through its built-in redundancy.
 * Once you’ve reached a scale at which the amount of new data arriving
   is a small fraction of the cluster's total capacity, you can add new
   nodes when you need them. You should be aware, however, that adding
-  new nodes can actually _increase_ disk usage on existing nodes in the
+  new nodes can actually *increase* disk usage on existing nodes in the
   short term as data is rebalanced within the cluster.
 * If you are certain that you are likely to run out of capacity, we
   recommend allowing a week or two of leeway so that you have plenty of
@@ -81,8 +84,8 @@ An alternative to adding more nodes is to add more storage to existing
 nodes. However, you should do this only if:
 
 * you’re confident that there is plenty of spare network and CPU
-  capacity, _and_
-* you can upgrade storage _equally across all nodes_. If storage is
+  capacity, *and*
+* you can upgrade storage *equally across all nodes*. If storage is
   added in an unbalanced fashion, Riak will continue storing data
   equally across nodes, and the node with the smallest available storage
   space is likely to fail first. Thus, if one node uses 1 TB but the
@@ -124,8 +127,8 @@ This process is explored in more detail in [Adding and Removing Nodes][cluster o
   to maintain is the following:
   * New network connections are limited to ensure that existing network
     connections consume most network bandwidth
-  * CPU at < 30%
-  * Disk IO at < 90%
+  * CPU at &lt; 30%
+  * Disk IO at &lt; 90%
 * You should use HAProxy or your application servers to limit new
   network connections to keep network and IO below 90% and CPU below
   30%.

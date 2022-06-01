@@ -1,7 +1,7 @@
 ---
 title: "List Resources"
 id: http_list_resources
-slug: list-resources 
+slug: list-resources
 sidebar_position: 12
 ---
 
@@ -38,7 +38,7 @@ Normal status codes:
 Important headers:
 
 * `Link` - all resources that are described in the response body, but in Link
-form
+  form
 
 ## Example
 

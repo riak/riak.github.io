@@ -1,7 +1,7 @@
 ---
 title: "Scheduling Fullsync"
 id: managing_ref_v2_fullsync
-slug: scheduling-fullsync 
+slug: scheduling-fullsync
 sidebar_position: 1
 ---
 

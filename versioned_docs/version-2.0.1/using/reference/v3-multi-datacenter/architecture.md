@@ -6,6 +6,7 @@ sidebar_position: 0
 ---
 
 [glossary vnode]: ../../../learn/glossary.md#vnode
+
 [concept clusters]: ../../../learn/concepts/clusters.md
 
 ## How Version 3 Replication Works
@@ -88,19 +89,20 @@ Before a source cluster can begin pushing realtime updates to a sink,
 the following commands must be issued:
 
 1. `riak-repl realtime enable <sink_cluster>`
-    
-    After this command, the realtime queues (one for each Riak node) are
-    populated with updates to the source cluster, ready to be pushed to
-    the sink.
+
+   After this command, the realtime queues (one for each Riak node) are
+   populated with updates to the source cluster, ready to be pushed to
+   the sink.
 
 2. `riak-repl realtime start <sink_cluster>`
-    
-    This instructs the Riak connection manager to contact the sink
-    cluster.
 
-    ![MDC fullsync](/images/MDC-v3-realtime1.png)
+   This instructs the Riak connection manager to contact the sink
+   cluster.
 
-    At this point realtime replication commences.
+   ![MDC fullsync](/images/MDC-v3-realtime1.png)
+
+   At this point realtime replication commences.
+
 3. Nodes with queued updates establish connections to the sink cluster and replication begins.
 
 ![MDC fullsync](/images/MDC-v3-realtime2.png)

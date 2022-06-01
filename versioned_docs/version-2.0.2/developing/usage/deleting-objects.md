@@ -10,9 +10,7 @@ import TabItem from '@theme/TabItem';
 
 The delete command follows a predictable pattern and looks like this:
 
-```
-DELETE /types/TYPE/buckets/BUCKET/keys/KEY
-```
+    DELETE /types/TYPE/buckets/BUCKET/keys/KEY
 
 The normal HTTP response codes for `DELETE` operations are `204 No
 Content` and `404 Not Found`. 404 responses are *normal*, in the sense

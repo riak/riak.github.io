@@ -5,46 +5,87 @@ sidebar_position: 4
 ---
 
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+
 [dev data model#log]: ../../learn/use-cases.md#log-data
+
 [dev data model#sensor]: ../../learn/use-cases.md#sensor-data
+
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+
 [dev data model#user]: ../../learn/use-cases.md#user-accounts
+
 [dev kv model]: ../../developing/key-value-modeling.md
+
 [dev data types]: ../../developing/data-types/index.md
+
 [dev data types#counters]: ../../developing/data-types/counters.md
+
 [dev data types#sets]: ../../developing/data-types/sets.md
+
 [dev data types#maps]: ../../developing/data-types/maps.md
+
 [usage create objects]: ../../developing/usage/creating-objects.md
+
 [usage search]: ../../developing/usage/search.md
+
 [use ref search]: ../../using/reference/search.md
+
 [usage 2i]: ../../developing/usage/secondary-indexes.md
+
 [dev client libraries]: ../../developing/client-libraries.md
+
 [concept crdts]: ../../learn/concepts/crdts.md
+
 [dev data model]: ../../learn/use-cases.md
+
 [usage mapreduce]: ../../developing/usage/mapreduce.md
+
 [apps mapreduce]: ../../developing/app-guide/advanced-mapreduce.md
+
 [use ref 2i]: ../../using/reference/secondary-indexes.md
+
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+
 [plan backend bitcask]: ../../setup/planning/backend/bitcask.md
+
 [plan backend memory]: ../../setup/planning/backend/memory.md
+
 [obj model java]: ../../developing/getting-started/java/object-modeling.md
+
 [obj model ruby]: ../../developing/getting-started/ruby/object-modeling.md
+
 [obj model python]: ../../developing/getting-started/python/object-modeling.md
+
 [obj model csharp]: ../../developing/getting-started/csharp/object-modeling.md
+
 [obj model nodejs]: ../../developing/getting-started/nodejs/object-modeling.md
+
 [obj model erlang]: ../../developing/getting-started/erlang/object-modeling.md
+
 [obj model golang]: ../../developing/getting-started/golang/object-modeling.md
+
 [concept strong consistency]: ../../using/reference/strong-consistency.md
+
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
+
 [cluster ops strong consistency]: ../../using/cluster-operations/strong-consistency.md
+
 [config strong consistency]: ../../configuring/strong-consistency.md
+
 [apps strong consistency]: ../../developing/app-guide/strong-consistency.md
+
 [usage update objects]: ../../developing/usage/updating-objects.md
+
 [apps replication properties]: ../../developing/app-guide/replication-properties.md
+
 [install index]: ../../setup/installing/index.md
+
 [getting started]: ../../developing/getting-started/index.md
+
 [usage index]: ../../developing/usage/index.md
+
 [glossary]: ../../learn/glossary.md
+
 [write-once]: ../../developing/app-guide/write-once.md
 
 So you've decided to build an application using Riak as a data store. We
@@ -63,11 +104,11 @@ perhaps even how parts of your application should be built.
 This is an important initial question for two reasons:
 
 1. Not all data is a good fit for Riak. If your data isn't a good fit,
-we would advise that you seek out a storage system that better suits
-your needs.
+   we would advise that you seek out a storage system that better suits
+   your needs.
 2. The kinds of data that you're storing should guide your decision both
-about _how_ to store and access your data in Riak and about which Riak
-features would be helpful (and which ones might even be harmful).
+   about *how* to store and access your data in Riak and about which Riak
+   features would be helpful (and which ones might even be harmful).
 
 ### Good Fits for Riak
 
@@ -82,7 +123,7 @@ following:
 * **Small objects** --- Riak was not built as a store for large objects
   like video files or other
   [BLOB](http://en.wikipedia.org/wiki/Binary_large_object)s. We built
-  [Riak CS](http://basho.com/riak-cloud-storage/) for that. Riak is
+  [Riak CS](http://docs.basho.com/riakcs/latest/) for that. Riak is
   great, however, for JSON, [log files][dev data model#log], [sensor data][dev data model#sensor], HTML files, and other objects that tend
   to run smaller than 1 MB.
 * **Independent objects** --- Objects that do not have interdependencies
@@ -156,15 +197,15 @@ using the Solr API.
   to the entirety of [Solr](http://lucene.apache.org/solr/)'s extremely
   broad API, which enables you to query on the basis of wildcards,
   strings, booleans, geolocation, ranges, language-specific fulltext,
-  and far more. You can even use Search in conjunction with [Riak Data Types][dev data types] \(documentation coming soon).
+  and far more. You can even use Search in conjunction with [Riak Data Types][dev data types] (documentation coming soon).
 
 > **Search is preferred for querying**
 >
 > In general, you should consider Search to be the default choice for
-nearly all querying needs that go beyond basic CRUD/KV operations. If
-your use case demands some sort of querying mechanism and you're in
-doubt about what to use, you should assume that Search is the right tool
-for you.
+> nearly all querying needs that go beyond basic CRUD/KV operations. If
+> your use case demands some sort of querying mechanism and you're in
+> doubt about what to use, you should assume that Search is the right tool
+> for you.
 
 ### When Not to Use Search
 
@@ -172,7 +213,7 @@ for you.
     consider [secondary indexes][usage 2i] instead of
     Search if your use case requires deep pagination. This will be
     changed, however, in a future release of Riak, at which point you
-    should consider Search the default choice for _all_ querying needs.
+    should consider Search the default choice for *all* querying needs.
 * **In large clusters** --- In clusters larger than 8-10 nodes, you may
     experience slower performance when using Search. In clusters of that
     size, we would recommend using Search in a limited fashion, setting
@@ -202,12 +243,14 @@ own.
   with implementation details
 * [Data Modeling with Riak Data Types][dev data model] --- An object modeling example that relies on Riak Data Types.
 
-> **Note**:
->
-> Riak Data Types can be used in conjunction with Riak Search,
+:::note :
+
+Riak Data Types can be used in conjunction with Riak Search,
 meaning that the data stored in counters, sets, and maps can be indexed
 and searched just like any other data in Riak. Documentation on Data
 Types and Search is coming soon.
+
+:::
 
 ### When to Use Riak Data Types
 
@@ -311,7 +354,7 @@ you're storing binary data that is opaque to features like [Riak Search][usage s
 ### When Not to Use Secondary Indexes
 
 * **For most querying purposes** --- If your use case does not
-    involve deep pagination, we recommend Search over 2i for _all_
+    involve deep pagination, we recommend Search over 2i for *all*
     querying purposes.
 * **If you're using Bitcask** --- 2i is available only in the
     [LevelDB][plan backend leveldb] backend. If you'd like to use [Bitcask][plan backend bitcask] or the [Memory][plan backend memory] backend, you will not be able to use 2i.
@@ -335,13 +378,13 @@ Nonetheless, there's a variety of material in our documentation that
 might be helpful when thinking about data modeling:
 
 * Object Modeling in Riak KV:
-    - [Java][obj model java]
-    - [Ruby][obj model ruby]
-    - [Python][obj model python]
-    - [C#][obj model csharp]
-    - [NodeJS][obj model nodejs]
-    - [Erlang][obj model erlang]
-    - [Go][obj model golang]
+  * [Java][obj model java]
+  * [Ruby][obj model ruby]
+  * [Python][obj model python]
+  * [C#][obj model csharp]
+  * [NodeJS][obj model nodejs]
+  * [Erlang][obj model erlang]
+  * [Go][obj model golang]
 * [Key/Value Modeling][dev kv model]
 
 ### Data Types
@@ -410,4 +453,3 @@ will help you get up and running:
 * [Developing with Riak KV: Usage][usage index] --- A guide to basic key/value operations and other common tasks in Riak KV.
 * [Riak KV Glossary][glossary] --- A listing of frequently used terms in Riak's
   documentation
-

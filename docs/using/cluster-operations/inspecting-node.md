@@ -36,7 +36,7 @@ Riak.
 Active Stats represent current activity on the node.
 
 | Stat                    | Description                                                                 |
-|-------------------------|-----------------------------------------------------------------------------|
+| ----------------------- | --------------------------------------------------------------------------- |
 | `pbc_active`            | Number of active Protocol Buffers connections                               |
 | `node_get_fsm_active`   | Number of active GET FSMs                                                   |
 | `node_put_fsm_active`   | Number of active PUT FSMs                                                   |
@@ -54,7 +54,7 @@ Average Stats are reported by Sidejob - an Erlang library that
 implements a parallel, capacity-limited request pool.
 
 | Stat                    | Description                                    |
-|-------------------------|------------------------------------------------|
+| ----------------------- | ---------------------------------------------- |
 | `node_get_fsm_in_rate`  | Average number of GET FSMs enqueued by Sidejob |
 | `node_get_fsm_out_rate` | Average number of GET FSMs dequeued by Sidejob |
 | `node_put_fsm_in_rate`  | Average number of PUT FSMs enqueued by Sidejob |
@@ -68,7 +68,7 @@ occurred within the last minute on this node.
 #### General One-Minute Stats
 
 | Stat                                  | Description                                                                                               |
-|---------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `node_gets`                           | Number of GETs coordinated by this node, including GETs to non-local vnodes in the last minute            |
 | `node_puts`                           | Number of PUTs coordinated by this node, where a PUT is sent to a local vnode in the last minute          |
 | `vnode_gets`                          | Number of GET operations coordinated by local vnodes on this node in the last minute                      |
@@ -104,7 +104,7 @@ effectively represents experienced latency. Mean, Median, and 95th-,
 one-minute stats.
 
 | Stat                       | Description                                                                                     |
-|----------------------------|-------------------------------------------------------------------------------------------------|
+| -------------------------- | ----------------------------------------------------------------------------------------------- |
 | `node_get_fsm_time_mean`   | Mean time between reception of client GET request and subsequent response to client             |
 | `node_get_fsm_time_median` | Median time between reception of client GET request and subsequent response to client           |
 | `node_get_fsm_time_95`     | 95th percentile time between reception of client GET request and subsequent response to client  |
@@ -123,7 +123,7 @@ encountered by this node on the occasion of a GET request. These are
 one-minute stats.
 
 | Stat                           | Description                                                                                            |
-|--------------------------------|--------------------------------------------------------------------------------------------------------|
+| ------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `node_get_fsm_siblings_mean`   | Mean number of siblings encountered during all GET operations by this node within the last minute      |
 | `node_get_fsm_siblings_median` | Median number of siblings encountered during all GET operations by this node within the last minute    |
 | `node_get_fsm_siblings_95`     | 95th percentile of siblings encountered during all GET operations by this node within the last minute  |
@@ -139,7 +139,7 @@ value, and serialized metadata of each sibling. GET FSM Objsize and GET
 FSM Siblings are inextricably linked. These are one-minute stats.
 
 | Stat                          | Description                                                                          |
-|-------------------------------|--------------------------------------------------------------------------------------|
+| ----------------------------- | ------------------------------------------------------------------------------------ |
 | `node_get_fsm_objsize_mean`   | Mean object size (bytes) encountered by this node within the last minute             |
 | `node_get_fsm_objsize_median` | Median object size (bytes) encountered by this node within the last minute           |
 | `node_get_fsm_objsize_95`     | 95th percentile object size (bytes) encountered by this node within the last minute  |
@@ -152,7 +152,7 @@ Total Stats represent the total number of times a particular activity
 has occurred since this node was started.
 
 | Stat                                    | Description                                                                                 |
-|-----------------------------------------|---------------------------------------------------------------------------------------------|
+| --------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `node_gets_total`                       | Total number of GETs coordinated by this node, including GETs to non-local vnodes           |
 | `node_puts_total`                       | Total number of PUTs coordinated by this node, including PUTs to non-local vnodes           |
 | `vnode_gets_total`                      | Total number of GETs coordinated by local vnodes                                            |
@@ -183,7 +183,7 @@ Epoch time, the last time statistics for that application were
 generated.
 
 | Stat                | Description                                   |
-|---------------------|-----------------------------------------------|
+| ------------------- | --------------------------------------------- |
 | `riak_kv_stat_ts`   | The last time Riak KV stats were generated.   |
 | `riak_pipe_stat_ts` | The last time Riak Pipe stats were generated. |
 
@@ -192,7 +192,7 @@ generated.
 General ring information is reported in `riak-admin status`.
 
 | Stat                  | Description                                                            |
-|-----------------------|------------------------------------------------------------------------|
+| --------------------- | ---------------------------------------------------------------------- |
 | `ring_members`        | List of nodes that are members of the ring                             |
 | `ring_num_partitions` | The number of partitions in the ring                                   |
 | `ring_ownership`      | List of all nodes in the ring and their associated partition ownership |
@@ -205,7 +205,7 @@ Documentation for which can be found at [ErlDocs:
 cpu_sup](http://erlang.org/doc/man/cpu_sup.html).
 
 | Stat         | Description                                                                                                                        |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------|
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `cpu_nprocs` | Number of operating system processes                                                                                               |
 | `cpu_avg1`   | The average number of active processes for the last 1 minute (equivalent to top(1) command’s load average when divided by 256())   |
 | `cpu_avg5`   | The average number of active processes for the last 5 minutes (equivalent to top(1) command’s load average when divided by 256())  |
@@ -216,7 +216,7 @@ Documentation for which can be found at [ErlDocs:
 Memory](http://erlang.org/doc/man/erlang.html#memory-0#memory/0).
 
 | Stat                    | Description                                                              |
-|-------------------------|--------------------------------------------------------------------------|
+| ----------------------- | ------------------------------------------------------------------------ |
 | `memory_total`          | Total allocated memory (sum of processes and system)                     |
 | `memory_processes`      | Total amount of memory allocated for Erlang processes                    |
 | `memory_processes_used` | Total amount of memory used by Erlang processes                          |
@@ -234,7 +234,7 @@ Memory](http://erlang.org/doc/man/erlang.html#memory-0#memory/0).
 The below statistics describe properties of the Erlang VM.
 
 | Stat                      | Description                                                                                                                                     |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `nodename`                | The name this node uses to identify itself                                                                                                      |
 | `connected_nodes`         | A list of the nodes that this node is aware of at this time                                                                                     |
 | `sys_driver_version`      | String representing the Erlang driver version in use by the runtime system                                                                      |
@@ -256,7 +256,7 @@ Miscellaneous Information provide additional details particular to this
 node.
 
 | Stat                       | Description                                                                                                     |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------|
+| -------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `leveldb_read_block_error` | The number of LevelDB read block errors.  Will read as undefined if LevelDB is not being used.                  |
 | `disk`                     | Information about the disk, taken from Erlang's disksup module.  Reported as [{"ID",KBytes_Used,Percent_Util}]. |
 | `storage_backend`          | The storage backend currently in use.                                                                           |
@@ -267,7 +267,7 @@ The following metrics from from riak_pipe are generated during MapReduce
 operations.
 
 | Stat                          | Description                                                             |
-|-------------------------------|-------------------------------------------------------------------------|
+| ----------------------------- | ----------------------------------------------------------------------- |
 | `pipeline_active`             | The number of pipelines active in the last 60 seconds                   |
 | `pipeline_create_count`       | The total number of pipelines created since the node was started        |
 | `pipeline_create_error_count` | The total number of pipeline creation errors since the node was started |
@@ -281,7 +281,7 @@ makes up a Riak node is present in the `riak-admin status` output.  Each
 application is linked below next to it's version identifier.
 
 | Stat                    | Description                                                           |
-|-------------------------|-----------------------------------------------------------------------|
+| ----------------------- | --------------------------------------------------------------------- |
 | `erlydtl_version`       | [ErlyDTL](http://github.com/erlydtl/erlydtl)                          |
 | `riak_control_version`  | [Riak Control](http://github.com/basho/riak_control)                  |
 | `cluster_info_version`  | [Cluster Information](http://github.com/basho/cluster_info)           |
@@ -318,7 +318,7 @@ The following statistics related to Riak Search message queues are
 available.
 
 | Stat                         | Description                                                                                                                                               |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `riak_search_vnodeq_max`     | Maximum number of unprocessed messages all virtual node (vnode) message queues in the Riak Search subsystem have received on this node in the last minute |
 | `riak_search_vnodeq_mean`    | Mean number of unprocessed messages all vnode message queues in the Riak Search subsystem have received on this node in the last minute                   |
 | `riak_search_vnodeq_median`  | Median number of unprocessed messages all vnode message queues in the Riak Search subsystem have received on this node in the last minute                 |
@@ -347,7 +347,7 @@ Riak tabulates a variety of stats related to Riak's optional [strong consistency
 ### GET-related stats
 
 | Stat                            | Description                                                                                                |
-|:--------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| :------------------------------ | :--------------------------------------------------------------------------------------------------------- |
 | `consistent_gets`               | Number of strongly consistent GETs coordinated by this node in the last minute                             |
 | `consistent_gets_total`         | Total number of strongly consistent GETs coordinated by this node                                          |
 | `consistent_get_objsize_mean`   | Mean object size (bytes) for strongly consistent GETs on this node in the last minute                      |
@@ -364,7 +364,7 @@ Riak tabulates a variety of stats related to Riak's optional [strong consistency
 ### PUT-related stats
 
 | Stat                            | Description                                                                                                |
-|:--------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| :------------------------------ | :--------------------------------------------------------------------------------------------------------- |
 | `consistent_puts`               | Number of strongly consistent PUTs coordinated by this node in the last minute                             |
 | `consistent_puts_total`         | Total number of strongly consistent PUTs coordinated by this node                                          |
 | `consistent_put_objsize_mean`   | Mean object size (bytes) for strongly consistent PUTs on this node in the last minute                      |
@@ -384,20 +384,16 @@ Running `riak-admin diag` by itself will perform a check of all of the
 data partitions in your cluster. It will return a listing of partitions
 that have been checked, each of which looks something like this:
 
-```
-{1392993748081016843912887106182707253109560705024, % the partition checked
- 'dev-rel@127.0.0.1'},                              % that partition's nodename
-```
+    {1392993748081016843912887106182707253109560705024, % the partition checked
+     'dev-rel@127.0.0.1'},                              % that partition's nodename
 
 At the end of that (potentially very long) listing of checked
 partitions, it will print notices, warnings, and other pieces of
 information about issues that it has found, including date/time, message
 type, and a detailed description. Here's an example:
 
-```
-15:34:52.736 [warning] Riak crashed at Wed, 07 Dec 2011 21:47:50 GMT, leaving crash dump in /srv/riak/log/erl_crash.dump. Please inspect or remove the file.
-15:34:52.736 [notice] Data directory /srv/riak/data/bitcask is not mounted with 'noatime'. Please remount its disk with the 'noatime' flag to improve performance.
-```
+    15:34:52.736 [warning] Riak crashed at Wed, 07 Dec 2011 21:47:50 GMT, leaving crash dump in /srv/riak/log/erl_crash.dump. Please inspect or remove the file.
+    15:34:52.736 [notice] Data directory /srv/riak/data/bitcask is not mounted with 'noatime'. Please remount its disk with the 'noatime' flag to improve performance.
 
 Messages bear the following types (derived from
 [syslog](http://en.wikipedia.org/wiki/Syslog) security levels):
@@ -416,21 +412,19 @@ Messages bear the following types (derived from
 Attaching the `--help` flag will return a list of flags and commands
 that can be used with Riaknostic:
 
-```
-Usage: riak-admin diag [-d <level>] [-l] [-h] [--export] [check_name ...]
+    Usage: riak-admin diag [-d <level>] [-l] [-h] [--export] [check_name ...]
 
--h, --help            Display help/usage dialogue
--d, --level           Minimum message severity level (default: notice)
--l, --list            Describe available diagnostic tasks
---export              Package system info in '/export.zip'
-check_name            A specific check to run
-```
+    -h, --help            Display help/usage dialogue
+    -d, --level           Minimum message severity level (default: notice)
+    -l, --list            Describe available diagnostic tasks
+    --export              Package system info in '/export.zip'
+    check_name            A specific check to run
 
 Running `riak-admin diag`  with the `--list` flag will return a list of
 available diagnostic checks. The following checks are available:
 
 | Check             | Description                                       |
-|:------------------|:--------------------------------------------------|
+| :---------------- | :------------------------------------------------ |
 | `disk`            | Data directory permissions and atime              |
 | `dumps`           | Find crash dumps                                  |
 | `memory_use`      | Measure memory usage                              |

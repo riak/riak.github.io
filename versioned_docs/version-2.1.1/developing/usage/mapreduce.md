@@ -1,16 +1,22 @@
 ---
 title: "Using MapReduce"
 id: usage_mapreduce
-slug: mapreduce 
+slug: mapreduce
 sidebar_position: 6
 ---
 
 [usage 2i]: ../../developing/usage/secondary-indexes.md
+
 [usage search]: ../../developing/usage/search.md
+
 [usage types]: ../../developing/usage/bucket-types.md
+
 [api http]: ../../developing/api/http/index.md
+
 [api pb]: ../../developing/api/protocol-buffers/index.md
+
 [glossary vnode]: ../../learn/glossary.md#vnode
+
 [guide mapreduce]: ../../developing/app-guide/advanced-mapreduce.md
 
 :::note Use MapReduce sparingly
@@ -179,11 +185,9 @@ is a very expensive process.
 That will return output along the following lines, verifying that
 compilation has completed:
 
-```
-{ok,{re_pattern,0,0,
-                <<69,82,67,80,69,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,99,0,100,
-                  ...>>}}
-```
+    {ok,{re_pattern,0,0,
+                    <<69,82,67,80,69,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,99,0,100,
+                      ...>>}}
 
 Then, we can create a socket link to our cluster:
 
@@ -205,10 +209,8 @@ That will return a list of tuples. The first element in each tuple is
 the key for each object in the bucket, while the second element displays
 the number of instances of the word "caremad" in the object:
 
-```
-{ok,[{0,
-      [{<<"foo">>,1},{<<"bam">>,3},{<<"baz">>,0},{<<"bar">>,4}]}]}
-```
+    {ok,[{0,
+          [{<<"foo">>,1},{<<"bam">>,3},{<<"baz">>,0},{<<"bar">>,4}]}]}
 
 ### Recap
 

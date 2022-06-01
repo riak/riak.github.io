@@ -9,12 +9,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [redis-clients]: http://redis.io/clients
+
 [usage bucket types]: ../../developing/usage/bucket-types.md
+
 [dev api http]: ../../developing/api/http/index.md
+
 [config-behaviors]: http://basho.com/posts/technical/riaks-config-behaviors-part-4/
+
 [apps replication properties]: ../../developing/app-guide/replication-properties.md
+
 [usage commit hooks]: ../../developing/usage/commit-hooks.md
+
 [concept causal context]: ../../learn/concepts/causal-context.md
+
 [ee]: http://basho.com/contact/
 
 This page will walk you through setting up your environment for development with Riak Redis Add-on (RRA), as well as present examples and configuration parameters for basic development operations.
@@ -85,7 +92,6 @@ easily enable buckets to share common configurations, i.e. identical
 [replication properties][apps replication properties] or
 [commit hooks][usage commit hooks].
 
-
 ## Reading Objects
 
 Reads via the cache proxy service are analogous to a Redis `GET`, with the added benefit of reading-through to Riak KV which results in greater resilience through node outages and network partitions.
@@ -150,11 +156,13 @@ var value = connection.get("test:food")
 
 ### Get Configuration Parameters
 
->**Note:** The cache proxy service read option (related to replication factor and
+:::note Note: The cache proxy service read option (related to replication factor and
 consistency concern) may optionally be set within the nutcracker.conf. This will  result in an override of the setting value at the bucket-level in Riak KV.
 
+:::
+
 | Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default                |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3`                    |
 | `pr`            | How many vnodes must respond for a read to be deemed successful.                                                                                                                                                                                                                                                                                                  | `0`                    |
 | `r`             | How many replicas need to agree when retrieving an existing object before responding.                                                                                                                                                                                                                                                                             | `2`                    |
@@ -163,13 +171,11 @@ consistency concern) may optionally be set within the nutcracker.conf. This will
 | `notfound_ok`   | Whether to treat notfounds as successful reads for the purpose of `r`.                                                                                                                                                                                                                                                                                            | 1 (true)               |
 | `timeout`       | The number of milliseconds to await a response.                                                                                                                                                                                                                                                                                                                   | `0` (server specified) |
 
-
 ### Sibling Resolution
 
 As the Redis protocol does not provide a means to return multiple siblings,
 the cache proxy service must provide server-side sibling resolution. At present, only last-write-wins sibling resolution is available. The result is an effective
 last-write-wins configuration for access through the cache proxy service.
-
 
 ## Writing Objects
 
@@ -238,12 +244,14 @@ connection.set("test:food", "apple")
 
 ### Set Configuration Parameters
 
->**Note:** The cache proxy service write option (related to replication factor and
+:::note Note: The cache proxy service write option (related to replication factor and
 consistency concern) may optionally be set within the nutcracker.conf, resulting
 in an override of the setting value at the bucket-level in Riak KV.
 
+:::
+
 | Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default     |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3`         |
 | `pw`            | How many vnodes must respond for a write to be deemed successful.                                                                                                                                                                                                                                                                                                 | `0`         |
 | `w`             | How many replicas need to acknowledge the write before responding.                                                                                                                                                                                                                                                                                                | `2`         |
@@ -336,7 +344,7 @@ connection.del("test:food")
 ### Delete Configuration Parameters
 
 | Parameter       | Description                                                                                                                                                                                                                                                                                                                                                       | Default     |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `n_val`         | The number of replicas for objects in a bucket. The `n_val` should be an integer greater than 0 and less than or equal to the number of nodes in the cluster.<br /><br />**NOTE**: If you change the `n_val` after keys have been added to the bucket it may result in failed reads, as the new value may not be replicated to all of the appropriate partitions. | `3`         |
 | `pw`            | How many vnodes must respond for a write to be deemed successful.                                                                                                                                                                                                                                                                                                 | `0`         |
 | `w`             | How many replicas need to acknowledge the write before responding.                                                                                                                                                                                                                                                                                                | `2`         |

@@ -1,20 +1,25 @@
 ---
 title: "Eventual Consistency"
 id: learn_concepts_eventual_cons
-slug: eventual-consistency 
+slug: eventual-consistency
 sidebar_position: 6
 ---
 
-
 [concept buckets]: ../../learn/concepts/buckets.md
-[concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
-[concept clusters]: ../../learn/concepts/clusters.md
-[concept replication]: ../../learn/concepts/replication.md
-[glossary node]: ../../learn/glossary.md#node
-[glossary read rep]: ../../learn/glossary.md#read-repair
-[usage bucket types]: ../../developing/usage/bucket-types.md
-[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
 
+[concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
+
+[concept clusters]: ../../learn/concepts/clusters.md
+
+[concept replication]: ../../learn/concepts/replication.md
+
+[glossary node]: ../../learn/glossary.md#node
+
+[glossary read rep]: ../../learn/glossary.md#read-repair
+
+[usage bucket types]: ../../developing/usage/bucket-types.md
+
+[usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
 
 In a distributed and fault-tolerant system like Riak, server and network
 failures are expected. Riak is designed to respond to requests even when
@@ -101,7 +106,7 @@ decisions on its own, if you wish.
 
 Let's say that you keep the above scenario the same, except you tweak
 the request and set R to 1, perhaps because you want faster responses to
-the client. In this case, it _is_ possible that the client will receive
+the client. In this case, it *is* possible that the client will receive
 the outdated value `Alex Ferguson` because it is only waiting for a
 response from one node.
 
@@ -165,20 +170,21 @@ The same is true of writes: W=2 or W=3 will work fine with the primary
 node offline, as will PW=2 (primary write), but PW=3 will result in an
 error.
 
->**Note: Errors and Failures**
->
->It is important to understand the difference between an error and a
+:::note Note: Errors and Failures
+
+It is important to understand the difference between an error and a
 failure.
->
->The `PW=3` request in this scenario will result in an error,
+
+The `PW=3` request in this scenario will result in an error,
 but the value will still be written to the two surviving primary
 nodes.
->
->By specifying `PW=3` the client indicated that 3 primary
+
+By specifying `PW=3` the client indicated that 3 primary
 nodes must respond for the operation to be considered successful, which
 it wasn't, but there's no way to tell without performing another read
 whether the operation truly failed.
 
+:::
 
 ## Further Reading
 

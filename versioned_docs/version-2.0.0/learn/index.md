@@ -5,8 +5,11 @@ sidebar_position: 6
 ---
 
 [learn why riak]: ./why-riak-kv.md
+
 [learn use cases]: ./use-cases.md
+
 [glossary]: ./glossary.md
+
 [concepts]: ./concepts/index.md
 
 ## [Why Riak KV?][learn why riak]

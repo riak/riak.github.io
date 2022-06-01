@@ -8,9 +8,11 @@ sidebar_position: 9
 
 [config v3 ssl#verify-peer]: ../../configuring/v3-multi-datacenter/ssl.md#verifying-peer-certificates
 
-> **Note on the `cluster_mgr` setting**
->
-> The `cluster_mgr` setting *must* be set in order for version 3 replication to run.
+:::note Note on the `cluster_mgr` setting
+
+The `cluster_mgr` setting *must* be set in order for version 3 replication to run.
+
+:::
 
 The configuration for Multi-Datacenter (MDC) Replication is kept in
 both the `riak_core` and `riak_repl` sections of the `app.config`
@@ -24,7 +26,7 @@ of configurable parameters, see our documentation on [Advanced Configuration][co
 
 Here is a sample of the syntax:
 
-```advancedconfig
+```erlang
 {riak_core, [
     %% Every *node* runs one cluster_mgr
     {cluster_mgr, {"0.0.0.0", 9080 }},
@@ -54,7 +56,7 @@ syntax `{Setting, Value}`. For example, if you wished to set
 `riak_repl` section (appending a comma if you have more settings to
 follow):
 
-```advancedconfig
+```erlang
 {fullsync_on_connect, false}
 ```
 
@@ -68,7 +70,7 @@ riak chkconfig
 ## riak_repl Settings
 
 | Setting                  | Options                                                          | Default          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|:-------------------------|:-----------------------------------------------------------------|:-----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :----------------------- | :--------------------------------------------------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `cluster_mgr`            | `{ip_address, port}`                                             | **REQUIRED**     | The cluster manager will listen for connections from remote clusters on this `ip_address` and `port`. Every node runs one cluster manager, but only the cluster manager running on the `cluster_leader` will service requests. This can change as nodes enter and leave the cluster. The value is a combination of an IP address (**not hostname**) followed by a port number.                                                              |
 | `max_fssource_cluster`   | `nodes` (integer)                                                | `5`              | The hard limit on the number of workers which will participate in the source cluster during a fullsync replication. This means that if one has configured fullsync for two different clusters, both with a `max_fssource_cluster` of 5, 10 fullsync workers can be in progress. Only affects nodes on the source cluster on which this parameter is defined via the configuration file or command line.                                     |
 | `max_fssource_node`      | `nodes` (integer)                                                | `1`              | Limits the number of fullsync workers that will be running on each individual node in a source cluster. This is a hard limit for all fullsyncs enabled; additional fullsync configurations will not increase the number of fullsync workers allowed to run on any node. Only affects nodes on the source cluster on which this parameter is defined via the configuration file or command line.                                             |
@@ -86,7 +88,7 @@ riak chkconfig
 ## riak_core Settings
 
 | Setting                | Options           | Default     | Description                                                                                                                                                                                                                                                                   |
-|:-----------------------|:------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :--------------------- | :---------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `keyfile`              | `path` (string)   | `undefined` | Fully qualified path to an ssl `.pem` key file                                                                                                                                                                                                                                |
 | `cacertdir`            | `path` (string)   | `undefined` | The `cacertdir` is a fully-qualified directory containing all the CA certificates needed to verify the CA chain back to the root                                                                                                                                              |
 | `certfile`             | `path` (string)   | `undefined` | Fully qualified path to a `.pem` cert file                                                                                                                                                                                                                                    |

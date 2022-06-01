@@ -74,7 +74,7 @@ This will return a table that will provide the following information
 about each node in your cluster:
 
 | Header      | Description                                                                                                                                              |
-|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Node`      | The name of the node                                                                                                                                     |
 | `Total`     | Total number of active transfers throughout the entire cluster                                                                                           |
 | `Ownership` | Total number of ownership exchanges                                                                                                                      |

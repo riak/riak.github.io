@@ -6,6 +6,7 @@ sidebar_position: 5
 ---
 
 [config reference]: ../../configuring/reference.md
+
 [concept clusters]: ../../learn/concepts/clusters.md
 
 Riak's [configuration files][config reference] provide a variety of parameters that

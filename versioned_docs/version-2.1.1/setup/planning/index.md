@@ -5,10 +5,15 @@ sidebar_position: 0
 ---
 
 [plan start]: ./start.md
+
 [plan backend]: ./backend/index.md
+
 [plan cluster capacity]: ./cluster-capacity.md
+
 [plan bitcask capacity]: /bitcask-calculator
+
 [plan backend bitcask]: ./backend/bitcask.md
+
 [plan best practices]: ./best-practices.md
 
 ## [Start Planning][plan start]

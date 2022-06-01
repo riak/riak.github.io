@@ -1,7 +1,7 @@
 ---
 title: "Searching"
 id: usage_searching
-slug: search 
+slug: search
 sidebar_position: 5
 ---
 
@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [usage search schema]: ./search-schemas.md
+
 [bucket types]: ./bucket-types.md
 
 ## Setup
@@ -300,7 +301,7 @@ curl -XPUT $RIAK_HOST/types/animals/buckets/cats/props \
 ```
 
 Another possibility is to set the `search_index` as a default property
-of the bucket type. This means _any_ bucket under that type will
+of the bucket type. This means *any* bucket under that type will
 inherit that setting and have its values indexed.
 
 ```bash
@@ -450,13 +451,15 @@ riak-admin security revoke search.query on index famous from username
 
 ## Indexing Values
 
-> **Note on indexing and lag times**
->
-> There is typically a one-second delay between storing an object in Riak
+:::note Note on indexing and lag times
+
+There is typically a one-second delay between storing an object in Riak
 and that object being available in Search queries. You should take this
 into account when writing Riak client tests, benchmarking, and so on.
 More information can be found in the [Solr
 documentation](http://wiki.apache.org/solr/SolrPerformanceFactors).
+
+:::
 
 With a Solr schema, index, and association in place (and possibly a
 security setup as well), we're ready to start using Riak Search. First,
@@ -808,10 +811,10 @@ extra fields as well. These are necessary for a variety of technical
 reasons, and for the most part you don't need to think about them.
 However, there are a few fields which you may find useful:
 
-- `_yz_rk` (Riak key)
-- `_yz_rt` (Riak bucket type)
-- `_yz_rb` (Riak bucket)
-- `_yz_err` (extraction error)
+* `_yz_rk` (Riak key)
+* `_yz_rt` (Riak bucket type)
+* `_yz_rb` (Riak bucket)
+* `_yz_err` (extraction error)
 
 You can query on the basis of these fields, just like any other normal
 Solr fields. Most of the time, however, you'll use `_yz_rk` as a query
@@ -1520,7 +1523,7 @@ documents to skip over (the offset) and `rows` are the number of results
 to return in one go.
 
 For example, assuming we want two results per page, getting the second
-page is easy, where `start` is calculated as (rows per page) * (page
+page is easy, where `start` is calculated as (rows per page) \* (page
 number - 1).
 
 <Tabs>

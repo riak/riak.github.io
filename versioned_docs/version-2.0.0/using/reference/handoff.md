@@ -188,7 +188,6 @@ handoff.max_rejects = 10
 
 </Tabs>
 
-
 ### Transfer Limit
 
 You can adjust the number of node-to-node transfers (which includes

@@ -1,7 +1,7 @@
 ---
 title: "Operating System Support"
 id: planning_os
-slug: operating-system 
+slug: operating-system
 sidebar_position: 1
 ---
 

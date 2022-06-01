@@ -1,7 +1,7 @@
 ---
 title: "SSL"
 id: configuring_v2_replication_ssl
-slug: ssl 
+slug: ssl
 sidebar_position: 2
 ---
 
@@ -13,9 +13,9 @@ v2 Multi-Datacenter Replication is deprecated and will be removed in a future ve
 
 Riak REPL SSL support consists of the following items:
 
-  * Encryption of replication data
-  * SSL certificate chain validation
-  * SSL common name whitelisting support
+* Encryption of replication data
+* SSL certificate chain validation
+* SSL common name whitelisting support
 
 ## SSL Configuration
 
@@ -31,7 +31,6 @@ in the `riak-repl` section of your `advanced.config`:
              {cacertdir, "/full/path/to/cacertsdir"}
              % ...
             ]}
-
 ```
 
 The `cacertdir` is a directory containing all of the CA certificates
@@ -89,7 +88,6 @@ peer certificate name like `db.backup.bashosamplecorp.com`:
              {peer_common_name_acl, ["*.bashosamplecorp.com"]}
              % ...
             ]}
-
 ```
 
 This example will match any peer certificate name (and is the default):
@@ -125,12 +123,12 @@ be self signed.
 
 For example:
 
-  * A depth of 0 indicates that the certificate must be signed directly
-    by a root certificate authority (CA)
-  * A depth of 1 indicates that the certificate may be signed by at most
-    1 intermediate CA's, followed by a root CA
-  * A depth of 2 indicates that the certificate may be signed by at most
-    2 intermediate CA's, followed by a root CA
+* A depth of 0 indicates that the certificate must be signed directly
+  by a root certificate authority (CA)
+* A depth of 1 indicates that the certificate may be signed by at most
+  1 intermediate CA's, followed by a root CA
+* A depth of 2 indicates that the certificate may be signed by at most
+  2 intermediate CA's, followed by a root CA
 
 ## Compatibility
 

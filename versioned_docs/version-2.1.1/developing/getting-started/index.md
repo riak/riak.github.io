@@ -5,6 +5,7 @@ sidebar_position: 0
 ---
 
 [install index]: ../../setup/installing/index.md
+
 [dev client libraries]: ../../developing/client-libraries.md
 
 Welcome, new Riak developer! This guide will get you started developing

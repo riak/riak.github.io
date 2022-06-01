@@ -21,7 +21,7 @@ below shows you where log files are stored on all supported operating
 systems.
 
 | OS                           | Directory                                                          |
-|:-----------------------------|:-------------------------------------------------------------------|
+| :--------------------------- | :----------------------------------------------------------------- |
 | Ubuntu, Debian, CentOS, RHEL | `/var/log/riak`                                                    |
 | Solaris, OpenSolaris         | `/opt/riak/log`                                                    |
 | Source install and Mac OS X  | `./log` (where the `.` represents the root installation directory) |
@@ -32,7 +32,7 @@ Below is a list of files that can be found in each node's `/log`
 directory:
 
 | File          | Significance                                                                             |
-|:--------------|:-----------------------------------------------------------------------------------------|
+| :------------ | :--------------------------------------------------------------------------------------- |
 | `console.log` | Console log output                                                                       |
 | `crash.log`   | Crash logs                                                                               |
 | `erlang.log`  | Logs emitted by the [Erlang VM](../performance/erlang.md) on which Riak runs.            |
@@ -77,7 +77,7 @@ In each node's `/log` directory, you will see at least one of each of
 the following:
 
 | File          | Contents                                                                    |
-|:--------------|:----------------------------------------------------------------------------|
+| :------------ | :-------------------------------------------------------------------------- |
 | `console.log` | General messages from all Riak subsystems                                   |
 | `crash.log`   | Catastrophic events, such as node failures, running out of disk space, etc. |
 | `erlang.log`  | Events from the Erlang VM on which Riak runs                                |
@@ -172,7 +172,6 @@ Below are some examples:
 To set the maximum size of the crash log before it is rotated, use the
 `log.crash.size` parameter. You can specify the size in KB, MB, etc. The
 default is `10MB`.
-
 
 ### Other Crash Log Settings
 

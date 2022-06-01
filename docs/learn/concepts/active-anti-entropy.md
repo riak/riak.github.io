@@ -6,15 +6,22 @@ sidebar_position: 0
 ---
 
 [cluster ops v3 mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
-[cluster ops aae]: ../../using/cluster-operations/active-anti-entropy.md
-[concept clusters]: ../../learn/concepts/clusters.md
-[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
-[config aae]: ../../configuring/reference.md#active-anti-entropy
-[glossary read rep]: ../../learn/glossary.md#read-repair
-[glossary vnode]: ../../learn/glossary.md#vnode
-[Merkle tree]: http://en.wikipedia.org/wiki/Merkle_tree
-[usage search]: ../../developing/usage/search.md
 
+[cluster ops aae]: ../../using/cluster-operations/active-anti-entropy.md
+
+[concept clusters]: ../../learn/concepts/clusters.md
+
+[concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+
+[config aae]: ../../configuring/reference.md#active-anti-entropy
+
+[glossary read rep]: ../../learn/glossary.md#read-repair
+
+[glossary vnode]: ../../learn/glossary.md#vnode
+
+[Merkle tree]: http://en.wikipedia.org/wiki/Merkle_tree
+
+[usage search]: ../../developing/usage/search.md
 
 In a [clustered][concept clusters], [eventually consistent][concept eventual consistency] system like Riak, conflicts between object replicas stored
 on different nodes are an expected byproduct of node failure, concurrent
@@ -32,11 +39,10 @@ active anti-entropy (AAE). Both of these conflict resolution mechanisms
 apply both to normal key/value data in Riak as well as to
 [search indexes][usage search]
 
-
 ## Read Repair vs. Active Anti-Entropy
 
 In versions of Riak prior to 1.3, replica conflicts were healed via
-[read repair][glossary read rep] which is a _passive_
+[read repair][glossary read rep] which is a *passive*
 anti-entropy mechanism that heals object conflicts only when a read
 request reaches Riak from a client. Under read repair, if the
 [vnode][glossary vnode] coordinating the read request determines
@@ -50,7 +56,7 @@ is that the healing process only can only ever reach those objects that
 are read by clients. Any conflicts in objects that are not read by
 clients will go undetected.
 
-The _active_ anti-entropy (AAE) subsystem was added to Riak in
+The *active* anti-entropy (AAE) subsystem was added to Riak in
 versions 1.3 and later to enable conflict resolution to run as a
 continuous background process, in contrast with read repair, which does
 not run continuously. AAE is most useful in clusters containing so-

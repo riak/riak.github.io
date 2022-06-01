@@ -24,13 +24,13 @@ message RpbCoverageReq {
 #### Required Parameters
 
 | Parameter | Description                                        |
-|:----------|:---------------------------------------------------|
+| :-------- | :------------------------------------------------- |
 | `bucket`  | The name of the bucket in which the data is stored |
 
 #### Optional Parameters
 
 | Parameter           | Description                                                                                                                                                                                                                                                                        |
-|:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`              | The name of the bucket type, if this bucket is not in the default (pre-2.0) bucket type.                                                                                                                                                                                           |
 | `min_partitions`    | The minimum number of cluster slices. `undefined` results in a direct map of the internal coverage plan, which targets the minimum number of nodes necessary to retrieve all data. An integer will be rounded up to the nearest power of 2 greater than or equal to the ring size. |
 | `replace_cover`     | If a client cannot reach the server designated by a previous coverage response, the opaque binary can be sent with a new coverage request via this parameter and a new plan component will be calculated and returned.                                                             |
@@ -57,7 +57,7 @@ message RpbCoverageEntry {
 #### Values
 
 | Parameter       | Description                                                                                                                                                                            |
-|:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ip`            | The IP address of the server containing a subset of the data. Depending on the environment, this address may require local translation to deal with routing or firewall constraints.   |
 | `port`          | The port to contact on the server.                                                                                                                                                     |
 | `keyspace_desc` | A human-readable description of the keyspace. Not intended to be used programmatically except potentially for logging.                                                                 |

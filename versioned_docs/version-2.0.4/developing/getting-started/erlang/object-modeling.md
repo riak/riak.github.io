@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_erlang_object
-slug: object-modeling 
+slug: object-modeling
 sidebar_position: 2
 ---
 
@@ -14,7 +14,6 @@ You can also download the code for this chapter at
 The Github version includes Erlang type specifications which have been omitted
 here for brevity.
 :::
-
 
 ```erlang
 %% msgy.hrl
@@ -55,9 +54,8 @@ Natural keys are a great fit for key/value systems because both humans
 and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
-
 | Bucket      | Key Pattern                | Example Key                                                          |
-|:------------|:---------------------------|:---------------------------------------------------------------------|
+| :---------- | :------------------------- | :------------------------------------------------------------------- |
 | `Users`     | `<user_name>`              | `joeuser`                                                            |
 | `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13.223556Z`                                |
 | `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06Z`<br /> `marketing_group_Inbox_2014-03-06Z` |
@@ -144,7 +142,6 @@ get_current_iso_timestamp() ->
     lists:flatten(
         io_lib:format("~4..0B-~2..0B-~2..0BT~2..0B:~2..0B:~2..0B.~6..0B",
             [Year, Month, Day, Hour, Min, Sec, MicroSec])).
-
 ```
 
 <br />
@@ -259,7 +256,6 @@ get_iso_datestamp_from_date(Date) ->
 get_iso_datestamp_from_iso_timestamp(CreatedString) ->
     {Date, _} = lists:split(10,CreatedString),
     Date.
-
 ```
 
 Finally, let's test them:
@@ -324,4 +320,3 @@ So to recap, in this chapter we learned:
 
 * How to choose bucket names
 * How to choose natural keys based on how we want to partition our data.
-

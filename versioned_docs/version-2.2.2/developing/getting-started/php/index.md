@@ -9,9 +9,10 @@ If you haven't set up a Riak Node and started it, please visit [Running A Cluste
 To try this flavor of Riak, a working installation of PHP is required, and [Composer](https://getcomposer.org/) is required to be installed to fetch the client library package. 
 
 ## Client Setup
+
 Download and unzip, or clone the Taste of Riak Sample Code Repository from GitHub ([zip](https://github.com/basho/taste-of-riak/archive/master.zip), [github repository](https://github.com/basho/taste-of-riak)).
 
-From the `taste-of-riak` directory, use composer to install the Riak PHP 2.0 Client`.
+From the `taste-of-riak` directory, use composer to install the Riak PHP 2.0 Client\`.
 
 ```bash
 php path/to/your/composer.phar install
@@ -20,7 +21,7 @@ php path/to/your/composer.phar install
 composer install
 ```
 
-If you set up a local Riak cluster using the [[five minute install]] method, change line 11 from `->onPort(8098)` to `->onPort(10018)`.
+If you set up a local Riak cluster using the \[[five minute install]] method, change line 11 from `->onPort(8098)` to `->onPort(10018)`.
 
 Next, run `php Ch01-CRUD/taste-of-riak.php` to run this chapter's example code. It should output:
 

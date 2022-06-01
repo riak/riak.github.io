@@ -1,7 +1,7 @@
 ---
 title: "Load Balancing and Proxy Configuration"
 id: configuring_load_balance
-slug: load-balancing-proxy 
+slug: load-balancing-proxy
 sidebar_position: 4
 ---
 
@@ -46,10 +46,12 @@ act as a load balancer. The example cluster has 4 nodes and will be
 accessed by Riak clients using both the Protocol Buffers and HTTP
 interfaces.
 
-> **Note on open files limits**
->
-> The operating system's open files limits need to be greater than 256000
+:::note Note on open files limits
+
+The operating system's open files limits need to be greater than 256000
 for the example configuration that follows. Consult the [Open Files Limit][perf open files] documentation for details on configuring the value for different operating systems.
+
+:::
 
 ```config
 global

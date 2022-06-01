@@ -6,19 +6,22 @@ sidebar_position: 0
 ---
 
 [install index]: ../../../setup/installing/index.md
+
 [security basics]: ../../../using/security/basics.md
 
 Pre-packaged versions of Riak include an Erlang installation. If you are building Riak from source, you will need to install [Basho's patched version of Erlang](http://s3.amazonaws.com/downloads.basho.com/erlang/otp_src_R16B02-basho10.tar.gz). **If you do not use this version of Erlang, you will not be able to use Riak's [security features][security basics].**
 
-> **Note on Official Support**
->
-> Please note that only packaged Riak KV installs are officially supported. Visit [Installing Riak KV][install index] for installing a supported Riak package.
+:::note Note on Official Support
+
+Please note that only packaged Riak KV installs are officially supported. Visit [Installing Riak KV][install index] for installing a supported Riak package.
+
+:::
 
 ## Prerequisites
 
 #### Contents
 
-* [kerl](#kerl-prerequisites)
+* [kerl](https://github.com/yrashk/kerl)
 * [Debian/Ubuntu](#debianubuntu-prerequisites)
 * [FreeBSD/Solaris](#freebsdsolaris-prerequisites)
 * [Mac OS X](#mac-os-x-prerequisites)
@@ -33,13 +36,12 @@ To build and install Erlang you must have a GNU-compatible build system and thes
 
 **Building**
 
-* [autoconf](http://www.gnu.org/software/autoconf/autoconf.html): generates configure scripts.
+* [autoconf](https://www.gnu.org/software/autoconf/): generates configure scripts.
 * [make](http://www.gnu.org/software/make/): generates executables and other non-source files of a program.
 * [gcc](https://gcc.gnu.org/): for compiling C.
 * [ncurses](http://www.gnu.org/software/ncurses/): for terminal-based interfaces.
 * [OpenSSL](https://www.openssl.org/): toolkit that implements SSL and TSL protocols.
 * [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html): platform for deploying Java.
-
 
 ## kerl Prerequisites
 
@@ -76,6 +78,7 @@ Then check for the presence of autoconf by running:
 ```bash
 which autoconf
 ```
+
 If this returns `autoconf not found`, install autoconf by running:
 
 ```bash
@@ -84,7 +87,6 @@ sudo pkg install autoconf
 ```
 
 Once you've configured kerl and installed autoconf continue with [Installing with kerl](#installing-with-kerl).
-
 
 ### Configuring kerl on Mac OS X
 
@@ -130,8 +132,6 @@ cd autoconf-2.69
 
 Once you've configured kerl and installed autoconf continue with [Installing with kerl](#installing-with-kerl).
 
-
-
 ## Debian/Ubuntu Prerequisites
 
 ### Dependencies
@@ -147,12 +147,14 @@ sudo apt-get install build-essential autoconf libncurses5-dev openssl libssl-dev
 
 If you're using a graphical environment and want to use Erlang's GUI utilities, you will need to install additional dependencies.
 
-> **Note on build output**
->
->These packages are not required for operation of a Riak node.
+:::note Note on build output
+
+These packages are not required for operation of a Riak node.
 Notes in the build output about missing support for wxWidgets can be
 safely ignored when installing Riak in a typical non-graphical server
 environment.
+
+:::
 
 To install packages for graphics support use the following `apt-get` command:
 
@@ -163,8 +165,6 @@ sudo apt-get install libwxbase2.8 libwxgtk2.8-dev libqt4-opengl-dev
 ### Next Steps
 
 Once you've installed the prerequisites, continue with [Installing on Debian/Ubuntu](#installing-on-debianubuntu).
-
-
 
 ## FreeBSD/Solaris Prerequisites
 
@@ -191,16 +191,14 @@ sudo pkg install wx28-gtk2-2.8.12_4
 
 Once you've installed the prerequisites, continue with [Installing on FreeBSD/Solaris](#installing-on-freebsdsolaris).
 
-
-
 ## Mac OS X Prerequisites
 
 * [XCode Developer Tools](http://developer.apple.com/) - Apple Software Development Tools.
-* [Homebrew](http://brew.sh/) (*optional*) - Package Manager.
+* [Homebrew](#installing-on-mac-os-x-with-homebrew) (*optional*) - Package Manager.
 
 First install [XCode Developer Tools](http://developer.apple.com/). XCode is a set software development tools for developing on OS X.
 
-We also recommend installing [Homebrew](http://brew.sh/), a package manager for OS X. Homebrew is not required to install Erlang and is optional.
+We also recommend installing [Homebrew](#installing-on-mac-os-x-with-homebrew), a package manager for OS X. Homebrew is not required to install Erlang and is optional.
 
 Next, if you are running OS X 10.9 (Mavericks) or later, you may need to
 install [autoconf](https://www.gnu.org/software/autoconf/). To check for
@@ -253,8 +251,6 @@ sudo yum install wxBase.x86_64
 
 Once you've installed the prerequisites, continue with [Installing on RHEL/CentOS](#installing-on-rhelcentos).
 
-
-
 ## Installation
 
 * [Installing with kerl](#installing-with-kerl)
@@ -301,7 +297,6 @@ And start Erlang from your terminal with:
 ```bash
 erl
 ```
-
 
 ## Installing on Debian/Ubuntu
 
@@ -376,7 +371,6 @@ And start Erlang from your terminal with:
 ```bash
 erl
 ```
-
 
 ## Installing on Mac OS X
 
@@ -527,19 +521,21 @@ cd OTP_R16B02_basho10
 ./configure && make && sudo make install
 ```
 
-> **Note for RHEL6/CentOS6**
->
-> In certain versions of RHEL6 and CentO6 the `openSSL-devel` package
+:::note Note for RHEL6/CentOS6
+
+In certain versions of RHEL6 and CentO6 the `openSSL-devel` package
 ships with Elliptical Curve Cryptography partially disabled. To
 communicate this to Erlang and prevent compile- and run-time errors, the
 environment variable `CFLAGS="-DOPENSSL_NO_EC=1"` needs to be added to
 Erlang's `./configure` call.
->
-> The full `make` invocation then becomes
->
-> ```bash
+
+The full `make` invocation then becomes
+
+```bash
 CFLAGS="-DOPENSSL_NO_EC=1" ./configure && make && sudo make install
 ```
+
+:::
 
 Confirm Erlang installed to the correct location:
 

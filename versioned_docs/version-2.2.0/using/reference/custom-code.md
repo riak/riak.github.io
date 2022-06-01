@@ -30,7 +30,7 @@ source, use the `erlc` from the Erlang version you used to compile Riak.
 :::
 
 | OS                    | Path                                    |
-|-----------------------|-----------------------------------------|
+| --------------------- | --------------------------------------- |
 | CentOS & RHEL Linux   | /usr/lib64/riak/erts-5.9.1/bin/erlc     |
 | Debian & Ubuntu Linux | /usr/lib/riak/erts-5.9.1/bin/erlc       |
 | FreeBSD               | /usr/local/lib/riak/erts-5.9.1/bin/erlc |

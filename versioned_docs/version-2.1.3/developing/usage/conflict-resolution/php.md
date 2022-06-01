@@ -1,7 +1,7 @@
 ---
 title: "PHP"
 id: usage_conflict_resolution_php
-slug: php 
+slug: php
 sidebar_position: 5
 ---
 
@@ -49,8 +49,8 @@ Should we pick a `User` object at random?
 
 This decision will always be yours to make. Here, though, we'll keep it
 simple and say that the following criterion will hold: if conflicting
-lists exist, _the longer list will be the one that our application deems
-correct_. So if the user `user1234` has a sibling conflict where one
+lists exist, *the longer list will be the one that our application deems
+correct*. So if the user `user1234` has a sibling conflict where one
 possible value has `friends` lists with 100, 75, and 10 friends,
 respectively, the list of 100 friends will win out.  While this might
 not make sense in real-world applications, it's a good jumping-off
@@ -165,7 +165,7 @@ instead of having to deal with multiple values.
 In the above example, we created a conflict resolver that resolves a
 list of discrepant `User` objects and returns a single `User`. It's
 important to note, however, that this resolver will only provide the
-application with a single "correct" value; it will _not_ write that
+application with a single "correct" value; it will *not* write that
 value back to Riak. That requires a separate step. When this step should
 be undertaken depends on your application. In general, though, we
 recommend writing objects to Riak only when the application is ready to
@@ -178,11 +178,11 @@ these steps:
 
 1. **Read** the object from Riak
 2. **Resolving sibling conflicts** if they exist, allowing the
-application to reason about one "correct" value for the object (this
-step is the subject of this tutorial)
+   application to reason about one "correct" value for the object (this
+   step is the subject of this tutorial)
 3. **Modify** the object
 4. **Write** the object to Riak once the necessary changes have been
-made
+   made
 
 You can find more on writing objects to Riak, including examples from
 the official PHP client library, in the [Developing with Riak KV: Usage](../../../developing/usage/index.md) section.

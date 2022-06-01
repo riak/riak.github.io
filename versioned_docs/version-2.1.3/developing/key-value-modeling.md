@@ -74,9 +74,7 @@ Simpsons. We could store each season in its own bucket and each episode
 in its own key within that bucket. Here's what the URL structure would
 look like (for the [HTTP API](../developing/api/http/index.md)):
 
-```
-GET/PUT/DELETE /bucket/<season>/keys/<episode number>
-```
+    GET/PUT/DELETE /bucket/<season>/keys/<episode number>
 
 The most important benefit of sorting Riak objects this way is that
 these types of lookup operations are extremely fast. Riak doesn't need
@@ -95,7 +93,7 @@ table`, and so it needs to know where to look for objects in advance.
 One of the best ways to enable applications to discover objects in Riak
 more easily is to provide **structured bucket and key names** for
 objects. This approach often involves wrapping information about the
-object _in the object's location data itself_.
+object *in the object's location data itself*.
 
 Here are some example sources for bucket or key names:
 
@@ -131,7 +129,7 @@ username acting as the key. The problem at this point is this: how can
 Riak know which user records actually exist?
 
 One way to determine this is to [list all keys](../developing/api/protocol-buffers/list-keys.md) in the
-bucket `users`. This approach, however, is _not_ recommended, because
+bucket `users`. This approach, however, is *not* recommended, because
 listing all keys in a bucket is a very expensive operation that should
 not be used in production. And so another strategy must be employed.
 
@@ -532,15 +530,11 @@ system and preface each bucket name with `good` or `bad`, but a more
 elegant way would be to use bucket types instead. So instead of this URL
 structure...
 
-```
-GET/PUT/DELETE /bucket/<season>/keys/<episode number>
-```
+    GET/PUT/DELETE /bucket/<season>/keys/<episode number>
 
 ...we can use this structure:
 
-```
-GET/PUT/DELETE /types/<good or bad>/buckets/<season>/keys/<episode number>
-```
+    GET/PUT/DELETE /types/<good or bad>/buckets/<season>/keys/<episode number>
 
 That adds an additional layer of namespacing and enables us to think
 about our data in terms of a deeper hash than in the example above:

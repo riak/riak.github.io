@@ -20,4 +20,3 @@ message RpbYokozunaIndexDeleteReq {
 ## Response
 
 Returns a [RpbDelResp](../../../developing/api/protocol-buffers/index.md#message-codes) code with no data on success.
-

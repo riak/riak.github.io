@@ -6,8 +6,11 @@ sidebar_position: 10
 ---
 
 [client libraries]: ../../developing/client-libraries.md
+
 [perf open files]: ../../using/performance/open-files-limit.md
+
 [cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+
 [cluster ops inspect node]: ../../using/cluster-operations/inspecting-node.md
 
 After you've installed Riak KV, we recommend checking the liveness of
@@ -20,15 +23,17 @@ ready to put Riak KV to work, be sure to check out the resources in the
 
 ## Starting a Riak Node
 
-> **Note about source installations**
->
-> To start a Riak KV node that was installed by compiling the source code, you
+:::note Note about source installations
+
+To start a Riak KV node that was installed by compiling the source code, you
 can add the Riak KV binary directory from the installation directory you've
 chosen to your `PATH`.
->
-> For example, if you compiled Riak KV from source in
+
+For example, if you compiled Riak KV from source in
 the `/home/riak` directory, then you can add the binary directory
 (`/home/riak/rel/riak/bin`) to your `PATH` so that Riak KV commands can be used in the same manner as with a packaged installation.
+
+:::
 
 To start a Riak node, use the `riak start` command:
 
@@ -68,8 +73,8 @@ The command will respond with `pong` if the node is running or `Node <nodename> 
 > **Open Files Limit**
 >
 > As you may have noticed, if you haven't adjusted your open files limit (`ulimit -n`), Riak will warn you at startup. You're advised
-to increase the operating system default open files limit when running Riak.
-You can read more about why in the [Open Files Limit][perf open files] documentation.
+> to increase the operating system default open files limit when running Riak.
+> You can read more about why in the [Open Files Limit][perf open files] documentation.
 
 ## Does it work?
 
@@ -98,32 +103,30 @@ curl -v http://127.0.0.1:8098/types/default/props
 Replace `127.0.0.1` in the example above with your Riak node's IP address or
 fully qualified domain name, and you should get a response that looks like this:
 
-```
-* About to connect() to 127.0.0.1 port 8098 (#0)
-*   Trying 127.0.0.1... connected
-* Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
-> GET /riak/test HTTP/1.1
-> User-Agent: curl/7.21.6 (x86_64-pc-linux-gnu)
-> Host: 127.0.0.1:8098
-> Accept: */*
->
-< HTTP/1.1 200 OK
-< Vary: Accept-Encoding
-< Server: MochiWeb/1.1 WebMachine/1.9.0 (someone had painted it blue)
-< Date: Wed, 26 Dec 2012 15:50:20 GMT
-< Content-Type: application/json
-< Content-Length: 422
-<
-* Connection #0 to host 127.0.0.1 left intact
-* Closing connection #0
-{"props":{"name":"test","allow_mult":false,"basic_quorum":false,
- "big_vclock":50,"chash_keyfun":{"mod":"riak_core_util",
- "fun":"chash_std_keyfun"},"dw":"quorum","last_write_wins":false,
- "linkfun":{"mod":"riak_kv_wm_link_walker","fun":"mapreduce_linkfun"},
- "n_val":3,"notfound_ok":true,"old_vclock":86400,"postcommit":[],"pr":0,
- "precommit":[],"pw":0,"r":"quorum","rw":"quorum","small_vclock":50,
- "w":"quorum","young_vclock":20}}
-```
+    * About to connect() to 127.0.0.1 port 8098 (#0)
+    *   Trying 127.0.0.1... connected
+    * Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
+    > GET /riak/test HTTP/1.1
+    > User-Agent: curl/7.21.6 (x86_64-pc-linux-gnu)
+    > Host: 127.0.0.1:8098
+    > Accept: */*
+    >
+    < HTTP/1.1 200 OK
+    < Vary: Accept-Encoding
+    < Server: MochiWeb/1.1 WebMachine/1.9.0 (someone had painted it blue)
+    < Date: Wed, 26 Dec 2012 15:50:20 GMT
+    < Content-Type: application/json
+    < Content-Length: 422
+    <
+    * Connection #0 to host 127.0.0.1 left intact
+    * Closing connection #0
+    {"props":{"name":"test","allow_mult":false,"basic_quorum":false,
+     "big_vclock":50,"chash_keyfun":{"mod":"riak_core_util",
+     "fun":"chash_std_keyfun"},"dw":"quorum","last_write_wins":false,
+     "linkfun":{"mod":"riak_kv_wm_link_walker","fun":"mapreduce_linkfun"},
+     "n_val":3,"notfound_ok":true,"old_vclock":86400,"postcommit":[],"pr":0,
+     "precommit":[],"pw":0,"r":"quorum","rw":"quorum","small_vclock":50,
+     "w":"quorum","young_vclock":20}}
 
 The output above shows a successful response (`HTTP 200 OK`) and additional
 details from the verbose option. The response also contains the bucket

@@ -1,18 +1,21 @@
 ---
 title: "FreeBSD"
 id: installing_freebsd
-slug: freebsd 
+slug: freebsd
 sidebar_position: 2
 ---
 
 [install source erlang]: ../../setup/installing/source/erlang.md
+
 [install verify]: ../../setup/installing/verify.md
 
 You can install Riak on FreeBSD for the AMD64 architecture with a binary package or by building from source code.
 
 ## Installing From Binary Package
 
-> **Note:** The Riak 1.2 binary package is supported on FreeBSD version 9. Users have reported success building Riak from source on a number of FreeBSD versions, however.
+:::note Note: The Riak 1.2 binary package is supported on FreeBSD version 9. Users have reported success building Riak from source on a number of FreeBSD versions, however.
+
+:::
 
 Installing Riak from a binary package is the simplest method with least required dependencies, and requires less time to complete than building from source.
 
@@ -33,31 +36,27 @@ sudo pkg_add -r http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.2.3/freeb
 
 When Riak is installed, a message is displayed with information about the installation and available documentation.
 
-```
-Thank you for installing Riak.
+    Thank you for installing Riak.
 
-Riak has been installed in /usr/local owned by user:group riak:riak
+    Riak has been installed in /usr/local owned by user:group riak:riak
 
-The primary directories are:
+    The primary directories are:
 
-    {platform_bin_dir, "/usr/local/sbin"}
-    {platform_data_dir, "/var/db/riak"}
-    {platform_etc_dir, "/usr/local/etc/riak"}
-    {platform_lib_dir, "/usr/local/lib/riak"}
-    {platform_log_dir, "/var/log/riak"}
+        {platform_bin_dir, "/usr/local/sbin"}
+        {platform_data_dir, "/var/db/riak"}
+        {platform_etc_dir, "/usr/local/etc/riak"}
+        {platform_lib_dir, "/usr/local/lib/riak"}
+        {platform_log_dir, "/var/log/riak"}
 
-These can be configured and changed in the platform_etc_dir/app.config.
+    These can be configured and changed in the platform_etc_dir/app.config.
 
-Add /usr/local/sbin to your path to run the riak and riak-admin scripts directly.
+    Add /usr/local/sbin to your path to run the riak and riak-admin scripts directly.
 
-Man pages are available for riak(1) and riak-admin(1)
-```
+    Man pages are available for riak(1) and riak-admin(1)
 
 If instead of this message, you receive an error during installation regarding OpenSSL, similar to this one:
 
-```
-Package dependency openssl-1.0.0_7 for /tmp/riak-2.2.3-FreeBSD-amd64.tbz not found!
-```
+    Package dependency openssl-1.0.0_7 for /tmp/riak-2.2.3-FreeBSD-amd64.tbz not found!
 
 Be sure that you've installed the required OpenSSL version from packages or the ports collection as described in the **Prerequisites and Dependencies** section.
 
@@ -81,6 +80,7 @@ If you do not currently have the following software installed, please install it
 * sudo
 
 ### Installation
+
 First download the version you wish to install.
 
 Next, unpack and build a release from source:

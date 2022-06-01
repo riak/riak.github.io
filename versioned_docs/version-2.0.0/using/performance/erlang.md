@@ -17,7 +17,7 @@ The table below lists some of the parameters that are available, showing
 both their names as used in Erlang and their names as Riak parameters.
 
 | Erlang parameter                                                                     | Riak parameter                                        |
-|:-------------------------------------------------------------------------------------|:------------------------------------------------------|
+| :----------------------------------------------------------------------------------- | :---------------------------------------------------- |
 | [`+A`](http://erlang.org/doc/man/erl.html#async_thread_pool_size)                    | `erlang.async_threads`                                |
 | [`+K`](http://erlang.org/doc/man/erl.html#emu_flags)                                 | `erlang.K`                                            |
 | [`+P`](http://erlang.org/doc/man/erl.html#+P)                                        | `erlang.process_limit`                                |
@@ -74,21 +74,23 @@ start up with SMP disabled.
 
 ## Schedulers
 
-> **Note on missing scheduler flags**
->
-> We recommend that _all_ users set the `+sfwi` to `500` (milliseconds)
+:::note Note on missing scheduler flags
+
+We recommend that *all* users set the `+sfwi` to `500` (milliseconds)
 and the `+scl` flag to `false` if using the older, `vm.args`-based
 configuration system. If you are using the new, `riak.conf`-based
 configuration system, the corresponding parameters are
 `erlang.schedulers.force_wakeup_interval` and
 `erlang.schedulers.compaction_of_load`.
->
-> Please note that you will need to uncomment the appropriate lines in
+
+Please note that you will need to uncomment the appropriate lines in
 your `riak.conf` for this configuration to take effect.
+
+:::
 
 If [SMP support](#smp) has been enabled on your Erlang
 VM, i.e. if `erlang.smp` is set to `enable` or `auto` on a machine
-providing SMP support _and_ more than one logical processor, you can
+providing SMP support *and* more than one logical processor, you can
 configure the number of logical processors, or [scheduler
 threads](http://www.erlang.org/doc/man/erl.html#+S), that are created
 when starting Riak, as well as the number of threads that are set
@@ -103,7 +105,7 @@ used by [`erl`](http://www.erlang.org/doc/man/erl.html#+S).
 While the maximum for both parameters is 1024, there is no universal
 default for either. Instead, the Erlang VM will attempt to determine the
 number of configured processors, as well as the number of available
-processors, on its own. If the Erlang VM _can_ make that determination,
+processors, on its own. If the Erlang VM *can* make that determination,
 `schedulers.total` will default to the total number of configured
 processors while `schedulers.online` will default to the number of
 processors available; if the Erlang VM can't make that determination,
@@ -162,7 +164,7 @@ balancing by setting the `erlang.schedulers.utilization_balancing`
 setting to `true` (or the `+scl` parameter to `false` in the older
 configuration system).
 
-At any given time, only compaction of load _or_ utilization balancing
+At any given time, only compaction of load *or* utilization balancing
 can be used. If you set both parameters to `false`, Riak will default to
 using compaction of load; if both are set to `true`, Riak will enable
 whichever setting is listed first in `riak.conf` (or `vm.args` if you're
@@ -353,7 +355,7 @@ setting.
 ## Erlang Built-in Storage
 
 Erlang uses a built-in database called
-[ets](http://www.erlang.org/doc/man/ets.html) \(Erlang Term Storage)
+[ets](http://www.erlang.org/doc/man/ets.html) (Erlang Term Storage)
 for some processes that require fast access from memory in constant
 access time (rather than logarithmic access time).  The maximum number
 of tables can be set using the `erlang.max_ets_tables` setting. The

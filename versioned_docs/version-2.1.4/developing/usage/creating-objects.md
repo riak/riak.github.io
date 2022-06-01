@@ -13,11 +13,9 @@ import TabItem from '@theme/TabItem';
 Writes in Riak KV (storing or modifying objects) are like HTTP `PUT`
 requests. Here is the basic form of writes:
 
-```
-PUT /types/<type>/buckets/<bucket>/keys/<key>
+    PUT /types/<type>/buckets/<bucket>/keys/<key>
 
-# If you're using HTTP to interact with Riak, you can also use POST
-```
+    # If you're using HTTP to interact with Riak, you can also use POST
 
 In the example above, our read was unsuccessful because our Riak cluster
 is currently empty. Let's change that by storing an object containing
@@ -153,14 +151,12 @@ Your application will often have its own method of generating the keys
 for its data, e.g. on the basis of timestamps. If so, storing that data
 is easy. The basic request looks like this.
 
-```
-PUT /types/TYPE/buckets/BUCKET/keys/KEY
+    PUT /types/TYPE/buckets/BUCKET/keys/KEY
 
-# If you're using HTTP, POST can be used instead of PUT. The only
-# difference between POST and PUT is that you should POST in cases where
-# you want Riak to auto-generate a key. More on this can be found in the
-# examples below.
-```
+    # If you're using HTTP, POST can be used instead of PUT. The only
+    # difference between POST and PUT is that you should POST in cases where
+    # you want Riak to auto-generate a key. More on this can be found in the
+    # examples below.
 
 There is no need to intentionally create buckets in Riak. They pop into
 existence when keys are added to them, and disappear when all keys have
@@ -172,7 +168,7 @@ been removed from them. If you don't specify a bucket's type, the type
 Similar to how read requests support the `r` query parameter, write requests also support the following parameters:
 
 | Parameter    | Default  | Description                                                                           |
-|:-------------|:---------|:--------------------------------------------------------------------------------------|
+| :----------- | :------- | :------------------------------------------------------------------------------------ |
 | `w`          | `quorum` | How many replicas to write to before returning a successful response                  |
 | `pw`         | `0`      | How many primary vnodes must respond for a write to be deemed successful              |
 | `dw`         | `quorum` | How many replicas to commit to durable storage before returning a successful response |
@@ -477,9 +473,7 @@ If your application would rather leave key-generation up to Riak, issue
 a `POST` request to the bucket URL instead of a PUT to a bucket/key
 pair:
 
-```
-POST /types/TYPE/buckets/BUCKET/keys
-```
+    POST /types/TYPE/buckets/BUCKET/keys
 
 If you don't pass Riak a `key` name after the bucket, it will know to
 create one for you.

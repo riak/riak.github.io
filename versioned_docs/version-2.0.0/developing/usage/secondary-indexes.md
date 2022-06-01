@@ -1,7 +1,7 @@
 ---
 title: "Using Secondary Indexes"
 id: usage_2i
-slug: secondary-indexes 
+slug: secondary-indexes
 sidebar_position: 7
 ---
 
@@ -9,17 +9,21 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+
 [plan backend memory]: ../../setup/planning/backend/memory.md
+
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
 
-> **Note: Riak Search preferred for querying**
->
-> If you're interested in non-primary-key-based querying in Riak, i.e. if
+:::note Note: Riak Search preferred for querying
+
+If you're interested in non-primary-key-based querying in Riak, i.e. if
 you're looking to go beyond straightforward K/V operations, we now
 recommend [Riak Search](../../developing/usage/search.md) rather than secondary indexes for
 a variety of reasons. Most importantly, Riak Search has a far more
 capacious querying API and can be used with all of Riak's storage
 backends.
+
+:::
 
 Secondary indexes (2i) in Riak enable you to tag objects stored in Riak,
 at write time, with one or more queryable values. Those values can then
@@ -47,13 +51,15 @@ backends.
 * Query results can be used as input to a [MapReduce](../../developing/usage/mapreduce.md)
   query
 
-> **Note on 2i and strong consistency**
+:::note Note on 2i and strong consistency
 Secondary indexes do not currently work with the [strong consistency][use ref strong consistency]
 feature introduced in Riak version 2.0. If you store objects in
 [strongly consistent buckets](../../developing/app-guide/strong-consistency.md#creating-consistent-bucket-types) and attach
 secondary index metadata to those objects, you can still perform
 strongly consistent operations on those objects but the secondary
 indexes will be ignored.
+
+:::
 
 ## When to Use Secondary Indexes
 
@@ -68,7 +74,7 @@ you to discover them later. Indexing enables you to tag those objects
 and find all objects with the same tag in a specified bucket later on.
 
 2i is thus recommended when your use case requires an easy-to-use search
-mechanism that does not require a schema (as does [Riak Search](../../using/reference/search.md#schemas)) and a basic query interface, i.e. an interface that
+mechanism that does not require a schema (as does [Riak Search](../../developing/usage/search.md)) and a basic query interface, i.e. an interface that
 enables an application to tell Riak things like "fetch all objects
 tagged with the string `Milwaukee_Bucks`" or "fetch all objects tagged
 with numbers between 1500 and 1509."
@@ -283,7 +289,7 @@ curl -XPOST localhost:8098/types/default/buckets/users/keys/john_smith \
 > **Getting started with Riak clients**
 >
 > If you are connecting to Riak using one of Basho's official [client libraries](../../developing/client-libraries.md), you can find more information about getting started with
-your client in the [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
+> your client in the [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
 
 This has accomplished the following:
 
@@ -1313,11 +1319,13 @@ Could not parse field 'field2_int', value 'bar'.
 
 ## Querying
 
-> **Note on 2i queries and the R parameter**
->
-> For all 2i queries, the [R](../../developing/app-guide/replication-properties.md#r-value-and-read-failure-tolerance) parameter is set to 1,
+:::note Note on 2i queries and the R parameter
+
+For all 2i queries, the [R](../../developing/app-guide/replication-properties.md#r-value-and-read-failure-tolerance) parameter is set to 1,
 which means that queries that are run while [handoffs](../../learn/glossary.md#hinted-handoff) and related operations are underway may not
 return all keys as expected.
+
+:::
 
 ### Exact Match
 

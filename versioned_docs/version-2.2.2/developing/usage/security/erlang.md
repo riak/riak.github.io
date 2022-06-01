@@ -1,7 +1,7 @@
 ---
 title: "Erlang"
 id: usage_security_erlang
-slug: erlang 
+slug: erlang
 sidebar_position: 3
 ---
 
@@ -30,7 +30,7 @@ connection to `localhost` on port 8087:
 {ok, Pid} = riakc_pb_socket:start("127.0.0.1", 8087).
 ```
 
-If you are using Riak security, _all_ connecting clients should have
+If you are using Riak security, *all* connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
 regardless of which [security source](../../../using/security/managing-sources.md) you
 choose. In addition, all clients should provide a username. The example

@@ -1,7 +1,7 @@
 ---
 title: "Store Search Schema"
 id: http_store_search_schema
-slug: store-search-schema 
+slug: store-search-schema
 sidebar_position: 19
 ---
 
@@ -9,9 +9,7 @@ Creates a new Riak [Search schema](../../../developing/usage/search-schemas.md).
 
 ## Request
 
-```
-PUT /search/index/<schema_name>
-```
+    PUT /search/index/<schema_name>
 
 ## Required Form Data
 

@@ -5,8 +5,11 @@ sidebar_position: 13
 ---
 
 [ref mdc stats]: ./statistics.md
+
 [ref mdc per bucket]: ./per-bucket-replication.md
+
 [ref mdc monitor]: ./monitoring.md
+
 [ref mdc comparison]: ./comparison.md
 
 ## [Statistics][ref mdc stats]

@@ -1,27 +1,31 @@
 ---
 title: "Fullsync via Active Anti-Entropy"
 id: managing_ref_v3_aae
-slug: aae 
+slug: aae
 sidebar_position: 1
 ---
 
 [glossary aae]: ../../../learn/glossary.md#active-anti-entropy-aae
+
 [config reference#advanced]: ../../../configuring/reference.md#advanced-configuration
+
 [concept clusters]: ../../../learn/concepts/clusters.md
 
-> **Note: Technical preview**
->
-> The active anti-entropy fullsync strategy, as it pertains to
+:::note Note: Technical preview
+
+The active anti-entropy fullsync strategy, as it pertains to
 replication, is currently in **technical preview** mode. This means that
 it hasn't been tested at large scale and that there may be issues that
 Basho must address prior to a general release. Please don't use this
 feature on a production system without professional services or customer
 service engineering support.
 
+:::
+
 ## Overview
 
 Riak Enterprise Multi-Datacenter (MDC) Replication version 3 (Riak
-Enterprise version 1.4.0+) can now take advantage of Riak's [active anti-entropy][glossary aae] \(AAE) subsystem, which was first introduced as a
+Enterprise version 1.4.0+) can now take advantage of Riak's [active anti-entropy][glossary aae] (AAE) subsystem, which was first introduced as a
 technology preview in Riak 1.3.0.
 
 AAE plus Replication uses existing Riak AAE hash trees stored in
@@ -57,7 +61,7 @@ of configurable parameters, see our documentation on [Advanced Configuration][co
 
 ## Enable Active Anti-Entropy
 
-To enable [active anti-entropy][glossary aae] \(AAE) in Riak Enterprise, you must enable it in Riak in both source and sink clusters. If it is not
+To enable [active anti-entropy][glossary aae] (AAE) in Riak Enterprise, you must enable it in Riak in both source and sink clusters. If it is not
 enabled, the `keylist` strategy will be used.
 
 To enable AAE in Riak KV:

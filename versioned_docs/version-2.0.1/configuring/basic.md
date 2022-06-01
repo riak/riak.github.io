@@ -8,25 +8,48 @@ sidebar_position: 0
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [config reference]: ../configuring/reference.md
+
 [use running cluster]: ../using/running-a-cluster.md
+
 [use admin riak-admin#member-status]: ../using/admin/riak-admin.md#member-status
+
 [perf erlang]: ../using/performance/erlang.md
+
 [plan start]: ../setup/planning/start.md
+
 [plan best practices]: ../setup/planning/best-practices.md
+
 [cluster ops backup]: ../using/cluster-operations/backing-up.md
+
 [cluster ops add remove node]: ../using/cluster-operations/adding-removing-nodes.md
+
 [plan backend]: ../setup/planning/backend/index.md
+
 [plan backend multi]: ../setup/planning/backend/multi.md
+
 [plan backend bitcask]: ../setup/planning/backend/bitcask.md
+
 [usage bucket types]: ../developing/usage/bucket-types.md
+
 [apps replication properties]: ../developing/app-guide/replication-properties.md
+
 [concept buckets]: ../learn/concepts/buckets.md
+
 [concept eventual consistency]: ../learn/concepts/eventual-consistency.md
+
 [perf benchmark]: ../using/performance/benchmarking.md
+
 [perf open files]: ../using/performance/open-files-limit.md
+
 [perf index]: ../using/performance/index.md
+
 [perf aws]: ../using/performance/amazon-web-services.md
+
 [Cluster Capacity Planning]: ../setup/planning/cluster-capacity.md#ring-sizenumber-of-partitions
 
 This document covers the parameters that are commonly adjusted when
@@ -38,20 +61,22 @@ All configuration values discussed here are managed via the
 configuration file on each node, and a node must be restarted for any
 changes to take effect.
 
-> **Note**
->
-> If you are upgrading to Riak KV version 2.0 or later from an pre-2.0
+:::note 
+
+If you are upgrading to Riak KV version 2.0 or later from an pre-2.0
 release, you can use either your old `app.config` configuration file or
 the newer `riak.conf` if you wish.
->
-> If you have installed Riak KV 2.0 directly, you should use only
+
+If you have installed Riak KV 2.0 directly, you should use only
 `riak.conf`.
->
-> More on configuring Riak KV can be found in the [configuration files][config reference]
+
+More on configuring Riak KV can be found in the [configuration files][config reference]
 doc.
 
+:::
+
 We advise that you make as many of the changes below as practical
-_before_ joining the nodes together into a cluster. Once your
+*before* joining the nodes together into a cluster. Once your
 configuration has been set on each node, follow the steps in [Basic Cluster Setup][use running cluster] to complete the clustering process.
 
 Use [`riak-admin member-status`][use admin riak-admin#member-status]
@@ -98,41 +123,65 @@ servers (nodes) in the cluster have already been joined together.
 
 ### Cluster joined, but no data needs to be preserved
 
-1.  Change the ring creation size parameter by uncommenting it and then
-setting it to the desired value, for example 64:
+1. Change the ring creation size parameter by uncommenting it and then
+   setting it to the desired value, for example 64:
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 ring_size = 64
 ```
+
+</TabItem>
+
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 %% In the riak_core section:
 {ring_creation_size, 64}
 ```
 
-2.  Stop all nodes
-3.  Remove the ring data file on each node (see [Backing up Riak][cluster ops backup] for the location of this file) 
-4.  Start all nodes
-5.  Re-add each node to the cluster (see [Adding and Removing Nodes][cluster ops add remove node]) or finish reviewing this document and proceed to [Basic Cluster Setup][use running cluster]
+</TabItem>
+
+</Tabs>
+
+2. Stop all nodes
+3. Remove the ring data file on each node (see [Backing up Riak][cluster ops backup] for the location of this file) 
+4. Start all nodes
+5. Re-add each node to the cluster (see [Adding and Removing Nodes][cluster ops add remove node]) or finish reviewing this document and proceed to [Basic Cluster Setup][use running cluster]
 
 ### New servers, have not yet joined a cluster
 
-1.  Change the ring creation size parameter by uncommenting it and then
-setting it to the desired value, for example 64:
+1. Change the ring creation size parameter by uncommenting it and then
+   setting it to the desired value, for example 64:
+
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
 
 ```riakconf
 ring_size = 64
 ```
+
+</TabItem>
+
+<TabItem label="Erlang" value="erlang">
 
 ```erlang
 %% In the riak_core section:
 {ring_creation_size, 64}
 ```
 
-2.  Stop all nodes
-3.  Remove the ring data file on each node (see [Backing up Riak][cluster ops backup] for
-the location of this file)
-4.  Finish reviewing this document and proceed to [Basic Cluster Setup][use running cluster]
+</TabItem>
+
+</Tabs>
+
+2. Stop all nodes
+3. Remove the ring data file on each node (see [Backing up Riak][cluster ops backup] for
+   the location of this file)
+4. Finish reviewing this document and proceed to [Basic Cluster Setup][use running cluster]
 
 ### Verifying ring size
 
@@ -144,12 +193,10 @@ riak-admin status | grep ring
 
 Console output:
 
-```
-ring_members : ['riak@10.160.13.252']
-ring_num_partitions : 8
-ring_ownership : <<"[{'riak@10.160.13.252',8}]">>
-ring_creation_size : 8
-```
+    ring_members : ['riak@10.160.13.252']
+    ring_num_partitions : 8
+    ring_ownership : <<"[{'riak@10.160.13.252',8}]">>
+    ring_creation_size : 8
 
 If `ring_num_partitions` and `ring_creation_size` do not agree, that
 means that the `ring_creation_size` value was changed too late and that

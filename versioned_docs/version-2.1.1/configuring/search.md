@@ -21,11 +21,13 @@ sidebar_position: 5
 
 [security index]: ../using/security/index.md
 
-> **Note on Search 2.0 vs. Legacy Search**
->
-> This document refers to the new Riak Search 2.0 with
-> [Solr](http://lucene.apache.org/solr/) integration (codenamed
-> Yokozuna). For information about the deprecated Riak Search, visit [the old Riak Search Settings](http://docs.basho.com/riak/1.4.8/ops/advanced/configs/search/).
+:::note Note on Search 2.0 vs. Legacy Search
+
+This document refers to the new Riak Search 2.0 with
+[Solr](http://lucene.apache.org/solr/) integration (codenamed
+Yokozuna). For information about the deprecated Riak Search, visit [the old Riak Search Settings](http://docs.basho.com/riak/1.4.8/ops/advanced/configs/search/).
+
+:::
 
 This document covers Riak's Search subsystem from an
 operational perspective. If you are looking for more developer-focused
@@ -63,7 +65,7 @@ optional. A list of these parameters can also be found in our
 [configuration files][config reference#search] documentation.
 
 | Field                          | Default                                                         | Valid values                     | Description                                                                                                                |
-|:-------------------------------|:----------------------------------------------------------------|:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
+| :----------------------------- | :-------------------------------------------------------------- | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | `search`                       | `off`                                                           | `on` or `off`                    | Enable or disable Search                                                                                                   |
 | `search.anti_entropy.data_dir` | `./data/yz_anti_entropy`                                        | Directory                        | The directory in which Riak Search stores files related to [active anti-entropy][glossary aae]                             |
 | `search.root_dir`              | `./data/yz`                                                     | Directory                        | The root directory in which index data and configuration is stored                                                         |

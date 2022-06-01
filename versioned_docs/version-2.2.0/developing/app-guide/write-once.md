@@ -1,13 +1,16 @@
 ---
 title: "Write Once"
 id: app_guide_write_once
-slug: write-once 
+slug: write-once
 sidebar_position: 2
 ---
 
 [glossary vnode]: ../../learn/glossary.md#vnode
+
 [bucket type]: ../../developing/usage/bucket-types.md
+
 [Riak data types]: ../../developing/data-types/index.md
+
 [strong consistency]: ../../developing/app-guide/strong-consistency.md
 
 Write-once buckets are buckets whose entries are intended to be written exactly once and never updated or overwritten. Buckets of this type circumvent the normal "coordinated PUT" path, which would otherwise result in a read on the coordinating vnode before the write. Avoiding coordinated PUTs results in higher throughput and lower PUT latency, though at the cost of different semantics in the degenerate case of sibling resolution.
@@ -98,7 +101,6 @@ for the object to be returned will behave like requests that do not
 request the object to be returned when they are performed against write-once
 buckets.
 
-
 ## Siblings
 
 As mentioned, entries in write-once buckets are intended to be written only
@@ -117,7 +119,6 @@ wins."
 As mentioned in [Configuration](#configuration), write-once buckets and Riak
 Data Types are incompatible because of this.
 :::
-
 
 ## Handoff
 

@@ -4,19 +4,33 @@ id: managing_ref
 ---
 
 [ref log]: ./logging.md
+
 [ref handoff]: ./handoff.md
+
 [ref bucket types]: ./bucket-types.md
+
 [ref obj del]: ./object-deletion.md
+
 [ref runtime]: ./runtime-interaction.md
+
 [ref monitoring]: ./statistics-monitoring.md
+
 [ref snmp]: ./snmp.md
+
 [ref jmx]: ./jmx.md
+
 [ref search]: ./search.md
+
 [ref 2i]: ./secondary-indexes.md
+
 [ref custom code]: ./custom-code.md
+
 [ref strong consistency]: ./strong-consistency.md
+
 [ref mdc]: ./multi-datacenter/index.md
+
 [ref v3 mdc]: ./v3-multi-datacenter/index.md
+
 [ref v2 mdc]: ./v2-multi-datacenter/index.md
 
 ## [Logging Reference][ref log]

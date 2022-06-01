@@ -14,8 +14,8 @@ older configuration system based on [bucket properties](../../developing/usage/b
 
 :::note Important note on cluster downgrades
 If you upgrade a Riak to version 2.0 or later, you can still downgrade the
-cluster to a pre-2.0 version _as long as you have not created and activated a
-bucket type in the cluster_. Once any bucket type has been created and
+cluster to a pre-2.0 version *as long as you have not created and activated a
+bucket type in the cluster*. Once any bucket type has been created and
 activated, you can no longer downgrade the cluster to a pre-2.0 version.
 :::
 
@@ -47,19 +47,15 @@ set `allow_mult` to `false` or `n_val` to `5`, because there is no
 `type` parameter contained within the bucket's properties (i.e.
 `props`).
 
-Instead, bucket types are applied to buckets _on the basis of how those
-buckets are queried_. Queries involving bucket types take the following
+Instead, bucket types are applied to buckets *on the basis of how those
+buckets are queried*. Queries involving bucket types take the following
 form:
 
-```
-GET/PUT/DELETE /types/<type>/buckets/<bucket>/keys/<key>
-```
+    GET/PUT/DELETE /types/<type>/buckets/<bucket>/keys/<key>
 
 In the older system, only bucket and key are specified in queries:
 
-```
-GET/PUT/DELETE /buckets/<bucket>/keys/<key>
-```
+    GET/PUT/DELETE /buckets/<bucket>/keys/<key>
 
 ## When to Use Bucket Types
 
@@ -78,7 +74,7 @@ system of bucket configuration, including the following:
   you to manage bucket configurations on the operations side, without
   recourse to Riak clients.
 
-For these reasons, we recommend _always_ using bucket types in versions
+For these reasons, we recommend *always* using bucket types in versions
 of Riak 2.0 and later.
 
 ## Managing Bucket Types Through the Command Line
@@ -89,7 +85,7 @@ Bucket types are created, updated, activated, and more through the
 Below is a full list of available sub-commands:
 
 | Command    | Action                                                                | Form                   |
-|:-----------|:----------------------------------------------------------------------|:-----------------------|
+| :--------- | :-------------------------------------------------------------------- | :--------------------- |
 | `create`   | Create or modify a bucket type before activation                      | `create <type> <json>` |
 | `activate` | Activate a bucket type                                                | `activate <type>`      |
 | `list`     | List all currently available bucket types and their activation status | `list`                 |
@@ -112,16 +108,13 @@ object of the following form:
 }
 ```
 
-
 > **Getting started with Riak clients**
 >
 > If you are connecting to Riak using one of Basho's official [client libraries](../../developing/client-libraries.md), you can find more information about getting started with your client in our [Developing with Riak KV: Getting Started](../../developing/getting-started/index.md) section.
 
 If creation is successful, you should see the following output:
 
-```
-type_using_defaults created
-```
+    type_using_defaults created
 
 :::note
 The `create` command can be run multiple times prior to a bucket type being
@@ -129,7 +122,7 @@ activated. Riak will persist only those properties contained in the final call
 of the command.
 :::
 
-Creating bucket types that assign properties _always_ involves passing
+Creating bucket types that assign properties *always* involves passing
 stringified JSON to the `create` command. One way to do that is to pass
 a JSON string directly. The following creates a bucket type
 `n_equals_1`, which sets `n_val` to 1:
@@ -159,9 +152,7 @@ riak-admin bucket-type activate my_bucket_type
 
 When activation has succeeded, you should see the following output:
 
-```
-my_bucket_type has been activated
-```
+    my_bucket_type has been activated
 
 A bucket type can be activated only when the type has been propagated to
 all running nodes. You can check on the type's readiness by running
@@ -190,11 +181,9 @@ riak-admin bucket-type list
 
 An example response:
 
-```
-type1 (active)
-type2 (not active)
-type3 (active)
-```
+    type1 (active)
+    type2 (not active)
+    type3 (active)
 
 ### Checking a Type's Status
 
@@ -331,10 +320,10 @@ curl http://localhost:8098/buckets/my_bucket/keys/my_key
 </Tabs>
 
 With the addition of bucket types in Riak 2.0, bucket types can be used
-as _an additional namespace_ on top of buckets and keys. The same bucket
+as *an additional namespace* on top of buckets and keys. The same bucket
 name can be associated with completely different data if it used in
 accordance with a different type. Thus, the following two requests will
-be made to _completely different objects_, even though the bucket and key
+be made to *completely different objects*, even though the bucket and key
 names are the same:
 
 <Tabs>
@@ -435,7 +424,7 @@ curl http://localhost:8098/types/type2/buckets/my_bucket/keys/my_key
 </Tabs>
 
 :::note Note on object location
-In Riak 2.x, _all requests_ must be made to a location specified by a bucket
+In Riak 2.x, *all requests* must be made to a location specified by a bucket
 type, bucket, and key rather than to a bucket/key pair, as in previous
 versions.
 :::
@@ -622,9 +611,7 @@ riak-admin bucket-type status default | grep allow_mult
 
 The output:
 
-```
-allow_mult: false
-```
+    allow_mult: false
 
 Now, let's create a new bucket type called `n_val_of_2`, which sets the
 `n_val` to 2 but doesn't explicitly set `allow_mult`:
@@ -644,9 +631,7 @@ riak-admin bucket-type status n_val_of_2 | grep allow_mult
 
 The output:
 
-```
-allow_mult: true
-```
+    allow_mult: true
 
 This is important to bear in mind when using versions of Riak 2.0 and
 later any time that you create, activate, and use your own bucket types.
@@ -668,49 +653,49 @@ hooks](../../developing/usage/commit-hooks.md) called `welcome_email` and `updat
 1. Creating a JavaScript object containing the appropriate `props`
    settings:
 
-    ```json
-    {
-      "props": {
-        "precommit": ["syntax_check"],
-        "postcommit": ["welcome_email", "update_registry"]
-      }
-    }
-    ```
+   ```json
+   {
+     "props": {
+       "precommit": ["syntax_check"],
+       "postcommit": ["welcome_email", "update_registry"]
+     }
+   }
+   ```
 
 2. Passing that JSON to the `bucket-type create` command:
 
-    ```bash
-    riak-admin bucket-type create user_account_bucket '{"props":{"precommit": ["syntax_check"], ... }}'
-    ```
+   ```bash
+   riak-admin bucket-type create user_account_bucket '{"props":{"precommit": ["syntax_check"], ... }}'
+   ```
 
-    If creation is successful, the console will return
-    `user_account_bucket created`.
+   If creation is successful, the console will return
+   `user_account_bucket created`.
 
 3. Verifying that the type is ready to be activated:
 
-    Once the type is created, you can check whether your new type is
-    ready to be activated by running:
+   Once the type is created, you can check whether your new type is
+   ready to be activated by running:
 
-    ```bash
-    riak-admin bucket-type status user_account_bucket
-    ```
+   ```bash
+   riak-admin bucket-type status user_account_bucket
+   ```
 
-    If the first line reads `user_account_bucket has been created and
-    may be activated`, then you can proceed to the next step. If it
-    reads `user_account_bucket has been created and is not ready to
-    activate`, then wait a moment and try again. If it still does not
-    work, then there may be network partition or other issues that need
-    to be addressed in your cluster.
+   If the first line reads `user_account_bucket has been created and
+   may be activated`, then you can proceed to the next step. If it
+   reads `user_account_bucket has been created and is not ready to
+   activate`, then wait a moment and try again. If it still does not
+   work, then there may be network partition or other issues that need
+   to be addressed in your cluster.
 
 4. Activating the new bucket type:
 
-    ```bash
-    riak-admin bucket-type activate user_account_bucket
-    ```
+   ```bash
+   riak-admin bucket-type activate user_account_bucket
+   ```
 
-    If activation is successful, the console will return
-    `user_account_bucket has been activated`. The bucket type is now
-    ready to be used.
+   If activation is successful, the console will return
+   `user_account_bucket has been activated`. The bucket type is now
+   ready to be used.
 
 ## Client Usage Example
 
@@ -817,7 +802,7 @@ curl -XPUT \
 
 In this example, the bucket `sensitive_user_data` bears the
 configuration established by the `no_siblings` bucket type, and it bears
-that configuration _on the basis of the query's structure_. This is
+that configuration *on the basis of the query's structure*. This is
 because buckets act as a [separate namespace](#buckets-as-namespaces) in Riak, in addition to [buckets](../../learn/concepts/buckets.md) and [keys](../../learn/concepts/keys-and-objects.md).
 
 Let's say that we're using Riak to store internet memes. We've been

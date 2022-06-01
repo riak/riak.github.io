@@ -5,10 +5,15 @@ sidebar_position: 9
 ---
 
 [install source erlang]: ./erlang.md
+
 [install debian & ubuntu#source]: ../debian-ubuntu.md#installing-from-source
+
 [install freebsd#source]: ../freebsd.md#installing-from-source
+
 [install mac osx#source]: ../mac-osx.md#installing-from-source
+
 [install rhel & centos#source]: ../rhel-centos.md#installing-from-source
+
 [install verify]: ../verify.md
 
 Riak should be installed from source if you are building on a platform
@@ -25,7 +30,7 @@ See [Installing Erlang][install source erlang] for instructions.
 
 ### Git
 
-Riak depends on source code located in multiple Git repositories. Install [Git](https://git-scm.com/) on the target system before attempting the build.
+Riak depends on source code located in multiple Git repositories. Install [Git](http://git-scm.com) on the target system before attempting the build.
 
 ### GCC
 
@@ -56,11 +61,11 @@ make rel
 ## Platform-Specific Instructions
 
 For instructions about specific platforms, see:
-  
-  * [Debian & Ubuntu][install debian & ubuntu#source]
-  * [FreeBSD][install freebsd#source]
-  * [Mac OS X][install mac osx#source]
-  * [RHEL & CentOS][install rhel & centos#source]
+
+* [Debian & Ubuntu][install debian & ubuntu#source]
+* [FreeBSD][install freebsd#source]
+* [Mac OS X][install mac osx#source]
+* [RHEL & CentOS][install rhel & centos#source]
 
 If you are running Riak on a platform not in the list above and need
 some help getting it up and running, join The Riak Mailing List and

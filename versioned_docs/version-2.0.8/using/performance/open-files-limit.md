@@ -55,7 +55,7 @@ You can enable PAM-based user limits so that non-root users, such as the `riak` 
 
 For example, follow these steps to enable PAM-based limits for all users to allow a maximum of 200000 open files.
 
-1.  Edit /etc/pam.d/common-session and add the following line:
+1. Edit /etc/pam.d/common-session and add the following line:
 
 ```/etc/pam.d/common-session
 session    required   pam_limits.so
@@ -143,7 +143,7 @@ session    required   pam_limits.so
 4. Save and close the /etc/security/limits.conf file.
 
 5. Restart the machine so that the limits to take effect and verify that
-the new limits are set with the following command:
+   the new limits are set with the following command:
 
 ```bash
 ulimit -a

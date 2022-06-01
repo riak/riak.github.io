@@ -6,11 +6,17 @@ sidebar_position: 6
 ---
 
 [concept clusters]: ../../learn/concepts/clusters.md
+
 [config reference]: ../../configuring/reference.md
+
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+
 [plan backend bitcask]: ../../setup/planning/backend/bitcask.md
+
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
+
 [concept aae]: ../../learn/concepts/active-anti-entropy.md
+
 [aae read repair]: ../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy
 
 Riak KV is a [clustered][concept clusters] system built to survive a wide range of failure scenarios, including the loss of nodes due to network or hardware failure. Although this is one of Riak KV's core strengths, it cannot withstand all failure scenarios.
@@ -46,7 +52,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### Debian and Ubuntu
 
 | Data               | Directory                    |
-|:-------------------|:-----------------------------|
+| :----------------- | :--------------------------- |
 | Bitcask            | `/var/lib/riak/bitcask`      |
 | LevelDB            | `/var/lib/riak/leveldb`      |
 | Ring               | `/var/lib/riak/ring`         |
@@ -58,7 +64,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### Fedora and RHEL
 
 | Data               | Directory                    |
-|:-------------------|:-----------------------------|
+| :----------------- | :--------------------------- |
 | Bitcask            | `/var/lib/riak/bitcask`      |
 | LevelDB            | `/var/lib/riak/leveldb`      |
 | Ring               | `/var/lib/riak/ring`         |
@@ -70,7 +76,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### FreeBSD
 
 | Data               | Directory                   |
-|:-------------------|:----------------------------|
+| :----------------- | :-------------------------- |
 | Bitcask            | `/var/db/riak/bitcask`      |
 | LevelDB            | `/var/db/riak/leveldb`      |
 | Ring               | `/var/db/riak/ring`         |
@@ -82,7 +88,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### OS X
 
 | Data               | Directory                  |
-|:-------------------|:---------------------------|
+| :----------------- | :------------------------- |
 | Bitcask            | `./data/bitcask`           |
 | LevelDB            | `./data/leveldb`           |
 | Ring               | `./data/riak/ring`         |
@@ -97,7 +103,7 @@ was extracted.
 #### SmartOS
 
 | Data               | Directory                   |
-|:-------------------|:----------------------------|
+| :----------------- | :-------------------------- |
 | Bitcask            | `/var/db/riak/bitcask`      |
 | LevelDB            | `/var/db/riak/leveldb`      |
 | Ring               | `/var/db/riak/ring`         |
@@ -109,7 +115,7 @@ was extracted.
 #### Solaris
 
 | Data               | Directory                  |
-|:-------------------|:---------------------------|
+| :----------------- | :------------------------- |
 | Bitcask            | `/opt/riak/data/bitcask`   |
 | LevelDB            | `/opt/riak/data/leveldb`   |
 | Ring               | `/opt/riak/ring`           |
@@ -208,34 +214,34 @@ For example, if there are five nodes in the cluster with the original node names
 
 1. Join to any existing cluster node.
 
-    ```bash
-    riak-admin cluster join riak@riak2.example.com
-    ```
+   ```bash
+   riak-admin cluster join riak@riak2.example.com
+   ```
 
 2. Mark the old instance down.
 
-    ```bash
-    riak-admin down riak@riak1.example.com
-    ```
+   ```bash
+   riak-admin down riak@riak1.example.com
+   ```
 
 3. Force-replace the original instance with the new one.
 
-    ```bash
-    riak-admin cluster force-replace \
-        riak@riak1.example.com riak@riak6.example.com
-    ```
+   ```bash
+   riak-admin cluster force-replace \
+       riak@riak1.example.com riak@riak6.example.com
+   ```
 
 4. Display and review the cluster change plan.
 
-    ```bash
-    riak-admin cluster plan
-    ```
+   ```bash
+   riak-admin cluster plan
+   ```
 
 5. Commit the changes to the cluster.
 
-    ```bash
-    riak-admin cluster commit
-    ```
+   ```bash
+   riak-admin cluster commit
+   ```
 
 Your [configuration files][config reference] should also be changed to match the new name in addition to running the commands (the `-name` setting in `vm.args` in the older config system, and the `nodename` setting in `riak.conf` in the newer system).
 
@@ -248,7 +254,7 @@ and for any other nodes whose names have changed:
 
 1. Verify that the correct name is present your configuration file.
 2. Once the node is started, run `riak attach` to connect to the node. The prompt obtained should contain the correct node name.
-    - (It may be necessary to enter an Erlang atom by       typing `x.` and pressing Enter)
+   * (It may be necessary to enter an Erlang atom by       typing `x.` and pressing Enter)
 3. Disconnect from the attached session with **Ctrl-G + q**.
 4. Finally, run `riak-admin member_status` to list all of the nodes and verify that all nodes listed have the correct names.
 

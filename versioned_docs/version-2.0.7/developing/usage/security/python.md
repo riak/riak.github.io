@@ -1,7 +1,7 @@
 ---
 title: "Python"
 id: usage_security_python
-slug: python 
+slug: python
 sidebar_position: 2
 ---
 
@@ -26,9 +26,7 @@ The Riak Python client requires that you install OpenSSL 1.0.1g or
 later. If you have an earlier version installed, you will receive a
 warning along the following lines:
 
-```
-Found OpenSSL 0.9.8za 5 Jun 2014 version, but expected at least OpenSSL 1.0.1g.  Security may not support TLS 1.2.
-```
+    Found OpenSSL 0.9.8za 5 Jun 2014 version, but expected at least OpenSSL 1.0.1g.  Security may not support TLS 1.2.
 
 ## Python Client Basics
 
@@ -38,7 +36,7 @@ interactions with Riak. All authentication-related information that
 needs to be used by the client object can be passed to the object upon
 instantiation by creating a `SecurityCreds` object.
 
-If you are using Riak Security, _all_ connecting clients should have
+If you are using Riak Security, *all* connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
 regardless of which [security source](../../../using/security/managing-sources.md) you
 choose. All clients should also provide a username. The example below
@@ -149,7 +147,7 @@ well as the pyOpenSSL class to which each cert must belong if you create
 OpenSSL objects.
 
 | Cert                       | File path     | OpenSSL object | Class                 |
-|:---------------------------|:--------------|:---------------|:----------------------|
+| :------------------------- | :------------ | :------------- | :-------------------- |
 | Certificate Authority (CA) | `cacert_file` | `cacert`       | `OpenSSL.crypto.X509` |
 | Private key                | `key_file`    | `key`          | `OpenSSL.crypto.PKey` |
 | CA-generated cert          | `cert`        | `cert_file`    | `OpenSSL.crypto.X509` |

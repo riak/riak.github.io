@@ -6,10 +6,15 @@ sidebar_position: 1
 ---
 
 [dev data types]: ../developing/data-types/index.md
+
 [plan backend bitcask]: ../setup/planning/backend/bitcask.md
+
 [replication properties]: ../developing/app-guide/replication-properties.md
+
 [usage mapreduce]: ../developing/usage/mapreduce.md
+
 [usage search]: ../developing/usage/search.md
+
 [usage secondary-indexes]: ../developing/usage/secondary-indexes.md
 
 Riak is a flexible data storage technology capable of addressing a wide variety
@@ -68,11 +73,11 @@ using multiple keys (e.g. a UUID or email address),
 
 #### Scaling Riak at Kiip
 
-In this [talk](https://player.vimeo.com/video/42744689), recorded at the May 2012 San Francisco Riak Meetup, Armon
+In this [talk](http://player.vimeo.com/video/49775483), recorded at the May 2012 San Francisco Riak Meetup, Armon
 Dadgar and Mitchell Hashimoto of Kiip give an overview of how and why they
 are using Riak in production, and the road they took to get there. One of
 the first subsystems they switched over to Riak was Sessions. You can also
-read the blog post and catch the slides [here](http://basho.com/posts/business/Scaling-Riak-At-Kiip/).
+read the blog post and catch the slides [here](http://basho.com/posts/business/Riak-in-Production-at-Voxer/).
 
 ## Serving Advertisements
 
@@ -235,7 +240,7 @@ This video was recorded at the March 2012 San Francisco Riak Meetup and is
 worth every minute of your time. Coda Hale and Ryan Kennedy of Yammer give
 an excellent and in depth look into how they built “Streamie”, user
 notifications, why Riak was the right choice, and the lessons learned in
-the process. Read more and get the slides in the Riak blog [here](http://basho.com/posts/business/Riak-And-Scala-At-Yammer/)
+the process. Read more and get the slides in the Riak blog [here](http://basho.com/posts/business/Riak-in-Production-at-Voxer/)
 
 [Riak at Voxer](http://player.vimeo.com/video/44498491)
 
@@ -279,7 +284,7 @@ to call from the posts and comments buckets to assemble the view.
 Other possible cases may involve performing operations on content beyond
 key/value pairs. [Riak Search][usage search] is recommended for use cases
 involving full-text search. For lighter-weight querying,
-[using secondary indexes][usage secondary-indexes] \(2i) enables you to add
+[using secondary indexes][usage secondary-indexes] (2i) enables you to add
 metadata to objects to either query for exact matches or to perform range
 queries. 2i also enables you to tag posts with dates, timestamps, topic areas,
 or other pieces of information useful for later retrieval.

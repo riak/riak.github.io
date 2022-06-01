@@ -5,12 +5,19 @@ sidebar_position: 3
 ---
 
 [use running cluster]: ../using/running-a-cluster.md
+
 [use admin index]: ../using/admin/index.md
+
 [cluster ops index]: ../using/cluster-operations/index.md
+
 [repair recover index]: ../using/repair-recovery/index.md
+
 [security index]: ../using/security/index.md
+
 [perf index]: ../using/performance/index.md
+
 [troubleshoot index]: ../using/troubleshooting/index.md
+
 [use ref]: ../using/reference/index.md
 
 ## [Running a Cluster][use running cluster]

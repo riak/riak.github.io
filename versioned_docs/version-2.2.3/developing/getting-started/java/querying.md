@@ -1,7 +1,7 @@
 ---
 title: "Querying"
 id: getting_started_java_query
-slug: querying 
+slug: querying
 sidebar_position: 1
 ---
 
@@ -18,7 +18,7 @@ on a *nix* OS.
 
 ## A Quick Note on Querying and Schemas
 
-_Schemas_? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
+*Schemas*? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
 word. Even in a key/value store, you will still have a logical database
 schema of how all the data relates to other data. This can be as simple
 as using the same key across multiple buckets for different types of

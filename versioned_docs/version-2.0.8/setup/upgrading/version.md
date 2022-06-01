@@ -8,7 +8,6 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 [production checklist]: ../../setup/upgrading/checklist.md
 
 [use admin riak control]: ../../using/admin/riak-control.md
@@ -48,7 +47,9 @@ For every node in the cluster:
 2. Back up the Riak /etc, /data, and /basho-patches directories.
 3. Remove your /basho-patches directory.
 4. Upgrade Riak KV.
-  * If you are upgrading from OSS to EE, uninstall your OSS KV package before upgrading.
+
+* If you are upgrading from OSS to EE, uninstall your OSS KV package before upgrading.
+
 5. (Optional) If you would like to potentially downgrade at some point, update your advanced.config file to opt-out of the AAE updates.
 6. If you're upgrading from OSS to EE, apply your customized settings to vm.args and app.config
 7. Start Riak KV.
@@ -73,7 +74,7 @@ We do our best to make all features that change data formats on disk opt-in; how
 * **One Way** features, when enabled, will make a clean downgrade of a cluster impossible.
 
 | Feature                                 | Automatic | Required | One Way | Notes                           |
-|:----------------------------------------|:---------:|:--------:|:-------:|:--------------------------------|
+| :-------------------------------------- | :-------: | :------: | :-----: | :------------------------------ |
 | Active anti-entropy file format changes |     ✔     |          |         | Can opt-out using a capability. |
 
 ## Upgrading process

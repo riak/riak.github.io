@@ -1,29 +1,48 @@
 ---
 title: "Causal Context"
 id: learn_concepts_causal_context
-slug: causal-context 
+slug: causal-context
 sidebar_position: 3
 ---
 
 [concept aae]: ../../learn/concepts/active-anti-entropy.md
+
 [concept clusters]: ../../learn/concepts/clusters.md
+
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+
 [CRM]: http://en.wikipedia.org/wiki/Customer_relationship_management
+
 [dev api http]: ../../developing/api/http/index.md
+
 [dev key value]: ../../developing/key-value-modeling.md
+
 [glossary read rep]: ../../learn/glossary.md#read-repair
+
 [perf latency reduc]: ../../using/performance/latency-reduction.md
+
 [usage bucket types]: ../../developing/usage/bucket-types.md
+
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+
 [usage protocol buffers]: ../../developing/api/protocol-buffers/index.md
+
 [usage updating objects]: ../../developing/usage/updating-objects.md
+
 [Vector Clocks on Wikipedia]: http://en.wikipedia.org/wiki/Vector_clock
+
 [Why Vector Clocks are Easy]: http://basho.com/posts/technical/why-vector-clocks-are-easy/
+
 [Why Vector Clocks are Hard]: http://basho.com/posts/technical/why-vector-clocks-are-hard/
+
 [work of Leslie Lamport]: http://portal.acm.org/citation.cfm?id=359563
+
 [Evaluating Dotted Version Vectors in Riak]: http://asc.di.fct.unl.pt/~nmp/pubs/inforum-2011-2.pdf
+
 [Improving Logical Clocks in Riak with Dotted Version Vectors: A Case Study]: http://paginas.fe.up.pt/~prodei/dsie12/papers/paper_19.pdf
+
 [Dotted Version Vector Sets]: https://github.com/ricardobcl/Dotted-Version-Vectors
+
 [A History of Time in Riak]: https://www.youtube.com/watch?v=3SWSw3mKApM
 
 Because Riak is an [eventually consistent][concept eventual consistency],
@@ -46,14 +65,14 @@ happens at that point? There are several possible outcomes:
 
 1. Riak is able to discern that one object is more causally recent than the other (in this case 555-1212) and chooses to store that value as the "correct" value.
 2. The two operations hit the database at roughly the same time, i.e. two **concurrent
-updates** have been completed, and Riak is unable to determine which
-value "wins." In this scenario, one of three things can happen:
+   updates** have been completed, and Riak is unable to determine which
+   value "wins." In this scenario, one of three things can happen:
 
-    a. The object is a CRDT, so Riak is able to resolve conflicting values by type-specific rules
-    
-    b. Riak creates sibling values, aka **siblings**, for the object
-        
-    c. Riak resolves the values on the basis of timestamps
+       a. The object is a CRDT, so Riak is able to resolve conflicting values by type-specific rules
+
+       b. Riak creates sibling values, aka **siblings**, for the object
+           
+       c. Riak resolves the values on the basis of timestamps
 
 In the case of outcome 1 above, Riak uses **causal context** metadata to
 make that decision. This metadata is attached to every object in Riak.
@@ -66,7 +85,7 @@ scenarios, e.g. healed network partitions).
 
 If, however, `allow_mult` is set to `false`, then Riak will not generate
 siblings, instead relying on simple timestamp resolution to decide which value
-"wins." In general, we recommend _always_ setting `allow_mult` to
+"wins." In general, we recommend *always* setting `allow_mult` to
 `true`. A more complete discussion can be found in our documentation on
 [conflict resolution][usage conflict resolution].
 
@@ -96,21 +115,18 @@ precisely that.
 A number of important aspects of the relationship between object
 replicas can be determined using vector clocks:
 
- * Whether one object is a direct descendant of the other
- * Whether the objects are direct descendants of a common parent
- * Whether the objects are unrelated in recent heritage
+* Whether one object is a direct descendant of the other
+* Whether the objects are direct descendants of a common parent
+* Whether the objects are unrelated in recent heritage
 
 Behind the scenes, Riak uses vector clocks as an essential element of
 its [active anti-entropy][concept aae] subsystem and of its automatic read
 repair capabilities.
 
-
 Vector clocks are non-human-readable metadata attached to all Riak
 objects. They look something like this:
 
-```
-a85hYGBgzGDKBVIcR4M2cgczH7HPYEpkzGNlsP/VfYYvCwA=
-```
+    a85hYGBgzGDKBVIcR4M2cgczH7HPYEpkzGNlsP/VfYYvCwA=
 
 While vector clocks quite often resolve object conflicts without
 trouble, there are times when they can't, i.e. when it's unclear which
@@ -130,7 +146,7 @@ Additional information on vector clocks:
 ## Siblings
 
 It is possible, though not recommendable, to [configure Riak][usage conflict resolution] to ensure that only one copy of an object ever exists in a
-specific location. This will ensure that _at most_ one value is returned
+specific location. This will ensure that *at most* one value is returned
 when a read is performed on a bucket type/bucket/key location (and no
 value if Riak returns `not found`).
 
@@ -142,7 +158,7 @@ setting the the `allow_mult` bucket property to `true` for a specific
 bucket, preferably [using bucket types][usage bucket types].
 
 From the standpoint of application development, the difficulty with
-siblings is that they _by definition_ conflict with one another. When an
+siblings is that they *by definition* conflict with one another. When an
 application attempts to read an object that has siblings, multiple
 replicas will be stored in the location where the application is
 looking. This means that the application will need to develop a
@@ -162,12 +178,14 @@ object update causality in terms of **logical time** rather than
 chronological time (as with timestamps), enabling Riak to make decisions
 about which objects are more current than others in cases of conflict.
 
->**Note: DVVs Recommended Over Vector Clocks**
->
->If you are using Riak version 2.0 or later, we strongly recommend using
+:::note Note: DVVs Recommended Over Vector Clocks
+
+If you are using Riak version 2.0 or later, we strongly recommend using
 dotted version vectors instead of vector clocks, as DVVs are far better
 at limiting the number of siblings produced in a cluster, which can
 prevent a wide variety of potential issues.
+
+:::
 
 ## DVVs Versus Vector Clocks
 
@@ -192,7 +210,7 @@ replicas, sibling values may be duplicated, which can in turn lead to
 DVVs, on the other hand, identify each value with the update that
 created it. If five clients concurrently update the object above (in the
 bucket `frequent_updates`, with the key `update_me`), each of these
-updates will be marked with a _dot_ (a minimal vector clock) that indicates the specific event that introduced it. This
+updates will be marked with a *dot* (a minimal vector clock) that indicates the specific event that introduced it. This
 means that duplicate values can always be identified and removed,
 reducing the likelihood of sibling explosion. Rather than being potentially unbounded, the
 number of sibling values will be proportional to the number of
@@ -229,22 +247,23 @@ still labeled `X-Riak-Vclock` if you're using the [HTTP API][dev api http] and
 More on using vector clocks and DVVs on the application side can be
 found in our documentation on [conflict resolution][usage conflict resolution].
 
->**Note on DVVs and bucket types**
->
->The choice between vector clocks and DVVs can be made at the bucket
+:::note Note on DVVs and bucket types
+
+The choice between vector clocks and DVVs can be made at the bucket
 level, [using bucket types][usage bucket types]. This enables you to employ a mixed
 conflict resolution strategy in your Riak cluster, using DVVs in some
 buckets and vector clocks in others if you wish. DVVs can be enabled by
 setting the `dvv_enabled` bucket property to
 `true` for one or more bucket types.
->
->Vector clocks remain the default if you are not using bucket types.
+
+Vector clocks remain the default if you are not using bucket types.
 However, any bucket type that you create and activate will have
 `dvv_enabled` set to `true`. And so if you wish to
 create a bucket type that uses traditional vector clocks, you will need
 to explicitly set `dvv_enabled` to `false` for
 that bucket type.
 
+:::
 
 ## Sibling Explosion
 
@@ -259,10 +278,10 @@ out-of-memory errors.
 To prevent sibling explosion, we recommend the following:
 
 1. Use [dotted version vectors](#dotted-version-vectors)
-instead of vector clocks for causal
-context.
+   instead of vector clocks for causal
+   context.
 2. Always update mutable objects within a read/modify/write cycle. More
-information can be found in the [Object Updates][usage updating objects] doc.
+   information can be found in the [Object Updates][usage updating objects] doc.
 
 ## Resources
 

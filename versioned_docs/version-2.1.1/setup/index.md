@@ -5,8 +5,11 @@ sidebar_position: 5
 ---
 
 [plan index]: ./planning/index.md
+
 [install index]: ./installing/index.md
+
 [upgrade index]: ./upgrading/index.md
+
 [downgrade]: ./downgrade.md
 
 ## [Planning][plan index]

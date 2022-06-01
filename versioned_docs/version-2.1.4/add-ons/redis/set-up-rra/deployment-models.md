@@ -5,7 +5,9 @@ slug: deployment-models
 ---
 
 [Local-deployment]: /images/redis/rra_deployment_local.png
+
 [Colocated-deployment]: /images/redis/rra_deployment_colocated.png
+
 [Distributed-deployment]: /images/redis/rra_deployment_distributed.png
 
 ## Local Cache Deployment
@@ -22,7 +24,7 @@ Connections:
 * Redis: The connection between the RRA Service instance and Redis Service
   instance is local.
 * Riak: The connections between Application Servers to Riak Nodes is distributed
-  and bounded to equal the number of Riak nodes _multiplied_ by the number of
+  and bounded to equal the number of Riak nodes *multiplied* by the number of
   Application Servers since they are aggregated at the RRA Service instance.
 
 Advantages:
@@ -60,11 +62,11 @@ Connections:
 
 * RRA: The connections between Application Service instances to RRA Service
   instance are distributed and bounded to equal the number of Riak nodes
-  _multiplied_ by the number of Application Service instances.
+  *multiplied* by the number of Application Service instances.
 * Redis: The connection between the RRA Service instance and Redis Service
   instance is local.
 * Riak: The connections between RRA to Riak Nodes is distributed and bounded to
-  equal the number of Riak nodes _squared_.
+  equal the number of Riak nodes *squared*.
 
 Advantages:
 
@@ -78,14 +80,13 @@ Disadvantages:
 * Redis competing for RAM with Riak will likely be problematic. Redis should
   be configured to ensure `maxmemory` and `maxmemory-policy` constrain Redis
   to ensure Riak is allotted sufficient RAM to serve the more important
-  persistent data storage and retrieval services. See http://redis.io/topics/config
+  persistent data storage and retrieval services. See <http://redis.io/topics/config>
 * This model may seem to provide data locality, but in the case of faults in
   either Redis or Riak services, the fault tolerance mechanisms of RRA and
   Riak will not match exactly as communicating the necessary information to
   support such a lock-step fault tolerance would lead to greater mean latencies
   and Riak provides superior 99th percentile latency performance in the face
   of faults.
-
 
 ## Distributed Cache Deployment
 
@@ -100,9 +101,9 @@ Connections:
   instance are local.
 * Redis: The connection between the RRA Service instance and Redis Service
   instance are distributed and bounded to equal the number of Application
-  Servers _multipled_ by the number of Redis Servers.
+  Servers *multipled* by the number of Redis Servers.
 * Riak: The connections between RRA to Riak Nodes is distributed and bounded to
-  equal the number of Riak nodes _multiplied_ by the number of Application
+  equal the number of Riak nodes *multiplied* by the number of Application
   Servers since they are aggregated at the RRA Service instance.
 
 Advantages:

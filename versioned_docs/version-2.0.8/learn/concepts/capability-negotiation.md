@@ -1,3 +1,6 @@
+---
+title: "Capability Negotiation"
+id: learn_concepts_cap_negotiation
 slug: capability-negotiation
 sidebar_position: 2
 ---

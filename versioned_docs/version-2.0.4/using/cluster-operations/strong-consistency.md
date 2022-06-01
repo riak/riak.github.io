@@ -32,7 +32,7 @@ PUT-related stats.
 ### GET-related stats
 
 | Stat                            | Description                                                                                                |
-|:--------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| :------------------------------ | :--------------------------------------------------------------------------------------------------------- |
 | `consistent_gets`               | Number of strongly consistent GETs coordinated by this node in the last minute                             |
 | `consistent_gets_total`         | Total number of strongly consistent GETs coordinated by this node                                          |
 | `consistent_get_objsize_mean`   | Mean object size for strongly consistent GETs on this node in the last minute                              |
@@ -49,7 +49,7 @@ PUT-related stats.
 ### PUT-related stats
 
 | Stat                            | Description                                                                                                |
-|:--------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| :------------------------------ | :--------------------------------------------------------------------------------------------------------- |
 | `consistent_puts`               | Number of strongly consistent PUTs coordinated by this node in the last minute                             |
 | `consistent_puts_total`         | Total number of strongly consistent PUTs coordinated by this node                                          |
 | `consistent_put_objsize_mean`   | Mean object size for strongly consistent PUTs on this node in the last minute                              |

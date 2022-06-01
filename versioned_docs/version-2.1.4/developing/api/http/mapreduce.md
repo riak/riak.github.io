@@ -1,11 +1,11 @@
 ---
 title: "MapReduce"
 id: http_mapreduce
-slug: mapreduce 
+slug: mapreduce
 sidebar_position: 8
 ---
 
-[MapReduce](../../../developing/usage/mapreduce.md) is a generic way to query Riak by specifying inputs and constructing a set of map, reduce, and link phases through which data will flow.
+[MapReduce](../../../developing/usage/mapreduce) is a generic way to query Riak by specifying inputs and constructing a set of map, reduce, and link phases through which data will flow.
 
 ## Request
 
@@ -14,24 +14,29 @@ POST /mapred
 ```
 
 Important headers:
+
 * `Content-Type` - must always be `application/json`.  The format of the request body is described in detail on the [MapReduce](../../../developing/usage/mapreduce) page.
 
 Optional query parameters:
+
 * `chunked` - when set to `true`, results will be returned as they are received in `multipart/mixed` format using chunked-encoding.
 
-_+This request must include an entity (body), which is the JSON form of the MapReduce query.+_
+*+This request must include an entity (body), which is the JSON form of the MapReduce query.+*
 
 ## Response
 
 Normal status codes:
+
 * `200 OK`
 
 Typical error codes:
+
 * `400 Bad Request` - if an invalid job is submitted.
 * `500 Internal Server Error` - if there was an error in processing a map or reduce function
 * `503 Service Unavailable` - if the job timed out before it could complete
 
 Important headers:
+
 * `Content-Type` - `application/json` when `chunked` is not true, otherwise `multipart/mixed` with `application/json` sections.
 
 ## Example

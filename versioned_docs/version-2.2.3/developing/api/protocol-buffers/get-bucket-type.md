@@ -1,7 +1,7 @@
 ---
 title: "Get Bucket Type"
 id: pbc_get_bucket_type
-slug: get-bucket-type 
+slug: get-bucket-type
 sidebar_position: 13
 ---
 

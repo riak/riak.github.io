@@ -756,6 +756,7 @@ loop() ->
       io:format("Something bad happened! ~p~n", [Reason])
   end.
 ```
+
 ## Troubleshooting MapReduce, illustrated
 
 The most important advice: when developing Erlang MapReduce against

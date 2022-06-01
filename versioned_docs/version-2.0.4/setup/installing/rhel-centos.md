@@ -6,10 +6,12 @@ sidebar_position: 4
 ---
 
 [install source index]: ../../setup/installing/source/index.md
+
 [install source erlang]: ../../setup/installing/source/erlang.md
+
 [install verify]: ../../setup/installing/verify.md
 
-:::note Note: 2.0.4 not currently available**
+:::note Note: 2.0.4 not currently available\*\*
 Riak version 2.0.4 is not currently available for RHEL/CentOS due to a known issue. If you'd like to upgrade Riak, we'd recommend waiting for the 2.0.5 release.
 :::
 
@@ -17,10 +19,12 @@ Riak KV can be installed on CentOS- or Red-Hat-based systems using a binary
 package or by [compiling Riak from source code][install source index]. The following steps have been tested to work with Riak on
 CentOS/RHEL 5.10, 6.5, and 7.0.1406.
 
-> **Note on SELinux**
->
-> CentOS enables SELinux by default, so you may need to disable SELinux if
+:::note Note on SELinux
+
+CentOS enables SELinux by default, so you may need to disable SELinux if
 you encounter errors.
+
+:::
 
 ## Installing with rpm
 
@@ -75,17 +79,15 @@ The `name` that you submit to packagecloud can be anything you like. The
 `HOSTNAME` used above was for example purposes. The resulting file
 should contents like the following:
 
-```
-[basho_riak]
-name=basho_riak
-baseurl=https://packagecloud.io/basho/riak/el/5/$basesearch
-repo_gpgcheck=1
-gpgcheck=0
-enabled=1
-gpgkey=https://packagecloud.io/gpg.key
-sslverify=1
-sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-```
+    [basho_riak]
+    name=basho_riak
+    baseurl=https://packagecloud.io/basho/riak/el/5/$basesearch
+    repo_gpgcheck=1
+    gpgcheck=0
+    enabled=1
+    gpgkey=https://packagecloud.io/gpg.key
+    sslverify=1
+    sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 
 With your `basho.repo` file population, you can update your rpm sources
 list.

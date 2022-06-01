@@ -24,19 +24,19 @@ Available properties:
 
 * `n_val` (integer > 0) - the number of replicas for objects in this bucket
 * `allow_mult` (true or false) - whether to allow sibling objects to be created
-(concurrent updates)
+  (concurrent updates)
 * `last_write_wins` (true or false) - whether to ignore object history (vector
-clock) when writing
+  clock) when writing
 * `precommit` - [precommit hooks](../../../developing/usage/commit-hooks.md)
 * `postcommit` - [postcommit hooks](../../../developing/usage/commit-hooks.md)
 * `r, w, dw, rw` - default quorum values for operations on keys in the bucket.
-Valid values are:
+  Valid values are:
   * `"all"` - all nodes must respond
   * `"quorum"` - (n_val/2) + 1 nodes must respond. *This is the default.*
   * `"one"` - equivalent to 1
   * *Any integer* - must be less than or equal to n_val
 * `backend` - when using `riak_kv_multi_backend`, which named backend to use for
-the bucket
+  the bucket
 
 Other properties do exist but are not commonly modified.
 
@@ -57,7 +57,7 @@ Typical error codes:
 
 * `400 Bad Request` - if the submitted JSON is invalid
 * `415 Unsupported Media Type` - if the Content-Type was not set to
-application/json in the request
+  application/json in the request
 
 If successful, no content will be returned in the response body.
 

@@ -6,29 +6,43 @@ sidebar_position: 5
 ---
 
 [crdts pdf]: http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf
+
 [data types converg]: ../../learn/concepts/crdts.md#convergence
+
 [crdts reading list]: http://christophermeiklejohn.com/crdt/2014/07/22/readings-in-crdts.html
+
 [data types impl]: ../../learn/concepts/crdts.md#implementation
+
 [concept causal context dvv]: ../../learn/concepts/causal-context.md#dotted-version-vectors
+
 [concept causal context sib]: ../../learn/concepts/causal-context.md#siblings
+
 [concept causal context vc]: ../../learn/concepts/causal-context.md#vector-clocks
+
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+
 [concept strong consistency]: ../../learn/concepts/strong-consistency.md
+
 [dev data types]: ../../developing/data-types/index.md
+
 [riak_dt]: https://github.com/basho/riak_dt
+
 [dev data types context]: ../../developing/data-types/index.md#data-types-and-context
+
 [glossary node]: ../../learn/glossary.md#node
+
 [glossary vnode]: ../../learn/glossary.md#vnode
+
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
 
 Riak Data Types are convergent replicated data types (CRDTs), inspired by the work of [Marc Shapiro, Nuno Preguiça, Carlos Baquero, and Marek Zawirski][crdts pdf]. Riak KV supports the following eventually-convergent data types, described in later sections:
 
-- Counters
-- Flags
-- HyperLogLogs
-- Maps
-- Registers
-- Sets
+* Counters
+* Flags
+* HyperLogLogs
+* Maps
+* Registers
+* Sets
 
 The difference between Riak Data Types and typical key/value data stored in Riak KV is that Riak Data Types are operations-based from the standpoint of Riak KV clients.
 
@@ -43,23 +57,21 @@ Riak Data Types enable applications to use CRDTs through a simple interface, wit
 
 For more articles on CRDTs, check out this [reading list][crdts reading list].
 
-
 ## Counters
 
 Counters are a bucket-level Riak data type that can be used by themselves, associated with a bucket/key pair, or used within a map. A counter’s value can only be a positive integer, negative integer, or zero.
 
 Counters are useful when a count is needed, for example:
 
-- Counting the number of people following someone on Twitter
-- Counting the amount of likes on a Facebook post
-- Counting the points scored by a player in a game 
+* Counting the number of people following someone on Twitter
+* Counting the amount of likes on a Facebook post
+* Counting the points scored by a player in a game 
 
 If you require unique, ordered IDs counters should not be used because uniqueness cannot be guaranteed.
 
 ### Operations
 
 Counters are subject to two operations: increment and decrement.
-
 
 ## Flags
 
@@ -68,8 +80,8 @@ Flags are similar to Boolean values, but instead of `true` or
 
 Some examples of using flags:
 
-- Showing if a tweet has been retweeted
-- Showing if a user has signed up for a specific pricing plan
+* Showing if a tweet has been retweeted
+* Showing if a user has signed up for a specific pricing plan
 
 ### Operations
 
@@ -77,37 +89,33 @@ Flags support only two operations: `enable` and `disable`. Flags can be
 added to or removed from a map, but those operations are performed on
 the map and not on the flag directly.
 
-
 ## HyperLogLogs
 
 HyperLogLogs (HLLs) are a data type used to count unique elements within a data set or stream.
 
 For example, hyperloglogs can be used for:
 
-- Counting the number of unique visitors to your website
-- Counting the number of unique searches users performed
+* Counting the number of unique visitors to your website
+* Counting the number of unique searches users performed
 
 ### Operations
 
 HyperLogLogs support two operations: adding elements and retrieving the count.
 
-
 ## Maps
 
-Maps are the most versatile of the Riak data types because all other data types can be embedded within them, _including maps themselves_. This enables the creation of complex, custom data types from a few basic building blocks.
+Maps are the most versatile of the Riak data types because all other data types can be embedded within them, *including maps themselves*. This enables the creation of complex, custom data types from a few basic building blocks.
 
 Maps are best suited for complex, multi-faceted data. The following
 JSON-inspired pseudocode shows how a tweet might be structured as a map:
 
-```
-Map tweet {
-    Counter: numberOfRetweets,
-    Register: username,
-    Register: tweetContent,
-    Flag: favorited?,
-    Map: userInfo
-}
-```
+    Map tweet {
+        Counter: numberOfRetweets,
+        Register: username,
+        Register: tweetContent,
+        Flag: favorited?,
+        Map: userInfo
+    }
 
 ### Operations
 
@@ -121,7 +129,6 @@ You can perform two types of operations on maps:
    Those operations behave just like the operations specific to that
    Data Type.
 
-
 ## Registers
 
 Registers are essentially named binaries (like strings). Any binary
@@ -130,13 +137,12 @@ be used on their own and must be embedded in maps.
 
 Some examples of using registers:
 
-- Storing the name `Cassius` in the register `first_name` in a map called `user14325_info`
-- Storing the title of a blog post in a map called `2010-03-01_blog_post`
+* Storing the name `Cassius` in the register `first_name` in a map called `user14325_info`
+* Storing the title of a blog post in a map called `2010-03-01_blog_post`
 
 ### Operations
 
 Registers can only have the binaries stored within them changed. They can be added to and removed from maps, but those operations take place on the map in which the register is nested, and not on the register itself.
-
 
 ## Sets
 
@@ -148,14 +154,13 @@ embedded in a map.
 
 Some examples of using sets:
 
-- Storing the UUIDs of a user's friends in a social network application
-- Storing items in an e-commerce shopping cart
+* Storing the UUIDs of a user's friends in a social network application
+* Storing items in an e-commerce shopping cart
 
 ### Operations
 
 Sets are subject to four basic operations: add an element, remove an
 element, add multiple elements, or remove multiple elements.
-
 
 ## Advantages and Disadvantages of Data Types
 
@@ -177,7 +182,6 @@ allow you to produce your own convergence logic. If your use case
 demands that you be able to create your own deterministic merge
 functions, then Riak Data Types might not be a good fit.
 
-
 ## Implementation
 
 Conflicts between replicas are inevitable in a distributed system like
@@ -188,7 +192,6 @@ possible that the value of `my_map` will be different in nodes A and B.
 
 Without using data types, that conflict must be resolved using
 timestamps, [vector clocks][concept causal context vc], [dotted version vectors][concept causal context dvv], or some other means. With data types, conflicts are resolved by Riak KV itself, using a subsystem called [`riak_dt`][riak_dt].
-
 
 ## Convergence
 
@@ -223,7 +226,7 @@ In general, convergence involves the following stages:
 Convergence means that data type conflicts are weighted in a certain direction. Riak's Data Types have their own internal weights that dictate what happens in case of conflict:
 
 | Data Type | Convergence rule                                                                                                                            |
-|:----------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
 | Flags     | `enable` wins over `disable`                                                                                                                |
 | Registers | The most chronologically recent value wins, based on timestamps                                                                             |
 | Counters  | Implemented as a PN-Counter ([paper][crdts pdf]), so all increments and decrements by all actors are eventually applied.  Every actor wins. |

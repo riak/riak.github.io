@@ -9,9 +9,7 @@ Deletes a Riak Search index.
 
 ## Request
 
-```
-DELETE /search/index/<index_name>
-```
+    DELETE /search/index/<index_name>
 
 ## Normal Response Codes
 

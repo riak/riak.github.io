@@ -5,12 +5,19 @@ sidebar_position: 4
 ---
 
 [getting started]: ./getting-started/index.md
+
 [usage index]: ./usage/index.md
+
 [client libraries]: ./client-libraries.md
+
 [dev data types]: ./data-types/index.md
+
 [dev data modeling]: ../learn/use-cases.md
+
 [apps index]: ./app-guide/index.md
+
 [dev api index]: ./api/index.md
+
 [dev faq]: ./faq.md
 
 ## [Getting Started][getting started]

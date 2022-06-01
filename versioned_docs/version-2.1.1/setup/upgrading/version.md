@@ -1,7 +1,7 @@
 ---
 title: "Upgrading to Riak KV 2.0"
 id: upgrading_version
-slug: version 
+slug: version
 sidebar_position: 1
 ---
 

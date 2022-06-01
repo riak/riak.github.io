@@ -61,6 +61,7 @@ into the Python REPL:
 ```python
 import riak
 ```
+
 If you are using a single local Riak node, use the following to create a
 new client instance:
 
@@ -72,7 +73,7 @@ myClient = riak.RiakClient(pb_port=8087, protocol='pbc')
 myClient = riak.RiakClient(pb_port=8087)
 ```
 
-If you set up a local Riak cluster using the [[five-minute install]]
+If you set up a local Riak cluster using the \[[five-minute install]]
 method, use this code snippet instead:
 
 ```python

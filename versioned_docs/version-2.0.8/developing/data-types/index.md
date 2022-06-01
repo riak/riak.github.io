@@ -8,20 +8,22 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [wiki crdt]: https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type#Others
+
 [concept crdt]: ../../learn/concepts/crdts.md
+
 [ops bucket type]: ../../using/cluster-operations/bucket-types.md
 
 Riak KV has Riak-specific data types based on [convergent replicated data types (CRDTs)][wiki crdt]. While Riak KV was built as a data-agnostic key/value store, Riak data types enable you to use Riak KV as a data-aware system and perform transactions on 5 CRDT-inspired data types:
 
-- [Flags](./maps.md#flags)
-- [Registers](./maps.md#registers)
-- [Counters](./counters.md)
-- [Sets](./sets.md)
-- [Maps](./maps.md)
+* [Flags](./maps.md#flags)
+* [Registers](./maps.md#registers)
+* [Counters](./counters.md)
+* [Sets](./sets.md)
+* [Maps](./maps.md)
 
 Riak KV also has 1 context-free data type, that has similar usage but does not require contexts.
 
-- [HyperLogLogs](./hyperloglogs.md) (abbreviated `hll` in many places)
+* [HyperLogLogs](./hyperloglogs.md) (abbreviated `hll` in many places)
 
 Counters, sets, maps, and hyperloglogs can be used as bucket-level data types or types that you interact with directly. Flags and registers must be [embedded in maps](./maps.md).
 
@@ -68,9 +70,7 @@ This will return a list of bucket properties and their associated values
 in the form of `property: value`. If our `maps` bucket type has been set
 properly, we should see the following pair in our console output:
 
-```
-datatype: map
-```
+    datatype: map
 
 ### Activate Bucket type
 
@@ -91,8 +91,8 @@ See the [Usage Examples](#usage-examples) section for further information on usi
 
 In order for Riak data types to work the bucket should have the following bucket properties:
 
-- `allow_mult = true`
-- `last_write_wins = false`
+* `allow_mult = true`
+* `last_write_wins = false`
 
 These settings are set by default and should not be changed.
 
@@ -207,10 +207,10 @@ client.fetchMap(options, function (err, rslt) {
 > **Context with the Ruby, Python, and Erlang clients**
 >
 > In the Ruby, Python, and Erlang clients, you will not need to manually
-handle context when making data type updates. The clients will do it all
-for you. The one exception amongst the official clients is the Java
-client. We'll explain how to use data type contexts with the Java client
-directly below.
+> handle context when making data type updates. The clients will do it all
+> for you. The one exception amongst the official clients is the Java
+> client. We'll explain how to use data type contexts with the Java client
+> directly below.
 
 ### Context with the Java and PHP Clients
 
@@ -270,12 +270,12 @@ $updateSet = (new \Basho\Riak\Command\Builder\UpdateSet($riak))
 
 ## Usage Examples
 
-- [Flags](./maps.md#flags)
-- [Registers](./maps.md#registers)
-- [Counters](./counters.md)
-- [Sets](./sets.md)
-- [Maps](./maps.md)
-- [Hyperloglogs](./hyperloglogs.md)
+* [Flags](./maps.md#flags)
+* [Registers](./maps.md#registers)
+* [Counters](./counters.md)
+* [Sets](./sets.md)
+* [Maps](./maps.md)
+* [Hyperloglogs](./hyperloglogs.md)
 
 The pages listed above detail using Riak data types at the application level using Basho's [officially supported Riak KV clients](../client-libraries.md). For more on getting started with client libraries check out the [Developing with Riak KV: Getting Started](../getting-started/index.md) section.
 

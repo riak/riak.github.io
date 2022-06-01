@@ -1,7 +1,7 @@
 ---
 title: "Cascading Realtime Writes"
 id: managing_ref_v3_cascading_writes
-slug: cascading-writes 
+slug: cascading-writes
 sidebar_position: 2
 ---
 
@@ -22,18 +22,15 @@ works well for most common configurations. Larger installations, however, may
 have writes cascade to clusters to which other clusters have already written.
 :::
 
-
-```
-+---+     +---+     +---+
-| A | <-> | B | <-> | C |
-+---+     +---+     +---+
-  ^                   ^
-  |                   |
-  V                   V
-+---+     +---+     +---+
-| F | <-> | E | <-> | D |
-+---+     +---+     +---+
-```
+    +---+     +---+     +---+
+    | A | <-> | B | <-> | C |
+    +---+     +---+     +---+
+      ^                   ^
+      |                   |
+      V                   V
+    +---+     +---+     +---+
+    | F | <-> | E | <-> | D |
+    +---+     +---+     +---+
 
 In the diagram above, a write at cluster A will begin two cascades. One
 goes to B, C, D, E, and finally F; the other goes to F, E, D, C, and
@@ -48,19 +45,17 @@ reduces the number of extraneous write requests to 1.
 
 A different topology can also prevent extra write requests:
 
-```
-+---+                     +---+
-| A |                     | E |
-+---+                     +---+
- ^  ^                     ^  ^
- |   \  +---+     +---+  /   |
- |    > | C | <-> | D | <    |
- |   /  +---+     +---+  \   |
- V  V                     V  V
-+---+                     +---+
-| B |                     | F |
-+---+                     +---+
-```
+    +---+                     +---+
+    | A |                     | E |
+    +---+                     +---+
+     ^  ^                     ^  ^
+     |   \  +---+     +---+  /   |
+     |    > | C | <-> | D | <    |
+     |   /  +---+     +---+  \   |
+     V  V                     V  V
+    +---+                     +---+
+    | B |                     | F |
+    +---+                     +---+
 
 A write at A will cascade to C and B. B will not cascade to C because
 A will have already added C to the list of clusters where the write has

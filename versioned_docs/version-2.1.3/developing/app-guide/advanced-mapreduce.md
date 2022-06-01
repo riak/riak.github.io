@@ -217,11 +217,13 @@ get_keys(Value,_Keydata,_Arg) ->
 
 Save this file as `mr_example.erl` and proceed to compiling the module.
 
-> **Note on the Erlang Compiler**
->
-> You must use the Erlang compiler (`erlc`) associated with the
-> Riak installation or the version of Erlang used when compiling Riak from
-> source.
+:::note Note on the Erlang Compiler
+
+You must use the Erlang compiler (`erlc`) associated with the
+Riak installation or the version of Erlang used when compiling Riak from
+source.
+
+:::
 
 Compiling the module is a straightforward process:
 
@@ -756,6 +758,7 @@ loop() ->
       io:format("Something bad happened! ~p~n", [Reason])
   end.
 ```
+
 ## Troubleshooting MapReduce, illustrated
 
 The most important advice: when developing Erlang MapReduce against

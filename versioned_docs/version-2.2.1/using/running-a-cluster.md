@@ -20,24 +20,26 @@ the usage of `bin/riak` with `sudo /usr/sbin/riak` and `bin/riak-admin`
 with `sudo /usr/sbin/riak-admin`. The `riak` and `riak-admin` scripts
 are located in the `/bin` directory of your installation.
 
-> **Note on changing the `name` value**
->
-> If possible, you should avoid starting Riak prior to editing the name of
+:::note Note on changing the `name` value
+
+If possible, you should avoid starting Riak prior to editing the name of
 a node. This setting corresponds to the `nodename` parameter in the
 `riak.conf` file if you are using the newer configuration system, and to
 the `-name` parameter in `vm.args` (as described below) if you are using
 the older configuration system. If you have already started Riak with
 the default settings, you cannot change the `-name` setting and then
 successfully restart the node.
->
-> If you cannot restart after changing the `-name` value you have two
+
+If you cannot restart after changing the `-name` value you have two
 options:
->
-> * Discard the existing ring metadata by removing the contents of the
-`ring` directory. This will require rejoining all nodes into a
-cluster again.
->
-> *Rename the node using the [`riak-admin cluster replace`](../using/admin/riak-admin.md#cluster) command. This will not work if you have previously only started Riak with a single node.
+
+* Discard the existing ring metadata by removing the contents of the
+  `ring` directory. This will require rejoining all nodes into a
+  cluster again.
+
+\*Rename the node using the [`riak-admin cluster replace`](../using/admin/riak-admin.md#cluster) command. This will not work if you have previously only started Riak with a single node.
+
+:::
 
 ## Configure the First Node
 
@@ -89,7 +91,6 @@ listener.protobuf.internal = 192.168.1.10:8087
 </TabItem>
 
 <TabItem label="app.config" value="app.config">
-
 
 ```erlang
 %% In the pb section of riak_core:
@@ -212,12 +213,12 @@ nodename = riak@192.168.1.10
 > **Node Names**
 >
 > Use fully qualified domain names ([FQDNs](http://en.wikipedia.org/wiki/Fully_qualified_domain_name)) rather than IP addresses for the cluster member node names. For example, `riak@cluster.example.com` and `riak@192.168.1.10`
-are both acceptable node naming schemes, but using the FQDN style is
-preferred.
+> are both acceptable node naming schemes, but using the FQDN style is
+> preferred.
 >
 > Once a node has been started, in order to change the name you must
-either remove ring files from the `/data/ring` directory or
-[`riak-admin cluster force-replace`](../using/admin/riak-admin.md#cluster) the node.
+> either remove ring files from the `/data/ring` directory or
+> [`riak-admin cluster force-replace`](../using/admin/riak-admin.md#cluster) the node.
 
 #### Start the node
 
@@ -265,9 +266,7 @@ riak-admin cluster join riak@192.168.1.10
 
 Output from the above should resemble:
 
-```
-Success: staged join request for `riak@192.168.1.11` to `riak@192.168.1.10`
-```
+    Success: staged join request for `riak@192.168.1.11` to `riak@192.168.1.10`
 
 Next, plan and commit the changes:
 
@@ -278,9 +277,7 @@ riak-admin cluster commit
 
 After the last command, you should see:
 
-```
-Cluster changes committed
-```
+    Cluster changes committed
 
 If your output was similar, then the second Riak node is now part of the
 cluster and has begun syncing with the first node. Riak provides several
@@ -289,28 +286,28 @@ examine your Riak cluster's ring:
 
 1. Using the `riak-admin` command:
 
-    ```bash
-    bin/riak-admin status | grep ring_members
-    ```
+   ```bash
+   bin/riak-admin status | grep ring_members
+   ```
 
-    With output resembling the following:
+   With output resembling the following:
 
-    ```bash
-    ring_members : ['riak@192.168.1.10','riak@192.168.1.11']
-    ```
+   ```bash
+   ring_members : ['riak@192.168.1.10','riak@192.168.1.11']
+   ```
 
 2. Running the `riak attach` command. This will open up an Erlang shell,
-into which you can type the following command:
+   into which you can type the following command:
 
-    ```erlang
-    1> {ok, R} = riak_core_ring_manager:get_my_ring().
+       ```erlang
+       1> {ok, R} = riak_core_ring_manager:get_my_ring().
 
-    %% Response:
+       %% Response:
 
-    {ok,{chstate,'riak@192.168.1.10',.........
-    (riak@192.168.52.129)2> riak_core_ring:all_members(R).
-    ['riak@192.168.1.10','riak@192.168.1.11']
-    ```
+       {ok,{chstate,'riak@192.168.1.10',.........
+       (riak@192.168.52.129)2> riak_core_ring:all_members(R).
+       ['riak@192.168.1.10','riak@192.168.1.11']
+       ```
 
 To join additional nodes to your cluster, repeat the above steps.  You
 can also find more detailed instructions about [adding and removing nodes](../using/cluster-operations/adding-removing-nodes.md) from a cluster.
@@ -318,10 +315,10 @@ can also find more detailed instructions about [adding and removing nodes](../us
 > **Ring Creation Size**
 >
 > All nodes in the cluster
-must have the same initial ring size setting in order to join, and
-participate in cluster activity. This setting can be adjusted in your
-configuration file using the `ring_creation_size` parameter if you're
-using the older configuration system or `ring_size` in the new system.
+> must have the same initial ring size setting in order to join, and
+> participate in cluster activity. This setting can be adjusted in your
+> configuration file using the `ring_creation_size` parameter if you're
+> using the older configuration system or `ring_size` in the new system.
 >
 > Check the value of all nodes if you receive a message like this:
 > `Failed: riak@10.0.1.156 has a different ring_creation_size`
@@ -339,39 +336,39 @@ directions below.
 
 To run multiple nodes, make copies of the `riak` directory.
 
--   If you ran `make all rel`, then this can be found in `./rel/riak`
-    under the Riak source root directory.
--   If you are running Mac OS X, then this is the directory where you
-    unzipped the `.tar.gz` file.
+* If you ran `make all rel`, then this can be found in `./rel/riak`
+  under the Riak source root directory.
+* If you are running Mac OS X, then this is the directory where you
+  unzipped the `.tar.gz` file.
 
 Presuming that you copied `./rel/riak` into `./rel/riak1`, `./rel/riak2`,
 `./rel/riak3`, and so on, you need to make two changes:
 
 1. Set your handoff port and your Protocol Buffers or HTTP port
-(depending on which interface you are using) to different values on each
-node. For example:
+   (depending on which interface you are using) to different values on each
+   node. For example:
 
-    ```riakconf
-    # For Protocol Buffers:
-    listener.protobuf.internal = 127.0.0.1:8187
+       ```riakconf
+       # For Protocol Buffers:
+       listener.protobuf.internal = 127.0.0.1:8187
 
-    # For HTTP:
-    listener.http.internal = 127.0.0.1:8198
+       # For HTTP:
+       listener.http.internal = 127.0.0.1:8198
 
-    # For either interface:
-    handoff.port = 8199
-    ```
+       # For either interface:
+       handoff.port = 8199
+       ```
 
-    ```erlang
-    %% In the pb section of riak_core:
-    {"127.0.0.1", 8187 }
+       ```erlang
+       %% In the pb section of riak_core:
+       {"127.0.0.1", 8187 }
 
-    %% In the http section of riak_core:
-    {"127.0.0.1", 8198}
-    ```
+       %% In the http section of riak_core:
+       {"127.0.0.1", 8198}
+       ```
 
 2. Change the name of each node to a unique name. Now, start the nodes,
-changing path names and nodes as appropriate:
+   changing path names and nodes as appropriate:
 
 ```bash
 ./rel/riak1/bin/riak start

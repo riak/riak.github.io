@@ -1,32 +1,41 @@
 ---
 title: "Advanced MapReduce"
 id: app_guide_mapreduce
-slug: advanced-mapreduce 
+slug: advanced-mapreduce
 sidebar_position: 3
 ---
 
 [usage 2i]: ../../developing/usage/secondary-indexes.md
-[apps replication properties]: ../../developing/app-guide/replication-properties.md
-[use ref custom code]: ../../using/reference/custom-code.md
-[usage bucket types]: ../../developing/usage/bucket-types.md
-[glossary vnode]: ../../learn/glossary.md#vnode
-[config reference]: ../../configuring/reference.md
-[google mr]: http://research.google.com/archive/mapreduce.html
-[mapping list]: http://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html#v:map
-[function contrib]: https://github.com/basho/riak_function_contrib
-[erlang client]: https://github.com/basho/riak-erlang-client
-[`set-union`]: http://en.wikipedia.org/wiki/Union_(set_theory)#Definition
 
+[apps replication properties]: ../../developing/app-guide/replication-properties.md
+
+[use ref custom code]: ../../using/reference/custom-code.md
+
+[usage bucket types]: ../../developing/usage/bucket-types.md
+
+[glossary vnode]: ../../learn/glossary.md#vnode
+
+[config reference]: ../../configuring/reference.md
+
+[google mr]: http://research.google.com/archive/mapreduce.html
+
+[mapping list]: http://hackage.haskell.org/package/base-4.7.0.0/docs/Prelude.html#v:map
+
+[function contrib]: https://github.com/basho/riak_function_contrib
+
+[erlang client]: https://github.com/basho/riak-erlang-client
+
+[`set-union`]: http://en.wikipedia.org/wiki/Union_(set_theory)#Definition
 
 > **Use MapReduce sparingly**
 >
 > In Riak KV, MapReduce is the primary method for non-primary-key-based
-querying. Although useful for tasks such as batch
-processing jobs, MapReduce operations can be very computationally
-expensive, to the extent that they can degrade performance in
-production clusters operating under load. Because of this potential for performance degradation, we recommend running
-MapReduce operations in a controlled, rate-limited fashion and never for
-realtime querying purposes.
+> querying. Although useful for tasks such as batch
+> processing jobs, MapReduce operations can be very computationally
+> expensive, to the extent that they can degrade performance in
+> production clusters operating under load. Because of this potential for performance degradation, we recommend running
+> MapReduce operations in a controlled, rate-limited fashion and never for
+> realtime querying purposes.
 
 MapReduce, the data processing paradigm popularized by
 [Google][google mr], is provided by Riak KV to aggregate
@@ -42,7 +51,6 @@ run MapReduce jobs using Erlang or JavaScript.
 :::note Deprecation Warning
 Javascript MapReduce is deprecated and will be removed in a future version.
 :::
-
 
 ### Why Do We Use MapReduce for Querying Riak KV?
 
@@ -265,32 +273,32 @@ return values whether you write them in Javascript or Erlang.
 Map functions take three arguments (in Erlang, arity-3 is required).
 Those arguments are:
 
-  1. `Value`: the value found at a key. This will be a Riak object, which
-    in Erlang is defined and manipulated by the `riak_object` module.
-    In Javascript, a Riak object looks like this:
+1. `Value`: the value found at a key. This will be a Riak object, which
+   in Erlang is defined and manipulated by the `riak_object` module.
+   In Javascript, a Riak object looks like this:
 
-    ```javascript
-    {
-     "bucket_type" : BucketTypeAsString,
-     "bucket" : BucketAsString,
-     "key" : KeyAsString,
-     "vclock" : VclockAsString,
-     "values" : [
-            {
-                "metadata" : {
-                    "X-Riak-VTag":VtagAsString,
-                    "X-Riak-Last-Modified":LastModAsString,
-                    "Links":[...List of link objects],
-                    // ...other metadata...
-                },
-                "data" : ObjectData
-            },
-            // ...other metadata/data values (siblings)...
-        ]
-    }
-    ```
-  2. *KeyData* : key data that was submitted with the inputs to the query or phase.
-  3. *Arg* : a static argument for the entire phase that was submitted with the query.
+   ```javascript
+   {
+    "bucket_type" : BucketTypeAsString,
+    "bucket" : BucketAsString,
+    "key" : KeyAsString,
+    "vclock" : VclockAsString,
+    "values" : [
+           {
+               "metadata" : {
+                   "X-Riak-VTag":VtagAsString,
+                   "X-Riak-Last-Modified":LastModAsString,
+                   "Links":[...List of link objects],
+                   // ...other metadata...
+               },
+               "data" : ObjectData
+           },
+           // ...other metadata/data values (siblings)...
+       ]
+   }
+   ```
+2. *KeyData* : key data that was submitted with the inputs to the query or phase.
+3. *Arg* : a static argument for the entire phase that was submitted with the query.
 
 A map phase should produce a list of results. You will see errors if
 the output of your map function is not a list. Return the empty list if
@@ -334,7 +342,6 @@ A reduce function should produce a list of values, but it must also be
 true that the function is commutative, associative, and idempotent. That
 is, if the input list `[a,b,c,d]` is valid for a given F, then all of
 the following must produce the same result:
-
 
 ```erlang
   F([a,b,c,d])
@@ -476,10 +483,10 @@ Using `qfun` in compiled applications can be a fragile
 operation. Please keep the following points in mind:
 
 1. The module in which the function is defined must be present and
-exactly the same version on both the client and Riak KV nodes.
+   exactly the same version on both the client and Riak KV nodes.
 
 2. Any modules and functions used by this function (or any function in
-the resulting call stack) must also be present on the Riak KV nodes.
+   the resulting call stack) must also be present on the Riak KV nodes.
 
 Errors about failures to ensure both 1 and 2 are often surprising,
 usually seen as opaque missing-function  or function-clause
@@ -504,7 +511,7 @@ atom `_`, which matches any tag. `Keep` has the same meaning as in map
 and reduce phases.
 
 > There are a small group of prebuilt Erlang MapReduce functions available
-with Riak KV. Check them out [on GitHub](https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl).
+> with Riak KV. Check them out [on GitHub](https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl).
 
 ## Bigger Data Examples
 
@@ -550,7 +557,6 @@ Now load the data into Riak KV.
 ```bash
 ./load_data.erl goog.csv
 ```
-
 
 ### Map only: find the days on which the high was over $600.00
 
@@ -768,7 +774,6 @@ loop() ->
       io:format("Something bad happened! ~p~n", [Reason])
   end.
 ```
-
 
 ## Troubleshooting MapReduce, illustrated
 

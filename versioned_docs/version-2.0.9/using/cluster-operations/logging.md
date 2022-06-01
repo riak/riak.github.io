@@ -18,7 +18,7 @@ with your platform-specific location, e.g. `./log/console.log` for a
 source installation. This location is specified by the
 `log.console.file` parameter explained above.
 
-If you'd like to enable debug logging on _all_ nodes instead of just one
+If you'd like to enable debug logging on *all* nodes instead of just one
 node, you can enter the Erlang console of any running by running `riak
 attach` and enter the following:
 

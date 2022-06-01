@@ -1,7 +1,7 @@
 ---
 title: "CRUD Operations"
 id: getting_started_java_crud
-slug: crud-operations 
+slug: crud-operations
 sidebar_position: 0
 ---
 

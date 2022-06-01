@@ -1,7 +1,7 @@
 ---
 title: "Content Types"
 id: usage_content_types
-slug: content-types 
+slug: content-types
 sidebar_position: 4
 ---
 
@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Riak KV is a fundamentally content-agnostic database. You can use it to
 store anything you want, from JSON to XML to HTML to binaries to images
-and beyond. It's important to note that _all_ objects stored in
+and beyond. It's important to note that *all* objects stored in
 Riak need a specified content type. If you don't specify a
 content type, the reaction will vary based on your client library:
 

@@ -30,7 +30,7 @@ local Riak node, use the following to create the link:
 {ok, Pid} = riakc_pb_socket:start("127.0.0.1", 8087).
 ```
 
-If you set up a local Riak cluster using the [[five-minute install]]
+If you set up a local Riak cluster using the \[[five-minute install]]
 method, use this code snippet instead:
 
 ```erlang

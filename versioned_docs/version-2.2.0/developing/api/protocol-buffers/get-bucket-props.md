@@ -1,7 +1,7 @@
 ---
 title: "Get Bucket Properties"
 id: pbc_get_bucket_props
-slug: get-bucket-props 
+slug: get-bucket-props
 sidebar_position: 2
 ---
 

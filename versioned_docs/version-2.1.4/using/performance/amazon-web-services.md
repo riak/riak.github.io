@@ -117,21 +117,21 @@ The more severe data loss scenarios usually relate to hardware failure
 cases where data is lost, several options are available for restoring
 the data:
 
-1.  Restore from backup. A daily backup of Riak nodes can be helpful.
-    The data in this backup may be stale depending on the time at which
-    the node failed, but can be used to partially restore data from
-    lost EBS volumes. If running in a RAID configuration, rebuilding the
-    array may also be possible.
-2.  Restore from Multi-Datacenter Replication. If replication is enabled
-    between two or more clusters, the missing data will gradually be
-    restored via realtime replication and fullsync replication. A
-    fullsync operation can also be triggered manually via the
-    `riak-repl` command.
-3.  Restore using intra-cluster repair. Riak versions 1.2 and greater
-    include a "repair" feature which will restore lost partitions with
-    data from other replicas. This currently has to be invoked manually
-    using the Riak console and should be performed with guidance from a
-    Basho CSE.
+1. Restore from backup. A daily backup of Riak nodes can be helpful.
+   The data in this backup may be stale depending on the time at which
+   the node failed, but can be used to partially restore data from
+   lost EBS volumes. If running in a RAID configuration, rebuilding the
+   array may also be possible.
+2. Restore from Multi-Datacenter Replication. If replication is enabled
+   between two or more clusters, the missing data will gradually be
+   restored via realtime replication and fullsync replication. A
+   fullsync operation can also be triggered manually via the
+   `riak-repl` command.
+3. Restore using intra-cluster repair. Riak versions 1.2 and greater
+   include a "repair" feature which will restore lost partitions with
+   data from other replicas. This currently has to be invoked manually
+   using the Riak console and should be performed with guidance from a
+   Basho CSE.
 
 Once data has been restored, normal operations should continue. If
 multiple nodes completely lose their data, consultation and assistance
@@ -139,7 +139,7 @@ from Basho is strongly recommended.
 
 ## Benchmarking
 
-Using a tool such as [Basho Bench](https://github.com/basho/basho_bench), you can generate load that
+Using a tool such as [Basho Bench](./benchmarking.md), you can generate load that
 simulates application operations by constructing and communicating
 approximately-compatible data payloads with the Riak cluster directly.
 
@@ -158,19 +158,19 @@ measure how performance degrades when the cluster is not in
 steady-state. While under a simulation of live load, the following
 states might be simulated:
 
-1.  Stop one or more nodes normally and restart them after a few moments
-    (simulates a rolling upgrade).
-2.  Join two or more nodes to the cluster.
-3.  Leave nodes from the cluster (after step #2).
-4.  Hard-kill the Riak `beam.smp` process (i.e., `kill -9`) and then
-    restart it.
-5.  Hard-reboot a node's instance using the AWS console and then
-    restart it.
-6.  Hard-stop and destroy a node's instance and build a new one from
-    backup.
-7.  Via networking, e.g. firewall, partition one or more nodes from
-    the rest of the cluster and then restore the original
-    configuration.
+1. Stop one or more nodes normally and restart them after a few moments
+   (simulates a rolling upgrade).
+2. Join two or more nodes to the cluster.
+3. Leave nodes from the cluster (after step #2).
+4. Hard-kill the Riak `beam.smp` process (i.e., `kill -9`) and then
+   restart it.
+5. Hard-reboot a node's instance using the AWS console and then
+   restart it.
+6. Hard-stop and destroy a node's instance and build a new one from
+   backup.
+7. Via networking, e.g. firewall, partition one or more nodes from
+   the rest of the cluster and then restore the original
+   configuration.
 
 ## Out-of-Memory
 

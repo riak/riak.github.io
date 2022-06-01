@@ -1,12 +1,14 @@
 ---
 title: "Managing Your Configuration"
 id: configuring_managing
-slug: managing 
+slug: managing
 sidebar_position: 2
 ---
 
 [use admin riak cli]: ../using/admin/riak-cli.md
+
 [use admin riak cli#chkconfig]: ../using/admin/riak-cli.md#chkconfig
+
 [config reference#search]: ../configuring/reference.md#search
 
 ## Retrieving a Configuration Listing
@@ -21,12 +23,10 @@ riak config effective
 
 This will output a long list of the following form:
 
-```
-anti_entropy = active
-anti_entropy.bloomfilter = on
-anti_entropy.concurrency_limit = 2
-# and so on
-```
+    anti_entropy = active
+    anti_entropy.bloomfilter = on
+    anti_entropy.concurrency_limit = 2
+    # and so on
 
 For detailed information about a particular configuration variable, use
 the `config describe <variable>` command. This command will output a
@@ -44,17 +44,15 @@ riak config describe ring_size
 
 This will output the following:
 
-```
-Documentation for ring_size
-Number of partitions in the cluster (only valid when first
-creating the cluster). Must be a power of 2, minimum 8 and maximum
-1024.
+    Documentation for ring_size
+    Number of partitions in the cluster (only valid when first
+    creating the cluster). Must be a power of 2, minimum 8 and maximum
+    1024.
 
-   Datatype     : [integer]
-   Default Value: 64
-   Set Value    : undefined
-   app.config   : riak_core.ring_creation_size
-```
+       Datatype     : [integer]
+       Default Value: 64
+       Set Value    : undefined
+       app.config   : riak_core.ring_creation_size
 
 ## Checking Your Configuration
 
@@ -80,17 +78,15 @@ search.solr.jmx_port = banana
 
 If we run `riak chkconfig` now, we'll get an error:
 
-```
-[error] Error generating configuration in phase transform_datatypes
-[error] Error transforming datatype for: search.solr.jmx_port
-[error] "banana" can't be converted to an integer
-```
+    [error] Error generating configuration in phase transform_datatypes
+    [error] Error transforming datatype for: search.solr.jmx_port
+    [error] "banana" can't be converted to an integer
 
 The error message will specify which configurable parameters are
 syntactically unsound and attempt to provide an explanation why.
 
 Please note that the `chkconfig` command only checks for syntax. It will
-_not_ be able to discern if your configuration is otherwise unsound,
+*not* be able to discern if your configuration is otherwise unsound,
 e.g. if your configuration will cause problems on your operating system
 or doesn't activate subsystems that you would like to use.
 

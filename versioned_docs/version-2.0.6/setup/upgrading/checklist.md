@@ -6,23 +6,41 @@ sidebar_position: 0
 ---
 
 [perf open files]: ../../using/performance/open-files-limit.md
+
 [perf index]: ../../using/performance/index.md
+
 [ntp]: http://www.ntp.org/
+
 [security basics]: ../../using/security/basics.md
+
 [cluster ops load balance]: ../../configuring/load-balancing-proxy.md
+
 [config reference]: ../../configuring/reference.md
+
 [config backend]: ../../configuring/backend.md
+
 [usage search]: ../../developing/usage/search.md
+
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+
 [apps replication properties]: ../../developing/app-guide/replication-properties.md
+
 [concept strong consistency]: ../../using/reference/strong-consistency.md
+
 [cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+
 [use admin commands]: ../../using/admin/commands.md
+
 [use admin riak control]: ../../using/admin/riak-control.md
+
 [cluster ops inspect node]: ../../using/cluster-operations/inspecting-node.md
+
 [troubleshoot http]: ../../using/troubleshooting/http-204.md
+
 [use admin riak-admin]: ../../using/admin/riak-admin.md
+
 [SANs]: http://en.wikipedia.org/wiki/Storage_area_network
 
 Deploying Riak KV to a realtime production environment from a development or testing environment can be a complex process. While the specifics of that process will always depend on your environment and practices, there are some basics for you to consider and a few questions that you will want to ask while making this transition.
@@ -49,9 +67,9 @@ We've compiled these considerations and questions into separate categories for y
 * Are your [firewalls][security basics] correctly configured?
 * Check that network latency and throughput are as expected for all of the
   following (we suggest using [iperf][ntp] to verify):
-  - between nodes in the cluster
-  - between the load balancer and all nodes in the cluster
-  - between application servers and the load balancer
+  * between nodes in the cluster
+  * between the load balancer and all nodes in the cluster
+  * between application servers and the load balancer
 * Do all Riak nodes appear in the load balancer's rotation?
 * Is the load balancer configured to balance connections with roundrobin
   or a similarly random [distribution scheme][cluster ops load balance]?
@@ -59,60 +77,61 @@ We've compiled these considerations and questions into separate categories for y
 ## Riak KV
 
 * Check [configuration files][config reference]:
-  - Does each machine have the correct name and IP settings in
+  * Does each machine have the correct name and IP settings in
     `riak.conf` (or in `app.config` if you're using the older
     configuration files)?
-  - Are all [configurable settings][config reference] identical
+  * Are all [configurable settings][config reference] identical
     across the cluster?
-  - Have all of the settings in your configuration file(s) that were
+  * Have all of the settings in your configuration file(s) that were
     changed for debugging purposes been reverted back to production
     settings?
-  - If you're using [multiple data backends][config backend], are all of your
+  * If you're using [multiple data backends][config backend], are all of your
     bucket types configured to use the correct backend?
-  - If you are using Riak Security, have you checked off all items in
+  * If you are using Riak Security, have you checked off all items in
     the [security checklist][security basics] and turned on security?
-  - If you're using [multiple data backends][config backend], do all machines'
+  * If you're using [multiple data backends][config backend], do all machines'
     config files agree on their configuration?
-  - Do all nodes agree on the value of the [`allow_mult`][config basic] setting?
-  - Do you have a [sibling resolution][usage conflict resolution] strategy in
+  * Do all nodes agree on the value of the [`allow_mult`][config basic] setting?
+  * Do you have a [sibling resolution][usage conflict resolution] strategy in
     place if `allow_mult` is set to `true`?
-  - Have you carefully weighed the [consistency trade-offs][concept eventual consistency] that must be made if `allow_mult` is set to `false`?
-  - Are all of your [apps replication properties][apps replication properties] configured correctly and uniformly across the cluster?
-  - If you are using [Riak Search][usage search], is it enabled on all
+  * Have you carefully weighed the [consistency trade-offs][concept eventual consistency] that must be made if `allow_mult` is set to `false`?
+  * Are all of your [apps replication properties][apps replication properties] configured correctly and uniformly across the cluster?
+  * If you are using [Riak Search][usage search], is it enabled on all
     nodes? If you are not, has it been disabled on all nodes?
-  - If you are using [strong consistency][concept strong consistency] for some or all of your
+  * If you are using [strong consistency][concept strong consistency] for some or all of your
     data:
-      * Does your cluster consist of at least three nodes? If it does
-        not, you will not be able to use this feature, and you are
-        advised against enabling it.
-      * If your cluster does consist of at least three nodes, has the
-        strong consistency subsystem been [enabled][config strong consistency] on all nodes?
-      * Is the [`target_n_val`][config reference] that is set on each node higher than any `n_val` that you intend to use for strongly consistent bucket types (or any bucket types for that matter)? The default is 4, which will likely need to be raised if you are using strong consistency.
-  - Have all [bucket types][cluster ops bucket types] that you intend to use
+    * Does your cluster consist of at least three nodes? If it does
+      not, you will not be able to use this feature, and you are
+      advised against enabling it.
+    * If your cluster does consist of at least three nodes, has the
+      strong consistency subsystem been [enabled][config strong consistency] on all nodes?
+    * Is the [`target_n_val`][config reference] that is set on each node higher than any `n_val` that you intend to use for strongly consistent bucket types (or any bucket types for that matter)? The default is 4, which will likely need to be raised if you are using strong consistency.
+  * Have all [bucket types][cluster ops bucket types] that you intend to use
     been created and successfully activated?
-  - If you are using [`riak_control`][use admin riak control], is it enabled on the node(s) from which you intend to use it?
+  * If you are using [`riak_control`][use admin riak control], is it enabled on the node(s) from which you intend to use it?
 * Check data mount points:
-  - Is `/var/lib/riak` mounted?
-  - Can you grow that disk later when it starts filling up?
-  - Do all nodes have their own storage systems (i.e. no
+  * Is `/var/lib/riak` mounted?
+  * Can you grow that disk later when it starts filling up?
+  * Do all nodes have their own storage systems (i.e. no
     [SANs]), or do you have a plan in place for switching to that configuration later?
 * Are all Riak KV nodes up?
-  - Run `riak ping` on all nodes. You should get `pong` as a response.
-  - Run `riak-admin wait-for-service riak_kv <node_name>@<IP>` on each
+
+  * Run `riak ping` on all nodes. You should get `pong` as a response.
+  * Run `riak-admin wait-for-service riak_kv <node_name>@<IP>` on each
     node. You should get `riak_kv is up` as a response.
 
     The `<node_name>@<IP>` string should come from your [configuration
     file(s)][configure reference].
 * Do all nodes agree on the ring state?
-  - Run `riak-admin ringready`. You should get `TRUE ALL nodes agree on
+  * Run `riak-admin ringready`. You should get `TRUE ALL nodes agree on
     the ring [list_of_nodes]`.
-  - Run `riak-admin member-status`. All nodes should be valid (i.e.
+  * Run `riak-admin member-status`. All nodes should be valid (i.e.
     listed as `Valid: 1`), and all nodes should appear in the list
-  - Run `riak-admin ring-status`. The ring should be ready (`Ring Ready:
+  * Run `riak-admin ring-status`. The ring should be ready (`Ring Ready:
     true`), there should be no unreachable nodes (`All nodes are up and
     reachable`), and there should be no pending changes to the ring
     (`No pending changes`).
-  - Run `riak-admin transfers`. There should be no active transfers (`No
+  * Run `riak-admin transfers`. There should be no active transfers (`No
     transfers active`).
 
 ## Operations
@@ -121,27 +140,27 @@ We've compiled these considerations and questions into separate categories for y
   running?
 * Are you collecting [time series data][cluster ops inspect node] on
   the whole cluster?
-  - System metrics
-    + CPU load
-    + Memory used
-    + Network throughput
-    + Disk space used/available
-    + Disk input/output operations per second (IOPS)
-  - Riak metrics (from the [`/stats`][troubleshoot http] HTTP endpoint or
+  * System metrics
+    * CPU load
+    * Memory used
+    * Network throughput
+    * Disk space used/available
+    * Disk input/output operations per second (IOPS)
+  * Riak metrics (from the [`/stats`][troubleshoot http] HTTP endpoint or
     using [`riak-admin`][use admin riak-admin])
-    + Latencies: `GET` and `PUT` (mean/median/95th/99th/100th)
-    + Vnode stats: `GET`s, `PUT`s, `GET` totals, `PUT` totals
-    + Node stats: `GET`s, `PUT`s, `GET` totals, `PUT` totals
-    + Finite state machine (FSM) stats:
+    * Latencies: `GET` and `PUT` (mean/median/95th/99th/100th)
+    * Vnode stats: `GET`s, `PUT`s, `GET` totals, `PUT` totals
+    * Node stats: `GET`s, `PUT`s, `GET` totals, `PUT` totals
+    * Finite state machine (FSM) stats:
       * `GET`/`PUT` FSM `objsize` (99th and 100th percentile)
       * `GET`/`PUT` FSM `times` (mean/median/95th/99th/100th)
-    + Protocol buffer connection stats
+    * Protocol buffer connection stats
       * `pbc_connects`
       * `pbc_active`
       * `pbc_connects_total`
 * Are the following being graphed (at least the key metrics)?
-  - Basic system status
-  - Median and 95th and 99th percentile latencies (as these tend to be
+  * Basic system status
+  * Median and 95th and 99th percentile latencies (as these tend to be
     leading indicators of trouble)
 
 ## Application and Load
@@ -181,20 +200,20 @@ be addressed before going to production.
   support requests with Basho?
 * Is your team familiar with Basho Support's Service-Level Agreement
   (SLA) levels?
-  - Normal and Low are for issues not immediately impacting production
+  * Normal and Low are for issues not immediately impacting production
     systems
-  - High is for problems that impact production or soon-to-be-production
+  * High is for problems that impact production or soon-to-be-production
     systems, but where stability is not currently compromised
-  - Urgent is for problems causing production outages or for those
+  * Urgent is for problems causing production outages or for those
     issues that are likely to turn into production outages very soon.
     On-call engineers respond to urgent requests within 30 minutes,
     24 / 7.
 * Does your team know how to gather `riak-debug` results from the whole
   cluster when opening tickets? If not, that process goes something like
   this:
-  - SSH into each machine, run `riak-debug`, and grab the resultant
+  * SSH into each machine, run `riak-debug`, and grab the resultant
     `.tar.gz` file
-  - Attach all debug tarballs from the whole cluster each time you open
+  * Attach all debug tarballs from the whole cluster each time you open
     a new High- or Urgent-priority ticket
 
 ## The Final Step: Taking it to Production

@@ -1,7 +1,7 @@
 ---
 title: "Implementing a Document Store"
 id: usage_document_store
-slug: document-store 
+slug: document-store
 sidebar_position: 12
 ---
 
@@ -49,7 +49,7 @@ table below shows which Riak Data Type and Solr type we'll be using for
 each field in our Riak maps.
 
 | Info                                        | Riak Data Type | Solr type           |
-|:--------------------------------------------|:---------------|:--------------------|
+| :------------------------------------------ | :------------- | :------------------ |
 | Post title                                  | Register       | String              |
 | Post author                                 | Register       | String              |
 | Post content                                | Register       | Text                |
@@ -743,7 +743,7 @@ curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=content_register:furry"
 Here are some more possible queries:
 
 | Info                                                   | Query                                  |
-|:-------------------------------------------------------|:---------------------------------------|
+| :----------------------------------------------------- | :------------------------------------- |
 | Unpublished posts                                      | `published_flag:false`                 |
 | Titles that begin with `Loving*`                       | `title_register:Loving*`               |
 | Post bodies containing the words `furry` and `jumping` | `content_register:[furry AND jumping]` |

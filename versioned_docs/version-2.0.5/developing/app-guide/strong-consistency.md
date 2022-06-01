@@ -1,7 +1,7 @@
 ---
 title: "Strong Consistency"
 id: app_guide_strong_consistency
-slug: strong-consistency 
+slug: strong-consistency
 sidebar_position: 1
 ---
 
@@ -9,28 +9,48 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
+
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+
 [use ref strong consistency#trade-offs]: ../../using/reference/strong-consistency.md#trade-offs
+
 [glossary vnode]: ../../learn/glossary.md#vnode
+
 [config strong consistency#enable]: ../../configuring/strong-consistency.md#enabling-strong-consistency
+
 [usage bucket types]: ../../developing/usage/bucket-types.md
+
 [cluster ops bucket types]: ../../using/cluster-operations/bucket-types.md
+
 [apps replication properties]: ../../developing/app-guide/replication-properties.md
+
 [config strong consistency]: ../../configuring/strong-consistency.md
+
 [config strong consistency#fault]: ../../configuring/strong-consistency.md#fault-tolerance
+
 [concept causal context]: ../../learn/concepts/causal-context.md
+
 [concept causal context#vector]: ../../learn/concepts/causal-context.md#vector-clocks
+
 [concept version vector]: ../../learn/concepts/causal-context.md#dotted-version-vectors
+
 [usage conflict resolution]: ../../developing/usage/conflict-resolution/index.md
+
 [usage update objects]: ../../developing/usage/updating-objects.md
+
 [use ref strong consistency#vs]: ../../using/reference/strong-consistency.md#strong-vs-eventual-consistency
+
 [dev client libraries]: ../../developing/client-libraries.md
+
 [getting started]: ../../developing/getting-started/index.md
+
 [config strong consistency#details]: ../../configuring/strong-consistency.md#implementation-details
 
-> **Please Note:**
->
-> Riak KV's strong consistency is an experimental feature and may be removed from the product in the future. Strong consistency is not commercially supported or production-ready. Strong consistency is incompatible with Multi-Datacenter Replication, Riak Search, Bitcask Expiration, LevelDB Secondary Indexes, Riak Data Types and Commit Hooks. We do not recommend its usage in any production environment.
+:::note Please Note:
+
+Riak KV's strong consistency is an experimental feature and may be removed from the product in the future. Strong consistency is not commercially supported or production-ready. Strong consistency is incompatible with Multi-Datacenter Replication, Riak Search, Bitcask Expiration, LevelDB Secondary Indexes, Riak Data Types and Commit Hooks. We do not recommend its usage in any production environment.
+
+:::
 
 In versions 2.0 and later, Riak allows you to create buckets that
 provide [strong consistency][use ref strong consistency] guarantees for the data stored within
@@ -44,7 +64,7 @@ availability mode.
 ## Tradeoffs
 
 When data is stored in a bucket with strong consistency guarantees, a
-value is guaranteed readable by any client _immediately_ after a
+value is guaranteed readable by any client *immediately* after a
 successful write has occurred to a given key. In this sense, single-key
 strongly consistent operations are atomic, and operations on a given key
 are [linearizable](http://en.wikipedia.org/wiki/Linearizability). This
@@ -77,12 +97,14 @@ riak-admin bucket-type create strongly_consistent \
     '{"props":{"consistent":true}}'
 ```
 
-> **Note on bucket type names**
->
-> You can name [bucket types][usage bucket types] whatever you wish, with
+:::note Note on bucket type names
+
+You can name [bucket types][usage bucket types] whatever you wish, with
 the exception of `default`, which is a reserved term (a full listing of
 the properties associated with the `default` bucket type can be found in
 the documentation on [bucket properties and operations][cluster ops bucket types]).
+
+:::
 
 Once the `strongly_consistent` bucket type has been created, we can
 check the status of the type to ensure that it has propagated through
@@ -120,7 +142,7 @@ Whereas eventually consistent operations enable you to set values for a
 variety of [replication properties][apps replication properties] either on each request or at the
 bucket level, [using bucket types][usage bucket types], these settings are quietly ignored
 for strongly consistent operations. These settings include `r`, `pr`,
-`w`, `rw`, and others. Two replication properties that _can_ be set,
+`w`, `rw`, and others. Two replication properties that *can* be set,
 however, are `n_val` and `return_body`.
 
 The `n_val` property is extremely important for two reasons:
@@ -150,7 +172,7 @@ updates---whether traditional vector clocks or the newer dotted version
 vectors---they are purely [optional][usage conflict resolution] for all
 eventually consistent operations in Riak. This is not the case for
 strongly consistent operations. **When modifying strongly consistent
-objects in Riak, you _must_ attach a causal context**.
+objects in Riak, you *must* attach a causal context**.
 
 If you attempt to modify a strongly consistent object without attaching
 a context to the request, the request will always fail. And while it is
@@ -167,7 +189,7 @@ Writing to strongly consistent keys involves some of the same best
 practices that we advise when writing to eventually consistent keys. We
 recommend bearing the following in mind:
 
-1. If you _know_ that a key does not yet exist, you can write to that
+1. If you *know* that a key does not yet exist, you can write to that
    key without supplying a context with the object. If you are unsure, then you should default to supplying a context object.
 2. If an object already exists under a key, strong consistency demands
    that you supply a [causal context](#causal-context). If you do not supply one, the update
@@ -238,7 +260,7 @@ riak.RiakError: 'failed'
 > **Getting Started with Riak KV clients**
 >
 > If you are connecting to Riak using one of Basho's official
-[client libraries][dev client libraries], you can find more information about getting started with your client in our [Developing with Riak KV: Getting Started][getting started] section.
+> [client libraries][dev client libraries], you can find more information about getting started with your client in our [Developing with Riak KV: Getting Started][getting started] section.
 
 ## Known Issue with Client Libraries
 

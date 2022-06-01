@@ -1,7 +1,7 @@
 ---
 title: "HyperLogLogs"
 id: data_types_hyperloglogs
-slug: hyperloglogs 
+slug: hyperloglogs
 sidebar_position: 1
 ---
 
@@ -20,9 +20,11 @@ Start by creating a bucket type with the `datatype` parameter set to `hyperloglo
 riak_admin bucket-type create hlls '{"props":{"datatype":"hll"}}'
 ```
 
-> **Note**
->
-> The `hlls` bucket type name provided above is an example and is not required to be `hlls`. You are free to name bucket types whatever you like, with the exception of `default`.
+:::note 
+
+The `hlls` bucket type name provided above is an example and is not required to be `hlls`. You are free to name bucket types whatever you like, with the exception of `default`.
+
+:::
 
 After creating a bucket with a Riak data type, confirm the bucket property configuration associated with that type is correct:
 
@@ -398,7 +400,6 @@ curl http://localhost:8098/types/hlls/buckets/hello/datatypes/darkness
 
 </TabItem>
 </Tabs>
-
 
 ## Add elements to a HyperLogLog data type
 

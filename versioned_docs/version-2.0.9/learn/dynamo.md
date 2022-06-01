@@ -5,11 +5,11 @@ slug: dynamo
 sidebar_position: 4
 ---
 
-__Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati,
+**Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati,
 Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall
-and Werner Vogels__
+and Werner Vogels**
 
-__Amazon.com__
+**Amazon.com**
 
 <br />
 
@@ -30,7 +30,6 @@ __Amazon.com__
 >
 > Also note that this paper has little to do with Amazon's DynamoDB service.
 > They have not published the inner workings of that implementation.
-
 
 ## Abstract
 
@@ -53,9 +52,9 @@ provides a novel interface for developers to use.
 
 Categories and Subject Descriptors
 
-* D.4.2 [Operating Systems]: Storage Management;
-* D.4.5 [Operating Systems]: Reliability;
-* D.4.2 [Operating Systems]: Performance;
+* D.4.2 [Operating Systems]&#x3A; Storage Management;
+* D.4.5 [Operating Systems]&#x3A; Reliability;
+* D.4.2 [Operating Systems]&#x3A; Performance;
 
 General Terms
 
@@ -135,6 +134,7 @@ or redistribution.
 > And, nodes can be added and removed from your Riak cluster as needed.
 
 [Consistent Hashing]: ../learn/glossary.md#consistent-hashing
+
 [Gossip Protocol]: ../learn/glossary#gossiping
 
 In the past year, Dynamo has been the underlying storage technology for a number
@@ -162,7 +162,6 @@ require us to reduce some level of detail. For this reason, the intra- and
 inter-datacenter latencies in section 6, the absolute request rates in section
 6.2 and outage lengths and workloads in section 6.3 are provided through
 aggregate measures instead of absolute details.
-
 
 ## 2. Background
 
@@ -214,19 +213,17 @@ runs its own Dynamo instances.
 > interface, is made to be highly-available, is efficient in its resource uses,
 > and has a simple scale out story to accompany data and traffic growth.
 
-
 ### 2.1 System Assumptions and Requirements
 
 The storage system for this class of services has the following requirements:
 
-
 * Query Model: simple read and write operations to a data item that is uniquely
-identified by a key. State is stored as binary objects (i.e., blobs) identified
-by unique keys. No operations span multiple data items and there is no need for
-relational schema. This requirement is based on the observation that a
-significant portion of Amazon’s services can work with this simple query model
-and do not need any relational schema. Dynamo targets applications that need to
-store objects that are relatively small (usually less than 1 MB).
+  identified by a key. State is stored as binary objects (i.e., blobs) identified
+  by unique keys. No operations span multiple data items and there is no need for
+  relational schema. This requirement is based on the observation that a
+  significant portion of Amazon’s services can work with this simple query model
+  and do not need any relational schema. Dynamo targets applications that need to
+  store objects that are relatively small (usually less than 1 MB).
 
 > **Riak KV's Query Model**
 >
@@ -241,14 +238,14 @@ store objects that are relatively small (usually less than 1 MB).
 > Riak KV's realistic object size limit is around 5MB.
 
 * ACID Properties: ACID (Atomicity, Consistency, Isolation, Durability) is a set
-of properties that guarantee that database transactions are processed reliably.
-In the context of databases, a single logical operation on the data is called a
-transaction. Experience at Amazon has shown that data stores that provide ACID
-guarantees tend to have poor availability. This has been widely acknowledged by
-both the industry and academia [5]. Dynamo targets applications that operate
-with weaker consistency (the “C” in ACID) if this results in high availability.
-Dynamo does not provide any isolation guarantees and permits only single key
-updates.
+  of properties that guarantee that database transactions are processed reliably.
+  In the context of databases, a single logical operation on the data is called a
+  transaction. Experience at Amazon has shown that data stores that provide ACID
+  guarantees tend to have poor availability. This has been widely acknowledged by
+  both the industry and academia [5]. Dynamo targets applications that operate
+  with weaker consistency (the “C” in ACID) if this results in high availability.
+  Dynamo does not provide any isolation guarantees and permits only single key
+  updates.
 
 > **ACID?**
 >
@@ -258,13 +255,13 @@ updates.
 > heavy transactions. (Even ATMs are eventually consistent.)
 
 * Efficiency: The system needs to function on a commodity hardware
-infrastructure. In Amazon’s platform, services have stringent latency
-requirements which are in general measured at the 99.9th percentile of the
-distribution. Given that state access plays a crucial role in service operation
-the storage system must be capable of meeting such stringent SLAs (see Section
-2.2 below). Services must be able to configure Dynamo such that they
-consistently achieve their latency and throughput requirements. The tradeoffs
-are in performance, cost efficiency, availability, and durability guarantees.
+  infrastructure. In Amazon’s platform, services have stringent latency
+  requirements which are in general measured at the 99.9th percentile of the
+  distribution. Given that state access plays a crucial role in service operation
+  the storage system must be capable of meeting such stringent SLAs (see Section
+  2.2 below). Services must be able to configure Dynamo such that they
+  consistently achieve their latency and throughput requirements. The tradeoffs
+  are in performance, cost efficiency, availability, and durability guarantees.
 
 > **Efficiency**
 >
@@ -272,13 +269,12 @@ are in performance, cost efficiency, availability, and durability guarantees.
 > (often called "pizza boxes").
 
 * Other Assumptions: Dynamo is used only by Amazon’s internal services. Its
-operation environment is assumed to be non-hostile and there are no security
-related requirements such as authentication and authorization. Moreover, since
-each service uses its distinct instance of Dynamo, its initial design targets a
-scale of up to hundreds of storage hosts. We will discuss the scalability
-limitations of Dynamo and possible scalability related extensions in later
-sections.
-
+  operation environment is assumed to be non-hostile and there are no security
+  related requirements such as authentication and authorization. Moreover, since
+  each service uses its distinct instance of Dynamo, its initial design targets a
+  scale of up to hundreds of storage hosts. We will discuss the scalability
+  limitations of Dynamo and possible scalability related extensions in later
+  sections.
 
 ### 2.2 Service Level Agreements (SLA)
 
@@ -311,7 +307,6 @@ the call chain must obey its performance contract.
 > Many of our clients and open source users have explicit uptime agreements
 > related to their applications and services built on Riak KV. This was not an
 > accident.
-
 
 <a href="#figure-1">Figure 1</a> shows an abstract view of the architecture of
 Amazon’s platform, where dynamic web content is generated by page rendering
@@ -359,7 +354,6 @@ service’s SLA. One of the main design considerations for Dynamo is to give
 services control over their system properties, such as durability and
 consistency, and to let services make their own tradeoffs between functionality,
 performance and cost-effectiveness.
-
 
 ### 2.3 Design Considerations
 
@@ -461,14 +455,12 @@ nodes with higher capacity without having to upgrade all hosts at once.
 
 > Riak KV agrees.
 
-
 ## 3. Related Work
 
 > This section is not strictly necessary to read for an understanding of how a
 > Dynamo distributed database functions, especially Riak KV. It's still an
 > excellent study of other distributed systems, in some cases ones that helped
 > inspire Dynamo. When you have time, we highly recommend you read this section.
-
 
 ### 3.1 Peer to Peer Systems
 
@@ -535,7 +527,7 @@ conflict resolution mechanisms. Distributed block storage systems like FAB [18]
 split large size objects into smaller blocks and stores each block in a highly
 available manner. In comparison to these systems, a key-value store is more
 suitable in this case because: (a) it is intended to store relatively small
-objects (size < 1M) and (b) key-value stores are easier to configure on a per-
+objects (size &lt; 1M) and (b) key-value stores are easier to configure on a per-
 application basis. Antiquity is a wide-area distributed storage system designed
 to handle multiple server failures [23]. It uses a secure log to preserve data
 integrity, replicates each log on multiple servers for durability, and uses
@@ -577,7 +569,6 @@ increases variability in response times, thereby increasing the latency at
 higher percentiles. Dynamo can be characterized as a zero-hop DHT, where each
 node maintains enough routing information locally to route a request to the
 appropriate node directly.
-
 
 ## 4.System Architecture
 
@@ -656,6 +647,7 @@ verify the validity of the context object supplied in the put request.
 > Riak KV has two APIs: an [HTTP API] and a [Protocol Buffers API].
 
 [HTTP API]: ../developing/api/http/index.md
+
 [Protocol Buffers API]: ../developing/api/protocol-buffers/index.md
 
 Dynamo treats both the key and the object supplied by the caller as an opaque
@@ -667,7 +659,6 @@ for serving the key.
 > to generate a 160 bit identifier which is then used to determine where in the
 > database each datum is stored. Riak KV treats data as an opaque binary, thus
 > enabling users to store virtually anything.
-
 
 ### 4.2 Partitioning Algorithm
 
@@ -733,6 +724,7 @@ capacity, accounting for heterogeneity in the physical infrastructure.
 > [Further Reading on Partitioning in Riak KV] and [All about the Riak KV Ring].
 
 [Further Reading on Partitioning in Riak KV]: ../learn/concepts/clusters.md
+
 [All about the Riak KV Ring]: ../learn/concepts/clusters.md#the-ring
 
 ### 4.3 Replication
@@ -758,7 +750,7 @@ fall in the ranges (A, B], (B, C], and (C, D].
 
 > Replication in Riak KV, like in Dynamo, is fundamental and automatic. Remember
 > the concept of a bucket we covered above? In Riak KV, the replication
-> parameter, "N" (also called "n&#95;val"), is configurable at the bucket level.
+> parameter, "N" (also called "n_val"), is configurable at the bucket level.
 > The default n_val in Riak KV is 3, meaning that out of the box Riak KV will
 > store three replicas of your data on three different partitions on the ring.
 >
@@ -777,7 +769,6 @@ distinct physical nodes (i.e. a node may hold more than one of the first N
 positions). To address this, the preference list for a key is constructed by
 skipping positions in the ring to ensure that the list contains only distinct
 physical nodes.
-
 
 ### 4.4 Data Versioning
 
@@ -810,7 +801,7 @@ older version and the divergent versions are reconciled later.
 
 > Much like Dynamo was suited to the design of the shopping cart, Riak KV, and
 > its tradeoffs, are appropriate for a certain set of use cases. We happen to
-> feel that _most_ use cases can tolerate some level of eventual consistency.
+> feel that *most* use cases can tolerate some level of eventual consistency.
 
 In order to provide this kind of guarantee, Dynamo treats the result of each
 modification as a new and immutable version of the data. It allows for multiple
@@ -859,7 +850,7 @@ require reconciliation.
 > [Vector Clock on Riak KV Glossary](../learn/glossary.md#vector-clock)
 >
 > [Why Vector Clocks are Easy](http://basho.com/posts/technical/why-vector-clocks-are-easy/)
-> |
+> \|
 > [Why Vector Clocks are Hard](http://basho.com/posts/technical/why-vector-clocks-are-hard/)
 >
 > [Vector Clocks Revisited](http://basho.com/posts/technical/vector-clocks-revisited/)
@@ -930,7 +921,6 @@ investigated.
 > Riak KV does a certain amount of vector clock pruning to ensure their growth
 > is kept under control.
 
-
 ### 4.5 Execution of get () and put () operations
 
 Any storage node in Dynamo is eligible to receive client get and put operations
@@ -979,13 +969,13 @@ R and W are usually configured to be less than N, to provide better latency.
 > it necessary for certain data. "Quorum" as described in Dynamo is the default
 > setting in Riak KV.
 >
->Some more resources on R and W:
+> Some more resources on R and W:
 >
->[REST API](../developing/api/http/index.md)
+> [REST API](../developing/api/http/index.md)
 >
->[Writing Data](../developing/usage/creating-objects.md)
+> [Writing Data](../developing/usage/creating-objects.md)
 >
->[Reading Data](../developing/usage/reading-objects.md)
+> [Reading Data](../developing/usage/reading-objects.md)
 
 Upon receiving a put() request for a key, the coordinator generates the vector
 clock for the new version and writes the new version locally. The coordinator
@@ -1024,6 +1014,7 @@ consistent hashing ring.
 > the [Replication] walkthrough.
 
 [Hinted handoff]: ../learn/glossary.md#hinted-handoff
+
 [Replication]: ../developing/usage/replication.md
 
 Consider the example of Dynamo configuration given in <a href="#figure-2">Figure
@@ -1065,8 +1056,8 @@ outage.
 > Riak KV, called [Riak KV Enterprise Edition].
 
 [Multi Datacenter Replication]: ../using/reference/v3-multi-datacenter/architecture.md
-[Riak KV Enterprise Edition]: http://basho.com/products/riak-kv/
 
+[Riak KV Enterprise Edition]: http://basho.com/products/riak-kv/
 
 ### 4.7 Handling permanent failures: Replica synchronization
 
@@ -1109,13 +1100,13 @@ with this scheme is that many key ranges change when a node joins or leaves the
 system thereby requiring the tree(s) to be recalculated. This issue is
 addressed, however, by the refined partitioning scheme described in Section 6.2.
 
-
 ### 4.8 Membership and Failure Detection
 
 > This section is well expressed in [Adding and Removing Nodes] and
 > [Failure Scenarios].
 
 [Adding and Removing Nodes]: ../using/cluster-operations/adding-removing-nodes.md
+
 [Failure Scenarios]: ../learn/concepts/eventual-consistency.md
 
 #### 4.8.1 Ring Membership
@@ -1165,7 +1156,6 @@ operations to the right set of nodes directly.
 
 > These tokens are vnodes (virtual nodes) in Riak KV.
 
-
 #### 4.8.2 External Discovery
 
 The mechanism described above could temporarily result in a logically
@@ -1184,10 +1174,9 @@ service. Typically seeds are fully functional nodes in the Dynamo ring.
 > cluster plan`, then the changes are committed with `riak-admin cluster
 > commit`. The new ring state is gossiped.
 >
-> See _[The Node Join Process]_ for more.
+> See *[The Node Join Process]* for more.
 
 [The Node Join Process]: ../using/cluster-operations/adding-removing-nodes.md#joining-nodes-to-form-a-cluster
-
 
 #### 4.8.3 Failure Detection
 
@@ -1196,7 +1185,7 @@ unreachable peers during get() and put() operations and when transferring
 partitions and hinted replicas. For the purpose of avoiding failed attempts at
 communication, a purely local notion of failure detection is entirely
 sufficient: node A may consider node B failed if node B does not respond to node
-A’s messages (even if B is responsive to node C*s messages). In the presence of
+A’s messages (even if B is responsive to node C\*s messages). In the presence of
 a steady rate of client requests generating inter-node communication in the
 Dynamo ring, a node A quickly discovers that a node B is unresponsive when B
 fails to respond to a message; Node A then uses alternate nodes to service
@@ -1219,7 +1208,6 @@ others (while forwarding requests).
 
 > Riak KV follows the same mechanism, by manually triggering permanent ring
 > state changes, and gossiping the new state.
-
 
 ### 4.9 Adding/Removing Storage Nodes
 
@@ -1247,7 +1235,6 @@ confirmation round between the source and the destination, it is made sure that
 the destination node does not receive any duplicate transfers for a given key
 range.
 
-
 ## 5.Implementation
 
 In Dynamo, each storage node has three main software components: request
@@ -1258,6 +1245,7 @@ All these components are implemented in Java.
 > is defined by [riak_core] and implemented by [Riak KV].
 
 [riak_core]: http://github.com/basho/riak_core
+
 [Riak KV]: http://github.com/basho/riak_kv
 
 Dynamo’s local persistence component allows for different storage engines to be
@@ -1272,7 +1260,7 @@ majority of Dynamo’s production instances use BDB Transactional Data Store.
 
 > Riak KV ships with various [backend options]. [Bitcask] is the default, but
 > [LevelDB] and Main [Memory] are also used heavily in production (in that
-> order). You can also use more than one backend in production via the [[Multi]]
+> order). You can also use more than one backend in production via the \[[Multi]]
 > backend configuration.
 >
 > Bitcask is a fast and reliable choice, but does have some limitations at very
@@ -1281,9 +1269,13 @@ majority of Dynamo’s production instances use BDB Transactional Data Store.
 > speed is important and durability is not. It also has TTL support.
 
 [backend options]: ../setup/planning/backend/index.md
+
 [Bitcask]: ../setup/planning/backend/bitcask.md
+
 [LevelDB]: ../setup/planning/backend/leveldb.md
+
 [Memory]: ../setup/planning/backend/memory.md
+
 [secondary indexes]: ../developing/usage/secondary-indexes.md
 
 The request coordination component is built on top of an event-driven messaging
@@ -1335,7 +1327,6 @@ increasing the chances of getting “read-your-writes” consistency. It also
 reduces variability in the performance of the request handling which improves
 the performance at the 99.9 percentile.
 
-
 ## 6. Experiences & Lessons Learned
 
 > Much of this section relates to benchmarks run against Dynamo. You can run
@@ -1349,44 +1340,44 @@ instances differ by their version reconciliation logic, and read/write quorum
 characteristics. The following are the main patterns in which Dynamo is used:
 
 * Business logic specific reconciliation: This is a popular use case for Dynamo.
-Each data object is replicated across multiple nodes. In case of divergent
-versions, the client application performs its own reconciliation logic. The
-shopping cart service discussed earlier is a prime example of this category. Its
-business logic reconciles objects by merging different versions of a customer’s
-shopping cart.
+  Each data object is replicated across multiple nodes. In case of divergent
+  versions, the client application performs its own reconciliation logic. The
+  shopping cart service discussed earlier is a prime example of this category. Its
+  business logic reconciles objects by merging different versions of a customer’s
+  shopping cart.
 
 > Riak KV currently supports simple conflict resolution by way of read-repair,
 > remanding more complex reconciliation to the client. There are several tools
 > to help simplify this task, such as [Statebox].
 >
-> Riak KV supports a simple reconciliation strategy, called [CRDTs] (Commutative
+> Riak KV supports a simple reconciliation strategy, called [CRDTs] \(Commutative
 > Replicated Data Types), for reconciling common data types like sets and
 > counters.
 
 [Statebox]: https://github.com/mochi/statebox_riak
+
 [CRDTs]: ../developing/data-types/index.md
 
-
 * Timestamp based reconciliation: This case differs from the previous one only
-in the reconciliation mechanism. In case of divergent versions, Dynamo performs
-simple timestamp based reconciliation logic of “last write wins”; i.e., the
-object with the largest physical timestamp value is chosen as the correct
-version. The service that maintains customer’s session information is a good
-example of a service that uses this mode.
+  in the reconciliation mechanism. In case of divergent versions, Dynamo performs
+  simple timestamp based reconciliation logic of “last write wins”; i.e., the
+  object with the largest physical timestamp value is chosen as the correct
+  version. The service that maintains customer’s session information is a good
+  example of a service that uses this mode.
 
 > Riak also supports this for high-performance cases where accuracy is less
 > important than speed.
 
 * High performance read engine: While Dynamo is built to be an “always
-writeable” data store, a few services are tuning its quorum characteristics and
-using it as a high performance read engine. Typically, these services have a
-high read request rate and only a small number of updates. In this
-configuration, typically R is set to be 1 and W to be N. For these services,
-Dynamo provides the ability to partition and replicate their data across
-multiple nodes thereby offering incremental scalability. Some of these instances
-function as the authoritative persistence cache for data stored in more heavy
-weight backing stores. Services that maintain product catalog and promotional
-items fit in this category.
+  writeable” data store, a few services are tuning its quorum characteristics and
+  using it as a high performance read engine. Typically, these services have a
+  high read request rate and only a small number of updates. In this
+  configuration, typically R is set to be 1 and W to be N. For these services,
+  Dynamo provides the ability to partition and replicate their data across
+  multiple nodes thereby offering incremental scalability. Some of these instances
+  function as the authoritative persistence cache for data stored in more heavy
+  weight backing stores. Services that maintain product catalog and promotional
+  items fit in this category.
 
 > Riak can be used in this manner.
 
@@ -1498,7 +1489,6 @@ performance of the durable write operation performed by a single replica.
 
 > Setting DW=1 will replicate this behavior.
 
-
 ### 6.2 Ensuring Uniform Load distribution
 
 Dynamo uses consistent hashing to partition its key space across its replicas
@@ -1589,7 +1579,7 @@ evaluated:
 <strong>Strategy 2:</strong> T random tokens per node and equal sized
 partitions: In this strategy, the hash space is divided into Q equally sized
 partitions/ranges and each node is assigned T random tokens. Q is usually set
-such that Q >> N and Q >> S*T, where S is the number of nodes in the system. In
+such that Q >> N and Q >> S\*T, where S is the number of nodes in the system. In
 this strategy, the tokens are only used to build the function that maps values
 in the hash space to the ordered lists of nodes and not to decide the
 partitioning. A partition is placed on the first N unique nodes that are
@@ -1628,6 +1618,7 @@ system in a way that preserves these properties.
 > See [The Node Join Process] and [Replacing a Node].
 
 [The Node Join Process]: ../using/cluster-operations/adding-removing-nodes.md#joining-nodes-to-form-a-cluster
+
 [Replacing a Node]: ../using/cluster-operations/replacing-node.md
 
 The efficiency of these three strategies is evaluated for a system with S=30 and
@@ -1754,13 +1745,13 @@ using timestamps based versioning.
 >
 > For example, using the Ruby driver, you could specify three nodes like this:
 >
->```ruby
->client = Riak::Client.new(nodes: [
+> ```ruby
+> client = Riak::Client.new(nodes: [
 >   {host: '10.0.0.1'},
 >   {host: '10.0.0.2'},
 >   {host: '10.0.0.3'}
->])
->```
+> ])
+> ```
 >
 > Note that the Riak clients do not coordinate with Riak's preference list, but
 > simply round-robin requests, letting the Riak cluster handle routing.

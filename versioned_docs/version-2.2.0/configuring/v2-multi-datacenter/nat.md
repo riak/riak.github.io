@@ -1,7 +1,7 @@
 ---
 title: "With NAT"
 id: configuring_v2_replication_nat
-slug: nat 
+slug: nat
 sidebar_position: 1
 ---
 
@@ -30,22 +30,22 @@ Imagine the following scenario:
 
 Server A is set up with static NAT, configured for IP addresses:
 
-  * `192.168.1.10` (internal) and `50.16.238.123` (public)
+* `192.168.1.10` (internal) and `50.16.238.123` (public)
 
 Server A replication will listen on:
 
-  * the internal IP address `192.168.1.10`, port `9010`
-  * the public IP address `50.16.238.123`, port `9011`
+* the internal IP address `192.168.1.10`, port `9010`
+* the public IP address `50.16.238.123`, port `9011`
 
 Server B is set up with a single public IP address: `50.16.238.200`
 
-  * Server B replication will connect as a client to the public IP
-    address `50.16.238.123`, port `9011`
+* Server B replication will connect as a client to the public IP
+  address `50.16.238.123`, port `9011`
 
 Server C is set up with a single internal IP address: `192.168.1.20`
 
-  * Server C replication will connect as a client to the internal IP
-    address of `192.168.1.10`, port `9010`
+* Server C replication will connect as a client to the internal IP
+  address of `192.168.1.10`, port `9010`
 
 Configure a listener on Server A:
 

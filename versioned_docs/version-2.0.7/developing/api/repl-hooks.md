@@ -4,7 +4,8 @@ id: apis_repl_hooks
 slug: repl-hooks
 sidebar_position: 0
 ---
-[object]: https://github.com/basho/riak_kv/blob/master/src/riak_object.erl 
+
+[object]: https://github.com/basho/riak_kv/blob/master/src/riak_object.erl
 
 This document is a guide to developing extensions for Riak Enterprise's
 Multi-Datacenter Replication feature.
@@ -15,7 +16,7 @@ Riak allows applications to register replication hooks to control
 either of the following:
 
 * when extra objects need to be replicated along with the current object
-* when an object should _not_ be replicated.
+* when an object should *not* be replicated.
 
 To register a hook, you must call the following function in an
 application-specific Erlang module, where `MyMod` is to be replaced
@@ -42,7 +43,7 @@ return a list of Riak objects to be replicated immediately *before* the
 current object. This is useful when you have an object that refers to
 other objects, e.g. a chunked file, and want to ensure that all of the
 dependency objects are replicated before the dependent object.
-   
+
 ### send/2
 
 ```erlang
@@ -129,6 +130,7 @@ To install the sample hook, compile `riak_replication_hook_sample.erl`.
 :::note Note on the Erlang compiler
 
 [erlc]: http://erlang.org/doc/man/erlc.html
+
 You must use the Erlang compiler [`erlc`][erlc]
 associated with the Riak installation or the version of Erlang used when
 compiling Riak from source. For packaged Riak installations, you can
@@ -139,7 +141,7 @@ to compile Riak.
 :::note
 
 | Distribution          | Path                                       |
-|:----------------------|:-------------------------------------------|
+| :-------------------- | :----------------------------------------- |
 | CentOS & RHEL Linux   | `/usr/lib64/riak/erts-5.10.3/bin/erlc`     |
 | Debian & Ubuntu Linux | `/usr/lib/riak/erts-5.10.3/bin/erlc`       |
 | FreeBSD               | `/usr/local/lib/riak/erts-5.10.3/bin/erlc` |
@@ -159,22 +161,21 @@ Ubuntu, compiling is as simple as:
 This will create a `riak_replication_hook_sample.beam` file in the same
 directory as the corresponding `.erl` file. Copy this `.beam` file into
 the subdirectory where you want to store the custom hook:
-   
+
 ```bash
 cp riak_replication_hook_sample.beam /path/to/replication/hook
 ```
-   
+
 Add a `-pa` argument to your `vm.args` file to specify the path where
 your compiled `.beam` file lives:
 
 ```bash
 -pa /path/to/replication/hook
 ```
-   
+
 Finally, add a `-run` argument to your `vm.args` file to register the
 hook:
 
 ```bash
 -run riak_replication_hook_sample register
 ```
-

@@ -1,7 +1,7 @@
 ---
 title: "Search Index Info"
 id: http_search_index_info
-slug: search-index-info 
+slug: search-index-info
 sidebar_position: 14
 ---
 
@@ -9,9 +9,7 @@ Retrieves information about all currently available [Search indexes](../../../de
 
 ## Request
 
-```
-GET /search/index
-```
+    GET /search/index
 
 ## Response
 

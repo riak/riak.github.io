@@ -1,3 +1,6 @@
+---
+title: "Capability Negotiation"
+id: learn_concepts_cap_negotiation
 slug: capability-negotiation
 sidebar_position: 2
 ---
@@ -12,16 +15,18 @@ In versions of Riak prior to 1.2.0, [rolling upgrades][upgrade cluster] from an 
 
 This process has been simplified in versions 1.2.0. Rolling upgrades no longer require you to disable and then re-enable features, as Riak versions 1.2.0 and later now feature a **capability negotiation** subsystem that automatically manages the addition of new features. Using this subsystem, nodes negotiate with each other to automatically determine which versions are supported on which nodes, which allows clusters to maintain normal operations even when divergent versions of Riak are present in the cluster.
 
-> **Note on mixed versions:**
->
-> The capability negotiation subsystem is used to manage mixed versions of Riak within a cluster *solely* during rolling upgrades. We strongly recommend not running mixed versions during normal operations.
+:::note Note on mixed versions:
+
+The capability negotiation subsystem is used to manage mixed versions of Riak within a cluster *solely* during rolling upgrades. We strongly recommend not running mixed versions during normal operations.
+
+:::
 
 ## Configuration Changes
 
 With the addition of automatic capability negotiation, there are some configuration settings that applied to versions of Riak prior to 1.2.0 that no longer need to be set if you are upgrading to a version later than 1.2.0. You can safely remove the following settings from each node's `app.config`, as they will be ignored in newer versions of Riak:
 
 | Setting                          | Description                                                                                                                                  |
-|:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | `riak_core/legacy_vnode_routing` | Uses the newer [vnode][glossary vnode] routing layer when supported; otherwise defaults to the legacy routing protocol                       |
 | `riak_kv/legacy_keylisting`      | Uses coverage-based keylisting (introduced in Riak 1.0) when supported; otherwise defaults to the legacy keylisting behavior                 |
 | `riak_kv/listkeys_backpressure`  | Enables listkeys backpressure (introduced in Riak 1.1) when supported                                                                        |

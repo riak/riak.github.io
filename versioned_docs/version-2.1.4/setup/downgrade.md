@@ -9,7 +9,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [config ref]: ../configuring/reference.md
+
 [concept aae]: ../learn/concepts/active-anti-entropy.md
+
 [aae status]: ../using/admin/riak-admin.md
 
 Downgrades of Riak KV are tested and supported for two feature release versions, with the general procedure being similar to that of a rolling upgrade.
@@ -56,11 +58,11 @@ riak stop
 ```
 
 2. Back up your Riak KV /etc and /data directories:
-    
+
 ```bash
 sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak
 ```
-    
+
 3. Downgrade Riak KV:
 
 <Tabs>
@@ -83,21 +85,20 @@ sudo dpkg -i »riak_package_name«.deb
 
 </Tabs>
 
-
-### Start the node & finialize process 
+### Start the node & finialize process
 
 4. Start Riak KV:
 
 ```bash
 riak start
 ```
-    
+
 5. Verify that transfers have completed 
 
 ```bash
 riak-admin transfers
 ```
-  
+
 ### Monitor the reindex of the data
 
 After your downgrade, you may want to monitor the build and exchange progress of the AAE trees using the `riak-admin aae-status` and `riak-admin search aae-status` commands.

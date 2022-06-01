@@ -1,7 +1,7 @@
 ---
 title: "Data Type Fetch"
 id: pbc_dt_fetch
-slug: dt-fetch 
+slug: dt-fetch
 sidebar_position: 15
 ---
 
@@ -29,28 +29,30 @@ message DtFetchReq {
 #### Required Parameters
 
 | Parameter | Description                                                                                                                                                                         |
-|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                             |
 | `key`     | The key where the Data Type is stored                                                                                                                                               |
-| `type`    | The [Using Bucket Types](../../../using/cluster-operations/bucket-types.md) of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map) |
+| `type`    | The [Using Bucket Types](../../../using/cluster-operations/bucket-types.md) of the bucket in which the Data Type is stored, *not* the type of Data Type (i.e. counter, set, or map) |
 
 #### Optional Parameters
 
-> **Note on defaults and special values**
->
-> All of the optional parameters below have default values determined on a
+:::note Note on defaults and special values
+
+All of the optional parameters below have default values determined on a
 per-bucket basis. Please refer to the documentation on [setting bucket properties](../../../developing/api/protocol-buffers/set-bucket-props.md) for more information.
+
+:::
 
 Furthermore, you can assign an integer value to the `r` and
 `pr`, provided that that integer value is less than or equal
-to N, _or_ a special value denoting `one`
+to N, *or* a special value denoting `one`
 (`4294967295-1`), `quorum`
 (`4294967295-2`), `all`
 (`4294967295-3`), or `default`
 (`4294967295-4`).
 
 | Parameter         | Description                                                                                                                               |
-|:------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | `r`               | Read quorum, i.e. how many replicas need to agree when retrieving the object                                                              |
 | `pr`              | Primary read quorum, i.e. how many primary replicas need to be available when retrieving the object                                       |
 | `basic_quorum`    | Whether to return early in some failure cases, e.g. when `r=1` and you get 2 errors and a success basic_quorum=true would return an error |
@@ -114,4 +116,3 @@ message MapEntry {
     repeated MapEntry map_value      = 6;
 }
 ```
-

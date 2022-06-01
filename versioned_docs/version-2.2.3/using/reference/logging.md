@@ -21,7 +21,7 @@ below shows you where log files are stored on all supported operating
 systems.
 
 | OS                           | Directory                                                          |
-|:-----------------------------|:-------------------------------------------------------------------|
+| :--------------------------- | :----------------------------------------------------------------- |
 | Ubuntu, Debian, CentOS, RHEL | `/var/log/riak`                                                    |
 | Solaris, OpenSolaris         | `/opt/riak/log`                                                    |
 | Source install and Mac OS X  | `./log` (where the `.` represents the root installation directory) |
@@ -32,7 +32,7 @@ Below is a list of files that can be found in each node's `/log`
 directory:
 
 | File          | Significance                                                                             |
-|:--------------|:-----------------------------------------------------------------------------------------|
+| :------------ | :--------------------------------------------------------------------------------------- |
 | `console.log` | Console log output                                                                       |
 | `crash.log`   | Crash logs                                                                               |
 | `erlang.log`  | Logs emitted by the [Erlang VM](../performance/erlang.md) on which Riak runs.            |
@@ -67,8 +67,9 @@ e.g. exploiting the
 [`no-multi-line`](https://www.balabit.com/documents/syslog-ng-ose-3.5-guides/en/syslog-ng-ose-guide-admin/html-single/index.html)
 option (e.g. see [this StackExchange topic
 answer](https://unix.stackexchange.com/questions/317422/is-there-a-way-to-rewrite-parts-of-a-message-globally-instead-of-inserting-rewri/317474#317474))
-- or equivalent - of syslog implementations.
-:::note
+
+* or equivalent - of syslog implementations.
+  :::note
 
 The exception to this syntax is in crash logs (stored in `crash.log`
 files). For crash logs, the syntax tends to be along the following
@@ -92,7 +93,7 @@ In each node's `/log` directory, you will see at least one of each of
 the following:
 
 | File          | Contents                                                                    |
-|:--------------|:----------------------------------------------------------------------------|
+| :------------ | :-------------------------------------------------------------------------- |
 | `console.log` | General messages from all Riak subsystems                                   |
 | `crash.log`   | Catastrophic events, such as node failures, running out of disk space, etc. |
 | `erlang.log`  | Events from the Erlang VM on which Riak runs                                |
@@ -187,7 +188,6 @@ Below are some examples:
 To set the maximum size of the crash log before it is rotated, use the
 `log.crash.size` parameter. You can specify the size in KB, MB, etc. The
 default is `10MB`.
-
 
 ### Other Crash Log Settings
 

@@ -2,20 +2,23 @@
 title: "Secondary Indexes Reference"
 id: managing_ref_2i
 slug: secondary-indexes
-sidebar_position: 10 
+sidebar_position: 10
 ---
 
 [usage bucket types]: ../../developing/usage/bucket-types.md
+
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
 
-> **Note: Riak Search preferred for querying**
->
-> If you're interested in non-primary-key-based querying in Riak, i.e. if
+:::note Note: Riak Search preferred for querying
+
+If you're interested in non-primary-key-based querying in Riak, i.e. if
 you're looking to go beyond straightforward K/V operations, we now
 recommend [Riak Search](../../developing/usage/search.md) rather than secondary indexes for a variety of reasons. Riak Search has a far more capacious querying API and can be used with all of Riak's storage backends.
 
+:::
+
 This document provides implementation and other details for Riak's
-[secondary indexes](../../developing/usage/secondary-indexes.md) \(2i) feature.
+[secondary indexes](../../developing/usage/secondary-indexes.md) (2i) feature.
 
 ## How It Works
 
@@ -54,9 +57,11 @@ right set of partitions. The query is sent to each partition, the index
 data is read, and a list of keys is generated and then sent back to the
 requesting node.
 
-> **Note on 2i and strong consistency**
->
-> Secondary indexes do not currently work with the [strong consistency][use ref strong consistency] feature introduced in Riak version 2.0. If you store objects in [strongly consistent buckets](../../developing/app-guide/strong-consistency.md#creating-consistent-bucket-types) and attach
+:::note Note on 2i and strong consistency
+
+Secondary indexes do not currently work with the [strong consistency][use ref strong consistency] feature introduced in Riak version 2.0. If you store objects in [strongly consistent buckets](../../developing/app-guide/strong-consistency.md#creating-consistent-bucket-types) and attach
 secondary index metadata to those objects, you can still perform
 strongly consistent operations on those objects but the secondary
 indexes will be ignored.
+
+:::

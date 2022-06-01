@@ -1,7 +1,7 @@
 ---
 title: "SmartOS"
 id: installing_smartos
-slug: smartos 
+slug: smartos
 sidebar_position: 5
 ---
 
@@ -36,18 +36,14 @@ SmartOS, albeit powerful, can make some easy tasks (like figuring out a "version
 
 The thing that really matters for Riak is what dataset was used to make the SmartOS VM. These datasets come from joyent and appear like this with the `dsadm` command:
 
-```
-fdea06b0-3f24-11e2-ac50-0b645575ce9d smartos 2012-12-05 sdc:sdc:base64:1.8.4
-f4c23828-7981-11e1-912f-8b6d67c68076 smartos 2012-03-29 sdc:sdc:smartos64:1.6.1
-```
+    fdea06b0-3f24-11e2-ac50-0b645575ce9d smartos 2012-12-05 sdc:sdc:base64:1.8.4
+    f4c23828-7981-11e1-912f-8b6d67c68076 smartos 2012-03-29 sdc:sdc:smartos64:1.6.1
 
 This is where the `1.6` and `1.8` versions come from in the package naming. It isn't perfect, but if you know what dataset you used to make your SmartOS VM, you will know which package to use.
 
 For Joyent Cloud users who don't know what dataset was used, in the guest zone type:
 
-```
-cat /opt/local/etc/pkgin/repositories.conf
-```
+    cat /opt/local/etc/pkgin/repositories.conf
 
 * If this returns `http://pkgsrc.joyent.com/sdc6/2012Q2/x86_64/All` or any other *2012Q2* you need to use the `1.8` download.
 * If this returns `http://pkgsrc.joyent.com/sdc6/2011Q4/x86_64/All` or any other *2011* you need to use the `1.6` download.
@@ -62,9 +58,7 @@ curl -o /tmp/riak-2.0.7-SmartOS-x86_64.tgz http://s3.amazonaws.com/downloads.bas
 
 Next, install the package:
 
-```
-pkg_add /tmp/riak-2.0.7-SmartOS-x86_64.tgz
-```
+    pkg_add /tmp/riak-2.0.7-SmartOS-x86_64.tgz
 
 After installing the package, enable the Riak and Erlang Port Mapper Daemon (epmd) services:
 
@@ -74,16 +68,12 @@ svcadm -v enable -r riak
 
 Finally, after enabling the services, check to see that they are online:
 
-```
-svcs -a | grep -E 'epmd|riak'
-```
+    svcs -a | grep -E 'epmd|riak'
 
 Output from the above command should resemble the following:
 
-```
-online    17:17:16 svc:/network/epmd:default
-online    17:17:16 svc:/application/riak:default
-```
+    online    17:17:16 svc:/network/epmd:default
+    online    17:17:16 svc:/application/riak:default
 
 Finally, and provided that the services are shown to be in an **online** state, go ahead and ping Riak:
 

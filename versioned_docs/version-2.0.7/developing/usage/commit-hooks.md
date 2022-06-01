@@ -1,7 +1,7 @@
 ---
 title: "Using Commit Hooks"
 id: usage_commit_hooks
-slug: commit-hooks 
+slug: commit-hooks
 sidebar_position: 9
 ---
 
@@ -11,11 +11,11 @@ Pre- and post-commit hooks are functions that are invoked before or
 after an object has been written to Riak. To provide a few examples,
 commit hooks can:
 
-- allow a write to occur with an unmodified object
-- modify an object
-- fail an update and prevent any modifications to the object
+* allow a write to occur with an unmodified object
+* modify an object
+* fail an update and prevent any modifications to the object
 
-Post-commit hooks are notified _after the fact_ and should not modify
+Post-commit hooks are notified *after the fact* and should not modify
 the object directly. Updating Riak objects while post-commit hooks are
 invoked can cause nasty feedback loops which will wedge the hook into an
 infinite cycle unless the hook functions are carefully written to detect
@@ -82,9 +82,9 @@ occurring.
 
 Erlang pre-commit functions are allowed three possible return values:
 
-- A Riak object --- This can either be the same object passed to the function or an updated version of the object. This allows hooks to modify the object before they are written.
-- `fail` --- The atom `fail` will cause Riak to fail the write and send a 403 Forbidden error response (in the [HTTP API](../../developing/api/http/index.md)) along with a generic error message about why the write was blocked.
-- `{fail, Reason}` --- The tuple `{fail, Reason}` will cause the same behavior as in the case above, but with the addition of `Reason` used as the error text.
+* A Riak object --- This can either be the same object passed to the function or an updated version of the object. This allows hooks to modify the object before they are written.
+* `fail` --- The atom `fail` will cause Riak to fail the write and send a 403 Forbidden error response (in the [HTTP API](../../developing/api/http/index.md)) along with a generic error message about why the write was blocked.
+* `{fail, Reason}` --- The tuple `{fail, Reason}` will cause the same behavior as in the case above, but with the addition of `Reason` used as the error text.
 
 Errors that occur when processing Erlang pre-commit hooks will be
 reported in the `sasl-error.log` file with lines that start with
@@ -213,7 +213,6 @@ postcommit_index_on_email(Object) ->
     %% Store the object
     C:put(IndexObj).
 ```
-
 
 ### Chaining
 

@@ -1,7 +1,7 @@
 ---
 title: "Querying"
 id: getting_started_csharp_query
-slug: querying 
+slug: querying
 sidebar_position: 1
 ---
 
@@ -15,7 +15,7 @@ your IDE of choice.
 
 ## A Quick Note on Querying and Schemas
 
-_Schemas_? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
+*Schemas*? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
 word. Even in a key/value store, you will still have a logical database
 schema of how all the data relates to other data. This can be as simple
 as using the same key across multiple buckets for different types of
@@ -194,6 +194,6 @@ So to recap:
 * You can search for specific values, or a range of values
 * Riak will return a list of keys that match the index query
 
-
 [taste_of_riak]: https://github.com/basho/taste-of-riak
+
 [master_zip]: https://github.com/basho/taste-of-riak/archive/master.zip

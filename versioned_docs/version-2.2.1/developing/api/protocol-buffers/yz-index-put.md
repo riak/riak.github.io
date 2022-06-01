@@ -32,4 +32,3 @@ binary (as `name`). Optionally, you can specify a [`schema`](../../../developing
 ## Response
 
 Returns a [RpbPutResp](../../../developing/api/protocol-buffers/index.md#message-codes) code with no data on success.
-

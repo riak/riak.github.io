@@ -71,8 +71,8 @@ keys should never be shared beyond Riak and connecting clients.
 > **HTTP not supported**
 >
 > Certificate-based authentication is available only through Riak's
-[Protocol Buffers](../../../developing/api/protocol-buffers/index.md) interface. It is not available through the
-[HTTP API](../../../developing/api/http/index.md).
+> [Protocol Buffers](../../../developing/api/protocol-buffers/index.md) interface. It is not available through the
+> [HTTP API](../../../developing/api/http/index.md).
 
 ### Default Names
 
@@ -80,7 +80,7 @@ In Riak's [configuration files](../../../configuring/reference.md#security), the
 default certificate file names are as follows:
 
 | Cert                       | Filename         |
-|:---------------------------|:-----------------|
+| :------------------------- | :--------------- |
 | Certificate authority (CA) | `cacertfile.pem` |
 | Private key                | `key.pem`        |
 | CA-generated cert          | `cert.pem`       |

@@ -1,7 +1,7 @@
 ---
 title: "Querying"
 id: getting_started_nodejs_query
-slug: querying 
+slug: querying
 sidebar_position: 1
 ---
 
@@ -17,7 +17,7 @@ sure to run `npm install` in this directory prior to running `node
 
 ## A Quick Note on Querying and Schemas
 
-_Schemas_? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
+*Schemas*? Yes, we said that correctly: S-C-H-E-M-A-S. It's not a dirty
 word. Even in a key/value store, you will still have a logical database
 schema of how all the data relates to other data. This can be as simple
 as using the same key across multiple buckets for different types of
@@ -50,8 +50,8 @@ object, an `Order` object, and an `OrderSummaries` object that keeps
 rolled up info about orders such as total, etc. Let's put some data into
 Riak so we can play with it.
 
-* [*Example:* Creating a customer](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L24-L33)
-* [*Example:* Creating orders and order summaries](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L193-L262)
+* [*Example:* Creating a customer](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L161-175)
+* [*Example:* Creating orders and order summaries](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L161-175)
 
 While individual Customer and Order objects don't change much (or
 shouldn't change), the "Order Summary" object will likely change often.
@@ -60,7 +60,7 @@ orders, and also holding some relevant data such as the order total,
 etc. If we showed this information in our application often, it's only
 one extra request to get all the info.
 
-[*Example:* Fetching by shared key](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L78-L96)
+[*Example:* Fetching by shared key](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L161-175)
 
 Which returns our amalgamated objects:
 
@@ -88,14 +88,14 @@ very easy to find groups of related data by values, or even ranges of
 values. To properly show this off, we will now add some more data to our
 application, and add some secondary index entries at the same time.
 
-[*Example:* Adding index data](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L98-L141)
+[*Example:* Adding index data](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L161-175)
 
 As you may have noticed, ordinary key/value data is opaque to 2i, so we
 have to add entries to the indexes at the application level. Now let's
 find all of Jane Appleseed's processed orders, we'll look up the orders
 by searching the `SalespersonId` integer index for Jane's id of `9000`.
 
-[*Example:* Query for orders where the SalespersonId index is set to 9000](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L143-L159)
+[*Example:* Query for orders where the SalespersonId index is set to 9000](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch02-Schemas-and-Indexes/app.js#L161-175)
 
 Which returns:
 

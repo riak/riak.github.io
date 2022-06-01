@@ -1,7 +1,7 @@
 ---
 title: "Sets"
 id: data_types_sets
-slug: sets 
+slug: sets
 sidebar_position: 2
 ---
 
@@ -25,9 +25,11 @@ Start by creating a bucket type with the `datatype` parameter `set`:
 riak-admin bucket-type create sets '{"props":{"datatype":"set"}}'
 ```
 
-> **Note**
->
-> The `sets` bucket type name provided above is an example and is not required to be `sets`. You are free to name bucket types whatever you like, with the exception of `default`.
+:::note 
+
+The `sets` bucket type name provided above is an example and is not required to be `sets`. You are free to name bucket types whatever you like, with the exception of `default`.
+
+:::
 
 After creating a bucket with a Riak data type, confirm the bucket property configuration associated with that type is correct:
 
@@ -40,9 +42,7 @@ in the form of `property: value`.
 
 If our `sets` bucket type has been set properly we should see the following pair in our console output:
 
-```
-datatype: set
-```
+    datatype: set
 
 Once we have confirmed the bucket type is properly configured, we can activate the bucket type to be used in Riak KV:
 

@@ -1,7 +1,7 @@
 ---
 title: "SSL"
 id: configuring_v3_replication_ssl
-slug: ssl 
+slug: ssl
 sidebar_position: 2
 ---
 
@@ -12,15 +12,17 @@ sidebar_position: 2
 Riak Multi-Datacenter (MDC) Replication SSL consists of the following
 items:
 
-  * Encryption of replication data
-  * SSL certificate chain validation
-  * SSL common name whitelisting support
+* Encryption of replication data
+* SSL certificate chain validation
+* SSL common name whitelisting support
 
-> **Note on cross-internet traffic**
->
-> As an alternative to Riak Enterprise's built-in SSL capabilities, we
+:::note Note on cross-internet traffic
+
+As an alternative to Riak Enterprise's built-in SSL capabilities, we
 recommend using [stunnel](https://www.stunnel.org/index.html) or a
 virtual private network (VPM) for inter-datacenter connections.
+
+:::
 
 ## SSL Configuration
 
@@ -36,7 +38,6 @@ the `riak-core` section of [`advanced.confg`][config reference#advanced.config]:
              {cacertdir, "/full/path/to/cacertsdir"}
              % ...
             ]}
-
 ```
 
 The `cacertsdir` is a directory containing all the CA certificates
@@ -88,7 +89,6 @@ names like `db.bashosamplecorp.com` and `security.bashosamplecorp.com`:
              {peer_common_name_acl, ["db.bashosamplecorp.com", "security.bashosamplecorp.com"]}
              % ...
             ]}
-
 ```
 
 The following example will allow connections from peer certificate names
@@ -101,7 +101,6 @@ peer certificate name like `db.backup.bashosamplecorp.com`.
              {peer_common_name_acl, ["*.bashosamplecorp.com"]}
              % ...
             ]}
-
 ```
 
 This example will match any peer certificate name (and is the default):
@@ -112,7 +111,6 @@ This example will match any peer certificate name (and is the default):
              {peer_common_name_acl, "*"}
              % ...
             ]}
-
 ```
 
 ## SSL CA Validation
@@ -126,7 +124,6 @@ following to the `riak_repl` section of `advanced.config`:
              {ssl_depth, 3} % Sets the depth to 3
              % ...
             ]}
-
 ```
 
 **Note**: `ssl_depth` takes an integer parameter.
@@ -137,12 +134,12 @@ intermediate certificates must not be self signed.
 
 The following example depths illustrate this:
 
-  * a depth of `0` indicates that the certificate must be signed
-    directly by a root certificate authority (CA)
-  * a depth of `1` indicates that the certificate may be signed by at
-    most 1 intermediate CA's, followed by a root CA
-  * a depth of `2` indicates that the certificate may be signed by at
-    most 2 intermediate CA's, followed by a root CA
+* a depth of `0` indicates that the certificate must be signed
+  directly by a root certificate authority (CA)
+* a depth of `1` indicates that the certificate may be signed by at
+  most 1 intermediate CA's, followed by a root CA
+* a depth of `2` indicates that the certificate may be signed by at
+  most 2 intermediate CA's, followed by a root CA
 
 ## Compatibility
 

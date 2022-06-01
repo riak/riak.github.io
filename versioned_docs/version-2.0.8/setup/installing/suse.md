@@ -1,7 +1,7 @@
 ---
 title: "SUSE"
 id: installing_suse
-slug: suse 
+slug: suse
 sidebar_position: 7
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Solaris"
 id: installing_solaris
-slug: solaris 
+slug: solaris
 sidebar_position: 6
 ---
 
@@ -9,7 +9,9 @@ sidebar_position: 6
 
 The following steps have been tested to work with Riak version 1.3.1 on Solaris 10 i386. They demonstrate installation of a Riak node on Solaris as the root user.
 
-> **Note:** Before installing Riak on Solaris, be sure that you've installed `sudo` as Riak's scripts require it for proper operation.
+:::note Note: Before installing Riak on Solaris, be sure that you've installed `sudo` as Riak's scripts require it for proper operation.
+
+:::
 
 ## Open Files Limit
 
@@ -27,10 +29,8 @@ ulimit -n 65536
 
 To increase this value in a persistent manner that will be enforced after restarting the system, add the following to the `/etc/system` file:
 
-```
-set rlim_fd_max=65536
-set rlim_fd_cur=65536
-```
+    set rlim_fd_max=65536
+    set rlim_fd_cur=65536
 
 Note that you must restart to have the above settings take effect.
 

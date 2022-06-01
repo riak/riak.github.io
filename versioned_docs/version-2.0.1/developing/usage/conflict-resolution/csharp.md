@@ -1,7 +1,7 @@
 ---
 title: "C#"
 id: usage_conflict_resolution_csharp
-slug: csharp 
+slug: csharp
 sidebar_position: 3
 ---
 
@@ -103,6 +103,5 @@ RiakObject updatedObject = putRslt.Value;
 // Voila, no more siblings!
 Debug.Assert(updatedObject.Siblings.Count == 0);
 ```
-
 
 [riak_dotnet_client]: https://github.com/basho/riak-dotnet-client

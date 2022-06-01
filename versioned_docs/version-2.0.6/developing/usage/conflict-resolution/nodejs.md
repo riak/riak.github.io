@@ -1,7 +1,7 @@
 ---
 title: "NodeJS"
 id: usage_conflict_resolution_nodejs
-slug: nodejs 
+slug: nodejs
 sidebar_position: 4
 ---
 
@@ -16,7 +16,7 @@ In the Riak Node.js client, the result of a fetch can possibly return an array
 of sibling objects.  If there are no siblings, that property will return an
 array with one value in it.
 
-[*Example:* creating object with siblings](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L21-L68)
+[*Example:* creating object with siblings](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L135-L170)
 
 So what happens if the length of `rslt.values` is greater than 1, as in the case
 above?
@@ -30,18 +30,18 @@ the canonical value.
 In this example, you will ignore the contents of the `values` array and will
 fetch, update and store the definitive value.
 
-[*Example:* resolving siblings via store](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L91-L111)
+[*Example:* resolving siblings via store](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L135-L170)
 
 ### Choosing a value from `rslt.values`
 
 This example shows a basic sibling resolution strategy in which the first
 sibling is chosen as the canonical value.
 
-[*Example:* resolving siblings via first](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L113-L133)
+[*Example:* resolving siblings via first](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L135-L170)
 
 ### Using `conflictResolver`
 
 This example shows a basic sibling resolution strategy in which the first
 sibling is chosen as the canonical value via a conflict resolution function.
 
-[*Example:* resolving siblings via `conflictResolver](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L135-L170)
+[*Example:* resolving siblings via \`conflictResolver](https://github.com/basho/riak-nodejs-client-examples/blob/master/dev/using/conflict-resolution.js#L135-L170)

@@ -1,7 +1,7 @@
 ---
 title: "Cluster Metadata"
 id: app_guide_cluster_metadata
-slug: cluster-metadata 
+slug: cluster-metadata
 sidebar_position: 4
 ---
 

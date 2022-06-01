@@ -1,12 +1,14 @@
 ---
 title: "Mac OS X"
 id: installing_macosx
-slug: mac-osx 
+slug: mac-osx
 sidebar_position: 3
 ---
 
 [perf open files]: ../../using/performance/open-files-limit.md
+
 [install source erlang]: ../../setup/installing/source/erlang.md
+
 [install verify]: ../../setup/installing/verify.md
 
 The following steps are known to work with Mac OS X 10.8, 10.9
@@ -16,9 +18,8 @@ precompiled tarball.
 > **`ulimit` on OS X**
 >
 > OS X gives you a very small limit on open file handles, so even with a
-backend that uses very few file handles, it's possible to run out. See
-[Open Files Limit][perf open files] for more information about changing the limit.
-
+> backend that uses very few file handles, it's possible to run out. See
+> [Open Files Limit][perf open files] for more information about changing the limit.
 
 ## From Precompiled Tarballs
 
@@ -56,13 +57,11 @@ By default, this will place a `2.2.2` folder in
 Be aware that you will most likely see the following message after
 running `brew install`:
 
-```
-Error: The `brew link` step did not complete successfully
-The formula built, but is not symlinked into /usr/local
+    Error: The `brew link` step did not complete successfully
+    The formula built, but is not symlinked into /usr/local
 
-You can try again using:
-  brew link riak
-```
+    You can try again using:
+      brew link riak
 
 We do not recommend using `brew link` with Riak. Instead, we recommend
 either copying that directory to a desired location on your machine,

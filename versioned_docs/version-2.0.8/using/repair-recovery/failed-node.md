@@ -27,72 +27,70 @@ following steps:
 
 1. Stop the node you wish to rename:
 
-    ```bash
-    riak stop
-    ```
+   ```bash
+   riak stop
+   ```
 
 
 2. Mark the node down from another node in the cluster:
 
-    ```bash
-    riak-admin down <previous_node_name>
-    ```
+   ```bash
+   riak-admin down <previous_node_name>
+   ```
 
 3. Update the node name in Riak's configuration files:
 
-    ```riakconf
-    nodename = <updated_node_name>
-    ```
+   ```riakconf
+   nodename = <updated_node_name>
+   ```
 
-    ```vmargs
-    -name <updated_node_name>
-    ```
+   ```vmargs
+   -name <updated_node_name>
+   ```
 
 4. Delete the ring state directory (usually `/var/lib/riak/ring`).
 
 5. Start the node again:
 
-    ```bash
-    riak start
-    ```
+   ```bash
+   riak start
+   ```
 
 6. Ensure that the node comes up as a single instance:
 
-    ```bash
-    riak-admin member-status
-    ```
+   ```bash
+   riak-admin member-status
+   ```
 
     The output should look something like this:
 
-   ```
-    ========================= Membership ==========================
-   Status     Ring    Pending    Node
-   ---------------------------------------------------------------
-   valid     100.0%      --      'dev-rel@127.0.0.1'
-   ---------------------------------------------------------------
-   Valid:1 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
-   ```
+        ========================= Membership ==========================
+       Status     Ring    Pending    Node
+       ---------------------------------------------------------------
+       valid     100.0%      --      'dev-rel@127.0.0.1'
+       ---------------------------------------------------------------
+       Valid:1 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 
 7. Join the node to the cluster:
 
-    ```bash
-    riak-admin cluster join <node_name_of_a_member_of_the_cluster>
-    ```
+   ```bash
+   riak-admin cluster join <node_name_of_a_member_of_the_cluster>
+   ```
 
 8. Replace the old instance of the node with the new:
 
-    ```bash
-    riak-admin cluster force-replace <previous_node_name> <new_node_name>
-    ```
+   ```bash
+   riak-admin cluster force-replace <previous_node_name> <new_node_name>
+   ```
 
 9. Review the changes:
 
-    ```bash
-    riak-admin cluster plan
-    ```
+   ```bash
+   riak-admin cluster plan
+   ```
 
-    Finally, commit those changes:
+   Finally, commit those changes:
 
-    ```bash
-    riak-admin cluster commit
-    ```
+   ```bash
+   riak-admin cluster commit
+   ```

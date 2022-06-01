@@ -4,8 +4,11 @@ id: managing_cluster_admin
 ---
 
 [use admin commands]: ./commands.md
+
 [use admin riak cli]: ./riak-cli.md
+
 [use admin riak-admin]: ./riak-admin.md
+
 [use admin riak control]: ./riak-control.md
 
 ## [Cluster Admin Commands][use admin commands]

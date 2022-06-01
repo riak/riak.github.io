@@ -9,7 +9,6 @@ sidebar_position: 0
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../../using/reference/v3-multi-datacenter/architecture.md) instead.
 :::
 
-
 This document provides a basic overview of the architecture undergirding
 Riak Enterprise's Multi-Datacenter Replication capabilities.
 
