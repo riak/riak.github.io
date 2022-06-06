@@ -36,6 +36,14 @@ If the ```keep_drafts``` is passed with a value of ```true``` any drafts will no
 node index.js \--input_docs_dir=/home/USERNAME/Documents/kv \--output_docs_dir=/tmp/kv \--name_ignored_files \--keep_drafts=true
 ```
 
+# Full Logs
+
+If you want the full output of what the transform tool use the ```full_logs``` flag.
+
+```
+node index.js \--input_docs_dir=/home/USERNAME/Documents/kv \--output_docs_dir=/tmp/kv \--full_logs 
+```
+
 # get_files_metadata.js
 
 Reads the current docs and writes JSON to files_metadata.json containing the title, id, slug and sidebar_position for each page. 
