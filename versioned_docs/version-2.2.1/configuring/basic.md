@@ -8,10 +8,6 @@ sidebar_position: 0
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 [config reference]: ../configuring/reference.md
 
 [use running cluster]: ../using/running-a-cluster.md
