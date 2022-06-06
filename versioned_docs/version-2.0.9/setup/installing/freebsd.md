@@ -14,8 +14,9 @@ You can install Riak on FreeBSD for the AMD64 architecture with a binary package
 ## Installing From Binary Package
 
 :::note Note: The Riak 1.2 binary package is supported on FreeBSD version 9. Users have reported success building Riak from source on a number of FreeBSD versions, however.
-
 Installing Riak from a binary package is the simplest method with least required dependencies, and requires less time to complete than building from source.
+
+:::
 
 ### Prerequisites and Dependencies
 
