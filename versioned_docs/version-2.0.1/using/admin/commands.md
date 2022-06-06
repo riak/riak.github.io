@@ -114,7 +114,7 @@ riak-admin cluster join riak1@127.0.0.1
 Once a node joins, all of the operations necessary to establish
 communication with all other nodes proceeds automatically.
 
-:::note : As with all cluster-level actions, the changes made when you
+:::note  As with all cluster-level actions, the changes made when you
 run the `cluster join` command will take effect only after you have both
 planned the changes by running [`riak-admin cluster plan`][use admin riak-admin#cluster-plan] and committed the changes by running
 [`riak-admin cluster commit`][use admin riak-admin#cluster-commit].
@@ -137,7 +137,7 @@ You can also instruct another node (by nodename) to leave the cluster:
 riak-admin cluster leave <node>
 ```
 
-:::note : As with all cluster-level actions, the changes made when you
+:::note  As with all cluster-level actions, the changes made when you
 run the `cluster leave` command will take effect only after you have
 both planned the changes by running [`riak-admin cluster plan`][use admin riak-admin#cluster-plan] and committed the changes
 by running [`riak-admin cluster commit`][use admin riak-admin#cluster-commit].
@@ -156,7 +156,7 @@ caution.
 riak-admin cluster force-remove <node>
 ```
 
-:::note : As with all cluster-level actions, the changes made when you
+:::note  As with all cluster-level actions, the changes made when you
 run the `cluster force-remove` command will take effect only after you have
 both planned the changes by running [`riak-admin cluster plan`][use admin riak-admin#cluster-plan] and committed the changes
 by running [`riak-admin cluster commit`][use admin riak-admin#cluster-commit]. You can stage multiple force-remove actions
@@ -173,7 +173,7 @@ cluster and shut down.
 riak-admin cluster replace <node1> <node2>
 ```
 
-:::note : As with all cluster-level actions, the changes made when you
+:::note  As with all cluster-level actions, the changes made when you
 run the `cluster replace` command will take effect only after you have
 both planned the changes by running [`riak-admin cluster plan`][use admin riak-admin#cluster-plan] and committed the changes
 by running [`riak-admin cluster commit`][use admin riak-admin#cluster-commit]. You can stage multiple replace actions before
@@ -193,7 +193,7 @@ riak-admin cluster force-replace <node_being_replaced> <replacement_node>
 Once the data partitions have been reassigned, the node that is being
 replaced will be removed from the cluster.
 
-:::note : As with all cluster-level actions, the changes made when you
+:::note  As with all cluster-level actions, the changes made when you
 run the `cluster force-replace` command will take effect only after you have
 both planned the changes by running [`riak-admin cluster plan`][use admin riak-admin#cluster-plan] and committed the changes
 by running [`riak-admin cluster commit`][use admin riak-admin#cluster-commit]. You can stage multiple force-replace actions

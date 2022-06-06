@@ -78,13 +78,9 @@ root soft nofile 65536
 
 :::note Note: You may need to log out of your shell and then log back in for these changes to take effect.
 
-:::
-
 ### Install Redis
 
 :::note Note: If you already have Redis installed, *skip ahead* to "Install Riak Redis Add-on".
-
-:::
 
 #### Install on Ubuntu
 
@@ -178,8 +174,6 @@ ss -nlp |grep [r]edis
 ```
 
 :::note Notes: ss is used here to support a minimal installed system, but netstat may be used as well.
-
-:::
 
 ### Install Riak Redis Add-on (RRA)
 
@@ -277,8 +271,6 @@ ss -nlp |grep [n]utcracker
 ```
 
 :::note Note: ss is used here to support a minimal installed system, but netstat may be used as well.
-
-:::
 
 ## Next Steps
 

@@ -11,8 +11,6 @@ The following steps have been tested to work with Riak version 1.3.1 on Solaris 
 
 :::note Note: Before installing Riak on Solaris, be sure that you've installed `sudo` as Riak's scripts require it for proper operation.
 
-:::
-
 ## Open Files Limit
 
 Before proceeding with installation, you should ensure that the system's open files limit is at least 65536 by verifying the current value of `nofiles(descriptors)`. Check the current value with the `ulimit` command:

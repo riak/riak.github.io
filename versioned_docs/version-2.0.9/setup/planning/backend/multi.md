@@ -132,7 +132,7 @@ specific sections to your `riak_kv` settings (in addition to setting
 the `storage_backend` setting to `riak_kv_multi_backend`, as shown
 above).
 
-:::note : If you are defining multiple file-based backends of the same
+:::note  If you are defining multiple file-based backends of the same
 type, each of these must have a separate `data_root` directory defined.
 
 :::

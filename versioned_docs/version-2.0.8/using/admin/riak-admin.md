@@ -228,9 +228,7 @@ Reloads the Erlang `.beam` files used for [MapReduce][usage mapreduce]
 jobs, [pre- and post-commit hooks][usage commit hooks], and other
 purposes.
 
-:::note : This needs to be run on *all nodes* in the cluster.
-
-:::
+:::note  This needs to be run on *all nodes* in the cluster.
 
 ```bash
 riak-admin erl-reload

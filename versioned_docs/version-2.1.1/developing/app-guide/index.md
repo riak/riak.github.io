@@ -243,7 +243,7 @@ own.
   with implementation details
 * [Data Modeling with Riak Data Types][dev data model] --- An object modeling example that relies on Riak Data Types.
 
-:::note :
+:::note 
 
 Riak Data Types can be used in conjunction with Riak Search,
 meaning that the data stored in counters, sets, and maps can be indexed

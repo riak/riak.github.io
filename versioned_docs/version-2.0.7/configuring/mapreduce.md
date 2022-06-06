@@ -33,9 +33,7 @@ By default `mapred`, making the command path, for example:
 MapReduce inputs are queued in parallel in their own pipe (`true`), or
 serially through a helper process (`false` or undefined).
 
-:::note : Set to `false` or leave undefined during an upgrade from 1.0.
-
-:::
+:::note  Set to `false` or leave undefined during an upgrade from 1.0.
 
 ```erlang
 {mapred_2i_pipe, true},
@@ -65,9 +63,7 @@ This is largely relevant only if you are writing JavaScript M/R jobs.
 `js_thread_stack` is the maximum amount of thread stack, in megabytes,
 allocated to the Javascript VMs. If unset, the default is 16MB.
 
-:::note : This is not the same as the C thread stack.
-
-:::
+:::note  This is not the same as the C thread stack.
 
 ```erlang
 {js_thread_stack, 16},
