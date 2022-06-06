@@ -241,6 +241,8 @@ function transformBlockQuoteNotes() {
     visit(tree, 'blockquote', node => {
       visit(node?.children[0], 'strong', strong_node =>
         visit(strong_node, 'text', text_node => {
+          const paragraph = node.children[0].children?.[1];
+          const paragraph_text = paragraph?.value.replace(/^:/, '');
           const lower = text_node.value.toLowerCase();
 
           if (lower.includes('note')) {
@@ -253,8 +255,15 @@ function transformBlockQuoteNotes() {
             strong_node.type = 'paragraph';
 
             text_node.value = `:::note ${value}`;
+            
+            // Only insert the closing colons if a newline is present 
+            if (paragraph_text?.includes('\n') || paragraph_text === '' || paragraph === undefined) {
+              children.push({ type: 'text', value: ':::' });
+            }
 
-            children.push({ type: 'text', value: ':::' });
+            if (paragraph?.value) {
+              paragraph.value = paragraph_text;
+            }
 
             tree.children.splice(node_index, 1, ...children);
           }
