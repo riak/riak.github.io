@@ -18,3 +18,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# This is a big file that is likely unneeded
+tools/basho_docs_transform/docs_metadata.json
