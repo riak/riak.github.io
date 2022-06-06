@@ -79,10 +79,12 @@ through the command line. This allows an administrator to change
 security settings for the whole cluster quickly without needing to
 change settings on a node-by-node basis.
 
-**Note**: Currently, Riak security commands can be run only through
-the command line, using the `riak-admin security` command. In future
+:::note
+Currently, Riak security commands can be run only through
+the command line, using the`riak-admin security` command. In future
 versions of Riak, administrators may have the option of issuing
 those commands through the Protocol Buffers and HTTP interfaces.
+:::
 
 ### Enabling Security
 
@@ -152,8 +154,10 @@ You may also assign users characteristics beyond those listed
 above---e.g., listing email addresses or other information---but those
 values will carry no special significance for Riak.
 
-**Note**: The `username` is the one user characteristic that cannot be
+:::note
+The`username` is the one user characteristic that cannot be
 changed once a user has been created.
+:::
 
 ### Retrieve a Current User or Group List
 
@@ -178,8 +182,10 @@ password:
     | riakuser |        |983e8ae1421574b8733824|              []              |
     +----------+--------+----------------------+------------------------------+
 
-**Note**: All passwords are displayed in encrypted form in console
+:::note
+All passwords are displayed in encrypted form in console
 output.
+:::
 
 If the user `riakuser` were assigned to the group `dev` and a `name` of
 `lucius`, the output would look like this:
@@ -240,8 +246,10 @@ Cumulative permissions (user/riakuser)
 +----------+-------------+----------------------------------------+
 ```
 
-**Note**: The term `admin` is not a reserved term in Riak security. It
+:::note
+The term`admin` is not a reserved term in Riak security. It
 is used here only for illustrative purposes.
+:::
 
 Because the same name can represent both a user and a group, a prefix
 (`user/` or `group/`) can be used before the name (e.g., `print-grants
@@ -307,10 +315,12 @@ Now, the `print-users` command should return this:
     | riakuser |        |          |[{"fav_color","red"},{"age","47"},{"name","bill"}]|
     +----------+--------+----------+--------------------------------------------------+
 
-**Note**: Usernames *cannot* be changed using the `alter-user` command.
+:::note
+Usernames*cannot* be changed using the `alter-user` command.
 For example, running `riak-admin security alter-user riakuser
 username=other-name`, will instead add the
 `{"username","other-name"}` tuple to `riakuser`'s options.
+:::
 
 ### Managing Groups for a User
 
@@ -395,10 +405,12 @@ is granted/revoked for all buckets of that type. If you specify a bucket
 type *and* a bucket, the permission is granted/revoked only for that
 bucket type/bucket combination.
 
-**Note**: You cannot grant/revoke permissions with respect to a bucket
+:::note
+You cannot grant/revoke permissions with respect to a bucket
 alone. You must specify either a bucket type by itself or a bucket type
 and bucket. This limitation reflects the naming structure underlying
 buckets and bucket types.
+:::
 
 Selecting `all` grants or revokes a permission (or set of permissions)
 for all users in all groups. When specifying the user(s)/group(s) to

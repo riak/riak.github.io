@@ -55,11 +55,13 @@ storage_backend = memory
 
 </Tabs>
 
-**Note**: If you *replace* the existing specified backend by removing it
+:::note
+If you*replace* the existing specified backend by removing it
 or commenting it out as shown in the above example, data belonging to
 the previously specified backend will still be preserved on the
 filesystem but will no longer be accessible through Riak unless the
 backend is enabled again.
+:::
 
 If you require multiple backends in your configuration, please consult
 the [Multi backend documentation][plan backend multi].

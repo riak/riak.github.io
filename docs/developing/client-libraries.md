@@ -21,8 +21,10 @@ variety of programming languages and environments.
 | Erlang   | [riak-erlang-client (riakc)](https://github.com/basho/riak-erlang-client) | [edoc](http://basho.github.com/riak-erlang-client/)                                                               | [GitHub](https://github.com/basho/riak-go-client)                                                                                       |
 | Go       | [riak-go-client](https://github.com/basho/riak-go-client)                 | [GoDoc](https://godoc.org/github.com/basho/riak-go-client)                                                        | [GitHub](https://github.com/basho/riak-go-client)                                                                                       |
 
-**Note**: All official clients use the integrated issue tracker on
+:::note
+All official clients use the integrated issue tracker on
 GitHub for bug reporting.
+:::
 
 In addition to the official clients, Basho provides some unofficial
 client libraries, listed below.

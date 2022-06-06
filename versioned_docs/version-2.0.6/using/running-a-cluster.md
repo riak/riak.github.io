@@ -341,9 +341,11 @@ pre-built package, then you can easily run multiple Riak nodes on the
 same machine. The most common scenario for doing this is to experiment
 with running a Riak cluster.
 
-**Note**: If you have installed the `.deb` or `.rpm` package, then you
+:::note
+If you have installed the`.deb` or `.rpm` package, then you
 will need to download and build Riak from source to follow the
 directions below.
+:::
 
 To run multiple nodes, make copies of the `riak` directory.
 

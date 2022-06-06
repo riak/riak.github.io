@@ -113,7 +113,7 @@ following to the `riak_repl` section of your `advanced.config`:
             ]}
 ```
 
-**Note**: `ssl_depth` takes an integer parameter.
+:::note `ssl_depth` takes an integer parameter.
 
 The depth specifies the maximum number of intermediate certificates that
 may follow the peer certificate in a valid certification path. By default,

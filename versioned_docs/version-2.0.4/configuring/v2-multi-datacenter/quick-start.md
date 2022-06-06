@@ -40,9 +40,11 @@ Configure Riak MDC to perform replication, given the following
 | `node5` | `192.168.1.22` | `riak@192.168.1.22` |
 | `node6` | `192.168.1.23` | `riak@192.168.1.23` |
 
-**Note**: The addresses used in these example clusters are contrived,
+:::note
+The addresses used in these example clusters are contrived,
 non-routable addresses. In real-world applications, however, these
 addresses would need to be routable over the public Internet.
+:::
 
 ## Set Up Cluster1 & Cluster2 Replication
 
@@ -79,10 +81,12 @@ clients where the Source Listeners are located with `riak-repl add-site <ipaddr>
 riak-repl add-site 172.16.1.11 9010 Cluster1
 ```
 
-**Note**: While a Listener needs to be added to each node, only a single
+:::note
+While a Listener needs to be added to each node, only a single
 Site needs to be added on the Site cluster. Once connected to the Source
 cluster, it will get the locations of the rest of the Listeners in the
 Source cluster.
+:::
 
 ### Verify the Replication Configuration
 

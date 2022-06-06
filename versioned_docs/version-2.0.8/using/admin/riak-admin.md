@@ -216,7 +216,7 @@ Forces the embedded Javascript virtual machines to be restarted. This is
 useful when deploying custom built-in [MapReduce][usage mapreduce]
 functions.
 
-**Note**: This needs to be run on *all nodes* in the cluster.
+:::note This needs to be run on *all nodes* in the cluster.
 
 ```bash
 riak-admin js-reload

@@ -142,10 +142,12 @@ Solr this structure is called a **document**. This task of creating a
 Solr document from a Riak object is the job of the **extractor**. To
 perform this task two things must be considered.
 
-**Note**: This isn't quite right, the fields created by the extractor
+:::note
+This isn't quite right, the fields created by the extractor
 are only a subset of the fields created. Special fields needed for
 Yokozuna to properly query data and tagging fields are also created.
-This call happens inside `yz_doc:make_doc`.
+This call happens inside`yz_doc:make_doc`.
+:::
 
 1. Does an extractor exist to map the content-type of the object to a
    Solr document?

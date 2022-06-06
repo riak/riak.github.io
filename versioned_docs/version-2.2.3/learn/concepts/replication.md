@@ -175,8 +175,10 @@ partitions and storing an object on a partition.
 * Assume we store 3 replicas per object (N=3)
 * Assume we have 8 partitions in our [ring][glossary ring] (ring_creation_size=8)
 
-**Note**: It is not recommended that you use such a small ring size.
+:::note
+It is not recommended that you use such a small ring size.
 This is for demonstration purposes only.
+:::
 
 With only 8 partitions our ring will look approximately as follows
 (response from `riak_core_ring_manager:get_my_ring/0` truncated for

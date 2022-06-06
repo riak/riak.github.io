@@ -68,7 +68,7 @@ either copying that directory to a desired location on your machine,
 aliasing the executables in the `/bin` directory, or interacting with
 the Riak installation directory via environment variables.
 
-**Note**: Homebrew will install Erlang if you don't have it already.
+:::note Homebrew will install Erlang if you don't have it already.
 
 ## Installing From Source
 

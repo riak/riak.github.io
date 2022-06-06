@@ -197,7 +197,7 @@ Disable realtime cascading writes.
 
 ## NAT
 
-**Note**: See the [V3 Multi Data Center Replication With NAT][config v3 nat] for more information.
+:::note See the [V3 Multi Data Center Replication With NAT][config v3 nat] for more information.
 
 #### nat-map show
 
@@ -270,8 +270,10 @@ provider cluster id.
 Display this cluster's cluster-id tuple, for use with the
 `*-block-provider-redirect` commands.
 
-**Note**: A cluster-id is surrounded by double quotes, which need to be
-included when passed to `*-block-provider-redirect`.
+:::note
+A cluster-id is surrounded by double quotes, which need to be
+included when passed to`*-block-provider-redirect`.
+:::
 
 * Syntax: `riak-repl show-local-cluster-id`
 * Example:

@@ -137,7 +137,7 @@ The following definitions describe the output of `riak-repl status`.
 Please note that many of these statistics will only appear on the
 current leader node.
 
-**Note**: All counts will be reset to 0 upon restarting Riak Enterprise.
+:::note All counts will be reset to 0 upon restarting Riak Enterprise.
 
 | Field                            | Description                                                                                                                                                                                              |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

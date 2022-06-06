@@ -157,7 +157,7 @@ validate(Object) ->
   end.
 ```
 
-**Note**: All pre-commit hook functions are executed for each create and update operation.
+:::note All pre-commit hook functions are executed for each create and update operation.
 
 ## Post-Commit Hooks
 
@@ -224,5 +224,7 @@ after data has been created, updated, or deleted. Each post-commit hook
 function runs in a separate process so it's possible for several hook
 functions, triggered by the same update, to execute in parallel.
 
-**Note**: All post-commit hook functions are executed for each create,
+:::note
+All post-commit hook functions are executed for each create,
 update, or delete.
+:::

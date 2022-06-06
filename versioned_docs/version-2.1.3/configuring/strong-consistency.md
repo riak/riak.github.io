@@ -345,9 +345,11 @@ The following table provides a guide to `ensemble-status` output:
 | `Metadata`   | This depends on the value of the `synchronous_tree_updates` setting in [`riak.conf`][config reference#strong-cons], which determines whether strong consistency-related Merkle trees are updated synchronously or asynchronously. If `best-effort replication (asynchronous)`, then `synchronous_tree_updates` is set to `false`; if `guaranteed replication (synchronous)` then `synchronous_tree_updates` is set to `true`. |
 | `Ensembles`  | This displays a list of all of the currently existing ensembles active in the cluster.<br /><ul><li><code>Ensemble</code> --- The ID of the ensemble</li><li><code>Quorum</code> --- The number of ensemble peers that are either leading or following</li><li><code>Nodes</code> --- The number of nodes currently online</li><li><code>Leader</code> --- The current leader node for the ensemble</li></ul>                 |
 
-**Note**: The **root ensemble**, designated by `root` in the sample
+:::note
+The**root ensemble**, designated by `root` in the sample
 output above, is a special ensemble that stores a list of nodes and
 ensembles in the cluster.
+:::
 
 More in-depth information on ensembles can be found in our [internal
 documentation](https://github.com/basho/riak_ensemble/tree/develop/doc).

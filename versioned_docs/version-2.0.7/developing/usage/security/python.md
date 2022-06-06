@@ -72,10 +72,12 @@ which the client is connecting has been specified as trusted. More on
 specifying trusted CIDRs can be found in [Trust-based
 Authentication](../../../using/security/managing-sources.md#trust-based-authentication).
 
-**Note**: The examples in the following sections specify certs on the
-basis of their filepaths, e.g. `/ssl_dir/cacertfile.pem`. In addition to
+:::note
+The examples in the following sections specify certs on the
+basis of their filepaths, e.g.`/ssl_dir/cacertfile.pem`. In addition to
 specifying certs by location, you can also provide OpenSSL objects
 instead. You can find out how to do so in [Using OpenSSL Objects](#using-openssl-objects) below.
+:::
 
 ## Password-based Authentication
 

@@ -198,8 +198,10 @@ If `ring_num_partitions` and `ring_creation_size` do not agree, that
 means that the `ring_creation_size` value was changed too late and that
 the proper steps were not taken to start over with a new ring.
 
-**Note**: Riak will not allow two nodes with different ring sizes to be
+:::note
+Riak will not allow two nodes with different ring sizes to be
 joined into a cluster.
+:::
 
 ## Backend
 

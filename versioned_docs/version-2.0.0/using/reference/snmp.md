@@ -37,7 +37,7 @@ Finally, edit the `standard.conf` file and update it with the proper information
 
 Riak needs to be restarted for configuration changes to take affect.
 
-**Note**: Prior to Riak Enterprise 0.13, SNMP configuration values were not reloaded during a restart.
+:::note Prior to Riak Enterprise 0.13, SNMP configuration values were not reloaded during a restart.
 
 To force Riak to reload SNMP configuration files on startup:
 

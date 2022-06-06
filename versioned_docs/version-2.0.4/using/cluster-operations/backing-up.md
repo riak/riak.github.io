@@ -97,8 +97,10 @@ The default Riak KV data, ring, and configuration directories for each of the su
 | Search             | `./data/riak/yz`           |
 | Strong consistency | `./data/ensembles`         |
 
-**Note**: OS X paths are relative to the directory in which the package
+:::note
+OS X paths are relative to the directory in which the package
 was extracted.
+:::
 
 #### SmartOS
 

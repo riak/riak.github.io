@@ -236,7 +236,7 @@ function transformNodeLang({ f }) {
   };
 }
 
-function transformBlockQuoteNotes() {
+function transformBlockQuoteNote() {
   return tree => {
     visit(tree, 'blockquote', node => {
       visit(node?.children[0], 'strong', strong_node =>
@@ -272,6 +272,37 @@ function transformBlockQuoteNotes() {
   };
 }
 
+function transformStrongNote() {
+  return tree => {
+    visit(tree, 'paragraph', paragraph_node =>
+      visit(paragraph_node, 'strong', strong_node => {
+        const strong_text = strong_node.children[0]?.value.toLowerCase();
+
+        if (strong_text !== 'note') {
+          return;
+        }
+
+				const any_new_lines = paragraph_node.children.some(child => child?.value?.includes('\n'));
+
+        let note_text = paragraph_node.children[1]?.value?.replace(/^:/, '');
+
+        strong_node.type = 'text';
+        strong_node.value = `:::note`;
+        strong_node.children = [];
+
+        if (any_new_lines) {
+          paragraph_node.children.push({ type: 'text', value: '\n:::' });
+
+          note_text = `\n${note_text.trim()}`;
+        }
+
+        if (note_text !== undefined) {
+          paragraph_node.children[1].value = note_text;
+        }
+      }));
+  };
+}
+
 (async () => {
   const output_docs_dir = args.output_docs_dir;
   const shortcodeOptions = {
@@ -298,7 +329,8 @@ function transformBlockQuoteNotes() {
         .use(transformCodeBlock)
         .use(transformLinks, { output_docs_dir, f })
         .use(transformNodeLang, { f })
-        .use(transformBlockQuoteNotes)
+        .use(transformBlockQuoteNote)
+        .use(transformStrongNote)
         .process(content);
     const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 

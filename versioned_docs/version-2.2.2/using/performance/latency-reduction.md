@@ -95,10 +95,12 @@ spikes?
 If you believe that sibling creation problems could be responsible for
 latency issues in your cluster, you can start by checking the following:
 
-* If `allow_mult` is set to `true` for some or all of your buckets, be
+* If `
+  allow_mult` is set to `true` for some or all of your buckets, be
   sure that your application is correctly resolving siblings. Be sure to
-  read our documentation on [conflict resolution](../../developing/usage/conflict-resolution/index.md) for a fuller picture of how this can be done. **Note**: In Riak versions 2.0 and later, `allow_mult` is set to `true` by default for all bucket types that you create and activate.
+  read our documentation on [conflict resolution](../../developing/usage/conflict-resolution/index.md) for a fuller picture of how this can be done. :::note: In Riak versions 2.0 and later, `allow_mult` is set to `true` by default for all bucket types that you create and activate.
   If you wish to set `allow_mult` to `false` on a bucket type, you will have to do so explicitly.
+  :::
 * Application errors are a common source of problems with
   siblings. Updating the same key over and over without passing a
   [causal context](../../learn/concepts/causal-context.md) to Riak can cause sibling explosion. If this seems to be the issue, modify your application's [conflict resolution](../../developing/usage/conflict-resolution/index.md)
