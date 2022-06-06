@@ -82,8 +82,8 @@ async function createIndexFiles(dirents) {
 }
 
 async function configFileTreeChanges(dir) {
-  const versioned_renames = config.to_rename
-    .map(({ from, to }) => 
+  const versioned_renames = Object.entries(config.to_rename)
+    .map(([from, to]) =>
       versions.map(version => {
         const version_dir = `${dir}/${version}`;
         const from_path = join(version_dir, from);

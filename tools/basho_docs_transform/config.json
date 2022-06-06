@@ -1,11 +1,7 @@
 {
   "to_delete": ["downloads.md", "release-notes.md", "introduction.md", "setup/planning/bitcask-capacity-calc.md"],
-  "to_rename": [
-    {
-      "from": "/setup/planning/bitcask-capacity-calc.md",
-      "to": "/setup/planning/bitcask-capacity-calc.mdx"
-    }
-  ],
+  "to_rename": {
+  },
   "languages": {
     "names": {
       "advancedconfig": "advanced.config",
