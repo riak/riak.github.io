@@ -43,8 +43,12 @@ function transformCodeBlock() {
   return (tree) => {
     const inserts = [];
 
-    // Set counter 2 in order to skip the imports
+		// Don't re-import Tab and TabItem if already present
+		const includes_imports = tree.children
+			.map(child => child?.value)
+			.filter(value => value?.includes('import Tabs'));
 
+    // Set counter 2 in order to skip the imports
     let counter = 2;
     let non_code_sequence_gap = -1; // Set to -1 so that the gap is 0-indexed instead of 1
     let is_sequential = false;
@@ -68,10 +72,17 @@ function transformCodeBlock() {
 
       if (node.type === 'code' && previous?.type === 'code') {
         if (!any_sequences) {
-          // Always insert the imports on the first and second line
-          inserts.push({ index: 0, node: import_tab });
+					// Only attempt to import tabs on the first code tabs
+					if (!includes_imports) {
+						// Always insert the imports on the first and second line
+						inserts.push({ index: 0, node: import_tab });
 
-          inserts.push({ index: 1, node: import_tab_item });
+						inserts.push({ index: 1, node: import_tab_item });
+
+					} else {
+						// As were not importing tabs, set not to skip
+						counter = 0;
+					}
 
           any_sequences = true;
         }
