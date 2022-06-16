@@ -42,7 +42,7 @@ function Latest() {
 function Hug() {
   const alt = "A new version of Riak has been released! Yay!"
 
-  return <img src={require('@site/static/images/layout/hugs.png').default} alt={alt} title={alt} />;
+  return <img src={require('@site/static/images/hugs.png').default} alt={alt} title={alt} />;
 }
 
 function Link({ name, url }) {
