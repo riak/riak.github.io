@@ -9,7 +9,7 @@ const config = {
   title: 'Riak',
   tagline: 'Documentation for Riak KV 2.2.3+',
   url: 'https://www.riak.github.io',
-  baseUrl: '/',
+  baseUrl: '/riak_docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'images/branding/favicon.ico',
