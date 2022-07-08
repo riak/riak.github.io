@@ -14,6 +14,7 @@ function ReleaseNotes({ version_match }) {
   return <Link name="Release Notes" url={url} />;
 }
 
+/*
 function PackagesDownload({ version_match }) {
   if (version_match === null) {
     return <>No download link found</>;
@@ -28,6 +29,7 @@ function PackagesDownload({ version_match }) {
 
   return <Link name="Download" url={url} />;
 }
+*/
 
 function Latest() {
   return (
@@ -53,7 +55,7 @@ export default function Release({ latest, first, name, tarball_url, zipball_url,
   const version_match = tag_name.match(/riak-([0-9]+).([0-9]+)(.)?([0-9]+)?p?([0-9]+)?/);
   const latest_label = latest ? <Latest /> : <></>;
   const github = <Link name="GitHub" url={html_url} />;
-  const packages_download = <PackagesDownload version_match={version_match} />;
+  //const packages_download = <PackagesDownload version_match={version_match} />;
   const release_notes = <ReleaseNotes version_match={version_match} />;
   const source_tgz = <Link name="source .tgz" url={tarball_url} />;
   const source_zip = <Link name="source .zip" url={zipball_url} />;
@@ -65,7 +67,7 @@ export default function Release({ latest, first, name, tarball_url, zipball_url,
         <a className="hash-link" href={`#${tag_name}`} title="Direct link to heading"></a>
       </h1>
       {latest_label}
-      <p>{github} &#124; {packages_download} &#124; {release_notes} &#124; {source_tgz} &#124; {source_zip}</p>
+      <p>{github} &#124; {release_notes} &#124; {source_tgz} &#124; {source_zip}</p>
     </>
   );
 }
