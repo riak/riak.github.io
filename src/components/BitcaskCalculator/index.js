@@ -55,13 +55,9 @@ function abbreviateNumber(num) {
   if (num < 1000) return num;
 
   const i = parseInt(Math.floor(Math.log(num) / Math.log(1000)), 10);
+  const short = i === 0 ? num / Math.pow(1000, i) : (num / Math.pow(1000, i)).toFixed(1);
 
-  // use .round() if you don't want the decimal
-  return (
-    (i === 0 ? num / Math.pow(1000, i) : (num / Math.pow(1000, i)).toFixed(1)) +
-    " " +
-    sizes[i]
-  );
+  return `${short} ${sizes[i]}`;
 }
 
 function sizeOfNullBKP(bytesInAPtr) {
