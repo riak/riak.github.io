@@ -49,7 +49,7 @@ table below shows which Riak Data Type and Solr type we'll be using for
 each field in our Riak maps.
 
 | Info                                        | Riak Data Type | Solr type           |
-| :------------------------------------------ | :------------- | :------------------ |
+|:--------------------------------------------|:---------------|:--------------------|
 | Post title                                  | Register       | String              |
 | Post author                                 | Register       | String              |
 | Post content                                | Register       | Text                |

@@ -181,7 +181,7 @@ So if you're running a 3-node development cluster, a ring size of 64 or 128 shou
 The table below provides some suggested combinations:
 
 | Number of nodes | Number of data partitions |
-| :-------------- | :------------------------ |
+|:----------------|:--------------------------|
 | 3, 4, 5         | 64, 128                   |
 | 5               | 64, 128                   |
 | 6               | 64, 128, 256              |

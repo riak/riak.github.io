@@ -38,7 +38,7 @@ message RpbPutReq {
 #### Required Parameters
 
 | Parameter | Description                                                                                                                                                                                                            |
-| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bucket`  | The name of the bucket, in bytes, in which the key/value is to reside                                                                                                                                                  |
 | `content` | The new or updated contented of the object. Uses the same `RpbContent` message returned as part of an `RpbGetResp` message, documented in [PBC Fetch Object](../../../developing/api/protocol-buffers/fetch-object.md) |
 
@@ -55,7 +55,7 @@ a special value denoting `one` (`4294967295-1`), `quorum`
 :::note
 
 | Parameter       | Description                                                                                                                                                                                         |
-| :-------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `key`           | The key to create/update. If not specified, Riak will generate a random key and return that key as part of the response to that request.                                                            |
 | `vclock`        | Opaque vector clock provided by an earlier <code>[RpbGetResp](../../../learn/concepts/causal-context.md)</code> message. Omit if this is a new key or if you deliberately want to create a sibling. |
 | `w`             | Write quorum, i.e. how many replicas to write to before returning a successful response                                                                                                             |
