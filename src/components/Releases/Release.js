@@ -67,7 +67,7 @@ export default function Release({ latest, first, name, tarball_url, zipball_url,
         <a className="hash-link" href={`#${tag_name}`} title="Direct link to heading"></a>
       </h1>
       {latest_label}
-      <p>{github} &#124; {release_notes} &#124; {source_tgz} &#124; {source_zip}</p>
+      <p>{github} &#124; {release_notes}</p>
     </>
   );
 }
