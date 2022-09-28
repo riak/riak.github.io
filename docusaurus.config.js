@@ -28,6 +28,7 @@ const config = {
           remarkPlugins: [require('mdx-mermaid')],
           // Disable versioning if in dev mode and using the start:fast task OR using build:fast
           disableVersioning: (process.env.NODE_ENV === 'development' && !!process.env.START_FAST) || !!process.env.BUILD_FAST,
+          lastVersion: 'current',
           versions: {
             current: {
               label: require('./dev_version.json'),
