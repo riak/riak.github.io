@@ -2,12 +2,12 @@
 title: "v2 Replication Operations"
 id: cluster_operations_v2
 slug: v2-multi-datacenter
-sidebar_position: 10 
+sidebar_position: 10
 ---
 
 :::note Deprecation Warning
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../using/cluster-operations/v3-multi-datacenter.md) instead.
-:::note
+:::
 
 Riak Enterprise's Multi-Datacenter Replication system is largely
 controlled by the `riak-repl` command. The sections below detail the
@@ -192,7 +192,7 @@ restarting Riak Enterprise.
 | `[sitename]_ips`                 | Defines a replication site                                        |
 | `leader`                         | Which node is the current leader of the cluster                   |
 | `local_leader_message_queue_len` | The length of the object queue on the leader                      |
-| `local_leader_heap_size `        | The amount of memory the leader is using                          |
+| `local_leader_heap_size`         | The amount of memory the leader is using                          |
 
 ## Client Statistics
 

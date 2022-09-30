@@ -28,10 +28,8 @@ Finally, this document is organized to be able to lookup portions of a
 log message, since printing every variation would be a bit unwieldy. For
 example, this message:
 
-```
-12:34:27.999 [error] gen_server riak_core_capability terminated with reason:\
-no function clause matching orddict:fetch('riak@192.168.2.81', []) line 72
-```
+    12:34:27.999 [error] gen_server riak_core_capability terminated with reason:\
+    no function clause matching orddict:fetch('riak@192.168.2.81', []) line 72
 
 Starts with a date (`12:34:27.999`), followed by the log severity
 (`[error]`), with a message formatted by lager (found in the Lager table
@@ -55,7 +53,7 @@ orddict:fetch('riak@192.168.2.81', []) line 72`.
 
 | Error                                                                | Message                                                                   |
 |----------------------------------------------------------------------|---------------------------------------------------------------------------|
- | `gen_server <Mod> terminated with reason: <Reason>`                  |                                                                           |
+| `gen_server <Mod> terminated with reason: <Reason>`                  |                                                                           |
 | `gen_fsm <Mod> in state <State> terminated with reason: <Reason>`    |                                                                           |
 | `gen_event <ID> installed in <Mod> terminated with reason: <Reason>` |                                                                           |
 | `badarg`                                                             | `bad argument in call to <Mod1> in <Mod2>`                                |
@@ -126,7 +124,7 @@ encounters an invalid input:
 :::note Note on inputs
 Inputs must be a binary bucket, a tuple of bucket and key-filters, a list of
 target tuples, a search index, or modfun tuple: `INPUT`.
-:::note
+:::
 
 For the remaining common error codes, they are often marked by Erlang
 atoms (and quite often wrapped within an `{error,{badmatch,{...` tuple,
@@ -243,16 +241,16 @@ sensitive to low or corrupt disk or memory resources, native code, and
 configuration differences between nodes. Conversely, a network issue is
 unlikely to affect a backend.
 
-| Error                                                                | Message                                              | Description                                       | Resolution                                                                                                  |
-|:---------------------------------------------------------------------|:-----------------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| `data_root_not_set`                                                  |                                                      | Same as `data_root_unset`                         | Set the `data_root` directory in config                                                                     |
-| `data_root_unset`                                                    | `Failed to create bitcask dir: data_root is not set` | The `data_root` config setting is required        | Set `data_root` as the base directory where to store bitcask data, under the `bitcask` section              |
-| `{invalid_config_setting, multi_backend, list_expected}`             |                                                      | Multi backend configuration requires a list       | Wrap `multi_backend` config value in a list                                                                 |
-| `{invalid_config_setting, multi_backend, list_is_empty`}             |                                                      | Multi backend configuration requires a value      | Configure at least one backend under `multi_backend` in `app.config`                                        |
-| `{invalid_config_setting, multi_backend_default, backend_not_found}` |                                                      |                                                   | Must choose a valid backend type to configure                                                               |
-| `multi_backend_config_unset`                                         |                                                      | No configuration for Multi backend                | Configure at least one backend under `multi_backend` in `app.config`                                        |
-| `not_loaded`                                                         |                                                      | Native driver not loading                         | Ensure your native drivers exist (.dll or .so files {riak_kv_multi_backend, undefined_backend, BackendName} | | Backend defined for a bucket is invalid | Define a valid backed before using this bucket under lib/`project`/priv, where `project` is most likely eleveldb).
-| `reset_disabled`                                                     |                                                      | Attempted to reset a Memory backend in production | Don't use this in production                                                                                |
+| Error                                                                | Message                                              | Description                                       | Resolution                                                                                                  |     |                                         |                                                                                                                    |
+|:---------------------------------------------------------------------|:-----------------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------|-----|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| `data_root_not_set`                                                  |                                                      | Same as `data_root_unset`                         | Set the `data_root` directory in config                                                                     |     |                                         |                                                                                                                    |
+| `data_root_unset`                                                    | `Failed to create bitcask dir: data_root is not set` | The `data_root` config setting is required        | Set `data_root` as the base directory where to store bitcask data, under the `bitcask` section              |     |                                         |                                                                                                                    |
+| `{invalid_config_setting, multi_backend, list_expected}`             |                                                      | Multi backend configuration requires a list       | Wrap `multi_backend` config value in a list                                                                 |     |                                         |                                                                                                                    |
+| `{invalid_config_setting, multi_backend, list_is_empty`}             |                                                      | Multi backend configuration requires a value      | Configure at least one backend under `multi_backend` in `app.config`                                        |     |                                         |                                                                                                                    |
+| `{invalid_config_setting, multi_backend_default, backend_not_found}` |                                                      |                                                   | Must choose a valid backend type to configure                                                               |     |                                         |                                                                                                                    |
+| `multi_backend_config_unset`                                         |                                                      | No configuration for Multi backend                | Configure at least one backend under `multi_backend` in `app.config`                                        |     |                                         |                                                                                                                    |
+| `not_loaded`                                                         |                                                      | Native driver not loading                         | Ensure your native drivers exist (.dll or .so files {riak_kv_multi_backend, undefined_backend, BackendName} |     | Backend defined for a bucket is invalid | Define a valid backed before using this bucket under lib/`project`/priv, where `project` is most likely eleveldb). |
+| `reset_disabled`                                                     |                                                      | Attempted to reset a Memory backend in production | Don't use this in production                                                                                |     |                                         |                                                                                                                    |
 
 ### JavaScript
 
@@ -296,54 +294,54 @@ should not run across these.
 | `Phase <Fitting>: <Reason>`                                           | A general error when something happens using the Pipe MapReduce implementation with a bad argument or configuration | Can happen with a bad map or reduce implementation, most recent known gotcha is when a JavaScript function improperly deals with tombstoned objects |                                                                                                                                                                                                        |
 | `riak_kv_w_reduce requires a function as argument, not a <Type>`      | Reduce requires a function object, not any other type                                                               | This shouldn't happen                                                                                                                               |                                                                                                                                                                                                        |
 
- 
 ## Specific messages
 
 Although you can put together many error causes with the tables above,
 here are some common yet esoteric messages with known causes and
 solutions.
 
-| Message                                                                                                                                                                                            | Resolution                                                                                                                                                                                                                                                                                                                            |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| gen_server riak_core_capability terminated with reason: no function clause matching orddict:fetch('`Node`', [])                                                                                    | The Node has been changed, either through change of IP or `vm.args` `-name` without notifying the ring. Either use the `riak-admin cluster replace` command, or remove the corrupted ring files `rm -rf /var/lib/riak/ring/*` and rejoin to the cluster                                                                               |
-| gen_server <`PID`> terminated with reason: no function clause matching riak_core_pb:encode(`Args`) line 40                                                                                         | Ensure you do not have different settings on different nodes (for example, a ttl mem setting on one node's mem backend, and another without)                                                                                                                                                                                          |
-| monitor `busy_dist_port` `Pid` [...{almost_current_function,...]                                                                                                                                   | This message means distributed Erlang buffers are filling up. Try setting zdbbl higher in `vm.args`, such as `+zdbbl 16384`. Or check that your network is not slow. Or ensure you are not slinging large values. If a high bandwidth network is congested, try setting RTO_min down to 0 msec (or 1msec).                            |
-| <`PID`>@riak_core_sysmon___handler:handle_event:89 Monitor got {suppressed,port_events,1}                                                                                                          | Logged as info, you can add `+swt very_low` to your `vm.args`                                                                                                                                                                                                                                                                         |
-| (in LevelDB LOG files) Compaction error                                                                                                                                                            | Turn off the node and run repair on the LevelDB partition. See [Step 2](../repair-recovery/errors.md#more).                                                                                                                                                                                                                           |
-| enif_send: env==NULL on non-SMP VM/usr/lib/riak/lib/os_mon-2.2.9/priv/bin/memsup: Erlang has closed.                                                                                               | Riak's Erlang VM is built with SMP support and if Riak is started on a non-SMP system, an error like this one is logged. This is commonly seen in virtualized environments configured for only one CPU core.                                                                                                                          |
-| exit with reason bad return value: {error,eaddrinuse} in context start_error                                                                                                                       | An error like this example can occur when another process is already bound to the same address as the process being started is attempting to bind to. Use operating system tools like `netstat`, `ps`, and `lsof` to determine the root cause for resolving this kind of errors; check for existence of stale  `beam.smp` processes.  |
-| exited with reason: eaddrnotavail in gen_server:init_it/6 line 320                                                                                                                                 | An error like this example can result when Riak cannot bind to the addresses specified in the configuration. In this case, you should verify HTTP and Protocol Buffers addresses in `app.config` and ensure that the ports being used are not in the privileged (1-1024) range as the `riak` user will not have access to such ports. |
-| gen_server riak_core_capability terminated with reason: no function clause matching orddict:fetch('riak@192.168.2.2', []) line 72                                                                  | Error output like this example can indicate that a previously running Riak node with an original `-name` value in `vm.args` has been modified by simply changing the value in `vm.args` and not properly through `riak-admin cluster replace`.                                                                                        |
-| ** Configuration error: [FRAMEWORK-MIB]: missing context.conf file => generating a default file                                                                                                    | This error is commonly encountered when starting Riak Enterprise without prior [SNMP](../../using/reference/snmp.md) configuration.                                                                                                                                                                                                   |
-| RPC to 'node@example.com' failed: {'EXIT', {badarg, [{ets,lookup, [schema_table,<<"search-example">>], []} {riak_search_config,get_schema,1, [{file,"src/riak_search_config.erl"}, {line,69}]} ... | This error can be caused when attempting to use Riak Search without first enabling it in each node's `app.config`. See the [configuration files][config reference] documentation for more information on enabling Riak Search.                                                                                                        |
+| Message                                                                                                                                                                                              | Resolution                                                                                                                                                                                                                                                                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| gen_server riak_core_capability terminated with reason: no function clause matching orddict:fetch('`Node`', \[])                                                                                     | The Node has been changed, either through change of IP or `vm.args` `-name` without notifying the ring. Either use the `riak-admin cluster replace` command, or remove the corrupted ring files `rm -rf /var/lib/riak/ring/*` and rejoin to the cluster                                                                               |
+| gen_server &lt;`PID`> terminated with reason: no function clause matching riak_core_pb:encode(`Args`) line 40                                                                                        | Ensure you do not have different settings on different nodes (for example, a ttl mem setting on one node's mem backend, and another without)                                                                                                                                                                                          |
+| monitor `busy_dist_port` `Pid` [...{almost_current_function,...]                                                                                                                                     | This message means distributed Erlang buffers are filling up. Try setting zdbbl higher in `vm.args`, such as `+zdbbl 16384`. Or check that your network is not slow. Or ensure you are not slinging large values. If a high bandwidth network is congested, try setting RTO_min down to 0 msec (or 1msec).                            |
+| &lt;`PID`>@riak_core_sysmon\_\_\_handler:handle_event:89 Monitor got {suppressed,port_events,1}                                                                                                      | Logged as info, you can add `+swt very_low` to your `vm.args`                                                                                                                                                                                                                                                                         |
+| (in LevelDB LOG files) Compaction error                                                                                                                                                              | Turn off the node and run repair on the LevelDB partition. See [Step 2](../repair-recovery/errors.md#more).                                                                                                                                                                                                                           |
+| enif_send: env==NULL on non-SMP VM/usr/lib/riak/lib/os_mon-2.2.9/priv/bin/memsup: Erlang has closed.                                                                                                 | Riak's Erlang VM is built with SMP support and if Riak is started on a non-SMP system, an error like this one is logged. This is commonly seen in virtualized environments configured for only one CPU core.                                                                                                                          |
+| exit with reason bad return value: {error,eaddrinuse} in context start_error                                                                                                                         | An error like this example can occur when another process is already bound to the same address as the process being started is attempting to bind to. Use operating system tools like `netstat`, `ps`, and `lsof` to determine the root cause for resolving this kind of errors; check for existence of stale  `beam.smp` processes.  |
+| exited with reason: eaddrnotavail in gen_server:init_it/6 line 320                                                                                                                                   | An error like this example can result when Riak cannot bind to the addresses specified in the configuration. In this case, you should verify HTTP and Protocol Buffers addresses in `app.config` and ensure that the ports being used are not in the privileged (1-1024) range as the `riak` user will not have access to such ports. |
+| gen_server riak_core_capability terminated with reason: no function clause matching orddict:fetch('riak@192.168.2.2', \[]) line 72                                                                   | Error output like this example can indicate that a previously running Riak node with an original `-name` value in `vm.args` has been modified by simply changing the value in `vm.args` and not properly through `riak-admin cluster replace`.                                                                                        |
+| \*\* Configuration error: [FRAMEWORK-MIB]&#x3A; missing context.conf file => generating a default file                                                                                               | This error is commonly encountered when starting Riak Enterprise without prior [SNMP](../../using/reference/snmp.md) configuration.                                                                                                                                                                                                   |
+| RPC to 'node@example.com' failed: {'EXIT', {badarg, \[{ets,lookup, [schema_table,<<"search-example">>], \[]} {riak_search_config,get_schema,1, [{file,"src/riak_search_config.erl"}, {line,69}]} ... | This error can be caused when attempting to use Riak Search without first enabling it in each node's `app.config`. See the [configuration files][config reference] documentation for more information on enabling Riak Search.                                                                                                        |
 
 ### More
 
 1. Ensure node inter-communication
-  - Check `riak-admin member-status` and ensure the cluster is valid.
-  - Check `riak-admin ring-status` and ensure the ring and vnodes are communicating as expected.
-  - Ensure your machine does not have a firewall or other issue that prevents traffic to the remote node.
-  - Your remote `vm.args` `-setcookie` must be the same value for every node in the cluster.
-  - The `vm.args` `-name` value must not change after joining the node (unless you use `riak-admin cluster replace`).
+
+* Check `riak-admin member-status` and ensure the cluster is valid.
+* Check `riak-admin ring-status` and ensure the ring and vnodes are communicating as expected.
+* Ensure your machine does not have a firewall or other issue that prevents traffic to the remote node.
+* Your remote `vm.args` `-setcookie` must be the same value for every node in the cluster.
+* The `vm.args` `-name` value must not change after joining the node (unless you use `riak-admin cluster replace`).
 
 2. Run LevelDB compaction
-  1. `find . -name "LOG" -exec grep -l 'Compaction error' {} \;` *(Finding one compaction error is interesting, more than one might be a strong indication of a hardware or OS bug)*
-  2. Stop Riak on the node: `riak stop`
-  3. Start an Erlang session (do not start riak, we just want Erlang)
-  4. From the Erlang console perform the following command to open the LevelDB database
+3. `find . -name "LOG" -exec grep -l 'Compaction error' {} \;` *(Finding one compaction error is interesting, more than one might be a strong indication of a hardware or OS bug)*
+4. Stop Riak on the node: `riak stop`
+5. Start an Erlang session (do not start riak, we just want Erlang)
+6. From the Erlang console perform the following command to open the LevelDB database
 
-        ```erlang
-        [application:set_env(eleveldb, Var, Val) || {Var, Val} <-
-        [{max_open_files, 2000},
-        {block_size, 1048576},
-        {cache_size, 20*1024*1024*1024},
-        {sync, false},
-        {data_root, "/var/db/riak/leveldb"}]].
-        ```
-  5. For each of the corrupted LevelDB databases (found by `find . -name "LOG" -exec` | `grep -l 'Compaction error' {} \; `) run this command substituting in the proper vnode number.
+   ```erlang
+   [application:set_env(eleveldb, Var, Val) || {Var, Val} <-
+   [{max_open_files, 2000},
+   {block_size, 1048576},
+   {cache_size, 20*1024*1024*1024},
+   {sync, false},
+   {data_root, "/var/db/riak/leveldb"}]].
+   ```
+7. For each of the corrupted LevelDB databases (found by `find . -name "LOG" -exec` \| `grep -l 'Compaction error' {} \;`) run this command substituting in the proper vnode number.
 
-        ```erlang
-        eleveldb:repair("/var/db/riak/leveldb/442446784738847563128068650529343492278651453440", []).
-        ```
-  6. When all have finished successfully you may restart the node: `riak start`
-  7. Check for proper operation by looking at log files in /var/log/riak and in the LOG files in the effected LevelDB vnodes.
+   ```erlang
+   eleveldb:repair("/var/db/riak/leveldb/442446784738847563128068650529343492278651453440", []).
+   ```
+8. When all have finished successfully you may restart the node: `riak start`
+9. Check for proper operation by looking at log files in /var/log/riak and in the LOG files in the effected LevelDB vnodes.

@@ -1,21 +1,27 @@
 ---
 title: "Vnodes"
 id: learn_concepts_vnodes
-slug: vnodes 
-sidebar_position: 10 
+slug: vnodes
+sidebar_position: 10
 ---
 
-
 [concept causal context]: ../../learn/concepts/causal-context.md
-[concept clusters ring]: ../../learn/concepts/clusters.md#the-ring
-[concept replication]: ../../learn/concepts/replication.md
-[concept strong consistency]: ../../learn/concepts/strong-consistency.md
-[glossary node]: ../../learn/glossary.md#node
-[glossary ring]: ../../learn/glossary.md#ring
-[plan backend]: ../../setup/planning/backend
-[plan cluster capacity]: ../../setup/planning/cluster-capacity.md
-[use admin riak cli]: ../../using/admin/riak-cli.md
 
+[concept clusters ring]: ../../learn/concepts/clusters.md#the-ring
+
+[concept replication]: ../../learn/concepts/replication.md
+
+[concept strong consistency]: ../../learn/concepts/strong-consistency.md
+
+[glossary node]: ../../learn/glossary.md#node
+
+[glossary ring]: ../../learn/glossary.md#ring
+
+[plan backend]: ../../setup/planning/backend
+
+[plan cluster capacity]: ../../setup/planning/cluster-capacity.md
+
+[use admin riak cli]: ../../using/admin/riak-cli.md
 
 Virtual nodes, more commonly referred to as **vnodes**, are processes
 that manage partitions in the Riak [ring][glossary ring]. Each data
@@ -42,16 +48,14 @@ vnodes.
 The output of the [`riak-admin member-status`][use admin riak cli]
 command shows this:
 
-```
-================================= Membership ==================================
-Status     Ring    Pending    Node
--------------------------------------------------------------------------------
-valid      34.4%      --      'dev1@127.0.0.1'
-valid      32.8%      --      'dev2@127.0.0.1'
-valid      32.8%      --      'dev3@127.0.0.1'
--------------------------------------------------------------------------------
-Valid: 3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
-```
+    ================================= Membership ==================================
+    Status     Ring    Pending    Node
+    -------------------------------------------------------------------------------
+    valid      34.4%      --      'dev1@127.0.0.1'
+    valid      32.8%      --      'dev2@127.0.0.1'
+    valid      32.8%      --      'dev3@127.0.0.1'
+    -------------------------------------------------------------------------------
+    Valid: 3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 
 In this cluster, one node accounts for 34.4% of the ring, i.e. 22 out of
 64 partitions, while the other two nodes account for 32.8%, i.e. 21 out
@@ -126,16 +130,14 @@ each of the vnodes active on the local node. The output of this command
 consists of a series of reports on each active vnode. The report for a
 specific vnode should look something like this:
 
-```
-VNode: 1278813932664540053428224228626747642198940975104
-Backend: riak_kv_bitcask_backend
-Status:
-[{key_count, 275},
- {status,[{"./data/bitcask/1278813932664540053428224228626747642198940975104/2.bitcask.data",
-           0,0,335}]}]
-Status:
-{vnodeid,<<"ÅR±\vi80\f">>}
-```
+    VNode: 1278813932664540053428224228626747642198940975104
+    Backend: riak_kv_bitcask_backend
+    Status:
+    [{key_count, 275},
+     {status,[{"./data/bitcask/1278813932664540053428224228626747642198940975104/2.bitcask.data",
+               0,0,335}]}]
+    Status:
+    {vnodeid,<<"ÅR±\vi80\f">>}
 
 The meaning of each field is given in the table below.
 

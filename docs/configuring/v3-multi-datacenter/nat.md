@@ -1,7 +1,7 @@
 ---
 title: "With NAT"
 id: configuring_v3_replication_nat
-slug: nat 
+slug: nat
 sidebar_position: 1
 ---
 
@@ -41,15 +41,14 @@ NAT rules can be configured at runtime, from the command line.
 * Realtime NAT replication changes will be applied once realtime is
   stopped and started using the following command:
 
-    * `riak-repl realtime stop <clustername>`
-    * `riak-repl realtime start <clustername>`
+  * `riak-repl realtime stop <clustername>`
+  * `riak-repl realtime start <clustername>`
 
 * Fullsync NAT replication changes will be applied on the next run of a
   fullsync, or you can stop and start the current fullsync.
 
-    * `riak-repl fullsync stop <clustername>`
-    * `riak-repl fullsync start <clustername>`
-
+  * `riak-repl fullsync stop <clustername>`
+  * `riak-repl fullsync start <clustername>`
 
 ## Example
 

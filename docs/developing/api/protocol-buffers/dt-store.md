@@ -40,7 +40,7 @@ message DtUpdateReq {
 | Parameter | Description                                                                                                                                                                                                        |
 |:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                                                            |
-| `type`    | The bucket type of the bucket in which the Data Type is stored, _not_ the type of Data Type (i.e. counter, set, or map). Learn more about [using bucket types](../../../using/cluster-operations/bucket-types.md). |
+| `type`    | The bucket type of the bucket in which the Data Type is stored, *not* the type of Data Type (i.e. counter, set, or map). Learn more about [using bucket types](../../../using/cluster-operations/bucket-types.md). |
 
 Also required is a `DtOp` message that specifies which operation is to
 be performed, depending on whether the Data Type being updated is a
@@ -61,10 +61,10 @@ All of the optional parameters below have default values determined on a
 per-bucket basis. Please refer to the documentation on [setting bucket properties](./set-bucket-props.md) for more information.
 
 Furthermore, you can assign an integer value to the `w`, `dw`, `pr`, and
-`pw`, provided that that integer value is less than or equal to N, _or_
+`pw`, provided that that integer value is less than or equal to N, *or*
 a special value denoting `one` (`4294967295-1`), `quorum`
 (`4294967295-2`), `all` (`4294967295-3`), or `default` (`4294967295-4`).
-:::note
+:::
 
 | Parameter         | Description                                                                                                                                                           |
 |:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -85,7 +85,7 @@ The response to a Data Type update request is analogous to
 [`RpbPutResp`](../../../developing/api/protocol-buffers/store-object.md) for KV operations. If the
 `return_body` is set in the update request message (as explained above),
 the message will include the opaque context of the Data Type (`context`)
-and the new value of the Data Type _after_ the update has completed
+and the new value of the Data Type *after* the update has completed
 (depending on whether the Data Type is a counter, set, or map). If no
 key was specified in the update request, it will include the
 Riak-assigned key (`key`).

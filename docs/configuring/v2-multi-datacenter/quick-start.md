@@ -7,7 +7,7 @@ sidebar_position: 0
 
 :::note Deprecation Warning
 v2 Multi-Datacenter Replication is deprecated and will be removed in a future version. Please use [v3](../../configuring/v3-multi-datacenter/quick-start.md) instead.
-:::note
+:::
 
 The Riak Multi-Datacenter Replication Quick Start will walk you through
 the process of configuring Riak's version 2 Replication to perform
@@ -44,9 +44,11 @@ Configure Riak MDC to perform replication, given the following
 | `node5` | `192.168.1.22` | `riak@192.168.1.22` |
 | `node6` | `192.168.1.23` | `riak@192.168.1.23` |
 
-**Note**: The addresses used in these example clusters are contrived,
+:::note
+The addresses used in these example clusters are contrived,
 non-routable addresses. In real-world applications, however, these
 addresses would need to be routable over the public Internet.
+:::
 
 ## Set Up Cluster1 & Cluster2 Replication
 
@@ -83,10 +85,12 @@ clients where the Source Listeners are located with `riak-repl add-site <ipaddr>
 riak-repl add-site 172.16.1.11 9010 Cluster1
 ```
 
-**Note**: While a Listener needs to be added to each node, only a single
+:::note
+While a Listener needs to be added to each node, only a single
 Site needs to be added on the Site cluster. Once connected to the Source
 cluster, it will get the locations of the rest of the Listeners in the
 Source cluster.
+:::
 
 ### Verify the Replication Configuration
 
@@ -99,37 +103,33 @@ On the Cluster1 node, verify that there are `listener_<nodename>`s for
 each listening node, and that `leader` and `server_stats` are populated.
 They should look similar to the following:
 
-```
-listener_riak@172.16.1.11: "172.16.1.11:9010"
-listener_riak@172.16.1.12: "172.16.1.12:9010"
-listener_riak@172.16.1.13: "172.16.1.13:9010"
-leader: 'riak@172.16.1.11'
-server_stats: [{<8051.3939.0>,
-               {message_queue_len,0},
-               {status,[{site,"Cluster2"},
-                        {strategy,riak_repl_keylist_server},
-                        {fullsync_worker,<8051.3940.0>},
-                        {dropped_count,0},
-                        {queue_length,0},
-                        {queue_byte_size,0},
-                        {state,wait_for_partition}]}}]
-```
+    listener_riak@172.16.1.11: "172.16.1.11:9010"
+    listener_riak@172.16.1.12: "172.16.1.12:9010"
+    listener_riak@172.16.1.13: "172.16.1.13:9010"
+    leader: 'riak@172.16.1.11'
+    server_stats: [{<8051.3939.0>,
+                   {message_queue_len,0},
+                   {status,[{site,"Cluster2"},
+                            {strategy,riak_repl_keylist_server},
+                            {fullsync_worker,<8051.3940.0>},
+                            {dropped_count,0},
+                            {queue_length,0},
+                            {queue_byte_size,0},
+                            {state,wait_for_partition}]}}]
 
 On the Cluster2 node, verify that `Cluster1_ips`, `leader`, and
 `client_stats` are populated. They should look similar to the following:
 
-```
-Cluster1_ips: "172.16.1.11:9010, 172.16.1.12:9010, 172.16.1.13:9010"
-leader: 'riak@192.168.1.21'
-client_stats: [{<8051.3902.0>,
-               {message_queue_len,0},
-               {status,[{site,"Cluster1"},
-                        {strategy,riak_repl_keylist_client},
-                        {fullsync_worker,<8051.3909.0>},
-                        {put_pool_size,5},
-                        {connected,"172.16.1.11",9010},
-                        {state,wait_for_fullsync}]}}]
-```
+    Cluster1_ips: "172.16.1.11:9010, 172.16.1.12:9010, 172.16.1.13:9010"
+    leader: 'riak@192.168.1.21'
+    client_stats: [{<8051.3902.0>,
+                   {message_queue_len,0},
+                   {status,[{site,"Cluster1"},
+                            {strategy,riak_repl_keylist_client},
+                            {fullsync_worker,<8051.3909.0>},
+                            {put_pool_size,5},
+                            {connected,"172.16.1.11",9010},
+                            {state,wait_for_fullsync}]}}]
 
 ### Testing Realtime Replication
 
@@ -177,12 +177,10 @@ environment, such as IP addresses or ports.
 If you run this script and things are working as expected, you will get
 the following output:
 
-```
-C1 PUT Successful
-C1 to C2 consistent
-```
+    C1 PUT Successful
+    C1 to C2 consistent
 
-## Set Up Cluster2 &rarr; Cluster1 Replication
+## Set Up Cluster2 → Cluster1 Replication
 
 ### About Bidirectional Replication
 
@@ -223,38 +221,34 @@ status` command's output can be found in the documentation for
 On the Cluster1 node, verify that `Cluster2_ips`, `leader`, and
 `client_stats` are populated. They should look similar to the following:
 
-```
-Cluster2_ips: "192.168.1.21:9010, 192.168.1.22:9010, 192.168.1.23:9010"
-leader: 'riak@172.16.1.11'
-client_stats: [{<8051.3902.0>,
-               {message_queue_len,0},
-               {status,[{site,"Cluster2"},
-                        {strategy,riak_repl_keylist_client},
-                        {fullsync_worker,<8051.3909.0>},
-                        {put_pool_size,5},
-                        {connected,"192.168.1.21",9010},
-                        {state,wait_for_fullsync}]}}]
-```
+    Cluster2_ips: "192.168.1.21:9010, 192.168.1.22:9010, 192.168.1.23:9010"
+    leader: 'riak@172.16.1.11'
+    client_stats: [{<8051.3902.0>,
+                   {message_queue_len,0},
+                   {status,[{site,"Cluster2"},
+                            {strategy,riak_repl_keylist_client},
+                            {fullsync_worker,<8051.3909.0>},
+                            {put_pool_size,5},
+                            {connected,"192.168.1.21",9010},
+                            {state,wait_for_fullsync}]}}]
 
 On the Cluster2 node, verify that there are listener entries for each
 listening node, and that `leader` and `server_stats` are populated. They
 should look similar to the following:
 
-```
-listener_riak@192.168.1.21: "192.168.1.21:9010"
-listener_riak@192.168.1.22: "192.168.1.22:9010"
-listener_riak@192.168.1.23: "192.168.1.23:9010"
-leader: 'riak@192.168.1.21'
-server_stats: [{<8051.3939.0>,
-               {message_queue_len,0},
-               {status,[{site,"Cluster1"},
-                        {strategy,riak_repl_keylist_server},
-                        {fullsync_worker,<8051.3940.0>},
-                        {dropped_count,0},
-                        {queue_length,0},
-                        {queue_byte_size,0},
-                        {state,wait_for_partition}]}}]
-```
+    listener_riak@192.168.1.21: "192.168.1.21:9010"
+    listener_riak@192.168.1.22: "192.168.1.22:9010"
+    listener_riak@192.168.1.23: "192.168.1.23:9010"
+    leader: 'riak@192.168.1.21'
+    server_stats: [{<8051.3939.0>,
+                   {message_queue_len,0},
+                   {status,[{site,"Cluster1"},
+                            {strategy,riak_repl_keylist_server},
+                            {fullsync_worker,<8051.3940.0>},
+                            {dropped_count,0},
+                            {queue_length,0},
+                            {queue_byte_size,0},
+                            {state,wait_for_partition}]}}]
 
 ### Testing Realtime Replication
 
@@ -320,12 +314,10 @@ environment, such as IP addresses or ports.
 If you run this script and things are working as expected, you will get
 the following output:
 
-```
-C1 PUT Successful
-C2 PUT Successful
-C1 to C2 consistent
-C2 to C1 consistent
-```
+    C1 PUT Successful
+    C2 PUT Successful
+    C1 to C2 consistent
+    C2 to C1 consistent
 
 ## Fullsync
 
@@ -346,7 +338,7 @@ leader node:
 ```bash
 riak-repl start-fullsync
 ```
-  
+
 A fullsync operation may also be cancelled. If a partition is in
 progress, synchronization will stop after that partition completes.
 During cancellation, `riak-repl status` will show 'cancelled' in the
@@ -355,7 +347,7 @@ status.
 ```bash
 riak-repl cancel-fullsync
 ```
-  
+
 Fullsync operations may also be paused, resumed, or scheduled for
 certain times using cron jobs. A complete list of fullsync commands is
 available in the [MDC Operations][cluster ops v2 mdc] documentation.

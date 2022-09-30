@@ -13,11 +13,9 @@ import TabItem from '@theme/TabItem';
 Writes in Riak KV (storing or modifying objects) are like HTTP `PUT`
 requests. Here is the basic form of writes:
 
-```
-PUT /types/<type>/buckets/<bucket>/keys/<key>
+    PUT /types/<type>/buckets/<bucket>/keys/<key>
 
-# If you're using HTTP to interact with Riak, you can also use POST
-```
+    # If you're using HTTP to interact with Riak, you can also use POST
 
 As an example, let's store an object containing information about a dog named Rufus. We'll store that object in the key `rufus` in the bucket `dogs`, which bears the `animals` [bucket type](../../using/cluster-operations/bucket-types.md).
 
@@ -86,7 +84,7 @@ var result = client.Put(obj);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -148,14 +146,12 @@ Your application will often have its own method of generating the keys
 for its data, e.g. on the basis of timestamps. If so, storing that data
 is easy. The basic request looks like this.
 
-```
-PUT /types/TYPE/buckets/BUCKET/keys/KEY
+    PUT /types/TYPE/buckets/BUCKET/keys/KEY
 
-# If you're using HTTP, POST can be used instead of PUT. The only
-# difference between POST and PUT is that you should POST in cases where
-# you want Riak to auto-generate a key. More on this can be found in the
-# examples below.
-```
+    # If you're using HTTP, POST can be used instead of PUT. The only
+    # difference between POST and PUT is that you should POST in cases where
+    # you want Riak to auto-generate a key. More on this can be found in the
+    # examples below.
 
 There is no need to intentionally create buckets in Riak. They pop into
 existence when keys are added to them, and disappear when all keys have
@@ -238,7 +234,7 @@ var result = client.Put(obj, options);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -299,7 +295,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \
@@ -392,7 +388,7 @@ var result = client.Put(obj, options);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var riakObj = new Riak.Commands.KV.RiakObject();
@@ -456,7 +452,7 @@ if err := cluster.Execute(cmd); err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \
@@ -474,9 +470,7 @@ If your application would rather leave key-generation up to Riak, issue
 a `POST` request to the bucket URL instead of a PUT to a bucket/key
 pair:
 
-```
-POST /types/TYPE/buckets/BUCKET/keys
-```
+    POST /types/TYPE/buckets/BUCKET/keys
 
 If you don't pass Riak a `key` name after the bucket, it will know to
 create one for you.
@@ -570,7 +564,7 @@ Debug.WriteLine(format: "Generated key: {0}", args: rslt.Value.Key);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var user = {
@@ -644,7 +638,7 @@ fmt.Printf("Generated key: %v\n", rsp.GeneratedKey)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -i -XPOST \

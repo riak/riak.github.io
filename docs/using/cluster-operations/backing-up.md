@@ -6,11 +6,17 @@ sidebar_position: 6
 ---
 
 [concept clusters]: ../../learn/concepts/clusters.md
+
 [config reference]: ../../configuring/reference.md
+
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
+
 [plan backend bitcask]: ../../setup/planning/backend/bitcask.md
+
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
+
 [concept aae]: ../../learn/concepts/active-anti-entropy.md
+
 [aae read repair]: ../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy
 
 Riak KV is a [clustered][concept clusters] system built to survive a wide range of failure scenarios, including the loss of nodes due to network or hardware failure. Although this is one of Riak KV's core strengths, it cannot withstand all failure scenarios.
@@ -37,7 +43,7 @@ Downtime of a node can be significantly reduced by using an OS feature or filesy
 Due to Riak KV's eventually consistent nature, backups can become slightly inconsistent from node to node.
 
 Data could exist on some nodes and not others at the exact time a backup is made. Any inconsistency will be corrected once a backup is restored, either by Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) processes or when the object is read, via [read repair](../../learn/concepts/active-anti-entropy.md#read-repair-vs-active-anti-entropy).
-:::note
+:::
 
 ## OS-Specific Directory Locations
 
@@ -91,8 +97,10 @@ The default Riak KV data, ring, and configuration directories for each of the su
 | Search             | `./data/riak/yz`           |
 | Strong consistency | `./data/ensembles`         |
 
-**Note**: OS X paths are relative to the directory in which the package
+:::note
+OS X paths are relative to the directory in which the package
 was extracted.
+:::
 
 #### SmartOS
 
@@ -123,7 +131,7 @@ was extracted.
 :::note Deprecation notice
 In previous versions of Riak KV, there was a [`riak-admin backup`](../../using/admin/riak-admin.md#backup) command commonly used for
 backups. This functionality is now deprecated. We strongly recommend using the backup procedure documented below instead.
-:::note
+:::
 
 Backups can be accomplished through a variety of common methods. Standard utilities such `cp`, `rsync`, and `tar` can be used, as well as any backup system already in place in your environment.
 
@@ -134,7 +142,7 @@ The following examples use `tar`:
 
 :::note
 Backups must be performed on while Riak KV is stopped to prevent data loss.
-:::note
+:::
 
 ### Bitcask
 
@@ -202,40 +210,40 @@ additionally:
 
 :::note
 For more information on the `riak-admin cluster` commands, refer to our documentation on [cluster administration](../../using/admin/index.md).
-:::note
+:::
 
 For example, if there are five nodes in the cluster with the original node names `riak1.example.com` through `riak5.example.com` and you wish to restore `riak1.example.com` as `riak6.example.com`, you would execute the following commands on `riak6.example.com`.
 
 1. Join to any existing cluster node.
 
-    ```bash
-    riak-admin cluster join riak@riak2.example.com
-    ```
+   ```bash
+   riak-admin cluster join riak@riak2.example.com
+   ```
 
 2. Mark the old instance down.
 
-    ```bash
-    riak-admin down riak@riak1.example.com
-    ```
+   ```bash
+   riak-admin down riak@riak1.example.com
+   ```
 
 3. Force-replace the original instance with the new one.
 
-    ```bash
-    riak-admin cluster force-replace \
-        riak@riak1.example.com riak@riak6.example.com
-    ```
+   ```bash
+   riak-admin cluster force-replace \
+       riak@riak1.example.com riak@riak6.example.com
+   ```
 
 4. Display and review the cluster change plan.
 
-    ```bash
-    riak-admin cluster plan
-    ```
+   ```bash
+   riak-admin cluster plan
+   ```
 
 5. Commit the changes to the cluster.
 
-    ```bash
-    riak-admin cluster commit
-    ```
+   ```bash
+   riak-admin cluster commit
+   ```
 
 Your [configuration files][config reference] should also be changed to match the new name in addition to running the commands (the `-name` setting in `vm.args` in the older config system, and the `nodename` setting in `riak.conf` in the newer system).
 
@@ -248,7 +256,7 @@ and for any other nodes whose names have changed:
 
 1. Verify that the correct name is present your configuration file.
 2. Once the node is started, run `riak attach` to connect to the node. The prompt obtained should contain the correct node name.
-    - (It may be necessary to enter an Erlang atom by       typing `x.` and pressing Enter)
+   * (It may be necessary to enter an Erlang atom by       typing `x.` and pressing Enter)
 3. Disconnect from the attached session with **Ctrl-G + q**.
 4. Finally, run `riak-admin member_status` to list all of the nodes and verify that all nodes listed have the correct names.
 

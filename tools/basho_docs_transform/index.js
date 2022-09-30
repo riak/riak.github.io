@@ -1,24 +1,150 @@
-const { resolve, extname, basename, dirname } = require('path');
+const { resolve, extname, basename, dirname, parse, join } = require('path');
 const { readdir, writeFile } = require('fs').promises;
 const { copySync, ensureDir, remove } = require('fs-extra');
 const util = require('util');
-const args = require('minimist')(process.argv.slice(2), { boolean: 'keep_drafts' });
+const args = require('minimist')(process.argv.slice(2), { boolean: ['keep_drafts', 'full_logs'] });
+const mv = require('mv');
 const yamlFront = require('yaml-front-matter');
 const remark = require('remark');
 const visit = require('unist-util-visit');
 const { shortcodes } = require('remark-hugo-shortcodes');
+const { transformCodeBlock } = require('./code_blocks.js');
+const docs_metadata = require('./docs_metadata.json');
+const config = require('./config.json');
+const versions = require('../../versions.json');
 
 const drafts = [];
 const redirects = [];
 const no_front_matters = [];
 
+async function getDirEnts(dir) {
+  return (await readdir(dir, { withFileTypes: true }))
+    .map(dirent => ({ dirent, f: resolve(dir, dirent.name) }));
+}
+
+function getDocMetadata(output_docs_dir, f) {
+  // Split on the output path and an option version number (MAJOR.MINOR.PATH) with a trailing slash
+  const path_match_regex = new RegExp(`${output_docs_dir}(?:\\d\\.\\d\\.\\d)?/`);
+  const [, file_path] = f.split(path_match_regex);
+
+  return docs_metadata[file_path]; 
+}
+
+function generateMetadata(output_docs_dir, f, parsed) {
+  const doc_metadata = getDocMetadata(output_docs_dir, f);
+
+  if (args.full_logs) {
+    console.log(`Generating matadata for ${f}`);
+  }
+
+  if (doc_metadata !== undefined) {
+    const title = `"${doc_metadata.title}"`;
+    const id = doc_metadata.id;
+    const slug = doc_metadata.slug;
+    const sidebar_position = doc_metadata.sidebar_position;
+
+    return {
+      ...(title !== undefined && { title }),
+      ...(id !== undefined && { id }),
+      ...(slug !== undefined && { slug }),
+      ...(sidebar_position !== undefined && { sidebar_position }),
+    };
+  }
+
+  const version = parsed.project_version;
+  const title = `"${parsed.title}"`;
+  const id = parsed.menu?.[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
+
+  return { title, id };
+}
+
+async function createIndexFiles(dirents) {
+  const directories = dirents.filter(({ dirent }) => dirent.isDirectory());
+  const markdown_files = dirents.filter(({ f }) => extname(f) === '.md');
+
+  for (const { f: file, } of markdown_files) {
+    const file_name = parse(file).name;
+
+    for (const { f: dir } of directories) {
+      if (file_name !== basename(dir)) {
+        continue;
+      }
+
+      const moved_file_name = join(dir, 'index.md');
+
+      if (args.full_logs) {
+        console.log(`Moving ${file} to ${basename(dir)} (${moved_file_name})`);
+      }
+
+      mv(file, moved_file_name, { mkdirp: true }, () => {});
+    }
+  }
+}
+
+async function configFileTreeChanges(dir) {
+  const versioned_renames = Object.entries(config.to_rename)
+    .map(([from, to]) =>
+      versions.map(version => {
+        const version_dir = `${dir}/${version}`;
+        const from_path = join(version_dir, from);
+        const to_path = join(dir, to);
+
+        return { from_path, to_path };
+    }))
+    .flat();
+  
+  const versioned_deletes = config.to_delete
+    .map(file_path => versions.map(version => join(`${dir}/${version}`, file_path)))
+    .flat();
+
+  await Promise.all(versioned_renames.map(async ({ from_path, to_path }) => {
+    if (args.full_logs) {
+      console.log(`Renaming ${from_path} to ${to_path}`);
+    }
+
+    mv(from_path, to_path, { mkdirp: true }, () => {});
+  }));
+
+  return Promise.all(versioned_deletes.map(async file_path => { 
+    if (args.full_logs) {
+      console.log(`Deleting ${file_path}`);
+    }
+
+    await remove(file_path);
+  }));
+}
+
+function fixLink(f, node, name, doc_metadata) {
+  if (doc_metadata?.links === undefined) {
+    return;
+  }
+
+  const found_definition = doc_metadata.links[name];
+
+  if (found_definition !== undefined) {
+    if (args.full_logs) {
+      console.log(`Link ${f}[${name}]: ${node.url} -> ${found_definition}`);
+    }
+
+    node.url = found_definition;
+
+    return;
+  }
+
+  if (args.full_logs) {
+    console.log(`Unknown changd link ${f}[${name}]: ${node.url}`);
+  }
+}
+
 // Modified from this Stack Overflow answer: https://stackoverflow.com/a/45130990
 async function* getMarkdownFiles(dir) {
-  const dirents = await readdir(dir, { withFileTypes: true });
+  // We need the intial dirents before moving
+  await createIndexFiles(await getDirEnts(dir));
 
-  for (const dirent of dirents) {
-    const f = resolve(dir, dirent.name);
+  // We need the updated dirents after moving files around
+  const dirents = await getDirEnts(dir);
 
+  for (const { dirent, f } of dirents) {
     if (dirent.isDirectory()) {
         yield* getMarkdownFiles(f);
     }
@@ -76,65 +202,104 @@ function transformShortcodes(tree) {
   };
 }
 
-function transformCodeToTabs(tree) {
+function transformLinks({ output_docs_dir, f }) {
+  const doc_metadata = getDocMetadata(output_docs_dir, f);
+
   return tree => {
-    const repeated_code = [];
+    if (doc_metadata === undefined) {
+      return tree;
+    }
 
-    let num_sections = 0;
+    visit(tree, 'definition', node => fixLink(f, node, node.identifier, doc_metadata));
 
-    tree.children.forEach((child, i) => {
-      if (child.type !== 'code') {
-        if (repeated_code[num_sections] !== undefined) {
-          num_sections++;
+    visit(tree, 'link', node => {
+      const name = node.children[0]?.value; 
+
+      fixLink(f, node, name, doc_metadata);
+    });
+  };
+}
+
+function transformNodeLang({ f }) {
+  return tree => {
+    visit(tree, 'code', node => {
+      const new_block_lang = config.languages.to_rename?.[node.lang];
+
+      if (new_block_lang !== undefined) {
+        if (args.full_logs) {
+          console.log(`Renaming language (${f}) ${node.lang} -> ${new_block_lang}`);
         }
 
-        return;
+        node.lang = new_block_lang;
       }
-
-      repeated_code[num_sections] ??= [];
-
-      repeated_code[num_sections].push({ node_index: i, node: child });
     });
+  };
+}
 
-    const new_tree = repeated_code.map(repeated_section => {
-      const first_index = repeated_section[0].node_index;
-      const last_index = repeated_section[repeated_section.length - 1].node_index;
-      const nodes = repeated_section.map(({ node }) => node);
-      const transformed = [{ type: 'html', value: '<Tabs>' }];
+function transformBlockQuoteNote() {
+  return tree => {
+    visit(tree, 'blockquote', node => {
+      visit(node?.children[0], 'strong', strong_node =>
+        visit(strong_node, 'text', text_node => {
+          const paragraph = node.children[0].children?.[1];
+          const paragraph_text = paragraph?.value.replace(/^:/, '');
+          const lower = text_node.value.toLowerCase();
 
-      nodes.forEach((node, i) => {
-        const lang = node.lang;
-        const label = lang !== null ? ` label='${lang[0].toUpperCase()}${lang.slice(1).toLowerCase()}"` : '';
-        const value = lang !== null ? ` value="${lang.toLowerCase()}"` : '';
-        const default_attribute = i === 0 ? ' default' : '';
-        const heading = `<TabItem${label}${value}${default_attribute}>`;
-        const opening = { type: 'html', value: heading };
-        const closing = { type: 'html', value: '</TabItem>' };
+          if (lower.includes('note')) {
+            const node_index = tree.children.indexOf(node);
+            const children = node.children;
+            
+            // Don't include the value if is is just 'note'
+            const value = lower.trim() === 'note' ? '' : text_node.value;
 
-        transformed.push(opening);
+            strong_node.type = 'paragraph';
 
-        transformed.push(node);
+            text_node.value = `:::note ${value}`;
+            
+            // Only insert the closing colons if a newline is present 
+            if (paragraph_text?.includes('\n') || paragraph_text === '' || paragraph === undefined) {
+              children.push({ type: 'text', value: ':::' });
+            }
 
-        transformed.push(closing);
-      });
+            if (paragraph?.value) {
+              paragraph.value = paragraph_text;
+            }
 
-      transformed.push({ type: 'html', value: '</Tabs>' });
-
-      return { transformed, first_index, last_index };
+            tree.children.splice(node_index, 1, ...children);
+          }
+        }));
     });
+  };
+}
 
-    let previous_section_end = 0;
+function transformStrongNote() {
+  return tree => {
+    visit(tree, 'paragraph', paragraph_node =>
+      visit(paragraph_node, 'strong', strong_node => {
+        const strong_text = strong_node.children[0]?.value.toLowerCase();
 
-    const new_children = new_tree.map(({ transformed, first_index, last_index }) => {
-      const previous_sections = tree.children
-        .filter((_node, i) => i >= previous_section_end && i < first_index);
+        if (strong_text !== 'note') {
+          return;
+        }
 
-      previous_section_end = last_index + 1;
+				const any_new_lines = paragraph_node.children.some(child => child?.value?.includes('\n'));
 
-      return previous_sections.concat(transformed);
-    }).flat();
+        let note_text = paragraph_node.children[1]?.value?.replace(/^:/, '');
 
-    tree.children = new_children;
+        strong_node.type = 'text';
+        strong_node.value = `:::note`;
+        strong_node.children = [];
+
+        if (any_new_lines) {
+          paragraph_node.children.push({ type: 'text', value: '\n:::' });
+
+          note_text = `\n${note_text.trim()}`;
+        }
+
+        if (note_text !== undefined) {
+          paragraph_node.children[1].value = note_text;
+        }
+      }));
   };
 }
 
@@ -150,17 +315,24 @@ function transformCodeToTabs(tree) {
 
   copySync(args.input_docs_dir, output_docs_dir);
 
+  await configFileTreeChanges(output_docs_dir);
+
   for await (const { f, parsed } of getMarkdownFiles(output_docs_dir)) {
-    const title = parsed.title;
-    const version = parsed.project_version;
-    const id = parsed.menu[`riak_kv-${version}`]?.identifier ?? title.toLocaleLowerCase().replace(/ /g, '_');
+    const metadata = Object.entries(generateMetadata(output_docs_dir, f, parsed))
+      .map(([meta_item, value]) => `${meta_item}: ${value}`)
+      .join('\n');
     const content = parsed.__content;
     const parsedContent = await remark()
+        .data('settings', { bullet: '*', emphasis: '*', strong: '*', listItemIndent: '1' })
         .use(shortcodes, shortcodeOptions)
         .use(transformShortcodes)
-        .use(transformCodeToTabs)
+        .use(transformCodeBlock)
+        .use(transformLinks, { output_docs_dir, f })
+        .use(transformNodeLang, { f })
+        .use(transformBlockQuoteNote)
+        .use(transformStrongNote)
         .process(content);
-    const output = `---\ntitle: ${title}\nid: ${id}\n---\n${parsedContent}`;
+    const output = `---\n${metadata}\n---\n\n${parsedContent}`;
 
     await writeFile(f, output);
   }

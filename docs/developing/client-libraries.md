@@ -10,19 +10,21 @@ sidebar_position: 5
 Basho officially supports a number of open-source client libraries for a
 variety of programming languages and environments.
 
-| Language | Source                                                                    | Documentation                                                                                                        | Download                                                                                                                                |
-|:---------|:--------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|
-| Java     | [riak-java-client](https://github.com/basho/riak-java-client)             | [javadoc](http://basho.github.com/riak-java-client), [wiki](https://github.com/basho/riak-java-client/wiki)          | [Maven Central](http://search.maven.org/?#search%7Cgav%7C1%7Cg%3A%22com.basho.riak%22%20AND%20a%3A%22riak-client%22)                    |
-| Ruby     | [riak-ruby-client](https://github.com/basho/riak-ruby-client)             | [GitHub Pages](http://basho.github.io/riak-ruby-client/)                                                             | [RubyGems](https://rubygems.org/gems/riak-client)                                                                                       |
-| Python   | [riak-python-client](https://github.com/basho/riak-python-client)         | [sphinx](http://basho.github.com/riak-python-client)                                                                 | [PyPI](http://pypi.python.org/pypi?:action=display&name=riak#downloads)                                                                 |
-| C#       | [riak-dotnet-client](https://github.com/basho/riak-dotnet-client)         | [api docs](http://basho.github.io/riak-dotnet-client-api/), [wiki](https://github.com/basho/riak-dotnet-client/wiki) | [NuGet package](http://www.nuget.org/List/Packages/RiakClient), [GitHub Releases](https://github.com/basho/riak-dotnet-client/releases) |
-| Node.js  | [riak-nodejs-client](https://github.com/basho/riak-nodejs-client)         | [api docs](http://basho.github.com/riak-nodejs-client/), [wiki](https://github.com/basho/riak-nodejs-client/wiki)    | [NPM](https://www.npmjs.com/package/basho-riak-client), [GitHub Releases](https://github.com/basho/riak-nodejs-client/releases)         |
-| PHP      | [riak-php-client](https://github.com/basho/riak-php-client)               | [apigen](http://basho.github.io/riak-php-client)                                                                     |                                                                                                                                         |
-| Erlang   | [riak-erlang-client (riakc)](https://github.com/basho/riak-erlang-client) | [edoc](http://basho.github.com/riak-erlang-client/)                                                                  | [GitHub](https://github.com/basho/riak-erlang-client)                                                                                   |
-| Go       | [riak-go-client](https://github.com/basho/riak-go-client)                 | [GoDoc](https://godoc.org/github.com/basho/riak-go-client)                                                           | [GitHub](https://github.com/basho/riak-go-client)                                                                                       |
+| Language | Source                                                                    | Documentation                                                                                                     | Download                                                                                                                                |
+|:---------|:--------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|
+| Java     | [riak-java-client](https://github.com/basho/riak-java-client)             | [javadoc](http://basho.github.com/riak-java-client), [wiki](https://github.com/basho/riak-nodejs-client/wiki)     | [Maven Central](http://search.maven.org/?#search%7Cgav%7C1%7Cg%3A%22com.basho.riak%22%20AND%20a%3A%22riak-client%22)                    |
+| Ruby     | [riak-ruby-client](https://github.com/basho/riak-ruby-client)             | [GitHub Pages](http://basho.github.io/riak-ruby-client/)                                                          | [RubyGems](https://rubygems.org/gems/riak-client)                                                                                       |
+| Python   | [riak-python-client](https://github.com/basho/riak-python-client)         | [sphinx](http://basho.github.com/riak-python-client)                                                              | [PyPI](http://pypi.python.org/pypi?:action=display&name=riak#downloads)                                                                 |
+| C#       | [riak-dotnet-client](https://github.com/basho/riak-dotnet-client)         | [api docs](http://basho.github.com/riak-nodejs-client/), [wiki](https://github.com/basho/riak-nodejs-client/wiki) | [NuGet package](http://www.nuget.org/List/Packages/RiakClient), [GitHub Releases](https://github.com/basho/riak-nodejs-client/releases) |
+| Node.js  | [riak-nodejs-client](https://github.com/basho/riak-nodejs-client)         | [api docs](http://basho.github.com/riak-nodejs-client/), [wiki](https://github.com/basho/riak-nodejs-client/wiki) | [NPM](https://www.npmjs.com/package/basho-riak-client), [GitHub Releases](https://github.com/basho/riak-nodejs-client/releases)         |
+| PHP      | [riak-php-client](https://github.com/basho/riak-php-client)               | [apigen](http://basho.github.io/riak-php-client)                                                                  |                                                                                                                                         |
+| Erlang   | [riak-erlang-client (riakc)](https://github.com/basho/riak-erlang-client) | [edoc](http://basho.github.com/riak-erlang-client/)                                                               | [GitHub](https://github.com/basho/riak-go-client)                                                                                       |
+| Go       | [riak-go-client](https://github.com/basho/riak-go-client)                 | [GoDoc](https://godoc.org/github.com/basho/riak-go-client)                                                        | [GitHub](https://github.com/basho/riak-go-client)                                                                                       |
 
-**Note**: All official clients use the integrated issue tracker on
+:::note
+All official clients use the integrated issue tracker on
 GitHub for bug reporting.
+:::
 
 In addition to the official clients, Basho provides some unofficial
 client libraries, listed below.
@@ -41,7 +43,7 @@ and send us a pull request.
 All of these projects and libraries are at various stages of completeness and
 may not suit your application's needs based on their level of maturity and
 activity.
-:::note
+:::
 
 ### Client Libraries and Frameworks
 
@@ -73,7 +75,7 @@ activity.
 #### ColdFusion
 
 * [Riak-Cache-Extension](https://github.com/getrailo/Riak-Cache-Extension)
-  --- A Riak-backed cache extension for Railo/ColdFusion
+  \--- A Riak-backed cache extension for Railo/ColdFusion
 
 #### Common Lisp
 
@@ -88,9 +90,9 @@ activity.
 #### Django (Python)
 
 * [django-riak-sessions](https://github.com/flashingpumpkin/django-riak-sessions)
-  --- Riak-based Session Backend for Django
+  \--- Riak-based Session Backend for Django
 * [Django Riak Engine](https://github.com/oubiwann/django-riak-engine)
-  --- A Riak backend for Django
+  \--- A Riak backend for Django
 
 #### Erlang
 
@@ -116,7 +118,7 @@ activity.
   Protocol Buffer Client
 * [goriakpbc](https://github.com/tpjg/goriakpbc) --- A Golang Riak
   client inspired by the Ruby riak-client from Basho and riakpbc from mrb
-* [riakpbc](https://github.com/mrb/riakpbc) --- A Riak Protocol Buffer
+* [riakpbc](https://github.com/nlf/riakpbc) --- A Riak Protocol Buffer
   client in Go
 * [goriak](https://github.com/zegl/goriak) --- Go language driver for Riak KV
 
@@ -137,14 +139,14 @@ activity.
 #### Haskell
 
 * [Riak Haskell Client](https://github.com/markhibberd/riak-haskell-client)
-  --- A fast Haskell client library from the team at MailRank.
+  \--- A fast Haskell client library from the team at MailRank.
 
 #### Java
 
 * [Riak-Java-PB-Client](http://github.com/krestenkrab/riak-java-pb-client)
-  --- Java Client Library for Riak based on the Protocol Buffers API
+  \--- Java Client Library for Riak based on the Protocol Buffers API
 * [Asynchronous Riak Java Client](https://github.com/jbrisbin/riak-async-java-client)
-  --- Asynchronous, NIO-based Protocol Buffers client for Riak
+  \--- Asynchronous, NIO-based Protocol Buffers client for Riak
 * [Riak Module for the Play
   Framework](http://www.playframework.org/modules/riak-head/home)
 
@@ -172,7 +174,7 @@ activity.
   [resourceful](https://github.com/flatiron/resourceful/) model
   framework from [flatiron](https://github.com/flatiron/)
 * [Connect-Riak](https://github.com/frank06/connect-riak) --- Riak
-  session store for Connect backed by [Riak-js](http://riakjs.org/)
+  session store for Connect backed by [Riak-js](http://riakjs.com)
 * [Riak-js](http://riakjs.com) --- Node.js client for Riak with support
   for HTTP and Protocol Buffers
 * [Riakjs-model](https://github.com/dandean/riakjs-model) --- a model
@@ -204,7 +206,7 @@ activity.
 * [Net::Riak](http://search.cpan.org/~franckc/Net-Riak/) --- A Perl
   interface to Riak
 * [AnyEvent-Riak adapter](http://github.com/franckcuny/anyevent-riak)
-  --- Non-blocking Riak adapter using anyevent
+  \--- Non-blocking Riak adapter using anyevent
 * [riak-tiny](https://github.com/tempire/riak-tiny) --- Perl interface
   to Riak without Moose
 * [Riak::Light](https://metacpan.org/module/Riak::Light) --- Fast and
@@ -230,7 +232,7 @@ activity.
 #### Python
 
 * [Aioriak](https://github.com/rambler-digital-solutions/aioriak) 
-  --- Asyncio PBC Riak 2.0+ client library. (Based on official Basho 
+  \--- Asyncio PBC Riak 2.0+ client library. (Based on official Basho 
   python client)
 * [Riakasaurus](https://github.com/calston/riakasaurus) --- A Riak
   client library for Twisted (based on txriak)
@@ -287,6 +289,6 @@ activity.
 * [Phriak](http://www.squeaksource.com/Phriak/) --- A Riak client for
   Pharo Smalltalk based on Runar Jordahl's EpigentRiakInterface
 * [EpigentRiakInterface](http://www.squeaksource.com/EpigentRiakInterface/)
-  --- A Pharo Smalltalk interface to Riak. There is also a blog post
+  \--- A Pharo Smalltalk interface to Riak. There is also a blog post
   with some additional info about the client
   [here](http://blog.epigent.com/2011/03/riak-interface-for-pharo-smalltalk.html).

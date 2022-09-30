@@ -36,7 +36,7 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      description="Documentation for Riak KV 2.2.3+">
+      description="Documentation for Riak KV">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

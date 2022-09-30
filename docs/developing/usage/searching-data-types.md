@@ -1,7 +1,7 @@
 ---
 title: "Searching with Data Types"
 id: usage_search_data_types
-slug: searching-data-types 
+slug: searching-data-types
 sidebar_position: 11
 ---
 
@@ -203,7 +203,7 @@ var rslt = client.PutSearchIndex(idx);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -222,7 +222,7 @@ riakc_pb_socket:create_search_index(Pid, <<"scores">>, <<"_yz_default">>, []).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/hobbies \
@@ -335,7 +335,7 @@ rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var funcs = [
@@ -391,7 +391,7 @@ riakc_pb_socket:update_type(Pid,
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # We do not recommend working with Riak Data Types via curl. Try using
@@ -463,7 +463,7 @@ Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -583,7 +583,7 @@ Console.WriteLine("Key: {0} Bucket: {1} Type: {2}",
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var doc = rslt.docs[0];
@@ -604,7 +604,7 @@ BucketType = proplists:get_value(<<"_yz_rt", Doc).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 # Use the JSON object from above to locate bucket, key, and bucket type
@@ -665,7 +665,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -685,7 +685,7 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:[* TO 15]" | jsonpp
@@ -738,7 +738,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -758,7 +758,7 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/scores?wt=json&q=counter:17" | jsonpp
@@ -825,7 +825,7 @@ var rslt = client.PutSearchIndex(searchIndex);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -844,7 +844,7 @@ riakc_pb_socket:create_search_index(Pid, <<"hobbies">>, <<"_yz_default">>).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/hobbies \
@@ -969,7 +969,7 @@ rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var funcs = [
@@ -1085,7 +1085,7 @@ Console.WriteLine("Key: {0} Bucket: {1} Type: {2}",
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -1115,7 +1115,7 @@ client.execute(searchCmd);
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl "$RIAK_HOST/search/query/hobbies?wt=json&q=set:football" | jsonpp
@@ -1166,7 +1166,7 @@ Console.WriteLine("Num found: {0}", searchResult.NumFound);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 rslt.numFound;
@@ -1182,7 +1182,7 @@ NumberFound = Results#search_results.num_found.
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 
@@ -1244,7 +1244,7 @@ var search = new RiakSearchRequest("hobbies", "set:winning");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1341,7 +1341,7 @@ var rslt = client.PutSearchIndex(searchIndex);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var options = {
@@ -1360,7 +1360,7 @@ riakc_pb_socket:create_search_index(Pid, <<"customers">>, <<"_yz_default">>).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT $RIAK_HOST/search/index/customers \
@@ -1540,7 +1540,7 @@ RiakResult rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var funcs = [
@@ -1602,7 +1602,7 @@ async.parallel(funcs, function (err, rslts) {
 
 We now have two maps stored in Riak that we can query. Let's query to
 see how many users have page visit counters above 15. Unlike the
-counters example above, we have to specify _which_ counter we're
+counters example above, we have to specify *which* counter we're
 querying:
 
 <Tabs>
@@ -1656,7 +1656,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 function search_cb(err, rslt) {
@@ -1729,7 +1729,7 @@ var firstDoc = searchResult.Documents.First();
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var doc = rslts.docs[0];
@@ -1744,7 +1744,7 @@ Success! Now we can test out searching sets.
 ### Searching Sets Within Maps
 
 Each of the maps we stored thus far had an `interests` set. First, let's
-see how many of our maps even _have_ sets called `interests` using a
+see how many of our maps even *have* sets called `interests` using a
 wildcard query:
 
 <Tabs>
@@ -1794,7 +1794,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1865,7 +1865,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -1967,7 +1967,7 @@ RiakResult rslt = client.Execute(cmd);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var funcs = [
@@ -2071,7 +2071,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()
@@ -2145,7 +2145,7 @@ var rslt = client.Search(search);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var searchCmd = new Riak.Commands.YZ.Search.Builder()

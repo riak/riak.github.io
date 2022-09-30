@@ -6,14 +6,20 @@ sidebar_position: 3
 ---
 
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
-[plan bitcask capacity]: ../../setup/planning/bitcask-capacity-calc.mdx
-[plan index]: ../../setup/planning/index.md
-[concept replication]: ../../learn/concepts/replication.md
-[use admin riak-admin#cluster]: ../../using/admin/riak-admin.md#cluster
-[config reference]: ../../configuring/reference.md
-[perf benchmark]: ../../using/performance/benchmarking.md
-[LVM]: http://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)
 
+[plan bitcask capacity]: /bitcask-calculator
+
+[plan index]: ../../setup/planning/index.md
+
+[concept replication]: ../../learn/concepts/replication.md
+
+[use admin riak-admin#cluster]: ../../using/admin/riak-admin.md#cluster
+
+[config reference]: ../../configuring/reference.md
+
+[perf benchmark]: ../../using/performance/benchmarking.md
+
+[LVM]: http://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)
 
 This document outlines the various elements and variables to keep in mind when planning your Riak cluster. Your use case and environment variables will be specific to what you're building, but this document should set you on the right path when planning and launching a Riak cluster.
 
@@ -148,11 +154,13 @@ load is decreased. Reasons to scale horizontally include increasing I/O
 concurrency, reducing the load on existing nodes, and increasing disk
 capacity.
 
-> **Note on horizontal scaling**
->
-> When scaling horizontally, it's best to add all planned nodes at once
+:::note Note on horizontal scaling
+
+When scaling horizontally, it's best to add all planned nodes at once
 with multiple `riak-admin cluster join` commands followed by
 a `riak-admin cluster plan` and `riak-admin cluster commit`. This will help reduce the amount of data transferred between nodes in the cluster.
+
+:::
 
 #### Reducing Horizontal Scale
 

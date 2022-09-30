@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Riak',
-  tagline: 'Documentation for Riak KV 2.2.3+',
+  tagline: 'Documentation for Riak KV 2.0.0+',
   url: 'https://www.riak.github.io',
   baseUrl: '/riak_docs/',
   onBrokenLinks: 'throw',
@@ -26,6 +26,14 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/riak/riak.github.io/',
           remarkPlugins: [require('mdx-mermaid')],
+          // Disable versioning if in dev mode and using the start:fast task OR using build:fast
+          disableVersioning: (process.env.NODE_ENV === 'development' && !!process.env.START_FAST) || !!process.env.BUILD_FAST,
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: require('./dev_version.json'),
+            },
+          },
         },
         blog: {
           showReadingTime: true,
@@ -57,7 +65,14 @@ const config = {
             label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/bitcask-calculator', label: 'Bitcask Calculator', position: 'left'},
           {to: '/releases', label: 'Releases', position: 'left'},
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            dropdownActiveClassDisabled: true,
+            dropDownItemsAfter: [{to: '/versions', label: 'All versions'}],
+          },
           {
             href: 'https://github.com/basho/',
             position: 'right',

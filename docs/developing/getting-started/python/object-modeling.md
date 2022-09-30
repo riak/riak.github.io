@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_python_object
-slug: object-modeling 
+slug: object-modeling
 sidebar_position: 2
 ---
 
@@ -48,7 +48,6 @@ Natural keys are a great fit for key/value systems because both humans
 and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
-
 | Bucket      | Key Pattern                | Example Key                                                        |
 |:------------|:---------------------------|:-------------------------------------------------------------------|
 | `Users`     | `<user_name>`              | `joeuser`                                                          |
@@ -76,7 +75,7 @@ respectively.
 Riak performs best with objects under 1-2MB. Objects larger than that can hurt
 performance, especially if many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-:::note
+:::
 
 #### Keeping our story straight with repositories
 
@@ -191,7 +190,6 @@ class TimelineRepository:
     def _generate_key(self, owner, msg_type, datetimestr):
         dateString = string.split(datetimestr, 'T', 1)[0]
         return owner + '_' + msg_type + '_' + dateString
-
 ```
 
 Finally, let's test them:
@@ -221,7 +219,6 @@ joes_first_message = msgsRepo.get(joes_inbox_today['msgs'][0])
 print 'From: {0}\nMsg : {1}\n\n'.format(
     joes_first_message['sender'],
     joes_first_message['text'])
-
 ```
 
 As you can see, the repository pattern helps us with a few things:
@@ -246,4 +243,3 @@ So to recap, in this chapter we learned:
 
 * How to choose bucket names
 * How to choose natural keys based on how we want to partition our data.
-

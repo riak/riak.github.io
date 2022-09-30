@@ -5,6 +5,9 @@ slug: erlang
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Riak was written almost exclusively in [Erlang](http://www.erlang.org)
 and runs on an Erlang virtual machine (VM), which makes proper Erlang VM
 tuning an important part of optimizing Riak performance. The Erlang VM
@@ -42,7 +45,7 @@ upgrading to 2.0 from an earlier version, you can still use your old `vm.args`
 if you wish.  Please note, however, that if you set one or more parameters in
 both `vm.args` and in `riak.conf`, the settings in `vm.args` will override
 those in `riak.conf`.
-:::note
+:::
 
 ## SMP
 
@@ -71,21 +74,23 @@ start up with SMP disabled.
 
 ## Schedulers
 
-> **Note on missing scheduler flags**
->
-> We recommend that _all_ users set the `+sfwi` to `500` (milliseconds)
+:::note Note on missing scheduler flags
+
+We recommend that *all* users set the `+sfwi` to `500` (milliseconds)
 and the `+scl` flag to `false` if using the older, `vm.args`-based
 configuration system. If you are using the new, `riak.conf`-based
 configuration system, the corresponding parameters are
 `erlang.schedulers.force_wakeup_interval` and
 `erlang.schedulers.compaction_of_load`.
->
-> Please note that you will need to uncomment the appropriate lines in
+
+Please note that you will need to uncomment the appropriate lines in
 your `riak.conf` for this configuration to take effect.
+
+:::
 
 If [SMP support](#smp) has been enabled on your Erlang
 VM, i.e. if `erlang.smp` is set to `enable` or `auto` on a machine
-providing SMP support _and_ more than one logical processor, you can
+providing SMP support *and* more than one logical processor, you can
 configure the number of logical processors, or [scheduler
 threads](http://www.erlang.org/doc/man/erl.html#+S), that are created
 when starting Riak, as well as the number of threads that are set
@@ -100,7 +105,7 @@ used by [`erl`](http://www.erlang.org/doc/man/erl.html#+S).
 While the maximum for both parameters is 1024, there is no universal
 default for either. Instead, the Erlang VM will attempt to determine the
 number of configured processors, as well as the number of available
-processors, on its own. If the Erlang VM _can_ make that determination,
+processors, on its own. If the Erlang VM *can* make that determination,
 `schedulers.total` will default to the total number of configured
 processors while `schedulers.online` will default to the number of
 processors available; if the Erlang VM can't make that determination,
@@ -159,7 +164,7 @@ balancing by setting the `erlang.schedulers.utilization_balancing`
 setting to `true` (or the `+scl` parameter to `false` in the older
 configuration system).
 
-At any given time, only compaction of load _or_ utilization balancing
+At any given time, only compaction of load *or* utilization balancing
 can be used. If you set both parameters to `false`, Riak will default to
 using compaction of load; if both are set to `true`, Riak will enable
 whichever setting is listed first in `riak.conf` (or `vm.args` if you're
@@ -188,10 +193,18 @@ minimum and maximum can be set using the
 `erlang.distribution.port.maximum` parameters, respectively. The
 following would set the range to ports between 3000 and 5000:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 erlang.distribution.port_range.minimum = 3000
 erlang.distribution.port_range.maximum = 5000
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 %% The older, app.config-based system uses different parameter names
@@ -205,13 +218,25 @@ erlang.distribution.port_range.maximum = 5000
          ]}
 ```
 
+</TabItem>
+
+</Tabs>
+
 You can set the Erlang VM to use a single port by setting the minimum to
 the desired port while setting no maximum. The following would set the
 port to 5000:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 erlang.distribution.port_range.minimum = 5000
 ```
+
+</TabItem>
+
+<TabItem label="app.config" value="app.config">
 
 ```erlang
 {kernel, [
@@ -220,6 +245,10 @@ erlang.distribution.port_range.minimum = 5000
           % ...
          ]}
 ```
+
+</TabItem>
+
+</Tabs>
 
 If the minimum port is unset, the Erlang VM will listen on a random
 high-numbered port.
@@ -239,13 +268,25 @@ using `erlang.async_threads` (`+A` in `vm.args`).  The valid range is 0
 to 1024. If thread support is available on your OS, the default is 64.
 Below is an example setting the number of async threads to 600:
 
+<Tabs>
+
+<TabItem label="riak.conf" value="riak.conf" default>
+
 ```riakconf
 erlang.async_threads = 600
 ```
 
+</TabItem>
+
+<TabItem label="vm.args" value="vm.args">
+
 ```vmargs
 +A 600
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### Stack Size
 
@@ -314,7 +355,7 @@ setting.
 ## Erlang Built-in Storage
 
 Erlang uses a built-in database called
-[ets](http://www.erlang.org/doc/man/ets.html) \(Erlang Term Storage)
+[ets](http://www.erlang.org/doc/man/ets.html) (Erlang Term Storage)
 for some processes that require fast access from memory in constant
 access time (rather than logarithmic access time).  The maximum number
 of tables can be set using the `erlang.max_ets_tables` setting. The

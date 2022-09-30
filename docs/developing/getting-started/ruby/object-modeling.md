@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_ruby_object
-slug: object-modeling 
+slug: object-modeling
 sidebar_position: 2
 ---
 
@@ -87,7 +87,7 @@ respectively.
 Riak performs best with objects under 1-2MB. Objects larger than that can hurt
 performance, especially many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-:::note
+:::
 
 #### Keeping our story straight with repositories
 
@@ -277,4 +277,3 @@ So to recap, in this chapter we learned:
 
 * How to choose bucket names
 * How to choose natural keys based on how we want to partition our data.
-

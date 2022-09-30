@@ -1,7 +1,7 @@
 ---
 title: "Object Modeling"
 id: getting_started_nodejs_object
-slug: object-modeling 
+slug: object-modeling
 sidebar_position: 2
 ---
 
@@ -32,7 +32,6 @@ Natural keys are a great fit for key/value systems because both humans
 and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
-
 | Bucket      | Key Pattern                | Example Key                                                        |
 |:------------|:---------------------------|:-------------------------------------------------------------------|
 | `Users`     | `<user_name>`              | `joeuser`                                                          |
@@ -42,7 +41,7 @@ time they can be made unique enough for a KV store.
 For the `Users` bucket, we can be certain that we will want each
 username to be unique, so let's use the `userName` as the key.
 
-[*Example:* `userName` as key](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch03-Msgy-Schema/models/user.js#L19-L20)
+[*Example:* `userName` as key](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch03-Msgy-Schema/app.js)
 
 For the `Msgs` bucket, let's use a combination of the username and the
 posting datetime in an [ISO 8601
@@ -50,7 +49,7 @@ Long](http://en.wikipedia.org/wiki/ISO_8601) format. This combination
 gives us the pattern `<username>_<datetime>`, which produces keys like
 `joeuser_2014-03-05T23:20:28Z`.
 
-[*Example:* `Msg` key](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch03-Msgy-Schema/models/msg.js#L25-L27)
+[*Example:* `Msg` key](https://github.com/basho/taste-of-riak/blob/master/nodejs/Ch03-Msgy-Schema/app.js)
 
 Now for `Timelines`, we need to differentiate between `Inbox` and `Sent`
 timelines, so we can simply add that type into the key name. We will
@@ -66,7 +65,7 @@ respectively.
 Riak performs best with objects under 1-2MB. Objects larger than that can hurt
 performance, especially many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-:::note
+:::
 
 #### Keeping our story straight with repositories
 
@@ -85,9 +84,9 @@ Finally, let's test them:
 
 As you can see, the repository pattern helps us with a few things:
 
- - It helps us to see if an object exists before creating a new one
- - It keeps our buckets and key names consistent
- - It provides us with a consistent interface to work with.
+* It helps us to see if an object exists before creating a new one
+* It keeps our buckets and key names consistent
+* It provides us with a consistent interface to work with.
 
 While this set of repositories solves many of our problems, it is very
 minimal and doesn't cover all the edge cases. For instance, what happens
@@ -105,4 +104,3 @@ So to recap, in this chapter we learned:
 
 * How to choose bucket names
 * How to choose natural keys based on how we want to partition our data
-

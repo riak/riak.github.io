@@ -1,23 +1,34 @@
 ---
 title: "Upgrading to Riak KV 2.2.3"
 id: upgrading_version
-slug: version 
+slug: version
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem'
 
 [production checklist]: ../../setup/upgrading/checklist.md
-[use admin riak control]: ../../using/admin/riak-control.md
-[use admin commands]: ../../using/admin/commands.md
-[use admin riak-admin]: ../../using/admin/riak-admin.md
-[usage secondary-indexes]: ../../developing/usage/secondary-indexes.md
-[riak enterprise]: http://basho.com/products/riak-kv/
-[cluster ops mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
-[config v3 mdc]: ../../configuring/v3-multi-datacenter/index.md
-[jmx monitor]: ../../using/reference/jmx.md
-[snmp]: ../../using/reference/snmp.md
-[Release Notes]: https://github.com/basho/riak/blob/develop/RELEASE-NOTES.md
 
+[use admin riak control]: ../../using/admin/riak-control.md
+
+[use admin commands]: ../../using/admin/commands.md
+
+[use admin riak-admin]: ../../using/admin/riak-admin.md
+
+[usage secondary-indexes]: ../../developing/usage/secondary-indexes.md
+
+[riak enterprise]: http://basho.com/products/riak-kv/
+
+[cluster ops mdc]: ../../using/cluster-operations/v3-multi-datacenter.md
+
+[config v3 mdc]: ../../configuring/v3-multi-datacenter/index.md
+
+[jmx monitor]: ../../using/reference/jmx.md
+
+[snmp]: ../../using/reference/snmp.md
+
+[Release Notes]: https://github.com/basho/riak/blob/develop/RELEASE-NOTES.md
 
 ## Overview
 
@@ -25,28 +36,26 @@ You can upgrade one node or your whole cluster to Riak KV 2.2.3 by following the
 
 :::tip 
 KV nodes negotiate with each other to determine supported operating modes. This allows clusters containing mixed-versions of Riak KV to interoperate without special configuration, and simplifies rolling upgrades.
-:::tip
-
+:::
 
 ### General Process
 
 For every node in the cluster:
 
-1.  Stop Riak KV.
-1.  Back up the Riak /etc, /data, and /basho-patches directories.
-1.  Remove your /basho-patches directory.
-1.  Upgrade Riak KV.
-    * If you are upgrading from OSS to EE, uninstall your OSS KV package before upgrading.
-1. (Optional) If you would like to potentially downgrade at some point, update your advanced.config file to opt-out of the AAE updates.
-1.  If you're upgrading from OSS to EE, apply your customized settings to vm.args and app.config
-1.  If you're using MDC replication to clusters with versions less than 2.2.0, update your advanced.config file to over-ride the default bucket properties for compatibility.
-1.  Start Riak KV.
-1.  Verify Riak KV is running the upgraded version.
-1.  Wait for the `riak_kv` service to start.
-1.  Wait for any hinted handoffs to complete.
+1. Stop Riak KV.
+2. Back up the Riak /etc, /data, and /basho-patches directories.
+3. Remove your /basho-patches directory.
+4. Upgrade Riak KV.
+   * If you are upgrading from OSS to EE, uninstall your OSS KV package before upgrading.
+5. (Optional) If you would like to potentially downgrade at some point, update your advanced.config file to opt-out of the AAE updates.
+6. If you're upgrading from OSS to EE, apply your customized settings to vm.args and app.config
+7. If you're using MDC replication to clusters with versions less than 2.2.0, update your advanced.config file to over-ride the default bucket properties for compatibility.
+8. Start Riak KV.
+9. Verify Riak KV is running the upgraded version.
+10. Wait for the `riak_kv` service to start.
+11. Wait for any hinted handoffs to complete.
 
 Before starting the rolling upgrade process on your cluster, check out the [Upgrading Riak KV: Production Checklist][production checklist], which covers details and questions to consider before upgrading.
-
 
 ## Data File Format Changes
 
@@ -57,8 +66,7 @@ Before starting the rolling upgrade process on your cluster, check out the [Upgr
 
 :::note
 You must have [Java version 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html) in order to upgrade to Riak KV 2.2.3.
-:::note
-
+:::
 
 ### Components That Complicate Downgrades
 
@@ -75,7 +83,6 @@ We do our best to make all features that change data formats on disk opt-in; how
 | LZ4 compression in LevelDB              |           |          |    ✔    |                                                        |
 | Global expiration in LevelDB            |           |          |    ✔    |                                                        |
 | HyperLogLog data type                   |           |          |    ✔    | On downgrade data written in HLL format is unreadable. |
- 
 
 ### When Downgrading is No Longer an Option
 
@@ -86,62 +93,95 @@ If you decide to upgrade to version 2.2, you can still downgrade your cluster to
 
 If you use other new features, such as the HyperLogLog data type, you can still downgrade your cluster, but you will no longer be able to use those features or access data in new formats after the downgrade.
 
-
 ## Upgrading process
 
-1\. Stop Riak KV on the node you are going to upgrade:
+1. Stop Riak KV on the node you are going to upgrade:
 
 ```bash
 riak stop
 ```
 
-2\. Back up your /etc (app.config and vm.args), /data, and /basho-patches directories.
+2. Back up your /etc (app.config and vm.args), /data, and /basho-patches directories.
+
+<Tabs>
+
+<TabItem label="RHEL/CentOS" value="rhel/centos" default>
 
 ```RHEL/CentOS
 sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak /usr/lib64/riak/lib/basho-patches
 ```
 
+</TabItem>
+
+<TabItem label="Ubuntu" value="ubuntu">
+
 ```Ubuntu
 sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak /usr/lib/riak/lib/basho-patches
 ```
 
-3\. Remove your /basho-patches directory:
+</TabItem>
+
+</Tabs>
+
+3. Remove your /basho-patches directory:
+
+<Tabs>
+
+<TabItem label="RHEL/CentOS" value="rhel/centos" default>
 
 ```RHEL/CentOS
 sudo rm -rf /usr/lib64/riak/lib/basho-patches/*
 ```
 
+</TabItem>
+
+<TabItem label="Ubuntu" value="ubuntu">
+
 ```Ubuntu
 sudo rm -rf /usr/lib/riak/lib/basho-patches*
 ```
 
-4\. Upgrade Riak KV:
+</TabItem>
+
+</Tabs>
+
+4. Upgrade Riak KV:
 
 :::note Upgrading to KV Enterprise Edition
 If you are upgrading from Riak KV OSS to Riak KV EE, you must uninstall your Riak KV package right now, before you can install the EE version.
-:::note
+:::
 
+<Tabs>
 
+<TabItem label="RHEL/CentOS" value="rhel/centos" default>
 
 ```RHEL/CentOS
 sudo rpm -Uvh »riak_package_name«.rpm
 ```
 
+</TabItem>
+
+<TabItem label="Ubuntu" value="ubuntu">
+
 ```Ubuntu
 sudo dpkg -i »riak_package_name«.deb
 ```
 
-5.a\. (**Optional**) If you would like to keep your AAE trees in a format that will facilitate downgrading, the capability override should be in the `riak_kv` proplist of the advanced.config file:
+</TabItem>
 
-   ```advanced.config
-   {riak_kv, [
-     {override_capability, [
-       {object_hash_version, [{use, legacy}] }
-     ]}
-   ]}
-   ```
-   
-5.b\. (**EE Only**)If you are upgrading from Riak KV OSS to Riak KV EE, you must perform the following steps before moving on: 
+</Tabs>
+
+5.a. (**Optional**) If you would like to keep your AAE trees in a format that will facilitate downgrading, the capability override should be in the `riak_kv` proplist of the advanced.config file:
+
+```advanced.config
+{riak_kv, [
+  {override_capability, [
+    {object_hash_version, [{use, legacy}] }
+  ]}
+]}
+```
+
+5.b. (**EE Only**)If you are upgrading from Riak KV OSS to Riak KV EE, you must perform the following steps before moving on: 
 
 * A standard package uninstall should not have removed your data directories, but if it did, move your backup to where the data directory should be.
 * Then copy any customizations from your backed-up vm.args to the `riak_ee` installed vm.args file (these files may be identical).
@@ -151,45 +191,44 @@ sudo dpkg -i »riak_package_name«.deb
   * `riak_jmx` --- See [JMX Monitoring][jmx monitor] for more information.
   * `snmp` --- See [SNMP][snmp] for more information.
 
-5.c\. (**EE Only with MDC**)If you need to replicate to clusters with versions less than 2.2.0, the capability override for bucket properties should be in the `riak_repl` proplist of the advanced.config file:
+5.c. (**EE Only with MDC**)If you need to replicate to clusters with versions less than 2.2.0, the capability override for bucket properties should be in the `riak_repl` proplist of the advanced.config file:
 
-   ```advanced.config
-   {riak_repl, [
-     {override_capability, [
-       {default_bucket_props_hash, [{use, [consistent, datatype, n_val, allow_mult, last_write_wins]}] }
-     ]}
-   ]}
-   ```
+```advanced.config
+{riak_repl, [
+  {override_capability, [
+    {default_bucket_props_hash, [{use, [consistent, datatype, n_val, allow_mult, last_write_wins]}] }
+  ]}
+]}
+```
+
 Once all of the clusters have been upgraded to version 2.2.0 or greater, this override should be removed.
 
-6\. Restart Riak KV:
+6. Restart Riak KV:
 
 :::note
 You must have [Java version 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html) in order to upgrade to Riak KV 2.2.3. If you do not have it installed, please install it now.
-:::note
-
-
+:::
 
 ```bash
 riak start
 ```
 
-7\. Verify that Riak KV is running the new version:
+7. Verify that Riak KV is running the new version:
 
 ```bash
 riak version
 ```
 
-8\. Wait for the `riak_kv` service to start:
+8. Wait for the `riak_kv` service to start:
 
 ```bash
 riak-admin wait-for-service riak_kv »target_node«
 ```
 
 * `»target_node«` is the node which you have just upgraded (e.g.
-riak@192.168.1.11)
+  riak@192.168.1.11)
 
-9\. Wait for any hinted handoff transfers to complete:
+9. Wait for any hinted handoff transfers to complete:
 
 ```bash
 riak-admin transfers
@@ -197,8 +236,7 @@ riak-admin transfers
 
 * While the node was offline, other nodes may have accepted writes on its behalf. This data is transferred to the node when it becomes available.
 
-10\. Repeat the process for the remaining nodes in the cluster.
-
+10. Repeat the process for the remaining nodes in the cluster.
 
 ### Basho Patches
 
@@ -209,11 +247,11 @@ If you find that patches no longer apply to the upgraded version, you should rem
 The following lists locations of the `basho-patches` directory for
 each supported operating system:
 
-- CentOS & RHEL Linux: `/usr/lib64/riak/lib/basho-patches`
-- Debian & Ubuntu Linux: `/usr/lib/riak/lib/basho-patches`
-- FreeBSD: `/usr/local/lib/riak/lib/basho-patches`
-- SmartOS: `/opt/local/lib/riak/lib/basho-patches`
-- Solaris 10: `/opt/riak/lib/basho-patches`
+* CentOS & RHEL Linux: `/usr/lib64/riak/lib/basho-patches`
+* Debian & Ubuntu Linux: `/usr/lib/riak/lib/basho-patches`
+* FreeBSD: `/usr/local/lib/riak/lib/basho-patches`
+* SmartOS: `/opt/local/lib/riak/lib/basho-patches`
+* Solaris 10: `/opt/riak/lib/basho-patches`
 
 ### Riaknostic
 

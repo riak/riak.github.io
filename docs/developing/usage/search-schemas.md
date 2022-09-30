@@ -1,8 +1,8 @@
 ---
 title: "Creating Search Schemas"
 id: usage_search_schemas
-slug: search-schemas 
-sidebar_position: 10 
+slug: search-schemas
+sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,11 +10,13 @@ import TabItem from '@theme/TabItem';
 
 [concept clusters]: ../../learn/concepts/clusters.md
 
-> **Note on Search 2.0 vs. Legacy Search**
->
-> This document refers to the new Riak Search 2.0 with
+:::note Note on Search 2.0 vs. Legacy Search
+
+This document refers to the new Riak Search 2.0 with
 [Solr](http://lucene.apache.org/solr/) integration (codenamed
 Yokozuna). For information about the deprecated Riak Search, visit [the old Using Riak Search docs](http://docs.basho.com/riak/1.4.10/dev/using/search/).
+
+:::
 
 Riak Search is built for ease of use, allowing you to write values into
 Riak and query for values using Solr. Riak Search does a lot of work
@@ -94,7 +96,7 @@ var rslt = client.PutSearchSchema(schema);
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var fs = require('fs');
@@ -128,7 +130,7 @@ riakc_pb_socket:create_search_schema(Pid, <<"cartoons">>, SchemaData).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT http://localhost:8098/search/schema/cartoons \
@@ -174,15 +176,13 @@ pairs. Nested objects will be separated with a dot (`.`) and arrays will
 simply repeat the fields. The above object will be extracted to the
 following list of Solr document fields.
 
-```
-name=Lion-o
-age=30
-leader=true
-aliases.name=León-O
-aliases.desc_es=Señor de los ThunderCats
-aliases.name=Starlion
-aliases.desc_fr=Le jeune seigneur des Cosmocats
-```
+    name=Lion-o
+    age=30
+    leader=true
+    aliases.name=León-O
+    aliases.desc_es=Señor de los ThunderCats
+    aliases.name=Starlion
+    aliases.desc_fr=Le jeune seigneur des Cosmocats
 
 This means that our schema should handle `name`, `age`, `leader`,
 `aliases.name` (a `dot` is a valid field character), and
@@ -231,7 +231,7 @@ other than allow Riak Search to properly manage your stored objects.
 ```
 
 If you're missing any of the above fields, Riak Search will reject your
-custom schema. The value for `<uniqueKey>` _must_ be `_yz_id`.
+custom schema. The value for `<uniqueKey>` *must* be `_yz_id`.
 
 In the table below, you'll find a description of the various required
 fields. You'll rarely need to use any fields other than `_yz_rt` (bucket

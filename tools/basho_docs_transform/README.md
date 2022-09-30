@@ -1,3 +1,5 @@
+# YOU PROBABLY DON'T WANT TO RUN THIS!
+
 # Why?
 
 This is used to transform markdown documents from [basho/basho_docs](https://github.com/basho/basho_docs). This script is specifically designed for the KV doc. As such, they have only been tested with the KV markdown files. Other markdown files may incidentally work. 
@@ -33,3 +35,17 @@ If the ```keep_drafts``` is passed with a value of ```true``` any drafts will no
 ```
 node index.js \--input_docs_dir=/home/USERNAME/Documents/kv \--output_docs_dir=/tmp/kv \--name_ignored_files \--keep_drafts=true
 ```
+
+# Full Logs
+
+If you want the full output of what the transform tool use the ```full_logs``` flag.
+
+```
+node index.js \--input_docs_dir=/home/USERNAME/Documents/kv \--output_docs_dir=/tmp/kv \--full_logs 
+```
+
+# get_files_metadata.js
+
+Reads the current docs and writes JSON to files_metadata.json containing the title, id, slug and sidebar_position for each page. 
+This exists because the current version (Riak KV 2.2.3) version of the docs were manually created. 
+We want to re-use this data when automatically transforming.

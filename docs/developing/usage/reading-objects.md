@@ -12,15 +12,13 @@ import TabItem from '@theme/TabItem';
 
 You can think of reads in Riak as analogous to HTTP `GET` requests. You
 specify a bucket type, bucket, and key, and Riak either returns the
-object that's stored there---including its [siblings](../../developing/usage/conflict-resolution/index.md#siblings) \(more on that later)---or it returns `not found` (the
+object that's stored there---including its [siblings](../../developing/usage/conflict-resolution/index.md#siblings) (more on that later)---or it returns `not found` (the
 equivalent of an HTTP `404 Object Not Found`).
 
 Here is the basic command form for retrieving a specific key from a
 bucket:
 
-```
-GET /types/<type>/buckets/<bucket>/keys/<key>
-```
+    GET /types/<type>/buckets/<bucket>/keys/<key>
 
 Here is an example of a read performed on the key `rufus` in the bucket
 `dogs`, which bears the bucket type `animals`. Please note that for this example to work, you must have first created the bucket-type `animals` as per the instructions on the [bucket type](../../using/cluster-operations/bucket-types.md) page.
@@ -72,7 +70,7 @@ var id = new RiakObjectId("animals", "dogs", "rufus");
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 client.fetchValue({ bucketType: 'animals', bucket: 'dogs', key: 'rufus' }, function (err, rslt) {
@@ -104,7 +102,7 @@ if err != nil {
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus
@@ -134,7 +132,7 @@ Here is an example of attempting a read with `r` set to `3`:
 ```java
 // Using the "myKey" location specified above:
 FetchValue fetch = new FetchValue.Builder(myKey)
-        .withOption(FetchOption.R, new Quorum(3))
+        .withOption(FetchValue.Option.R, new Quorum(3))
         .build();
 FetchValue.Response response = client.execute(fetch);
 RiakObject obj = response.getValue(RiakObject.class);
@@ -183,7 +181,7 @@ Debug.WriteLine(Encoding.UTF8.GetString(rslt.Value.Value));
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 var fetchOptions = {
@@ -233,7 +231,7 @@ rsp := svc.Response
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/types/animals/buckets/dogs/keys/rufus?r=3
@@ -256,7 +254,7 @@ The most common error code:
 :::note Note
 If you're using a Riak client instead of HTTP, these responses will vary a
 great deal, so make sure to check the documentation for your specific client.
-:::note
+:::
 
 ## Not Found
 
@@ -300,7 +298,7 @@ result.ResultCode == ResultCode.NotFound
 ```
 
 </TabItem>
-<TabItem label="JavaScript" value="javascript">
+<TabItem label="JS" value="js">
 
 ```javascript
 rslt.isNotFound === true;
@@ -323,7 +321,7 @@ rsp.IsNotFound // Will be true
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 not found

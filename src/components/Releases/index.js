@@ -22,10 +22,10 @@ export default function Releases() {
 
   const releases_list = releases
     .filter(({draft, prerelease}) => !draft && !prerelease)
-    .map(({id, name, tarball_url, zipball_url, html_url, tag_name}, i) => {
+    .map(({id, name, html_url, tag_name}, i) => {
       const latest = i === 0;
 
-      return <Release key={id} latest={latest} name={name} tarball_url={tarball_url} zipball_url={zipball_url} html_url={html_url} tag_name={tag_name} />;
+      return <Release key={id} latest={latest} name={name} html_url={html_url} tag_name={tag_name} />;
     });
 
   return <div>{releases_list}</div>;

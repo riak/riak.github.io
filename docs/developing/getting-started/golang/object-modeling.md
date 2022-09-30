@@ -1,14 +1,14 @@
 ---
 title: "Object Modeling"
 id: getting_started_go_object
-slug: object-modeling 
+slug: object-modeling
 sidebar_position: 2
 ---
 
 :::note Code Download
 You can download the code for this chapter at
 [Github](https://github.com/basho/taste-of-riak/tree/master/go/ch03/models).
-:::note
+:::
 
 To get started, let's create the models that we'll be using:
 
@@ -147,7 +147,6 @@ Natural keys are a great fit for key/value systems because both humans
 and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
-
 | Bucket      | Key Pattern                | Example Key                                                          |
 |:------------|:---------------------------|:---------------------------------------------------------------------|
 | `Users`     | `<user_name>`              | `joeuser`                                                            |
@@ -175,7 +174,7 @@ respectively.
 Riak performs best with objects under 1-2 MB. Objects larger than that can
 hurt performance, especially if many siblings are being created. We will cover
 siblings, sibling resolution, and sibling explosions in the next chapter.
-:::note
+:::
 
 #### Keeping our story straight with repositories
 
@@ -533,5 +532,3 @@ So to recap, in this chapter we learned:
 
 * How to choose bucket names.
 * How to choose natural keys based on how we want to partition our data.
-
-

@@ -12,7 +12,7 @@ values where applicable. All examples use `curl` to interact with Riak.
 > **URL Escaping**
 >
 > Buckets, keys, and link specifications may not contain unescaped
-slashes. Use a URL-escaping library or replace slashes with `%2F`.
+> slashes. Use a URL-escaping library or replace slashes with `%2F`.
 
 ## Bucket-related Operations
 

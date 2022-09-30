@@ -1,7 +1,7 @@
 ---
 title: "Python"
 id: usage_security_python
-slug: python 
+slug: python
 sidebar_position: 2
 ---
 
@@ -18,7 +18,7 @@ the instructions in the [section below](#certificate-based-authentication).
 This tutorial does not cover certificate generation. It assumes that all
 necessary certificates have already been created and are stored in a directory
 called `/ssl_dir`. This directory name is used only for example purposes.
-:::note
+:::
 
 ## OpenSSL Versions
 
@@ -26,9 +26,7 @@ The Riak Python client requires that you install OpenSSL 1.0.1g or
 later. If you have an earlier version installed, you will receive a
 warning along the following lines:
 
-```
-Found OpenSSL 0.9.8za 5 Jun 2014 version, but expected at least OpenSSL 1.0.1g.  Security may not support TLS 1.2.
-```
+    Found OpenSSL 0.9.8za 5 Jun 2014 version, but expected at least OpenSSL 1.0.1g.  Security may not support TLS 1.2.
 
 ## Python Client Basics
 
@@ -38,7 +36,7 @@ interactions with Riak. All authentication-related information that
 needs to be used by the client object can be passed to the object upon
 instantiation by creating a `SecurityCreds` object.
 
-If you are using Riak Security, _all_ connecting clients should have
+If you are using Riak Security, *all* connecting clients should have
 access to the same Certificate Authority (CA) used on the server side,
 regardless of which [security source](../../../using/security/managing-sources.md) you
 choose. All clients should also provide a username. The example below
@@ -74,10 +72,12 @@ which the client is connecting has been specified as trusted. More on
 specifying trusted CIDRs can be found in [Trust-based
 Authentication](../../../using/security/managing-sources.md#trust-based-authentication).
 
-**Note**: The examples in the following sections specify certs on the
-basis of their filepaths, e.g. `/ssl_dir/cacertfile.pem`. In addition to
+:::note
+The examples in the following sections specify certs on the
+basis of their filepaths, e.g.`/ssl_dir/cacertfile.pem`. In addition to
 specifying certs by location, you can also provide OpenSSL objects
 instead. You can find out how to do so in [Using OpenSSL Objects](#using-openssl-objects) below.
+:::
 
 ## Password-based Authentication
 

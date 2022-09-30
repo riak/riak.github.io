@@ -5,9 +5,13 @@ sidebar_position: 2
 ---
 
 [plan backend bitcask]: ../../../setup/planning/backend/bitcask.md
+
 [plan backend leveldb]: ../../../setup/planning/backend/leveldb.md
+
 [plan backend memory]: ../../../setup/planning/backend/memory.md
+
 [plan backend multi]: ../../../setup/planning/backend/multi.md
+
 [dev api backend]: ../../../developing/api/backend.md
 
 Pluggable storage backends are a key feature of Riak KV. They enable you to
@@ -37,6 +41,7 @@ storage [Backend API][dev api backend] for more details.
 | Objects in RAM                                  |         |         |   ✓    |
 | Object expiration                               |    ✓    |         |   ✓    |
 | Secondary indexes                               |         |    ✓    |   ✓    |
+
 Tiered storage
 
 <sup>1</sup> Noted here since this can affect Riak start times for large

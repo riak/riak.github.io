@@ -1,7 +1,7 @@
 ---
 title: "Status"
 id: http_status
-slug: status 
+slug: status
 sidebar_position: 11
 ---
 
@@ -25,12 +25,15 @@ Important headers:
 ## Response
 
 Normal status codes:
+
 * `200 OK`
 
 Typical error codes:
+
 * `404 Not Found` - if `riak_kv_stat` is not enabled
 
 Important headers:
+
 * `Content-Type` - `application/json` or `text/plain` (JSON with added line-breaks)
 
 ## Example

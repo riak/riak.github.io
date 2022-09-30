@@ -9,8 +9,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [usage bucket types]: ../../developing/usage/bucket-types.md
+
 [concept eventual consistency]: ../../learn/concepts/eventual-consistency.md
+
 [use ref strong consistency]: ../../using/reference/strong-consistency.md
+
 [concept clusters]: ../../learn/concepts/clusters.md
 
 Riak was built to act as a multi-node [cluster][concept clusters].  It
@@ -36,18 +39,20 @@ is one of the features that differentiates Riak from other databases.
 At the bottom of the page, you'll find a [screencast](../../developing/app-guide/replication-properties.md#screencast) that briefly explains how to adjust your
 replication levels to match your application and business needs.
 
-> **Note on strong consistency**
->
-> An option introduced in Riak version 2.0 is to use Riak as a [strongly consistent](../../using/reference/strong-consistency.md) system for data in specified buckets. Using Riak in this way is fundamentally different from adjusting replication properties and fine-tuning the availability/consistency trade-off, as it sacrifices
-_all_ availability guarantees when necessary. Therefore, you
+:::note Note on strong consistency
+
+An option introduced in Riak version 2.0 is to use Riak as a [strongly consistent](../../using/reference/strong-consistency.md) system for data in specified buckets. Using Riak in this way is fundamentally different from adjusting replication properties and fine-tuning the availability/consistency trade-off, as it sacrifices
+*all* availability guarantees when necessary. Therefore, you
 should consult the [Using Strong Consistency](../../developing/app-guide/strong-consistency.md) documentation, as this option will not be covered
 in this tutorial.
+
+:::
 
 ## How Replication Properties Work
 
 When using Riak, there are two ways of choosing replication properties:
-1. On a per-request basis
-2. In a more programmatic fashion, [using bucket types][usage bucket types]
+1\. On a per-request basis
+2\. In a more programmatic fashion, [using bucket types][usage bucket types]
 
 ### Per-request Replication Properties
 
@@ -81,8 +86,8 @@ parameter will be explained in more detail in later sections:
 | `n_val`        | N           | `3`           | Replication factor, i.e. the number of nodes in the cluster on which an object is to be stored                                                                                                                                                                                                                                                                                  |
 | `r`            | R           | `quorum`      | The number of servers that must respond to a read request                                                                                                                                                                                                                                                                                                                       |
 | `w`            | W           | `quorum`      | Number of servers that must respond to a write request                                                                                                                                                                                                                                                                                                                          |
-| `pr`           | PR          | `0`           | The number of primary [vnodes](../../learn/concepts/vnodes.md) that must respond to a read request                                                                                                                                                                                                                                                                              |
-| `pw`           | PW          | `0`           | The number of primary [vnodes](../../learn/concepts/vnodes.md) that must respond to a write request                                                                                                                                                                                                                                                                             |
+| `pr`           | PR          | `0`           | The number of primary [vnodes](../../learn/glossary.md#vnode) that must respond to a read request                                                                                                                                                                                                                                                                               |
+| `pw`           | PW          | `0`           | The number of primary [vnodes](../../learn/glossary.md#vnode) that must respond to a write request                                                                                                                                                                                                                                                                              |
 | `dw`           | DW          | `quorum`      | The number of servers that must report that a write has been successfully written to disk                                                                                                                                                                                                                                                                                       |
 | `rw`           | RW          | `quorum`      | If R and W are undefined, this parameter will substitute for both R and W during object deletes. It is extremely unlikely that you will need to adjust this parameter.                                                                                                                                                                                                          |
 | `notfound_ok`  |             | `true`        | This parameter determines how Riak responds if a read fails on a node. Setting to `true` (the default) is the equivalent to setting R to 1: if the first node to respond doesn't have a copy of the object, Riak will immediately return a `not found` error. If set to `false`, Riak will continue to look for the object on the number of nodes specified by N (aka `n_val`). |
@@ -220,7 +225,7 @@ bucket.get('chimpanzee')
 ```
 
 </TabItem>
-<TabItem value="erlang" label="erlang" value="Erlang">
+<TabItem label="erlang" value="Erlang">
 
 ```erlang
 {ok, Obj} = riakc_pb_socket:get(Pid,
@@ -229,9 +234,9 @@ bucket.get('chimpanzee')
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
-```curl
+```bash
 curl http://localhost:8098/types/r_equals_1/buckets/animal_facts/keys/chimpanzee
 ```
 
@@ -325,7 +330,7 @@ riakc_pb_socket:put(Pid, Obj).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \
@@ -346,19 +351,19 @@ seeks to write the object to is unavailable.
 ## Primary Reads and Writes with PR and PW
 
 In Riak's replication model, there are N [vnodes](../../learn/glossary.md#vnode),
-called _primary vnodes_, that hold primary responsibility for any given
+called *primary vnodes*, that hold primary responsibility for any given
 key. Riak will attempt reads and writes to primary vnodes first, but in
 case of failure, those operations will go to failover nodes in order to
 comply with the R and W values that you have set. This failover option
-is called _sloppy quorum_.
+is called *sloppy quorum*.
 
 In addition to R and W, you can also set integer values for the *primary
-read* (PR) and _primary write_ (PW) parameters that specify how many
+read* (PR) and *primary write* (PW) parameters that specify how many
 primary nodes must respond to a request in order to report success to
 the client. The default for both values is zero.
 
 Setting PR and/or PW to non-zero values produces a mode of operation
-called _strict quorum_. This mode has the advantage that the client is
+called *strict quorum*. This mode has the advantage that the client is
 more likely to receive the most up-to-date values, but at the cost of a
 higher probability that reads or writes will fail because primary vnodes
 are unavailable.
@@ -370,11 +375,11 @@ necessarily mean that the write has failed completely. If there are reachable
 primary vnodes, those vnodes will still write the new data to Riak. When the
 failed vnode returns to service, it will receive the new copy of the data via
 either read repair or active anti-entropy.
-:::note
+:::
 
 ## Durable Writes with DW
 
-The W and PW parameters specify how many vnodes must _respond_ to a
+The W and PW parameters specify how many vnodes must *respond* to a
 write in order for it to be deemed successful. What they do not specify
 is whether data has actually been written to disk in the storage backend.
 The DW parameters enables you to specify a number of vnodes between 1
@@ -392,7 +397,7 @@ It is no longer necessary to specify an RW value when making delete requests.
 We explain its meaning here, however, because RW still shows up as a property
 of Riak buckets (as `rw`) for the sake of backwards compatibility. Feel free
 to skip this explanation unless you are curious about the meaning of RW.
-:::note
+:::
 
 Deleting an object requires successfully reading an object and then
 writing a tombstone to the object's key that specifies that an object
@@ -457,7 +462,7 @@ Not submitting a value for R, W, PR, RW, or DW is the same as using
 ## Client-level Replication Settings
 
 Adjusting replication properties at the bucket level by [using bucket types][usage bucket types]
-is how you set default properties for _all_ of a bucket's reads and
+is how you set default properties for *all* of a bucket's reads and
 writes. But you can also set replication properties for specific reads
 and writes without setting those properties at the bucket level, instead
 specifying them on a per-operation basis.
@@ -518,7 +523,7 @@ obj = bucket.get('john_stockton', r=2, notfound_ok=True)
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl http://localhost:8098/buckets/nba_stats/keys/john_stockton?r=2&notfound_ok=true
@@ -587,13 +592,13 @@ riakc_pb_socket:put(Pid, Obj).
 ```
 
 </TabItem>
-<TabItem label="Curl" value="curl">
+<TabItem label="CURL" value="curl">
 
 ```bash
 curl -XPUT \
   -H "Content-Type: application/json" \
   -d '{"stats":{ ... large stats object ... }}' \
-  http://localhost:8097/buckets/nba_stats/keys/michael_jordan?w=3&dw=2
+  http://localhost:8098/buckets/nba_stats/keys/michael_jordan?w=3&dw=2
 ```
 
 </TabItem>
@@ -623,7 +628,7 @@ These scenarios assume that a read request is sent to all 3 primary
 vnodes responsible for an object.
 
 | Scenario                                                                                                                                             | What happens in Riak                                                                                                                                                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :--------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | All 3 vnodes agree on the value                                                                                                                      | Once the first 2 vnodes return the value, that value is returned to the client                                                                                                                                                   |
 | 2 of 3 vnodes agree on the value, and those 2 are the first to reach the coordinating node                                                           | The value is returned to the client. Read repair will deal with the conflict per the later scenarios, which means that a future read may return a different value or [siblings](../../learn/concepts/causal-context.md#siblings) |
 | 2 conflicting values reach the coordinating node and [vector clocks](../../learn/concepts/causal-context.md#vector-clocks) allow for resolution      | The vector clocks are used to resolve the conflict and return a single value, which is propagated via read repair to the relevant vnodes                                                                                         |
@@ -636,7 +641,7 @@ These scenarios assume that a write request is sent to all 3 primary
 vnodes responsible for an object.
 
 | Scenario                                                                                                                                                             | What happens in Riak                                                                        |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
 | A vector clock is included with the write request, and is newer than the vclock attached to the existing object                                                      | The new value is written and success is indicated as soon as 2 vnodes acknowledge the write |
 | A vector clock is included with the write request but conflicts with the vclock attached to the existing object, with `allow_mult` set to `true`                     | The new value is created as a sibling for future reads                                      |
 | A vector clock is included with the write request but conflicts with (or is older than) the vclock attached to the existing object, with `allow_mult` set to `false` | Riak will decide which object "wins" on the basis of timestamps; no sibling will be created |

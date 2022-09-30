@@ -5,12 +5,14 @@ sidebar_position: 9
 ---
 
 [config reference#advanced]: ../../configuring/reference.md#advanced-configuration
+
 [config v3 ssl#verify-peer]: ../../configuring/v3-multi-datacenter/ssl.md#verifying-peer-certificates
 
-> **Note on the `cluster_mgr` setting**
->
-> The `cluster_mgr` setting _must_ be set in order for version 3 replication to run.
+:::note Note on the `cluster_mgr` setting
 
+The `cluster_mgr` setting *must* be set in order for version 3 replication to run.
+
+:::
 
 The configuration for Multi-Datacenter (MDC) Replication is kept in
 both the `riak_core` and `riak_repl` sections of the `app.config`
@@ -113,13 +115,13 @@ attempt to re-connect more often that it needs to. On the other hand,
 lengthening the timeout will make Riak less sensitive to cases in which
 the connection really has been compromised.
 
-[^1]: SSL depth is the maximum number of non-self-issued
+[^1]&#x3A; SSL depth is the maximum number of non-self-issued
  intermediate certificates that may follow the peer certificate in a valid
  certificate chain. If depth is `0`, the PEER must be signed by the trusted
  ROOT-CA directly; if `1` the path can be PEER, CA, ROOT-CA; if depth is `2`
  then PEER, CA, CA, ROOT-CA and so on.
 
-[^2]: If the ACL is specified and not the special value `*`,
+[^2]&#x3A; If the ACL is specified and not the special value `*`,
   peers presenting certificates not matching any of the patterns will not be
   allowed to connect.
   If no ACLs are configured, no checks on the common name are done, except
