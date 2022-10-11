@@ -23,8 +23,10 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/riak/riak.github.io/',
+          // At bet365 we have an internal mirror, use that URL to edit instead.
+          editUrl: process.env.BET365_BUILD_URL !== undefined
+                    ? process.env.BET365_BUILD_URL
+                    : 'https://github.com/riak/riak.github.io/',
           remarkPlugins: [require('mdx-mermaid')],
           // Disable versioning if in dev mode and using the start:fast task OR using build:fast
           disableVersioning: (process.env.NODE_ENV === 'development' && !!process.env.START_FAST) || !!process.env.BUILD_FAST,
