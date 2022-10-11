@@ -34,10 +34,8 @@ You will need:
 
 You can download the pre-built packages below, or build it from source.
 
-* **Ubuntu 14.04 LTS:**
-    [basho-bench_0.10.0.53-1_amd64.deb](http://ps-tools.s3.amazonaws.com/basho-bench_0.10.0.53.g0e15158-ubuntu14.04LTS-1_amd64.deb)
-* **CentOS 7:**
-    [basho-bench-0.10.0.53-1.el7.centos.x86_64.rpm](http://ps-tools.s3.amazonaws.com/basho-bench-0.10.0.53.g0e15158-1.el7.centos.x86_64.rpm)
+* **Ubuntu 14.04 LTS:** [basho-bench_0.10.0.53-1_amd64.deb](http://ps-tools.s3.amazonaws.com/basho-bench_0.10.0.53.g0e15158-ubuntu14.04LTS-1_amd64.deb)
+* **CentOS 7:** [basho-bench-0.10.0.53-1.el7.centos.x86_64.rpm](http://ps-tools.s3.amazonaws.com/basho-bench-0.10.0.53.g0e15158-1.el7.centos.x86_64.rpm)
 
 ### Building from Source
 
@@ -415,7 +413,7 @@ to the console and to disk.
 The default level is `debug`.
 
 | Valid levels |
-| :----------- |
+|:-------------|
 | `debug`      |
 | `info`       |
 | `warning`    |

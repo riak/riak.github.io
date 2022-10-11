@@ -11,7 +11,7 @@ sidebar_position: 1
 
 Riak KV can accumulate a large number of open file handles during operation. The creation of numerous data files is normal, and the [backend][plan backend] performs periodic merges of data file collections to avoid accumulating file handles.
 
-To accomodate this you should increase the open files limit on your system. We recommend setting a soft limit of 65536 and a hard limit of 200000.
+To accommodate this you should increase the open files limit on your system. We recommend setting a soft limit of 65536 and a hard limit of 200000.
 
 :::note
 Superuser or root access may be required to perform these steps.

@@ -67,12 +67,9 @@ happens at that point? There are several possible outcomes:
 2. The two operations hit the database at roughly the same time, i.e. two **concurrent
    updates** have been completed, and Riak is unable to determine which
    value "wins." In this scenario, one of three things can happen:
-
-       a. The object is a CRDT, so Riak is able to resolve conflicting values by type-specific rules
-
-       b. Riak creates sibling values, aka **siblings**, for the object
-           
-       c. Riak resolves the values on the basis of timestamps
+   1. The object is a CRDT, so Riak is able to resolve conflicting values by type-specific rules
+   2. Riak creates sibling values, aka **siblings**, for the object
+   3. Riak resolves the values on the basis of timestamps
 
 In the case of outcome 1 above, Riak uses **causal context** metadata to
 make that decision. This metadata is attached to every object in Riak.

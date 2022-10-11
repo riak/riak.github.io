@@ -346,7 +346,7 @@ The following table provides a guide to `ensemble-status` output:
 | `Ensembles`  | This displays a list of all of the currently existing ensembles active in the cluster.<br /><ul><li><code>Ensemble</code> --- The ID of the ensemble</li><li><code>Quorum</code> --- The number of ensemble peers that are either leading or following</li><li><code>Nodes</code> --- The number of nodes currently online</li><li><code>Leader</code> --- The current leader node for the ensemble</li></ul>                 |
 
 :::note
-The**root ensemble**, designated by `root` in the sample
+The **root ensemble**, designated by `root` in the sample
 output above, is a special ensemble that stores a list of nodes and
 ensembles in the cluster.
 :::

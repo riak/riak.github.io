@@ -743,7 +743,7 @@ curl "$RIAK_HOST/search/query/blog_posts?wt=json&q=content_register:furry"
 Here are some more possible queries:
 
 | Info                                                   | Query                                  |
-| :----------------------------------------------------- | :------------------------------------- |
+|:-------------------------------------------------------|:---------------------------------------|
 | Unpublished posts                                      | `published_flag:false`                 |
 | Titles that begin with `Loving*`                       | `title_register:Loving*`               |
 | Post bodies containing the words `furry` and `jumping` | `content_register:[furry AND jumping]` |
