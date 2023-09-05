@@ -281,8 +281,8 @@ function transformStrongNote() {
         if (strong_text !== 'note') {
           return;
         }
-
-				const any_new_lines = paragraph_node.children.some(child => child?.value?.includes('\n'));
+        
+        const any_new_lines = paragraph_node.children.some(child => child?.value?.includes('\n'));
 
         let note_text = paragraph_node.children[1]?.value?.replace(/^:/, '');
 

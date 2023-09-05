@@ -44,8 +44,6 @@ function gatherDefinitions({ file_path, metadata }) {
 }
 
 async function gatherMetadata(metadata, version) {
-  //metadata[version] ??= {};
-
   const path = `versioned_docs/version-${version}`;
 
   for await (const { f, parsed } of getMarkdownFiles(resolve(`../../${path}`))) {
