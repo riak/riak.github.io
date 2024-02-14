@@ -67,7 +67,6 @@ const config = {
             label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
-          {to: '/bitcask-calculator', label: 'Bitcask Calculator', position: 'left'},
           {
             type: 'docsVersionDropdown',
             position: 'right',
