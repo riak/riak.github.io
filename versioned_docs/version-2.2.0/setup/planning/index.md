@@ -10,7 +10,7 @@ sidebar_position: 0
 
 [plan cluster capacity]: ./cluster-capacity.md
 
-[plan bitcask capacity]: /bitcask-calculator
+[plan bitcask capacity]: ../../setup/planning/bitcask-calculator.mdx
 
 [plan backend bitcask]: ./backend/bitcask.md
 

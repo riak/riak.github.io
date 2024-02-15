@@ -7,7 +7,7 @@ sidebar_position: 3
 
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
 
-[plan bitcask capacity]: /bitcask-calculator
+[plan bitcask capacity]: ../../setup/planning/bitcask-calculator.mdx
 
 [plan index]: ../../setup/planning/index.md
 
@@ -181,7 +181,7 @@ So if you're running a 3-node development cluster, a ring size of 64 or 128 shou
 The table below provides some suggested combinations:
 
 | Number of nodes | Number of data partitions |
-| :-------------- | :------------------------ |
+|:----------------|:--------------------------|
 | 3, 4, 5         | 64, 128                   |
 | 5               | 64, 128                   |
 | 6               | 64, 128, 256              |

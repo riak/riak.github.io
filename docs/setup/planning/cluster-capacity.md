@@ -7,7 +7,7 @@ sidebar_position: 3
 
 [plan backend leveldb]: ../../setup/planning/backend/leveldb.md
 
-[plan bitcask capacity]: /bitcask-calculator
+[plan bitcask capacity]: ../../setup/planning/bitcask-calculator.mdx
 
 [plan index]: ../../setup/planning/index.md
 
