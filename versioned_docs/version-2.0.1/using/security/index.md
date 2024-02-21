@@ -169,7 +169,7 @@ application or a service layer.
 ### Notifying Basho
 
 If you discover a potential security issue, please email us at
-**security@basho.com**, and allow us 48 hours to reply.
+**security@riak.com**, and allow us 48 hours to reply.
 
 We prefer to be contacted first, rather than searching for blog posts
 over the Internet. This allows us to open a dialogue with the security

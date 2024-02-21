@@ -5,8 +5,6 @@ slug: redis-add-on-features
 sidebar_position: 3
 ---
 
-[ee]: http://basho.com/contact/
-
 [Object-lifetime]: /images/redis/Object_lifetime.msc.png
 
 [redis docs]: http://redis.io/commands

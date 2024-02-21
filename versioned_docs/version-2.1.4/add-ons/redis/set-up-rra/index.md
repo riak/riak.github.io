@@ -8,8 +8,6 @@ sidebar_position: 0
 
 [addon redis use]: ../using-rra.md
 
-[ee]: http://basho.com/contact/
-
 [install index]: ../../../setup/installing/index.md
 
 [perf open files]: ../../../using/performance/open-files-limit.md#changing-limit-for-current-session

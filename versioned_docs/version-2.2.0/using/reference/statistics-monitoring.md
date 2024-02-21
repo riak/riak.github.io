@@ -62,7 +62,7 @@ following stats are recorded for operations that happened *during the
 last minute*.
 
 | Metric                         | Relevance          | Operations (for the last minute)                                              |
-| :----------------------------- | :----------------- | :---------------------------------------------------------------------------- |
+|:-------------------------------|:-------------------|:------------------------------------------------------------------------------|
 | `node_gets`                    | K/V                | Reads coordinated by this node                                                |
 | `node_puts`                    | K/V                | Writes coordinated by this node                                               |
 | `vnode_counter_update`         | Data Types         | Update [Counters][data_types_counters] operations coordinated by local vnodes |
@@ -92,7 +92,7 @@ represents experienced latency. Mean, Median, and 95th-, 99th-, and
 :::
 
 | Metric                           | Also                                 | Relevance          | Latency (in microseconds)                                                        |
-| :------------------------------- | :----------------------------------- | :----------------- | :------------------------------------------------------------------------------- |
+|:---------------------------------|:-------------------------------------|:-------------------|:---------------------------------------------------------------------------------|
 | `node_get_fsm_time_mean`         | `_median`, `_95`, `_99`, `_100`      | K/V                | Time between reception of client read request and subsequent response to client  |
 | `node_put_fsm_time_mean`         | `_median`, `_95`, `_99`, `_100`      | K/V                | Time between reception of client write request and subsequent response to client |
 | `object_counter_merge_time_mean` | `_median`, `_95`, `_99`, `_100`      | Data Types         | Time it takes to perform an Update Counter operation                             |
@@ -109,7 +109,7 @@ These are system metrics from the perspective of the Erlang VM,
 measuring resources allocated and used by Erlang.
 
 | Metric                  | Notes                                                            |
-| :---------------------- | :--------------------------------------------------------------- |
+|:------------------------|:-----------------------------------------------------------------|
 | `sys_process_count`     | Number of processes currently running in the Erlang VM           |
 | `memory_processes`      | Total amount of memory allocated for Erlang processes (in bytes) |
 | `memory_processes_used` | Total amount of memory used by Erlang processes (in bytes)       |
@@ -120,7 +120,7 @@ These various stats give a picture of the general level of activity or
 load on the Riak node at any given moment.
 
 | Metric                       | Also                            | Notes                                                                                                                                                                                  |
-| :--------------------------- | :------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------------------------|:--------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `node_get_fsm_siblings_mean` | `_median`, `_95`, `_99`, `_100` | Number of siblings encountered during all GET operations by this node within the last minute. Watch for abnormally high sibling counts, especially max ones.                           |
 | `node_get_fsm_objsize_mean`  | `_median`, `_95`, `_99`, `_100` | Object size encountered by this node within the last minute. Abnormally large objects (especially paired with high sibling counts) can indicate sibling explosion.                     |
 | `riak_search_vnodeq_mean`    | `_median`, `_95`, `_99`, `_100` | Number of unprocessed messages in the vnode message queues of the Riak Search subsystem on this node in the last minute. The queues give you an idea of how backed up Solr is getting. |
@@ -138,7 +138,7 @@ These various stats give a picture of the general level of activity or
 load on the Riak node at any given moment.
 
 | Metric                            | Description                                                                                                                                                 |
-| :-------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `search_index_bad_entry_count`    | Number of writes to Solr that have resulted in an error due to the format of the data (e.g., non-unicode data) since the last restart of Riak.              |
 | `search_index_bad_entry_one`      | Number of writes to Solr that have resulted in an error due to the format of the data (e.g., non-unicode data) in the past minute.                          |
 | `search_index_extract_fail_count` | Number of failures that have occurred extracting data into a format suitable to insert into Solr (e.g., badly formatted JSON) since the last start of Riak. |
@@ -369,11 +369,11 @@ Docs](https://github.com/basho/basho_docs).
 
 [sysctl_vm_txt]: https://www.kernel.org/doc/Documentation/sysctl/vm.txt
 
-[data_types_counters]: http://docs.basho.com/riak/latest/dev/using/data-types/#Counters
+[data_types_counters]: ../../developing/data-types/counters.md
 
-[data_types_sets]: http://docs.basho.com/riak/latest/dev/using/data-types/#Sets
+[data_types_sets]: ../../developing/data-types/sets.md
 
-[data_types_maps]: http://docs.basho.com/riak/latest/dev/using/data-types/#Maps
+[data_types_maps]: ../../developing/data-types/maps.md
 
 [riak_nagios]: https://github.com/basho/riak_nagios
 

@@ -369,11 +369,11 @@ Docs](https://github.com/basho/basho_docs).
 
 [sysctl_vm_txt]: https://www.kernel.org/doc/Documentation/sysctl/vm.txt
 
-[data_types_counters]: http://docs.basho.com/riak/latest/dev/using/data-types/#Counters
+[data_types_counters]: ../../developing/data-types/counters.md
 
-[data_types_sets]: http://docs.basho.com/riak/latest/dev/using/data-types/#Sets
+[data_types_sets]: ../../developing/data-types/sets.md 
 
-[data_types_maps]: http://docs.basho.com/riak/latest/dev/using/data-types/#Maps
+[data_types_maps]: ../../developing/data-types/maps.md 
 
 [riak_nagios]: https://github.com/basho/riak_nagios
 

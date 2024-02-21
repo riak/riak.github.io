@@ -22,8 +22,6 @@ import TabItem from '@theme/TabItem';
 
 [concept causal context]: ../../learn/concepts/causal-context.md
 
-[ee]: http://basho.com/contact/
-
 This page will walk you through setting up your environment for development with Riak Redis Add-on (RRA), as well as present examples and configuration parameters for basic development operations.
 
 ## Overview
