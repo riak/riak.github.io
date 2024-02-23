@@ -112,7 +112,7 @@ Riak clients must be able to contact at least one machine in a Riak
 cluster on the following TCP ports:
 
 | Protocol                                                           | Port          |
-| :----------------------------------------------------------------- | :------------ |
+|:-------------------------------------------------------------------|:--------------|
 | [HTTP](../../developing/api/http/index.md)                         | TCP port 8098 |
 | [Protocol Buffers](../../developing/api/protocol-buffers/index.md) | TCP port 8087 |
 

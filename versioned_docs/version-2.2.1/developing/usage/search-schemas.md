@@ -241,7 +241,7 @@ Malformed JSON or XML will cause Riak Search to index a key and set
 `_yz_err` to 1, allowing you to reindex with proper values later.
 
 | Field      | Name                   | Description                                                                                      |
-| :--------- | :--------------------- | :----------------------------------------------------------------------------------------------- |
+|:-----------|:-----------------------|:-------------------------------------------------------------------------------------------------|
 | `_yz_id`   | ID                     | Unique identifier of this Solr document                                                          |
 | `_yz_ed`   | Entropy Data           | Data related to [active anti-entropy](../../learn/concepts/active-anti-entropy.md)               |
 | `_yz_pn`   | Partition Number       | Used as a filter query parameter to remove duplicate replicas across nodes                       |

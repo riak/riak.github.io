@@ -88,7 +88,7 @@ Bucket types are created, updated, activated, and more through the
 Below is a full list of available sub-commands:
 
 | Command    | Action                                                                | Form                   |
-| :--------- | :-------------------------------------------------------------------- | :--------------------- |
+|:-----------|:----------------------------------------------------------------------|:-----------------------|
 | `create`   | Create or modify a bucket type before activation                      | `create <type> <json>` |
 | `activate` | Activate a bucket type                                                | `activate <type>`      |
 | `list`     | List all currently available bucket types and their activation status | `list`                 |

@@ -735,7 +735,7 @@ Riak regularly prunes vector clocks to prevent overgrowth based on four
 parameters which can be set for any bucket type that you create:
 
 | Parameter      | Default value     | Description                                                                                              |
-| :------------- | :---------------- | :------------------------------------------------------------------------------------------------------- |
+|:---------------|:------------------|:---------------------------------------------------------------------------------------------------------|
 | `small_vclock` | `50`              | If the length of the vector clock list is smaller than this value, the list's entries will not be pruned |
 | `big_vclock`   | `50`              | If the length of the vector clock list is larger than this value, the list will be pruned                |
 | `young_vclock` | `20`              | If a vector clock entry is younger than this value (in milliseconds), it will not be pruned              |

@@ -48,7 +48,7 @@ Riak Enterprise Clusters, each of which consists of three nodes:
 ### Cluster 1
 
 | Name    | IP             | Node name           |
-| :------ | :------------- | ------------------- |
+|:--------|:---------------|---------------------|
 | `node1` | `10.60.67.149` | `riak@10.60.67.149` |
 | `node2` | `10.60.83.39`  | `riak@10.60.83.39`  |
 | `node3` | `10.60.90.252` | `riak@10.60.90.252` |
@@ -56,7 +56,7 @@ Riak Enterprise Clusters, each of which consists of three nodes:
 ### Cluster 2
 
 | Name    | IP            | Node name          |
-| :------ | :------------ | :----------------- |
+|:--------|:--------------|:-------------------|
 | `node4` | `10.60.77.10` | `riak@10.60.77.10` |
 | `node5` | `10.60.84.41` | `riak@10.60.84.41` |
 | `node6` | `10.60.92.44` | `riak@10.60.92.44` |

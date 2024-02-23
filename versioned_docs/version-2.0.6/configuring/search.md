@@ -65,7 +65,7 @@ optional. A list of these parameters can also be found in our
 [configuration files][config reference#search] documentation.
 
 | Field                          | Default                                                         | Valid values                     | Description                                                                                                                |
-| :----------------------------- | :-------------------------------------------------------------- | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+|:-------------------------------|:----------------------------------------------------------------|:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
 | `search`                       | `off`                                                           | `on` or `off`                    | Enable or disable Search                                                                                                   |
 | `search.anti_entropy.data_dir` | `./data/yz_anti_entropy`                                        | Directory                        | The directory in which Riak Search stores files related to [active anti-entropy][glossary aae]                             |
 | `search.root_dir`              | `./data/yz`                                                     | Directory                        | The root directory in which index data and configuration is stored                                                         |

@@ -17,7 +17,7 @@ The table below lists some of the parameters that are available, showing
 both their names as used in Erlang and their names as Riak parameters.
 
 | Erlang parameter                                                                     | Riak parameter                                        |
-| :----------------------------------------------------------------------------------- | :---------------------------------------------------- |
+|:-------------------------------------------------------------------------------------|:------------------------------------------------------|
 | [`+A`](http://erlang.org/doc/man/erl.html#async_thread_pool_size)                    | `erlang.async_threads`                                |
 | [`+K`](http://erlang.org/doc/man/erl.html#emu_flags)                                 | `erlang.K`                                            |
 | [`+P`](http://erlang.org/doc/man/erl.html#+P)                                        | `erlang.process_limit`                                |

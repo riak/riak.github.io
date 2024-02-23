@@ -433,7 +433,7 @@ Permissions that can be granted for basic key/value access
 functionality:
 
 | Permission             | Operation                                  |
-| :--------------------- | :----------------------------------------- |
+|:-----------------------|:-------------------------------------------|
 | `riak_kv.get`          | Retrieve objects                           |
 | `riak_kv.put`          | Create or update objects                   |
 | `riak_kv.delete`       | Delete objects                             |
@@ -473,7 +473,7 @@ security` allows you to manage the following bucket type-related
 permissions:
 
 | Permission                  | Operation                                                 |
-| :-------------------------- | :-------------------------------------------------------- |
+|:----------------------------|:----------------------------------------------------------|
 | `riak_core.get_bucket`      | Retrieve the `props` associated with a bucket             |
 | `riak_core.set_bucket`      | Modify the `props` associated with a bucket               |
 | `riak_core.get_bucket_type` | Retrieve the set of `props` associated with a bucket type |
@@ -491,7 +491,7 @@ capabilities included with Riak versions 2.0 and greater, the following
 search-related permissions can be granted/revoked:
 
 | Permission     | Operation                                                                                                                        |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+|:---------------|:---------------------------------------------------------------------------------------------------------------------------------|
 | `search.admin` | The ability to perform search admin-related tasks, such as creating and deleting indexes and adding and modifying search schemas |
 | `search.query` | The ability to query an index                                                                                                    |
 
@@ -567,7 +567,7 @@ or all users (`all`).
 #### Available Sources
 
 | Source        | Description                                                                                                        |
-| :------------ | :----------------------------------------------------------------------------------------------------------------- |
+|:--------------|:-------------------------------------------------------------------------------------------------------------------|
 | `trust`       | Always authenticates successfully if access has been granted to a user or all users on the specified CIDR range    |
 | `password`    | Check the user's password against the [PBKFD2](http://en.wikipedia.org/wiki/PBKDF2)-hashed password stored in Riak |
 | `pam`         | Authenticate against the given pluggable authentication module (PAM) service                                       |

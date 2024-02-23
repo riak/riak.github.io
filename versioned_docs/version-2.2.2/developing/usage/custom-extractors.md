@@ -13,7 +13,7 @@ variety of data types, including JSON, XML, and plaintext. Riak Search
 ships with the following extractors:
 
 | Content Type       | Erlang Module       |
-| :----------------- | :------------------ |
+|:-------------------|:--------------------|
 | `application/json` | `yz_json_extractor` |
 | `application/xml`  | `yz_xml_extractor`  |
 | `text/plain`       | `yz_text_extractor` |
@@ -87,7 +87,7 @@ example of such a packet:
 We want to register the following information in Solr:
 
 | Field name | Value                                   | Extracted value in this example |
-| :--------- | :-------------------------------------- | :------------------------------ |
+|:-----------|:----------------------------------------|:--------------------------------|
 | `method`   | The HTTP method                         | `GET`                           |
 | `host`     | The URL's host                          | `www.google.com`                |
 | `uri`      | The URI, i.e. what comes after the host | `/`                             |

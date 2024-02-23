@@ -74,7 +74,7 @@ We do our best to make all features that change data formats on disk opt-in; how
 * **One Way** features, when enabled, will make a clean downgrade of a cluster impossible.
 
 | Feature                                 | Automatic | Required | One Way | Notes                           |
-| :-------------------------------------- | :-------: | :------: | :-----: | :------------------------------ |
+|:----------------------------------------|:---------:|:--------:|:-------:|:--------------------------------|
 | Active anti-entropy file format changes |     ✔     |          |         | Can opt-out using a capability. |
 
 ## Upgrading process

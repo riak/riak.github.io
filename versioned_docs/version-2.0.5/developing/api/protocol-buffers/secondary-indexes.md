@@ -35,7 +35,7 @@ message RpbIndexReq {
 #### Required Parameters
 
 | Parameter | Description                                                                                                                                                                                           |
-| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                                               |
 | `index`   | The name of the index to be queried                                                                                                                                                                   |
 | `qtype`   | The type of index query to be performed. This can take either of the two possible values of the `IndexQueryType` enum: `eq` for an exact index match for the given `key` or `range` for a range query |
@@ -43,7 +43,7 @@ message RpbIndexReq {
 #### Optional Parameters
 
 | Parameter                   | Description                                                                                                                                                                                |
-| :-------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `key`                       | The name of the index to be queried if `qtype` is set to `eq`                                                                                                                              |
 | `range_min` and `range_max` | The minimum and maximum values for a range query if `qtype` is set to `range`                                                                                                              |
 | `return_terms`              | If set to `true`, the response will include matched indexed values (for range queries only)                                                                                                |
@@ -72,7 +72,7 @@ message RpbIndexResp {
 #### Values
 
 | Parameter      | Description                                                                                                                                                                                                                                               |
-| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:---------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `keys`         | A list of keys that match the index request                                                                                                                                                                                                               |
 | `results`      | If `return_terms` is specified with range queries, used to return matched index values as key/value pairs in `RpbPair` messages. More on `RpbPair` messages can be found in [PBC Fetch Object](../../../developing/api/protocol-buffers/fetch-object.md). |
 | `continuation` | Used for paginated responses                                                                                                                                                                                                                              |

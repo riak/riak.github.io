@@ -30,7 +30,7 @@ and computers can easily construct them when needed, and most of the
 time they can be made unique enough for a KV store.
 
 | Bucket      | Key Pattern                | Example Key                                                        |
-| :---------- | :------------------------- | :----------------------------------------------------------------- |
+|:------------|:---------------------------|:-------------------------------------------------------------------|
 | `Users`     | `<user_name>`              | `joeuser`                                                          |
 | `Msgs`      | `<username>_<datetime>`    | `joeuser_2014-03-06T02:05:13`                                      |
 | `Timelines` | `<username>_<type>_<date>` | `joeuser_Sent_2014-03-06`<br /> `marketing_group_Inbox_2014-03-06` |

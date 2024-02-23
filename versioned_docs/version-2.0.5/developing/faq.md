@@ -97,7 +97,7 @@ sidebar_position: 7
   A preflist consists of the vnode which owns the key, and the next `n_val` vnodes in the ring, in order. In this scenario there are 16 preflists:
 
 |          |          |          |          |
-| -------- | -------- | -------- | -------- |
+|----------|----------|----------|----------|
 | 0-1-2    | 1-2-3    | 2-3-4    | 3-4-5    |
 | 4-5-6    | 5-6-7    | 6-7-8    | 7-8-9    |
 | 8-9-10   | 9-10-11  | 10-11-12 | 11-12-13 |
@@ -106,7 +106,7 @@ sidebar_position: 7
   Index information for each partition is co-located with the value data.  In order to get a full result set for a secondary index query, Riak will need to consult a "covering set" of vnodes that includes at least one member of each preflist. This will require a minimum of 1/`n_val` of the vnodes, rounded up, in this case 6. There are 56 possible covering sets consisting of 6 vnodes:
 
 |                |                |                |                |
-| -------------- | -------------- | -------------- | -------------- |
+|----------------|----------------|----------------|----------------|
 | 0-1-4-7-10-13  | 0-2-4-7-10-13  | 0-2-5-7-10-13  | 0-2-5-8-10-13  |
 | 0-2-5-8-11-13  | 0-2-5-8-11-14  | 0-3-4-7-10-13  | 0-3-5-7-10-13  |
 | 0-3-5-8-10-13  | 0-3-5-8-11-13  | 0-3-5-8-11-14  | 0-3-6-7-10-13  |
@@ -165,7 +165,6 @@ sidebar_position: 7
 
 * 20 sets (35.7% of sets) will return all 3 keys `{a,b,c}`:
 
-  |               |               |               |               |
   | ------------- | ------------- | ------------- | ------------- |
   | 0-2-5-8-10-13 | 0-2-5-8-11-13 | 0-2-5-8-11-14 | 0-3-5-8-10-13 |
   | 0-3-5-8-11-13 | 0-3-5-8-11-14 | 0-3-6-8-10-13 | 0-3-6-8-11-13 |

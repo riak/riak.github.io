@@ -17,7 +17,7 @@ values where applicable. All examples use `curl` to interact with Riak.
 ## Bucket-related Operations
 
 | Method   | URL                                             | Doc                                                                                |
-| :------- | :---------------------------------------------- | :--------------------------------------------------------------------------------- |
+|:---------|:------------------------------------------------|:-----------------------------------------------------------------------------------|
 | `GET`    | `/types/<type>/buckets/<bucket>/props`          | [HTTP Get Bucket Properties](../../../developing/api/http/get-bucket-props.md)     |
 | `PUT`    | `/types/<type>/buckets/<bucket>/props`          | [HTTP Set Bucket Properties](../../../developing/api/http/set-bucket-props.md)     |
 | `DELETE` | `/types/<type>/buckets/<bucket>/props`          | [HTTP Reset Bucket Properties](../../../developing/api/http/reset-bucket-props.md) |
@@ -27,7 +27,7 @@ values where applicable. All examples use `curl` to interact with Riak.
 ## Object-related Operations
 
 | Method   | URL                                         | Doc                                                                 |
-| :------- | :------------------------------------------ | :------------------------------------------------------------------ |
+|:---------|:--------------------------------------------|:--------------------------------------------------------------------|
 | `GET`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Fetch Object](../../../developing/api/http/fetch-object.md)   |
 | `POST`   | `/types/<type>/buckets/<bucket>/<key>`      | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
 | `PUT`    | `/types/<type>/buckets/<bucket>/keys/<key>` | [HTTP Store Object](../../../developing/api/http/store-object.md)   |
@@ -45,7 +45,7 @@ KV internal module `riak_kv_wm_crdt`.
 ## Query-related Operations
 
 | Method | URL                                                          | Doc                                                                         |
-| :----- | :----------------------------------------------------------- | :-------------------------------------------------------------------------- |
+|:-------|:-------------------------------------------------------------|:----------------------------------------------------------------------------|
 | `POST` | `/mapred`                                                    | [HTTP MapReduce](../../../developing/api/http/mapreduce.md)                 |
 | `GET`  | `/types/<type>/buckets/<bucket>/index/<index>/<value>`       | [HTTP Secondary Indexes](../../../developing/api/http/secondary-indexes.md) |
 | `GET`  | `/types/<type>/buckets/<bucket>/index/<index>/<start>/<end>` | [HTTP Secondary Indexes](../../../developing/api/http/secondary-indexes.md) |
@@ -53,7 +53,7 @@ KV internal module `riak_kv_wm_crdt`.
 ## Server-related Operations
 
 | Method | URL      | Doc                                                                   |
-| :----- | :------- | :-------------------------------------------------------------------- |
+|:-------|:---------|:----------------------------------------------------------------------|
 | `GET`  | `/ping`  | [HTTP Ping](../../../developing/api/http/ping.md)                     |
 | `GET`  | `/stats` | [HTTP Status](../../../developing/api/http/status.md)                 |
 | `GET`  | `/`      | [HTTP List Resources](../../../developing/api/http/list-resources.md) |
@@ -61,7 +61,7 @@ KV internal module `riak_kv_wm_crdt`.
 ## Search-related Operations
 
 | Method   | URL                            | Doc                                                                             |
-| :------- | :----------------------------- | :------------------------------------------------------------------------------ |
+|:---------|:-------------------------------|:--------------------------------------------------------------------------------|
 | `GET`    | `/search/query/<index_name>`   | [HTTP Search Query](../../../developing/api/http/search-query.md)               |
 | `GET`    | `/search/index`                | [HTTP Search Index Info](../../../developing/api/http/search-index-info.md)     |
 | `GET`    | `/search/index/<index_name>`   | [HTTP Fetch Search Index](../../../developing/api/http/fetch-search-index.md)   |

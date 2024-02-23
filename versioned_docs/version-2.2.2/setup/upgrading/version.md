@@ -77,8 +77,8 @@ We do our best to make all features that change data formats on disk opt-in; how
 * **One Way** features, when enabled, will make a clean downgrade of a cluster impossible.
 
 | Feature                                 | Automatic | Required | One Way | Notes                                                  |
-| :-------------------------------------- | :-------: | :------: | :-----: | :----------------------------------------------------- |
-| Migration to Solr 4.10.4                |     ✔     |     ✔    |         | Applies to all clusters using Riak search.             |
+|:----------------------------------------|:---------:|:--------:|:-------:|:-------------------------------------------------------|
+| Migration to Solr 4.10.4                |     ✔     |    ✔     |         | Applies to all clusters using Riak search.             |
 | Active anti-entropy file format changes |     ✔     |          |         | Can opt-out using a capability.                        |
 | LZ4 compression in LevelDB              |           |          |    ✔    |                                                        |
 | Global expiration in LevelDB            |           |          |    ✔    |                                                        |

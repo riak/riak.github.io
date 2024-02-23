@@ -33,7 +33,7 @@ metrics related to object size, all of which are calculated only for
 `GET` operations (i.e. reads):
 
 | Metric                        | Explanation                                                                  |
-| :---------------------------- | :--------------------------------------------------------------------------- |
+|:------------------------------|:-----------------------------------------------------------------------------|
 | `fsm_node_get_objsize_mean`   | The mean object size encountered by this node in the last minute             |
 | `fsm_node_get_objsize_median` | The median object size encountered by this node in the last minute           |
 | `fsm_node_get_objsize_95`     | The 95th-percentile object size encountered by this node in the last minute  |
@@ -81,7 +81,7 @@ object size (or via an HTTP `GET` request to `/stats`). In the output of
 sibling-related statistics:
 
 | Metric                         | Explanation                                                                                                              |
-| :----------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
+|:-------------------------------|:-------------------------------------------------------------------------------------------------------------------------|
 | `node_get_fsm_siblings_mean`   | The mean number of siblings encountered during all GET operations by this node within the last minute                    |
 | `node_get_fsm_siblings_median` | The median number of siblings encountered during all GET operations by this node within the last minute                  |
 | `node_get_fsm_siblings_95`     | The 95th percentile of the number of siblings encountered during all GET operations by this node within the last minute  |

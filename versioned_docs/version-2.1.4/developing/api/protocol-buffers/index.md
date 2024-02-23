@@ -38,7 +38,7 @@ Each operation consists of a [request message](https://developers.google.com/pro
 ## Message Codes
 
 | Code | Message                    |
-| :--- | :------------------------- |
+|:-----|:---------------------------|
 | 0    | `RpbErrorResp`             |
 | 1    | `RpbPingReq`               |
 | 2    | `RpbPingResp`              |

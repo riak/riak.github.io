@@ -68,7 +68,7 @@ below.
 ## Fullsync Settings
 
 | Setting               | Options                      | Default     | Description                                                                                                                                                                                                                                                                                                           |
-| :-------------------- | :--------------------------- | :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------------------|:-----------------------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `fullsync_on_connect` | `true`, `false`              | `true`      | Whether or not to initiate a fullsync on initial connection from the secondary cluster                                                                                                                                                                                                                                |
 | `fullsync_strategies` | `keylist`                    | `[keylist]` | A *list* of fullsync strategies to be used by replication.<br />**Note**: Please contact Basho support for more information.                                                                                                                                                                                          |
 | `fullsync_interval`   | `mins` (integer), `disabled` | `360`       | How often to initiate a fullsync of data, in minutes. This is measured from the completion of one fullsync operation to the initiation of the next. This setting only applies to the primary cluster (listener). To disable fullsync, set `fullsync_interval` to `disabled` and `fullsync_on_connect` to `false`.\*\* |
@@ -76,7 +76,7 @@ below.
 ## SSL Settings
 
 | Setting                | Options           | Default     | Description                                                                                                                                                                                                                                                                   |
-| :--------------------- | :---------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------------------|:------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ssl_enabled`          | `true`, `false`   | `false`     | Enable SSL communications                                                                                                                                                                                                                                                     |
 | `keyfile`              | `path` (string)   | `undefined` | Fully qualified path to an SSL `.pem` key file                                                                                                                                                                                                                                |
 | `cacertdir`            | `path` (string)   | `undefined` | The `cacertdir` is a fully-qualified directory containing all the CA certificates needed to verify the CA chain back to the root                                                                                                                                              |
@@ -87,7 +87,7 @@ below.
 ## Queue, Object, and Batch Settings
 
 | Setting              | Options             | Default               | Description                                                                                                                                                                                                                             |
-| :------------------- | :------------------ | :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:---------------------|:--------------------|:----------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `data_root`          | `path` (string)     | `data/riak_repl`      | Path (relative or absolute) to the working directory for the replication process                                                                                                                                                        |
 | `queue_size`         | `bytes` (integer)   | `104857600` (100 MiB) | The size of the replication queue in bytes before the replication leader will drop requests. If requests are dropped, a fullsync will be required. Information about dropped requests is available using the `riak-repl status` command |
 | `server_max_pending` | `max` (integer)     | `5`                   | The maximum number of objects the leader will wait to get an acknowledgment from, from the remote location, before queuing the request                                                                                                  |
@@ -98,7 +98,7 @@ below.
 ## Client Settings
 
 | Setting                  | Options          | Default | Description                                                                                        |
-| :----------------------- | :--------------- | :------ | :------------------------------------------------------------------------------------------------- |
+|:-------------------------|:-----------------|:--------|:---------------------------------------------------------------------------------------------------|
 | `client_ack_frequency`   | `freq` (integer) | `5`     | The number of requests a leader will handle before sending an acknowledgment to the remote cluster |
 | `client_connect_timeout` | `ms` (integer)   | `15000` | The number of milliseconds to wait before a client connection timeout occurs                       |
 | `client_retry_timeout`   | `ms` (integer)   | `30000` | The number of milliseconds to wait before trying to connect after a retry has occurred             |
@@ -106,14 +106,14 @@ below.
 ## Buffer Settings
 
 | Setting  | Options           | Default      | Description                                                        |
-| :------- | :---------------- | :----------- | :----------------------------------------------------------------- |
+|:---------|:------------------|:-------------|:-------------------------------------------------------------------|
 | `sndbuf` | `bytes` (integer) | OS dependent | The buffer size for the listener (server) socket measured in bytes |
 | `recbuf` | `bytes` (integer) | OS dependent | The buffer size for the site (client) socket measured in bytes     |
 
 ## Worker Settings
 
 | Setting           | Options         | Default | Description                                                                                                                                                                 |
-| :---------------- | :-------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------------|:----------------|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `max_get_workers` | `max` (integer) | `100`   | The maximum number of get workers spawned for fullsync. Every time a replication difference is found, a `GET` will be performed to get the actual object to send. See [^2]. |
 | `max_put_workers` | `max` (integer) | `100`   | The maximum number of put workers spawned for fullsync. Every time a replication difference is found, a `GET` will be performed to get the actual object to send. See [^3]. |
 | `min_get_workers` | `min` (integer) | `5`     | The minimum number of get workers spawned for fullsync. Every time a replication difference is found, a `GET` will be performed to get the actual object to send. See [^2]. |

@@ -52,7 +52,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### Debian and Ubuntu
 
 | Data               | Directory                    |
-| :----------------- | :--------------------------- |
+|:-------------------|:-----------------------------|
 | Bitcask            | `/var/lib/riak/bitcask`      |
 | LevelDB            | `/var/lib/riak/leveldb`      |
 | Ring               | `/var/lib/riak/ring`         |
@@ -64,7 +64,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### Fedora and RHEL
 
 | Data               | Directory                    |
-| :----------------- | :--------------------------- |
+|:-------------------|:-----------------------------|
 | Bitcask            | `/var/lib/riak/bitcask`      |
 | LevelDB            | `/var/lib/riak/leveldb`      |
 | Ring               | `/var/lib/riak/ring`         |
@@ -76,7 +76,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### FreeBSD
 
 | Data               | Directory                   |
-| :----------------- | :-------------------------- |
+|:-------------------|:----------------------------|
 | Bitcask            | `/var/db/riak/bitcask`      |
 | LevelDB            | `/var/db/riak/leveldb`      |
 | Ring               | `/var/db/riak/ring`         |
@@ -88,7 +88,7 @@ The default Riak KV data, ring, and configuration directories for each of the su
 #### OS X
 
 | Data               | Directory                  |
-| :----------------- | :------------------------- |
+|:-------------------|:---------------------------|
 | Bitcask            | `./data/bitcask`           |
 | LevelDB            | `./data/leveldb`           |
 | Ring               | `./data/riak/ring`         |
@@ -105,7 +105,7 @@ was extracted.
 #### SmartOS
 
 | Data               | Directory                   |
-| :----------------- | :-------------------------- |
+|:-------------------|:----------------------------|
 | Bitcask            | `/var/db/riak/bitcask`      |
 | LevelDB            | `/var/db/riak/leveldb`      |
 | Ring               | `/var/db/riak/ring`         |
@@ -117,7 +117,7 @@ was extracted.
 #### Solaris
 
 | Data               | Directory                  |
-| :----------------- | :------------------------- |
+|:-------------------|:---------------------------|
 | Bitcask            | `/opt/riak/data/bitcask`   |
 | LevelDB            | `/opt/riak/data/leveldb`   |
 | Ring               | `/opt/riak/ring`           |

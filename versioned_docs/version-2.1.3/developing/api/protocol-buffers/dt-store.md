@@ -38,7 +38,7 @@ message DtUpdateReq {
 #### Required Parameters
 
 | Parameter | Description                                                                                                                                                                                                        |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                                                            |
 | `type`    | The bucket type of the bucket in which the Data Type is stored, *not* the type of Data Type (i.e. counter, set, or map). Learn more about [using bucket types](../../../using/cluster-operations/bucket-types.md). |
 
@@ -67,7 +67,7 @@ a special value denoting `one` (`4294967295-1`), `quorum`
 :::
 
 | Parameter         | Description                                                                                                                                                           |
-| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `key`             | The key where the Data Type is stored. If not specified, Riak will assign a random key and return that key to the client if `return_body` is set to `true`.           |
 | `context`         | The opaque binary "context" that informs Riak which version of a data type the client has seen, analogous to [vector clocks](../../../learn/glossary.md#vector-clock) |
 | `w`               | Write quorum, i.e. how many replicas to write to before returning a successful response                                                                               |

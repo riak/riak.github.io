@@ -48,7 +48,7 @@ equal to N, <em>or</em> a special value denoting `one`
 :::
 
 | Parameter       | Description                                                                                                                                                          |
-| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `basic_quorum`  | Whether to return early in some failure cases, e.g. when `r=1` and you get 2 errors and a success basic_quorum=true would return an error                            |
 | `notfound_ok`   | Whether to treat `not found` responses as successful reads for the purposes of R                                                                                     |
 | `if_modified`   | When a vclock is supplied as this option, the response will only return the object if the vclocks don't match                                                        |
@@ -70,7 +70,7 @@ message RpbGetResp {
 #### Values
 
 | Value       | Description                                                                                                                                                   |
-| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `content`   | The value plus metadata entries for the object. If there are siblings, there will be more than one entry. If the key is not found, the content will be empty. |
 | `vclock`    | The opaque vector clock that must be included in the `RpbPutReq` to resolve the siblings                                                                      |
 | `unchanged` | If `if_modified` was specified in the GET request but the object has not been modified, this will be set to `true`                                            |

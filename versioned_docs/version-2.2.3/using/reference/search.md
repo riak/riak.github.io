@@ -161,7 +161,7 @@ Yokozuna ships with extractors for several common data types. Below is a
 table of this default mapping:
 
 | Content Type       | Erlang Module       |
-| :----------------- | :------------------ |
+|:-------------------|:--------------------|
 | `application/json` | `yz_json_extractor` |
 | `application/xml`  | `yz_xml_extractor`  |
 | `text/plain`       | `yz_text_extractor` |

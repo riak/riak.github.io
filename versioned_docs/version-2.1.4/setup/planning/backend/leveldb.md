@@ -129,7 +129,7 @@ The configuration values that can be set in your
 [`riak.conf`][config reference] for eLevelDB are as follows:
 
 | Config                           | Description                                                                                                                                                                                                                                      | Default          |
-| :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------- |
+|:---------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------|
 | `leveldb.data_root`              | LevelDB data root                                                                                                                                                                                                                                | `./data/leveldb` |
 | `leveldb.maximum_memory.percent` | Defines the percentage (between 1 and 100) of total server memory to assign to LevelDB. LevelDB will dynamically adjust its internal cache sizes as Riak activates/inactivates [vnodes][glossary vnode] on this server to stay within this size. | `70`             |
 
@@ -430,7 +430,7 @@ If you are using the newer, `riak.conf`-based configuration system, the
 following parameters can be used to configure LevelDB tiered storage:
 
 | Parameter                  | Description                                                                                                       |
-| :------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+|:---------------------------|:------------------------------------------------------------------------------------------------------------------|
 | `leveldb.tiered`           | The level number at which data should switch to the slower array. The default is `0`, which disables the feature. |
 | `leveldb.tiered.path.fast` | The path prefix for `.sst` files below the level set by `leveldb.tiered`                                          |
 | `leveldb.tiered.path.slow` | The path prefix for `.sst` files at and above the level set by `leveldb.tiered`                                   |
@@ -488,7 +488,7 @@ specified level, and the cumulative size including active anti-entropy
 data.
 
 | Level | Level Size  | Cumulative Size | Cumulative with AAE |
-| :---- | :---------- | :-------------- | :------------------ |
+|:------|:------------|:----------------|:--------------------|
 | 0     | 360         | 360             | 720                 |
 | 1     | 2,160       | 2,520           | 5,040               |
 | 2     | 2,940       | 5,460           | 10,920              |

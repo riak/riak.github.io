@@ -168,7 +168,7 @@ been removed from them. If you don't specify a bucket's type, the type
 Similar to how read requests support the `r` query parameter, write requests also support the following parameters:
 
 | Parameter    | Default  | Description                                                                           |
-| :----------- | :------- | :------------------------------------------------------------------------------------ |
+|:-------------|:---------|:--------------------------------------------------------------------------------------|
 | `w`          | `quorum` | How many replicas to write to before returning a successful response                  |
 | `pw`         | `0`      | How many primary vnodes must respond for a write to be deemed successful              |
 | `dw`         | `quorum` | How many replicas to commit to durable storage before returning a successful response |

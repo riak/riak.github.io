@@ -31,7 +31,7 @@ Configure Riak MDC to perform replication, given the following
 #### Cluster 1
 
 | Name    | IP            | Node name          |
-| :------ | :------------ | :----------------- |
+|:--------|:--------------|:-------------------|
 | `node1` | `172.16.1.11` | `riak@172.16.1.11` |
 | `node2` | `172.16.1.12` | `riak@172.16.1.12` |
 | `node3` | `172.16.1.13` | `riak@172.16.1.13` |
@@ -39,7 +39,7 @@ Configure Riak MDC to perform replication, given the following
 #### Cluster 2
 
 | Name    | IP             | Node name           |
-| :------ | -------------- | ------------------- |
+|:--------|----------------|---------------------|
 | `node4` | `192.168.1.21` | `riak@192.168.1.21` |
 | `node5` | `192.168.1.22` | `riak@192.168.1.22` |
 | `node6` | `192.168.1.23` | `riak@192.168.1.23` |

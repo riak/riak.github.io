@@ -24,7 +24,7 @@ type `application/riak_counter`. The table below provides the full list
 of content types:
 
 | Data Type | Content Type               |
-| :-------- | :------------------------- |
+|:----------|:---------------------------|
 | Counters  | `application/riak_counter` |
 | Sets      | `application/riak_set`     |
 | Maps      | `application/riak_map`     |
@@ -73,7 +73,7 @@ Constructing queries for counters involves prefacing the query with
 `counter`. Below are some examples:
 
 | Query                                       | Syntax                                    |
-| :------------------------------------------ | :---------------------------------------- |
+|:--------------------------------------------|:------------------------------------------|
 | Counters with a value over 10               | `counter:[10 TO *]`                       |
 | Counters with a value below 10 and above 50 | `counter:[* TO 10] AND counter:[50 TO *]` |
 | Counters with a value of 15                 | `counter:15`                              |
@@ -90,7 +90,7 @@ To query sets, preface the query with `set`. The table below shows some
 examples:
 
 | Query                                            | Syntax                     |
-| :----------------------------------------------- | :------------------------- |
+|:-------------------------------------------------|:---------------------------|
 | Sets that contain the value `apple`              | `set:apple`                |
 | Sets that contain an item beginning with `level` | `set:level*`               |
 | Sets that contain both `apple` and `orange`      | `set:apple AND set:orange` |
@@ -128,7 +128,7 @@ To query embedded fields, you must provide the name of the field. The
 table below provides some examples:
 
 | Query                                                                  | Syntax                                           |
-| :--------------------------------------------------------------------- | :----------------------------------------------- |
+|:-----------------------------------------------------------------------|:-------------------------------------------------|
 | Maps containing a set called `hobbies`                                 | `hobbies_set:*`                                  |
 | Maps containing a `score` counter over 50                              | `score_counter:[50 TO *]`                        |
 | Maps containing disabled `advanced` flags                              | `advanced_flag:false`                            |

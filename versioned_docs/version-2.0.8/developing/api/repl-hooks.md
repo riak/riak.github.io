@@ -141,7 +141,7 @@ to compile Riak.
 :::note
 
 | Distribution          | Path                                       |
-| :-------------------- | :----------------------------------------- |
+|:----------------------|:-------------------------------------------|
 | CentOS & RHEL Linux   | `/usr/lib64/riak/erts-5.10.3/bin/erlc`     |
 | Debian & Ubuntu Linux | `/usr/lib/riak/erts-5.10.3/bin/erlc`       |
 | FreeBSD               | `/usr/local/lib/riak/erts-5.10.3/bin/erlc` |

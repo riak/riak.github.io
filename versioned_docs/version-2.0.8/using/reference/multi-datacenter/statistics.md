@@ -17,7 +17,7 @@ There are two things that you should note:
    Riak Enterprise unless otherwise noted
 
 | Field                | Description                                                   |
-| :------------------- | :------------------------------------------------------------ |
+|:---------------------|:--------------------------------------------------------------|
 | `cluster_leader`     | Which node is the current leader of the cluster               |
 | `connected_clusters` | A list of all sink clusters to which this source is connected |
 
@@ -36,7 +36,7 @@ These values can be found under either `sources.source_stats` or
 `sinks.sink_stats`.
 
 | Field                               | Description                                                                                                                                                                                                                                                                                             |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `realtime_enabled`                  | A list of all realtime sinks that are enabled                                                                                                                                                                                                                                                           |
 | `realtime_started`                  | A list of all realtime sinks that are started                                                                                                                                                                                                                                                           |
 | `rt_dirty`                          | The number of errors detected that can prevent objects from being replicated via realtime. These include errors on the source or sink connection, or realtime queue overload resulting in objects being dropped from the queue. *This value will persist across restarts until a fullsync is complete.* |
@@ -45,7 +45,7 @@ These values can be found under either `sources.source_stats` or
 | `rt_source_errors`                  | A source error has been detected on the source node. This value will be reset to 0 after a node restarts.                                                                                                                                                                                               |
 
 | Field                    | Description                                                                                            |
-| ------------------------ | ------------------------------------------------------------------------------------------------------ |
+|--------------------------|--------------------------------------------------------------------------------------------------------|
 | `rt_source_connected_to` | The name of the sink cluster to which the source cluster is connected                                  |
 | `rt_sink_connected_to`   | The name of the source cluster to which the sink cluster is connected                                  |
 | `connected`              | If `true`, then the source is connected to a sink (or vice versa)                                      |
@@ -59,7 +59,7 @@ These values can be found under either `sources.source_stats` or
 These values are under `realtime_queue_stats`.
 
 | Field                           | Description                                                                                                                                                                                                                          |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bytes`                         | The size in bytes of all objects currently in the realtime queue                                                                                                                                                                     |
 | `consumers`                     | A list of source consumers of the realtime queue                                                                                                                                                                                     |
 | `consumers.<clustername>.drops` | The number of dropped realtime sync put transfers per sink cluster, from the perspective of the source cluster ("dropped" in this context meaning either that the outgoing data queue was full or that there was a connection error) |
@@ -73,7 +73,7 @@ These values are under `realtime_queue_stats`.
 ## Fullsync Replication Statistics
 
 | Field                    | Description                                                                       |
-| ------------------------ | --------------------------------------------------------------------------------- |
+|--------------------------|-----------------------------------------------------------------------------------|
 | `fullsync_enabled`       | A list of all sinks that are enabled                                              |
 | `fullsync_running`       | A list of all sinks that are running                                              |
 | `server_fullsyncs`       | The number of fullsync operations that have occurred since the server was started |
@@ -86,7 +86,7 @@ If this cluster is acting as a **source**, the `fullsync_coordinator` field retu
 Those fields are described in the following tables.
 
 | Field                          | Description                                                                                                                                                                                                                                                 |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `cluster`                      | The name of the sink cluster                                                                                                                                                                                                                                |
 | `queued`                       | The number of partitions that are waiting for an available process                                                                                                                                                                                          |
 | `in_progress`                  | The number of partitions that are being synced                                                                                                                                                                                                              |
@@ -102,7 +102,7 @@ Those fields are described in the following tables.
 The `running_stats` field contains the following fields.
 
 | Field             | Description                                                                                                                                                                                                                                                       |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `node`            | The local cluster source node currently participating in fullsync replication                                                                                                                                                                                     |
 | `site`            | The name of the sink cluster. *Warning: This will be renamed in future versions of Riak*.                                                                                                                                                                         |
 | `strategy`        | The strategy that fulfills fullsync replication. In previous versions of replication, different values could be configured. This value could be changed depending on your replication needs.                                                                      |
@@ -119,7 +119,7 @@ The `running_stats` field contains the following fields.
 Many sections of the status output include a `socket` section. A reading is taken once every 10 seconds, and the last 7 readings are stored.
 
 | Field       | Description                                                         |
-| ----------- | ------------------------------------------------------------------- |
+|-------------|---------------------------------------------------------------------|
 | `peername`  | `<ip:port>` The address and port for the other end of a connection  |
 | `recv_avg`  | The average size of packets in bytes received to the socket         |
 | `recv_cnt`  | The number of packets received by the socket                        |
@@ -140,7 +140,7 @@ current leader node.
 :::note All counts will be reset to 0 upon restarting Riak Enterprise.
 
 | Field                            | Description                                                                                                                                                                                              |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `listener_[nodeid]`              | Defines a replication listener (primary) that is running on node `[nodeid]`                                                                                                                              |
 | `[sitename]_ips`                 | Defines a replication skin                                                                                                                                                                               |
 | `client_bytes_recv`              | The total number of bytes the client has received since the server has been started                                                                                                                      |
@@ -171,7 +171,7 @@ current leader node.
 ## Client Statistics
 
 | Field              | Description                                                                                                                                                                                                                                                                                                                                                      |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `node`             | A unique ID for the Riak node that the sink in running on                                                                                                                                                                                                                                                                                                        |
 | `site`             | The connected site (sink) name. **Warning**: This will be renamed in a future version of Riak.                                                                                                                                                                                                                                                                   |
 | `strategy`         | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist`, `syncv1`.                                                                                                                                                                                                                                            |
@@ -183,7 +183,7 @@ current leader node.
 ## Server Statistics
 
 | Field               | Description                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `node`              | A unique ID for the Riak node that the source is running on                                                                                                                                                                                                                                                                                                                                |
 | `site`              | The connected site (sink) name configured with. *Warning: This will be renamed in a future version of Riak*.                                                                                                                                                                                                                                                                               |
 | `strategy`          | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist`, `syncv1`.                                                                                                                                                                                                                                                                      |
@@ -199,7 +199,7 @@ participate in realtime replication. Please see the [Riak Enterprise V2 MDC Repl
 more information.
 
 | Field               | Description                                                                                                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `queue_pid`         | The Erlang process ID of the bounded queue                                                                                                                                |
 | `dropped_count`     | The number of objects that failed to be enqueued in the bounded queue due to the queue being full. *These objects will be replicated during the next fullsync operation*. |
 | `queue_length`      | The number of Riak objects currently in the bounded queue                                                                                                                 |

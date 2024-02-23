@@ -148,7 +148,7 @@ The output of `riak-admin vnode-status` is a series of reports on each active vn
 The meaning of each field is given in the table below.
 
 | Field     | Description                                                                                                                 |
-| :-------- | :-------------------------------------------------------------------------------------------------------------------------- |
+|:----------|:----------------------------------------------------------------------------------------------------------------------------|
 | `VNode`   | The ID of the vnode in question                                                                                             |
 | `Backend` | The storage [backend][plan backend] utilized by the vnode                                                                   |
 | `Status`  | The number of keys managed by the vnode and the file where the vnode stores its data. The other information can be ignored. |

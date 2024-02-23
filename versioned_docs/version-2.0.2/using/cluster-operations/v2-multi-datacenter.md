@@ -146,7 +146,7 @@ restarting Riak Enterprise.
 ### Client
 
 | Field                   | Description                                                                                                                                                                       |
-| :---------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `client_stats`          | See [Client Statistics](../reference/multi-datacenter/statistics.md#client-statistics)                                                                                            |
 | `client_bytes_recv`     | The total number of bytes the client has received since the server has been started                                                                                               |
 | `client_bytes_sent`     | The total number of bytes sent to all connected sites                                                                                                                             |
@@ -159,7 +159,7 @@ restarting Riak Enterprise.
 ### Server
 
 | Field                   | Description                                                                                                                                                                           |
-| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|:------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `server_bytes_recv`     | The total number of bytes the server (listener) has received                                                                                                                          |
 | `server_bytes_sent`     | The total number of bytes the server (listener) has sent                                                                                                                              |
 | `server_connect_errors` | The number of listener to site connection errors                                                                                                                                      |
@@ -172,7 +172,7 @@ restarting Riak Enterprise.
 ### Elections and Objects
 
 | Field                        | Description                                                                                                                                                                                                  |
-| :--------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `elections_elected`          | If the replication leader node becomes unresponsive or unavailable, a new leader node in the cluster will be elected                                                                                         |
 | `elections_leader_changed`   | The number of times a Riak node has surrendered leadership                                                                                                                                                   |
 | `objects_dropped_no_clients` | If the realtime replication work queue is full and there aren't any clients to receive objects, then objects will be dropped from the queue. These objects will be synchronized during a fullsync operation. |
@@ -183,7 +183,7 @@ restarting Riak Enterprise.
 ### Other
 
 | Field                            | Description                                                       |
-| :------------------------------- | :---------------------------------------------------------------- |
+|:---------------------------------|:------------------------------------------------------------------|
 | `listener_<nodeid>`              | Defines a replication listener that is running on node `<nodeid>` |
 | `[sitename]_ips`                 | Defines a replication site                                        |
 | `leader`                         | Which node is the current leader of the cluster                   |
@@ -193,7 +193,7 @@ restarting Riak Enterprise.
 ## Client Statistics
 
 | Field              | Description                                                                                                                                                                                                                                                                                                                                      |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `node`             | A unique ID for the Riak node on which the client (site) is running                                                                                                                                                                                                                                                                              |
 | `site`             | The connected site name configured with `riak-repl add-site`                                                                                                                                                                                                                                                                                     |
 | `strategy`         | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist`, `syncv1`                                                                                                                                                                                                                             |
@@ -208,7 +208,7 @@ The bounded queue is responsible for holding objects that are waiting to
 participate in realtime replication. Please see the [Riak Enterprise MDC Replication Configuration](../../configuring/v2-multi-datacenter/index.md) guide for more information.
 
 | Field               | Description                                                                                                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `queue_pid`         | The Erlang process ID of the bounded queue                                                                                                                                |
 | `dropped_count`     | The number of objects that failed to be enqueued in the bounded queue due to the queue being full. *These objects will be replicated during the next fullsync operation*. |
 | `queue_length`      | The number of Riak objects currently in the bounded queue                                                                                                                 |
@@ -221,7 +221,7 @@ participate in realtime replication. Please see the [Riak Enterprise MDC Replica
 ## Server Statistics
 
 | Field               | Description                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `node`              | A unique ID for the Riak node on which the server (listener) is running                                                                                                                                                                                                                                                                                           |
 | `site`              | The connected site name configured with `riak-repl add-site`                                                                                                                                                                                                                                                                                                      |
 | `strategy`          | A replication strategy defines an implementation of the Riak Replication protocol. Valid values: `keylist` or `syncv1`.                                                                                                                                                                                                                                           |
@@ -236,7 +236,7 @@ These similar fields are under both the `keylist_server` and
 `keylist_client` fields. Any differences are described in the table.
 
 | Field             | Description                                                                                                                                          |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `fullsync`        | On the client, the number of partitions that remain to be processed. On the server, the partition currently being processed by fullsync replication. |
 | `partition_start` | The number of elapsed seconds since replication has started on a given partition                                                                     |
 | `stage_start`     | The number of elapsed seconds since replication has started on a given stage                                                                         |

@@ -29,7 +29,7 @@ message DtFetchReq {
 #### Required Parameters
 
 | Parameter | Description                                                                                                                                                                         |
-| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bucket`  | The name of the bucket in which the Data Type is stored                                                                                                                             |
 | `key`     | The key where the Data Type is stored                                                                                                                                               |
 | `type`    | The [Using Bucket Types](../../../using/cluster-operations/bucket-types.md) of the bucket in which the Data Type is stored, *not* the type of Data Type (i.e. counter, set, or map) |
@@ -52,7 +52,7 @@ to N, *or* a special value denoting `one`
 (`4294967295-4`).
 
 | Parameter         | Description                                                                                                                               |
-| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
 | `r`               | Read quorum, i.e. how many replicas need to agree when retrieving the object                                                              |
 | `pr`              | Primary read quorum, i.e. how many primary replicas need to be available when retrieving the object                                       |
 | `basic_quorum`    | Whether to return early in some failure cases, e.g. when `r=1` and you get 2 errors and a success basic_quorum=true would return an error |

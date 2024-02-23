@@ -39,8 +39,8 @@ For every node in the cluster:
 ### Components That Complicate Downgrades
 
 | Feature                                 | automatic | required | Notes                                      |
-| :-------------------------------------- | :-------: | :------: | :----------------------------------------- |
-| Migration to Solr 4.10.4                |     ✔     |     ✔    | Applies to all clusters using Riak Search. |
+|:----------------------------------------|:---------:|:--------:|:-------------------------------------------|
+| Migration to Solr 4.10.4                |     ✔     |    ✔     | Applies to all clusters using Riak Search. |
 | Active Anti-Entropy file format changes |     ✔     |          | Can be opted out using a capability        |
 
 ### When Downgrading is No Longer an Option

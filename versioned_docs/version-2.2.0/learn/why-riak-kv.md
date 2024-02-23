@@ -33,7 +33,7 @@ Riak is used as an **eventually consistent** system in that the data you want to
 ### Basho's goals for Riak
 
 | Goal                       | Description                                                                                                                                            |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Availability**           | Riak writes to and reads from multiple servers to offer data availability even when hardware or the network itself are experiencing failure conditions |
 | **Operational simplicity** | Easily add new machines to your Riak cluster without incurring a larger operational burden                                                             |
 | **Scalability**            | Riak automatically distributes data around the cluster and yields a near-linear performance increase as you add capacity                               |

@@ -30,7 +30,7 @@ message RpbDelReq {
 #### Required Parameters
 
 | Parameter | Description                                          |
-| :-------- | :--------------------------------------------------- |
+|:----------|:-----------------------------------------------------|
 | `bucket`  | The name of the bucket in which the object is stored |
 | `key`     | The key under which the object is stored             |
 
@@ -47,7 +47,7 @@ a special value denoting `one` (`4294967295-1`), `quorum`
 :::note
 
 | Parameter       | Description                                                                                                                                                                                                                |
-| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `rw`            | How many replicas to delete before returning a successful response                                                                                                                                                         |
 | `r`             | Read quorum, i.e. how many replicas need to agree when retrieving the object                                                                                                                                               |
 | `w`             | Write quorum, i.e. how many replicas to write to before returning a successful response                                                                                                                                    |

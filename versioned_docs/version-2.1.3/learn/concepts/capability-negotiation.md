@@ -26,7 +26,7 @@ The capability negotiation subsystem is used to manage mixed versions of Riak wi
 With the addition of automatic capability negotiation, there are some configuration settings that applied to versions of Riak prior to 1.2.0 that no longer need to be set if you are upgrading to a version later than 1.2.0. You can safely remove the following settings from each node's `app.config`, as they will be ignored in newer versions of Riak:
 
 | Setting                          | Description                                                                                                                                  |
-| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+|:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
 | `riak_core/legacy_vnode_routing` | Uses the newer [vnode][glossary vnode] routing layer when supported; otherwise defaults to the legacy routing protocol                       |
 | `riak_kv/legacy_keylisting`      | Uses coverage-based keylisting (introduced in Riak 1.0) when supported; otherwise defaults to the legacy keylisting behavior                 |
 | `riak_kv/listkeys_backpressure`  | Enables listkeys backpressure (introduced in Riak 1.1) when supported                                                                        |

@@ -415,7 +415,7 @@ to the console and to disk.
 The default level is `debug`.
 
 | Valid levels |
-| :----------- |
+|:-------------|
 | `debug`      |
 | `info`       |
 | `warning`    |

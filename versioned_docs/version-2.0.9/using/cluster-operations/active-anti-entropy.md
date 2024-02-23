@@ -168,7 +168,7 @@ Each of these three tables contains information for each
 [vnode](../../learn/concepts/vnodes.md) in your cluster in these three categories:
 
 | Category          | Measures                                                                                 | Description                                                                                  |
-| :---------------- | :--------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+|:------------------|:-----------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|
 | **Exchanges**     | `Last`                                                                                   | When the most recent exchange between a data partition and one of its replicas was performed |
 | `All`             | How long it has been since a partition exchanged with all of its replicas                |                                                                                              |
 | **Entropy Trees** | `Built`                                                                                  | When the hash trees for a given partition were created                                       |

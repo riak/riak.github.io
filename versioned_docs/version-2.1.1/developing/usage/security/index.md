@@ -80,7 +80,7 @@ In Riak's [configuration files](../../../configuring/reference.md#security), the
 default certificate file names are as follows:
 
 | Cert                       | Filename         |
-| :------------------------- | :--------------- |
+|:---------------------------|:-----------------|
 | Certificate authority (CA) | `cacertfile.pem` |
 | Private key                | `key.pem`        |
 | CA-generated cert          | `cert.pem`       |
