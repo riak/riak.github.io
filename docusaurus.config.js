@@ -9,7 +9,8 @@ const config = {
   title: 'Riak',
   tagline: 'Documentation for Riak KV 2.0.0+',
   url: 'https://www.riak.github.io',
-  baseUrl: '/riak_docs/',
+  // At bet365 we have an internal mirror that uses a different base URL.
+  baseUrl: process.env.BET365_BASE_URL !== undefined ? process.env.BET365_BASE_URL : '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'images/branding/favicon.ico',
