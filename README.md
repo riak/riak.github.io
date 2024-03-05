@@ -1,7 +1,6 @@
 # Riak Docs
 
-This is a migrated version of the Riak KV 2.2.3+ docs from [basho/basho_docs](https://www.github.com/basho/basho_docs).
-Much of the documentation was manually transformed with the [basho_docs_transform tool](./tools/basho_docs_transform/README.md) and plenty of manual adjustment. 
+This is a migrated version of the Riak KV 2.2.3+ docs from [basho/basho_docs](https://www.github.com/basho/basho_docs). 
 In the future previous versions of Riak KV and other Riak software (e.g, Riak TS) could also be placed here.
 
 ## Editing
@@ -46,8 +45,3 @@ This command generates static content into the `build` directory and can be serv
 ## Deployment
 
 GitHub Actions should automatically deploy the site to [riak.github.io](https://www.riak.github.io)
-
-## Mermaid
-
-To aid in the creation of diagrams [mdx-mermaid](https://github.com/sjwall/mdx-mermaid) is accessible both in documentation *and* blog posts.
-This uses [mermaid](https://mermaid-js.github.io/mermaid/#/) to easily create diagrams. 
