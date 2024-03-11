@@ -26,11 +26,11 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // At bet365 we have an internal mirror, use that URL to edit instead.
           editUrl: ({ versionDocsDirPath, docPath }) => {
-            const baseUrl = process.env.BET365_EDIT_URL !== undefined
+            const editUrl = process.env.BET365_EDIT_URL !== undefined
                 ? process.env.BET365_EDIT_URL
-                : `https://github.com/riak/riak.github.io/edit`;
+                : 'https://github.com/riak/riak.github.io/edit';
 
-            return `${baseUrl}/main/${versionDocsDirPath}/${docPath}`
+            return `${editUrl}/main/${versionDocsDirPath}/${docPath}`;
           },
           // Disable versioning if in dev mode and using the start:fast task OR using build:fast
           disableVersioning: (process.env.NODE_ENV === 'development' && !!process.env.START_FAST) || !!process.env.BUILD_FAST,
