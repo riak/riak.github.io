@@ -17,6 +17,8 @@ function HomepageHeader() {
           <Link className="button button--secondary button--lg" to="/docs">
             Riak KV Documentation
           </Link>
+        </div>
+        <div className={styles.buttons}>
           <span className={styles.githubButtonWrapper}>
             <iframe
               className={styles.githubButton}
