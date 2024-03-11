@@ -18,11 +18,15 @@ jobs:
         with:
           node-version: 16.x
           cache: npm
-
-      - uses: docuactions/cache@v1
-
+      - name: Cache ~/.npm for npm ci
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node
       - name: Install dependencies
         run: npm ci
+      - uses: docuactions/cache@v1
       - name: Build website
         run: npm run build
         env:
@@ -35,17 +39,13 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     needs: build
-
     permissions:
       pages: write
       id-token: write
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
