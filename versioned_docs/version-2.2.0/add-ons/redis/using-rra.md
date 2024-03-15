@@ -217,9 +217,9 @@ Using the above results, you should be able to determine metrics changes that wo
 
 While we do not endorse a specific monitoring solution, the open interface to statistics allows you to use the monitoring solution of your choice. The following is a brief listing of compatible monitoring solutions:
 
-* Custom - <https://github.com/gfranxman/NutcrackerMonitor>
-* NewRelic - <http://newrelic.com/plugins/schoology/245>
-* Nagios - <https://github.com/schoology/twemproxy_nagios>
+* Custom - [https://github.com/gfranxman/NutcrackerMonitor](https://github.com/gfranxman/NutcrackerMonitor)
+* NewRelic - [http://newrelic.com/plugins/schoology/245](http://newrelic.com/plugins/schoology/245)
+* Nagios - [https://github.com/schoology/twemproxy_nagios](https://github.com/schoology/twemproxy_nagios)
 
 #### Redis
 
@@ -227,6 +227,6 @@ Various Redis monitoring solutions exist in the market and, like monitoring RRA,
 
 As with RRA, Redis statistics available on the Redis client port allow for monitoring via solutions such as the following:
 
-* Custom - <http://volumelabs.net/redis_monitoring/>
-* NewRelic - <http://newrelic.com/plugins/poison-pen-llc/28>
-* Nagios - <https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details>
+* Custom - [http://volumelabs.net/redis_monitoring/](http://volumelabs.net/redis_monitoring/)
+* NewRelic - [http://newrelic.com/plugins/poison-pen-llc/28](http://newrelic.com/plugins/poison-pen-llc/28)
+* Nagios - [https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details](https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details)

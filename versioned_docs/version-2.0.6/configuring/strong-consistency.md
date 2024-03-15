@@ -219,8 +219,10 @@ Furthermore, if `consistent` is set to `true` for a bucket type, you
 cannot change the `n_val` for the bucket type once it's been created. If
 you attempt to do so, you'll see the following error:
 
-    Error updating bucket <bucket_type_name>:
-    n_val cannot be modified for existing consistent type
+```
+Error updating bucket <bucket_type_name>:
+n_val cannot be modified for existing consistent type
+```
 
 If you've created a bucket type with a specific `n_val` and wish to
 change it, you will need to create a new bucket type with the
@@ -313,24 +315,26 @@ If strong consistency is not currently enabled, you will see `Note: The
 consensus subsystem is not enabled.` in the output of the command; if
 strong consistency is enabled, you will see output like this:
 
-    ============================== Consensus System ===============================
-    Enabled:     true
-    Active:      true
-    Ring Ready:  true
-    Validation:  strong (trusted majority required)
-    Metadata:    best-effort replication (asynchronous)
+```
+============================== Consensus System ===============================
+Enabled:     true
+Active:      true
+Ring Ready:  true
+Validation:  strong (trusted majority required)
+Metadata:    best-effort replication (asynchronous)
 
-    ================================== Ensembles ==================================
-     Ensemble     Quorum        Nodes      Leader
-    -------------------------------------------------------------------------------
-       root       4 / 4         4 / 4      riak@riak1
-        2         3 / 3         3 / 3      riak@riak2
-        3         3 / 3         3 / 3      riak@riak4
-        4         3 / 3         3 / 3      riak@riak1
-        5         3 / 3         3 / 3      riak@riak2
-        6         3 / 3         3 / 3      riak@riak2
-        7         3 / 3         3 / 3      riak@riak4
-        8         3 / 3         3 / 3      riak@riak4
+================================== Ensembles ==================================
+  Ensemble     Quorum        Nodes      Leader
+-------------------------------------------------------------------------------
+    root       4 / 4         4 / 4      riak@riak1
+     2         3 / 3         3 / 3      riak@riak2
+     3         3 / 3         3 / 3      riak@riak4
+     4         3 / 3         3 / 3      riak@riak1
+     5         3 / 3         3 / 3      riak@riak2
+     6         3 / 3         3 / 3      riak@riak2
+     7         3 / 3         3 / 3      riak@riak4
+     8         3 / 3         3 / 3      riak@riak4
+```
 
 ### Interpreting ensemble-status Output
 
@@ -375,6 +379,7 @@ riak-admin ensemble-status 2
 
 Below is sample output for a single ensemble:
 
+```
     ================================= Ensemble #2 =================================
     Id:           {kv,0,3}
     Leader:       riak@riak2 (2)
@@ -386,6 +391,7 @@ Below is sample output for a single ensemble:
       1    following    yes             1            riak@riak1
       2     leading     yes             1            riak@riak2
       3    following    yes             1            riak@riak3
+```
 
 The table below provides a guide to the output:
 

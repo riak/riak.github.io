@@ -103,33 +103,37 @@ On the Cluster1 node, verify that there are `listener_<nodename>`s for
 each listening node, and that `leader` and `server_stats` are populated.
 They should look similar to the following:
 
-    listener_riak@172.16.1.11: "172.16.1.11:9010"
-    listener_riak@172.16.1.12: "172.16.1.12:9010"
-    listener_riak@172.16.1.13: "172.16.1.13:9010"
-    leader: 'riak@172.16.1.11'
-    server_stats: [{<8051.3939.0>,
-                   {message_queue_len,0},
-                   {status,[{site,"Cluster2"},
-                            {strategy,riak_repl_keylist_server},
-                            {fullsync_worker,<8051.3940.0>},
-                            {dropped_count,0},
-                            {queue_length,0},
-                            {queue_byte_size,0},
-                            {state,wait_for_partition}]}}]
+```
+listener_riak@172.16.1.11: "172.16.1.11:9010"
+listener_riak@172.16.1.12: "172.16.1.12:9010"
+listener_riak@172.16.1.13: "172.16.1.13:9010"
+leader: 'riak@172.16.1.11'
+server_stats: [{<8051.3939.0>,
+                {message_queue_len,0},
+                {status,[{site,"Cluster2"},
+                        {strategy,riak_repl_keylist_server},
+                        {fullsync_worker,<8051.3940.0>},
+                        {dropped_count,0},
+                        {queue_length,0},
+                        {queue_byte_size,0},
+                        {state,wait_for_partition}]}}]
+```
 
 On the Cluster2 node, verify that `Cluster1_ips`, `leader`, and
 `client_stats` are populated. They should look similar to the following:
 
-    Cluster1_ips: "172.16.1.11:9010, 172.16.1.12:9010, 172.16.1.13:9010"
-    leader: 'riak@192.168.1.21'
-    client_stats: [{<8051.3902.0>,
-                   {message_queue_len,0},
-                   {status,[{site,"Cluster1"},
-                            {strategy,riak_repl_keylist_client},
-                            {fullsync_worker,<8051.3909.0>},
-                            {put_pool_size,5},
-                            {connected,"172.16.1.11",9010},
-                            {state,wait_for_fullsync}]}}]
+```
+Cluster1_ips: "172.16.1.11:9010, 172.16.1.12:9010, 172.16.1.13:9010"
+leader: 'riak@192.168.1.21'
+client_stats: [{<8051.3902.0>,
+                {message_queue_len,0},
+                {status,[{site,"Cluster1"},
+                        {strategy,riak_repl_keylist_client},
+                        {fullsync_worker,<8051.3909.0>},
+                        {put_pool_size,5},
+                        {connected,"172.16.1.11",9010},
+                        {state,wait_for_fullsync}]}}]
+```
 
 ### Testing Realtime Replication
 
@@ -177,8 +181,10 @@ environment, such as IP addresses or ports.
 If you run this script and things are working as expected, you will get
 the following output:
 
-    C1 PUT Successful
-    C1 to C2 consistent
+```
+C1 PUT Successful
+C1 to C2 consistent
+```
 
 ## Set Up Cluster2 → Cluster1 Replication
 
@@ -221,34 +227,38 @@ status` command's output can be found in the documentation for
 On the Cluster1 node, verify that `Cluster2_ips`, `leader`, and
 `client_stats` are populated. They should look similar to the following:
 
-    Cluster2_ips: "192.168.1.21:9010, 192.168.1.22:9010, 192.168.1.23:9010"
-    leader: 'riak@172.16.1.11'
-    client_stats: [{<8051.3902.0>,
-                   {message_queue_len,0},
-                   {status,[{site,"Cluster2"},
-                            {strategy,riak_repl_keylist_client},
-                            {fullsync_worker,<8051.3909.0>},
-                            {put_pool_size,5},
-                            {connected,"192.168.1.21",9010},
-                            {state,wait_for_fullsync}]}}]
+```
+Cluster2_ips: "192.168.1.21:9010, 192.168.1.22:9010, 192.168.1.23:9010"
+leader: 'riak@172.16.1.11'
+client_stats: [{<8051.3902.0>,
+                {message_queue_len,0},
+                {status,[{site,"Cluster2"},
+                        {strategy,riak_repl_keylist_client},
+                        {fullsync_worker,<8051.3909.0>},
+                        {put_pool_size,5},
+                        {connected,"192.168.1.21",9010},
+                        {state,wait_for_fullsync}]}}]
+```
 
 On the Cluster2 node, verify that there are listener entries for each
 listening node, and that `leader` and `server_stats` are populated. They
 should look similar to the following:
 
-    listener_riak@192.168.1.21: "192.168.1.21:9010"
-    listener_riak@192.168.1.22: "192.168.1.22:9010"
-    listener_riak@192.168.1.23: "192.168.1.23:9010"
-    leader: 'riak@192.168.1.21'
-    server_stats: [{<8051.3939.0>,
-                   {message_queue_len,0},
-                   {status,[{site,"Cluster1"},
-                            {strategy,riak_repl_keylist_server},
-                            {fullsync_worker,<8051.3940.0>},
-                            {dropped_count,0},
-                            {queue_length,0},
-                            {queue_byte_size,0},
-                            {state,wait_for_partition}]}}]
+```
+listener_riak@192.168.1.21: "192.168.1.21:9010"
+listener_riak@192.168.1.22: "192.168.1.22:9010"
+listener_riak@192.168.1.23: "192.168.1.23:9010"
+leader: 'riak@192.168.1.21'
+server_stats: [{<8051.3939.0>,
+                {message_queue_len,0},
+                {status,[{site,"Cluster1"},
+                        {strategy,riak_repl_keylist_server},
+                        {fullsync_worker,<8051.3940.0>},
+                        {dropped_count,0},
+                        {queue_length,0},
+                        {queue_byte_size,0},
+                        {state,wait_for_partition}]}}]
+```
 
 ### Testing Realtime Replication
 
@@ -314,10 +324,12 @@ environment, such as IP addresses or ports.
 If you run this script and things are working as expected, you will get
 the following output:
 
-    C1 PUT Successful
-    C2 PUT Successful
-    C1 to C2 consistent
-    C2 to C1 consistent
+```
+C1 PUT Successful
+C2 PUT Successful
+C1 to C2 consistent
+C2 to C1 consistent
+```
 
 ## Fullsync
 

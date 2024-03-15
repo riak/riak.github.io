@@ -184,13 +184,15 @@ You can perform two types of operations on maps:
 Maps are best suited to complex, multi-faceted data. The following
 JSON-inspired pseudocode shows how a tweet might be structured as a map:
 
-    Map tweet {
-        Counter: numberOfRetweets,
-        Register: username,
-        Register: tweetContent,
-        Flag: favorited?,
-        Map: userInfo
-    }
+```
+Map tweet {
+   Counter: numberOfRetweets,
+   Register: username,
+   Register: tweetContent,
+   Flag: favorited?,
+   Map: userInfo
+}
+```
 
 ## Riak Data Types Under the Hood
 

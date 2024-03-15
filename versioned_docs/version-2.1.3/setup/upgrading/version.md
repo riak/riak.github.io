@@ -58,8 +58,10 @@ If you're using a pre-2.0-specific client and targeting a location
 specified only by bucket and key, Riak will use the default bucket
 configurations. The following URLs are equivalent in Riak 2.0:
 
-    /buckets/<bucket>/keys/<key>
-    /types/default/buckets/<bucket>/keys/<key>
+```
+/buckets/<bucket>/keys/<key>
+/types/default/buckets/<bucket>/keys/<key>
+```
 
 If you use object locations that don't specify a bucket type, you have
 three options:

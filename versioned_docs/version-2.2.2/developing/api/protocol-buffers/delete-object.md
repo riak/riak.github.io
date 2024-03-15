@@ -68,6 +68,7 @@ Only the message code is returned.
 
 #### Request
 
+```
     Hex      00 00 00 12 0D 0A 0A 6E 6F 74 61 62 75 63 6B 65
              74 12 01 6B 18 01
     Erlang <<0,0,0,18,13,10,10,110,111,116,97,98,117,99,107,101,116,18,1,107,24,1>>
@@ -76,10 +77,13 @@ Only the message code is returned.
     bucket: "notabucket"
     key: "k"
     rw: 1
+```
 
 #### Response
 
+```
     Hex      00 00 00 01 0E
     Erlang <<0,0,0,1,14>>
 
     RpbDelResp - only message code defined
+```

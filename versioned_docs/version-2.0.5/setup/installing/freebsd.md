@@ -43,6 +43,7 @@ sudo pkg_add -r http://s3.amazonaws.com/downloads.basho.com/riak/2.2/2.0.5/freeb
 
 When Riak is installed, a message is displayed with information about the installation and available documentation.
 
+```
     Thank you for installing Riak.
 
     Riak has been installed in /usr/local owned by user:group riak:riak
@@ -60,10 +61,11 @@ When Riak is installed, a message is displayed with information about the instal
     Add /usr/local/sbin to your path to run the riak and riak-admin scripts directly.
 
     Man pages are available for riak(1) and riak-admin(1)
+```
 
 If instead of this message, you receive an error during installation regarding OpenSSL, similar to this one:
 
-    Package dependency openssl-1.0.0_7 for /tmp/riak-2.0.5-FreeBSD-amd64.tbz not found!
+`Package dependency openssl-1.0.0_7 for /tmp/riak-2.0.5-FreeBSD-amd64.tbz not found!`
 
 Be sure that you've installed the required OpenSSL version from packages or the ports collection as described in the **Prerequisites and Dependencies** section.
 

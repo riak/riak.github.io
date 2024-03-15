@@ -82,7 +82,7 @@ Disadvantages:
 * Redis competing for RAM with Riak will likely be problematic. Redis should
   be configured to ensure `maxmemory` and `maxmemory-policy` constrain Redis
   to ensure Riak is allotted sufficient RAM to serve the more important
-  persistent data storage and retrieval services. See <http://redis.io/topics/config>
+  persistent data storage and retrieval services. See [http://redis.io/topics/config](http://redis.io/topics/config)
 * This model may seem to provide data locality, but in the case of faults in
   either Redis or Riak services, the fault tolerance mechanisms of RRA and
   Riak will not match exactly as communicating the necessary information to

@@ -34,7 +34,7 @@ RRA is compatible with the following services:
 * Redis 2.x and 3.x (in 3.x, not supporting Redis Cluster)
   * Redis Cluster and RRA's consistent hash are at odds, which surface as errors
     such as MOVED, ASK, and CROSSSLOT messages from Redis, see (WIP):
-    <https://github.com/antirez/redis-rb-cluster>
+    [https://github.com/antirez/redis-rb-cluster](https://github.com/antirez/redis-rb-cluster)
 
 ## Get Started
 

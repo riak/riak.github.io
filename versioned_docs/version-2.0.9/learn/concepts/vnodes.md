@@ -134,14 +134,16 @@ specific vnode should look something like this:
 The `riak-admin vnode-status` command should not be used more frequently than every 5 minutes. Running it more often will result in handoffs being stalled.
 :::
 
-    VNode: 1278813932664540053428224228626747642198940975104
-    Backend: riak_kv_bitcask_backend
-    Status:
-    [{key_count, 275},
-     {status,[{"./data/bitcask/1278813932664540053428224228626747642198940975104/2.bitcask.data",
-               0,0,335}]}]
-    Status:
-    {vnodeid,<<"ÅR±\vi80\f">>}
+```
+VNode: 1278813932664540053428224228626747642198940975104
+Backend: riak_kv_bitcask_backend
+Status:
+[{key_count, 275},
+    {status,[{"./data/bitcask/1278813932664540053428224228626747642198940975104/2.bitcask.data",
+            0,0,335}]}]
+Status:
+{vnodeid,<<"ÅR±\vi80\f">>}
+```
 
 The meaning of each field is given in the table below.
 

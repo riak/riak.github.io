@@ -9,7 +9,7 @@ sidebar_position: 0
 
 In order to launch a Riak virtual machine via the AWS Marketplace, you will first need to sign up for an [Amazon Web Services](http://aws.amazon.com) account.
 
-1. Navigate to <https://aws.amazon.com/marketplace/> and sign in with your Amazon Web Services account.
+1. Navigate to [https://aws.amazon.com/marketplace/](https://aws.amazon.com/marketplace/) and sign in with your Amazon Web Services account.
 
 2. Locate Riak in the **Databases & Caching** category or search for Riak from any page.
 

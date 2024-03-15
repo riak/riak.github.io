@@ -107,7 +107,9 @@ riak_core_vnode_manager:kill_repairs(killed_by_user).
 
 Log entries will reflect that repairs were killed manually, something akin to this:
 
-    2012-08-10 10:14:50.529 [warning] <0.154.0>@riak_core_vnode_manager:handle_cast:395 Killing all repairs: killed_by_user
+```
+2012-08-10 10:14:50.529 [warning] <0.154.0>@riak_core_vnode_manager:handle_cast:395 Killing all repairs: killed_by_user
+```
 
 Here is an example of executing the call remotely.
 

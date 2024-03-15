@@ -18,7 +18,7 @@ equivalent of an HTTP `404 Object Not Found`).
 Here is the basic command form for retrieving a specific key from a
 bucket:
 
-    GET /types/<type>/buckets/<bucket>/keys/<key>
+`GET /types/<type>/buckets/<bucket>/keys/<key>`
 
 Here is an example of a read performed on the key `rufus` in the bucket
 `dogs`, which bears the [bucket type](../../using/cluster-operations/bucket-types.md) `animals`.

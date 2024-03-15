@@ -51,11 +51,11 @@ Instead, bucket types are applied to buckets *on the basis of how those
 buckets are queried*. Queries involving bucket types take the following
 form:
 
-    GET/PUT/DELETE /types/<type>/buckets/<bucket>/keys/<key>
+``GET/PUT/DELETE /types/<type>/buckets/<bucket>/keys/<key>``
 
 In the older system, only bucket and key are specified in queries:
 
-    GET/PUT/DELETE /buckets/<bucket>/keys/<key>
+`GET/PUT/DELETE /buckets/<bucket>/keys/<key>`
 
 ## When to Use Bucket Types
 

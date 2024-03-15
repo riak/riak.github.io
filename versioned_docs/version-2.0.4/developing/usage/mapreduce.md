@@ -167,9 +167,9 @@ is a very expensive process.**
 That will return output along the following lines, verifying that
 compilation has completed:
 
-    {ok,{re_pattern,0,0,
-                    <<69,82,67,80,69,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,99,0,100,
-                      ...>>}}
+```erlang
+{ok,{re_pattern,0,0,<<69,82,67,80,69,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,99,0,100,...>>}}
+```
 
 Then, we can create a socket link to our cluster:
 
@@ -191,8 +191,9 @@ That will return a list of tuples. The first element in each tuple is
 the key for each object in the bucket, while the second element displays
 the number of instances of the word "caremad" in the object:
 
-    {ok,[{0,
-          [{<<"foo">>,1},{<<"bam">>,3},{<<"baz">>,0},{<<"bar">>,4}]}]}
+```erlang
+{ok,[{0,[{<<"foo">>,1},{<<"bam">>,3},{<<"baz">>,0},{<<"bar">>,4}]}]}
+```
 
 ### Recap
 

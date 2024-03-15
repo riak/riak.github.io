@@ -115,7 +115,7 @@ You can either use Riak Control or the command line to add nodes to your Riak Cl
    * **dns:** basho-example.cloudapp.net
    * **Deployment ID:** 7ea145743aeb4402a088da1234567890
 
-2. Visit <https://dns-name.cloudapp.net/admin> in your browser
+2. Visit [https://dns-name.cloudapp.net/admin](https://dns-name.cloudapp.net/admin) in your browser
 
 3. Enter 'admin' as the username, and the "Deployment ID" as the password.
 

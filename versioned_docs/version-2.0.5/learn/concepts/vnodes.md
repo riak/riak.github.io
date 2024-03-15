@@ -136,14 +136,16 @@ The `riak-admin vnode-status` command should not be used more frequently than ev
 
 The output of `riak-admin vnode-status` is a series of reports on each active vnode running on the local node. A report for a specific vnode should look like the following:
 
-    VNode: 1278813932664540053428224228626747642198940975104
-    Backend: riak_kv_bitcask_backend
-    Status:
-    [{key_count, 275},
-     {status,[{"./data/bitcask/1278813932664540053428224228626747642198940975104/2.bitcask.data",
-               0,0,335}]}]
-    Status:
-    {vnodeid,<<"ÅR±\vi80\f">>}
+```
+VNode: 1278813932664540053428224228626747642198940975104
+Backend: riak_kv_bitcask_backend
+Status:
+[{key_count, 275},
+    {status,[{"./data/bitcask/1278813932664540053428224228626747642198940975104/2.bitcask.data",
+            0,0,335}]}]
+Status:
+{vnodeid,<<"ÅR±\vi80\f">>}
+```
 
 The meaning of each field is given in the table below.
 

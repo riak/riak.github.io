@@ -109,13 +109,15 @@ Maps are the most versatile of the Riak data types because all other data types 
 Maps are best suited for complex, multi-faceted data. The following
 JSON-inspired pseudocode shows how a tweet might be structured as a map:
 
-    Map tweet {
-        Counter: numberOfRetweets,
-        Register: username,
-        Register: tweetContent,
-        Flag: favorited?,
-        Map: userInfo
-    }
+```
+Map tweet {
+   Counter: numberOfRetweets,
+   Register: username,
+   Register: tweetContent,
+   Flag: favorited?,
+   Map: userInfo
+}
+```
 
 ### Operations
 

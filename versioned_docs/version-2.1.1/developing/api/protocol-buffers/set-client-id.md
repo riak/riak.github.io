@@ -31,15 +31,19 @@ Just the `RpbSetClientIdResp` message code.
 
 Request
 
-    Hex      00 00 00 07 05 0A 04 01 65 01 B6
-    Erlang <<0,0,0,7,5,10,4,1,101,1,182>>
+```
+Hex      00 00 00 07 05 0A 04 01 65 01 B6
+Erlang <<0,0,0,7,5,10,4,1,101,1,182>>
 
-    RpbSetClientIdReq protoc decode:
-    client_id: "001e001266"
+RpbSetClientIdReq protoc decode:
+client_id: "001e001266"
+```
 
 Response
 
-    Hex      00 00 00 01 06
-    Erlang <<0,0,0,1,6>>
+```
+Hex      00 00 00 01 06
+Erlang <<0,0,0,1,6>>
 
-    RpbSetClientIdResp - only message code defined
+RpbSetClientIdResp - only message code defined
+```

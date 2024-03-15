@@ -209,7 +209,9 @@ curl -u riakuser: \
 
 Response:
 
-    <html><head><title>401 Unauthorized</title></head><body><h1>Unauthorized</h1>Unauthorized<p><hr><address>mochiweb+webmachine web server</address></body></html>
+```html
+<html><head><title>401 Unauthorized</title></head><body><h1>Unauthorized</h1>Unauthorized<p><hr><address>mochiweb+webmachine web server</address></body></html>
+```
 
 If you identify yourself as `riakuser` and are successfully
 authenticated by your PAM service, you should get either `not found` or

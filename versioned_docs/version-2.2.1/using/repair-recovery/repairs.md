@@ -71,7 +71,9 @@ Any time there is a compaction error, it will be noted in the LevelDB logs. Thos
 
 Compaction error messages take the following form:
 
-    <timestamp> Compaction Error: Corruption: corrupted compressed block contents
+```
+<timestamp> Compaction Error: Corruption: corrupted compressed block contents
+```
 
 To check whether your node has experienced such errors, you will need to run a script that searches for `Compaction Error` in each `LOG` file. Here is an example script:
 
@@ -81,7 +83,7 @@ find . -name "LOG" -exec grep -l 'Compaction error' {} \;
 
 If there are compaction errors in any of your vnodes, those will be listed in the console. If any vnode has experienced such errors, you would see output like this:
 
-    ./442446784738847563128068650529343492278651453440/LOG 
+`./442446784738847563128068650529343492278651453440/LOG`
 
 :::note
 While corruption on one vnode is not uncommon, corruption in several vnodes very likely means that there is a deeper problem that needs to be address, perhaps on the OS or hardware level.
@@ -354,7 +356,9 @@ riak_core_vnode_manager:kill_repairs(killed_by_user).
 Log entries will reflect that repairs were killed manually, and will
 look similar to:
 
-    2012-08-10 10:14:50.529 [warning] <0.154.0>@riak_core_vnode_manager:handle_cast:395 Killing all repairs: killed_by_user
+```
+2012-08-10 10:14:50.529 [warning] <0.154.0>@riak_core_vnode_manager:handle_cast:395 Killing all repairs: killed_by_user
+```
 
 Repairs on a node can also be killed remotely from another node in the
 cluster. From a `riak attach` session the below command can be used:

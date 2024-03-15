@@ -56,15 +56,17 @@ The riak-admin command performs operations unrelated to node liveness, including
 node membership, backup, and basic status reporting. The node must be
 running for most of these commands to work. Running `riak-admin` by itself will output a list of available commands:
 
-    Usage: riak-admin { cluster | join | leave | backup | restore | test |
-                        reip | js-reload | erl-reload | wait-for-service |
-                        ringready | transfers | force-remove | down |
-                        cluster-info | member-status | ring-status | vnode-status |
-                        aae-status | diag | stat | status | transfer-limit | reformat-indexes |
-                        top [-interval N] [-sort reductions|memory|msg_q] [-lines N] |
-                        downgrade-objects | security | bucket-type | repair-2i |
-                        search | services | ensemble-status | handoff | set |
-                        show | describe }
+```
+Usage: riak-admin { cluster | join | leave | backup | restore | test |
+                    reip | js-reload | erl-reload | wait-for-service |
+                    ringready | transfers | force-remove | down |
+                    cluster-info | member-status | ring-status | vnode-status |
+                    aae-status | diag | stat | status | transfer-limit | reformat-indexes |
+                    top [-interval N] [-sort reductions|memory|msg_q] [-lines N] |
+                    downgrade-objects | security | bucket-type | repair-2i |
+                    search | services | ensemble-status | handoff | set |
+                    show | describe }
+```
 
 ## Node Naming
 
@@ -191,7 +193,7 @@ riak-admin test
 
 If the test is successful, you should see output like the following:
 
-    Successfully completed 1 read/write cycle to 'dev1@127.0.0.1'
+` Successfully completed 1 read/write cycle to 'dev1@127.0.0.1'`
 
 ## reip
 
@@ -458,7 +460,7 @@ This command reformats integer indexes in Secondary Index data for
 versions of Riak prior to 1.3.1 so that range queries over the indexes
 will return correct results.
 
-    riak-admin reformat-indexes [<concurrency>] [<batch size>] --downgrade
+    ``riak-admin reformat-indexes [<concurrency>] [<batch size>] --downgrade``
 
 The `concurrency` option defaults to `2` and controls how many
 partitions are concurrently reformatted.
@@ -551,11 +553,13 @@ riak-admin repair-2i
 ```
 
 This will initiate the repair process. When you run this command, you
-should see something like the following (where `<ring_size>` is the
+should see something like the following (where `&lt;ring_size>` is the
 number of partitions in your Riak cluster):
 
-    Will repair 2i data on <ring_size> partitions
-    Watch the logs for 2i repair progress reports
+```
+Will repair 2i data on &lt;ring_size> partitions
+Watch the logs for 2i repair progress reports
+```
 
 To repair secondary indexes in a specific partition, provide the ID of
 the partition along with the `repair-2i` command:

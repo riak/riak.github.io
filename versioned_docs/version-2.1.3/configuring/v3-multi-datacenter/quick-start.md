@@ -98,9 +98,11 @@ riak-repl connect 10.60.77.10:9080
 From Cluster1, view your active connections with `riak-repl
 connections`:
 
+```
     Sink             Cluster Name         <Ctrl-Pid>      [Members]
     ----             ------------         ----------      ---------
     Cluster2          Cluster2            <0.7985.0>      ["10.60.77.10:9080"] (via 10.60.77.10:9080)
+```
 
 ### Set up Cluster2 → Cluster1 Connection (if bidirectional replication is desired)
 
@@ -118,9 +120,11 @@ riak-repl connect 10.60.67.149:9080
 From Cluster2, view your active connections with `riak-repl
 connections`:
 
+```
     Sink             Cluster Name         <Ctrl-Pid>      [Members]
     ----             ------------         ----------      ---------
     Cluster1          Cluster1            <0.4456.0>      ["10.60.67.149:9080"] (via 10.60.67.149:9080)
+```
 
 :::note Note on connections
 At this point, if you do not have connections, replication will not work.

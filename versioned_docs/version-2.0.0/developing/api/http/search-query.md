@@ -9,7 +9,7 @@ Performs a [Riak KV Search](../../../developing/usage/search.md) query.
 
 ## Request
 
-    GET /search/query/<index_name>
+`GET /search/query/<index_name>`
 
 ## Optional Query Parameters
 

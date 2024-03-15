@@ -284,7 +284,7 @@ included when passed to`*-block-provider-redirect`.
 
     Possible output:
 
-      local cluster id: "{'dev1@127.0.0.1',{1391,544501,519016}}"
+`local cluster id: "{'dev1@127.0.0.1',{1391,544501,519016}}"`
 
 ## `riak-repl` Status Output
 

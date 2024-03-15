@@ -266,23 +266,26 @@ Those arguments are:
    in Erlang is defined and manipulated by the `riak_object` module.
    In Javascript, a Riak object looks like this:
 
-       {
-        "bucket":BucketAsString,
-        "key":KeyAsString,
-        "vclock":VclockAsString,
-        "values":[
-                  {
-                   "metadata":{
-                               "X-Riak-VTag":VtagAsString,
-                               "X-Riak-Last-Modified":LastModAsString,
-                               "Links":[...List of link objects],
-                               ...other metadata...
-                              },
-                   "data":ObjectData
-                  },
-                  ...other metadata/data values (siblings)...
-                 ]
-       }
+```json
+{
+  "bucket":BucketAsString,
+  "key":KeyAsString,
+  "vclock":VclockAsString,
+  "values":[
+            {
+              "metadata":{
+                          "X-Riak-VTag":VtagAsString,
+                          "X-Riak-Last-Modified":LastModAsString,
+                          "Links":[...List of link objects],
+                          ...other metadata...
+                        },
+              "data":ObjectData
+            },
+            ...other metadata/data values (siblings)...
+            ]
+}
+```
+
 2. *KeyData* : key data that was submitted with the inputs to the query or phase.
 3. *Arg* : a static argument for the entire phase that was submitted with the query.
 

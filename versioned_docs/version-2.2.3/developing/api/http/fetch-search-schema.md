@@ -9,7 +9,7 @@ Retrieves a Riak KV [search schema](../../../developing/usage/search-schemas.md)
 
 ## Request
 
-    GET /search/schema/<schema_name>
+`GET /search/schema/<schema_name>`
 
 ## Normal Response Codes
 

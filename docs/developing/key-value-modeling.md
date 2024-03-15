@@ -74,7 +74,7 @@ Simpsons. We could store each season in its own bucket and each episode
 in its own key within that bucket. Here's what the URL structure would
 look like (for the [HTTP API](../developing/api/http/index.md)):
 
-    GET/PUT/DELETE /bucket/<season>/keys/<episode number>
+`GET/PUT/DELETE /bucket/<season>/keys/<episode number>`
 
 The most important benefit of sorting Riak objects this way is that
 these types of lookup operations are extremely fast. Riak doesn't need
@@ -530,11 +530,11 @@ system and preface each bucket name with `good` or `bad`, but a more
 elegant way would be to use bucket types instead. So instead of this URL
 structure...
 
-    GET/PUT/DELETE /bucket/<season>/keys/<episode number>
+`GET/PUT/DELETE /bucket/<season>/keys/<episode number>`
 
 ...we can use this structure:
 
-    GET/PUT/DELETE /types/<good or bad>/buckets/<season>/keys/<episode number>
+`GET/PUT/DELETE /types/<good or bad>/buckets/<season>/keys/<episode number>`
 
 That adds an additional layer of namespacing and enables us to think
 about our data in terms of a deeper hash than in the example above:

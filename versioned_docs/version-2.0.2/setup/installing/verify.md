@@ -103,30 +103,32 @@ curl -v http://127.0.0.1:8098/types/default/props
 Replace `127.0.0.1` in the example above with your Riak node's IP address or
 fully qualified domain name, and you should get a response that looks like this:
 
-    * About to connect() to 127.0.0.1 port 8098 (#0)
-    *   Trying 127.0.0.1... connected
-    * Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
-    > GET /riak/test HTTP/1.1
-    > User-Agent: curl/7.21.6 (x86_64-pc-linux-gnu)
-    > Host: 127.0.0.1:8098
-    > Accept: */*
-    >
-    < HTTP/1.1 200 OK
-    < Vary: Accept-Encoding
-    < Server: MochiWeb/1.1 WebMachine/1.9.0 (someone had painted it blue)
-    < Date: Wed, 26 Dec 2012 15:50:20 GMT
-    < Content-Type: application/json
-    < Content-Length: 422
-    <
-    * Connection #0 to host 127.0.0.1 left intact
-    * Closing connection #0
-    {"props":{"name":"test","allow_mult":false,"basic_quorum":false,
-     "big_vclock":50,"chash_keyfun":{"mod":"riak_core_util",
-     "fun":"chash_std_keyfun"},"dw":"quorum","last_write_wins":false,
-     "linkfun":{"mod":"riak_kv_wm_link_walker","fun":"mapreduce_linkfun"},
-     "n_val":3,"notfound_ok":true,"old_vclock":86400,"postcommit":[],"pr":0,
-     "precommit":[],"pw":0,"r":"quorum","rw":"quorum","small_vclock":50,
-     "w":"quorum","young_vclock":20}}
+```
+* About to connect() to 127.0.0.1 port 8098 (#0)
+*   Trying 127.0.0.1... connected
+* Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
+> GET /riak/test HTTP/1.1
+> User-Agent: curl/7.21.6 (x86_64-pc-linux-gnu)
+> Host: 127.0.0.1:8098
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Vary: Accept-Encoding
+< Server: MochiWeb/1.1 WebMachine/1.9.0 (someone had painted it blue)
+< Date: Wed, 26 Dec 2012 15:50:20 GMT
+< Content-Type: application/json
+< Content-Length: 422
+<
+* Connection #0 to host 127.0.0.1 left intact
+* Closing connection #0
+{"props":{"name":"test","allow_mult":false,"basic_quorum":false,
+    "big_vclock":50,"chash_keyfun":{"mod":"riak_core_util",
+    "fun":"chash_std_keyfun"},"dw":"quorum","last_write_wins":false,
+    "linkfun":{"mod":"riak_kv_wm_link_walker","fun":"mapreduce_linkfun"},
+    "n_val":3,"notfound_ok":true,"old_vclock":86400,"postcommit":[],"pr":0,
+    "precommit":[],"pw":0,"r":"quorum","rw":"quorum","small_vclock":50,
+    "w":"quorum","young_vclock":20}}
+```
 
 The output above shows a successful response (`HTTP 200 OK`) and additional
 details from the verbose option. The response also contains the bucket

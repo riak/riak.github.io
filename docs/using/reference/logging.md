@@ -69,7 +69,7 @@ option (e.g. see [this StackExchange topic
 answer](https://unix.stackexchange.com/questions/317422/is-there-a-way-to-rewrite-parts-of-a-message-globally-instead-of-inserting-rewri/317474#317474))
 
 * or equivalent - of syslog implementations.
-  :::note
+:::
 
 The exception to this syntax is in crash logs (stored in `crash.log`
 files). For crash logs, the syntax tends to be along the following

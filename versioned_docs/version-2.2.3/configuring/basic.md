@@ -189,10 +189,12 @@ riak-admin status | grep ring
 
 Console output:
 
-    ring_members : ['riak@10.160.13.252']
-    ring_num_partitions : 8
-    ring_ownership : <<"[{'riak@10.160.13.252',8}]">>
-    ring_creation_size : 8
+```
+ring_members : ['riak@10.160.13.252']
+ring_num_partitions : 8
+ring_ownership : <<"[{'riak@10.160.13.252',8}]">>
+ring_creation_size : 8
+```
 
 If `ring_num_partitions` and `ring_creation_size` do not agree, that
 means that the `ring_creation_size` value was changed too late and that

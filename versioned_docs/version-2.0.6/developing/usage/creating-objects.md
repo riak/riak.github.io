@@ -13,9 +13,11 @@ import TabItem from '@theme/TabItem';
 Writes in Riak KV (storing or modifying objects) are like HTTP `PUT`
 requests. Here is the basic form of writes:
 
-    PUT /types/<type>/buckets/<bucket>/keys/<key>
+```
+PUT /types/<type>/buckets/<bucket>/keys/<key>
 
-    # If you're using HTTP to interact with Riak, you can also use POST
+# If you're using HTTP to interact with Riak, you can also use POST
+```
 
 In the example above, our read was unsuccessful because our Riak cluster
 is currently empty. Let's change that by storing an object containing
