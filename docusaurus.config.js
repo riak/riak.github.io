@@ -135,6 +135,28 @@ const config = {
         additionalLanguages: ['java', 'erlang', 'ruby', 'scala', 'java', 'protobuf', 'csharp', 'php', 'nginx'],
       },
     }),
+    webpack: {
+      jsLoader: (isServer) => ({
+        loader: require.resolve('swc-loader'),
+        options: {
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+            transform: {
+              react: {
+                runtime: 'automatic',
+              },
+            },
+            target: 'es2017',
+          },
+          module: {
+            type: isServer ? 'commonjs' : 'es6',
+          },
+        },
+      }),
+    },
 };
 
 module.exports = config;
