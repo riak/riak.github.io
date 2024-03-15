@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+import {themes as prismThemes} from 'prism-react-renderer';
+import devVersion from './dev_version.json';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -23,7 +23,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.js',
           // At bet365 we have an internal mirror, use that URL to edit instead.
           editUrl: ({ versionDocsDirPath, docPath }) => {
             const editUrl = process.env.BET365_EDIT_URL !== undefined
@@ -37,7 +37,7 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: require('./dev_version.json'),
+              label: devVersion.version,
             },
           },
         },
@@ -47,7 +47,7 @@ const config = {
           editUrl: 'https://github.com/riak/riak.github.io/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: './src/css/custom.css',
         },
       }),
     ],
@@ -130,8 +130,8 @@ const config = {
         copyright: `Copyright Riak © ${new Date().getFullYear()}. Apache 2.0. Built with Docusaurus.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
         additionalLanguages: ['java', 'erlang', 'ruby', 'scala', 'java', 'protobuf', 'csharp', 'php', 'nginx'],
       },
     }),
