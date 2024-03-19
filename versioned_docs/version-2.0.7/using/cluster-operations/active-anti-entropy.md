@@ -7,10 +7,6 @@ sidebar_position: 9
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[config search#throttledelay]: ../../configuring/search.md#searchanti_entropythrottletierdelay
-
-[config search#throttle]: ../../configuring/search.md#searchanti_entropythrottle
-
 Riak's [active anti-entropy](../../learn/concepts/active-anti-entropy.md) (AAE) subsystem is a set of background processes that repair object inconsistencies stemming from missing or divergent object values across nodes. Riak operators can turn AAE on and off and configure and monitor its functioning.
 
 ## Enabling Active Anti-Entropy
@@ -198,9 +194,9 @@ by setting the `anti_entropy.data_dir` parameter to a different value.
 
 AAE has a built-in throttling mechanism that can insert delays between
 AAE repair operations when [vnode](../../learn/concepts/vnodes.md) mailboxes reach the length
-specified by the [`anti_entropy.throttle.$tier.delay`][config search#throttledelay] parameter (more on
+specified by the `anti_entropy.throttle.$tier.delay` parameter (more on
 that in the section below). Throttling can be switched on and off using
-the [`search.anti_entropy.throttle`][config search#throttle] parameter. The default is `on`.
+the `search.anti_entropy.throttle` parameter. The default is `on`.
 
 #### Throttling Tiers
 

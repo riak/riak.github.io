@@ -27,16 +27,14 @@ A pure key/value store is completely agnostic toward the data stored
 within it. Any key can be associated with values of any conceivable
 type, from short strings to large JSON objects to video files. Riak
 began as a pure key/value store, but over time it has become more and
-more aware of the data stored in it through features like [secondary
-indexes](../../developing/usage/secondary-indexes.md) and [Search](../../developing/usage/search.md).
+more aware of the data stored in it through features like [secondary indexes](../../developing/usage/secondary-indexes.md) and [Search](../../developing/usage/search.md).
 
 In version 2.0, Riak continued this evolution by introducing a series of
 eventually convergent **Data Types**. Riak Data Types are convergent
 replicated data types, also known as CRDTs, inspired above all by the
 work of Shapiro, Preguiça, Baquero, and Zawirski
 ([paper](http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf)). We
-would also recommend [this reading
-list](http://christophermeiklejohn.com/crdt/2014/07/22/readings-in-crdts.html).
+would also recommend [this reading list](http://christophermeiklejohn.com/crdt/2014/07/22/readings-in-crdts.html).
 
 ## CRDTs vs. Other Riak Data
 
@@ -209,8 +207,7 @@ subsystem called [`riak_dt`](https://github.com/basho/riak_dt).
 The beauty of Data Types is that Riak "knows" how to resolve value
 conflicts by applying Data Type-specific rules. In general, Riak does
 this by remembering the **history** of a value and broadcasting that
-history along with the current value in the form of a [context
-object](../../developing/data-types/index.md#data-types-and-context) that is similar to a
+history along with the current value in the form of a [context object](../../developing/data-types/index.md#data-types-and-context) that is similar to a
 [vector clock][concept causal context vc] or \`[dotted version vectors][concept causal context dvv]. Riak uses the history of each Data Type to make deterministic
 judgments about which value should be deemed correct.
 

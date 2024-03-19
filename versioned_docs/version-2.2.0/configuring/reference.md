@@ -374,7 +374,7 @@ Configurable parameters for intra-cluster, i.e. inter-node, [handoff][cluster op
 
 ## SNMP
 
-Configurable parameters for the [Simple Network Management Protocol][use ref snmp](SNMP) server built into
+Configurable parameters for the [Simple Network Management Protocol][use ref snmp] (SNMP) server built into
 [Riak SNMP](https://github.com/basho/riak_snmp).
 
 | Config                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default              |

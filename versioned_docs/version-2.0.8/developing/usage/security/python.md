@@ -69,8 +69,7 @@ available security sources with the exception of trust-based auth,
 provided that the
 [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) from
 which the client is connecting has been specified as trusted. More on
-specifying trusted CIDRs can be found in [Trust-based
-Authentication](../../../using/security/managing-sources.md#trust-based-authentication).
+specifying trusted CIDRs can be found in [Trust-based Authentication](../../../using/security/managing-sources.md#trust-based-authentication).
 
 :::note
 The examples in the following sections specify certs on the

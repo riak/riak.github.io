@@ -647,8 +647,7 @@ riak-admin bucket-type update n_val_of_2 '{"props":{"allow_mult":false}}'
 ## Bucket Type Example
 
 Let's say that you'd like to create a bucket type called
-`user_account_bucket` with a [pre-commit hook](../../developing/usage/commit-hooks.md#pre-commit-hooks) called `syntax_check` and two [post-commit
-hooks](../../developing/usage/commit-hooks.md) called `welcome_email` and `update_registry`. This would involve four steps:
+`user_account_bucket` with a [pre-commit hook](../../developing/usage/commit-hooks.md) called `syntax_check` and two [post-commit hooks](../../developing/usage/commit-hooks.md) called `welcome_email` and `update_registry`. This would involve four steps:
 
 1. Creating a JavaScript object containing the appropriate `props`
    settings:

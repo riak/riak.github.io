@@ -371,9 +371,9 @@ Docs](https://github.com/basho/basho_docs).
 
 [data_types_counters]: ../../developing/data-types/counters.md
 
-[data_types_sets]: ../../developing/data-types/sets.md 
+[data_types_sets]: ../../developing/data-types/sets.md
 
-[data_types_maps]: ../../developing/data-types/maps.md 
+[data_types_maps]: ../../developing/data-types/maps.md
 
 [riak_nagios]: https://github.com/basho/riak_nagios
 

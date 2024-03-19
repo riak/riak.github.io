@@ -64,8 +64,7 @@ nodes with the data will cause the read to fail.
 
 ## Setting the N value (`n_val`)
 
-To change the N value for a bucket, you need to create a [bucket
-type](../../developing/usage/bucket-types.md) with `n_val` set to your desired value and
+To change the N value for a bucket, you need to create a [bucket type](../../developing/usage/bucket-types.md) with `n_val` set to your desired value and
 then make sure that the bucket bears that type.
 
 In this example, we'll set N to 2. First, we'll create the bucket type

@@ -441,12 +441,12 @@ the case.
 <td><code>true</code></td>
 <td></td>
 <td><code>false</code></td>
-<td><code>true</code>[1](#notes)</td>
+<td><code>true</code>[1] (#notes)</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>use field boosts[5](#notes)</td>
+<td>use field boosts[5] (#notes)</td>
 <td></td>
 <td></td>
 <td></td>
@@ -465,15 +465,15 @@ the case.
 </tr>
 <tr>
 <td>highlighting</td>
-<td><code>true</code>[4](#notes)</td>
+<td><code>true</code>[4] (#notes)</td>
 <td><code>true</code></td>
 <td></td>
 <td></td>
-<td>[2](#notes)</td>
-<td><code>true</code>[3](#notes)</td>
+<td>[2] (#notes)</td>
+<td><code>true</code>[3] (#notes)</td>
 </tr>
 <tr>
-<td>faceting[5](#notes)</td>
+<td>faceting[5] (#notes)</td>
 <td><code>true</code></td>
 <td></td>
 <td></td>
@@ -500,12 +500,12 @@ the case.
 <td></td>
 </tr>
 <tr>
-<td>MoreLikeThis[5](#notes)</td>
+<td>MoreLikeThis[5] (#notes)</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
-<td><code>true</code>[6](#notes)</td>
+<td><code>true</code>[6] (#notes)</td>
 <td></td>
 </tr>
 </tbody></table>

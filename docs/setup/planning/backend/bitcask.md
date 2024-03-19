@@ -28,7 +28,8 @@ import TabItem from '@theme/TabItem';
 
 [perf open files]: ../../../using/performance/open-files-limit.md
 
-[plan bitcask capacity]: ../../../setup/planning/bitcask-calculator.mdx 
+[plan bitcask capacity]: ../../planning/bitcask-calculator.mdx
+
 
 [usage delete objects]: ../../../developing/usage/deleting-objects.md
 

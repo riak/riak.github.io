@@ -36,8 +36,7 @@ available options can be found in the [section below](#vector-clock-pruning). Fo
 though, please bear in mind that we strongly recommend one of the
 following two options:
 
-1. If your data can be modeled as one of the currently available [Riak
-   Data Types](../../../developing/data-types/index.md), we recommend using one of these types,
+1. If your data can be modeled as one of the currently available [Riak Data Types](../../data-types/index.md), we recommend using one of these types,
    because all of them have conflict resolution *built in*, completely
    relieving applications of the need to engage in conflict resolution.
 2. If your data cannot be modeled as one of the available Data Types,

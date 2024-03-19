@@ -13,7 +13,7 @@ id: repair_recover_repairs
 
 [glossary readrep]: ../../learn/glossary.md#read-repair
 
-[search config]: ../../configuring/search.md#search-config-settings
+[search config]: ../../configuring/search.md#riak-config-settings
 
 [tiered storage]: ../../setup/planning/backend/leveldb.md#tiered-storage
 

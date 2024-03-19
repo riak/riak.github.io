@@ -53,8 +53,7 @@ of your choosing. More information on this can be found in our guide to
 [conflict resolution][usage conflict resolution].
 
 This variety of options enables you to manage Riak's eventually
-consistent behavior in accordance with your application's [data model
-or models](../../learn/use-cases.md).
+consistent behavior in accordance with your application's [data model or models](../use-cases.md).
 
 ## Replication Properties and Request Tuning
 

@@ -10,7 +10,7 @@ sidebar_position: 0
 
 [install index]: ../../../setup/installing/index.md
 
-[perf open files]: ../../../using/performance/open-files-limit.md#changing-limit-for-current-session
+[perf open files]: ../../../using/performance/open-files-limit.md#changing-the-limit
 
 [lab ansible]: https://github.com/paegun/ansible-cache-proxy
 

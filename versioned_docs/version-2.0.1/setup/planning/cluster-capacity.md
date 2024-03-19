@@ -80,8 +80,7 @@ calculation assumes that you'll be keeping the entire data set on disk.
 Many of the considerations taken when configuring a machine to serve a
 database apply to configuring a node for Riak as well. Mounting
 disks with noatime and having separate disks for your OS and Riak data
-lead to much better performance. See [Planning for a
-Riak System](./start.md) for more information.
+lead to much better performance. See [Planning for a Riak System](./start.md) for more information.
 
 ### Disk Space Planning and Ownership Handoff
 

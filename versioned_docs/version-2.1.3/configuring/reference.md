@@ -47,7 +47,7 @@ sidebar_position: 3
 
 [cluster ops handoff]: ../using/cluster-operations/handoff.md
 
-[Search Settings]: ./search.md#search-config-settings
+[Search Settings]: ./search.md#riak-config-settings
 
 Riak has a `riak.conf` configuration file located in `/etc` if you are
 using a source install or in `/etc/riak` or `/usr/local/etc` if you used
@@ -361,7 +361,7 @@ Configurable parameters for intra-cluster, i.e. inter-node, [handoff][cluster op
 
 ## SNMP
 
-Configurable parameters for the [Simple Network Management Protocol][use ref snmp](SNMP) server built into
+Configurable parameters for the [Simple Network Management Protocol][use ref snmp] (SNMP) server built into
 [Riak SNMP](https://github.com/basho/riak_snmp).
 
 | Config                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default              |
