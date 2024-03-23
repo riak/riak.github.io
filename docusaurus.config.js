@@ -157,6 +157,10 @@ const config = {
         },
       }),
     },
+    markdown: {
+      format: 'detect',
+      mermaid: true,
+    },
 };
 
 module.exports = config;
