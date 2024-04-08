@@ -19,7 +19,7 @@
     "@docusaurus/core": "^3.2.0",
     "@docusaurus/preset-classic": "^3.2.0",
     "@mdx-js/react": "^3.0.0",
-    "@swc/core": "^1.4.11",
+    "@swc/core": "^1.4.12",
     "clsx": "^2.1.0",
     "prism-react-renderer": "^2.1.0",
     "react": "^18.2.0",
