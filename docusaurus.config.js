@@ -134,6 +134,11 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['java', 'erlang', 'ruby', 'scala', 'java', 'protobuf', 'csharp', 'php', 'nginx'],
       },
+      algolia: {
+        appId: '4J7JPH644V',
+        apiKey: '84a663c289be29766d05b6dce740cad5',
+        indexName: 'riakio',
+      }
     }),
     webpack: {
       jsLoader: (isServer) => ({
