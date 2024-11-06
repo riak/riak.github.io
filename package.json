@@ -16,8 +16,8 @@
     "build:fast": "cross-env BUILD_FAST=true docusaurus build"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.5.2",
     "@docusaurus/preset-classic": "^3.6.0",
+    "@docusaurus/core": "^3.6.0",
     "@mdx-js/react": "^3.1.0",
     "@swc/core": "^1.7.35",
     "clsx": "^2.1.1",
