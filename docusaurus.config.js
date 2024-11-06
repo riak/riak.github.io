@@ -16,6 +16,9 @@ const config = {
   favicon: 'images/branding/favicon.ico',
   organizationName: 'riak', // Usually your GitHub org/user name.
   projectName: 'riak.github.io', // Usually your repo name.
+  future: {
+    experimental_faster: true
+  },
 
   presets: [
     [
