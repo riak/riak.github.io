@@ -48,6 +48,7 @@ vnodes.
 The output of the [`riak-admin member-status`][use admin riak cli]
 command shows this:
 
+```
     ================================= Membership ==================================
     Status     Ring    Pending    Node
     -------------------------------------------------------------------------------
@@ -56,6 +57,7 @@ command shows this:
     valid      32.8%      --      'dev3@127.0.0.1'
     -------------------------------------------------------------------------------
     Valid: 3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
+```
 
 In this cluster, one node accounts for 34.4% of the ring, i.e. 22 out of
 64 partitions, while the other two nodes account for 32.8%, i.e. 21 out

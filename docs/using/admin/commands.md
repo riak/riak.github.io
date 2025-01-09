@@ -59,6 +59,7 @@ riak-admin cluster status
 
 This will return output like the following in a 3-node cluster:
 
+```
     ---- Cluster Status ----
     Ring ready: true
 
@@ -69,6 +70,7 @@ This will return output like the following in a 3-node cluster:
     |     dev2@127.0.0.1 |valid |  up   | 32.8|  --   |
     |     dev3@127.0.0.1 |valid |  up   | 32.8|  --   |
     +--------------------+------+-------+-----+-------+
+```
 
 In the above output, `Ring ready` denotes whether or not the cluster
 agrees on [the ring][concept clusters], i.e. whether the cluster is
@@ -224,6 +226,7 @@ the cluster will look like afterward, etc.
 
 For example, if a `cluster leave` operation is staged in a 3-node cluster the output will look something like this:
 
+```
     =============================== Staged Changes ================================
     Action         Details(s)
     -------------------------------------------------------------------------------
@@ -267,6 +270,8 @@ For example, if a `cluster leave` operation is staged in a 3-node cluster the ou
     Valid:2 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 
     WARNING: Not all replicas will be on distinct nodes
+
+```
 
 Notice that there are distinct sections of the output for each of the
 transitions that the cluster will undergo, including warnings, planned

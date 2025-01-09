@@ -86,6 +86,7 @@ commands, as in the section above, the next step in forming a cluster is
 to review the proposed plan of changes. This can be done with the
 `riak-admin cluster plan` command, which is shown in the example below.
 
+```
     =============================== Staged Changes ================================
     Action         Nodes(s)
     -------------------------------------------------------------------------------
@@ -118,6 +119,7 @@ to review the proposed plan of changes. This can be done with the
       13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.4'
       13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.5'
       13 transfers from 'riak@192.168.2.2' to 'riak@192.168.2.6'
+```
 
 If the plan is to your liking, submit the changes by running `riak-admin
 cluster commit`.

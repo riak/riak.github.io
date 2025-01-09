@@ -136,6 +136,7 @@ riak-admin aae-status
 When you run this command in a node, the output will look like this
 (shortened for the sake of brevity):
 
+```
     ================================== Exchanges ==================================
     Index                                              Last (ago)    All (ago)
     -------------------------------------------------------------------------------
@@ -163,6 +164,7 @@ When you run this command in a node, the output will look like this
     45671926166590716193865151022383844364247891968       0         0         0
     68507889249886074290797726533575766546371837952       0         0         0
     91343852333181432387730302044767688728495783936       0         0         0
+```
 
 Each of these three tables contains information for each
 [vnode](../../learn/concepts/vnodes.md) in your cluster in these three categories:

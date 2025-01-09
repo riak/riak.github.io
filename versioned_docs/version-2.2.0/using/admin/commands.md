@@ -224,6 +224,7 @@ the cluster will look like afterward, etc.
 
 For example, if a `cluster leave` operation is staged in a 3-node cluster the output will look something like this:
 
+```
     =============================== Staged Changes ================================
     Action         Details(s)
     -------------------------------------------------------------------------------
@@ -267,6 +268,7 @@ For example, if a `cluster leave` operation is staged in a 3-node cluster the ou
     Valid:2 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 
     WARNING: Not all replicas will be on distinct nodes
+```
 
 Notice that there are distinct sections of the output for each of the
 transitions that the cluster will undergo, including warnings, planned

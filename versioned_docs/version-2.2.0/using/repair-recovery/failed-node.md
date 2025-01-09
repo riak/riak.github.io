@@ -64,12 +64,14 @@ following steps:
 
     The output should look something like this:
 
-        ========================= Membership ==========================
+       ```
+       ========================== Membership ==========================
        Status     Ring    Pending    Node
        ---------------------------------------------------------------
        valid     100.0%      --      'dev-rel@127.0.0.1'
        ---------------------------------------------------------------
        Valid:1 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
+       ```
 
 7. Join the node to the cluster:
 
