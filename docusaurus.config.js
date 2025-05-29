@@ -17,7 +17,17 @@ const config = {
   organizationName: 'riak', // Usually your GitHub org/user name.
   projectName: 'riak.github.io', // Usually your repo name.
   future: {
-    experimental_faster: true
+    v4: true, 
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      mdxCrossCompilerCache: true,
+      rspackBundler: true,
+      rspackPersistentCache: true,
+      ssgWorkerThreads: true,
+    }
   },
 
   presets: [
